@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFF4"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_above="@+id/ll_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFF4"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.wodm.android.view.CommonVideoView
+            android:id="@+id/common_videoView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_400" />
+        <master.flame.danmaku.ui.widget.DanmakuView
+            android:id="@+id/danmaku_view"
+            android:layout_marginTop="@dimen/px_80"
+            android:background="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </RelativeLayout>
+
+    <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
+        android:id="@+id/pull_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_layout" />
+
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+     <include layout="@layout/activity_comment"></include>
+     <include android:id="@+id/ll_qq_biaoqing" layout="@layout/qq_biaoqing" android:visibility="gone" android:layout_alignParentBottom="true" android:layout_height="@dimen/px_300" android:layout_width="match_parent"></include>
+    </LinearLayout>
+
+</RelativeLayout>

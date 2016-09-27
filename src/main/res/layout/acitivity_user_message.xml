@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_activity_header_main"/>
+
+    <TextView
+        android:id="@+id/no_message"
+        android:layout_marginTop="@dimen/px_30"
+        android:gravity="center"
+        android:text="暂无消息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
+        android:visibility="gone"
+        android:id="@+id/message_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

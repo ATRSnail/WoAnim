@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EFEFF4"
+        android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_400"
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/common_videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:id="@+id/exit_screen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="top"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/exit_screena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/anim_back" />
+
+            <TextView
+                android:id="@+id/video_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_30"
+                android:layout_toRightOf="@id/exit_screena"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/px_20"
+            android:background="@drawable/comment_back_select"
+            android:padding="@dimen/px_10"
+            android:text="开始阅读"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+
+    <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
+        android:id="@+id/pull_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_layout" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <include layout="@layout/activity_comment"></include>
+        <include android:id="@+id/ll_qq_biaoqing" layout="@layout/qq_biaoqing" android:visibility="gone" android:layout_alignParentBottom="true" android:layout_height="@dimen/px_300" android:layout_width="match_parent"></include>
+    </LinearLayout>
+</RelativeLayout>

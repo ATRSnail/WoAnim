@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_f4f4f4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/set_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        app:CustomtitleTextColor="@android:color/black"
+        app:CustomtitleTextSize="@dimen/text_size_36_px"
+        app:BackGroundColor="@color/color_f4f4f4"
+        app:Customtoptitle="@string/resiner"
+        app:leftBackGround="@mipmap/ic_launcher"
+        app:rightType="0"
+      />
+    <LinearLayout
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="@dimen/px_45"
+            android:layout_marginRight="@dimen/px_45"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:textSize="@dimen/text_size_36_px"
+                    android:textColor="@color/color_eeeeee"
+                    android:hint="@string/input_yzm"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/color_eeeeee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"></View>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:textSize="@dimen/text_size_36_px"
+                    android:textColor="@color/color_eeeeee"
+                    android:hint="@string/password"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:background="@color/color_eeeeee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"></View>
+            <RelativeLayout
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96">
+
+                <EditText
+                    android:layout_toLeftOf="@+id/btn_yzm"
+                    android:id="@+id/et_yzm"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:textSize="@dimen/text_size_36_px"
+                    android:textColor="@color/color_eeeeee"
+                    android:hint="@string/input_yzm"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <Button
+                    android:layout_marginTop="@dimen/px_20"
+                    android:layout_marginBottom="@dimen/px_20"
+                    android:layout_marginLeft="@dimen/px_20"
+                    android:id="@+id/btn_yzm"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/text_size_22_px"
+                    android:background="@color/color_999999"
+                    android:text="@string/input_yzm"
+                    android:textColor="@color/color_eeeeee"
+                    android:layout_width="@dimen/px_160"
+                    android:layout_height="@dimen/px_60" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+    android:layout_marginTop="@dimen/px_45"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+    android:layout_marginLeft="@dimen/px_45"
+    android:layout_marginRight="@dimen/px_45"
+    android:layout_marginTop="@dimen/px_45"
+    android:textColor="@color/color_666666"
+    android:text="@string/finsh"
+    android:textSize="@dimen/text_size_36_px"
+    android:background="@drawable/btn_login_shape"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px_96" />
+    </LinearLayout>
+
+</LinearLayout>

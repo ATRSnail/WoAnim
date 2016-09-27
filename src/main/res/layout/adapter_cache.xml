@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/px_24"
+  >
+
+    <ImageView
+        android:id="@+id/cache_logo"
+        android:layout_width="@dimen/px_260"
+        android:layout_height="@dimen/px_160"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/px_12"
+        android:layout_marginRight="@dimen/px_12"
+        android:layout_marginTop="@dimen/px_12"
+        android:scaleType="fitXY"
+        android:src="@mipmap/loading" />
+
+
+    <TextView
+        android:id="@+id/cache_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/cache_logo"
+        android:layout_marginTop="@dimen/px_12"
+        android:layout_toRightOf="@id/cache_logo"
+        android:singleLine="true"
+        android:text="熊出没 第一集"
+        android:textColor="@color/logout_color"
+        android:textSize="@dimen/text_size_26_px" />
+
+    <TextView
+        android:id="@+id/cache_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cache_logo"
+        android:layout_marginBottom="@dimen/px_12"
+        android:layout_toRightOf="@id/cache_logo"
+        android:singleLine="true"
+        android:text="下载中 1M/200M"
+        android:textColor="@color/logout_color"
+        android:textSize="@dimen/text_size_26_px" />
+
+    <ProgressBar
+        android:id="@+id/progressBars"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="@dimen/px_300"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/cache_progress"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/px_12"
+        android:layout_toRightOf="@id/cache_logo"
+        android:max="100"
+        android:progress="20" />
+
+    <ImageView
+        android:id="@+id/imag_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/px_15" />
+
+
+</RelativeLayout>

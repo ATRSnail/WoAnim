@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/sshape"
+    android:orientation="vertical"
+    android:padding="@dimen/px_15">
+
+    <TextView
+        android:id="@+id/quality_yuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px_10"
+        android:text="原画优先"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_24_px" />
+
+    <TextView
+        android:id="@+id/quality_chao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px_10"
+        android:text="超清优先"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_24_px" />
+
+    <TextView
+        android:id="@+id/quality_gao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px_10"
+        android:text="高清优先"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_24_px" />
+
+    <TextView
+        android:id="@+id/quality_biao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/px_10"
+        android:text="标清优先"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_24_px" />
+</LinearLayout>

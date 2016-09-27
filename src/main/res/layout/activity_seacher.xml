@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.wodm.android.ui.SeacherActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@mipmap/btn_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/seacher_back"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/px_10">
+
+                    <TextView
+                        android:id="@+id/search_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:drawablePadding="@dimen/px_3"
+                        android:drawableRight="@drawable/search_more"
+                        android:padding="@dimen/px_10"
+                        android:tag="1"
+                        android:text="动画"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_32_px" />
+
+                    <EditText
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="搜索动画名、漫画名"
+                        android:maxLines="1"
+                        android:padding="@dimen/px_10"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:imeOptions="actionSearch"
+                        android:singleLine="true"/>
+
+                    <ImageView
+                        android:id="@+id/clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/px_10"
+                        android:src="@mipmap/close_white"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/start_sou"
+                    style="?toolbarNavigationButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="right"
+                    android:src="@mipmap/sousuo_white" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_views"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="@dimen/px_20"
+            android:text="热门搜索"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <com.wodm.android.view.FlowLayout
+            android:id="@+id/flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/px_20"
+            android:paddingRight="@dimen/px_20" />
+
+        <include layout="@layout/layout_line" />
+
+        <org.eteclab.ui.widget.NoScrollGridView
+            android:id="@+id/hostory_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#0000"
+            android:listSelector="#0000"
+            android:numColumns="1"
+            android:verticalSpacing="@dimen/px_1" />
+
+        <LinearLayout
+            android:id="@+id/clear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_line" />
+
+            <TextView
+                android:id="@+id/clear_jilu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/px_40"
+                android:text="清空搜索记录"
+                android:textColor="#F34F85"
+                android:textSize="@dimen/text_size_34_px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
+        android:id="@+id/pull_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

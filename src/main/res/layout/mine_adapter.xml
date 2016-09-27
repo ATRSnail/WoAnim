@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/color_f4f4f4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/color_f4f4f4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_22"></View>
+    <LinearLayout
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_96">
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="fadfafa"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px_45"
+            android:textSize="@dimen/text_size_32_px"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <com.wodm.android.view.newview.MyGridView
+        android:verticalSpacing="@dimen/px_1"
+        android:horizontalSpacing="@dimen/px_1"
+        android:numColumns="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gv_mygirdview"></com.wodm.android.view.newview.MyGridView>
+
+
+</LinearLayout>

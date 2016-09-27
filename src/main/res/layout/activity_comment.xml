@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@android:color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/px_24">
+
+
+        <org.eteclab.ui.widget.CircularImage
+            android:id="@+id/header"
+            android:layout_width="@dimen/px_60"
+            android:layout_height="@dimen/px_60"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_marginRight="@dimen/px_24"
+            android:src="@mipmap/default_header" />
+
+
+        <EditText
+            android:id="@+id/comment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/comment_back"
+            android:hint="我来说两句话"
+            android:imeOptions="actionSend"
+            android:maxLines="3"
+            android:padding="@dimen/px_10"
+            android:textSize="@dimen/text_size_28_px" />
+
+        <org.eteclab.ui.widget.CircularImage
+            android:id="@+id/img_xiaolian"
+            android:layout_width="@dimen/px_60"
+            android:layout_height="@dimen/px_60"
+            android:layout_marginLeft="@dimen/px_24"
+            android:src="@mipmap/xiaolian_btn" />
+
+        <TextView
+            android:id="@+id/anim_send_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_24"
+            android:background="@drawable/comment_back_select"
+            android:padding="@dimen/px_15"
+            android:text="发送"
+            android:textColor="@color/white" />
+</LinearLayout>

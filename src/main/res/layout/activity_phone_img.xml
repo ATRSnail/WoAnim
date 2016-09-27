@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wodm.android.ui.PhoneImgActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_activity_header_main" />
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="@dimen/px_20"
+        android:cacheColorHint="#0000"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="@dimen/px_20"
+        android:listSelector="#0000"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/px_20" />
+
+</RelativeLayout>

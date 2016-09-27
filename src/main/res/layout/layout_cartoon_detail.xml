@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="@dimen/px_20">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_4">
+
+            <TextView
+                android:id="@+id/car_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门动漫1：更新至第5集"
+                android:textColor="@android:color/black"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/chapter_desp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_13"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="热门动漫1：更新至第5集" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/anim_dowm1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/px_30"
+                android:paddingLeft="@dimen/px_30"
+                android:src="@mipmap/icon_xiazai" />
+
+            <CheckBox
+                android:id="@+id/anim_collect2"
+                style="@style/CustomCheckboxTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false" />
+
+            <ImageView
+                android:id="@+id/anim_share3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/px_30"
+                android:paddingLeft="@dimen/px_30"
+                android:src="@mipmap/icon_share" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_10"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_10"
+            android:layout_marginTop="@dimen/px_12"
+            android:drawableLeft="@mipmap/tubiao"
+            android:drawablePadding="@dimen/px_19"
+            android:text="剧集列表" />
+
+        <org.eteclab.ui.widget.NoScrollGridView
+            android:id="@+id/grid_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_10"
+            android:layout_marginRight="@dimen/px_16"
+            android:horizontalSpacing="@dimen/px_12"
+            android:numColumns="8"
+            android:padding="@dimen/px_20"
+            android:verticalSpacing="@dimen/px_12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_12"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_12"
+            android:layout_marginTop="@dimen/px_12"
+            android:drawableLeft="@mipmap/tubiao"
+            android:drawablePadding="@dimen/px_19"
+            android:text="简介" />
+
+        <TextView
+            android:id="@+id/desc_op_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_24"
+            android:layout_marginLeft="@dimen/px_24"
+            android:layout_marginRight="@dimen/px_24"
+            android:background="@android:color/white"
+            android:text="" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_12"
+        android:background="@android:color/white"
+        android:drawableLeft="@mipmap/tubiao"
+        android:drawablePadding="@dimen/px_19"
+        android:paddingTop="@dimen/px_12"
+        android:text="评论" />
+
+
+</LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@android:color/white"-->
+        <!--android:focusable="true"-->
+        <!--android:focusableInTouchMode="true"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="@dimen/px_24">-->
+
+
+        <!--<org.eteclab.ui.widget.CircularImage-->
+            <!--android:id="@+id/header"-->
+            <!--android:layout_width="@dimen/px_60"-->
+            <!--android:layout_height="@dimen/px_60"-->
+            <!--android:layout_marginLeft="@dimen/px_10"-->
+            <!--android:layout_marginRight="@dimen/px_24"-->
+            <!--android:src="@mipmap/default_header" />-->
+
+
+        <!--<EditText-->
+            <!--android:id="@+id/comment_text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/comment_back"-->
+            <!--android:hint="我来说两句话"-->
+            <!--android:imeOptions="actionSend"-->
+            <!--android:maxLines="3"-->
+            <!--android:padding="@dimen/px_10"-->
+            <!--android:textSize="@dimen/text_size_28_px" />-->
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/send_comment"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/px_24"-->
+        <!--android:background="@drawable/comment_back_select"-->
+        <!--android:padding="@dimen/px_15"-->
+        <!--android:text="发送"-->
+        <!--android:textColor="@color/white" />-->
+    <!--</LinearLayout>-->
+</RelativeLayout>

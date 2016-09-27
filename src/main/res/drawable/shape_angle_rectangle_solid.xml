@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <stroke
+        android:width="0.2dp"
+        android:color="@color/logout_color" />
+
+    <gradient
+        android:endColor="@color/logout_color"
+        android:startColor="@color/logout_color" />
+
+    <corners android:radius="3dip" />
+
+</shape>

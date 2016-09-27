@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="titleTextColor">@android:color/white</item>-->
+        <!--<item name="colorControlNormal">@android:color/darker_gray</item>-->
+        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.FullScreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar.SlideBack">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="home_title_tab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_32_px</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingRight">@dimen/px_39</item>
+        <item name="android:paddingLeft">@dimen/px_39</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="UserInfo_text">
+        <item name="android:textColor">#000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="UserInfo_set_text">
+        <item name="android:textColor">#3D3D3D</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <style name="tallerBarStyle" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">8dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+
+    <style name="CustomDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及透明程度-->
+        <item name="android:windowFullscreen">true</item>
+        <!--背景颜色及透明程度-->
+        <item name="android:windowBackground">@color/transparent_blacks</item>
+        <!--是否有标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.Holo.Light.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/cartoon_collect_detail</item>
+    </style>
+    <declare-styleable name="secondTopbar">
+        <attr name="leftTextColor" format="color"/>
+        <!-- BackGround属性可以颜色，也可以是一个资源文件 -->
+        <!-- 所以BackGround是 format="reference|color"-->
+        <attr name="leftBackGround" format="reference|color"/>
+        <attr name="leftText" format="string"/>
+
+        <attr name="Customtoptitle" format="string"/>
+        <attr name="CustomtitleTextSize" format="reference|dimension"/>
+        <attr name="CustomtitleTextColor" format="color"/>
+        <attr name="BackGroundColor" format="color"/>
+        <attr name="rightType" format="integer"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightBackGround" format="reference|color"/>
+        <attr name="rightText" format="string"/>
+        <attr name="rightTextSize" format="reference|dimension"/>
+    </declare-styleable>
+</resources>

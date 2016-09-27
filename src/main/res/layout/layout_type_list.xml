@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/type_list"
+    android:orientation="vertical">
+
+    <org.eteclab.ui.widget.NoScrollGridView
+        android:id="@+id/tab_list_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_20"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="1"
+        android:paddingLeft="@dimen/px_30"
+        android:paddingRight="@dimen/px_20"
+        android:verticalSpacing="@dimen/px_10"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/shou_zhe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@null"
+        android:padding="@dimen/px_40"
+        android:paddingTop="@dimen/px_10"
+        android:src="@mipmap/type_shouqi"
+        android:tag="1" />
+</RelativeLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@mipmap/btn_back"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:padding="@dimen/px_10"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_40_px" />
+
+        <LinearLayout
+            android:id="@+id/check_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/enetic_home_title"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/enetic_cartoon"
+                style="@style/home_title_tab"
+                android:text="@string/enetic_cartoon" />
+
+            <TextView
+                android:id="@+id/enetic_animation"
+                style="@style/home_title_tab"
+                android:text="@string/enetic_animation" />
+
+            <TextView
+                android:id="@+id/enetic_wallpaper"
+                style="@style/home_title_tab"
+                android:text="@string/enetic_wallpaper"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_right"
+            style="?toolbarNavigationButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:src="@mipmap/sousuo_white"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tooltitle_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:padding="@dimen/px_10"
+            android:textColor="@android:color/white" />
+    </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>

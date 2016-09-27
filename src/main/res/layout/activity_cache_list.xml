@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cache_sdcart"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_activity_header_main" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="@dimen/px_24">
+
+            <LinearLayout
+                android:id="@+id/start_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:tag="0"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:id="@+id/cache_iamge_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/cacher_all_start" />
+
+                <TextView
+                    android:id="@+id/cache_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_12"
+                    android:text="全部开始"
+                    android:textColor="#3D3D3D" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/cache_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_12"
+                android:tag="0"
+                android:text="编辑"
+                android:textColor="#F34F85" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <org.eteclab.ui.widget.NoScrollGridView
+                android:id="@+id/grid_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_6"
+                android:numColumns="1"
+
+                android:verticalSpacing="@dimen/px_3"></org.eteclab.ui.widget.NoScrollGridView>
+        </ScrollView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cache_sdcart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#DFDFDF"
+        android:gravity="center"
+        android:padding="@dimen/px_12"
+        android:textColor="#3D3D3D"
+        android:textSize="@dimen/text_size_26_px" />
+</RelativeLayout>

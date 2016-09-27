@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+    android:padding="@dimen/px_20">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_30"
+        android:src="@mipmap/icon_lishijilu" />
+
+    <TextView
+        android:id="@+id/conntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingRight="@dimen/px_20"
+        android:paddingLeft="@dimen/px_20"
+        android:textColor="#3D3D3D" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/px_30"
+        android:src="@mipmap/icon_delete" />
+</LinearLayout>

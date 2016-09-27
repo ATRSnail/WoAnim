@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFF4"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_10"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/px_20">
+
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/user_head_imgs"
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="@dimen/px_120"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/touxiang" />
+
+
+                <TextView
+                    android:id="@+id/user_null"
+                    style="@style/UserInfo_text"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/px_20"
+                    android:gravity="center_vertical"
+                    android:text="登录/注册"
+                    android:textColor="#3D3D3D" />
+
+                <LinearLayout
+                    android:id="@+id/layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        style="@style/UserInfo_text"
+                        android:layout_marginLeft="@dimen/px_20"
+                        android:text="姓名##"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="#3D3D3D" />
+
+
+                    <TextView
+                        android:id="@+id/user_sign"
+                        style="@style/UserInfo_text"
+                        android:layout_marginLeft="@dimen/px_20"
+                        android:layout_marginRight="@dimen/px_20"
+                        android:layout_marginTop="@dimen/px_16"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="签名##签名##签名##"
+                        android:textColor="#F34F85" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <include
+                android:id="@+id/ordering_records"
+                layout="@layout/layout_infos" />
+
+            <include
+                android:id="@+id/message"
+                layout="@layout/layout_infos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_10" />
+
+            <include
+                android:id="@+id/my_dowm"
+                layout="@layout/layout_infos" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_1"
+                android:background="#D8D8D8" />
+
+            <include
+                android:id="@+id/watch_records"
+                layout="@layout/layout_infos" />
+
+            <include
+                android:id="@+id/my_collcet"
+                layout="@layout/layout_infos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_10" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_1"
+                android:background="#D8D8D8" />
+
+            <include
+                android:id="@+id/integral"
+                layout="@layout/layout_infos" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_1"
+                android:background="#D8D8D8" />
+
+            <include
+                android:id="@+id/set_layout"
+                layout="@layout/layout_infos" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

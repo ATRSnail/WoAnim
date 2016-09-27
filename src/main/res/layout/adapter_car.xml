@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/px_10">
+
+    <RelativeLayout
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_15">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fresco:actualImageScaleType="fitXY"
+            fresco:failureImage="@mipmap/loading"
+            fresco:failureImageScaleType="fitXY"
+            fresco:placeholderImage="@mipmap/loading"
+            fresco:placeholderImageScaleType="fitXY"
+            fresco:roundedCornerRadius="@dimen/px_3" />
+
+        <ImageButton
+            android:id="@+id/icon_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/img"
+            android:layout_alignTop="@id/img"
+            android:background="@null"
+            android:padding="@dimen/px_16"
+            android:src="@mipmap/clear_red"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/chapter_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/px_9"
+            android:background="@drawable/shape_angle_rectangle_transparent_black"
+            android:padding="@dimen/px_8"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_22_px" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_10"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_24_px" />
+
+    <TextView
+        android:id="@+id/nick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_10"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_size_22_px" />
+</LinearLayout>

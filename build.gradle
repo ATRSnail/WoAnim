@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+
+    defaultConfig {
+        applicationId "com.unicom.dm"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        maven { url "http://jitpack.io" }
+    }
+}
+android {
+    useLibrary 'org.apache.http.legacy'
+}
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
+        classpath 'com.android.tools.build:gradle:2.1.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'eteclab-ui', ext: 'aar')
+    compile(name: 'sdk-share', ext: 'aar')
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.jiechic.library:xUtils:2.6.14'
+    compile 'com.facebook.fresco:fresco:0.10.0+'
+    compile files('libs/eteclab-base.jar')
+    compile files('libs/eteclab-track.jar')
+    compile files('libs/jpush-android-2.1.5.jar')
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.4.9'//弹幕
+}

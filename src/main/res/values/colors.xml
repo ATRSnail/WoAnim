@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4FB9E8</color>
+    <color name="colorPrimaryDark">#4FB9E8</color>
+    <color name="colorAccent">#bbbbbb</color>
+    <color name="white">#ffffff</color>
+    <color name="luck_top_bg_color">#c0bebc</color>
+    <color name="more_color">#F34F85</color>
+    <color name="transparent_black">#88000000</color>
+    <color name="logout_color">#3D3D3D</color>
+    <color name="transparent_blacks">#11000000</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_eeeeee">#eeeeee</color>
+    <color name="color_f4f4f4">#f4f4f4</color>
+    <color name="color_e4e4e4">#e4e4e4</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_999999">#999999</color>
+
+</resources>

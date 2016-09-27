@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/edit_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="right"
+        android:tag="0"
+        android:padding="@dimen/px_20"
+        android:text="编辑"
+        android:visibility="gone"
+        android:textColor="#F34F85" />
+
+    <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
+        android:id="@+id/pull_lists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

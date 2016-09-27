@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wodm.android.view.biaoqing.FaceRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/faceRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/ll_facechoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f6f5f5"
+        android:visibility="visible" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_contains"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="15dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.wodm.android.view.biaoqing.FaceRelativeLayout>

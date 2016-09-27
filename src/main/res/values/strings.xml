@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">萌呷</string>
+    <string name="enetic_animation">动画</string>
+    <string name="enetic_wallpaper">精品</string>
+
+    <string name="enetic_cartoon">漫画</string>
+    <string name="enetic_recom">广场</string>
+    <string name="enetic_home">首页</string>
+    <string name="enetic_type">分类</string>
+    <string name="enetic_us">
+        我的
+    </string>
+    <string name="crash_program_restart">稍等，需要重新启动程序哦~</string>
+    <string name="submint">提交</string>
+    <string name="more">更多</string>
+
+
+
+    <string name="order_recoder">订购记录</string>
+    <string name="my_message">我的消息</string>
+
+    <string name="my_dowm">缓存记录</string>
+    <string name="wathc_recoder">观看记录</string>
+    <string name="collect">收藏</string>
+    <string name="set_text">设置</string>
+    <string name="my_jifen">我的积分</string>
+
+    <string name="user_sure">确定</string>
+    <string name="user_fail">取消</string>
+
+    <string name="lose_possword">忘记密码？</string>
+    <string name="user_possword">密码</string>
+    <string name="user_phone">手机号</string>
+    <string name="user_input_phone">输入手机号</string>
+    <string name="login_type">使用其他方式登录</string>
+    <string name="get_code">获取验证码</string>
+    <string name="code">验证码</string>
+  <!--新界面-->
+    <string name="qianming">这个人很懒,什么都没有留下</string>
+    <string name="degreee">等 级</string>
+    <string name="money_package">钱 包</string>
+    <string name="vip_people">会 员</string>
+    <string name="center_people">个人中心</string>
+    <string name="message">消息</string>
+    <string name="login">登录</string>
+    <string name="resiner">注册</string>
+    <string name="login_hint">输入用户名/手机号/邮箱</string>
+    <string name="password_hint">请输入密码</string>
+    <string name="forget_password"><u>忘记密码?</u></string>
+    <string name="other_login_way">其他登录方式</string>
+    <string name="input_phone">请输入手机号码</string>
+    <string name="password">密码</string>
+    <string name="input_yzm">输入验证码</string>
+    <string name="finsh">完成</string>
+</resources>

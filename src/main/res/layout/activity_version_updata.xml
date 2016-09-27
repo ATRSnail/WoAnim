@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.wodm.android.ui.VersionUpdataActivity">
+
+    <include layout="@layout/layout_activity_header_main" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/px_50"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        style="@style/UserInfo_set_text"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/version"
+        style="@style/UserInfo_set_text"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/px_30"
+        android:gravity="center"
+        android:text="版本号:1.0" />
+
+    <TextView
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px_53"
+        android:background="@drawable/button_submint_backgroung"
+        android:gravity="center"
+        android:paddingBottom="@dimen/px_23"
+        android:paddingTop="@dimen/px_23"
+        android:text="检查更新"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_38_px" />
+
+</LinearLayout>

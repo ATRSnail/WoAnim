@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/adapter_gv_border"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px_240">
+    <LinearLayout
+        android:padding="@dimen/px_1"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_240">
+        <ImageView
+            android:id="@+id/gv_img"
+            android:layout_width="@dimen/px_120"
+            android:layout_height="@dimen/px_120"
+            android:background="@mipmap/ic_launcher"/>
+        <TextView
+            android:textSize="@dimen/text_size_24_px"
+            android:textColor="@color/color_666666"
+            android:id="@+id/tv_name"
+            android:text="@string/degreee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

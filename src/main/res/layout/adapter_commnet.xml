@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="@dimen/px_20">
+
+    <org.eteclab.ui.widget.CircularImage
+        android:id="@+id/logo"
+        android:layout_width="@dimen/px_60"
+        android:layout_height="@dimen/px_60" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/logo"
+        android:layout_toRightOf="@id/logo"
+        android:orientation="vertical"
+        android:padding="@dimen/px_15">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/px_15"
+            android:textColor="#4FB9E8"
+            android:textSize="@dimen/text_size_28_px" />
+
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/logo"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/px_15"
+            android:textColor="#929292"
+            android:textSize="@dimen/text_size_24_px" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/logo"
+            android:layout_toRightOf="@id/logo"
+            android:paddingLeft="@dimen/px_15"
+            android:ellipsize="end"
+            android:text="Large Text"
+            android:textColor="#F34F85"
+            android:textSize="@dimen/text_size_28_px" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

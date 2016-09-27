@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFF4"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_activity_header_main" />
+
+    <LinearLayout
+        android:id="@+id/binding_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_10"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="绑定账号" />
+
+        <ImageView
+            android:id="@+id/tab_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/px_30"
+            android:src="@mipmap/shezhi_weixin" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            style="@style/UserInfo_set_text"
+            android:layout_weight="1"
+            android:text="允许2G/3G/4G播放" />
+
+        <CheckBox
+            android:id="@+id/pay_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_on_off"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            style="@style/UserInfo_set_text"
+            android:layout_weight="1"
+            android:text="自动全屏播放" />
+
+        <CheckBox
+            android:id="@+id/play_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_on_off"
+            android:checked="false" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+    <LinearLayout
+        android:id="@+id/set_off_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="定时关闭" />
+
+        <TextView
+            android:id="@+id/off_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+    <LinearLayout
+        android:id="@+id/clean_cache_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="清理本地缓存" />
+
+        <TextView
+            android:id="@+id/clean_cache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+
+    <LinearLayout
+        android:id="@+id/Reset_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_10"
+        android:layout_marginTop="@dimen/px_10"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            style="@style/UserInfo_set_text"
+            android:layout_weight="1"
+            android:text="修改密码" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_more" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/feek_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_10"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            style="@style/UserInfo_set_text"
+            android:layout_weight="1"
+            android:text="意见反馈" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_more" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_line" />
+
+    <LinearLayout
+        android:id="@+id/connect_us"
+  android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/px_28">
+
+        <TextView
+            style="@style/UserInfo_set_text"
+            android:layout_weight="1"
+            android:text="关于我们" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_more" />
+
+    </LinearLayout>
+</LinearLayout>

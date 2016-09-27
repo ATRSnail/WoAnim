@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:paddingTop="@dimen/px_30"
+    android:paddingLeft="@dimen/px_10">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_width="@dimen/px_227"
+            android:layout_height="@dimen/px_227"
+            android:layout_alignParentLeft="true"
+            fresco:actualImageScaleType="fitXY"
+            fresco:failureImage="@mipmap/loading"
+            fresco:failureImageScaleType="fitXY"
+            fresco:placeholderImage="@mipmap/loading"
+            fresco:placeholderImageScaleType="fitXY"
+            fresco:roundedCornerRadius="@dimen/px_3" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_10"
+        android:layout_marginLeft="@dimen/px_30"
+        android:layout_toRightOf="@id/img"
+        android:layout_alignTop="@id/img"
+
+        android:singleLine="true"
+        android:textColor="#3D3D3D"
+        android:textSize="@dimen/text_size_24_px" />
+
+    <TextView
+        android:id="@+id/nick"
+        android:layout_alignLeft="@id/name"
+        android:layout_below="@id/name"
+        android:layout_marginTop="@dimen/px_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_10"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="#929292"
+        android:textSize="@dimen/text_size_22_px" />
+
+
+    <TextView
+        android:id="@+id/chapter_info"
+        android:layout_alignLeft="@id/name"
+        android:layout_alignBottom="@id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/px_10"
+        android:padding="@dimen/px_8"
+        android:singleLine="true"
+        android:textColor="#F34F85"
+        android:textSize="@dimen/text_size_22_px" />
+
+    <include layout="@layout/layout_line"
+        android:layout_marginTop="@dimen/px_15"
+        android:layout_below="@id/img"
+        android:layout_alignLeft="@id/img"
+        android:layout_height="@dimen/px_1"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent" />
+
+
+</RelativeLayout>

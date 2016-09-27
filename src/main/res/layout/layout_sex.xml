@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/sex_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/px_40">
+
+        <RadioButton
+            android:id="@+id/girl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/px_15"
+            android:button="@drawable/sex_gril_stuts"
+            android:padding="@dimen/px_15"
+            android:text="女" />
+
+        <RadioButton
+            android:id="@+id/man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/px_15"
+            android:button="@drawable/sex_man_stuts"
+            android:padding="@dimen/px_15"
+            android:text="男" />
+
+        <RadioButton
+            android:id="@+id/bao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/px_15"
+            android:button="@drawable/sex_ukwon_stuts"
+            android:checked="true"
+            android:padding="@dimen/px_15"
+            android:text="保密" />
+    </RadioGroup>
+
+
+    <include layout="@layout/layout_line" />
+
+    <Button
+        android:id="@+id/submint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="@dimen/px_25"
+        android:text="确定"
+        android:textColor="#0072FF" />
+
+
+
+</LinearLayout>
