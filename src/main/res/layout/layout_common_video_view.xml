@@ -151,12 +151,12 @@
 
 
     <ImageView
-        android:id="@+id/screen_lock"
+        android:id="@+id/send_bullet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center_vertical|right"
         android:src="@mipmap/ic_launcher"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <!--android:background="#CC282828"-->
     <RelativeLayout

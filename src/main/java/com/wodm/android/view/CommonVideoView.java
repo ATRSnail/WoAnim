@@ -83,6 +83,14 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private boolean videoControllerShow = true;//底部状态栏的显示状态
     private boolean animation = false;
     private LinearLayout ll_bottom;
+    private SendBulletListener sendBulletListener;
+
+    public interface SendBulletListener{
+        public void sendBullet();
+    }
+    public void setSendBulletListener(SendBulletListener listener){
+        this.sendBulletListener=listener;
+    }
 
 
     /**
@@ -182,7 +190,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
     private void initView() {
         View view = inflate(context, R.layout.layout_common_video_view, this);
-
+        view.findViewById(R.id.send_bullet).setOnClickListener(this);
         mListAnim = (TextView) view.findViewById(R.id.list_anim);
         mListAnim.setOnClickListener(this);
         viewBox = (FrameLayout) view.findViewById(R.id.viewBox);
@@ -384,11 +392,15 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                 // 弹窗
 
                 break;
-
-            case R.id.screen_lock:
-                //锁屏
-                isScreenLock = !isScreenLock;
+            case R.id.send_bullet:
+                if (sendBulletListener!=null)
+                  sendBulletListener.sendBullet();
                 break;
+
+//            case R.id.screen_lock:
+//                //锁屏
+//                isScreenLock = !isScreenLock;
+//                break;
             case R.id.videoPlayImg:
                 videoView.start();
                 videoPlayImg.setVisibility(View.INVISIBLE);

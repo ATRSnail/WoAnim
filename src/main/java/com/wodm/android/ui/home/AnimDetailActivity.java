@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -22,6 +23,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.CommentAdapter;
 import com.wodm.android.adapter.SeriesAdapter;
+import com.wodm.android.bean.BarrageBean;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
@@ -37,7 +39,6 @@ import com.wodm.android.view.DividerLine;
 import com.wodm.android.view.biaoqing.FaceConversionUtil;
 import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 import com.wodm.android.view.danmu.DanmakuItem;
-import com.wodm.android.view.danmu.DanmakuView;
 import com.wodm.android.view.danmu.IDanmakuItem;
 
 import org.eteclab.OnkeyShare;
@@ -46,6 +47,7 @@ import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
 import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
@@ -95,11 +97,13 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     @ViewIn(R.id.ll_bottom)
     private LinearLayout ll_bottom;
     private DanmuControler danmuControler;
+    @ViewIn(R.id.header)
+    private CircularImage header;
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-
+        videoView.setSendBulletListener(this);
         mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
         mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
         mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
@@ -129,6 +133,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                 }
             }
         });
+        if (Constants.CURRENT_USER != null) {
+            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getPortrait());
+        }
         findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
         img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
         img_xiaolian.setOnClickListener(onClickListener);
@@ -156,7 +163,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                                     beanList.add(new CommentBean());
                                 }
                                 commentBeanList=beanList;
-                                initDanMu(beanList);
                                 handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -227,8 +233,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         getCarToon();
     }
     private void CommentData(){
-        int pager=commentBeanList.size()/10;
-        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager++, new HttpCallback() {
+        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -239,7 +244,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                     if (beanList.size() == 0) {
                         beanList.add(new CommentBean());
                     }
-                    initDanMu(beanList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -251,13 +255,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             }
         });
     }
-    private class Listener implements DanmakuView.DamMuFinshListener {
 
-        @Override
-        public void Finish() {
-            CommentData();
-        }
-    }
 
     //
     SeriesAdapter seriesAdapter;
@@ -292,14 +290,20 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 
     }
 
-    private void initDanMu(final List<CommentBean> commentbeanList){
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        JianpanTools.HideKeyboard(mCommentView);
+        return super.onTouchEvent(event);
+    }
+
+    private void initDanMu(final ArrayList<BarrageBean> barrageBeanList){
         //弹幕
 //        List<IDanmakuItem> list = initItems(commentbeanList);
 //        Collections.shuffle(list);
 //        mDanmakuView.addItem(list, true);
 //        mDanmakuView.show();
         danmuControler=new DanmuControler(this,mDanmakuView);
-        danmuControler.addData(commentBeanList);
+        danmuControler.addData(barrageBeanList);
 
     }
     private List<IDanmakuItem> initItems(List<CommentBean> commentbeanList) {
@@ -375,6 +379,11 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    String text=mCommentView.getText().toString();
+                    if (text.equals("")) {
+                        Toast.makeText(getApplicationContext(), "评论内容不能为空!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     CommonUtil.hideKeyboard(getApplicationContext(), mCommentView);
                     JSONObject obj = new JSONObject();
                     try {
@@ -393,6 +402,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                                         ll_qq_biaoqing.setVisibility(View.GONE);
                                         mCommentView.setText("");
                                         pullToLoadView.initLoad();
+                                        CommentData();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -578,6 +588,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     }
 
     public void startPlay(final ChapterBean bean) {
+
         String network = HttpUtil.getNetworkType(this.getApplicationContext());
         if (!Preferences.getInstance(getApplicationContext()).getPreference("netPlay", false)) {
             if (!network.equals("WIFI")) {
@@ -600,8 +611,32 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         } else {
             start(bean);
         }
+        getBarrageResource(bean.getId());
     }
-
+    private void getBarrageResource(String id){
+//        JSONObject obj = new JSONObject();
+//        try {
+//            obj.put("resourceId", resourceId);
+//            obj.put("chapterId", bean.getId());
+//            obj.put("page", 1);
+//            obj.put("size", 100);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+resourceId+"&chapterId="+bean.getId(), new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    ArrayList<BarrageBean> beanArrayList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
+                    }.getType());
+                    initDanMu(beanArrayList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     public void start(ChapterBean bean) {
         if (bean != null) {
@@ -615,6 +650,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             mChapterList = seriesAdapter.getData();
             mChapterView.setAdapter(seriesAdapter);
             videoView.start(bean.getContentUrl());
+            barrage_rescourceId=resourceId;
+            barrage_charterId=bean.getId();
             if (Preferences.getInstance(getApplicationContext()).getPreference("ScreenFullPlay", false)) {
                 if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
                     setLandPort();
@@ -635,4 +672,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         biaoqingtools.insert(character,mCommentView);
     }
 
+    @Override
+    public void refrensh() {
+        getBarrageResource(barrage_charterId);
+        super.refrensh();
+    }
 }

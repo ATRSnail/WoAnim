@@ -1,14 +1,10 @@
 package com.wodm.android.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,18 +17,13 @@ import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.bean.TabItemBean;
 import com.wodm.android.bean.TypeBean;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.SeacherActivity;
-import com.wodm.android.view.DividerLine;
 
-import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.eteclab.track.fragment.TrackFragment;
 import org.eteclab.ui.widget.NoScrollGridView;
-import org.eteclab.ui.widget.NoScrollListView;
-import org.eteclab.ui.widget.adapter.HolderAdapter;
 import org.eteclab.ui.widget.pulltorefresh.PullCallbackImpl;
 import org.eteclab.ui.widget.pulltorefresh.PullToLoadView;
 import org.json.JSONException;
@@ -70,10 +61,21 @@ public class TypeFragment extends TrackFragment {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
                         try {
+//                            List<ObjectBean> objectBeen=new ArrayList<ObjectBean>();
+//                            comicAdapter.setListData(objectBeen);
                             List<ObjectBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());
                             utrdata = "";
-                            handleData(pager, beanList, ComicAdapter.class, follow/*, mTypeHeaderOne*/);
+                            if (beanList.size()==0){
+                                ComicAdapter adapter = (ComicAdapter) mOpusList.getRecyclerView().getAdapter();
+                                adapter.setListData(new ArrayList<ObjectBean>());
+                                adapter.notifyDataSetChanged();
+                                mOpusList.setComplete();
+                            }else {
+                                handleData(pager, beanList, ComicAdapter.class, follow/*, mTypeHeaderOne*/);
+                            }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

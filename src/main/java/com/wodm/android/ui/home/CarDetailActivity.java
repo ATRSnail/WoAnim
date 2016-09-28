@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -66,7 +67,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private View mHeaderView;
     @ViewIn(R.id.video_name)
     private TextView mCarTitle;
-
+    @ViewIn(R.id.header)
+    private CircularImage header;
     private NoScrollGridView mChapterView;
 
     private TextView mCarDesp;
@@ -98,6 +100,9 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                 }
             }
         });
+        if (Constants.CURRENT_USER != null) {
+            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getPortrait());
+        }
         findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
         img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
         img_xiaolian.setOnClickListener(onClickListener);
@@ -272,7 +277,11 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
 //        // 启动分享GUI
 //        oks.show(this);
     }
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        JianpanTools.HideKeyboard(mCommentView);
+        return super.onTouchEvent(event);
+    }
     /**
      * 获取作品详情
      */
@@ -396,6 +405,11 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    String text=mCommentView.getText().toString();
+                    if (text.equals("")) {
+                        Toast.makeText(getApplicationContext(), "评论内容不能为空!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     CommonUtil.hideKeyboard(getApplicationContext(), mCommentView);
                     JSONObject obj = new JSONObject();
                     try {
@@ -414,6 +428,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                         mCommentView.setText("");
                                         ll_qq_biaoqing.setVisibility(View.GONE);
                                         pullToLoadView.initLoad();
+//                                        CommentData();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -433,6 +448,29 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
             Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
         }
     };
+    private void CommentData(){
+        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    List<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
+                    }.getType());
+                    if (beanList.size() == 0) {
+                        beanList.add(new CommentBean());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+    }
 
     /**
      * 获取作品章节

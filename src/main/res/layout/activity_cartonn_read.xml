@@ -38,6 +38,14 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/send_bullet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_launcher"
+        android:visibility="visible" />
     <RelativeLayout
         android:id="@+id/layout_top"
         android:layout_width="fill_parent"

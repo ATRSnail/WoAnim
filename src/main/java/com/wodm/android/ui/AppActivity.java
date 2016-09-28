@@ -1,14 +1,23 @@
 package com.wodm.android.ui;
 
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
+import com.wodm.android.Constants;
+import com.wodm.android.ui.braageview.BulletSendDialog;
+import com.wodm.android.utils.UpdataUserInfo;
+import com.wodm.android.view.CommonVideoView;
 
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
@@ -27,7 +36,7 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class AppActivity extends MaterialActivity {
+public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener,BulletSendDialog.SendBarrage {
 
     @ViewIn(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -37,6 +46,8 @@ public class AppActivity extends MaterialActivity {
     protected Button mTitleRight;
     @ViewIn(R.id.check_button)
     protected LinearLayout mCheckButton;
+    protected int barrage_rescourceId;
+    protected String  barrage_charterId;
 
     protected SlideBackUtil mSlideBackUtil;
 
@@ -141,5 +152,92 @@ public class AppActivity extends MaterialActivity {
     }
 
 
+    @Override
+    public void sendBullet() {
+        showEditDialog( );
+    }
+
+
+    public void showEditDialog() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        DialogFragment bulletDialog = BulletSendDialog.newInstance(this);
+        bulletDialog.show(ft,"dialog");
+    }
+
+    @Override
+    public void addBullet(String content) {
+        if(!UpdataUserInfo.isLogIn(this,true)){
+            Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        long sendId= Constants.CURRENT_USER.getUserId();
+//       JSONObject jsonObject=new JSONObject();
+//        try {
+//            jsonObject.put("resourceId",barrage_rescourceId);
+//            jsonObject.put("charterId",barrage_charterId);
+//            jsonObject.put("sendId",sendId);
+//            jsonObject.put("content",content);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//       httpPost(Constants.URL_GET_ADD_BARRAGE,jsonObject, new HttpCallback() {
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    if (obj.getString("code").equals("1000")) {
+//                        Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT).show();
+//                    }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                @Override
+//                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                    super.doAuthFailure(result, obj);
+//                }
+//            });
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("resourceId", barrage_rescourceId);
+            obj.put("chapterId", barrage_charterId);
+            obj.put("sendId", Constants.CURRENT_USER.getUserId());
+//                      obj.put("sendId", 1);
+            obj.put("content", "哈哈哈哈哈哈哈");
+            httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        if (obj.getString("code").equals("1000")) {
+                            Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
+                            ).show();
+                            refrensh();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public void refrensh(){
+
+    }
 
 }

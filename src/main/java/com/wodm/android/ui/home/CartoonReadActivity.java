@@ -5,6 +5,8 @@ import android.animation.ObjectAnimator;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +28,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.ReadCarAdapter;
+import com.wodm.android.bean.BarrageBean;
 import com.wodm.android.bean.CarBean;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
@@ -105,13 +108,15 @@ public class CartoonReadActivity extends AppActivity {
     private boolean mIsLoading;
     @ViewIn(R.id.progressBar)
     private RotateLoading progressBar;
+    @ViewIn(R.id.send_bullet)
+    private ImageView send_bullet;
     private ReadCarAdapter adapter;
     private DanmuControler danmuControler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        handler.sendEmptyMessageAtTime(0,10000);
         setListView();
         setLoadAndRefresh();
         if (!getIntent().hasExtra("beanPath")) {
@@ -131,7 +136,20 @@ public class CartoonReadActivity extends AppActivity {
             startReadPath(path);
         }
         setBottoms();
+        findViewById(R.id.send_bullet).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendBullet();
+            }
+        });
     }
+    Handler handler=new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            getBarrageResource();
+        }
+    };
 
     private void startReadPath(String path) {
         ZipEctractAsyncTask asyncTask = new ZipEctractAsyncTask();
@@ -330,6 +348,41 @@ public class CartoonReadActivity extends AppActivity {
         refreshLayout.setRefreshing(false);
         progressBar.stop();
     }
+    private void getBarrageResource(){
+//        JSONObject obj = new JSONObject();
+//        try {
+//            obj.put("resourceId", resourceId);
+//            obj.put("chapterId", bean.getId());
+//            obj.put("page", 1);
+//            obj.put("size", 100);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+bean.getId()+"&chapterId="+bean.getId(), new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    ArrayList<BarrageBean> beanArrayList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
+                    }.getType());
+                    initDanMu(beanArrayList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void initDanMu(final ArrayList<BarrageBean> barrageBeanList){
+        //弹幕
+//        List<IDanmakuItem> list = initItems(commentbeanList);
+//        Collections.shuffle(list);
+//        mDanmakuView.addItem(list, true);
+//        mDanmakuView.show();
+        danmuControler=new DanmuControler(this,danmaku_view);
+        danmuControler.addData(barrageBeanList);
+
+    }
 
     private void setBottoms() {
         mBottomView.removeAllViews();
@@ -397,7 +450,6 @@ public class CartoonReadActivity extends AppActivity {
                 if (dowmBeanArrayList == null) {
                     chapterWindow.showPopWindow(CartoonReadActivity.this, mBottomView, mChapterList, index);
                 } else {
-
                     chapterWindow.showPopWindows(CartoonReadActivity.this, mBottomView, dowmBeanArrayList, getIntent().getStringExtra("beanPath"));
                 }
             }

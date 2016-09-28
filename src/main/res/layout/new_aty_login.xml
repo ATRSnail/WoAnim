@@ -168,12 +168,5 @@
         </RelativeLayout>
     </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:background="@color/color_333333"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_200">
-
-    </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -26,6 +26,7 @@ import com.wodm.android.adapter.TabPagerAdapter;
 import com.wodm.android.bean.UserBean;
 import com.wodm.android.dialog.ResetPwdDialog;
 import com.wodm.android.login.Wx;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.Preferences;
@@ -161,7 +162,7 @@ public class LoginRegistActivity extends AppActivity {
             @Override
             public void onClick(View v) {
                 String phoneNum = mPhone.getText().toString();
-                if ("".equals(phoneNum) || !CommonUtil.isMobileNO(phoneNum)) {
+                if ("".equals(phoneNum) || !Tools.isMobileNO(phoneNum)) {
                     showFial();
                     return;
                 }

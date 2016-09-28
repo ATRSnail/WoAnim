@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -28,6 +29,7 @@ import com.wodm.android.bean.HotWordBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.bean.SeacherBean;
 import com.wodm.android.db.WoDbUtils;
+import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.view.FlowLayout;
 
 import org.eteclab.base.annotation.Layout;
@@ -116,6 +118,12 @@ public class SeacherActivity extends AppActivity {
     }
 
     String key = "";
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        JianpanTools.HideKeyboard(mDataText);
+        return super.onTouchEvent(event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

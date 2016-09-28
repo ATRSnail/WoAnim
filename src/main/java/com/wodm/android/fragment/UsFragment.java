@@ -2,7 +2,6 @@ package com.wodm.android.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,8 +9,6 @@ import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.ui.SeacherActivity;
-import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
@@ -110,6 +107,10 @@ public class UsFragment extends TrackFragment {
                     startActivity(new Intent(getActivity(), UserMessageActivity.class));
                     break;
                 case R.id.my_dowm:
+                    if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                        Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     startActivity(new Intent(getActivity(), UserCacheActivity.class));
                     break;
                 case R.id.watch_records:

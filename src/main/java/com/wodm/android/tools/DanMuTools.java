@@ -13,7 +13,7 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
 
 import com.wodm.R;
-import com.wodm.android.bean.CommentBean;
+import com.wodm.android.bean.BarrageBean;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +53,7 @@ public class DanMuTools {
     private HashMap<Integer, Boolean> overlappingEnablePair;// 设置是否重叠
     private String timeArr[]={"11.201999664307","11.201999664307","154.43099975586","11.201999664307","140.26400756836","136.92900085449","131.8450012207","105.78199768066","23.826000213623"};
     private Context mContext;
-    private ArrayList<CommentBean> mChapterList;
+    private ArrayList<BarrageBean> mChapterList;
     public DanMuTools(Context context,DanmakuView mDanmakuView){
         this.mContext=context;
         this.mDanmakuView=mDanmakuView;
@@ -95,7 +95,7 @@ public class DanMuTools {
                 List<BulletModel.BarrageListBean> listBean=new ArrayList<>();
                 BulletModel.BarrageListBean ba=null;
                 Random random=new Random();
-                for (CommentBean bean:mChapterList) {
+                for (BarrageBean bean:mChapterList) {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
                     ba.setFontColor("#669900");
@@ -322,7 +322,7 @@ public class DanMuTools {
     protected void hide(){
         mDanmakuView.hide();
     }
-    protected void addData(ArrayList<CommentBean> mChapterList){
+    protected void addData(ArrayList<BarrageBean> mChapterList){
         if (this.mChapterList!=null&&this.mChapterList.size()>0){
             this.mChapterList.addAll(mChapterList);
         }else {

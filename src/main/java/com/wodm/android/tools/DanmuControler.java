@@ -2,7 +2,7 @@ package com.wodm.android.tools;
 
 import android.content.Context;
 
-import com.wodm.android.bean.CommentBean;
+import com.wodm.android.bean.BarrageBean;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class DanmuControler {
     public void hide(){
         danMuTools.hide();
     }
-    public void addData(ArrayList<CommentBean> commentBeanList){
+    public void addData(ArrayList<BarrageBean> commentBeanList){
         danMuTools.addData(commentBeanList);
     }
 

@@ -24,6 +24,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserBean;
 import com.wodm.android.dialog.SexDialog;
+import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.FileUtils;
@@ -352,6 +353,7 @@ public class UserInfoActivity extends AppActivity {
                     try {
                         updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getUserId());
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        JianpanTools.HideKeyboard(mUserSign);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

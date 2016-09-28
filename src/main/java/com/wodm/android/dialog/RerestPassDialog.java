@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
@@ -14,7 +13,6 @@ import com.wodm.android.Constants;
 import com.wodm.android.ui.AppActivity;
 
 import org.eteclab.base.http.HttpCallback;
-import org.eteclab.base.utils.CommonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,6 +66,12 @@ public class RerestPassDialog extends Dialog {
                         public void doRequestFailure(Exception exception, String msg) {
                             super.doRequestFailure(exception, msg);
                             Toast.makeText(getContext(), "" + msg, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                            super.doAuthFailure(result, obj);
+                            Toast.makeText(getContext(), "" + obj.optString("message"), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (JSONException e) {

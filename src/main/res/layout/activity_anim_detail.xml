@@ -37,6 +37,7 @@
         android:layout_below="@+id/video_layout" />
 
 </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_alignParentBottom="true"
