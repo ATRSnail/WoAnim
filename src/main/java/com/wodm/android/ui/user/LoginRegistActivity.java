@@ -1,7 +1,5 @@
 package com.wodm.android.ui.user;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -9,13 +7,8 @@ import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +21,6 @@ import com.wodm.android.dialog.ResetPwdDialog;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 
@@ -267,51 +259,6 @@ public class LoginRegistActivity extends AppActivity {
     };
 
 
-    private void showFial() {
-        View view = getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
-        TextView mPopText = (TextView) view.findViewById(R.id.popup_text);
-        TextView mPopTextTitle = (TextView) view.findViewById(R.id.popup_text_title);
-        Button mPopBtnOne = (Button) view.findViewById(R.id.popup_btn_one);
-        Button mPopBtnTwo = (Button) view.findViewById(R.id.popup_btn_two);
-        mPopBtnTwo.setVisibility(View.GONE);
-        mPopTextTitle.setText("提示");
-        mPopText.setText("请输入正确手机号？");
-        mPopBtnOne.setText(getResources().getText(R.string.user_sure));
-        // mPopBtnTwo.setText(getResources().getText(R.string.user_fail));
-        final Dialog builder = new Dialog(this);
-        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.setContentView(view);
-        builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                return true;
-            }
-        });
-        mPopBtnOne.setTextColor(getResources().getColor(R.color.colorPrimary));
-        mPopBtnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.cancel();
-            }
-        });
-        /*mPopBtnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.cancel();
-            }
-        });*/
-        Window window = builder.getWindow();
-        // window.setWindowAnimations(R.style.dialogAnim);
-        android.view.WindowManager.LayoutParams lp = window.getAttributes();
-        window.setGravity(Gravity.BOTTOM);
-        lp.width = (int) (DeviceUtils.getScreenWH(this)[0] * 0.9); // 宽度
-        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-        builder.getWindow().setGravity(Gravity.CENTER);
-
-        builder.show();
-        builder.setCanceledOnTouchOutside(false);
-    }
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         JSONObject obj = new JSONObject();

@@ -11,7 +11,7 @@
         android:layout_height="@dimen/px_90"
         app:CustomtitleTextColor="@android:color/black"
         app:CustomtitleTextSize="@dimen/text_size_36_px"
-        app:BackGroundColor="@color/color_f4f4f4"
+        app:BackGroundColor="@color/color_999999"
         app:Customtoptitle="@string/resiner"
         app:leftBackGround="@mipmap/ic_launcher"
         app:rightType="0"
@@ -33,11 +33,13 @@
                 android:layout_height="@dimen/px_96">
 
                 <EditText
+                    android:inputType="phone"
+                    android:id="@+id/et_phone"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
-                    android:textSize="@dimen/text_size_36_px"
-                    android:textColor="@color/color_eeeeee"
-                    android:hint="@string/input_yzm"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:textColor="@color/color_3d3d3d"
+                    android:hint="@string/input_phone"
                     android:layout_marginLeft="@dimen/px_45"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -54,10 +56,12 @@
                 android:layout_height="@dimen/px_96">
 
                 <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/et_password"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
-                    android:textSize="@dimen/text_size_36_px"
-                    android:textColor="@color/color_eeeeee"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:textColor="@color/color_3d3d3d"
                     android:hint="@string/password"
                     android:layout_marginLeft="@dimen/px_45"
                     android:layout_width="match_parent"
@@ -79,8 +83,8 @@
                     android:id="@+id/et_yzm"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
-                    android:textSize="@dimen/text_size_36_px"
-                    android:textColor="@color/color_eeeeee"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:textColor="@color/color_3d3d3d"
                     android:hint="@string/input_yzm"
                     android:layout_marginLeft="@dimen/px_45"
                     android:layout_width="match_parent"
@@ -108,6 +112,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
+        android:id="@+id/btn_finish"
     android:layout_marginLeft="@dimen/px_45"
     android:layout_marginRight="@dimen/px_45"
     android:layout_marginTop="@dimen/px_45"

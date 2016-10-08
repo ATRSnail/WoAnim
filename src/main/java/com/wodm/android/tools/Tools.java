@@ -1,5 +1,7 @@
 package com.wodm.android.tools;
 
+import android.widget.TextView;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,4 +15,9 @@ public class Tools  {
         Matcher m = p.matcher(phone);
         return m.matches();
     }
+    public static String  getText(TextView view) {
+        String text=view.getText().toString();
+        return text;
+    }
+
 }

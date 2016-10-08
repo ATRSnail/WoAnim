@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 按压时 -->
+    <item android:color="@android:color/black" android:state_pressed="true" />
+    <!-- 当前窗口失去焦点时 -->
+    <item android:color="@color/color_f4f4f4" android:state_window_focused="false" />
+    <!-- 默认时 -->
+    <item android:color="@color/color_666666" />
+</selector>

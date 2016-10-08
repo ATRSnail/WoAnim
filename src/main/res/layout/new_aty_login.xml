@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/color_f4f4f4"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
@@ -29,6 +30,7 @@
         android:background="@color/color_666666"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_282" />
+
     <LinearLayout
         android:background="@color/color_ffffff"
         android:orientation="vertical"
@@ -46,11 +48,13 @@
                 android:layout_width="@dimen/px_48"
                 android:layout_height="@dimen/px_48" />
             <EditText
+                android:inputType="phone"
+                android:id="@+id/et_resigter"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:textSize="@dimen/text_size_30_px"
-                android:textColor="@color/color_eeeeee"
-                android:hint="@string/login_hint"
+                android:textColor="@color/color_3d3d3d"
+                android:hint="@string/input_phone"
                 android:layout_marginLeft="@dimen/px_15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -73,10 +77,13 @@
                 android:layout_width="@dimen/px_48"
                 android:layout_height="@dimen/px_48" />
             <EditText
+                android:maxLength="18"
+                android:inputType="textPassword"
+                android:id="@+id/et_password"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:textSize="@dimen/text_size_30_px"
-                android:textColor="@color/color_eeeeee"
+                android:textColor="@color/color_3d3d3d"
                 android:hint="@string/password_hint"
                 android:layout_marginLeft="@dimen/px_15"
                 android:layout_width="match_parent"
@@ -104,6 +111,7 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
         <Button
+            android:id="@+id/btn_login"
             android:layout_marginLeft="@dimen/px_45"
             android:layout_marginRight="@dimen/px_45"
             android:layout_marginTop="@dimen/px_45"

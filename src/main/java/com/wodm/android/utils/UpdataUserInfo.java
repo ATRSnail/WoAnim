@@ -1,26 +1,18 @@
 package com.wodm.android.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserBean;
-import com.wodm.android.ui.user.LoginRegistActivity;
+import com.wodm.android.ui.newview.LgoinActivity;
 
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Created by json on 2016/5/3.
@@ -59,7 +51,7 @@ public abstract class UpdataUserInfo {
 
     public static Boolean isLogIn(Context ctx, Boolean isLogin) {
         if (isLogin && Constants.CURRENT_USER == null) {
-            ctx.startActivity(new Intent(ctx, LoginRegistActivity.class));
+            ctx.startActivity(new Intent(ctx, LgoinActivity.class));
         }
         return Constants.CURRENT_USER != null;
     }

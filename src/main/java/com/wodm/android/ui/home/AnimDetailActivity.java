@@ -613,6 +613,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         }
         getBarrageResource(bean.getId());
     }
+
     private void getBarrageResource(String id){
 //        JSONObject obj = new JSONObject();
 //        try {
@@ -623,7 +624,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+resourceId+"&chapterId="+bean.getId(), new HttpCallback() {
+        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+resourceId+"&chapterId="+id, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -674,7 +675,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 
     @Override
     public void refrensh() {
-        getBarrageResource(barrage_charterId);
         super.refrensh();
+        getBarrageResource(barrage_charterId);
+
     }
 }

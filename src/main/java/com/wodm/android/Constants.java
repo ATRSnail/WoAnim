@@ -24,8 +24,8 @@ public class Constants {
 
 //    public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
 //    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
-//    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
-    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
+    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
+//    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
     public final static String SHARE_URL = "http://wodm.9mobi.cn/html/donghuaxiangqingye.html?id=";
@@ -37,7 +37,7 @@ public class Constants {
     public final static String ULR_COLLECT = HOST + "resource/collect?userId=";// 作品收藏
 
     public static final String USER_GET_CODE = HOST + "user/code";//获取验证码
-    public static final String USER_REGIST = HOST + "user/regist";//注册
+    public static final String USER_REGIST = HOST + "newuser/regist";//注册
     public static final String USER_LOGIN = HOST + "user/login";//登录
     public static final String USER_LOGIN_WX = HOST + "user/weixin/login";//登录
     public static final String USER_LOGOUT = HOST + "user/logout";//退出登录

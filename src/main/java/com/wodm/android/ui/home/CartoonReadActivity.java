@@ -135,6 +135,8 @@ public class CartoonReadActivity extends AppActivity {
             String path = getIntent().getStringExtra("beanPath");
             startReadPath(path);
         }
+        barrage_rescourceId=bean.getId();
+        barrage_charterId=mChapterList.get(0).getId();
         setBottoms();
         findViewById(R.id.send_bullet).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,10 +180,16 @@ public class CartoonReadActivity extends AppActivity {
         asyncTask.execute(path, new File(path).getParent() + "/cache");
     }
 
+    @Override
+    public void refrensh() {
+        super.refrensh();
+        getBarrageResource();
+    }
 
     private void requestHttp(final int index, final boolean b) {
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {
             CurrChapter = mChapterList.get(index);
+            barrage_charterId=CurrChapter.getId();
             httpGet(Constants.HOST + "resource/cartoon/" + CurrChapter.getId(), new HttpCallback() {
 
                 @Override
@@ -218,7 +226,7 @@ public class CartoonReadActivity extends AppActivity {
                     }
                 }
             });
-
+            getBarrageResource();
 
         }
     }
@@ -358,7 +366,7 @@ public class CartoonReadActivity extends AppActivity {
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+bean.getId()+"&chapterId="+bean.getId(), new HttpCallback() {
+        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+barrage_rescourceId+"&chapterId="+barrage_charterId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -658,6 +666,7 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
+
 
     @Override
     protected void onDestroy() {

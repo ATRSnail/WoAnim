@@ -328,6 +328,8 @@ public class DanMuTools {
         }else {
             this.mChapterList=mChapterList;
         }
-        init();
+        initDanmaku();
+        addDanmaku();
+        addDanmaku(true);
     }
 }

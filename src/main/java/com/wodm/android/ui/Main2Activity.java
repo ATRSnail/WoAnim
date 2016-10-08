@@ -20,8 +20,8 @@ import com.wodm.android.Constants;
 import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
-import com.wodm.android.fragment.UsFragment;
 import com.wodm.android.service.DownLoadServices;
+import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.UpdateUtils;
@@ -91,7 +91,7 @@ public class Main2Activity extends AppActivity {
         mSurfaceParams.put(R.id.tab_tuijian, new SurfaceParam(RecomFragment.class, R.string.enetic_recom));
         mSurfaceParams.put(R.id.tab_home, new SurfaceParam(HomeFragment.class, R.string.enetic_home));
         mSurfaceParams.put(R.id.tab_type, new SurfaceParam(TypeFragment.class, R.string.enetic_type));
-        mSurfaceParams.put(R.id.tab_us, new SurfaceParam(UsFragment.class, R.string.enetic_us));
+        mSurfaceParams.put(R.id.tab_us, new SurfaceParam(NewMineActivity.class, R.string.enetic_us));
     }
 
     @Override
