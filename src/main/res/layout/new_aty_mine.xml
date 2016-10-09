@@ -11,7 +11,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
       <RelativeLayout
-          android:background="@color/color_e4e4e4"
+          android:background="@mipmap/mine_bg"
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="@dimen/px_282">
