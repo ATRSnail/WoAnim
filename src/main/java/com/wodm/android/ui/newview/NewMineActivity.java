@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     @ViewIn(R.id.tv_sign)
     private TextView tv_sign;
     @ViewIn(R.id.my_level)
-    private TextView my_level;
+    private LinearLayout my_level;
 
 
     @Override
