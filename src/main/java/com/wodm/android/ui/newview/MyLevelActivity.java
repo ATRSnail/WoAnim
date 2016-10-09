@@ -27,10 +27,8 @@ public class MyLevelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gridView.setAdapter(adapter);
-
         list = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < actions.length; i++) {
             Map<String, Object> map = new HashMap<>();
             map.put("actionItem", actions[i]);
             map.put("experience", "可得" + experience[i] + "经验值");
