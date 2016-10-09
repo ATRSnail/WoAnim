@@ -8,14 +8,12 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.UpdataUserInfo;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 /**
  * Created by moon1 on 2016/4/27.
@@ -45,7 +43,7 @@ public class UserIntegralActivity extends AppActivity {
 
     private void  getScore(){
 
-        httpGet(Constants.URL_SCORE  + "?userId="+Constants.CURRENT_USER.getUserId(),new HttpCallback(){
+        httpGet(Constants.URL_SCORE  + "?userId="+Constants.CURRENT_USER.getData().getAccount().getId(),new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);

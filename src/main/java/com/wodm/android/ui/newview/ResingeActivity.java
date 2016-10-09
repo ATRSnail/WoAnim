@@ -12,6 +12,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.Main2Activity;
@@ -137,7 +138,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                         bean.setToken(obj.getString("token"));
                         bean.setUserId(obj.getLong("userId"));
                         bean.setType(obj.getString("type"));
-                        Constants.CURRENT_USER = bean;
+//                        Constants.CURRENT_USER = bean;
                         Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getUserId());
                         Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
                         infos.getUserInfo(ResingeActivity.this, bean.getUserId());
@@ -164,7 +165,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     }
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
-        public void getUserInfo(UserBean bean) {
+        public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             ResingeActivity.this.finish();
         }

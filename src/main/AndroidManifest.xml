@@ -169,7 +169,7 @@
         <service android:name=".android.service.DownLoadServices" />
 
         <activity
-            android:name=".android.ui.newview.PersionActivity"
+            android:name=".android.ui.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
@@ -270,10 +270,10 @@
             android:name=".android.ui.newview.ResingeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".android.ui.newview.NewMineActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <!--<activity-->
+            <!--android:name="com.wodm.android.ui.newview.NewMineActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".android.ui.newview.LgoinActivity"
             android:screenOrientation="portrait"

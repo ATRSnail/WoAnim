@@ -30,6 +30,9 @@ public class DanmuControler {
     public void addData(ArrayList<BarrageBean> commentBeanList){
         danMuTools.addData(commentBeanList);
     }
+    public void addBuilt(String text){
+        danMuTools.addDanmakuContraller(text);
+    }
 
 
 

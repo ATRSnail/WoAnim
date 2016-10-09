@@ -181,9 +181,10 @@ public class CartoonReadActivity extends AppActivity {
     }
 
     @Override
-    public void refrensh() {
-        super.refrensh();
-        getBarrageResource();
+    public void refrensh(String content) {
+        super.refrensh(content);
+        danmuControler.addBuilt(content);
+//        getBarrageResource();
     }
 
     private void requestHttp(final int index, final boolean b) {
@@ -625,7 +626,7 @@ public class CartoonReadActivity extends AppActivity {
             return;
         }
 
-        httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getUserId() + "&resourceId=" + (bean == null ? "-1" : bean.getId()), new HttpCallback() {
+        httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + (bean == null ? "-1" : bean.getId()), new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);

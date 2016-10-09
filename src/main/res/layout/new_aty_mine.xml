@@ -11,7 +11,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
       <RelativeLayout
-          android:background="@color/color_e4e4e4"
+          android:background="@mipmap/mine_bg"
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="@dimen/px_282">
@@ -132,9 +132,9 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent">
                <ImageView
-                   android:layout_width="@dimen/px_120"
-                   android:layout_height="@dimen/px_120"
-                   android:background="@mipmap/ic_launcher"/>
+                   android:layout_width="@dimen/px_90"
+                   android:layout_height="@dimen/px_90"
+                   android:background="@mipmap/vip"/>
                <TextView
                    android:text="@string/vip_people"
                    android:layout_width="wrap_content"
@@ -153,9 +153,9 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent">
                <ImageView
-                   android:layout_width="@dimen/px_120"
-                   android:layout_height="@dimen/px_120"
-                   android:background="@mipmap/ic_launcher"/>
+                   android:layout_width="@dimen/px_90"
+                   android:layout_height="@dimen/px_90"
+                   android:background="@mipmap/moneypackage"/>
                <TextView
                    android:text="@string/money_package"
                    android:layout_width="wrap_content"
@@ -174,9 +174,9 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent">
                <ImageView
-                   android:layout_width="@dimen/px_120"
-                   android:layout_height="@dimen/px_120"
-                   android:background="@mipmap/ic_launcher"/>
+                   android:layout_width="@dimen/px_90"
+                   android:layout_height="@dimen/px_90"
+                   android:background="@mipmap/degree"/>
                <TextView
                    android:text="@string/degreee"
                    android:layout_width="wrap_content"

@@ -2,7 +2,7 @@ package com.wodm.android;
 
 import android.os.Environment;
 
-import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 
 import java.io.File;
 
@@ -20,11 +20,11 @@ public class Constants {
     public static final boolean DEBUG = true;
 
 
-    public static UserBean CURRENT_USER/* = new UserBean()*/;
+    public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
 //    public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
-//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
-    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
+    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
@@ -85,6 +85,9 @@ public class Constants {
     public static final String URL_GET_ADD_BARRAGE = HOST + "barrage";//添加弹幕
 
     public static final String APP_UPGRADE_URL = HOST + "app/upgrade";
+    /*新增接口*/
+
+    public static final String APP_GET_USERINFO = HOST + "newuser/profile?userId=";
 
     public static String OFFTIME;
 

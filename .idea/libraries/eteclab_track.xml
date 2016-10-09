@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="eteclab-track">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/eteclab-track.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

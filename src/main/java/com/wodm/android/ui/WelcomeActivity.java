@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 
@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppActivity {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
 //                        try {
-                            long userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1L);
+                            Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
 //                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             userInfo.getUserInfo(getApplicationContext(), userId);
 //                        } catch (JSONException e) {
@@ -82,7 +82,7 @@ public class WelcomeActivity extends AppActivity {
 
     UpdataUserInfo userInfo = new UpdataUserInfo() {
         @Override
-        public void getUserInfo(UserBean bean) {
+        public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             handler.sendEmptyMessageDelayed(1, 0);
         }

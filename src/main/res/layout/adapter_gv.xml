@@ -13,8 +13,8 @@
         android:layout_height="@dimen/px_240">
         <ImageView
             android:id="@+id/gv_img"
-            android:layout_width="@dimen/px_120"
-            android:layout_height="@dimen/px_120"
+            android:layout_width="@dimen/px_64"
+            android:layout_height="@dimen/px_64"
             android:background="@mipmap/ic_launcher"/>
         <TextView
             android:textSize="@dimen/text_size_24_px"

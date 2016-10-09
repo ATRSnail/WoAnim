@@ -76,9 +76,9 @@ public class UsFragment extends TrackFragment {
         } else {
             mUserNull.setVisibility(View.GONE);
             mUserLayout.setVisibility(View.VISIBLE);
-            mNameView.setText(Constants.CURRENT_USER.getNickName());
-            mSignView.setText(Constants.CURRENT_USER.getAutograph() + "");
-            new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(mUserIcon, Constants.CURRENT_USER.getPortrait());
+            mNameView.setText(Constants.CURRENT_USER.getData().getAccount().getNickName());
+            mSignView.setText(Constants.CURRENT_USER.getData().getAccount().getAutograph() + "");
+            new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(mUserIcon, Constants.CURRENT_USER.getData().getAccount().getPortrait());
         }
     }
 

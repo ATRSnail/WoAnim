@@ -47,7 +47,7 @@ public class UserMessageActivity extends AppActivity {
         mMessageList.setPullCallback(new PullCallbackImpl(mMessageList) {
             @Override
             protected void requestData(final int pager, final boolean follow) {
-                String url = Constants.URL_USER_NOTICE+"?profileId="+Constants.CURRENT_USER.getUserId()+"&page="+pager+"&size=20";
+                String url = Constants.URL_USER_NOTICE+"?profileId="+Constants.CURRENT_USER.getData().getAccount().getId()+"&page="+pager+"&size=20";
                 httpGet(url,new HttpCallback(){
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
