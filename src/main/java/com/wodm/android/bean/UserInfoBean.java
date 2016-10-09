@@ -51,6 +51,7 @@ public class UserInfoBean {
     public static class DataBean {
         private int currentEmpirical;
         private Object token;
+
         /**
          * id : 143
          * appkey :
@@ -69,6 +70,7 @@ public class UserInfoBean {
          * openId : null
          * unionId : null
          * plainPassword :
+         * 用户的会员类型0:普通 1:vip 2:vvip
          * vip : 1
          * vipFlag : 1
          * gradeValue : 1
@@ -79,6 +81,16 @@ public class UserInfoBean {
 
         private AccountBean account;
         private int needEmpirical;
+
+        public int getNextGradeEmpirical() {
+            return nextGradeEmpirical;
+        }
+
+        public void setNextGradeEmpirical(int nextGradeEmpirical) {
+            this.nextGradeEmpirical = nextGradeEmpirical;
+        }
+
+        private int nextGradeEmpirical;
 
         public int getCurrentEmpirical() {
             return currentEmpirical;

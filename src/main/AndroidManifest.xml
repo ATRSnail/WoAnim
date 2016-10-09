@@ -278,6 +278,14 @@
             android:name=".android.ui.newview.LgoinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.PersionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.VipActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- <activity -->
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->

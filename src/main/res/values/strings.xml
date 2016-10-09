@@ -66,4 +66,8 @@
     <string name="open_vip_message_hint">萌呷会以短信形式将您的申请发送到您的手机中回复信息即刻开通</string>
     <!--persioninfo-->
     <string name="persion_info">个人资料</string>
+    <string name="mine_xunzhang">我的勋章</string>
+    <string name="more_view">显示更多</string>
+    <string name="join_look">进去看看</string>
+    <string name="mine_comments">我的收藏</string>
 </resources>

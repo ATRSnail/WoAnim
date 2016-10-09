@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:scrollbars="none"
     android:id="@+id/scrllow_mine"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:scrollbars="none">
-
+    android:layout_height="match_parent">
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_282"
             android:background="@mipmap/mine_bg"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_282">
             <RelativeLayout
                 android:id="@+id/rl_login"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/px_45"
-                android:layout_marginRight="@dimen/px_45"
-                android:layout_marginTop="@dimen/px_82"
                 android:layout_toLeftOf="@+id/img_right"
-                android:orientation="vertical">
-
+                android:layout_marginTop="@dimen/px_82"
+                android:layout_marginRight="@dimen/px_45"
+                android:layout_marginLeft="@dimen/px_45"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <org.eteclab.ui.widget.CircularImage
                     android:id="@+id/user_head_imgs"
                     android:layout_width="@dimen/px_138"
@@ -37,81 +33,72 @@
                     android:src="@mipmap/touxiang" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/px_45"
                     android:layout_toRightOf="@+id/user_head_imgs"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
+                        android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/tv_user_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_36_px"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
-
-                        <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/px_28"
+                            android:layout_height="wrap_content" />
+                        <ImageView
                             android:layout_marginLeft="@dimen/px_15"
-                            android:background="@mipmap/ic_launcher" />
+                            android:background="@mipmap/ic_launcher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/px_28" />
                     </LinearLayout>
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_marginTop="@dimen/px_10"
-                        android:orientation="horizontal">
-
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/px_48"
+                            android:textSize="@dimen/text_size_22_px"
                             android:text="占位进度图"
-                            android:textSize="@dimen/text_size_22_px" />
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_48" />
                     </LinearLayout>
-
                     <TextView
                         android:id="@+id/tv_sign"
+                        android:layout_marginTop="@dimen/px_10"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:textColor="@color/color_666666"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/px_10"
-                        android:text="@string/qianming"
-                        android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_28_px" />
+                        android:text="@string/qianming"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
-
             <ImageView
-                android:id="@+id/img_right"
-                android:layout_width="@dimen/px_36"
-                android:layout_height="@dimen/px_24"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/px_45"
-                android:background="@mipmap/ic_launcher">
+                android:background="@mipmap/ic_launcher"
+                android:id="@+id/img_right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/px_36"
+                android:layout_height="@dimen/px_24">
 
             </ImageView>
-
             <RelativeLayout
                 android:id="@+id/no_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@mipmap/nologin_bg"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/img_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@mipmap/nologin" />
+                    android:id="@+id/img_logo"
+                    android:background="@mipmap/nologin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <!--<LinearLayout-->
                 <!--android:id="@+id/ll_login"-->
                 <!--android:layout_centerInParent="true"-->
@@ -133,90 +120,77 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_276"
+            android:weightSum="3"
             android:orientation="horizontal"
-            android:weightSum="3">
-
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_276">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:id="@+id/ll_vip"
                 android:gravity="center"
-                android:orientation="vertical">
-
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="@dimen/px_90"
                     android:layout_height="@dimen/px_90"
-                    android:background="@mipmap/vip" />
-
+                    android:background="@mipmap/vip"/>
                 <TextView
+                    android:text="@string/vip_people"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vip_people" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
-
             <View
-                android:layout_width="@dimen/px_1"
-                android:layout_height="@dimen/px_168"
+                android:background="@color/color_666666"
                 android:layout_gravity="center_vertical"
-                android:background="@color/color_666666"></View>
-
+                android:layout_width="@dimen/px_1"
+                android:layout_height="@dimen/px_168"></View>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
-
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="@dimen/px_90"
                     android:layout_height="@dimen/px_90"
-                    android:background="@mipmap/moneypackage" />
-
+                    android:background="@mipmap/moneypackage"/>
                 <TextView
+                    android:text="@string/money_package"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/money_package" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
-
             <View
-                android:layout_width="@dimen/px_1"
-                android:layout_height="@dimen/px_168"
+                android:background="@color/color_666666"
                 android:layout_gravity="center_vertical"
-                android:background="@color/color_666666"></View>
-
+                android:layout_width="@dimen/px_1"
+                android:layout_height="@dimen/px_168"></View>
             <LinearLayout
-                android:id="@+id/my_level"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
-
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="@dimen/px_90"
                     android:layout_height="@dimen/px_90"
-                    android:background="@mipmap/degree" />
-
+                    android:background="@mipmap/degree"/>
                 <TextView
+                    android:text="@string/degreee"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/degreee" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 
         </LinearLayout>
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@color/color_f4f4f4"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <com.wodm.android.view.newview.NoScrollListView
                 android:id="@+id/lv_noscroll"
                 android:layout_width="match_parent"
@@ -224,6 +198,8 @@
 
             </com.wodm.android.view.newview.NoScrollListView>
         </LinearLayout>
+
+
 
 
     </LinearLayout>

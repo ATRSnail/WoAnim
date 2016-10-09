@@ -33,6 +33,7 @@
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/touxiang" />
             <TextView
+                android:id="@+id/tv_vip_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_24_px"
                 android:text="@string/vip_false_hint"
@@ -51,14 +52,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_96">
-             <TextView
-                 android:layout_gravity="center_vertical"
-                 android:textColor="@color/color_333333"
-                 android:layout_marginLeft="@dimen/px_45"
-                 android:textSize="@dimen/text_size_34_px"
-                 android:text="@string/vip_tequan"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:textSize="@dimen/text_size_34_px"
+                    android:text="@string/vip_tequan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <View
                 android:background="@color/color_eeeeee"
@@ -165,31 +166,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-               <RelativeLayout
-                   android:layout_marginTop="@dimen/px_66"
-                   android:orientation="horizontal"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-                   <Button
-                       android:id="@+id/btn_open_vip"
-                       android:layout_centerInParent="true"
-                       android:text="@string/open_vip_now"
-                       android:textColor="@color/color_333333"
-                       android:textSize="@dimen/text_size_28_px"
-                       android:background="@drawable/btn_vip_open"
-                       android:layout_width="@dimen/px_225"
-                       android:layout_height="@dimen/px_60" />
-                   <TextView
-                       android:layout_alignParentBottom="true"
-                       android:layout_toRightOf="@+id/btn_open_vip"
-                       android:layout_marginLeft="@dimen/px_10"
-                       android:text="50秒"
-                       android:textColor="@color/color_999999"
-                       android:textSize="@dimen/text_size_28_px"
-                       android:layout_gravity="bottom"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content" />
-               </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/px_66"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_open_vip"
+                        android:layout_centerInParent="true"
+                        android:text="@string/open_vip_now"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:background="@drawable/btn_vip_open"
+                        android:layout_width="@dimen/px_225"
+                        android:layout_height="@dimen/px_60" />
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/btn_open_vip"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:text="50秒"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:layout_gravity="bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
 
             </LinearLayout>
 
