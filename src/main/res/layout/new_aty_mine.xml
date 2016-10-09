@@ -168,6 +168,7 @@
                 android:layout_width="@dimen/px_1"
                 android:layout_height="@dimen/px_168"></View>
             <LinearLayout
+                android:id="@+id/ll_degree"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="vertical"

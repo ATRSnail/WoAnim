@@ -50,6 +50,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private TextView tv_likes;
     @ViewIn(R.id.ll_vip)
     private LinearLayout ll_vip;
+    @ViewIn(R.id.ll_degree)
+    private LinearLayout ll_degree;
 
 
     @Override
@@ -60,6 +62,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         no_login.setOnClickListener(this);
         rl_login.setOnClickListener(this);
         ll_vip.setOnClickListener(this);
+        ll_degree.setOnClickListener(this);
 
     }
 
@@ -117,6 +120,9 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 break;
             case R.id.ll_vip:
                 startActivity(new Intent(getActivity(),VipActivity.class));
+                break;
+            case R.id.ll_degree:
+                startActivity(new Intent(getActivity(),MyLevelActivity.class));
                 break;
         }
     }
