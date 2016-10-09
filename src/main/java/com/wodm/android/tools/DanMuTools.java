@@ -132,7 +132,7 @@ public class DanMuTools {
 
    //FDAFSA
     private void addDanmaku() {
-        BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+        BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL,mDanmakuContext);
         if (danmaku == null || mDanmakuView == null) {
             return;
         }
@@ -164,21 +164,21 @@ public class DanMuTools {
      * 添加文本弹幕
      * @param islive
      */
-    private void addDanmaku(boolean islive) {
+    private void addDanmaku(String text) {
         BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
         if (danmaku == null || mDanmakuView == null) {
             return;
         }
 
-        danmaku.text = "这是一条弹幕" + System.nanoTime();
+        danmaku.text = text;
         danmaku.padding = 5;
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
-        danmaku.isLive = islive; //是否是直播弹幕
-        danmaku.time =1; //显示时间
-        danmaku.textSize = 25f * (mParser.getDisplayer().getDensity() - 0.6f);
-        danmaku.textColor = Color.RED;
-        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
-        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
+        danmaku.isLive = true; //是否是直播弹幕
+        danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
+        danmaku.textSize = 16;
+        danmaku.textColor = mContext.getResources().getColor(R.color.color_669900);
+//        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
+//        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
         mDanmakuView.addDanmaku(danmaku);
     }
 
@@ -323,13 +323,17 @@ public class DanMuTools {
         mDanmakuView.hide();
     }
     protected void addData(ArrayList<BarrageBean> mChapterList){
+        mChapterList.clear();
         if (this.mChapterList!=null&&this.mChapterList.size()>0){
             this.mChapterList.addAll(mChapterList);
         }else {
             this.mChapterList=mChapterList;
         }
         initDanmaku();
-        addDanmaku();
-        addDanmaku(true);
+
+    }
+
+    protected void addDanmakuContraller(String text){
+        addDanmaku(text);
     }
 }

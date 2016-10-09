@@ -16,7 +16,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.TabPagerAdapter;
-import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.dialog.ResetPwdDialog;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
@@ -89,14 +89,14 @@ public class LoginRegistActivity extends AppActivity {
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
                         Toast.makeText(LoginRegistActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        UserBean bean = new UserBean();
-                        bean.setToken(obj.getString("token"));
-                        bean.setUserId(obj.getLong("userId"));
-                        bean.setType(obj.getString("type"));
+                        UserInfoBean bean = new UserInfoBean();
+//                        bean.setToken(obj.getString("token"));
+//                        bean.setUserId(obj.getLong("userId"));
+//                        bean.setType(obj.getString("type"));
                         Constants.CURRENT_USER = bean;
-                        Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getUserId());
-                        Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
-                        infos.getUserInfo(LoginRegistActivity.this, bean.getUserId());
+                        Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getData().getAccount().getId());
+                        Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getData().getToken().toString());
+                        infos.getUserInfo(LoginRegistActivity.this, bean.getData().getAccount().getId());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -252,7 +252,7 @@ public class LoginRegistActivity extends AppActivity {
 
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
-        public void getUserInfo(UserBean bean) {
+        public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             LoginRegistActivity.this.finish();
         }

@@ -176,12 +176,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     }
 
     @Override
-    public void addBullet(String content) {
+    public void addBullet(final String content) {
         if(!UpdataUserInfo.isLogIn(this,true)){
             Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
             return;
         }
-        long sendId= Constants.CURRENT_USER.getUserId();
+        long sendId= Constants.CURRENT_USER.getData().getAccount().getId();
 //       JSONObject jsonObject=new JSONObject();
 //        try {
 //            jsonObject.put("resourceId",barrage_rescourceId);
@@ -215,7 +215,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         try {
             obj.put("resourceId", barrage_rescourceId);
             obj.put("chapterId", barrage_charterId);
-            obj.put("sendId", Constants.CURRENT_USER.getUserId());
+            obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
             obj.put("content", content);
             httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
@@ -226,7 +226,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                         if (obj.getString("code").equals("1000")) {
                             Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
                             ).show();
-                            refrensh();
+                            refrensh(content);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -242,7 +242,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             e.printStackTrace();
         }
     }
-    public void refrensh(){
+    public void refrensh(String content){
 
     }
 

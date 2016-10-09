@@ -49,7 +49,7 @@ public class RerestPassDialog extends Dialog {
                 try {
                     obj.put("newPassword", mPassView.getText().toString());
                     obj.put("oldPassword", mOldView.getText().toString());
-                    obj.put("accountName", Constants.CURRENT_USER.getMobile());
+                    obj.put("accountName", Constants.CURRENT_USER.getData().getAccount().getMobile());
                     ((AppActivity) context).httpPost(Constants.HOST + "user/password/modify", obj, new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

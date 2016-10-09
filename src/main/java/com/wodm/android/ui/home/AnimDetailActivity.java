@@ -134,7 +134,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             }
         });
         if (Constants.CURRENT_USER != null) {
-            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getPortrait());
+            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
         }
         findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
         img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
@@ -182,7 +182,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         });
 
         if (Constants.CURRENT_USER != null) {
-            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getUserId() + "&resourceId=" + resourceId;
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId;
             httpGet(url, new HttpCallback());
         }
 
@@ -388,7 +388,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                     JSONObject obj = new JSONObject();
                     try {
                         obj.put("resourceId", resourceId);
-                        obj.put("sendId", Constants.CURRENT_USER.getUserId());
+                        obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
                         obj.put("content", mCommentView.getText().toString());
                         httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
@@ -432,7 +432,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             return;
         }
 
-        httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getUserId() + "&resourceId=" + resourceId, new HttpCallback() {
+        httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -540,7 +540,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private void getCarToon() {
         String url = Constants.URL_CARTTON_DETAIL + resourceId;
         if (Constants.CURRENT_USER != null) {
-            url += ("?userId=" + Constants.CURRENT_USER.getUserId());
+            url += ("?userId=" + Constants.CURRENT_USER.getData().getAccount().getId());
         }
         httpGet(url, new HttpCallback() {
             @Override
@@ -674,9 +674,10 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     }
 
     @Override
-    public void refrensh() {
-        super.refrensh();
-        getBarrageResource(barrage_charterId);
+    public void refrensh(String content ) {
+        super.refrensh(content);
+        danmuControler.addBuilt(content);
+//        getBarrageResource(barrage_charterId);
 
     }
 }

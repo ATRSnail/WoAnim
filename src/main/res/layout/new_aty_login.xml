@@ -48,6 +48,7 @@
                 android:layout_width="@dimen/px_48"
                 android:layout_height="@dimen/px_48" />
             <EditText
+                android:text="18519206703"
                 android:inputType="phone"
                 android:id="@+id/et_resigter"
                 android:layout_gravity="center_vertical"
@@ -77,6 +78,7 @@
                 android:layout_width="@dimen/px_48"
                 android:layout_height="@dimen/px_48" />
             <EditText
+                android:text="123456"
                 android:maxLength="18"
                 android:inputType="textPassword"
                 android:id="@+id/et_password"

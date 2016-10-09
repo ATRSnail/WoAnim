@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.Preferences;
@@ -89,14 +89,18 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
                         Toast.makeText(LgoinActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        UserBean bean = new UserBean();
-                        bean.setToken(obj.getString("token"));
-                        bean.setUserId(obj.getLong("userId"));
-                        bean.setType(obj.getString("type"));
+                        UserInfoBean bean = new UserInfoBean();
+                        UserInfoBean.DataBean dataBean=new UserInfoBean.DataBean();
+                        UserInfoBean.DataBean.AccountBean accountBean=new UserInfoBean.DataBean.AccountBean();
+                        dataBean.setToken(obj.getString("token"));
+                        accountBean.setId(obj.getInt("userId"));
+                        accountBean.setType(obj.getInt("type"));
+                        dataBean.setAccount(accountBean);
+                        bean.setData(dataBean);
                         Constants.CURRENT_USER = bean;
-                        Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getUserId());
-                        Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
-                        infos.getUserInfo(LgoinActivity.this, bean.getUserId());
+                        Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getData().getAccount().getId());
+                        Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getData().getToken().toString());
+                        infos.getUserInfo(LgoinActivity.this, bean.getData().getAccount().getId());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -117,7 +121,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     }
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
-        public void getUserInfo(UserBean bean) {
+        public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             LgoinActivity.this.finish();
         }

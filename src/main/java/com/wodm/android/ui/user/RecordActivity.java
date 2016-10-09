@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -89,12 +88,12 @@ public class RecordActivity extends AppActivity {
 
                 } else if (tid == R.id.watch_records) {
                     //观看记录
-                    deleteUrl = Constants.HOST + "user/deleteWatchRecord?userId=" + Constants.CURRENT_USER.getUserId();
-                    url = Constants.HOST + "user/watchRecordByType?userId=" + Constants.CURRENT_USER.getUserId();
+                    deleteUrl = Constants.HOST + "user/deleteWatchRecord?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
+                    url = Constants.HOST + "user/watchRecordByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 } else if (tid == R.id.my_collcet) {
                     //我的收藏
-                    deleteUrl = Constants.HOST + "user/deleteCollection?userId=" + Constants.CURRENT_USER.getUserId();
-                    url = Constants.HOST + "user/collectByType?userId=" + Constants.CURRENT_USER.getUserId();
+                    deleteUrl = Constants.HOST + "user/deleteCollection?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
+                    url = Constants.HOST + "user/collectByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 }
 
                 httpGet(url + "&type=" + type + "&page=" + page, new HttpCallback() {

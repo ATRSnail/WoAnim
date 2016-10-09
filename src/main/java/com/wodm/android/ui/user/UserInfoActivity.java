@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.UserBean;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.dialog.SexDialog;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
@@ -122,7 +122,7 @@ public class UserInfoActivity extends AppActivity {
     @TrackClick(value = R.id.layout_sex, location = TITLE, eventName = "性别设置")
     private void clickSex(View view) {
         final SexDialog dialog = new SexDialog(UserInfoActivity.this);
-        dialog.setCheck(Constants.CURRENT_USER.getSex());
+        dialog.setCheck(Constants.CURRENT_USER.getData().getAccount().getSex());
         dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,13 +198,13 @@ public class UserInfoActivity extends AppActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getUserId();
+                    String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
                     httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 
                         @Override
                         public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doUploadSuccess(result, obj);
-                            updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getUserId());
+                            updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
                         }
 
                         @Override
@@ -258,7 +258,7 @@ public class UserInfoActivity extends AppActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    String url = Constants.USER_LOGOUT + "?token=" + Constants.CURRENT_USER.getToken();
+                    String url = Constants.USER_LOGOUT + "?token=" + Constants.CURRENT_USER.getData().getToken();
                     httpGet(url, new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -299,7 +299,7 @@ public class UserInfoActivity extends AppActivity {
 
     UpdataUserInfo updataUserInfo = new UpdataUserInfo() {
         @Override
-        public void getUserInfo(UserBean bean) {
+        public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             setUserInfo();
         }
@@ -310,9 +310,9 @@ public class UserInfoActivity extends AppActivity {
             finish();
             return;
         }
-        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(mUserIcon, Constants.CURRENT_USER.getPortrait());
-        mUserSign.setText(Constants.CURRENT_USER.getAutograph());
-        mUserName.setText(Constants.CURRENT_USER.getNickName());
+        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(mUserIcon, Constants.CURRENT_USER.getData().getAccount().getPortrait());
+        mUserSign.setText(Constants.CURRENT_USER.getData().getAccount().getAutograph());
+        mUserName.setText(Constants.CURRENT_USER.getData().getAccount().getNickName());
         mUserSign.setHint("留下你的签名");
 //        mUserSign.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @Override
@@ -326,14 +326,14 @@ public class UserInfoActivity extends AppActivity {
 //            public void onFocusChange(View v, boolean hasFocus) {
 //            }
 //        });
-        if (Constants.CURRENT_USER.getSex() == 0) {
+        if (Constants.CURRENT_USER.getData().getAccount().getSex() == 0) {
             mUserSex.setText("保密");
-        } else if (Constants.CURRENT_USER.getSex() == 1) {
+        } else if (Constants.CURRENT_USER.getData().getAccount().getSex() == 1) {
             mUserSex.setText("男");
         } else {
             mUserSex.setText("女");
         }
-        mUserBrithday.setText(Constants.CURRENT_USER.getBirthday());
+        mUserBrithday.setText(Constants.CURRENT_USER.getData().getAccount().getBirthday());
     }
 
     private void submint() {
@@ -343,7 +343,7 @@ public class UserInfoActivity extends AppActivity {
             object.put("sex", sex);
             object.put("birthday", str_Birthday);
             object.put("autograph", mUserSign.getText().toString());
-            object.put("userId", Constants.CURRENT_USER.getUserId());
+            object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
             Log.e("submint", object.toString() + "modifyName");
 //            {"userId":1,"modifyName":"birthday","modifyValue":"2016/01/01"}
             httpPost(Constants.URL_USER, object, new HttpCallback() {
@@ -351,7 +351,7 @@ public class UserInfoActivity extends AppActivity {
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     try {
-                        updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getUserId());
+                        updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                         JianpanTools.HideKeyboard(mUserSign);
                     } catch (JSONException e) {

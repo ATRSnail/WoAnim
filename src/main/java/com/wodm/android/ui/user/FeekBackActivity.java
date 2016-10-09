@@ -45,7 +45,7 @@ public class FeekBackActivity extends AppActivity {
             obj.put("udid", CartoonApplication.getUdid());
             obj.put("uuid",CartoonApplication.getUuid());
             if(Constants.CURRENT_USER!=null)
-                obj.put("userId",Constants.CURRENT_USER.getUserId());
+                obj.put("userId",Constants.CURRENT_USER.getData().getAccount().getId());
 
             obj.put("content",mContent.getText().toString());
             httpPost(url,obj,new HttpCallback(){

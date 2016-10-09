@@ -210,7 +210,7 @@ public class Main2Activity extends AppActivity {
         if (!UpdataUserInfo.isLogIn(this, true)) {
             return;
         }
-        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getUserId(), new HttpCallback() {
+        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -228,7 +228,7 @@ public class Main2Activity extends AppActivity {
 
     private void checkSgin() {
         if (Constants.CURRENT_USER != null)
-            httpGet(Constants.URL_CHECK_SIGNIN + Constants.CURRENT_USER.getUserId(), new HttpCallback() {
+            httpGet(Constants.URL_CHECK_SIGNIN + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
