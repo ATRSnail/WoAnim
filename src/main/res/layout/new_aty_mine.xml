@@ -1,206 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:scrollbars="none"
     android:id="@+id/scrllow_mine"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-      <RelativeLayout
-          android:background="@mipmap/mine_bg"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/px_282">
-          <RelativeLayout
-              android:id="@+id/rl_login"
-              android:layout_toLeftOf="@+id/img_right"
-              android:layout_marginTop="@dimen/px_82"
-              android:layout_marginRight="@dimen/px_45"
-              android:layout_marginLeft="@dimen/px_45"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-              <org.eteclab.ui.widget.CircularImage
-                  android:id="@+id/user_head_imgs"
-                  android:layout_width="@dimen/px_138"
-                  android:layout_height="@dimen/px_138"
-                  android:layout_alignParentLeft="true"
-                  android:layout_marginBottom="@dimen/px_64"
-                  android:src="@mipmap/touxiang" />
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-              <LinearLayout
-                  android:layout_marginLeft="@dimen/px_45"
-                  android:layout_toRightOf="@+id/user_head_imgs"
-                  android:orientation="vertical"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
-                  <LinearLayout
-                      android:orientation="horizontal"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content">
-                      <TextView
-                          android:id="@+id/tv_user_name"
-                          android:textSize="@dimen/text_size_36_px"
-                          android:textColor="@color/color_333333"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content" />
-                      <ImageView
-                          android:layout_marginLeft="@dimen/px_15"
-                          android:background="@mipmap/ic_launcher"
-                          android:layout_width="wrap_content"
-                          android:layout_height="@dimen/px_28" />
-                  </LinearLayout>
-                  <LinearLayout
-                      android:orientation="horizontal"
-                      android:layout_marginTop="@dimen/px_10"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content">
-                      <TextView
-                          android:textSize="@dimen/text_size_22_px"
-                          android:text="占位进度图"
-                          android:layout_width="match_parent"
-                          android:layout_height="@dimen/px_48" />
-                  </LinearLayout>
-                  <TextView
-                      android:id="@+id/tv_sign"
-                      android:layout_marginTop="@dimen/px_10"
-                      android:textSize="@dimen/text_size_28_px"
-                      android:textColor="@color/color_666666"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/qianming"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-              </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_282"
+            android:background="@mipmap/mine_bg"
+            android:orientation="vertical">
 
-          </RelativeLayout>
-          <ImageView
-              android:layout_marginRight="@dimen/px_45"
-              android:background="@mipmap/ic_launcher"
-              android:id="@+id/img_right"
-              android:layout_centerVertical="true"
-              android:layout_alignParentRight="true"
-              android:layout_width="@dimen/px_36"
-              android:layout_height="@dimen/px_24">
+            <RelativeLayout
+                android:id="@+id/rl_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginRight="@dimen/px_45"
+                android:layout_marginTop="@dimen/px_82"
+                android:layout_toLeftOf="@+id/img_right"
+                android:orientation="vertical">
 
-          </ImageView>
-          <RelativeLayout
-              android:id="@+id/no_login"
-              android:background="@mipmap/nologin_bg"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-              <ImageView
-                  android:layout_centerVertical="true"
-                  android:id="@+id/img_logo"
-                  android:background="@mipmap/nologin"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content" />
-              <!--<LinearLayout-->
-                  <!--android:id="@+id/ll_login"-->
-                  <!--android:layout_centerInParent="true"-->
-                  <!--android:orientation="vertical"-->
-                  <!--android:layout_width="wrap_content"-->
-                  <!--android:layout_height="wrap_content">-->
-                  <!--<TextView-->
-                      <!--android:textColor="@color/color_666666"-->
-                      <!--android:text="@string/click_login"-->
-                      <!--android:layout_width="wrap_content"-->
-                      <!--android:layout_height="wrap_content" />-->
-                  <!--<TextView-->
-                      <!--android:textColor="@color/color_666666"-->
-                      <!--android:text="@string/click_login_moreinfo"-->
-                      <!--android:layout_width="wrap_content"-->
-                      <!--android:layout_height="wrap_content" />-->
-              <!--</LinearLayout>-->
-          </RelativeLayout>
-      </RelativeLayout>
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/user_head_imgs"
+                    android:layout_width="@dimen/px_138"
+                    android:layout_height="@dimen/px_138"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/px_64"
+                    android:src="@mipmap/touxiang" />
 
-       <LinearLayout
-           android:weightSum="3"
-           android:orientation="horizontal"
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/px_276">
-           <LinearLayout
-               android:gravity="center"
-               android:layout_gravity="center"
-               android:orientation="vertical"
-               android:layout_weight="1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
-               <ImageView
-                   android:layout_width="@dimen/px_90"
-                   android:layout_height="@dimen/px_90"
-                   android:background="@mipmap/vip"/>
-               <TextView
-                   android:text="@string/vip_people"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content" />
-           </LinearLayout>
-           <View
-               android:background="@color/color_666666"
-               android:layout_gravity="center_vertical"
-               android:layout_width="@dimen/px_1"
-               android:layout_height="@dimen/px_168"></View>
-           <LinearLayout
-               android:gravity="center"
-               android:layout_gravity="center"
-               android:orientation="vertical"
-               android:layout_weight="1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
-               <ImageView
-                   android:layout_width="@dimen/px_90"
-                   android:layout_height="@dimen/px_90"
-                   android:background="@mipmap/moneypackage"/>
-               <TextView
-                   android:text="@string/money_package"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content" />
-           </LinearLayout>
-           <View
-               android:background="@color/color_666666"
-               android:layout_gravity="center_vertical"
-               android:layout_width="@dimen/px_1"
-               android:layout_height="@dimen/px_168"></View>
-           <LinearLayout
-               android:gravity="center"
-               android:layout_gravity="center"
-               android:orientation="vertical"
-               android:layout_weight="1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
-               <ImageView
-                   android:layout_width="@dimen/px_90"
-                   android:layout_height="@dimen/px_90"
-                   android:background="@mipmap/degree"/>
-               <TextView
-                   android:text="@string/degreee"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content" />
-           </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_toRightOf="@+id/user_head_imgs"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/text_size_36_px" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/px_28"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:background="@mipmap/ic_launcher" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_48"
+                            android:text="占位进度图"
+                            android:textSize="@dimen/text_size_22_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_sign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_10"
+                        android:text="@string/qianming"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_size_28_px" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img_right"
+                android:layout_width="@dimen/px_36"
+                android:layout_height="@dimen/px_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px_45"
+                android:background="@mipmap/ic_launcher">
+
+            </ImageView>
+
+            <RelativeLayout
+                android:id="@+id/no_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/nologin_bg"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/nologin" />
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_login"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                <!--android:textColor="@color/color_666666"-->
+                <!--android:text="@string/click_login"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--<TextView-->
+                <!--android:textColor="@color/color_666666"-->
+                <!--android:text="@string/click_login_moreinfo"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--</LinearLayout>-->
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_276"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:background="@mipmap/vip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vip_people" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/px_1"
+                android:layout_height="@dimen/px_168"
+                android:layout_gravity="center_vertical"
+                android:background="@color/color_666666"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:background="@mipmap/moneypackage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/money_package" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/px_1"
+                android:layout_height="@dimen/px_168"
+                android:layout_gravity="center_vertical"
+                android:background="@color/color_666666"></View>
+
+            <LinearLayout
+                android:id="@+id/my_level"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:background="@mipmap/degree" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/degreee" />
+            </LinearLayout>
 
 
-       </LinearLayout>
-       <LinearLayout
-           android:background="@color/color_f4f4f4"
-           android:orientation="vertical"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <com.wodm.android.view.newview.NoScrollListView
-               android:id="@+id/lv_noscroll"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+        </LinearLayout>
 
-           </com.wodm.android.view.newview.NoScrollListView>
-       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_f4f4f4"
+            android:orientation="vertical">
+
+            <com.wodm.android.view.newview.NoScrollListView
+                android:id="@+id/lv_noscroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.wodm.android.view.newview.NoScrollListView>
+        </LinearLayout>
 
 
-
-
-   </LinearLayout>
+    </LinearLayout>
 
 </ScrollView>

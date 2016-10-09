@@ -283,7 +283,7 @@
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
-        <activity android:name=".android.ui.newview.MyLevel"></activity>
+        <activity android:name=".android.ui.newview.MyLevelActivity"></activity>
     </application>
 
 </manifest>

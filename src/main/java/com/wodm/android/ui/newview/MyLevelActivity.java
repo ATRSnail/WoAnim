@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_my_level)
-public class MyLevel extends AppCompatActivity {
+public class MyLevelActivity extends AppCompatActivity {
     @ViewIn(R.id.gv_level)
     private MyGridView gridView;
     private SimpleAdapter adapter;
