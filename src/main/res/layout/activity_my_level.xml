@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_my_level"
+    android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.wodm.android.ui.newview.MyLevelActivity">
@@ -132,18 +133,82 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="42dp"
-                android:layout_marginRight="42dp"
+                android:layout_height="@dimen/px_2"
                 android:background="@color/color_999999" />
 
             <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/px_150">
+               <LinearLayout
+                   android:layout_weight="1"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <Button
+                       android:text="LV1"
+                       android:layout_width="@dimen/px_50"
+                       android:layout_height="@dimen/px_50"
+                       android:textColor="@color/color_333333"
+                       android:textSize="@dimen/text_size_24_px"
+                       android:background="@drawable/btn_circle"/>
+               </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:text="LV1"
+                        android:layout_width="@dimen/px_50"
+                        android:layout_height="@dimen/px_50"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_24_px"
+                        android:background="@drawable/btn_circle"/>
+                </LinearLayout>
 
-                <com.wodm.android.view.newview.TextCircleView
-                    android:layout_width="42dp"
-                    android:layout_height="42dp" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:text="LV1"
+                        android:layout_width="@dimen/px_50"
+                        android:layout_height="@dimen/px_50"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_24_px"
+                        android:background="@drawable/btn_circle"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:text="LV1"
+                        android:layout_width="@dimen/px_50"
+                        android:layout_height="@dimen/px_50"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_24_px"
+                        android:background="@drawable/btn_circle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="right"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_gravity="right"
+                    android:text="LV1"
+                    android:layout_width="@dimen/px_50"
+                    android:layout_height="@dimen/px_50"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_24_px"
+                    android:background="@drawable/btn_circle"/>
+            </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -219,7 +284,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/px_30"
                 android:text="等级说明"
                 android:textColor="@color/color_333333"
                 android:textSize="22px" />
@@ -244,11 +309,9 @@
             android:id="@+id/gv_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
             android:horizontalSpacing="30dp"
             android:numColumns="3"
+            android:layout_margin="@dimen/px_30"
             android:stretchMode="columnWidth"
             android:verticalSpacing="30dp" />
 
@@ -272,7 +335,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/share_icon_iv"
-                android:background="@null"
+                android:background="@drawable/btn_share_lever"
                 android:text="分享晒等级"
                 android:textColor="@color/color_333333"
                 android:textSize="16px" />

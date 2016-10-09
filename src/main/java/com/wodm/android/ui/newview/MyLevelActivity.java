@@ -1,14 +1,14 @@
 package com.wodm.android.ui.newview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SimpleAdapter;
 
+import com.wodm.R;
+import com.wodm.android.ui.AppActivity;
+import com.wodm.android.view.newview.MyGridView;
+
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
-
-import com.wodm.R;
-import com.wodm.android.view.newview.MyGridView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_my_level)
-public class MyLevelActivity extends AppCompatActivity {
+public class MyLevelActivity extends AppActivity {
     @ViewIn(R.id.gv_level)
     private MyGridView gridView;
     private SimpleAdapter adapter;
