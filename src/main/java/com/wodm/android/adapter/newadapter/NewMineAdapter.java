@@ -2,8 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +66,7 @@ public class NewMineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.mine_adapter, null, false);
             holder.textView = (TextView) convertView.findViewById(R.id.tv_title);
             holder.gridView = (MyGridView) convertView.findViewById(R.id.gv_mygirdview);
+            holder.adapter_view=convertView.findViewById(R.id.adapter_view);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
@@ -87,9 +87,11 @@ public class NewMineAdapter extends BaseAdapter {
         if (position == 0) {
             myadapter = new Myadapter(personArray, personIconArray);
             holder.textView.setText(mContext.getString(R.string.center_people));
+            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_cce198));
         } else {
             myadapter = new Myadapter(messageArray, messageIconArray);
             holder.textView.setText(mContext.getString(R.string.message));
+            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
         }
         if (myadapter != null)
             holder.gridView.setAdapter(myadapter);
@@ -100,6 +102,7 @@ public class NewMineAdapter extends BaseAdapter {
     private class Holder {
         TextView textView;
         GridView gridView;
+        View adapter_view;
     }
 
     private void getIntent(String text) {
@@ -178,12 +181,12 @@ public class NewMineAdapter extends BaseAdapter {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_gv, null, false);
                 gvHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
                 gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.gv_img);
+                gvHolder.ll_adapter= (LinearLayout) convertView.findViewById(R.id.ll_adapter);
                 convertView.setTag(gvHolder);
             } else {
                 gvHolder = (GvHolder) convertView.getTag();
             }
             gvHolder.tv_name.setText(mArray[position]);
-
 
             gvHolder.img_icon.setBackgroundResource(miconArray[position]);
             return convertView;
@@ -194,5 +197,6 @@ public class NewMineAdapter extends BaseAdapter {
     class GvHolder {
         TextView tv_name;
         ImageView img_icon;
+        LinearLayout ll_adapter;
     }
 }

@@ -1,5 +1,7 @@
 package com.wodm.android.tools;
 
+import android.app.Activity;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.regex.Matcher;
@@ -19,5 +21,11 @@ public class Tools  {
         String text=view.getText().toString();
         return text;
     }
+    public static int getScreenWidth(Activity context) {
+        WindowManager wm = context.getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+        return width;
+    }
+
 
 }

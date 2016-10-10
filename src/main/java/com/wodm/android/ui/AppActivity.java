@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     protected String  barrage_charterId;
 
     protected SlideBackUtil mSlideBackUtil;
+    private int ScreenWidth,ScreenHight;
 
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);
@@ -74,6 +76,9 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                 }
             });
         }
+        WindowManager wm = this.getWindowManager();
+        ScreenWidth = wm.getDefaultDisplay().getWidth();
+        ScreenHight = wm.getDefaultDisplay().getHeight();
         setTitle("");
     }
 
