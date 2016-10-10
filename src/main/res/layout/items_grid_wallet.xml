@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grid_rect"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/level_items_wallet"
+            android:layout_width="@dimen/px_69"
+            android:layout_height="@dimen/px_69"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_wallet_circle"
+            android:gravity="center"
+            android:text="等级"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_size_22_px" />
+
+        <TextView
+            android:id="@+id/rule_items_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/level_items_wallet"
+            android:layout_marginLeft="@dimen/px_15"
+            android:layout_marginRight="@dimen/px_15"
+            android:layout_marginTop="@dimen/px_30"
+            android:gravity="center"
+            android:text="当您的"
+            android:textColor="@color/color_ff8d35"
+            android:textSize="@dimen/text_size_22_px" />
+    </RelativeLayout>
+
+
+</LinearLayout>
