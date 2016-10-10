@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_efefef"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:CustomtitleTextColor="@android:color/black"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:BackGroundColor="@color/color_ffd805"
+            app:Customtoptitle="@string/mine_package"
+            app:leftBackGround="@mipmap/ic_launcher"
+            app:rightType="0"
+            />
+        <RelativeLayout
+            android:background="@color/color_ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_330">
+            <org.eteclab.ui.widget.CircularImage
+                android:layout_centerInParent="true"
+                android:id="@+id/user_head_imgs"
+                android:layout_width="@dimen/px_138"
+                android:layout_height="@dimen/px_138"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/touxiang" />
+            <TextView
+                android:textColor="@color/color_cccccc"
+                android:textSize="@dimen/text_size_28_px"
+                android:text="我的萌币:203"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/user_head_imgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <include layout="@layout/devide_line"></include>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/px_45"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@drawable/btn_rule"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/color_ff8d35"
+                android:textSize="@dimen/text_size_32_px"
+                android:text="@string/jifen_rule"
+                android:layout_width="@dimen/px_300"
+                android:layout_height="@dimen/px_72" />
+        </RelativeLayout>
+        <com.wodm.android.view.newview.MyGridView
+            android:verticalSpacing="@dimen/px_45"
+            android:horizontalSpacing="@dimen/px_30"
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gv_package">
+
+        </com.wodm.android.view.newview.MyGridView>
+    </LinearLayout>
+
+</ScrollView>

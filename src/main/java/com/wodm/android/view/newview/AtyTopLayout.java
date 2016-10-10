@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,7 +61,7 @@ public class AtyTopLayout extends RelativeLayout {
 
         titleTextSize = ta.getDimension(R.styleable.secondTopbar_CustomtitleTextSize, 0);
         titleTextColor = ta.getColor(R.styleable.secondTopbar_CustomtitleTextColor, 0);
-        backgroundColor = ta.getColor(R.styleable.secondTopbar_BackGroundColor, Color.WHITE);
+        backgroundColor = ta.getColor(R.styleable.secondTopbar_BackGroundColor, Color.TRANSPARENT);
         titleText = ta.getString(R.styleable.secondTopbar_Customtoptitle);
         rightType = ta.getInteger(R.styleable.secondTopbar_rightType,0);
         if (rightType==2){
@@ -81,7 +80,7 @@ public class AtyTopLayout extends RelativeLayout {
 
 
         // 将自定义的属性设置到控件上
-        leftImage.setImageDrawable(leftDrawable);
+        leftImage.setBackgroundResource(R.mipmap.back);
 
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, titleTextSize);
@@ -94,11 +93,12 @@ public class AtyTopLayout extends RelativeLayout {
         setBackgroundColor(backgroundColor);    // 设置背景颜色
 
         //将自定义的控件放到Layout中（以LayoutParams的形式）
-        leftLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        leftLayoutParams = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         leftLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);     //设置左对齐
         leftLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+        leftLayoutParams.setMargins(20,0,0,0);
 //        leftLayoutParams.setMarginStart((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
-        leftImage.setPaddingRelative(20, 0, 15, 0);
+//        leftImage.setPaddingRelative(20, 0, 15, 0);
         addView(leftImage, leftLayoutParams);  //leftButton以leftLayoutParams的形式加入到ViewGroup中
 
         titleLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

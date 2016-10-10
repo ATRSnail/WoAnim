@@ -70,4 +70,6 @@
     <string name="more_view">显示更多</string>
     <string name="join_look">进去看看</string>
     <string name="mine_comments">我的收藏</string>
+    <string name="mine_package">我的钱包</string>
+    <string name="jifen_rule">积分规则</string>
 </resources>

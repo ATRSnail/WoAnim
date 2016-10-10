@@ -19,4 +19,9 @@
     <color name="darker_gray">#2c3137</color>
     <color name="color_3d3d3d">#3d3d3d</color>
     <color name="color_669900">#669900</color>
+    <color name="color_ffd805">#ffd805</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="color_eae7e7">#eae7e7</color>
+    <color name="color_ff8d35">#ff8d35</color>
+    <color name="color_efefef">#efefef</color>
 </resources>

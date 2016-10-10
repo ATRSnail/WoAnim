@@ -285,6 +285,10 @@
             android:name=".android.ui.newview.VipActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.Money_PackageAty"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- <activity -->
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
         <!-- android:screenOrientation="portrait" -->
