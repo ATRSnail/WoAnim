@@ -85,7 +85,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_degree.setText("LV"+accountBean.getGradeValue());
         tv_sign.setText(accountBean.getAutograph()+"");
         UserInfoBean.DataBean dataBean=Constants.CURRENT_USER.getData();
-        int progress=dataBean.getCurrentEmpirical()/(dataBean.getNextGradeEmpirical()+dataBean.getCurrentEmpirical());
+        int total=dataBean.getNextGradeEmpirical()+dataBean.getCurrentEmpirical();
+        int progress=0;
+        if (total!=0){
+            progress =dataBean.getCurrentEmpirical()/total;
+        }
         degree_progress.setProgress(progress);
     }
 

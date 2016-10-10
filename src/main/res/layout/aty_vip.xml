@@ -9,41 +9,50 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.wodm.android.view.newview.AtyTopLayout
-            android:id="@+id/set_topbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
-            app:CustomtitleTextColor="@android:color/black"
-            app:CustomtitleTextSize="@dimen/text_size_36_px"
-            app:BackGroundColor="@color/color_e4e4e4"
-            app:Customtoptitle=""
-            app:leftBackGround="@mipmap/ic_launcher"
-            app:rightType="0"
-            />
-        <RelativeLayout
-            android:background="@color/color_e4e4e4"
+        <LinearLayout
+            android:background="@mipmap/mine_bg"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_240">
+            android:layout_height="wrap_content">
+            <com.wodm.android.view.newview.AtyTopLayout
+                android:id="@+id/set_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_90"
+                app:CustomtitleTextColor="@android:color/black"
+                app:CustomtitleTextSize="@dimen/text_size_36_px"
+                app:rightType="0"
+                />
+            <RelativeLayout
+                android:background="@mipmap/mine_bg"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_240">
 
-            <org.eteclab.ui.widget.CircularImage
-                android:id="@+id/user_head_imgs"
-                android:layout_width="@dimen/px_138"
-                android:layout_height="@dimen/px_138"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/touxiang" />
-            <TextView
-                android:id="@+id/tv_vip_name"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_24_px"
-                android:text="@string/vip_false_hint"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px_15"
-                android:layout_below="@+id/user_head_imgs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/user_head_imgs"
+                    android:layout_width="@dimen/px_138"
+                    android:layout_height="@dimen/px_138"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/touxiang" />
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/vip_user_head_imgs"
+                    android:layout_width="@dimen/px_138"
+                    android:layout_height="@dimen/px_138"
+                    android:layout_centerHorizontal="true"
+                     />
+                <TextView
+                    android:id="@+id/tv_vip_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_24_px"
+                    android:text="@string/vip_false_hint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/px_15"
+                    android:layout_below="@+id/user_head_imgs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

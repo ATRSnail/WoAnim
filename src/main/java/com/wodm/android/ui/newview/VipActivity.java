@@ -21,6 +21,8 @@ import static com.wodm.android.Constants.CURRENT_USER;
 public class VipActivity extends AppActivity {
     @ViewIn(R.id.user_head_imgs)
     private CircularImage user_head_imgs;
+    @ViewIn(R.id.vip_user_head_imgs)
+    private CircularImage vip_user_head_imgs;
     @ViewIn(R.id.tv_vip_name)
     private TextView tv_vip_name;
 
@@ -32,9 +34,11 @@ public class VipActivity extends AppActivity {
             return;
         }
         UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
-//        if (accountBean.getVip()==0){
-//
-//        }
+        if (accountBean.getVip()==0){
+            vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
+        }else{
+            vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
+        }
         tv_vip_name.setText(accountBean.getNickName());
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
     }
