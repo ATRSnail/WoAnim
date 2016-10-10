@@ -62,12 +62,12 @@ public class Main2Activity extends AppActivity {
             mTab2.setBackgroundResource(R.drawable.enetic_home_title_left);
             mTab2.setTextColor(getResources().getColor(android.R.color.white));
             mTab1.setBackgroundDrawable(new BitmapDrawable());
-            mTab1.setTextColor(getResources().getColor(R.color.color_ffd805));
+            mTab1.setTextColor(getResources().getColor(R.color.color_3f190c));
         } else if (((HomeFragment) mSurfaceParams.get(R.id.tab_home).fragment).IndexTabId == R.id.enetic_animation) {
             mTab1.setBackgroundResource(R.drawable.enetic_home_title_right);
             mTab1.setTextColor(getResources().getColor(android.R.color.white));
             mTab2.setBackgroundDrawable(new BitmapDrawable());
-            mTab2.setTextColor(getResources().getColor(R.color.color_ffd805));
+            mTab2.setTextColor(getResources().getColor(R.color.color_3f190c));
         }
     }
 
@@ -112,7 +112,7 @@ public class Main2Activity extends AppActivity {
         mUs.setOnClickListener(clickListener);
         mType.setOnClickListener(clickListener);
         mRecom.setOnClickListener(clickListener);
-        mToolbar.setNavigationIcon(R.mipmap.left_logo);
+        mToolbar.setNavigationIcon(null);
         mToolbar.setNavigationOnClickListener(null);
         mToolbar.findViewById(R.id.img_right).setVisibility(View.VISIBLE);
         initTabViews();

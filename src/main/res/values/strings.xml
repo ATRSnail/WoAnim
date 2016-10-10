@@ -52,9 +52,10 @@
     <string name="input_yzm">输入验证码</string>
     <string name="finsh">完成</string>
     <string name="degree">等级</string>
-    <string name="click_login">点击登录</string>
+    <string name="click_login">点击登录●ω●╭</string>
     <string name="click_login_moreinfo">登录后才可以进行更多操作哦</string>
     <string name="vip_false_hint">您还不是会员用户</string>
+    <string name="no_login_hint">亲,您还没有登录哦~</string>
     <string name="vip_tequan">会员特权</string>
     <!--vip-->
     <string name="free_look">免费看</string>

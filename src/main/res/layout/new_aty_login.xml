@@ -21,7 +21,7 @@
         app:CustomtitleTextSize="@dimen/text_size_36_px"
         app:BackGroundColor="@color/color_ffd805"
         app:Customtoptitle="@string/login"
-        app:leftBackGround="@mipmap/ic_launcher"
+        app:leftBackGround="@mipmap/back"
         app:rightType="1"
         app:rightText="@string/resiner"
         app:rightTextSize="@dimen/text_size_30_px"
