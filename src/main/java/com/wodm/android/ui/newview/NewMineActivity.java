@@ -52,8 +52,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private LinearLayout ll_vip;
     @ViewIn(R.id.ll_degree)
     private LinearLayout ll_degree;
-    @ViewIn(R.id.ll_package)
-    private LinearLayout ll_package;
+
 
     @Override
     protected void setDatas(Bundle bundle) {
@@ -64,7 +63,6 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         rl_login.setOnClickListener(this);
         ll_vip.setOnClickListener(this);
         ll_degree.setOnClickListener(this);
-        ll_package.setOnClickListener(this);
 
     }
 
@@ -125,9 +123,6 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 break;
             case R.id.ll_degree:
                 startActivity(new Intent(getActivity(),MyLevelActivity.class));
-                break;
-            case R.id.ll_package:
-                startActivity(new Intent(getActivity(), Money_PackageAty.class));
                 break;
         }
     }

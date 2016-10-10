@@ -49,7 +49,7 @@ public class HomeFragment extends TrackFragment {
     @Override
     protected void setDatas(Bundle bundle) {
         mBannerView = (BannerView) mHeaderView.findViewById(R.id.banner);
-        pullToLoadView.setLoadingColor(R.color.color_ff8d35);
+        pullToLoadView.setLoadingColor(R.color.colorPrimary);
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean follow) {

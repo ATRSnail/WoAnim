@@ -48,7 +48,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +97,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 break;
             case R.id.btn_degree:
                 break;
-
         }
     }
 }

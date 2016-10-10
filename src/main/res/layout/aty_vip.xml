@@ -9,21 +9,19 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:background="@mipmap/mine_bg"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
         <com.wodm.android.view.newview.AtyTopLayout
             android:id="@+id/set_topbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
             app:CustomtitleTextColor="@android:color/black"
             app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:BackGroundColor="@color/color_e4e4e4"
+            app:Customtoptitle=""
+            app:leftBackGround="@mipmap/ic_launcher"
             app:rightType="0"
             />
         <RelativeLayout
-            android:background="@mipmap/mine_bg"
+            android:background="@color/color_e4e4e4"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_240">
@@ -34,12 +32,6 @@
                 android:layout_height="@dimen/px_138"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/touxiang" />
-            <org.eteclab.ui.widget.CircularImage
-                android:id="@+id/vip_user_head_imgs"
-                android:layout_width="@dimen/px_138"
-                android:layout_height="@dimen/px_138"
-                android:layout_centerHorizontal="true"
-                android:background="@mipmap/circlr_vip" />
             <TextView
                 android:id="@+id/tv_vip_name"
                 android:textColor="@color/white"
@@ -52,7 +44,6 @@
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>
-        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

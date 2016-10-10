@@ -5,23 +5,23 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
+    <TextView
         android:id="@+id/action_item"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/px_240"
+        android:layout_height="@dimen/px_120"
         android:background="@color/color_666666"
         android:gravity="center"
         android:text="签到"
         android:textColor="@color/color_333333"
-        android:textSize="20px" />
+        android:textSize="@dimen/text_size_30_px" />
 
     <TextView
         android:id="@+id/experience_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/px_30"
         android:text="可得2经验值"
         android:textColor="@color/color_999999"
-        android:textSize="14px" />
+        android:textSize="@dimen/text_size_22_px" />
 </LinearLayout>

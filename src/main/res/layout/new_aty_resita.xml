@@ -11,7 +11,7 @@
         android:layout_height="@dimen/px_90"
         app:CustomtitleTextColor="@android:color/black"
         app:CustomtitleTextSize="@dimen/text_size_36_px"
-        app:BackGroundColor="@color/color_ffd805"
+        app:BackGroundColor="@color/color_999999"
         app:Customtoptitle="@string/resiner"
         app:leftBackGround="@mipmap/ic_launcher"
         app:rightType="0"
