@@ -20,6 +20,8 @@
                 android:layout_height="@dimen/px_90"
                 app:CustomtitleTextColor="@android:color/black"
                 app:CustomtitleTextSize="@dimen/text_size_36_px"
+                app:BackGroundColor="@android:color/transparent"
+                app:leftBackGround="@mipmap/anim_back"
                 app:rightType="0"
                 />
             <RelativeLayout
