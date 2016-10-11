@@ -24,8 +24,6 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     @ViewIn(R.id.back_wallet)
     private AtyTopLayout topLayout;
     WalletAdapter adapter;
-    @ViewIn(R.id.set_topbar)
-    private AtyTopLayout set_topbar;
     private String[] level = new String[]{"等级", "VIP", "VIP", "VIP"};
     private String[] rule = new String[]{"当您的等级越高，您的积分会根据等级成倍增长",
             "即可开通VIP特权可享受双倍积分优惠", "当您的等级越高，您的积分会根据等级成倍增长",
@@ -36,7 +34,7 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        set_topbar.setOnTopbarClickListenter(this);
+        topLayout.setOnTopbarClickListenter(this);
         list = new ArrayList<>();
         for (int i = 0; i < level.length; i++) {
             Map<String, String> map = new HashMap<>();

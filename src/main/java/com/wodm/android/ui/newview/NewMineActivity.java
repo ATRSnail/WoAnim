@@ -22,6 +22,7 @@ import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.track.fragment.TrackFragment;
 import org.eteclab.ui.widget.CircularImage;
 
+import static com.lidroid.xutils.http.client.HttpRequest.HttpMethod.HEAD;
 import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
@@ -52,14 +53,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private LinearLayout ll_vip;
     @ViewIn(R.id.ll_degree)
     private LinearLayout ll_degree;
-<<<<<<< HEAD
     @ViewIn(R.id.ll_my_wallet)
     private LinearLayout ll_my_wallet;
-
-=======
-    @ViewIn(R.id.ll_wallet)
-    private LinearLayout ll_wallet;
->>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
 
     @Override
     protected void setDatas(Bundle bundle) {
@@ -70,11 +65,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         rl_login.setOnClickListener(this);
         ll_vip.setOnClickListener(this);
         ll_degree.setOnClickListener(this);
-<<<<<<< HEAD
         ll_my_wallet.setOnClickListener(this);
-=======
-        ll_wallet.setOnClickListener(this);
->>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
 
     }
 
@@ -138,13 +129,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             case R.id.ll_degree:
                 startActivity(new Intent(getActivity(), MyLevelActivity.class));
                 break;
-<<<<<<< HEAD
              case R.id.ll_my_wallet:
                 startActivity(new Intent(getActivity(),MyWalletActivity.class));
-=======
-            case R.id.ll_wallet:
-                startActivity(new Intent(getActivity(), MyWalletActivity.class));
->>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
                 break;
 
         }

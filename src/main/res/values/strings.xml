@@ -72,7 +72,6 @@
     <string name="join_look">进去看看</string>
     <string name="mine_comments">我的收藏</string>
     <string name="mine_wallet">我的钱包</string>
-<<<<<<< HEAD
     <string name="mine_header_img">我的头像</string>
     <string name="save">保存</string>
     <string name="exit_login">退出登录</string>
@@ -83,7 +82,5 @@
     <string name="birthday_user">出生日期</string>
     <string name="sex_user">性别</string>
     <string name="nickname_user">昵称</string>
-=======
     <string name="mine_level">我的等级</string>
->>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
 </resources>
