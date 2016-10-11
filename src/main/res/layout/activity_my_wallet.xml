@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+<<<<<<< HEAD
        <LinearLayout
            android:background="@mipmap/wallet_backg"
            android:orientation="vertical"
@@ -83,6 +84,73 @@
 
            </RelativeLayout>
        </LinearLayout>
+=======
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/back_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_ffd805"
+            app:CustomtitleTextColor="@color/color_3f190c"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:Customtoptitle="@string/mine_wallet"
+            app:leftBackGround="@mipmap/wallet_back" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_330"
+            android:background="@mipmap/wallet_backg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_wallet_icon"
+                    android:layout_width="@dimen/px_138"
+                    android:layout_height="@dimen/px_138"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/btn_wallet_icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px_15"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="我的萌币"
+                        android:textColor="@color/color_3f190c" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:layout_marginRight="@dimen/px_15"
+                        android:text=":"
+                        android:textColor="@color/color_3f190c" />
+
+                    <TextView
+                        android:id="@+id/meng_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="203"
+                        android:textColor="@color/color_3f190c"
+                        android:textSize="@dimen/text_size_28_px" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+>>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
 
         <View
             android:layout_width="match_parent"

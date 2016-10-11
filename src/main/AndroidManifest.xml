@@ -274,6 +274,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--<activity-->
+<<<<<<< HEAD
             <!--android:name="com.wodm.android.ui.newview.NewMineActivity"-->
             <!--android:screenOrientation="portrait"-->
             <!--android:theme="@style/AppTheme.NoActionBar" />-->
@@ -281,6 +282,11 @@
             <!--android:name=".android.ui.newview.LgoinActivity"-->
             <!--android:screenOrientation="portrait"-->
             <!--android:theme="@style/AppTheme.NoActionBar" />-->
+=======
+        <!--android:name="com.wodm.android.ui.newview.NewMineActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@style/AppTheme.NoActionBar" />-->
+>>>>>>> 709c439baac67a7ae829f8af36cac5f04f594d38
         <activity
             android:name=".android.ui.newview.PersionActivity"
             android:screenOrientation="portrait"
@@ -297,7 +303,12 @@
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
-        <activity android:name=".android.ui.newview.MyLevelActivity"></activity>
+        <activity
+            android:name=".android.ui.newview.MyLevelActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.MyWalletActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

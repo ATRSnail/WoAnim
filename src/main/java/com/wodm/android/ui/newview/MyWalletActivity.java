@@ -20,6 +20,9 @@ import java.util.Map;
 public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
     @ViewIn(R.id.gv_wallet)
     private MyGridView gridView;
+
+    @ViewIn(R.id.back_wallet)
+    private AtyTopLayout topLayout;
     WalletAdapter adapter;
     @ViewIn(R.id.set_topbar)
     private AtyTopLayout set_topbar;
@@ -44,6 +47,7 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         adapter = new WalletAdapter(getApplicationContext(), list);
 
         gridView.setAdapter(adapter);
+        topLayout.setOnTopbarClickListenter(this);
     }
 
 
