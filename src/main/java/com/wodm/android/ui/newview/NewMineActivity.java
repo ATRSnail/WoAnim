@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -22,7 +23,6 @@ import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.track.fragment.TrackFragment;
 import org.eteclab.ui.widget.CircularImage;
 
-import static com.lidroid.xutils.http.client.HttpRequest.HttpMethod.HEAD;
 import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
@@ -55,6 +55,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private LinearLayout ll_degree;
     @ViewIn(R.id.ll_my_wallet)
     private LinearLayout ll_my_wallet;
+    @ViewIn(R.id.img_sex)
+    private ImageView img_sex;
 
     @Override
     protected void setDatas(Bundle bundle) {
@@ -102,14 +104,23 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             rl_login.setVisibility(View.GONE);
             no_login.setVisibility(View.VISIBLE);
         } else {
+            UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
             no_login.setVisibility(View.GONE);
             rl_login.setVisibility(View.VISIBLE);
-            tv_user_name.setText(CURRENT_USER.getData().getAccount().getNickName());
-            String sign_name = CURRENT_USER.getData().getAccount().getAutograph();
+            tv_user_name.setText(accountBean.getNickName());
+            String sign_name = accountBean.getAutograph();
             if (!TextUtils.isEmpty(sign_name)) {
                 tv_sign.setText(sign_name);
             }
-            new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
+            int sex_value=accountBean.getSex();
+            if (sex_value == 0) {
+                img_sex.setBackgroundResource(R.drawable.sex_radio_baomi);
+            } else if (sex_value == 1) {
+                img_sex.setBackgroundResource(R.mipmap.sex_man);
+            } else {
+                img_sex.setBackgroundResource(R.mipmap.sex_women);
+            }
+            new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
         }
     }
 

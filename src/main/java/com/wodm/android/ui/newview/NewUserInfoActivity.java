@@ -61,9 +61,9 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
         String str_sex="";
-        if (Constants.CURRENT_USER.getData().getAccount().getSex() == 0) {
+        if (accountBean.getSex() == 0) {
             str_sex="保密";
-        } else if (Constants.CURRENT_USER.getData().getAccount().getSex() == 1) {
+        } else if (accountBean.getSex() == 1) {
             str_sex="男";
         } else {
             str_sex="女";
@@ -141,7 +141,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
-        Toast.makeText(this, "保存", Toast.LENGTH_SHORT).show();
     }
 
     @Override

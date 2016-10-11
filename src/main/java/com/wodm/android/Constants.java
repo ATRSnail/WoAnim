@@ -23,9 +23,9 @@ public class Constants {
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
 //    public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
-//    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
+    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
     public final static String SHARE_URL = "http://wodm.9mobi.cn/html/donghuaxiangqingye.html?id=";
@@ -77,7 +77,7 @@ public class Constants {
     // 获取作品评论
     public static final String URL_GET_COMMENTS = HOST + "resource/comment?sortBy=1&resourceId=";
     public static final String URL_COMMENTS = HOST + "comment";//评论
-    public static final String URL_FEEDBACK = HOST + "app/feedback";//意见反馈
+    public static final String URL_FEEDBACK = HOST + "newuser/opinion";//意见反馈
     public static final String URL_ABOUT = HOST + "app/legal?appkey=" + APPKEY;//关于我们
     public static final String URL_USER = HOST + "user/profile20160920";//修改用户资料
     public static final String URL_NEWS_GET = HOST + "news/get";//咨询详情

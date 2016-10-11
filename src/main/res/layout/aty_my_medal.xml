@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:CustomtitleTextColor="@android:color/black"
+            app:CustomtitleTextSize="@dimen/text_size_48_px"
+            app:BackGroundColor="@color/color_ffd805"
+            app:Customtoptitle="@string/mine_medal"
+            app:leftBackGround="@mipmap/back"
+            app:rightType="0"
+            />
+        <ListView
+            android:scrollbars="none"
+            android:divider="@color/color_eae7e7"
+            android:dividerHeight="@dimen/px_21"
+            android:id="@+id/lv_noscroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+</LinearLayout>

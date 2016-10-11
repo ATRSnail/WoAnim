@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wodm.R;
+import com.wodm.android.ui.newview.MyMedalActivity;
 import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
@@ -107,30 +108,31 @@ public class NewMineAdapter extends BaseAdapter {
 
     private void getIntent(String text) {
         Tracker.getInstance(mContext).trackMethodInvoke("我的", "跳转" + text + "界面");
+        if(!UpdataUserInfo.isLogIn(mContext,true)){
+            Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent i = new Intent();
         if (text.equals("@我的")) {
-            if (!UpdataUserInfo.isLogIn(mContext, true)) {
-                Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
-                return;
-            }
             mContext.startActivity(new Intent(mContext, UserMessageActivity.class));
         } else if (text.equals("收藏")) {
-            if (!UpdataUserInfo.isLogIn(mContext, true)) {
-                Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
-                return;
-            }
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);
             startIntent(i, RecordActivity.class);
         } else if (text.equals("积分")) {
-            if (!UpdataUserInfo.isLogIn(mContext, true)) {
-                return;
-            }
 //           mContext.startActivity(new Intent(mContext, UserIntegralActivity.class));
             startIntent(null, UserIntegralActivity.class);
         } else if (text.equals("设置")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
             startIntent(null, UsSetActivity.class);
+        }else if (text.equals("勋章")) {
+//           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
+            startIntent(null, MyMedalActivity.class);
+        }else if (text.equals("足迹")) {
+            i.putExtra("tid", R.id.watch_records);
+            i.putExtra("title", R.string.wathc_recoder);
+//           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
+            startIntent(i, RecordActivity.class);
         } else if (text.equals("缓存")) {
 //           Intent i = new Intent(getActivity(), RecordActivity.class);
             i.putExtra("tid", R.id.watch_records);

@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
-import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.AppActivity;
 
@@ -29,6 +28,10 @@ public class FeekBackActivity extends AppActivity {
         super.onCreate(savedInstanceState);
         setCustomTitle(TITLE);
         setTitleRight("提交");
+        if(Constants.CURRENT_USER==null){
+            Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     @TrackClick(value = R.id.tooltitle_right, location = TITLE, eventName = "提交")
@@ -41,13 +44,9 @@ public class FeekBackActivity extends AppActivity {
         String url = Constants.URL_FEEDBACK;
         JSONObject obj = new JSONObject();
         try {
-            obj.put("appkey",Constants.APPKEY);
-            obj.put("udid", CartoonApplication.getUdid());
-            obj.put("uuid",CartoonApplication.getUuid());
-            if(Constants.CURRENT_USER!=null)
-                obj.put("userId",Constants.CURRENT_USER.getData().getAccount().getId());
-
+            obj.put("userId",Constants.CURRENT_USER.getData().getAccount().getId());
             obj.put("content",mContent.getText().toString());
+            obj.put("opinType","1");
             httpPost(url,obj,new HttpCallback(){
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
