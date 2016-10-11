@@ -31,7 +31,7 @@ import org.eteclab.track.Tracker;
 
 public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] personArray = {"客服", "足迹", "任务", "勋章", "收藏", "缓存", "设置"};
+    private String[] personArray = {"勋章", "足迹", "任务",  "收藏", "缓存", "客服","设置"};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题"};
     private int[] personIconArray = {R.drawable.service_mine, R.drawable.footprint_mine, R.drawable.task_mine
             , R.drawable.medal_mine, R.drawable.collect, R.drawable.cache, R.drawable.settings};
