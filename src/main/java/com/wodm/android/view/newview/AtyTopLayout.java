@@ -62,7 +62,7 @@ public class AtyTopLayout extends RelativeLayout {
 
         titleTextSize = ta.getDimension(R.styleable.secondTopbar_CustomtitleTextSize, 0);
         titleTextColor = ta.getColor(R.styleable.secondTopbar_CustomtitleTextColor, 0);
-        backgroundColor = ta.getColor(R.styleable.secondTopbar_BackGroundColor, Color.WHITE);
+        backgroundColor = ta.getColor(R.styleable.secondTopbar_BackGroundColor, Color.TRANSPARENT);
         titleText = ta.getString(R.styleable.secondTopbar_Customtoptitle);
         rightType = ta.getInteger(R.styleable.secondTopbar_rightType,0);
         if (rightType==2){

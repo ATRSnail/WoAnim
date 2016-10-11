@@ -1,83 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_my_wallet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    tools:context="com.wodm.android.ui.newview.MyWalletActivity">
+    android:background="@android:color/transparent"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.wodm.android.view.newview.AtyTopLayout
-            android:id="@+id/set_topbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
-            app:BackGroundColor="@color/color_ffd805"
-            app:CustomtitleTextColor="@color/color_3f190c"
-            app:CustomtitleTextSize="@dimen/text_size_36_px"
-            app:Customtoptitle="@string/mine_wallet"
-            app:leftBackGround="@mipmap/wallet_back" />
+       <LinearLayout
+           android:background="@mipmap/wallet_backg"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <com.wodm.android.view.newview.AtyTopLayout
+               android:id="@+id/set_topbar"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/px_90"
+               app:CustomtitleTextColor="@color/color_3f190c"
+               app:CustomtitleTextSize="@dimen/text_size_36_px"
+               app:Customtoptitle="@string/mine_wallet"
+               app:BackGroundColor="@android:color/transparent"
+               app:leftBackGround="@mipmap/back"
+               app:rightType="0"/>
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_330"
-            android:background="@mipmap/wallet_backg">
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/px_330"
+              >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_wallet_icon"
-                    android:layout_width="@dimen/px_138"
-                    android:layout_height="@dimen/px_138"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/btn_wallet_icon" />
+                   <Button
+                       android:id="@+id/btn_wallet_icon"
+                       android:layout_width="@dimen/px_138"
+                       android:layout_height="@dimen/px_138"
+                       android:layout_gravity="center_horizontal"
+                       android:background="@drawable/btn_wallet_icon" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/px_15"
-                    android:gravity="center">
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_marginTop="@dimen/px_15"
+                       android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:text="我的萌币"
-                        android:textColor="@color/color_3f190c" />
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="left"
+                           android:text="我的萌币"
+                           android:textColor="@color/color_3f190c" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:layout_marginRight="@dimen/px_15"
-                        android:text=":"
-                        android:textColor="@color/color_3f190c" />
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center_horizontal"
+                           android:layout_marginLeft="@dimen/px_15"
+                           android:layout_marginRight="@dimen/px_15"
+                           android:text=":"
+                           android:textColor="@color/color_3f190c" />
 
-                    <TextView
-                        android:id="@+id/meng_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="203"
-                        android:textColor="@color/color_3f190c"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-            </LinearLayout>
+                       <TextView
+                           android:id="@+id/meng_money"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="right"
+                           android:text="203"
+                           android:textColor="@color/color_3f190c"
+                           android:textSize="@dimen/text_size_28_px" />
+                   </LinearLayout>
+               </LinearLayout>
 
 
-        </RelativeLayout>
+           </RelativeLayout>
+       </LinearLayout>
 
         <View
             android:layout_width="match_parent"

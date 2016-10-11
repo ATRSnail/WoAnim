@@ -210,7 +210,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                         if (i == 0) {
                             btn_yzm.setText(R.string.get_code);
                             btn_yzm.setEnabled(true);
-                            btn_yzm.setBackgroundResource(R.drawable.shape_angle_rectangle_solid);
+                            btn_yzm.setBackgroundResource(R.drawable.btn_yzm);
                             timer.cancel();
                         } else {
                             btn_yzm.setText(i-- + "秒后重试");
@@ -220,6 +220,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             }
         }, 0, 1000);
         btn_yzm.setEnabled(false);
-        btn_yzm.setBackgroundResource(R.drawable.shape_angle_rectangle);
+        btn_yzm.setTextColor(getResources().getColor(R.color.color_ffffff));
+        btn_yzm.setBackgroundResource(R.drawable.shape_angle_rectangle_solid);
     }
 }

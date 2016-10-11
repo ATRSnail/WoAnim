@@ -14,7 +14,7 @@ import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.user.UserInfoActivity;
+import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
@@ -25,7 +25,9 @@ import org.eteclab.base.utils.AsyncImageLoader;
  * Created by songchenyu on 16/10/8.
  */
 @Layout(R.layout.aty_persion)
-public class PersionActivity extends AppActivity implements View.OnClickListener {
+public class PersionActivity extends AppActivity implements View.OnClickListener ,AtyTopLayout.myTopbarClicklistenter {
+    @ViewIn(R.id.set_topbar)
+    private AtyTopLayout set_topbar;
     @ViewIn(R.id.gv_comments)
     private MyGridView gv_comments;
     private PersionAdapter persionAdapter;
@@ -58,6 +60,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         scrollow.requestFocus();
         btn_user_info.setOnClickListener(this);
         btn_degree.setOnClickListener(this);
+        set_topbar.setOnTopbarClickListenter(this);
 
     }
 
@@ -97,10 +100,20 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_user_info:
-                startActivity(new Intent(this, UserInfoActivity.class));
+                startActivity(new Intent(this, NewUserInfoActivity.class));
                 break;
             case R.id.btn_degree:
                 break;
         }
+    }
+
+    @Override
+    public void leftClick() {
+        finish();
+    }
+
+    @Override
+    public void rightClick() {
+
     }
 }

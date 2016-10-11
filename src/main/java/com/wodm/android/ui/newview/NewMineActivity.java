@@ -52,6 +52,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private LinearLayout ll_vip;
     @ViewIn(R.id.ll_degree)
     private LinearLayout ll_degree;
+    @ViewIn(R.id.ll_my_wallet)
+    private LinearLayout ll_my_wallet;
 
 
     @Override
@@ -63,6 +65,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         rl_login.setOnClickListener(this);
         ll_vip.setOnClickListener(this);
         ll_degree.setOnClickListener(this);
+        ll_my_wallet.setOnClickListener(this);
 
     }
 
@@ -124,6 +127,10 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             case R.id.ll_degree:
                 startActivity(new Intent(getActivity(),MyLevelActivity.class));
                 break;
+             case R.id.ll_my_wallet:
+                startActivity(new Intent(getActivity(),MyWalletActivity.class));
+                break;
+
         }
     }
 }
