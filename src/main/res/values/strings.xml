@@ -71,4 +71,6 @@
     <string name="more_view">显示更多</string>
     <string name="join_look">进去看看</string>
     <string name="mine_comments">我的收藏</string>
+    <string name="mine_wallet">我的钱包</string>
+    <string name="mine_level">我的等级</string>
 </resources>
