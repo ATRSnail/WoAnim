@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -135,12 +136,24 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.ll_vip:
+                if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 startActivity(new Intent(getActivity(), VipActivity.class));
                 break;
             case R.id.ll_degree:
+                if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 startActivity(new Intent(getActivity(), MyLevelActivity.class));
                 break;
              case R.id.ll_my_wallet:
+                 if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                     Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                     return;
+                 }
                 startActivity(new Intent(getActivity(),MyWalletActivity.class));
                 break;
 

@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.widget.ScrollView;
 
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.WalletAdapter;
@@ -20,7 +21,8 @@ import java.util.Map;
 public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
     @ViewIn(R.id.gv_wallet)
     private MyGridView gridView;
-
+    @ViewIn(R.id.scrllow_mywallet)
+    private ScrollView scrllow_mywallet;
     @ViewIn(R.id.back_wallet)
     private AtyTopLayout topLayout;
     WalletAdapter adapter;
@@ -34,6 +36,10 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        scrllow_mywallet.scrollTo(0, 0);
+        scrllow_mywallet.setFocusable(true);
+        scrllow_mywallet.setFocusableInTouchMode(true);
+        scrllow_mywallet.requestFocus();
         topLayout.setOnTopbarClickListenter(this);
         list = new ArrayList<>();
         for (int i = 0; i < level.length; i++) {

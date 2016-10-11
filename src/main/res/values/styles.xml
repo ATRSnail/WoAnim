@@ -106,4 +106,5 @@
         <attr name="rightText" format="string"/>
         <attr name="rightTextSize" format="reference|dimension"/>
     </declare-styleable>
+
 </resources>
