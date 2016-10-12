@@ -20,10 +20,221 @@
         app:rightType="0"
         />
      <LinearLayout
-         android:orientation="vertical"
+         android:weightSum="5"
+         android:orientation="horizontal"
          android:layout_width="match_parent"
          android:layout_height="wrap_content">
+         <LinearLayout
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <Button
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="@android:color/holo_red_dark"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/px_2"></Button>
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:gravity="top"
+                         android:text="11111111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:text="1"
+                         android:gravity="center"
+                         android:layout_width="@dimen/px_100"
+                         android:layout_height="@dimen/px_100"
+                         android:layout_gravity="left"
+                         android:textColor="@color/color_333333"
+                         android:textSize="@dimen/text_size_24_px"
+                         android:background="@drawable/btn_circle"/>
+                     <TextView
+                         android:gravity="bottom"
+                         android:text="11111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+             </RelativeLayout>
 
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <Button
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="@android:color/holo_green_dark"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/px_2"></Button>
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:gravity="top"
+                         android:text="11111111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:text="1"
+                         android:gravity="center"
+                         android:layout_width="@dimen/px_100"
+                         android:layout_height="@dimen/px_100"
+                         android:layout_gravity="left"
+                         android:textColor="@color/color_333333"
+                         android:textSize="@dimen/text_size_24_px"
+                         android:background="@drawable/btn_circle"/>
+                     <TextView
+                         android:gravity="bottom"
+                         android:text="11111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+             </RelativeLayout>
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <Button
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="@android:color/holo_blue_dark"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/px_2"></Button>
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:gravity="top"
+                         android:text="11111111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:text="1"
+                         android:gravity="center"
+                         android:layout_width="@dimen/px_100"
+                         android:layout_height="@dimen/px_100"
+                         android:layout_gravity="left"
+                         android:textColor="@color/color_333333"
+                         android:textSize="@dimen/text_size_24_px"
+                         android:background="@drawable/btn_circle"/>
+                     <TextView
+                         android:gravity="bottom"
+                         android:text="11111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+             </RelativeLayout>
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <Button
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="@android:color/black"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/px_2"></Button>
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:gravity="top"
+                         android:text="11111111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:text="1"
+                         android:gravity="center"
+                         android:layout_width="@dimen/px_100"
+                         android:layout_height="@dimen/px_100"
+                         android:layout_gravity="left"
+                         android:textColor="@color/color_333333"
+                         android:textSize="@dimen/text_size_24_px"
+                         android:background="@drawable/btn_circle"/>
+                     <TextView
+                         android:gravity="bottom"
+                         android:text="11111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+             </RelativeLayout>
+
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+             <RelativeLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <Button
+                     android:visibility="gone"
+                     android:layout_centerVertical="true"
+                     android:gravity="center"
+                     android:background="@color/color_88abda"
+                     android:layout_width="wrap_content"
+                     android:layout_height="@dimen/px_2"></Button>
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:gravity="top"
+                         android:text="111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <Button
+                         android:text="1"
+                         android:gravity="center"
+                         android:layout_width="@dimen/px_100"
+                         android:layout_height="@dimen/px_100"
+                         android:layout_gravity="left"
+                         android:textColor="@color/color_333333"
+                         android:textSize="@dimen/text_size_24_px"
+                         android:background="@drawable/btn_circle"/>
+                     <TextView
+                         android:gravity="bottom"
+                         android:text="11111"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+             </RelativeLayout>
+
+         </LinearLayout>
      </LinearLayout>
     </LinearLayout>
 </ScrollView>
