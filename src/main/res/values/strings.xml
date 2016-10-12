@@ -83,5 +83,9 @@
     <string name="sex_user">性别</string>
     <string name="nickname_user">昵称</string>
     <string name="mine_level">我的等级</string>
+
     <string name="mine_medal">勋章</string>
+
+    <string name="level_state">等级说明</string>
+
 </resources>
