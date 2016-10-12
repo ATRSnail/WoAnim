@@ -1,5 +1,8 @@
 package com.wodm.android.ui.newview;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -13,6 +16,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.LevelAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.fragment.LevelFragment;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -49,6 +53,8 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     private TextView exper;
     @ViewIn(R.id.total_experience_tv)
     private TextView totalExp;
+    @ViewIn(R.id.fragment_level)
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,10 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
         initData();
         gridView.setAdapter(adapter);
         topLayout.setOnTopbarClickListenter(this);
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.fragment_level, new LevelFragment());
     }
 
     private void initData() {

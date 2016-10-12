@@ -26,15 +26,16 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="@dimen/px_20"
                 android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou" />
+                android:background="@mipmap/level_jiantou"
+                android:visibility="invisible" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="@dimen/px_96"
-                    android:layout_height="@dimen/px_96"
+                    android:layout_width="@dimen/px_69"
+                    android:layout_height="@dimen/px_69"
                     android:background="@drawable/btn_level_circle"
                     android:gravity="center"
                     android:text="LV1"
@@ -56,7 +57,8 @@
                 android:layout_marginTop="@dimen/px_15"
                 android:text="距离LV3还有332经验值"
                 android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px" />
+                android:textSize="@dimen/text_size_22_px"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,19 +74,18 @@
                 android:layout_gravity="start"
                 android:layout_marginLeft="@dimen/px_38"
                 android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou"
-                android:visibility="invisible" />
+                android:background="@mipmap/level_jiantou" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="@dimen/px_69"
-                    android:layout_height="@dimen/px_69"
+                    android:layout_width="@dimen/px_96"
+                    android:layout_height="@dimen/px_96"
                     android:background="@drawable/btn_second_level_circle"
                     android:gravity="center"
-                    android:text="LV2"
+                    android:text="LV2书童"
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
@@ -103,8 +104,7 @@
                 android:layout_marginTop="@dimen/px_15"
                 android:text="距离LV3还有332经验值"
                 android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px"
-                android:visibility="invisible" />
+                android:textSize="@dimen/text_size_22_px" />
         </LinearLayout>
 
         <LinearLayout
