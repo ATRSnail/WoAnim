@@ -120,7 +120,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         super.onDestroy();
     }
 
-    public void httpGet(String url, final HttpCallback callback) {
+      public void httpGet(String url, final HttpCallback callback) {
 
         try {
             TrackApplication. REQUEST_HEADER.put("Content-Type", "application/json");

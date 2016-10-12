@@ -40,7 +40,8 @@
                     android:layout_width="@dimen/px_138"
                     android:layout_height="@dimen/px_138"
                     android:layout_gravity="center"
-                    android:background="@drawable/icon_level" />
+                    android:background="@drawable/icon_level"
+                    android:src="@mipmap/ic_launcher" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
                         android:id="@+id/nickname_tv_level"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="魔人》》"
+                        android:text="@string/level_nickname"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/px_36" />
 
@@ -61,8 +62,9 @@
                         android:layout_height="@dimen/px_27"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/px_15"
+                        android:layout_marginStart="@dimen/px_15"
                         android:layout_toRightOf="@id/nickname_tv_level"
-                        android:background="@drawable/sex_circle_level" />
+                        android:src="@mipmap/sex_women" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -74,7 +76,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="今日经验"
+                        android:text="@string/level_experienece"
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_30_px" />
 
@@ -87,6 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/px_15"
+                            android:layout_marginStart="@dimen/px_15"
                             android:text="020"
                             android:textColor="@color/color_ffffff"
                             android:textSize="@dimen/text_size_30_px" />
@@ -106,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_15"
-                        android:text="累计经验"
+                        android:text="@string/level_total_experienece"
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_30_px" />
 
@@ -178,7 +181,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="@dimen/px_20"
                     android:layout_marginTop="@dimen/px_40"
                     android:background="@mipmap/level_jiantou"
@@ -208,7 +211,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginTop="@dimen/px_15"
                     android:text="距离LV3还有332经验值"
                     android:textColor="@color/color_ffcb4d"
@@ -226,7 +229,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="@dimen/px_38"
                     android:layout_marginTop="@dimen/px_40"
                     android:background="@mipmap/level_jiantou" />
@@ -414,40 +417,55 @@
             android:layout_height="@dimen/px_2"
             android:background="@color/color_eeeeee" />
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_96"
             android:layout_marginLeft="@dimen/px_45"
-            android:layout_marginRight="@dimen/px_38">
+            android:gravity="left|center_vertical">
 
-            <ImageView
-                android:id="@+id/vip_icon_iv"
-                android:layout_width="@dimen/px_48"
-                android:layout_height="@dimen/px_48"
-                android:layout_centerVertical="true"
-                android:background="@drawable/vip_icon_circle" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/px_15"
-                android:layout_toRightOf="@id/vip_icon_iv"
-                android:text="开通VIP可享会员成长加速"
-                android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/text_size_34_px" />
+                android:layout_weight="1">
 
-            <Button
-                android:id="@+id/kai_tong_level"
-                android:layout_width="@dimen/px_126"
-                android:layout_height="@dimen/px_63"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/kaitong_rectan"
-                android:text="开通会员"
-                android:textColor="@color/color_ff6361"
-                android:textSize="@dimen/text_size_24_px" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/vip_icon_iv"
+                    android:layout_width="@dimen/px_48"
+                    android:layout_height="@dimen/px_48"
+                    android:layout_gravity="center_vertical|left"
+                    android:background="@drawable/vip_icon_circle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:text="@string/vip_speed_hint"
+                    android:textColor="@color/color_f29b76"
+                    android:textSize="@dimen/text_size_28_px" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <Button
+                    android:id="@+id/kai_tong_level"
+                    android:layout_width="@dimen/px_126"
+                    android:layout_height="@dimen/px_63"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:background="@drawable/kaitong_rectan"
+                    android:text="@string/open_vip_member"
+                    android:textColor="@color/color_ff6361"
+                    android:textSize="@dimen/text_size_24_px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
@@ -494,7 +512,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="升级攻略"
+                android:text="@string/level_up_method"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/text_size_34_px" />
 

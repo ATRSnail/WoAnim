@@ -105,7 +105,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             rl_login.setVisibility(View.GONE);
             no_login.setVisibility(View.VISIBLE);
         } else {
-            UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
+            UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
             no_login.setVisibility(View.GONE);
             rl_login.setVisibility(View.VISIBLE);
             tv_user_name.setText(accountBean.getNickName());
@@ -113,7 +113,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             if (!TextUtils.isEmpty(sign_name)) {
                 tv_sign.setText(sign_name);
             }
-            int sex_value=accountBean.getSex();
+            int sex_value = accountBean.getSex();
             if (sex_value == 0) {
                 img_sex.setBackgroundResource(R.drawable.sex_radio_baomi);
             } else if (sex_value == 1) {
@@ -136,25 +136,25 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.ll_vip:
-                if(!UpdataUserInfo.isLogIn(getActivity(),true)){
-                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 startActivity(new Intent(getActivity(), VipActivity.class));
                 break;
             case R.id.ll_degree:
-                if(!UpdataUserInfo.isLogIn(getActivity(),true)){
-                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 startActivity(new Intent(getActivity(), MyLevelActivity.class));
                 break;
-             case R.id.ll_my_wallet:
-                 if(!UpdataUserInfo.isLogIn(getActivity(),true)){
-                     Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
-                     return;
-                 }
-                startActivity(new Intent(getActivity(),MyWalletActivity.class));
+            case R.id.ll_my_wallet:
+                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                startActivity(new Intent(getActivity(), MyWalletActivity.class));
                 break;
 
         }

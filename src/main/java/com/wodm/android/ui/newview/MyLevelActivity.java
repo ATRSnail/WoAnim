@@ -1,12 +1,20 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.http.RequestParams;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.LevelAdapter;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
@@ -29,10 +37,52 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     LevelAdapter adapter;
     @ViewIn(R.id.activity_my_level)
     private ScrollView activity_my_level;
+    @ViewIn(R.id.icon_iv_level)
+    private ImageView icon;
+    @ViewIn(R.id.sex_iv_level)
+    private ImageView sex;
+    @ViewIn(R.id.nickname_tv_level)
+    private TextView nickname;
+    @ViewIn(R.id.experience_tv_level)
+    private TextView exper;
+    @ViewIn(R.id.total_experience_tv)
+    private TextView totalExp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initData();
+        gridView.setAdapter(adapter);
+        topLayout.setOnTopbarClickListenter(this);
+    }
+
+    private void initData() {
+        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
+      //  icon.setImageResource(accountBean.get);
+
+
+        String name = accountBean.getNickName();
+        if (!TextUtils.isEmpty(name)) {
+            nickname.setText(name);
+        }
+      //  String ex = accountBean.get;
+        if (!TextUtils.isEmpty(name)) {
+            nickname.setText(name);
+        }
+//        String name = accountBean.getNickName();
+//        if (!TextUtils.isEmpty(name)) {
+//            nickname.setText(name);
+//        }
+        int sex_value = accountBean.getSex();
+        if (sex_value == 0) {
+            sex.setImageResource(R.mipmap.sex_radio_baomi);
+        } else if (sex_value == 1) {
+            sex.setImageResource(R.mipmap.sex_man);
+        } else {
+            sex.setImageResource(R.mipmap.sex_women);
+        }
+
+
         list = new ArrayList<>();
         for (int i = 0; i < actions.length; i++) {
             Map<String, String> map = new HashMap<>();
@@ -46,9 +96,6 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
             list.add(map);
         }
         adapter = new LevelAdapter(this, list);
-
-        gridView.setAdapter(adapter);
-        topLayout.setOnTopbarClickListenter(this);
     }
 
     @Override
