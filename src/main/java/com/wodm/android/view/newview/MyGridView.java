@@ -4,6 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
+import com.wodm.android.adapter.newadapter.LevelAdapter;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by songchenyu on 16/9/26.
  */
@@ -24,4 +29,6 @@ public class MyGridView extends GridView {
                 Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
+
+
 }
