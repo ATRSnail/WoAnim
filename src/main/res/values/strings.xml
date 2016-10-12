@@ -63,7 +63,9 @@
     <string name="get_gold">领金币</string>
     <string name="get_month">领月票</string>
     <string name="open_vip_hint">立即开通即享会员福利</string>
+    <string name="vip_speed_hint">开通VIP可享会员成长加速</string>
     <string name="open_vip_now">立即开通</string>
+    <string name="open_vip_member">开通会员</string>
     <string name="open_vip_message_hint">萌呷会以短信形式将您的申请发送到您的手机中回复信息即刻开通</string>
     <!--persioninfo-->
     <string name="persion_info">个人资料</string>
@@ -87,5 +89,9 @@
     <string name="mine_medal">勋章</string>
 
     <string name="level_state">等级说明</string>
+    <string name="level_nickname">魔人》》</string>
+    <string name="level_experienece">今日经验</string>
+    <string name="level_total_experienece">累计经验</string>
+    <string name="level_up_method">升级攻略</string>
 
 </resources>
