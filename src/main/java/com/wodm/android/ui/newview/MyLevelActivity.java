@@ -20,6 +20,8 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +40,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.activity_my_level)
     private ScrollView activity_my_level;
     @ViewIn(R.id.icon_iv_level)
-    private ImageView icon;
+    private CircularImage icon;
     @ViewIn(R.id.sex_iv_level)
     private ImageView sex;
     @ViewIn(R.id.nickname_tv_level)
@@ -57,22 +59,29 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void initData() {
-        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
-      //  icon.setImageResource(accountBean.get);
+        if (Constants.CURRENT_USER == null) {
+            finish();
+        }
+        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
+        UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
+
+
+        new AsyncImageLoader(getApplicationContext(), R.mipmap.default_header, R.mipmap.default_header).display(icon, accountBean.getPortrait());
 
 
         String name = accountBean.getNickName();
         if (!TextUtils.isEmpty(name)) {
             nickname.setText(name);
         }
-      //  String ex = accountBean.get;
-        if (!TextUtils.isEmpty(name)) {
-            nickname.setText(name);
+        String empiricalValue = String.valueOf(accountBean.getEmpiricalValue());
+        if (!TextUtils.isEmpty(empiricalValue)) {
+            totalExp.setText(empiricalValue);
         }
-//        String name = accountBean.getNickName();
-//        if (!TextUtils.isEmpty(name)) {
-//            nickname.setText(name);
-//        }
+
+        String currentEmpiricalValue = String.valueOf(dataBean.getCurrentEmpirical());
+        if (!TextUtils.isEmpty(currentEmpiricalValue)) {
+            exper.setText(currentEmpiricalValue);
+        }
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {
             sex.setImageResource(R.mipmap.sex_radio_baomi);

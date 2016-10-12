@@ -35,13 +35,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
+                <org.eteclab.ui.widget.CircularImage
                     android:id="@+id/icon_iv_level"
                     android:layout_width="@dimen/px_138"
                     android:layout_height="@dimen/px_138"
                     android:layout_gravity="center"
-                    android:background="@drawable/icon_level"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/touxiang" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
