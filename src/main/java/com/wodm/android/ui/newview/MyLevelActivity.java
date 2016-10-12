@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 
 import com.wodm.R;
@@ -26,6 +27,8 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.back_level)
     private AtyTopLayout topLayout;
     LevelAdapter adapter;
+    @ViewIn(R.id.activity_my_level)
+    private ScrollView activity_my_level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,4 +60,16 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     public void rightClick() {
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (activity_my_level != null) {
+            activity_my_level.scrollTo(0, 0);
+            activity_my_level.setFocusable(true);
+            activity_my_level.setFocusableInTouchMode(true);
+            activity_my_level.requestFocus();
+        }
+    }
+
 }
