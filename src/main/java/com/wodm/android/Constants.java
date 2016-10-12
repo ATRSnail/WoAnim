@@ -22,8 +22,8 @@ public class Constants {
 
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
-    // public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+     public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //  public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
