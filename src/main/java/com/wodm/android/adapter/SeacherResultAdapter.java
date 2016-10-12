@@ -34,7 +34,7 @@ public class SeacherResultAdapter extends HolderAdapter<ObjectBean> {
             @Override
             public void onItemClick(View view, ObjectBean o, int i) {
 
-                Toast.makeText(context, o.getResourceType() +"",0).show();
+//                Toast.makeText(context, o.getResourceType() +"",0).show();
                 mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
             }
         });
