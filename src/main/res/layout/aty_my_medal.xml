@@ -1,28 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/activity_my_medal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <com.wodm.android.view.newview.AtyTopLayout
-            android:id="@+id/set_topbar"
+            android:id="@+id/back_achieve"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_ffd805"
             app:CustomtitleTextColor="@android:color/black"
             app:CustomtitleTextSize="@dimen/text_size_48_px"
-            app:BackGroundColor="@color/color_ffd805"
-            app:Customtoptitle="@string/mine_medal"
+            app:Customtoptitle="@string/mine_achieve"
             app:leftBackGround="@mipmap/back"
-            app:rightType="0"
-            />
-        <ListView
-            android:scrollbars="none"
-            android:divider="@color/color_eae7e7"
-            android:dividerHeight="@dimen/px_21"
-            android:id="@+id/lv_noscroll"
+            app:rightType="0" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
 
-        </ListView>
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96"
+                android:gravity="center_vertical">
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="@dimen/px_12"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/myachieve"
+                    android:layout_alignTop="@+id/myachieve"
+                    android:background="@color/color_f39800" />
+
+                <TextView
+                    android:id="@+id/myachieve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:text="@string/task_achieve"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_34_px" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"
+                android:background="@color/color_eeeeee" />
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:gravity="center"
+                    android:text="@string/attendance_achieve"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_34_px" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/px_45"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/comer_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/normal_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/violet_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/driver_achieve" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"
+                android:background="@color/color_eeeeee" />
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:gravity="center"
+                    android:text="@string/comment_achieve"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_34_px" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/violet_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/driver_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/violet_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/comer_achieve" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_47"
+                android:background="@color/color_eeeeee" />
+
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/px_12"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/myactivity"
+                    android:layout_alignTop="@+id/myactivity"
+                    android:background="@color/color_f39800" />
+
+                <TextView
+                    android:id="@+id/myactivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:text="@string/activity_achieve"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_34_px" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:gravity="center"
+                    android:text="@string/register_achieve"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_34_px" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/px_45"
+                    android:layout_marginTop="@dimen/px_45"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/violet_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/comer_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/driver_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/normal_forget_achieve" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

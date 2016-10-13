@@ -53,8 +53,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     private TextView exper;
     @ViewIn(R.id.total_experience_tv)
     private TextView totalExp;
-    @ViewIn(R.id.fragment_level)
-    private Fragment fragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +64,14 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
 
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragment_level, new LevelFragment());
+        transaction.replace(R.id.fragment_level, new LevelFragment());
+        transaction.commit();
     }
 
     private void initData() {
         if (Constants.CURRENT_USER == null) {
             finish();
+            return;
         }
         UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
         UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
