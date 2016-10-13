@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_196"
-        android:background="@color/color_999999">
+        android:layout_height="@dimen/px_216"
+        android:background="@color/color_dcdcdc">
         <com.wodm.android.view.newview.MyGridView
             android:verticalSpacing="@dimen/px_30"
             android:horizontalSpacing="@dimen/px_30"
@@ -17,6 +17,7 @@
 
         </com.wodm.android.view.newview.MyGridView>
         <Button
+            android:textColor="@color/color_ffffff"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:text="0"

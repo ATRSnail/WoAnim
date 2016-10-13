@@ -58,12 +58,14 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private LinearLayout ll_my_wallet;
     @ViewIn(R.id.img_sex)
     private ImageView img_sex;
+    @ViewIn(R.id.img_right)
+    private ImageView img_right;
 
     @Override
     protected void setDatas(Bundle bundle) {
         newMineAdapter = new NewMineAdapter(getActivity());
         noScrollListView.setAdapter(newMineAdapter);
-
+        img_right.setOnClickListener(this);
         no_login.setOnClickListener(this);
         rl_login.setOnClickListener(this);
         ll_vip.setOnClickListener(this);
@@ -128,6 +130,9 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_right:
+                startActivity(new Intent(getActivity(), NewUserInfoActivity.class));
+                break;
             case R.id.rl_login:
                 startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;

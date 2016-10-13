@@ -67,12 +67,14 @@
                 </RelativeLayout>
                 <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
                 <RelativeLayout
+                    android:focusable="false"
                     android:layout_marginRight="@dimen/px_80"
                     android:layout_marginLeft="@dimen/px_80"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96">
 
                     <TextView
+                        android:id="@+id/tv_name_key"
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"
                         android:text="@string/nickname_user"
@@ -81,7 +83,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <TextView
+                    <EditText
+                        android:background="@null"
                         android:id="@+id/nickname_user"
                         android:layout_toLeftOf="@+id/img_right1"
                         android:layout_marginRight="@dimen/px_40"
@@ -102,6 +105,7 @@
                 </RelativeLayout>
                 <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
                 <RelativeLayout
+                    android:id="@+id/rl_sex"
                     android:layout_marginRight="@dimen/px_80"
                     android:layout_marginLeft="@dimen/px_80"
                     android:layout_width="match_parent"
@@ -137,6 +141,7 @@
                 </RelativeLayout>
                 <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
                 <RelativeLayout
+                    android:id="@+id/rl_birthday"
                     android:layout_marginRight="@dimen/px_80"
                     android:layout_marginLeft="@dimen/px_80"
                     android:layout_width="match_parent"
@@ -186,7 +191,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <TextView
+                    <EditText
+                        android:background="@null"
                         android:id="@+id/sign_user"
                         android:layout_toLeftOf="@+id/img_right_4"
                         android:layout_marginRight="@dimen/px_40"

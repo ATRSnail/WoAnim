@@ -2,13 +2,20 @@ package com.wodm.android.ui.newview;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +23,15 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.dialog.SexDialog;
+import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
+import com.wodm.android.utils.FileUtils;
+import com.wodm.android.utils.ImageUtils;
 import com.wodm.android.utils.Preferences;
+import com.wodm.android.utils.UpdataUserInfo;
+import com.wodm.android.view.DateWheelWindow;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
@@ -26,8 +39,14 @@ import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
+import org.eteclab.ui.widget.menu.BottomPopupMenu;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.wodm.android.Constants.CURRENT_USER;
 
@@ -50,6 +69,16 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private TextView sign_user;
     @ViewIn(R.id.btn_exit_login)
     private Button btn_exit_login;
+    @ViewIn(R.id.rl_birthday)
+    private RelativeLayout rl_birthday;
+    private String str_Birthday;
+    private int sex;
+    @ViewIn(R.id.rl_sex)
+    private RelativeLayout rl_sex;
+    private BottomPopupMenu bottomPopupMenu = null;
+    private String mPhotoPath;
+    private final static int TAKE_PRICTURE = 0x002;
+    private final static int GET_PRICTURE = 0x001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +87,12 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         if (CURRENT_USER == null){
             finish();
         }
+        img_circle.setOnClickListener(this);
+        rl_birthday.setOnClickListener(this);
+        rl_sex.setOnClickListener(this);
+        serUserInfo();
+    }
+    private void serUserInfo(){
         UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
         String str_sex="";
@@ -141,14 +176,179 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
+        submint();
     }
+    private void submint() {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("nickName", nickname_user.getText().toString());
+            object.put("sex", sex);
+            object.put("birthday", str_Birthday);
+            object.put("autograph", sign_user.getText().toString());
+            object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
+            Log.e("submint", object.toString() + "modifyName");
+//            {"userId":1,"modifyName":"birthday","modifyValue":"2016/01/01"}
+            httpPost(Constants.URL_USER, object, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
+                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        JianpanTools.HideKeyboard(sign_user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                    Toast.makeText(getApplicationContext(), "修改失败", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_exit_login:
                 showLogout();
                 break;
+            case R.id.rl_birthday:
+                DateWheelWindow wheelWindow = new DateWheelWindow();
+                wheelWindow.showPopWindow(NewUserInfoActivity.this, mContentView, Gravity.BOTTOM, "yyyy年MM月dd日", new DateWheelWindow.DateResultCall() {
+                    void resultCall(String result) {
+                        birthday_user.setText(result);
+                        str_Birthday=result;
+//                submint("birthday", result);
+                    }
+                });
+
+                break;
+            case R.id.rl_sex:
+                final SexDialog dialog = new SexDialog(NewUserInfoActivity.this);
+                dialog.setCheck(Constants.CURRENT_USER.getData().getAccount().getSex());
+                dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        sex=dialog.getSexResult();
+                        String sexResult="";
+                        if (sex == 0) {
+                            sexResult="保密";
+                        } else if (sex == 1) {
+                            sexResult="男";
+                        } else if (sex == 2) {
+                            sexResult="女";
+                        }
+                        sex_user.setText(sexResult);
+//                submint("sex", dialog.getSexResult());
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.img_circle:
+                clickIcon();
+                break;
         }
+    }
+    private void clickIcon() {
+        List<BottomPopupMenu.TagAndEvent> list = new ArrayList<>();
+        list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bottomPopupMenu != null)
+                    bottomPopupMenu.dismiss();
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                mPhotoPath = "img-" + System.currentTimeMillis() + ".jpg";
+                if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+                    mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
+                } else {
+                    return;
+                }
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
+                startActivityForResult(intent, TAKE_PRICTURE);
+
+            }
+        }));
+        list.add(new BottomPopupMenu.TagAndEvent("从相册选取", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bottomPopupMenu != null)
+                    bottomPopupMenu.dismiss();
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                startActivityForResult(intent, GET_PRICTURE);
+            }
+        }));
+        list.add(new BottomPopupMenu.TagAndEvent("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bottomPopupMenu != null)
+                    bottomPopupMenu.dismiss();
+            }
+        }));
+        bottomPopupMenu = BottomPopupMenu.showMenu(this, getContentView(), list);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK)
+            switch (requestCode) {
+                case GET_PRICTURE:
+                    mPhotoPath = getSelectMediaPath(data);
+                case TAKE_PRICTURE:
+                    try {
+                        mPhotoPath = FileUtils.saveBitmap(ImageUtils.revitionImageSize(mPhotoPath), mPhotoPath.substring(mPhotoPath.lastIndexOf("/")));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+                    httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
+
+                        @Override
+                        public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
+                            super.doUploadSuccess(result, obj);
+                            updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
+                        }
+
+                        @Override
+                        public void doUploadFailure(Exception exception, String msg) {
+                            super.doUploadFailure(exception, msg);
+                        }
+                    });
+                    break;
+                default:
+            }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    UpdataUserInfo updataUserInfo = new UpdataUserInfo() {
+        @Override
+        public void getUserInfo(UserInfoBean bean) {
+            Constants.CURRENT_USER = bean;
+            serUserInfo();
+        }
+    };
+
+    private String getSelectMediaPath(Intent data) {
+        String path = "";
+        Uri uri = data.getData(); // 获取别选中图片的uri
+        if (uri.toString().contains("file:///")) {
+            path = uri.toString().replace("file:///", "");
+        } else {
+            String[] filePathColumn = {MediaStore.Images.Media.DATA}; // 获取图库图片路径
+            Cursor cursor = getContentResolver().query(uri,
+                    filePathColumn, null, null, null); // 查询选中图片路径
+            cursor.moveToFirst();
+            path = cursor.getString(cursor
+                    .getColumnIndex(filePathColumn[0]));
+            cursor.close();
+        }
+        return path;
     }
 }

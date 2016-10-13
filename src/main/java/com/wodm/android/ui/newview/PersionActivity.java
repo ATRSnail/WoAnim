@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
@@ -21,6 +21,8 @@ import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.utils.AsyncImageLoader;
 
+import static com.wodm.R.id.btn_degree;
+
 /**
  * Created by songchenyu on 16/10/8.
  */
@@ -30,6 +32,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     private AtyTopLayout set_topbar;
     @ViewIn(R.id.gv_comments)
     private MyGridView gv_comments;
+    @ViewIn(R.id.gv_quanzi)
+    private MyGridView gv_quanzi;
     private PersionAdapter persionAdapter;
     @ViewIn(R.id.scrllow_mine)
     private ScrollView scrollow;
@@ -41,12 +45,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     private TextView tv_nickname;
     @ViewIn(R.id.img_sex)
     private ImageView img_sex;
-    @ViewIn(R.id.btn_degree)
-    private Button btn_degree;
+    private MineCircleAdapter mineCircleAdapter;
+
+//    @ViewIn(R.id.btn_degree)
+//    private Button btn_degree;
     @ViewIn(R.id.tv_sign)
     private TextView tv_sign;
-    @ViewIn(R.id.degree_progress)
-    private ProgressBar degree_progress;
+//    @ViewIn(R.id.degree_progress)
+//    private ProgressBar degree_progress;
 
 
 
@@ -55,11 +61,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         persionAdapter=new PersionAdapter(this);
         gv_comments.setAdapter(persionAdapter);
+        mineCircleAdapter=new MineCircleAdapter(this);
+        gv_quanzi.setAdapter(mineCircleAdapter);
         scrollow.setFocusable(true);
         scrollow.setFocusableInTouchMode(true);
         scrollow.requestFocus();
         btn_user_info.setOnClickListener(this);
-        btn_degree.setOnClickListener(this);
+//        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
 
     }
@@ -85,7 +93,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         } else {
             img_sex.setBackgroundResource(R.mipmap.sex_women);
         }
-        btn_degree.setText("LV"+accountBean.getGradeValue());
+//        btn_degree.setText("LV"+accountBean.getGradeValue());
         tv_sign.setText(accountBean.getAutograph()+"");
         UserInfoBean.DataBean dataBean=Constants.CURRENT_USER.getData();
         int total=dataBean.getNextGradeEmpirical()+dataBean.getCurrentEmpirical();
@@ -93,7 +101,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (total!=0){
             progress =dataBean.getCurrentEmpirical()/total;
         }
-        degree_progress.setProgress(progress);
+//        degree_progress.setProgress(progress);
     }
 
     @Override
@@ -102,7 +110,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             case R.id.btn_user_info:
                 startActivity(new Intent(this, NewUserInfoActivity.class));
                 break;
-            case R.id.btn_degree:
+            case btn_degree:
                 break;
         }
     }

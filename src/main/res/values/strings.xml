@@ -72,6 +72,7 @@
     <string name="mine_xunzhang">我的勋章</string>
     <string name="more_view">显示更多</string>
     <string name="join_look">进去看看</string>
+    <string name="edit">编辑</string>
     <string name="mine_comments">我的收藏</string>
     <string name="mine_wallet">我的钱包</string>
     <string name="mine_header_img">我的头像</string>
@@ -89,6 +90,7 @@
     <string name="mine_qiandao">签到</string>
 
     <string name="mine_medal">勋章</string>
+    <string name="add_attention">关注+</string>
 
     <string name="level_state">等级说明</string>
     <string name="level_nickname">魔人》》</string>
@@ -103,4 +105,5 @@
     <string name="qiandao">签到</string>
     <string name="slow">慢</string>
     <string name="open_vip">开通会员</string>
+    <string name="mine_quanzi">我的圈子</string>
 </resources>
