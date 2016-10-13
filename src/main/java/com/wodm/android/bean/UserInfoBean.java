@@ -49,7 +49,7 @@ public class UserInfoBean {
     }
 
     public static class DataBean {
-        private int currentEmpirical;
+        private int currentEmpirical;//今日经验
         private Object token;
 
         /**
@@ -88,6 +88,16 @@ public class UserInfoBean {
 
         public void setNextGradeEmpirical(int nextGradeEmpirical) {
             this.nextGradeEmpirical = nextGradeEmpirical;
+        }
+
+        private int wallet;
+
+        public int getWallet() {
+            return wallet;
+        }
+
+        public void setWallet(int wallet) {
+            this.wallet = wallet;
         }
 
         private int nextGradeEmpirical;
@@ -145,7 +155,7 @@ public class UserInfoBean {
             private int vip;
             private int vipFlag;
             private int gradeValue;
-            private int empiricalValue;
+            private int empiricalValue;//累计经验
             private String gradeName;
             private int gradeImageId;
 

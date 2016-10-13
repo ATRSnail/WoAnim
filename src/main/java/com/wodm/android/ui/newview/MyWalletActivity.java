@@ -1,16 +1,23 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.WalletAdapter;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,10 +39,34 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
             "即可开通VIP特权可享受双倍积分优惠"};
 
     private List<Map<String, String>> list;
+    @ViewIn(R.id.icon_wallet)
+    private CircularImage icon;
+    @ViewIn(R.id.meng_money)
+    private TextView meng_money;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+
+        gridView.setAdapter(adapter);
+        topLayout.setOnTopbarClickListenter(this);
+    }
+
+    private void init() {
+        if (Constants.CURRENT_USER == null) {
+            finish();
+            return;
+        }
+
+        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
+        String wallet = String.valueOf(dataBean.getWallet());
+        if (!TextUtils.isEmpty(wallet)) {
+            meng_money.setText(wallet);
+        }
+
+        new AsyncImageLoader(getApplicationContext(), R.mipmap.default_header, R.mipmap.default_header).display(icon, dataBean.getAccount().getPortrait());
+
         scrllow_mywallet.scrollTo(0, 0);
         scrllow_mywallet.setFocusable(true);
         scrllow_mywallet.setFocusableInTouchMode(true);
@@ -50,10 +81,7 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         }
         adapter = new WalletAdapter(getApplicationContext(), list);
 
-        gridView.setAdapter(adapter);
-        topLayout.setOnTopbarClickListenter(this);
     }
-
 
     @Override
     public void leftClick() {

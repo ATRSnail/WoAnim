@@ -1,5 +1,8 @@
 package com.wodm.android.ui.newview;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -13,6 +16,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.LevelAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.fragment.LevelFragment;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -20,6 +24,8 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +44,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.activity_my_level)
     private ScrollView activity_my_level;
     @ViewIn(R.id.icon_iv_level)
-    private ImageView icon;
+    private CircularImage icon;
     @ViewIn(R.id.sex_iv_level)
     private ImageView sex;
     @ViewIn(R.id.nickname_tv_level)
@@ -48,31 +54,45 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.total_experience_tv)
     private TextView totalExp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initData();
         gridView.setAdapter(adapter);
         topLayout.setOnTopbarClickListenter(this);
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_level, new LevelFragment());
+        transaction.commit();
     }
 
     private void initData() {
-        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
-      //  icon.setImageResource(accountBean.get);
+        if (Constants.CURRENT_USER == null) {
+            finish();
+            return;
+        }
+        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
+        UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
+
+
+        new AsyncImageLoader(getApplicationContext(), R.mipmap.default_header, R.mipmap.default_header).display(icon, accountBean.getPortrait());
 
 
         String name = accountBean.getNickName();
         if (!TextUtils.isEmpty(name)) {
             nickname.setText(name);
         }
-      //  String ex = accountBean.get;
-        if (!TextUtils.isEmpty(name)) {
-            nickname.setText(name);
+        String empiricalValue = String.valueOf(accountBean.getEmpiricalValue());
+        if (!TextUtils.isEmpty(empiricalValue)) {
+            totalExp.setText(empiricalValue);
         }
-//        String name = accountBean.getNickName();
-//        if (!TextUtils.isEmpty(name)) {
-//            nickname.setText(name);
-//        }
+
+        String currentEmpiricalValue = String.valueOf(dataBean.getCurrentEmpirical());
+        if (!TextUtils.isEmpty(currentEmpiricalValue)) {
+            exper.setText(currentEmpiricalValue);
+        }
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {
             sex.setImageResource(R.mipmap.sex_radio_baomi);
