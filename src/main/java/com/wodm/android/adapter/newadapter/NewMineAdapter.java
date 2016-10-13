@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.ui.newview.MyMedalActivity;
+import com.wodm.android.ui.newview.TaskActivity;
 import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
@@ -138,6 +139,10 @@ public class NewMineAdapter extends BaseAdapter {
             i.putExtra("tid", R.id.watch_records);
             i.putExtra("title", R.string.wathc_recoder);
             startIntent(i, UserCacheActivity.class);
+//           startActivity(i);
+        }else if (text.equals("任务")) {
+//           Intent i = new Intent(getActivity(), RecordActivity.class);
+            startIntent(null, TaskActivity.class);
 //           startActivity(i);
         } else {
             Toast.makeText(mContext, "此功能暂未开通,敬请期待!", Toast.LENGTH_SHORT).show();

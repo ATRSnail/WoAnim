@@ -47,8 +47,8 @@
     <string name="password_hint">请输入密码</string>
     <string name="forget_password"><u>忘记密码 ?</u></string>
     <string name="other_login_way">其他登录方式</string>
-    <string name="input_phone">请输入手机号码</string>
-    <string name="password">密码</string>
+    <string name="input_phone">输入手机号码</string>
+    <string name="password">输入密码</string>
     <string name="input_yzm">输入验证码</string>
     <string name="finsh">完成</string>
     <string name="degree">等级</string>
@@ -85,6 +85,8 @@
     <string name="sex_user">性别</string>
     <string name="nickname_user">昵称</string>
     <string name="mine_level">我的等级</string>
+    <string name="mine_task">任务</string>
+    <string name="mine_qiandao">签到</string>
 
     <string name="mine_medal">勋章</string>
 
@@ -93,5 +95,12 @@
     <string name="level_experienece">今日经验</string>
     <string name="level_total_experienece">累计经验</string>
     <string name="level_up_method">升级攻略</string>
-
+    <!--task-->
+    <string name="new_user_task">新手任务</string>
+    <string name="task_days">日常任务</string>
+    <string name="days_add">经验值+4</string>
+    <string name="qiandao_get">签到可获取2经验!</string>
+    <string name="qiandao">签到</string>
+    <string name="slow">慢</string>
+    <string name="open_vip">开通会员</string>
 </resources>

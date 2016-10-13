@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/px_45"
+    android:background="@color/color_ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/color_f4f4f4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_22"></View>
+    <LinearLayout
+        android:layout_marginLeft="@dimen/px_45"
+        android:gravity="center_vertical"
+        android:background="@color/color_ffffff"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_96">
+        <View
+            android:id="@+id/adapter_view"
+            android:background="@color/color_cce198"
+            android:layout_width="@dimen/px_14"
+            android:layout_height="@dimen/px_33"></View>
+        <TextView
+            android:id="@+id/tv_title"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px_15"
+            android:textSize="@dimen/text_size_32_px"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <com.wodm.android.view.newview.NoScrollListView
+        android:background="@color/color_eae7e7"
+        android:horizontalSpacing="@dimen/px_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_task_adapter">
+
+    </com.wodm.android.view.newview.NoScrollListView>
+
+
+</LinearLayout>
