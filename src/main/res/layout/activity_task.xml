@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    android:id="@+id/scrollView"
+    android:background="@color/color_efefef"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/top_task"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        app:BackGroundColor="@color/color_9ec4cf"
+        app:CustomtitleTextColor="@color/color_ffffff"
+        app:CustomtitleTextSize="@dimen/text_size_36_px"
+        app:Customtoptitle="@string/mine_qiandao"
+        app:leftBackGround="@mipmap/back_white" />
+    <LinearLayout
+        android:background="@mipmap/task_bg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_450">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/px_51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rl_head_imgs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/img_heade"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="@dimen/px_120"
+                    android:src="@mipmap/touxiang" />
+                <org.eteclab.ui.widget.CircularImage
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/px_92"
+                    android:layout_height="@dimen/px_92"
+                    android:src="@mipmap/touxiang" />
+            </RelativeLayout>
+
+
+            <Button
+                android:gravity="center"
+                android:text="@string/slow"
+                android:layout_alignBottom="@+id/rl_head_imgs"
+                android:layout_toLeftOf="@+id/rl_head_imgs"
+                android:id="@+id/btn_degree"
+                android:layout_width="@dimen/px_45"
+                android:layout_height="@dimen/px_45"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_size_24_px"
+                android:background="@drawable/btn_circle_task"/>
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:id="@+id/rl_qiandao"
+                android:orientation="vertical"
+                android:layout_below="@+id/btn_degree"
+                android:layout_marginTop="@dimen/px_15"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/btn_qiandao"
+                    android:text="@string/qiandao"
+                    android:layout_marginTop="@dimen/px_15"
+                    android:layout_width="@dimen/px_273"
+                    android:layout_height="@dimen/px_69"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_size_28_px"
+                    android:background="@drawable/btn_task_qiandao"/>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_marginTop="-10dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_toRightOf="@+id/rl_qiandao"
+                android:layout_alignTop="@+id/rl_qiandao"
+                android:background="@mipmap/img_buqian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/px_15"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_87">
+            <LinearLayout
+                android:weightSum="2"
+                android:layout_alignTop="@+id/view"
+                android:layout_alignBottom="@+id/view"
+                android:layout_marginRight="@dimen/px_15"
+                android:layout_toLeftOf="@+id/view"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_36_px"
+                    android:textColor="@color/color_ffffff"
+                    android:text="216"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_44" />
+                <TextView
+                    android:gravity="bottom"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_size_26_px"
+                    android:textColor="@color/color_ffffff"
+                    android:text="累计天数"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_44" />
+            </LinearLayout>
+            <View
+                android:id="@+id/view"
+                android:layout_centerInParent="true"
+                android:background="@color/color_ffffff"
+                android:layout_width="@dimen/px_2"
+                android:layout_height="match_parent"></View>
+            <LinearLayout
+                android:weightSum="2"
+                android:layout_alignTop="@+id/view"
+                android:layout_alignBottom="@+id/view"
+                android:layout_marginLeft="@dimen/px_15"
+                android:layout_toRightOf="@+id/view"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_36_px"
+                    android:textColor="@color/color_ffffff"
+                    android:text="216"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_44" />
+                <TextView
+                    android:gravity="bottom"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_size_26_px"
+                    android:textColor="@color/color_ffffff"
+                    android:text="累计天数"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_44" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/px_15"
+            android:gravity="top|center"
+            android:layout_gravity="top|center"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_24_px"
+            android:textColor="@color/color_ffffff"
+            android:text="@string/qiandao_get"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/px_15"
+        android:background="@color/color_ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_96">
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/px_45"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/vip_add_sudu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:gravity="center"
+            android:background="@drawable/btn_open_vip"
+            android:textSize="@dimen/text_size_24_px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/px_45"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_ff6361"
+            android:text="@string/open_vip"
+            android:layout_width="@dimen/px_126"
+            android:layout_height="@dimen/px_63" />
+
+
+    </RelativeLayout>
+    <com.wodm.android.view.newview.NoScrollListView
+        android:layout_marginBottom="@dimen/px_90"
+        android:id="@+id/lv_task"
+        android:dividerHeight="@dimen/px_1"
+        android:divider="@color/color_eae7e7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.wodm.android.view.newview.NoScrollListView>
+
+
+
+
+</LinearLayout>
+</ScrollView>

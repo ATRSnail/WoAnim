@@ -298,6 +298,14 @@
             android:name=".android.ui.newview.MyMedalActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <!--<activity-->
+            <!--android:name=".android.ui.newview.TaskActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!--<activity-->
+            <!--android:name=".android.ui.newview.TaskActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
 
         <!-- <activity -->
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
