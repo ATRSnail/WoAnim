@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_efefef"
     android:orientation="vertical"
+    android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -20,14 +22,50 @@
             />
         <LinearLayout
             android:background="@color/color_ffffff"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_282">
+            android:layout_height="wrap_content">
             <RelativeLayout
+                android:visibility="visible"
+                android:id="@+id/no_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_282">
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/px_15"
+                        android:layout_above="@+id/tv_speed"
+                        android:text="@string/no_vip_user"
+                        android:textSize="@dimen/text_size_36_px"
+                        android:textColor="@color/color_333333"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/tv_speed"
+                        android:text="LV.4"
+                        android:textSize="@dimen/text_size_30_px"
+                        android:textColor="@color/color_666666"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:background="@drawable/btn_new_vip"
+                        android:text="@string/open_vip_new_hint"
+                        android:layout_below="@+id/tv_speed"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:padding="@dimen/px_2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/px_30"
+                        android:layout_width="@dimen/px_240"
+                        android:layout_height="@dimen/px_48" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_login"
                 android:layout_marginTop="@dimen/px_82"
                 android:layout_marginRight="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginBottom="@dimen/px_72"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -39,6 +77,13 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="@dimen/px_64"
                     android:src="@mipmap/touxiang" />
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/img_circle"
+                    android:layout_width="@dimen/px_162"
+                    android:layout_height="@dimen/px_162"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/px_64"
+                    android:src="@mipmap/circle_novip" />
 
                 <RelativeLayout
                     android:layout_alignTop="@+id/img_circle"
@@ -79,6 +124,7 @@
                             android:layout_height="@dimen/px_44" />
                     </LinearLayout>
                     <LinearLayout
+                        android:layout_marginTop="@dimen/px_14"
                         android:gravity="center"
                         android:id="@+id/ll_progress"
                         android:layout_below="@+id/ll_top"
@@ -87,18 +133,23 @@
                         android:layout_height="@dimen/px_45">
                         <Button
                             android:gravity="center"
-                            android:textColor="@color/color_ffffff"
+                            android:padding="@dimen/px_2"
+                            android:textColor="@color/color_ffae00"
                             android:textSize="@dimen/text_size_22_px"
                             android:text="vip"
-                            android:layout_width="@dimen/px_45"
-                            android:layout_height="@dimen/px_33" />
+                            android:background="@drawable/btn_vip"
+                            android:layout_width="@dimen/px_60"
+                            android:layout_height="@dimen/px_44" />
                         <TextView
+                            android:layout_marginLeft="@dimen/px_10"
+                            android:gravity="bottom"
                             android:text="升级加速中"
                             android:textSize="@dimen/text_size_22_px"
                             android:textColor="@color/color_ffae00"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
+                            android:gravity="bottom"
                             android:layout_marginLeft="@dimen/px_15"
                             android:text="每日经验"
                             android:textSize="@dimen/text_size_22_px"
@@ -106,6 +157,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
+                            android:gravity="bottom"
                             android:text="+12"
                             android:textSize="@dimen/text_size_22_px"
                             android:textColor="@color/color_e75151"
@@ -114,7 +166,7 @@
                     </LinearLayout>
                     <TextView
                         android:layout_below="@+id/ll_progress"
-                        android:layout_marginTop="@dimen/px_5"
+                        android:layout_marginTop="@dimen/px_10"
                         android:id="@+id/tv_sign"
                         android:textSize="@dimen/text_size_22_px"
                         android:textColor="@color/color_3f190c"
@@ -123,15 +175,220 @@
                         android:text="@string/day_of_end"/>
 
                 </RelativeLayout>
+                <Button
+                    android:background="@drawable/btn_guajian"
+                    android:padding="@dimen/px_2"
+                    android:textSize="@dimen/text_size_24_px"
+                    android:textColor="@color/color_ff6361"
+                    android:text="@string/only_guajian"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="@dimen/px_126"
+                    android:layout_height="@dimen/px_63" />
 
             </RelativeLayout>
-
-
-
-
-
         </LinearLayout>
 
+         <LinearLayout
+             android:layout_marginBottom="@dimen/px_60"
+             android:layout_marginTop="@dimen/px_21"
+             android:background="@color/white"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_96">
+                 <View
+                     android:id="@+id/adapter_view"
+                     android:background="@color/color_fdd805"
+                     android:layout_width="@dimen/px_14"
+                     android:layout_height="@dimen/px_33"></View>
+                 <TextView
+                     android:layout_marginLeft="@dimen/px_15"
+                     android:text="@string/vip_tequan"
+                     android:id="@+id/tv_title"
+                     android:gravity="center_vertical"
+                     android:textSize="@dimen/text_size_36_px"
+                     android:textColor="@color/color_333333"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent" />
+
+             </LinearLayout>
+             <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_180">
+
+                 <ImageView
+                     android:background="@mipmap/free_look"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <LinearLayout
+                     android:layout_marginLeft="@dimen/px_45"
+                     android:orientation="vertical"
+                     android:gravity="center_vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:textSize="@dimen/text_size_36_px"
+                         android:textColor="@color/color_333333"
+                         android:text="@string/free_look"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <TextView
+                         android:textSize="@dimen/text_size_30_px"
+                         android:textColor="@color/color_666666"
+                         android:layout_marginTop="@dimen/px_21"
+                         android:text="@string/free_look_info"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+
+             </LinearLayout>
+             <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_180">
+
+                 <ImageView
+                     android:background="@mipmap/specail_show"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <LinearLayout
+                     android:layout_marginLeft="@dimen/px_45"
+                     android:orientation="vertical"
+                     android:gravity="center_vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:textSize="@dimen/text_size_36_px"
+                         android:textColor="@color/color_333333"
+                         android:text="@string/special_show"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <TextView
+                         android:textSize="@dimen/text_size_30_px"
+                         android:textColor="@color/color_666666"
+                         android:layout_marginTop="@dimen/px_21"
+                         android:text="@string/special_show_info"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+
+             </LinearLayout>
+             <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_180">
+
+                 <ImageView
+                     android:background="@mipmap/growth_vip"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <LinearLayout
+                     android:layout_marginLeft="@dimen/px_45"
+                     android:orientation="vertical"
+                     android:gravity="center_vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:textSize="@dimen/text_size_36_px"
+                         android:textColor="@color/color_333333"
+                         android:text="@string/growth_accelerate"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <TextView
+                         android:textSize="@dimen/text_size_30_px"
+                         android:textColor="@color/color_666666"
+                         android:layout_marginTop="@dimen/px_21"
+                         android:text="@string/growth_accelerate_info"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+
+             </LinearLayout>
+             <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_180">
+
+                 <ImageView
+                     android:background="@mipmap/dress_follow_heart"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <LinearLayout
+                     android:layout_marginLeft="@dimen/px_45"
+                     android:orientation="vertical"
+                     android:gravity="center_vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:textSize="@dimen/text_size_36_px"
+                         android:textColor="@color/color_333333"
+                         android:text="@string/follow_heart"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <TextView
+                         android:textSize="@dimen/text_size_30_px"
+                         android:textColor="@color/color_666666"
+                         android:layout_marginTop="@dimen/px_21"
+                         android:text="@string/follow_heart_info"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+
+             </LinearLayout>
+             <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+             <LinearLayout
+                 android:layout_marginLeft="@dimen/px_45"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/px_180">
+
+                 <ImageView
+                     android:background="@mipmap/get_score"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <LinearLayout
+                     android:layout_marginLeft="@dimen/px_45"
+                     android:orientation="vertical"
+                     android:gravity="center_vertical"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+                     <TextView
+                         android:textSize="@dimen/text_size_36_px"
+                         android:textColor="@color/color_333333"
+                         android:text="@string/get_score"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                     <TextView
+                         android:textSize="@dimen/text_size_30_px"
+                         android:textColor="@color/color_666666"
+                         android:layout_marginTop="@dimen/px_21"
+                         android:text="@string/get_score_info"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+                 </LinearLayout>
+
+             </LinearLayout>
+      </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

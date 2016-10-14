@@ -59,14 +59,20 @@
     <string name="vip_tequan">会员特权</string>
     <!--vip-->
     <string name="free_look">免费看</string>
+    <string name="free_look_info">漫画动画免费看VIP章节</string>
     <string name="follow_heart">随心装扮</string>
+    <string name="follow_heart_info">每日获得普通用户的1.5倍</string>
     <string name="growth_accelerate">成长加速</string>
+    <string name="growth_accelerate_info">每日获得普通用户的1.5倍</string>
     <string name="get_score">领积分</string>
+    <string name="get_score_info">每日获得额外多的00+的积分</string>
     <string name="special_show">特殊展示</string>
+    <string name="special_show_info">自带更炫酷的头像挂饰背景</string>
     <string name="open_vip_hint">立即开通即享会员福利</string>
     <string name="vip_speed_hint">开通VIP可享会员成长加速</string>
     <string name="open_vip_now">立即开通</string>
     <string name="open_vip_member">开通会员</string>
+    <string name="open_vip_new_hint">开通VIP会员</string>
     <string name="open_vip_message_hint">萌呷会以短信形式将您的申请发送到您的手机中回复信息即刻开通</string>
     <!--persioninfo-->
     <string name="persion_info">个人资料</string>
@@ -114,4 +120,7 @@
     <string name="open_vip">开通会员</string>
     <string name="mine_quanzi">我的圈子</string>
     <string name="day_of_end">距离会员到期,剩余30天</string>
+    <string name="only_guajian">专属挂件</string>
+    <string name="no_vip_user">非VIP用户</string>
+
 </resources>
