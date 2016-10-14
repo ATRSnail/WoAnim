@@ -46,7 +46,7 @@
                         android:id="@+id/icon_wallet"
                         android:layout_width="@dimen/px_138"
                         android:layout_height="@dimen/px_138"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
                         android:src="@mipmap/touxiang" />
 
                     <LinearLayout

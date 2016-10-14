@@ -90,14 +90,23 @@ public class UserInfoBean {
             this.nextGradeEmpirical = nextGradeEmpirical;
         }
 
-        private int wallet;
+        private float wallet;
+        private int score;
 
-        public int getWallet() {
+        public float getWallet() {
             return wallet;
         }
 
-        public void setWallet(int wallet) {
+        public void setWallet(float wallet) {
             this.wallet = wallet;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
         }
 
         private int nextGradeEmpirical;

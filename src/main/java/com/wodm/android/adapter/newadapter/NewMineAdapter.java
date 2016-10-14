@@ -32,10 +32,10 @@ import org.eteclab.track.Tracker;
 
 public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] personArray = {"勋章", "足迹", "任务",  "收藏", "缓存", "客服","设置"};
+    private String[] personArray = {"勋章", "足迹", "任务", "收藏", "缓存", "客服", "设置"};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题"};
-    private int[] personIconArray = {R.drawable.service_mine, R.drawable.footprint_mine, R.drawable.task_mine
-            , R.drawable.medal_mine, R.drawable.collect, R.drawable.cache, R.drawable.settings};
+    private int[] personIconArray = {R.drawable.medal_mine, R.drawable.footprint_mine, R.drawable.task_mine
+            , R.drawable.collect, R.drawable.cache, R.drawable.service_mine, R.drawable.settings};
 
     private int[] messageIconArray = {R.drawable.reply_mine, R.drawable.like_mine, R.drawable.inform_mine
             , R.drawable.mine, R.drawable.topic_mine};
@@ -68,7 +68,7 @@ public class NewMineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.mine_adapter, null, false);
             holder.textView = (TextView) convertView.findViewById(R.id.tv_title);
             holder.gridView = (MyGridView) convertView.findViewById(R.id.gv_mygirdview);
-            holder.adapter_view=convertView.findViewById(R.id.adapter_view);
+            holder.adapter_view = convertView.findViewById(R.id.adapter_view);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
@@ -109,8 +109,8 @@ public class NewMineAdapter extends BaseAdapter {
 
     private void getIntent(String text) {
         Tracker.getInstance(mContext).trackMethodInvoke("我的", "跳转" + text + "界面");
-        if(!UpdataUserInfo.isLogIn(mContext,true)){
-            Toast.makeText(mContext,"请先登录",Toast.LENGTH_SHORT).show();
+        if (!UpdataUserInfo.isLogIn(mContext, true)) {
+            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent i = new Intent();
@@ -126,10 +126,10 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("设置")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
             startIntent(null, UsSetActivity.class);
-        }else if (text.equals("勋章")) {
+        } else if (text.equals("勋章")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
             startIntent(null, MyMedalActivity.class);
-        }else if (text.equals("足迹")) {
+        } else if (text.equals("足迹")) {
             i.putExtra("tid", R.id.watch_records);
             i.putExtra("title", R.string.wathc_recoder);
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
@@ -140,7 +140,7 @@ public class NewMineAdapter extends BaseAdapter {
             i.putExtra("title", R.string.wathc_recoder);
             startIntent(i, UserCacheActivity.class);
 //           startActivity(i);
-        }else if (text.equals("任务")) {
+        } else if (text.equals("任务")) {
 //           Intent i = new Intent(getActivity(), RecordActivity.class);
             startIntent(null, TaskActivity.class);
 //           startActivity(i);
@@ -188,7 +188,7 @@ public class NewMineAdapter extends BaseAdapter {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_gv, null, false);
                 gvHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
                 gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.gv_img);
-                gvHolder.ll_adapter= (LinearLayout) convertView.findViewById(R.id.ll_adapter);
+                gvHolder.ll_adapter = (LinearLayout) convertView.findViewById(R.id.ll_adapter);
                 convertView.setTag(gvHolder);
             } else {
                 gvHolder = (GvHolder) convertView.getTag();

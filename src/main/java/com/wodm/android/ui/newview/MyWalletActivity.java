@@ -60,9 +60,9 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         }
 
         UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
-        String wallet = String.valueOf(dataBean.getWallet());
-        if (!TextUtils.isEmpty(wallet)) {
-            meng_money.setText(wallet);
+        String score = String.valueOf(dataBean.getScore());
+        if (!TextUtils.isEmpty(score)) {
+            meng_money.setText(score);
         }
 
         new AsyncImageLoader(getApplicationContext(), R.mipmap.default_header, R.mipmap.default_header).display(icon, dataBean.getAccount().getPortrait());

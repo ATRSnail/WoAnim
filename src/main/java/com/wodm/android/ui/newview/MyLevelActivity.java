@@ -1,24 +1,19 @@
 package com.wodm.android.ui.newview;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.http.RequestParams;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.LevelAdapter;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.LevelFragment;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 

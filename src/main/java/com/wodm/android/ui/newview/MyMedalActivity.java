@@ -2,6 +2,7 @@ package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.MyDealAdapter;
@@ -18,11 +19,12 @@ import org.eteclab.base.annotation.ViewIn;
 public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
     @ViewIn(R.id.back_achieve)
     AtyTopLayout atyTopLayout;
+    @ViewIn(R.id.activity_my_medal)
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         atyTopLayout.setOnTopbarClickListenter(this);
     }
 
@@ -34,5 +36,16 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     @Override
     public void rightClick() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (scrollView != null) {
+            scrollView.scrollTo(0, 0);
+            scrollView.setFocusable(true);
+            scrollView.setFocusableInTouchMode(true);
+            scrollView.requestFocus();
+        }
     }
 }
