@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/rl_comments"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_216"
-        android:background="@color/color_dcdcdc">
+        >
         <com.wodm.android.view.newview.MyGridView
             android:verticalSpacing="@dimen/px_30"
             android:horizontalSpacing="@dimen/px_30"
@@ -21,7 +22,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:text="0"
-            android:background="@drawable/btn_comments_num"
+            android:background="@mipmap/user_comment_num"
             android:id="@+id/btn_num"
             android:layout_width="@dimen/px_45"
             android:layout_height="@dimen/px_45" />

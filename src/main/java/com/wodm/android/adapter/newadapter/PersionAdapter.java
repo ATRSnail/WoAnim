@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wodm.R;
@@ -42,20 +43,26 @@ public class PersionAdapter extends BaseAdapter {
         if (convertView==null){
             holder=new Holder();
             convertView= LayoutInflater.from(mContext).inflate(R.layout.item_comments,null,false);
+            holder.rl_comments= (RelativeLayout) convertView.findViewById(R.id.rl_comments);
             holder.textView= (Button) convertView.findViewById(R.id.btn_num);
             holder.gridView= (MyGridView) convertView.findViewById(R.id.gv_item_comments);
             convertView.setTag(holder);
         }else {
             holder= (Holder) convertView.getTag();
         }
+        if (position==0){
+            holder.rl_comments.setBackgroundResource(R.mipmap.user_comment_anim);
+        }else {
+            holder.rl_comments.setBackgroundResource(R.mipmap.user_comment_manhua);
+        }
         holder.textView.setText("0");
-
 
         return convertView;
     }
     private class Holder{
         Button textView;
         MyGridView gridView;
+        RelativeLayout rl_comments;
     }
     class Myadapter extends BaseAdapter{
         private String mArray[];
