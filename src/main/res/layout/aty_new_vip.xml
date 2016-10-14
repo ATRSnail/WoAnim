@@ -17,6 +17,7 @@
             app:CustomtitleTextColor="@android:color/black"
             app:CustomtitleTextSize="@dimen/text_size_36_px"
             app:BackGroundColor="@color/color_ffd805"
+            app:Customtoptitle="会员"
             app:leftBackGround="@mipmap/back"
             app:rightType="0"
             />
@@ -48,6 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Button
+                        android:id="@+id/btn_open_vip"
                         android:background="@drawable/btn_new_vip"
                         android:text="@string/open_vip_new_hint"
                         android:layout_below="@+id/tv_speed"
@@ -78,7 +80,7 @@
                     android:layout_marginBottom="@dimen/px_64"
                     android:src="@mipmap/touxiang" />
                 <org.eteclab.ui.widget.CircularImage
-                    android:id="@+id/img_circle"
+                    android:id="@+id/vip_user_head_imgs"
                     android:layout_width="@dimen/px_162"
                     android:layout_height="@dimen/px_162"
                     android:layout_alignParentLeft="true"
