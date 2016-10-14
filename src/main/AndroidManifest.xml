@@ -301,16 +301,20 @@
             android:name=".android.ui.newview.TaskActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity-->
-            <!--android:name=".android.ui.newview.TaskActivity"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!-- <activity -->
+        <!-- android:name=".android.ui.newview.TaskActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+
 
         <!-- <activity -->
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
 
+        <activity
+            android:name=".android.ui.newview.VipOpenActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

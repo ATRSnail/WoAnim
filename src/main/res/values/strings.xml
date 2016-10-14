@@ -59,9 +59,10 @@
     <string name="vip_tequan">会员特权</string>
     <!--vip-->
     <string name="free_look">免费看</string>
-    <string name="follow_heart">随心扮</string>
-    <string name="get_gold">领金币</string>
-    <string name="get_month">领月票</string>
+    <string name="follow_heart">随心装扮</string>
+    <string name="growth_accelerate">成长加速</string>
+    <string name="get_score">领积分</string>
+    <string name="special_show">特殊展示</string>
     <string name="open_vip_hint">立即开通即享会员福利</string>
     <string name="vip_speed_hint">开通VIP可享会员成长加速</string>
     <string name="open_vip_now">立即开通</string>
@@ -90,7 +91,7 @@
     <string name="mine_qiandao">签到</string>
 
     <string name="mine_medal">勋章</string>
-    <string name="add_attention">关注+</string>
+    <string name="add_attention">编辑</string>
     <string name="mine_achieve">成就</string>
     <string name="task_achieve">任务</string>
     <string name="attendance_achieve">签到成就</string>
