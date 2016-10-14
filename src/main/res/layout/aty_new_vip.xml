@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:CustomtitleTextColor="@android:color/black"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:BackGroundColor="@color/color_ffd805"
+            app:leftBackGround="@mipmap/back"
+            app:rightType="0"
+            />
+        <LinearLayout
+            android:background="@color/color_ffffff"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_282">
+            <RelativeLayout
+                android:id="@+id/rl_login"
+                android:layout_marginTop="@dimen/px_82"
+                android:layout_marginRight="@dimen/px_45"
+                android:layout_marginLeft="@dimen/px_45"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <org.eteclab.ui.widget.CircularImage
+                    android:id="@+id/user_head_imgs"
+                    android:layout_marginLeft="@dimen/px_10"
+                    android:layout_width="@dimen/px_138"
+                    android:layout_height="@dimen/px_138"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/px_64"
+                    android:src="@mipmap/touxiang" />
+
+                <RelativeLayout
+                    android:layout_alignTop="@+id/img_circle"
+                    android:layout_alignBottom="@+id/img_circle"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_toRightOf="@+id/user_head_imgs"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/ll_top"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/px_45">
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/tv_user_name"
+                            android:textSize="@dimen/text_size_36_px"
+                            android:textColor="@color/color_3f190c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/img_sex"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:background="@mipmap/sex_man"
+                            android:layout_width="@dimen/px_33"
+                            android:layout_height="@dimen/px_33" />
+                        <Button
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:background="@drawable/btn_mine"
+                            android:text="肉山大魔王"
+                            android:gravity="center"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textColor="@color/color_ffffff"
+                            android:layout_width="@dimen/px_150"
+                            android:layout_height="@dimen/px_44" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:id="@+id/ll_progress"
+                        android:layout_below="@+id/ll_top"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/px_45">
+                        <Button
+                            android:gravity="center"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:text="vip"
+                            android:layout_width="@dimen/px_45"
+                            android:layout_height="@dimen/px_33" />
+                        <TextView
+                            android:text="升级加速中"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textColor="@color/color_ffae00"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="每日经验"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textColor="@color/color_666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="+12"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textColor="@color/color_e75151"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_below="@+id/ll_progress"
+                        android:layout_marginTop="@dimen/px_5"
+                        android:id="@+id/tv_sign"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:textColor="@color/color_3f190c"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/day_of_end"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
