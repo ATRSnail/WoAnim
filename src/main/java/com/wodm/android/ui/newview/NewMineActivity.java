@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -60,6 +61,10 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private ImageView img_sex;
     @ViewIn(R.id.img_right)
     private ImageView img_right;
+    @ViewIn(R.id.grade_name)
+    Button grade_name;
+    @ViewIn(R.id.tv_num)
+    TextView tv_num;
 
     @Override
     protected void setDatas(Bundle bundle) {
@@ -114,6 +119,15 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             String sign_name = accountBean.getAutograph();
             if (!TextUtils.isEmpty(sign_name)) {
                 tv_sign.setText(sign_name);
+            }
+            String gradename = accountBean.getGradeName();
+            if (!TextUtils.isEmpty(gradename)) {
+                grade_name.setText(gradename);
+            }
+
+            String grad = String.valueOf(accountBean.getGradeValue());
+            if (!TextUtils.isEmpty(grad)) {
+                tv_num.setText(grad);
             }
             int sex_value = accountBean.getSex();
             if (sex_value == 0) {

@@ -31,10 +31,10 @@
 
         <master.flame.danmaku.ui.widget.DanmakuView
             android:id="@+id/danmaku_view"
-            android:layout_marginTop="@dimen/px_80"
-            android:background="@android:color/holo_red_dark"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/px_80"
+            android:background="@android:color/holo_red_dark" />
 
     </FrameLayout>
 
@@ -44,8 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/not_renew"
         android:visibility="visible" />
+
     <RelativeLayout
         android:id="@+id/layout_top"
         android:layout_width="fill_parent"
@@ -57,21 +58,22 @@
 
         <LinearLayout
             android:id="@+id/ll_top"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <ImageView
-                android:layout_gravity="center_vertical"
                 android:id="@+id/exit_screen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:src="@mipmap/anim_back" />
 
             <TextView
-                android:layout_gravity="center_vertical"
                 android:id="@+id/video_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/px_30"
                 android:layout_toRightOf="@id/exit_screen"
                 android:textColor="@android:color/white" />

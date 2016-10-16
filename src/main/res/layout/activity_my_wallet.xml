@@ -20,12 +20,13 @@
             android:layout_height="@dimen/px_90"
             app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@color/color_3f190c"
-            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:CustomtitleTextSize="@dimen/text_size_48_px"
             app:Customtoptitle="@string/mine_wallet"
             app:leftBackGround="@mipmap/back"
             app:rightText="充值"
             app:rightTextColor="@color/color_3f190c"
-            app:rightTextSize="@dimen/text_size_36_px" />
+            app:rightTextSize="@dimen/text_size_36_px"
+            app:rightType="1" />
 
 
         <RelativeLayout
@@ -38,6 +39,7 @@
                 android:layout_width="@dimen/px_138"
                 android:layout_height="@dimen/px_138"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/px_15"
                 android:layout_marginTop="@dimen/px_45"
                 android:src="@mipmap/icon_wallet" />
 
@@ -47,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_wallet"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px_15"
+                android:layout_marginBottom="@dimen/px_20"
                 android:gravity="center_horizontal">
 
                 <TextView
@@ -75,75 +77,67 @@
                     android:textSize="@dimen/text_size_36_px" />
             </LinearLayout>
 
-            <RelativeLayout
+
+            <LinearLayout
+                android:id="@+id/ll_score_describ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ll_score_wallet"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px_30"
-                android:gravity="center_horizontal">
+                android:layout_centerHorizontal="true">
 
-                <LinearLayout
-                    android:id="@+id/ll_score_describ"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:gravity="center"
+                    android:text="已获得"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_30_px" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="已获得"
-                        android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                <TextView
+                    android:id="@+id/get_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:gravity="center"
+                    android:text="020"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_30_px" />
 
-                    <TextView
-                        android:id="@+id/get_wallet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:gravity="center"
-                        android:text="020"
-                        android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                <View
+                    android:layout_width="@dimen/px_2"
+                    android:layout_height="@dimen/px_24"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:background="@color/color_efefef" />
 
-                    <View
-                        android:layout_width="@dimen/px_2"
-                        android:layout_height="@dimen/px_24"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:background="@color/color_666666" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:gravity="center"
-                        android:text="未获得"
-                        android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:gravity="center"
+                    android:text="未获得"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_30_px" />
 
                 <TextView
                     android:id="@+id/not_get_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/px_15"
-                    android:layout_toRightOf="@id/ll_score_describ"
                     android:gravity="center"
                     android:text="012"
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/text_size_30_px" />
 
-                <ImageView
-                    android:id="@+id/getscore_wallet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/not_get_wallet"
-                    android:layout_toRightOf="@id/not_get_wallet"
-                    android:src="@mipmap/getscore_wallet" />
-            </RelativeLayout>
+            </LinearLayout>
 
+            <ImageView
+                android:id="@+id/get_score_wallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/ll_score_describ"
+                android:layout_toRightOf="@id/ll_score_describ"
+                android:src="@mipmap/getscore_wallet" />
 
         </RelativeLayout>
 
@@ -151,7 +145,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_21"
-            android:background="@color/color_eeeeee" />
+            android:background="@color/color_efefef" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -206,7 +200,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_2"
-            android:background="@color/color_eeeeee" />
+            android:background="@color/color_efefef" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -237,7 +231,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_eeeeee"></View>
+            android:background="@color/color_efefef"></View>
     </LinearLayout>
 
 

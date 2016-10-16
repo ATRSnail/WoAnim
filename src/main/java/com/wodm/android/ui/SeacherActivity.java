@@ -233,8 +233,7 @@ public class SeacherActivity extends AppActivity {
     }
 
     private View getView(HotWordBean item) {
-        ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.topMargin = 10;
         View view = getLayoutInflater().inflate(R.layout.layout_hot,
                 null);

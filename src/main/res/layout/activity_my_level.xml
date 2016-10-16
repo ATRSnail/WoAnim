@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/level_experienece"
-                        android:textColor="@color/color_ffffff"
+                        android:textColor="@color/color_3f190c"
                         android:textSize="@dimen/text_size_30_px" />
 
                     <RelativeLayout
@@ -89,7 +89,7 @@
                             android:layout_marginLeft="@dimen/px_15"
                             android:layout_marginStart="@dimen/px_15"
                             android:text="020"
-                            android:textColor="@color/color_ffffff"
+                            android:textColor="@color/color_3f190c"
                             android:textSize="@dimen/text_size_30_px" />
 
                         <View
@@ -99,7 +99,7 @@
                             android:layout_alignTop="@id/experience_tv_level"
                             android:layout_marginLeft="@dimen/px_15"
                             android:layout_toRightOf="@id/experience_tv_level"
-                            android:background="@color/color_ffffff" />
+                            android:background="@color/color_3f190c" />
                     </RelativeLayout>
 
 
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_15"
                         android:text="@string/level_total_experienece"
-                        android:textColor="@color/color_ffffff"
+                        android:textColor="@color/color_3f190c"
                         android:textSize="@dimen/text_size_30_px" />
 
                     <TextView
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/px_15"
                         android:text="557"
-                        android:textColor="@color/color_ffffff"
+                        android:textColor="@color/color_3f190c"
                         android:textSize="@dimen/text_size_30_px" />
                 </LinearLayout>
             </LinearLayout>
@@ -198,7 +198,7 @@
                     android:gravity="center"
                     android:text="@string/vip_speed_hint"
                     android:textColor="@color/color_f29b76"
-                    android:textSize="@dimen/text_size_28_px" />
+                    android:textSize="@dimen/text_size_34_px" />
             </LinearLayout>
 
             <LinearLayout

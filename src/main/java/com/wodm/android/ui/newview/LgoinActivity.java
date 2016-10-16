@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
@@ -36,7 +37,7 @@ import java.io.IOException;
  * Created by songchenyu on 16/9/26.
  */
 @Layout(R.layout.new_aty_login)
-public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener{
+public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
     @ViewIn(R.id.set_topbar)
     private AtyTopLayout atyTopLayout;
     @ViewIn(R.id.et_password)
@@ -47,40 +48,47 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     private Button btn_login;
     @ViewIn(R.id.img_we_chat)
     private ImageView img_we_chat;
+    @ViewIn(R.id.forget_pass_login)
+    private Button forget_pass_login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_login.setOnClickListener(this);
         img_we_chat.setOnClickListener(this);
+        forget_pass_login.setOnClickListener(this);
     }
 
     @Override
     public void leftClick() {
-         finish();
+        finish();
     }
 
     @Override
     public void rightClick() {
-         Intent intent=new Intent(this,ResingeActivity.class);
-         startActivity(intent);
+        Intent intent = new Intent(this, ResingeActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_login:
-                String password=et_password.getText().toString();
-                String resigter=et_resigter.getText().toString();
-                login(resigter,password);
+                String password = et_password.getText().toString();
+                String resigter = et_resigter.getText().toString();
+                login(resigter, password);
                 break;
             case R.id.img_we_chat:
                 Wx.init(LgoinActivity.this).sendAuthRequest();
                 break;
+            case R.id.forget_pass_login:
+                startActivity(new Intent(this, ForgetPassActivity.class));
+                break;
         }
     }
 
-    private void login(String phone, String password){
+    private void login(String phone, String password) {
         try {
             if (!Tools.isMobileNO(phone)) {
                 showFial();
@@ -90,7 +98,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (password.length()<6||password.length()>18) {
+            if (password.length() < 6 || password.length() > 18) {
                 Toast.makeText(getApplicationContext(), "密码长度在6--18位之间", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -104,8 +112,8 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                     try {
                         Toast.makeText(LgoinActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                         UserInfoBean bean = new UserInfoBean();
-                        UserInfoBean.DataBean dataBean=new UserInfoBean.DataBean();
-                        UserInfoBean.DataBean.AccountBean accountBean=new UserInfoBean.DataBean.AccountBean();
+                        UserInfoBean.DataBean dataBean = new UserInfoBean.DataBean();
+                        UserInfoBean.DataBean.AccountBean accountBean = new UserInfoBean.DataBean.AccountBean();
                         dataBean.setToken(obj.getString("token"));
                         accountBean.setId(obj.getInt("userId"));
                         accountBean.setType(obj.getInt("type"));
@@ -133,6 +141,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             e.printStackTrace();
         }
     }
+
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {
@@ -140,6 +149,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             LgoinActivity.this.finish();
         }
     };
+
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         JSONObject obj = new JSONObject();
         try {
@@ -164,6 +174,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                         Preferences.getInstance(getApplicationContext()).setPreference("userId", Long.valueOf(obj.getString("userId")));
                         Preferences.getInstance(getApplicationContext()).setPreference("token", obj.getString("token"));
                         infos.getUserInfo(LgoinActivity.this, Long.valueOf(obj.getString("userId")));
+                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

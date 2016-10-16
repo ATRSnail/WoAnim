@@ -17,7 +17,7 @@
             android:layout_height="@dimen/px_90"
             app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@android:color/black"
-            app:CustomtitleTextSize="@dimen/text_size_48_px"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
             app:Customtoptitle="@string/mine_achieve"
             app:leftBackGround="@mipmap/back"
             app:rightType="0" />
@@ -81,32 +81,12 @@
                     android:scrollbars="none">
 
                     <LinearLayout
+                        android:id="@+id/ll_attendance_medal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/comer_achieve" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/normal_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/violet_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/driver_achieve" />
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -142,32 +122,12 @@
                     android:scrollbars="none">
 
                     <LinearLayout
+                        android:id="@+id/ll_comment_medal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/comer_achieve" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/normal_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/violet_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/driver_achieve" />
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -232,32 +192,12 @@
                     android:scrollbars="none">
 
                     <LinearLayout
+                        android:id="@+id/ll_register_medal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/comer_achieve" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/normal_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/violet_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/driver_achieve" />
                     </LinearLayout>
 
                 </HorizontalScrollView>

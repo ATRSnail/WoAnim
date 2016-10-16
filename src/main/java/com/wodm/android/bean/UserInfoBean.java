@@ -52,6 +52,7 @@ public class UserInfoBean {
         private int currentEmpirical;//今日经验
         private Object token;
 
+
         /**
          * id : 143
          * appkey :
@@ -93,10 +94,20 @@ public class UserInfoBean {
         }
 
         private float wallet;
-        private int score;//萌币
+        private int score;//积分
 
         private int maxCheckinCount;//累计签到天数
         private int checkinCount;//连续签到天数
+        private int t_user_medal;
+
+        public int getT_user_medal() {
+            return t_user_medal;
+        }
+
+        public void setT_user_medal(int t_user_medal) {
+
+            this.t_user_medal = t_user_medal;
+        }
 
         public int getMaxCheckinCount() {
             return maxCheckinCount;

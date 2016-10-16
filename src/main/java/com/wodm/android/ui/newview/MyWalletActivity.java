@@ -26,8 +26,7 @@ import java.util.Map;
 
 @Layout(R.layout.activity_my_wallet)
 public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
-    //    @ViewIn(R.id.gv_wallet)
-//    private MyGridView gridView;
+
     @ViewIn(R.id.scrllow_mywallet)
     private ScrollView scrllow_mywallet;
     @ViewIn(R.id.back_wallet)
@@ -39,11 +38,6 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
             "即可开通VIP特权可享受双倍积分优惠"};
 
     private List<Map<String, String>> list;
-//    @ViewIn(R.id.icon_wallet)
-//    private CircularImage icon;
-//    @ViewIn(R.id.meng_money)
-//    private TextView meng_money;
-
     @ViewIn(R.id.score_wallet)
     private TextView score_wallet;
 
@@ -52,7 +46,6 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         super.onCreate(savedInstanceState);
         init();
 
-//        gridView.setAdapter(adapter);
         topLayout.setOnTopbarClickListenter(this);
     }
 
