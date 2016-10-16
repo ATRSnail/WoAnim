@@ -60,6 +60,7 @@
             <Button
                 android:gravity="center"
                 android:text="@string/slow"
+                android:layout_marginRight="@dimen/px_5"
                 android:layout_alignBottom="@+id/rl_head_imgs"
                 android:layout_toLeftOf="@+id/rl_head_imgs"
                 android:id="@+id/btn_slow"
@@ -196,6 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
+            android:id="@+id/btn_open_vip"
             android:gravity="center"
             android:background="@drawable/btn_open_vip"
             android:textSize="@dimen/text_size_24_px"

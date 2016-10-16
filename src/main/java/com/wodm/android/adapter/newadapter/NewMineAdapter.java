@@ -1,5 +1,6 @@
 package com.wodm.android.adapter.newadapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wodm.R;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.newview.MyMedalActivity;
 import com.wodm.android.ui.newview.TaskActivity;
 import com.wodm.android.ui.user.RecordActivity;
@@ -196,6 +198,10 @@ public class NewMineAdapter extends BaseAdapter {
             gvHolder.tv_name.setText(mArray[position]);
 
             gvHolder.img_icon.setBackgroundResource(miconArray[position]);
+            int screenWidth=Tools.getScreenWidth((Activity) mContext);
+            int width=screenWidth/4;
+            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(width,width);
+            gvHolder.ll_adapter.setLayoutParams(params);
             return convertView;
         }
 

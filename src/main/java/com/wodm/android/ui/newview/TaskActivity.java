@@ -1,5 +1,6 @@
 package com.wodm.android.ui.newview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,8 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     private LinearLayout ll_top_task;
     @ViewIn(R.id.btn_slow)
     private Button btn_slow;
+    @ViewIn(R.id.btn_open_vip)
+    private Button btn_open_vip;
     @ViewIn(R.id.btn_qiandao)
     private Button btn_qiandao;
     @ViewIn(R.id.top_line_view)
@@ -60,6 +63,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         super.onCreate(savedInstanceState);
         top_task.setOnTopbarClickListenter(this);
         btn_qiandao.setOnClickListener(this);
+        btn_open_vip.setOnClickListener(this);
         adapter=new TaskAdapter(this);
         lv_task.setAdapter(adapter);
         initUserInfo();
@@ -109,6 +113,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         top_task.setBackgroundResource("#ffa031");
         ll_top_task.setBackgroundResource(R.mipmap.qiandao_yellow_bg);
         btn_slow.setBackgroundResource(R.drawable.task_solw_finish);
+        btn_slow.setText("快");
         btn_qiandao.setBackgroundResource(R.drawable.btn_task_qiandao_finish);
         btn_qiandao.setText("已签到");
         if (adapter!=null){
@@ -141,6 +146,9 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_qiandao:
+                break;
+            case R.id.btn_open_vip:
+                startActivity(new Intent(this,VipOpenActivity.class));
                 break;
         }
     }
