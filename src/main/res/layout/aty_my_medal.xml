@@ -15,7 +15,7 @@
             android:id="@+id/back_achieve"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
-            app:BackGroundColor="@color/color_ffd805"
+            app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@android:color/black"
             app:CustomtitleTextSize="@dimen/text_size_48_px"
             app:Customtoptitle="@string/mine_achieve"
@@ -61,13 +61,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginTop="@dimen/px_45"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_45"
                     android:gravity="center"
                     android:text="@string/attendance_achieve"
                     android:textColor="@color/color_666666"
@@ -76,7 +77,6 @@
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/px_45"
                     android:layout_marginTop="@dimen/px_45"
                     android:scrollbars="none">
 
@@ -122,13 +122,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginTop="@dimen/px_45"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_45"
                     android:gravity="center"
                     android:text="@string/comment_achieve"
                     android:textColor="@color/color_666666"
@@ -148,6 +149,18 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:src="@mipmap/comer_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/normal_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
                             android:src="@mipmap/violet_forget_achieve" />
 
                         <ImageView
@@ -155,18 +168,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/px_45"
                             android:src="@mipmap/driver_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/violet_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/comer_achieve" />
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -175,7 +176,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_66"
+                android:layout_height="@dimen/px_21"
                 android:background="@color/color_eeeeee" />
 
             <RelativeLayout
@@ -203,16 +204,22 @@
 
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"
+                android:background="@color/color_eeeeee" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginTop="@dimen/px_45"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_45"
                     android:gravity="center"
                     android:text="@string/register_achieve"
                     android:textColor="@color/color_666666"
@@ -221,7 +228,6 @@
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/px_45"
                     android:layout_marginTop="@dimen/px_45"
                     android:scrollbars="none">
 
@@ -233,30 +239,31 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/violet_forget_achieve" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_45"
                             android:src="@mipmap/comer_achieve" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/driver_achieve" />
+                            android:src="@mipmap/normal_forget_achieve" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/px_45"
-                            android:src="@mipmap/normal_forget_achieve" />
+                            android:src="@mipmap/violet_forget_achieve" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_45"
+                            android:src="@mipmap/driver_achieve" />
                     </LinearLayout>
 
                 </HorizontalScrollView>
 
             </LinearLayout>
+
         </LinearLayout>
 
 

@@ -22,14 +22,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_210"
-                android:background="@color/color_ffd805"
+                android:background="@color/color_f5c92f"
                 android:orientation="vertical">
 
                 <com.wodm.android.view.newview.AtyTopLayout
                     android:id="@+id/set_topbar"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_90"
-                    app:BackGroundColor="@color/color_ffd805"
+                    app:BackGroundColor="@color/color_f5c92f"
                     app:CustomtitleTextColor="@android:color/black"
                     app:CustomtitleTextSize="@dimen/text_size_36_px"
                     app:Customtoptitle=""

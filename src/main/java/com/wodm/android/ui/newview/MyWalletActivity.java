@@ -26,8 +26,8 @@ import java.util.Map;
 
 @Layout(R.layout.activity_my_wallet)
 public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
-    @ViewIn(R.id.gv_wallet)
-    private MyGridView gridView;
+    //    @ViewIn(R.id.gv_wallet)
+//    private MyGridView gridView;
     @ViewIn(R.id.scrllow_mywallet)
     private ScrollView scrllow_mywallet;
     @ViewIn(R.id.back_wallet)
@@ -39,17 +39,20 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
             "即可开通VIP特权可享受双倍积分优惠"};
 
     private List<Map<String, String>> list;
-    @ViewIn(R.id.icon_wallet)
-    private CircularImage icon;
-    @ViewIn(R.id.meng_money)
-    private TextView meng_money;
+//    @ViewIn(R.id.icon_wallet)
+//    private CircularImage icon;
+//    @ViewIn(R.id.meng_money)
+//    private TextView meng_money;
+
+    @ViewIn(R.id.score_wallet)
+    private TextView score_wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
 
-        gridView.setAdapter(adapter);
+//        gridView.setAdapter(adapter);
         topLayout.setOnTopbarClickListenter(this);
     }
 
@@ -62,10 +65,9 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
         String score = String.valueOf(dataBean.getScore());
         if (!TextUtils.isEmpty(score)) {
-            meng_money.setText(score);
+            score_wallet.setText(score);
         }
 
-        new AsyncImageLoader(getApplicationContext(), R.mipmap.default_header, R.mipmap.default_header).display(icon, dataBean.getAccount().getPortrait());
 
         scrllow_mywallet.scrollTo(0, 0);
         scrllow_mywallet.setFocusable(true);

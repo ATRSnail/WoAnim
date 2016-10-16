@@ -14,137 +14,230 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/back_wallet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/wallet_backg"
-            android:orientation="vertical">
-
-            <com.wodm.android.view.newview.AtyTopLayout
-                android:id="@+id/back_wallet"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_90"
-                app:BackGroundColor="@android:color/transparent"
-                app:CustomtitleTextColor="@color/color_3f190c"
-                app:CustomtitleTextSize="@dimen/text_size_36_px"
-                app:Customtoptitle="@string/mine_wallet"
-                app:leftBackGround="@mipmap/back"
-                app:rightType="0" />
+            android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_f5c92f"
+            app:CustomtitleTextColor="@color/color_3f190c"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:Customtoptitle="@string/mine_wallet"
+            app:leftBackGround="@mipmap/back"
+            app:rightText="充值"
+            app:rightTextColor="@color/color_3f190c"
+            app:rightTextSize="@dimen/text_size_36_px" />
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_330">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_332"
+            android:background="@color/color_ffffff">
 
-                <LinearLayout
+            <ImageView
+                android:id="@+id/icon_wallet"
+                android:layout_width="@dimen/px_138"
+                android:layout_height="@dimen/px_138"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_45"
+                android:src="@mipmap/icon_wallet" />
+
+            <LinearLayout
+                android:id="@+id/ll_score_wallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon_wallet"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_15"
+                android:gravity="center_horizontal">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical">
+                    android:text="积分"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_36_px" />
 
-                    <org.eteclab.ui.widget.CircularImage
-                        android:id="@+id/icon_wallet"
-                        android:layout_width="@dimen/px_138"
-                        android:layout_height="@dimen/px_138"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/touxiang" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:text=":"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_36_px" />
 
-                    <LinearLayout
+                <TextView
+                    android:id="@+id/score_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:text="203"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_36_px" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_score_wallet"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_30"
+                android:gravity="center_horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_score_describ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/px_15"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:text="已获得"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_size_30_px" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:text="我的萌币"
-                            android:textColor="@color/color_3f190c" />
+                    <TextView
+                        android:id="@+id/get_wallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:gravity="center"
+                        android:text="020"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_size_30_px" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginLeft="@dimen/px_15"
-                            android:layout_marginRight="@dimen/px_15"
-                            android:text=":"
-                            android:textColor="@color/color_3f190c" />
+                    <View
+                        android:layout_width="@dimen/px_2"
+                        android:layout_height="@dimen/px_24"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:background="@color/color_666666" />
 
-                        <TextView
-                            android:id="@+id/meng_money"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="203"
-                            android:textColor="@color/color_3f190c"
-                            android:textSize="@dimen/text_size_28_px" />
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:gravity="center"
+                        android:text="未获得"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/text_size_30_px" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/not_get_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:layout_toRightOf="@id/ll_score_describ"
+                    android:gravity="center"
+                    android:text="012"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_30_px" />
 
+                <ImageView
+                    android:id="@+id/getscore_wallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/not_get_wallet"
+                    android:layout_toRightOf="@id/not_get_wallet"
+                    android:src="@mipmap/getscore_wallet" />
             </RelativeLayout>
-        </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_21"
+            android:background="@color/color_eeeeee" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/px_96"
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginRight="@dimen/px_45"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px_48"
+                    android:layout_height="@dimen/px_48"
+                    android:background="@drawable/vip_icon_circle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:gravity="center"
+                    android:text="@string/vip_speed_hint"
+                    android:textColor="@color/color_f29b76"
+                    android:textSize="@dimen/text_size_28_px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/px_96"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px_45"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/kai_tong_level"
+                    android:layout_width="@dimen/px_126"
+                    android:layout_height="@dimen/px_63"
+                    android:background="@drawable/kaitong_rectan"
+                    android:gravity="center"
+                    android:text="@string/open_vip_member"
+                    android:textColor="@color/color_ff6361"
+                    android:textSize="@dimen/text_size_24_px" />
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_2"
-            android:background="@color/color_eae7e7" />
+            android:background="@color/color_eeeeee" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_96"
+            android:layout_marginLeft="@dimen/px_45"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="@dimen/px_12"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pay_cartoon"
+                android:layout_alignTop="@+id/pay_cartoon"
+                android:background="@color/color_b3d465" />
+
+            <TextView
+                android:id="@+id/pay_cartoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_20"
+                android:gravity="center"
+                android:text="已购买动画/漫画"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_34_px" />
+
+        </RelativeLayout>
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_cccccc">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/px_45"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_72"
-                    android:gravity="center">
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/px_2"
-                        android:layout_marginRight="@dimen/px_45"
-                        android:layout_weight="1"
-                        android:background="@color/color_ff8d35" />
-
-                    <TextView
-                        android:layout_width="@dimen/px_300"
-                        android:layout_height="@dimen/px_72"
-                        android:background="@drawable/rule_rect"
-                        android:gravity="center"
-                        android:text="积分规则"
-                        android:textColor="@color/color_ff8d35"
-                        android:textSize="@dimen/text_size_34_px" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/px_2"
-                        android:layout_marginLeft="@dimen/px_45"
-                        android:layout_weight="1"
-                        android:background="@color/color_ff8d35" />
-                </LinearLayout>
-
-                <com.wodm.android.view.newview.MyGridView
-                    android:id="@+id/gv_wallet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_45"
-                    android:gravity="center"
-                    android:horizontalSpacing="@dimen/px_30"
-                    android:numColumns="2"
-                    android:verticalSpacing="@dimen/px_45">
-
-                </com.wodm.android.view.newview.MyGridView>
-            </LinearLayout>
-        </LinearLayout>
+            android:background="@color/color_eeeeee"></View>
     </LinearLayout>
 
 
