@@ -77,6 +77,8 @@ public class UserInfoBean {
          * empiricalValue : 0
          * gradeName : 萌新I
          * gradeImageId : 1
+         * maxCheckinCount //累计签到天数
+         * checkinCount //连续签到天数
          */
 
         private AccountBean account;
@@ -186,6 +188,25 @@ public class UserInfoBean {
             private int empiricalValue;//累计经验
             private String gradeName;
             private int gradeImageId;
+
+            public int getMaxCheckinCount() {
+                return maxCheckinCount;
+            }
+
+            public void setMaxCheckinCount(int maxCheckinCount) {
+                this.maxCheckinCount = maxCheckinCount;
+            }
+
+            public int getCheckinCount() {
+                return checkinCount;
+            }
+
+            public void setCheckinCount(int checkinCount) {
+                this.checkinCount = checkinCount;
+            }
+
+            private int maxCheckinCount;
+            private int checkinCount;
 
             public int getId() {
                 return id;

@@ -182,6 +182,9 @@ public class AtyTopLayout extends RelativeLayout {
     public void setRightImageResource(int imageResource) {
         rightImage.setImageResource(imageResource);
     }
+    public void setBackgroundResource(String backgroundColor) {
+        setBackgroundColor(Color.parseColor(backgroundColor));
+    }
 
     public void setTvTitle(String text) {
         tvTitle.setText(text);

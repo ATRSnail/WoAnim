@@ -1,12 +1,9 @@
 package com.wodm.android.ui.newview;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,20 +11,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.VipOpenAdapter;
-import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 @Layout(R.layout.activity_vip_open)
 public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, AdapterView.OnItemClickListener, View.OnClickListener {
@@ -143,15 +145,46 @@ public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopba
                 }
                 break;
             case R.id.pay_vipopen:
-                MyDialog.Builder builder = new MyDialog.Builder(this);
-                builder.setMoney(money);
-                builder.create().show();
+//                MyDialog.Builder builder = new MyDialog.Builder(this);
+//                builder.setMoney(money);
+//                builder.create().show();
+                showDialog();
                 break;
 
 
         }
 
     }
+
+    private void showDialog() {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("您确认要开通VIP吗?");
+        builder.setNegativeButton("取消", null);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                openVip();
+            }
+        });
+        builder.show();
+    }
+     private void openVip(){
+         httpGet(Constants.APP_GET_OPEN_VIP+CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+
+             @Override
+             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                 super.doAuthSuccess(result, obj);
+                 String message=obj.optString("message");
+                 Toast.makeText(VipOpenActivity.this, ""+message, Toast.LENGTH_SHORT).show();
+             }
+
+             @Override
+             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                 super.doAuthFailure(result, obj);
+             }
+         });
+     }
 
 
 }

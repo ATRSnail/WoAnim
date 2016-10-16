@@ -27,11 +27,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RelativeLayout
-                android:visibility="visible"
-                android:id="@+id/no_login"
+                android:visibility="gone"
+                android:id="@+id/rl_noVip"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_282">
                     <TextView
+                        android:id="@+id/tv_no_vip_username"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="@dimen/px_15"
                         android:layout_above="@+id/tv_speed"
@@ -63,7 +64,7 @@
             </RelativeLayout>
             <RelativeLayout
                 android:visibility="gone"
-                android:id="@+id/rl_login"
+                android:id="@+id/rl_isVip"
                 android:layout_marginTop="@dimen/px_82"
                 android:layout_marginRight="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
@@ -84,8 +85,9 @@
                     android:layout_width="@dimen/px_162"
                     android:layout_height="@dimen/px_162"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginBottom="@dimen/px_64"
-                    android:src="@mipmap/circle_novip" />
+                    android:src="@mipmap/circlr_vip" />
 
                 <RelativeLayout
                     android:layout_alignTop="@+id/img_circle"

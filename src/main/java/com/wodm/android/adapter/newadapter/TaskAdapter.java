@@ -10,14 +10,27 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
+import com.wodm.android.tools.DisplayUtil;
+import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.NoScrollListView;
+
+import org.eteclab.base.http.HttpCallback;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.wodm.R.id.tv_other_value;
+import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
  * Created by songchenyu on 16/10/12.
  */
 
 public class TaskAdapter extends BaseAdapter {
+    private boolean isQiandao=false;
+    private String url;
     private Context mContext;
     private String[] personArray = {"完善个人资料", "使用搜索功能", "查看一次资讯"};
     private String[] messageArray = {"每日签到", "观看动漫", "发评论"};
@@ -58,6 +71,7 @@ public class TaskAdapter extends BaseAdapter {
         } else {
             holder = (TaskAdapter.Holder) convertView.getTag();
         }
+        url=Constants.APP_GET_TASKSTATUS+CURRENT_USER.getData().getAccount().getId();
         TaskAdapter.Myadapter myadapter = null;
         if (position == 0) {
             myadapter = new TaskAdapter.Myadapter(personArray, personIconArray);
@@ -79,7 +93,37 @@ public class TaskAdapter extends BaseAdapter {
         NoScrollListView lv_task_adapter;
         View adapter_view;
     }
+    private void getData(String url, final ImageView imageView, final TextView tv_other_value, final TextView tv_value, final String value){
+        ((AppActivity)mContext).httpGet(url, new HttpCallback() {
 
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    JSONObject jsonObject=new JSONObject(obj.getString("data"));
+                    if (jsonObject.optInt("status")== 1){
+                        imageView.setVisibility(View.VISIBLE);
+                        tv_other_value.setVisibility(View.GONE);
+                        tv_value.setVisibility(View.GONE);
+                    }else {
+                        if (value.equals("完善个人资料")){
+                            imageView.setVisibility(View.GONE);
+                            tv_other_value.setVisibility(View.GONE);
+                            tv_value.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+    }
 
     class Myadapter extends BaseAdapter {
         private String mArray[];
@@ -114,6 +158,7 @@ public class TaskAdapter extends BaseAdapter {
                 gvHolder.tv_key = (TextView) convertView.findViewById(R.id.tv_task_item_key);
                 gvHolder.tv_value = (TextView) convertView.findViewById(R.id.tv_task_item_value);
                 gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.img_task_item);
+                gvHolder.tv_other_value= (TextView) convertView.findViewById(tv_other_value);
                 gvHolder.img_right = (ImageView) convertView.findViewById(R.id.img_right);
                 gvHolder.ll_adapter = (RelativeLayout) convertView.findViewById(R.id.ll_task_adapter);
                 convertView.setTag(gvHolder);
@@ -121,17 +166,48 @@ public class TaskAdapter extends BaseAdapter {
                 gvHolder = (TaskAdapter.GvHolder) convertView.getTag();
             }
             gvHolder.tv_key.setText(mArray[position]);
-            if (mArray[position].equals("完善个人资料")){
-                gvHolder.tv_value.setVisibility(View.VISIBLE);
-                gvHolder.img_right.setVisibility(View.GONE);
-                gvHolder.tv_value.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
-                gvHolder.tv_value.setTextColor(mContext.getResources().getColor(R.color.color_ee984a));
-                gvHolder.tv_value.setTextSize(14);
-            }else if (mArray[position].equals("使用搜索功能")){
-                gvHolder.img_right.setVisibility(View.VISIBLE);
-            }else {
-                gvHolder.img_right.setVisibility(View.GONE);
-                gvHolder.tv_value.setVisibility(View.VISIBLE);
+            gvHolder.tv_value.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
+            gvHolder.tv_value.setTextColor(mContext.getResources().getColor(R.color.color_ee984a));
+            gvHolder.tv_value.setTextSize(14);
+            gvHolder.tv_other_value.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));//加粗
+            gvHolder.tv_other_value.setTextColor(mContext.getResources().getColor(R.color.color_ee984a));
+            gvHolder.tv_other_value.setTextSize(14);
+            String value=mArray[position];
+            if (value.equals("完善个人资料")){
+                String dataurl=url+"&taskType=1&taskValue=4";
+                getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+//                gvHolder.tv_other_value.setVisibility(View.GONE);
+//                gvHolder.tv_value.setVisibility(View.VISIBLE);
+//                gvHolder.img_right.setVisibility(View.GONE);
+            }else if (value.equals("使用搜索功能")){
+                String dataurl=url+"&taskType=1&taskValue=5";
+                getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+//                gvHolder.img_right.setVisibility(View.VISIBLE);
+            }else if (value.equals("使用搜索功能")) {
+                String dataurl=url+"&taskType=1&taskValue=7";
+                getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+            }else if (value.equals("观看动漫")) {
+                String dataurl=url+"&taskType=1&taskValue=2";
+                getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+            }else if (value.equals("发评论")) {
+                String dataurl=url+"&taskType=1&taskValue=3";
+                getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+            } else if (value.equals("每日签到")) {
+                   if (isQiandao){
+                       gvHolder.img_right.setVisibility(View.VISIBLE);
+                       gvHolder.tv_other_value.setVisibility(View.GONE);
+                       gvHolder.tv_value.setVisibility(View.GONE);
+                   }
+            } else{
+                    gvHolder.tv_other_value.setVisibility(View.VISIBLE);
+                    gvHolder.img_right.setVisibility(View.GONE);
+                    gvHolder.tv_value.setVisibility(View.GONE);
+                    RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    params.addRule(RelativeLayout.CENTER_VERTICAL);
+                    int margins=DisplayUtil.px2dip(mContext,240);
+                    params.setMargins(0,0,margins,0);
+                    gvHolder.tv_other_value.setLayoutParams(params);
             }
 //
             gvHolder.img_icon.setBackgroundResource(miconArray[position]);
@@ -139,9 +215,16 @@ public class TaskAdapter extends BaseAdapter {
         }
 
     }
+    public void setQiandaoType(){
+        isQiandao=true;
+    }
+
+    /**
+     *  经验值来源(0：非 1：签到经验 2：观看动漫 3：发评论 4：完善个人资料 5：使用搜索功能 6：点击一次广告 7：查看一次新闻8：添加一个好友 9：点一次赞 10：打赏一次 11：敬请期待)
+     */
 
     class GvHolder {
-        TextView tv_key,tv_value;
+        TextView tv_key,tv_value,tv_other_value;
         ImageView img_icon,img_right;
         RelativeLayout ll_adapter;
     }

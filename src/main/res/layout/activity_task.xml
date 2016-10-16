@@ -21,7 +21,13 @@
         app:CustomtitleTextSize="@dimen/text_size_36_px"
         app:Customtoptitle="@string/mine_qiandao"
         app:leftBackGround="@mipmap/back_white" />
+    <View
+        android:background="@color/color_8465c3"
+        android:id="@+id/top_line_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_2"></View>
     <LinearLayout
+        android:id="@+id/ll_top_task"
         android:background="@mipmap/task_bg"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -56,17 +62,17 @@
                 android:text="@string/slow"
                 android:layout_alignBottom="@+id/rl_head_imgs"
                 android:layout_toLeftOf="@+id/rl_head_imgs"
-                android:id="@+id/btn_degree"
+                android:id="@+id/btn_slow"
                 android:layout_width="@dimen/px_45"
                 android:layout_height="@dimen/px_45"
                 android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_size_24_px"
-                android:background="@drawable/btn_circle_task"/>
+                android:textSize="@dimen/text_size_28_px"
+                android:background="@drawable/btn_task_slow"/>
             <LinearLayout
                 android:layout_centerHorizontal="true"
                 android:id="@+id/rl_qiandao"
                 android:orientation="vertical"
-                android:layout_below="@+id/btn_degree"
+                android:layout_below="@+id/btn_slow"
                 android:layout_marginTop="@dimen/px_15"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -110,12 +116,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/total_day"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_36_px"
                     android:textColor="@color/color_ffffff"
-                    android:text="216"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_44" />
                 <TextView
@@ -144,12 +150,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/lianxu_qiandao"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="@dimen/text_size_36_px"
                     android:textColor="@color/color_ffffff"
-                    android:text="216"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_44" />
                 <TextView
@@ -158,7 +164,7 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/text_size_26_px"
                     android:textColor="@color/color_ffffff"
-                    android:text="累计天数"
+                    android:text="连续签到"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_44" />
             </LinearLayout>
@@ -177,6 +183,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <RelativeLayout
+        android:id="@+id/rl_open_vip"
         android:layout_marginTop="@dimen/px_15"
         android:background="@color/color_ffffff"
         android:layout_width="match_parent"

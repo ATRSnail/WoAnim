@@ -21,7 +21,6 @@ import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.utils.AsyncImageLoader;
 
-import static com.wodm.R.id.btn_degree;
 
 /**
  * Created by songchenyu on 16/10/8.
@@ -109,8 +108,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.btn_user_info:
                 startActivity(new Intent(this, NewUserInfoActivity.class));
-                break;
-            case btn_degree:
                 break;
         }
     }

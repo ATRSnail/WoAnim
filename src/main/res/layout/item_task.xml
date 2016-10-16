@@ -35,7 +35,16 @@
             android:visibility="gone"
             android:id="@+id/tv_task_item_value"
             android:layout_marginRight="@dimen/px_45"
-            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:text="@string/days_add"
+            android:textSize="@dimen/text_size_28_px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:id="@+id/tv_other_value"
+            android:layout_marginRight="@dimen/px_45"
             android:layout_alignParentRight="true"
             android:text="@string/days_add"
             android:textSize="@dimen/text_size_28_px"

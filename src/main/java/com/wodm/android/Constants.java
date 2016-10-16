@@ -24,18 +24,20 @@ public class Constants {
 
 //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
 //     public final static String HOST = "http://202.106.63.82:19998/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
-//    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
+    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
     public final static String SHARE_URL = "http://wodm.9mobi.cn/html/donghuaxiangqingye.html?id=";
 
     public final static String URL_SCORE = HOST + "user/countScore";// 获取积分
-    public final static String URL_SIGNIN = HOST + "user/checkin";// 签到
+//    public final static String URL_SIGNIN = HOST + "user/checkin";// 签到
+    public final static String URL_SIGNIN = HOST + "newuser/checkin";// 签到
     public final static String URL_CHECK_SIGNIN = HOST + "user/judgeCheckin?userId=";// 签到
 
-    public final static String ULR_COLLECT = HOST + "resource/collect?userId=";// 作品收藏
+//    public final static String ULR_COLLECT = HOST + "resource/collect?userId=";// 作品收藏
+    public final static String ULR_COLLECT = HOST + "newuser/collect?userId=";// 作品收藏
 
     public static final String USER_GET_CODE = HOST + "user/code";//获取验证码
     public static final String USER_REGIST = HOST + "newuser/regist";//注册
@@ -47,7 +49,7 @@ public class Constants {
 
 
     public static final String USER_UPLOAD_PORTRAIT = HOST + "/user/uploadPortrait/";//上传头像
-    public static final String USER_ADD_WATCH_RECORD = HOST + "/user/addWatchRecord";//记录用户观看作品
+    public static final String USER_ADD_WATCH_RECORD = HOST + "/newuser/addWatchRecord";//记录用户观看作品
 
     public static final String GET_CATEGORY = HOST + "category";//获取分类列表
     public static final String GET_NEWS_CATEGORY = HOST + "news/category";//获取新闻分类列表
@@ -58,6 +60,11 @@ public class Constants {
     public static final String URL_CARTTON_DETAIL = HOST + "resource/";
     //获取消息列表
     public static final String URL_USER_NOTICE = HOST + "user/notice";
+    ///newuser/deleteWatchRecord  批量删除用户的浏览记录(足迹)
+    public static final String URL_USER_DELETE_WATCH_RECORD = HOST + "newuser/deleteWatchRecord?userId=";
+
+    ///newuser/deleteCollection 批量删除用户收藏的内容
+    public static final String URL_USER_DELETE_COLLECTION = HOST + "newuser/deleteCollection?userId=";
 
 
     public static final String URL_HOME_TYPE = HOST + "column";
@@ -80,7 +87,8 @@ public class Constants {
     public static final String URL_COMMENTS = HOST + "comment";//评论
     public static final String URL_FEEDBACK = HOST + "newuser/opinion";//意见反馈
     public static final String URL_ABOUT = HOST + "app/legal?appkey=" + APPKEY;//关于我们
-    public static final String URL_USER = HOST + "user/profile20160920";//修改用户资料
+//    public static final String URL_USER = HOST + "user/profile20160920";//修改用户资料
+    public static final String URL_USER = HOST + "newuser/editProfile";//修改用户资料
     public static final String URL_NEWS_GET = HOST + "news/get";//咨询详情
     public static final String URL_GET_BARRAGE = HOST + "resource/barrage";//获取弹幕信息的
     public static final String URL_GET_ADD_BARRAGE = HOST + "barrage";//添加弹幕
@@ -89,6 +97,9 @@ public class Constants {
     /*新增接口*/
 
     public static final String APP_GET_USERINFO = HOST + "newuser/profile?userId=";
+    //任务状态
+    public static final String APP_GET_TASKSTATUS = HOST + "newuser/taskStatus?userId=";
+    public static final String APP_GET_OPEN_VIP = HOST + "/newuser/openVip?userId=";
 
     public static String OFFTIME;
 

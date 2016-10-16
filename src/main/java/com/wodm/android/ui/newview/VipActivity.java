@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wodm.R;
@@ -33,6 +34,14 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     private AtyTopLayout set_topbar;
     @ViewIn(R.id.btn_open_vip)
     private Button btn_open_vip;
+    @ViewIn(R.id.rl_isVip)
+    private RelativeLayout rl_isVip;
+    @ViewIn(R.id.rl_noVip)
+    private RelativeLayout rl_noVip;
+    @ViewIn(R.id.tv_no_vip_username)
+    private TextView tv_no_vip_username;
+    @ViewIn(R.id.tv_speed)
+    private TextView tv_speed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +56,16 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
    private void setUserInfo(){
        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
        if (accountBean.getVip()==0){
+           rl_isVip.setVisibility(View.GONE);
+           rl_noVip.setVisibility(View.VISIBLE);
            vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
        }else{
+           rl_isVip.setVisibility(View.VISIBLE);
+           rl_noVip.setVisibility(View.GONE);
            vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
        }
+       tv_speed.setText("LV."+accountBean.getGradeValue());
+       tv_no_vip_username.setText(accountBean.getNickName());
        tv_user_name.setText(accountBean.getNickName());
        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
     }

@@ -88,11 +88,11 @@ public class RecordActivity extends AppActivity {
 
                 } else if (tid == R.id.watch_records) {
                     //观看记录
-                    deleteUrl = Constants.HOST + "user/deleteWatchRecord?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
+                    deleteUrl = Constants.HOST + Constants.URL_USER_DELETE_WATCH_RECORD + Constants.CURRENT_USER.getData().getAccount().getId();
                     url = Constants.HOST + "user/watchRecordByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 } else if (tid == R.id.my_collcet) {
                     //我的收藏
-                    deleteUrl = Constants.HOST + "user/deleteCollection?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
+                    deleteUrl = Constants.HOST + Constants.URL_USER_DELETE_COLLECTION + Constants.CURRENT_USER.getData().getAccount().getId();
                     url = Constants.HOST + "user/collectByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 }
 
