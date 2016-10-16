@@ -1,7 +1,6 @@
 package com.wodm.android.login;
 
 import android.content.Context;
-import android.os.Environment;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -13,15 +12,12 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.wodm.android.ui.user.LoginRegistActivity;
+import com.wodm.android.ui.newview.LgoinActivity;
 
 import org.eteclab.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -117,7 +113,7 @@ public class Wx {
 
                 try {
                     JSONObject json = new JSONObject(responseInfo.result.trim());
-                    ((LoginRegistActivity) (mCtx)).startLogin(json.getString("openid"), json.getString("unionid"), json.getString("nickname"), json.getInt("sex"), json.getString("headimgurl"));
+                    ((LgoinActivity) (mCtx)).startLogin(json.getString("openid"), json.getString("unionid"), json.getString("nickname"), json.getInt("sex"), json.getString("headimgurl"));
                 } catch (JSONException e) {
                 }
 

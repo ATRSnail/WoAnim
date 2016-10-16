@@ -2,6 +2,7 @@ package com.wodm.android.ui.newview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,10 @@ import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by songchenyu on 16/9/26.
@@ -135,4 +140,44 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             LgoinActivity.this.finish();
         }
     };
+    public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("openId", openid);
+            obj.put("unionId", unionid);
+            obj.put("nickName", nickname);
+            obj.put("sex", sex);
+            obj.put("portrait", headimgurl);
+            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "json.txt");
+            try {
+                FileWriter fileWriter = new FileWriter(f);
+                fileWriter.write(obj.toString());
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            httpPost(Constants.USER_LOGIN_WX, obj, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        Preferences.getInstance(getApplicationContext()).setPreference("userId", Long.valueOf(obj.getString("userId")));
+                        Preferences.getInstance(getApplicationContext()).setPreference("token", obj.getString("token"));
+                        infos.getUserInfo(LgoinActivity.this, Long.valueOf(obj.getString("userId")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                    Toast.makeText(getApplicationContext(), obj.toString() + "", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
