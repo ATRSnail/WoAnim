@@ -6,14 +6,17 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -37,11 +40,14 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     private EditText et_resigter;
     @ViewIn(R.id.btn_login)
     private Button btn_login;
+    @ViewIn(R.id.img_we_chat)
+    private ImageView img_we_chat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_login.setOnClickListener(this);
+        img_we_chat.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +68,9 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 String password=et_password.getText().toString();
                 String resigter=et_resigter.getText().toString();
                 login(resigter,password);
+                break;
+            case R.id.img_we_chat:
+                Wx.init(LgoinActivity.this).sendAuthRequest();
                 break;
         }
     }

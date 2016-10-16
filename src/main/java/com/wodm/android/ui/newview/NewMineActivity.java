@@ -15,6 +15,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.NoScrollListView;
 
@@ -137,7 +138,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;
             case R.id.no_login:
-                Intent intent = new Intent(getActivity(), LgoinActivity.class);
+                Intent intent = new Intent(getActivity(), LoginRegistActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_vip:
