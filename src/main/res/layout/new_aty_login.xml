@@ -19,7 +19,7 @@
                 android:layout_height="@dimen/px_90"
                 app:CustomtitleTextColor="@android:color/black"
                 app:CustomtitleTextSize="@dimen/text_size_48_px"
-                app:BackGroundColor="@color/color_ffd805"
+                app:BackGroundColor="@color/color_f5c92f"
                 app:Customtoptitle="@string/login"
                 app:leftBackGround="@mipmap/back"
                 app:rightType="1"

@@ -91,7 +91,26 @@ public class UserInfoBean {
         }
 
         private float wallet;
-        private int score;
+        private int score;//萌币
+
+        private int maxCheckinCount;//累计签到天数
+        private int checkinCount;//连续签到天数
+
+        public int getMaxCheckinCount() {
+            return maxCheckinCount;
+        }
+
+        public void setMaxCheckinCount(int maxCheckinCount) {
+            this.maxCheckinCount = maxCheckinCount;
+        }
+
+        public int getCheckinCount() {
+            return checkinCount;
+        }
+
+        public void setCheckinCount(int checkinCount) {
+            this.checkinCount = checkinCount;
+        }
 
         public float getWallet() {
             return wallet;

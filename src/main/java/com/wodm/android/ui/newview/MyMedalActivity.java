@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -22,10 +23,12 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.activity_my_medal)
     ScrollView scrollView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
+
     }
 
     @Override

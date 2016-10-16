@@ -314,7 +314,8 @@
 
         <activity
             android:name=".android.ui.newview.VipOpenActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".android.ui.newview.TestActivity"></activity>
     </application>
 
 </manifest>

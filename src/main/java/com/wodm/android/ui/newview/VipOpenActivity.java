@@ -1,13 +1,18 @@
 package com.wodm.android.ui.newview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.VipOpenAdapter;
@@ -25,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_vip_open)
-public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, AdapterView.OnItemClickListener {
+public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, AdapterView.OnItemClickListener, View.OnClickListener {
     int clickFlag = 0;
     @ViewIn(R.id.grid)
     MyGridView gridView;
@@ -33,10 +38,15 @@ public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopba
     AtyTopLayout atyTopLayout;
     @ViewIn(R.id.pay_vipopen)
     Button pay_btn;
+    @ViewIn(R.id.auto_renew)
+    ImageButton auto_renew;
     VipOpenAdapter adapter;
     String[] month = new String[]{"12个月", "6个月", "3个月", "1个月"};
     String[] meng_money = new String[]{"萌币12000", "萌币6000", "萌币4000", "萌币1500"};
     List<Map<String, String>> list;
+    private boolean flag = true;
+
+    private int money = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,10 @@ public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopba
         atyTopLayout.setOnTopbarClickListenter(this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
+        auto_renew.setOnClickListener(this);
+        pay_btn.setOnClickListener(this);
+
+
     }
 
     private void initData() {
@@ -78,7 +92,7 @@ public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopba
                 unSelectView(parent.getChildAt(i));
             }
         }
-        int money = 0;
+
         switch (position) {
             case 0:
                 money = 120;
@@ -115,4 +129,29 @@ public class VipOpenActivity extends AppActivity implements AtyTopLayout.myTopba
         meng_mongey.setTextColor(ContextCompat.getColor(this, R.color.color_cccccc));
         layout.setBackgroundResource(R.drawable.tv_vipopen);
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.auto_renew:
+                if (flag == true) {
+                    auto_renew.setImageResource(R.mipmap.not_renew);
+                    flag = false;
+                } else if (flag == false) {
+                    flag = true;
+                    auto_renew.setImageResource(R.mipmap.renew_vipopen);
+                }
+                break;
+            case R.id.pay_vipopen:
+                MyDialog.Builder builder = new MyDialog.Builder(this);
+                builder.setMoney(money);
+                builder.create().show();
+                break;
+
+
+        }
+
+    }
+
+
 }

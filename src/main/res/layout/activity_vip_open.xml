@@ -14,7 +14,7 @@
             android:id="@+id/back_vipopen"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
-            app:BackGroundColor="@color/color_ffd805"
+            app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@android:color/black"
             app:CustomtitleTextSize="@dimen/text_size_48_px"
             app:Customtoptitle="开通VIP"
@@ -93,6 +93,7 @@
                     android:layout_marginBottom="@dimen/px_45"
                     android:gravity="center"
                     android:horizontalSpacing="@dimen/px_45"
+                    android:listSelector="@android:color/transparent"
                     android:numColumns="2"
                     android:verticalSpacing="@dimen/px_45" />
 
@@ -111,9 +112,11 @@
                 android:gravity="center">
 
                 <ImageButton
+                    android:id="@+id/auto_renew"
                     android:layout_width="@dimen/px_30"
                     android:layout_height="@dimen/px_30"
                     android:layout_gravity="center"
+                    android:background="@null"
                     android:src="@mipmap/renew_vipopen" />
 
                 <TextView
