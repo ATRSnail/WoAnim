@@ -141,10 +141,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
             image.setTag(i);
             image.setId(id);
             image.setOnClickListener(this);
-
             layout.addView(image);
-
-
         }
     }
 

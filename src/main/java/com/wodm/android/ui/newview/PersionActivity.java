@@ -127,7 +127,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
             int width = (Tools.getScreenWidth(this) - 60) / 12 * 4;
 //            int height = (int) ((Tools.getScreenWidth(this) - 60) / 12 * 4 * 1.35);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 0, 30, 0);
             image.setImageResource(medalImage[medalImage.length - 1]);
             initMedalType(medalType, image, i);

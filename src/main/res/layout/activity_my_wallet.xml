@@ -94,7 +94,7 @@
                     android:textSize="@dimen/text_size_30_px" />
 
                 <TextView
-                    android:id="@+id/get_wallet"
+                    android:id="@+id/current_score_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/px_15"
@@ -120,7 +120,7 @@
                     android:textSize="@dimen/text_size_30_px" />
 
                 <TextView
-                    android:id="@+id/not_get_wallet"
+                    android:id="@+id/need_score_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/px_15"
@@ -136,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/ll_score_describ"
-                   android:layout_alignRight="@id/ll_score_describ"
+                android:layout_alignRight="@id/ll_score_describ"
                 android:src="@mipmap/getscore_wallet" />
 
         </RelativeLayout>

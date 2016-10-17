@@ -80,6 +80,15 @@ public class UserInfoBean {
          * gradeImageId : 1
          * maxCheckinCount //累计签到天数
          * checkinCount //连续签到天数
+         * map.put("account", account);
+         * map.put("currentEmpirical", currentEmpirical);//今日所获得的经验
+         * map.put("needEmpirical", needEmpirical);//升到下一级还差多少的经验
+         * map.put("nextGradeEmpirical", nextGradeEmpirical);//下一级所需要的经验值
+         * map.put("maxCheckinCount", maxCheckinCount);//累计签到天数
+         * map.put("checkinCount", checkinCount);//连续签到天数
+         * map.put("countScore", countScore);//今日总共能获得的积分
+         * map.put("currentScore", currentScore);//今日获得的积分
+         * map.put("needScore", needScore);//今日未获得的积分
          */
 
         private AccountBean account;
@@ -95,6 +104,24 @@ public class UserInfoBean {
 
         private float wallet;
         private int score;//积分
+        private int currentScore;
+        private int needScore;
+
+        public int getCurrentScore() {
+            return currentScore;
+        }
+
+        public void setCurrentScore(int currentScore) {
+            this.currentScore = currentScore;
+        }
+
+        public int getNeedScore() {
+            return needScore;
+        }
+
+        public void setNeedScore(int needScore) {
+            this.needScore = needScore;
+        }
 
         private int maxCheckinCount;//累计签到天数
         private int checkinCount;//连续签到天数

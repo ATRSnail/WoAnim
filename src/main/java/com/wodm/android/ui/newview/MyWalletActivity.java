@@ -40,6 +40,10 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     private List<Map<String, String>> list;
     @ViewIn(R.id.score_wallet)
     private TextView score_wallet;
+    @ViewIn(R.id.need_score_wallet)
+    private TextView need_score_wallet;
+    @ViewIn(R.id.current_score_wallet)
+    private TextView current_score_wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +61,16 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
 
         UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
         String score = String.valueOf(dataBean.getScore());
+        String needscore = String.valueOf(dataBean.getNeedScore());
+        String currentscore = String.valueOf(dataBean.getCurrentScore());
         if (!TextUtils.isEmpty(score)) {
             score_wallet.setText(score);
+        }
+        if (!TextUtils.isEmpty(score)) {
+            need_score_wallet.setText(needscore);
+        }
+        if (!TextUtils.isEmpty(score)) {
+            current_score_wallet.setText(currentscore);
         }
 
 
