@@ -8,7 +8,7 @@ import com.wodm.android.ui.AppActivity;
 
 import org.eteclab.base.annotation.Layout;
 
-@Layout(R.layout.designdialog)
+@Layout(R.layout.test)
 public class TestActivity extends AppActivity {
 
     @Override

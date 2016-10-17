@@ -2,6 +2,7 @@ package com.wodm.android;
 
 import android.os.Environment;
 
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 
 import java.io.File;
@@ -19,7 +20,7 @@ public class Constants {
 
     public static final boolean DEBUG = true;
 
-
+    public static MedalInfoBean medalInfoBean;
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
 //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
@@ -99,6 +100,8 @@ public class Constants {
     public static final String APP_UPGRADE_URL = HOST + "app/upgrade";
     /*新增接口*/
 
+    //所有勋章
+    public static final String APP_GET_MEDALLIST = HOST + "/newuser/medalList?userId=";
     public static final String APP_GET_USERINFO = HOST + "newuser/profile?userId=";
     //任务状态
     public static final String APP_GET_TASKSTATUS = HOST + "newuser/taskStatus?userId=";
