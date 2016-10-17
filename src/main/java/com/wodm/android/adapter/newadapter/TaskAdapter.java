@@ -1,12 +1,14 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.SeacherActivity;
+import com.wodm.android.ui.newview.NewUserInfoActivity;
 import com.wodm.android.view.newview.NoScrollListView;
 
 import org.eteclab.base.http.HttpCallback;
@@ -161,6 +165,7 @@ public class TaskAdapter extends BaseAdapter {
                 gvHolder.tv_other_value= (TextView) convertView.findViewById(tv_other_value);
                 gvHolder.img_right = (ImageView) convertView.findViewById(R.id.img_right);
                 gvHolder.ll_adapter = (RelativeLayout) convertView.findViewById(R.id.ll_task_adapter);
+                gvHolder.ll_item_task=(LinearLayout) convertView.findViewById(R.id.ll_item_task);
                 convertView.setTag(gvHolder);
             } else {
                 gvHolder = (TaskAdapter.GvHolder) convertView.getTag();
@@ -176,19 +181,43 @@ public class TaskAdapter extends BaseAdapter {
             if (value.equals("完善个人资料")){
                 String dataurl=url+"&taskType=1&taskValue=4";
                 getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mContext.startActivity(new Intent(mContext, NewUserInfoActivity.class));
+                    }
+                });
 //                gvHolder.tv_other_value.setVisibility(View.GONE);
 //                gvHolder.tv_value.setVisibility(View.VISIBLE);
 //                gvHolder.img_right.setVisibility(View.GONE);
             }else if (value.equals("使用搜索功能")){
                 String dataurl=url+"&taskType=1&taskValue=5";
                 getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mContext.startActivity(new Intent(mContext, SeacherActivity.class));
+                    }
+                });
 //                gvHolder.img_right.setVisibility(View.VISIBLE);
-            }else if (value.equals("使用搜索功能")) {
+            }else if (value.equals("查看一次资讯")) {
                 String dataurl=url+"&taskType=1&taskValue=7";
                 getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+//                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mContext.startActivity(new Intent(mContext, Main2Activity.class));
+//                    }
+//                });
             }else if (value.equals("观看动漫")) {
                 String dataurl=url+"&taskType=1&taskValue=2";
                 getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
+//                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mContext.startActivity(new Intent(mContext, Main2Activity.class));
+//                    }
+//                });
             }else if (value.equals("发评论")) {
                 String dataurl=url+"&taskType=1&taskValue=3";
                 getData(dataurl,gvHolder.img_right, gvHolder.tv_other_value,gvHolder.tv_value,value);
@@ -209,7 +238,7 @@ public class TaskAdapter extends BaseAdapter {
                     params.setMargins(0,0,margins,0);
                     gvHolder.tv_other_value.setLayoutParams(params);
             }
-//
+
             gvHolder.img_icon.setBackgroundResource(miconArray[position]);
             return convertView;
         }
@@ -217,6 +246,7 @@ public class TaskAdapter extends BaseAdapter {
     }
     public void setQiandaoType(){
         isQiandao=true;
+        notifyDataSetChanged();
     }
 
     /**
@@ -227,5 +257,6 @@ public class TaskAdapter extends BaseAdapter {
         TextView tv_key,tv_value,tv_other_value;
         ImageView img_icon,img_right;
         RelativeLayout ll_adapter;
+        LinearLayout ll_item_task;
     }
 }

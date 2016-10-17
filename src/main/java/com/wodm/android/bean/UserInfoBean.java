@@ -200,6 +200,34 @@ public class UserInfoBean {
             private String gradeName;
             private int gradeImageId;
 
+            public int getCountScore() {
+                return countScore;
+            }
+
+            public void setCountScore(int countScore) {
+                this.countScore = countScore;
+            }
+
+            public int getCurrentScore() {
+                return currentScore;
+            }
+
+            public void setCurrentScore(int currentScore) {
+                this.currentScore = currentScore;
+            }
+
+            public int getNeedScore() {
+                return needScore;
+            }
+
+            public void setNeedScore(int needScore) {
+                this.needScore = needScore;
+            }
+
+            private int countScore;
+            private int currentScore;
+            private int needScore;
+
             public int getMaxCheckinCount() {
                 return maxCheckinCount;
             }

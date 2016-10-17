@@ -195,6 +195,7 @@
                             android:background="@mipmap/pro_kedubox" />
 
                         <ImageView
+                            android:id="@+id/img_persion_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/px_30"
                             android:layout_marginBottom="@dimen/px_5"
@@ -240,6 +241,8 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:layout_marginLeft="@dimen/px_10"
+                    android:id="@+id/empiral_degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|bottom"

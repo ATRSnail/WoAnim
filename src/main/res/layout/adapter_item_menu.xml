@@ -14,4 +14,5 @@
         android:paddingRight="@dimen/px_13"
         android:paddingTop="@dimen/px_10"
         android:textColor="@color/colorPrimary" />
+
 </LinearLayout>

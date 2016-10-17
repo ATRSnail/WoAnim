@@ -58,6 +58,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
     protected SlideBackUtil mSlideBackUtil;
     private int ScreenWidth,ScreenHight;
+    private DialogFragment bulletDialog;
 
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);
@@ -176,7 +177,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             ft.remove(prev);
         }
         ft.addToBackStack(null);
-        DialogFragment bulletDialog = BulletSendDialog.newInstance(this);
+        bulletDialog = BulletSendDialog.newInstance(this);
         bulletDialog.show(ft,"dialog");
     }
 
@@ -231,6 +232,9 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                         if (obj.getString("code").equals("1000")) {
                             Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
                             ).show();
+                            if (bulletDialog!=null){
+                                bulletDialog.dismiss();
+                            }
                             refrensh(content);
                         }
                     } catch (JSONException e) {

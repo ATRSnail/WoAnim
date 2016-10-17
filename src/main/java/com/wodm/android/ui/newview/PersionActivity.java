@@ -3,11 +3,11 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -51,10 +51,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     private MineCircleAdapter mineCircleAdapter;
     @ViewIn(R.id.tv_num)
     TextView tv_num;
+    @ViewIn(R.id.empiral_degree)
+    TextView empiral_degree;
     @ViewIn(R.id.grade_name_persion)
     Button grade_name_persion;
     @ViewIn(R.id.my_medal_persion)
     LinearLayout linearLayout;
+    @ViewIn(R.id.img_persion_progress)
+    ImageView img_persion_progress;
 
     //    @ViewIn(R.id.btn_degree)
 //    private Button btn_degree;
@@ -124,7 +128,12 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             progress = dataBean.getCurrentEmpirical() / total;
         }
 //        degree_progress.setProgress(progress);
-
+        int next_num=dataBean.getNextGradeEmpirical();
+        int need_num=dataBean.getNeedEmpirical();
+        int num= (int) (110*(1-((float)need_num/next_num)));
+        RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num,30);
+        img_progress_params.setMargins(0,5,0,5);
+        img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();
         if (!TextUtils.isEmpty(gradename)) {
@@ -135,6 +144,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(grad)) {
             tv_num.setText(grad);
         }
+        empiral_degree.setText(dataBean.getCurrentEmpirical()+"/"+dataBean.getNextGradeEmpirical());
 
 //        initMyMedal(accountBean);
 

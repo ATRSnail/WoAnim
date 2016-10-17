@@ -65,6 +65,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     Button grade_name;
     @ViewIn(R.id.tv_num)
     TextView tv_num;
+    @ViewIn(R.id.img_progress)
+    ImageView img_progress;
 
     @Override
     protected void setDatas(Bundle bundle) {
@@ -137,6 +139,13 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             } else {
                 img_sex.setBackgroundResource(R.mipmap.sex_women);
             }
+            UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
+            int next_num=dataBean.getNextGradeEmpirical();
+            int need_num=dataBean.getNeedEmpirical();
+            int num= (int) (110*(1-((float)need_num/next_num)));
+            RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num,30);
+            img_progress_params.setMargins(0,5,0,5);
+            img_progress.setLayoutParams(img_progress_params);
             new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
         }
     }

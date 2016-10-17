@@ -111,7 +111,7 @@ public class NewMineAdapter extends BaseAdapter {
 
     private void getIntent(String text) {
         Tracker.getInstance(mContext).trackMethodInvoke("我的", "跳转" + text + "界面");
-        if (!UpdataUserInfo.isLogIn(mContext, true)) {
+        if (!UpdataUserInfo.isLogIn(mContext, true)&&!text.equals("设置")) {
             Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }

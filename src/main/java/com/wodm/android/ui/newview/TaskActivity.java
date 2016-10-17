@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -116,6 +117,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         btn_slow.setText("快");
         btn_qiandao.setBackgroundResource(R.drawable.btn_task_qiandao_finish);
         btn_qiandao.setText("已签到");
+        btn_qiandao.setFocusable(false);
         if (adapter!=null){
             adapter.setQiandaoType();
         }
@@ -146,6 +148,14 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_qiandao:
+                httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthSuccess(result, obj);
+                        Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+                        initfinsh();
+                    }
+                });
                 break;
             case R.id.btn_open_vip:
                 startActivity(new Intent(this,VipOpenActivity.class));
