@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,7 +17,9 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
@@ -24,6 +27,8 @@ import com.wodm.android.view.newview.MyGridView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.utils.AsyncImageLoader;
+
+import java.util.List;
 
 
 /**
@@ -67,7 +72,12 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //    @ViewIn(R.id.degree_progress)
 //    private ProgressBar degree_progress;
 
-    int[] medalImage = new int[]{};
+    int[] medalImage = new int[]{R.mipmap.comer_persion, R.mipmap.forget_persion, R.mipmap.driver_persion, R.mipmap.not_get_persion};
+    @ViewIn(R.id.my_medal_persion)
+    LinearLayout my_medal_persion;
+    List<MedalInfoBean.DataBean> dataBeanList;
+    @ViewIn(R.id.show_more_persion)
+    Button show_more_persion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,19 +92,72 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-
+        dataBeanList = MEDALINFOBEAN.getData();
+        initMyMedal();
+        show_more_persion.setOnClickListener(this);
     }
 
     private void initMyMedal() {
 
-        RequestParams params = new RequestParams();
-//        params.addBodyParameter("userId", accountBean.getId() + "");
-        params.addBodyParameter("medalType", "0");
-        params.addBodyParameter("medalSource", "1");
+        for (int i = 0; i < dataBeanList.size(); i++) {
+            int medalType = dataBeanList.get(i).getMedal().getMedalType();
+            int medalScore = dataBeanList.get(i).getMedal().getMedalSource();
+            if (medalScore == 1) {
+                initLinearLayout(my_medal_persion, medalType);
+            }
+        }
+    }
 
-//        Log.i("AAAA",.getT_user_medal);
+    private void initLinearLayout(LinearLayout layout, int medalType) {
+        int size = 4;
+        switch (medalType) {
+            case 4:
+                size = 2;
+                break;
+            case 5:
+                size = 3;
+                break;
+            case 6:
+                size = 4;
+                break;
+        }
+
+        for (int i = 0; i < size; i++) {
+            ImageView image = new ImageView(this);
+
+            int width = (Tools.getScreenWidth(this) - 60) / 12 * 4;
+//            int height = (int) ((Tools.getScreenWidth(this) - 60) / 12 * 4 * 1.35);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 30, 0);
+            image.setImageResource(medalImage[medalImage.length - 1]);
+            initMedalType(medalType, image, i);
+            image.setLayoutParams(params);
+            image.setOnClickListener(this);
+            layout.addView(image);
 
 
+        }
+
+    }
+
+    private void initMedalType(int medalType, ImageView image, int i) {
+        switch (medalType) {
+            case 4:
+                if (i == 0) {
+                    image.setImageResource(medalImage[0]);
+                }
+                break;
+            case 5:
+                if (i == 1 || i == 0) {
+                    image.setImageResource(medalImage[1]);
+                }
+                break;
+            case 6:
+                if (i != 3) {
+                    image.setImageResource(medalImage[2]);
+                }
+                break;
+        }
     }
 
     @Override
@@ -128,11 +191,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             progress = dataBean.getCurrentEmpirical() / total;
         }
 //        degree_progress.setProgress(progress);
-        int next_num=dataBean.getNextGradeEmpirical();
-        int need_num=dataBean.getNeedEmpirical();
-        int num= (int) (110*(1-((float)need_num/next_num)));
-        RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num,30);
-        img_progress_params.setMargins(0,5,0,5);
+        int next_num = dataBean.getNextGradeEmpirical();
+        int need_num = dataBean.getNeedEmpirical();
+        int num = (int) (110 * (1 - ((float) need_num / next_num)));
+        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, 30);
+        img_progress_params.setMargins(0, 5, 0, 5);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();
@@ -144,7 +207,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(grad)) {
             tv_num.setText(grad);
         }
-        empiral_degree.setText(dataBean.getCurrentEmpirical()+"/"+dataBean.getNextGradeEmpirical());
+        empiral_degree.setText(dataBean.getCurrentEmpirical() + "/" + dataBean.getNextGradeEmpirical());
 
 //        initMyMedal(accountBean);
 
@@ -155,6 +218,9 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.btn_user_info:
                 startActivity(new Intent(this, NewUserInfoActivity.class));
+                break;
+            case R.id.show_more_persion:
+                startActivity(new Intent(this, MyMedalActivity.class));
                 break;
         }
     }

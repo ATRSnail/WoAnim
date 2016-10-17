@@ -20,7 +20,6 @@ public class Constants {
 
     public static final boolean DEBUG = true;
 
-    public static MedalInfoBean medalInfoBean;
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
 //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式

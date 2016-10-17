@@ -241,11 +241,11 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:layout_marginLeft="@dimen/px_10"
                     android:id="@+id/empiral_degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|bottom"
+                    android:layout_marginLeft="@dimen/px_10"
                     android:gravity="center_vertical|bottom"
                     android:text="100/2000"
                     android:textColor="@color/color_db6200"
@@ -295,11 +295,13 @@
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_36_px" />
 
-                <TextView
+                <Button
+                    android:id="@+id/show_more_persion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/px_5"
                     android:layout_toLeftOf="@+id/img_more"
+                    android:background="@null"
                     android:text="@string/more_view"
                     android:textColor="@color/color_999999"
                     android:textSize="@dimen/text_size_30_px" />
@@ -314,15 +316,21 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/my_medal_persion"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/px_45"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/my_medal_persion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/px_45"
+                    android:orientation="horizontal">
 
 
-            </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
 
             <View
                 android:layout_width="match_parent"
