@@ -1,6 +1,8 @@
 package com.wodm.android.adapter.newadapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.view.newview.MyGridView;
+
+import static com.wodm.R.id.rl_comments;
 
 /**
  * Created by songchenyu on 16/10/8.
@@ -43,7 +48,7 @@ public class PersionAdapter extends BaseAdapter {
         if (convertView==null){
             holder=new Holder();
             convertView= LayoutInflater.from(mContext).inflate(R.layout.item_comments,null,false);
-            holder.rl_comments= (RelativeLayout) convertView.findViewById(R.id.rl_comments);
+            holder.rl_comments= (RelativeLayout) convertView.findViewById(rl_comments);
             holder.textView= (Button) convertView.findViewById(R.id.btn_num);
             holder.gridView= (MyGridView) convertView.findViewById(R.id.gv_item_comments);
             convertView.setTag(holder);
@@ -55,6 +60,16 @@ public class PersionAdapter extends BaseAdapter {
         }else {
             holder.rl_comments.setBackgroundResource(R.mipmap.user_comment_manhua);
         }
+        holder.rl_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent();
+                i.putExtra("tid", R.id.my_collcet);
+                i.putExtra("title", R.string.collect);
+                i.setClass((Activity)mContext, RecordActivity.class);
+                mContext.startActivity(i);
+            }
+        });
         holder.textView.setText("0");
 
         return convertView;

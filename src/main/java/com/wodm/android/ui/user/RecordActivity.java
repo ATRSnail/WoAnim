@@ -69,7 +69,6 @@ public class RecordActivity extends AppActivity {
         mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
         mTabType.getTabAt(0).setText("动画");
         mTabType.getTabAt(1).setText("漫画");
-
     }
 
     private void initpage(final View view, final int type) {
