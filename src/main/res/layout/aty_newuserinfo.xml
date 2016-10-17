@@ -67,7 +67,8 @@
                 </RelativeLayout>
                 <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
                 <RelativeLayout
-                    android:focusable="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_marginRight="@dimen/px_80"
                     android:layout_marginLeft="@dimen/px_80"
                     android:layout_width="match_parent"
@@ -177,6 +178,8 @@
                 </RelativeLayout>
                 <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
                 <RelativeLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_marginRight="@dimen/px_80"
                     android:layout_marginLeft="@dimen/px_80"
                     android:layout_width="match_parent"

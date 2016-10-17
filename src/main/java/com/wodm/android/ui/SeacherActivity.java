@@ -164,7 +164,7 @@ public class SeacherActivity extends AppActivity {
             @Override
             protected void requestData(final int page, final boolean b) {
 
-                httpGet(Constants.URL_SEARCH + key + "&page=" + page + "&type=" + mTypeView.getTag().toString(), new HttpCallback() {
+                httpGet(Constants.URL_SEARCH + key + "&page=" + page + "&type=" + mTypeView.getTag().toString()+"&taskType=2&taskValue=5", new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);

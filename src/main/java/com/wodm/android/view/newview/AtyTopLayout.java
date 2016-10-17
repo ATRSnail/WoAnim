@@ -84,7 +84,7 @@ public class AtyTopLayout extends RelativeLayout {
         leftImage.setImageDrawable(leftDrawable);
 
         tvTitle.setTextColor(titleTextColor);
-        tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, titleTextSize);
+        tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, 32);
         tvTitle.setText(titleText);
         tvTitle.setGravity(Gravity.CENTER);    // 设置文字居中
 

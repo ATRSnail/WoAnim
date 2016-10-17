@@ -148,7 +148,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_qiandao:
-                httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+                httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);

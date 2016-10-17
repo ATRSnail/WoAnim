@@ -103,6 +103,7 @@ public class Constants {
     //任务状态
     public static final String APP_GET_TASKSTATUS = HOST + "newuser/taskStatus?userId=";
     public static final String APP_GET_OPEN_VIP = HOST + "/newuser/openVip?userId=";
+    public static final String APP_GET_VIP_TIME = HOST + "newuser/getVipTime?userId=";
 
     public static String OFFTIME;
 

@@ -182,7 +182,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         });
 
         if (Constants.CURRENT_USER != null) {
-            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId;
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
 
@@ -391,6 +391,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                         obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
                         obj.put("content", mCommentView.getText().toString());
+                        obj.put("taskType", 1);
+                        obj.put("taskValue", 3);
+
                         httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
                             @Override
                             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

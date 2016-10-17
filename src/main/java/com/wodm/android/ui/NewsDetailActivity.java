@@ -28,7 +28,7 @@ public class NewsDetailActivity extends AppActivity {
         super.onCreate(savedInstanceState);
         setCustomTitle(TITLE);
 
-        String url = Constants.URL_NEWS_GET+"?id=" + getIntent().getStringExtra("bean");
+        String url = Constants.URL_NEWS_GET+"?id=" + getIntent().getStringExtra("bean")+"&taskType=2&taskValue=7";
 
         httpGet(url, new HttpCallback() {
             @Override

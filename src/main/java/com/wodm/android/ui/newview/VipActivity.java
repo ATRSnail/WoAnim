@@ -8,15 +8,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
+import org.json.JSONObject;
 
 import static com.wodm.android.Constants.CURRENT_USER;
 
@@ -59,6 +63,20 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
         setUserInfo();
     }
    private void setUserInfo(){
+       httpGet(Constants.APP_GET_VIP_TIME+CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+
+           @Override
+           public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+               super.doAuthSuccess(result, obj);
+               String day=obj.optString("data");
+               tv_endof_vip.setText(day+"");
+           }
+
+           @Override
+           public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+               super.doAuthFailure(result, obj);
+           }
+       });
        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
        if (accountBean.getVip()==0){
            rl_isVip.setVisibility(View.GONE);

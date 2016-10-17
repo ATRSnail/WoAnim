@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
@@ -211,7 +210,7 @@ public class Main2Activity extends AppActivity {
         if (!UpdataUserInfo.isLogIn(this, true)) {
             return;
         }
-        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);

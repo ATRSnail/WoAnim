@@ -8,9 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -92,6 +92,13 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         rl_sex.setOnClickListener(this);
         serUserInfo();
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        JianpanTools.HideKeyboard(nickname_user);
+        return super.onTouchEvent(event);
+    }
+
     private void serUserInfo(){
         UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
@@ -105,7 +112,12 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }
         sex_user.setText(str_sex);
         birthday_user.setText(accountBean.getBirthday());
-        sign_user.setText(accountBean.getAutograph());
+        if (accountBean.getAutograph().equals("")){
+            sign_user.setHint(getResources().getString(R.string.qianming));
+        }else {
+            sign_user.setText(accountBean.getAutograph());
+        }
+
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_circle, accountBean.getPortrait());
     }
     private void showLogout() {
@@ -186,7 +198,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             object.put("birthday", str_Birthday);
             object.put("autograph", sign_user.getText().toString());
             object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
-            Log.e("submint", object.toString() + "modifyName");
+            object.put("taskType", 2);
+            object.put("taskValue", 4);
 //            {"userId":1,"modifyName":"birthday","modifyValue":"2016/01/01"}
             httpPost(Constants.URL_USER, object, new HttpCallback() {
                 @Override
