@@ -20,13 +20,13 @@
             android:layout_height="@dimen/px_90"
             app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@color/color_3f190c"
-            app:CustomtitleTextSize="@dimen/text_size_48_px"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
             app:Customtoptitle="@string/mine_wallet"
             app:leftBackGround="@mipmap/back"
             app:rightText="充值"
             app:rightTextColor="@color/color_3f190c"
             app:rightTextSize="@dimen/text_size_36_px"
-            app:rightType="1" />
+            app:rightType="0" />
 
 
         <RelativeLayout
@@ -136,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/ll_score_describ"
-                android:layout_toRightOf="@id/ll_score_describ"
+                   android:layout_alignRight="@id/ll_score_describ"
                 android:src="@mipmap/getscore_wallet" />
 
         </RelativeLayout>
