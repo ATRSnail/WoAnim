@@ -17,10 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -43,7 +45,7 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener,BulletSendDialog.SendBarrage {
+public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener, BulletSendDialog.SendBarrage {
 
     @ViewIn(R.id.toolbar)
     protected Toolbar mToolbar;
@@ -54,11 +56,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     @ViewIn(R.id.check_button)
     protected LinearLayout mCheckButton;
     protected int barrage_rescourceId;
-    protected String  barrage_charterId;
+    protected String barrage_charterId;
 
     protected SlideBackUtil mSlideBackUtil;
-    private int ScreenWidth,ScreenHight;
+    private int ScreenWidth, ScreenHight;
     private DialogFragment bulletDialog;
+    public static MedalInfoBean MEDALINFOBEAN;
 
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);
@@ -81,6 +84,25 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         ScreenWidth = wm.getDefaultDisplay().getWidth();
         ScreenHight = wm.getDefaultDisplay().getHeight();
         setTitle("");
+        initMedal();
+    }
+
+    private void initMedal() {
+        if (Constants.CURRENT_USER == null)
+            return;
+        String url = Constants.APP_GET_MEDALLIST + Constants.CURRENT_USER.getData().getAccount().getId();
+        httpGet(url, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                MEDALINFOBEAN = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
+            }
+
+            @Override
+            public void doRequestFailure(Exception exception, String msg) {
+                super.doRequestFailure(exception, msg);
+            }
+        });
     }
 
     public void setCustomTitle(String title) {
@@ -121,10 +143,10 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         super.onDestroy();
     }
 
-      public void httpGet(String url, final HttpCallback callback) {
+    public void httpGet(String url, final HttpCallback callback) {
 
         try {
-            TrackApplication. REQUEST_HEADER.put("Content-Type", "application/json");
+            TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
             HttpUtil.httpGet(this, url, TrackApplication.REQUEST_HEADER, callback);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -152,7 +174,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
     public void httpPost(String url, JSONObject body, final HttpCallback callback) {
         try {
-            TrackApplication. REQUEST_HEADER.put("Content-Type", "application/json");
+            TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
             HttpUtil.httpPost(this, url, body, CartoonApplication.REQUEST_HEADER, callback);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -166,7 +188,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
     @Override
     public void sendBullet() {
-        showEditDialog( );
+        showEditDialog();
     }
 
 
@@ -178,16 +200,16 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         }
         ft.addToBackStack(null);
         bulletDialog = BulletSendDialog.newInstance(this);
-        bulletDialog.show(ft,"dialog");
+        bulletDialog.show(ft, "dialog");
     }
 
     @Override
     public void addBullet(final String content) {
-        if(!UpdataUserInfo.isLogIn(this,true)){
-            Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+        if (!UpdataUserInfo.isLogIn(this, true)) {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
-        long sendId= Constants.CURRENT_USER.getData().getAccount().getId();
+        long sendId = Constants.CURRENT_USER.getData().getAccount().getId();
 //       JSONObject jsonObject=new JSONObject();
 //        try {
 //            jsonObject.put("resourceId",barrage_rescourceId);
@@ -232,7 +254,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                         if (obj.getString("code").equals("1000")) {
                             Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
                             ).show();
-                            if (bulletDialog!=null){
+                            if (bulletDialog != null) {
                                 bulletDialog.dismiss();
                             }
                             refrensh(content);
@@ -251,7 +273,8 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             e.printStackTrace();
         }
     }
-    public void refrensh(String content){
+
+    public void refrensh(String content) {
 
     }
 

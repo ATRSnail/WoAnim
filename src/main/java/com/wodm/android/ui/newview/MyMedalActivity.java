@@ -55,22 +55,22 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
         dataBean = Constants.CURRENT_USER.getData();
-        String url = Constants.APP_GET_MEDALLIST + dataBean.getAccount().getId();
-        httpGet(url, new HttpCallback() {
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                Constants.medalInfoBean = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
-                downData();
-            }
-
-            @Override
-            public void doRequestFailure(Exception exception, String msg) {
-                super.doRequestFailure(exception, msg);
-            }
-        });
-        initLinearLayout(ll_comment_medal, COMMENT, 0);
-
+//        String url = Constants.APP_GET_MEDALLIST + dataBean.getAccount().getId();
+//        httpGet(url, new HttpCallback() {
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                MEDALINFOBEAN = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
+//                downData();
+//            }
+//
+//            @Override
+//            public void doRequestFailure(Exception exception, String msg) {
+//                super.doRequestFailure(exception, msg);
+//            }
+//        });
+//        initLinearLayout(ll_comment_medal, COMMENT, 0);
+        downData();
     }
 
     private void downData() {
@@ -80,7 +80,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
          * @return
          */
 
-        dataBeanList = Constants.medalInfoBean.getData();
+        dataBeanList = MEDALINFOBEAN.getData();
 
         for (int i = 0; i < dataBeanList.size(); i++) {
             medalType = dataBeanList.get(i).getMedal().getMedalType();
@@ -95,7 +95,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
                 break;
             case 2:
-                initLinearLayout(ll_register_medal, REGISTER, medalType);
+//                initLinearLayout(ll_register_medal, REGISTER, medalType);
                 break;
             case 3:
                 break;
@@ -115,12 +115,12 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 break;
             case 5:
                 if (i == 1 || i == 0) {
-                    image.setImageResource(medalImage[1]);
+                    image.setImageResource(medalImage[i]);
                 }
                 break;
             case 6:
                 if (i != 3) {
-                    image.setImageResource(medalImage[2]);
+                    image.setImageResource(medalImage[i]);
                 }
                 break;
         }
