@@ -116,7 +116,7 @@ public class CartoonReadActivity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handler.sendEmptyMessageAtTime(0,10000);
+        handler.sendEmptyMessageAtTime(0, 10000);
         setListView();
         setLoadAndRefresh();
         if (!getIntent().hasExtra("beanPath")) {
@@ -135,17 +135,19 @@ public class CartoonReadActivity extends AppActivity {
             String path = getIntent().getStringExtra("beanPath");
             startReadPath(path);
         }
-        barrage_rescourceId=bean.getId();
-        barrage_charterId=mChapterList.get(0).getId();
+        barrage_rescourceId = bean.getId();
+        barrage_charterId = mChapterList.get(0).getId();
         setBottoms();
         findViewById(R.id.send_bullet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                v.setAlpha(0);
                 sendBullet();
             }
         });
     }
-    Handler handler=new Handler() {
+
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -190,7 +192,7 @@ public class CartoonReadActivity extends AppActivity {
     private void requestHttp(final int index, final boolean b) {
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {
             CurrChapter = mChapterList.get(index);
-            barrage_charterId=CurrChapter.getId();
+            barrage_charterId = CurrChapter.getId();
             httpGet(Constants.HOST + "resource/cartoon/" + CurrChapter.getId(), new HttpCallback() {
 
                 @Override
@@ -357,7 +359,8 @@ public class CartoonReadActivity extends AppActivity {
         refreshLayout.setRefreshing(false);
         progressBar.stop();
     }
-    private void getBarrageResource(){
+
+    private void getBarrageResource() {
 //        JSONObject obj = new JSONObject();
 //        try {
 //            obj.put("resourceId", resourceId);
@@ -367,7 +370,7 @@ public class CartoonReadActivity extends AppActivity {
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        httpGet(Constants.URL_GET_BARRAGE+"?resourceId="+barrage_rescourceId+"&chapterId="+barrage_charterId, new HttpCallback() {
+        httpGet(Constants.URL_GET_BARRAGE + "?resourceId=" + barrage_rescourceId + "&chapterId=" + barrage_charterId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -382,13 +385,13 @@ public class CartoonReadActivity extends AppActivity {
         });
     }
 
-    private void initDanMu(final ArrayList<BarrageBean> barrageBeanList){
+    private void initDanMu(final ArrayList<BarrageBean> barrageBeanList) {
         //弹幕
 //        List<IDanmakuItem> list = initItems(commentbeanList);
 //        Collections.shuffle(list);
 //        mDanmakuView.addItem(list, true);
 //        mDanmakuView.show();
-        danmuControler=new DanmuControler(this,danmaku_view);
+        danmuControler = new DanmuControler(this, danmaku_view);
         danmuControler.addData(barrageBeanList);
 
     }
@@ -672,7 +675,7 @@ public class CartoonReadActivity extends AppActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (danmuControler!=null)
-        danmuControler.release();
+        if (danmuControler != null)
+            danmuControler.release();
     }
 }

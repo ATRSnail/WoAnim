@@ -155,7 +155,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|right"
-        android:src="@mipmap/ic_launcher"
+        android:alpha="0.5"
+        android:src="@mipmap/danmu"
         android:visibility="visible" />
 
     <!--android:background="#CC282828"-->

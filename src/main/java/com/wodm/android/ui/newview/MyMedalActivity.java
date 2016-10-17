@@ -41,6 +41,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
 
     private int medalImage[] = new int[]{R.mipmap.comer_achieve, R.mipmap.normal_forget_achieve, R.mipmap.violet_forget_achieve, R.mipmap.driver_achieve};
     private int clickedImage[] = new int[]{R.mipmap.click_commer_medal, R.mipmap.click_forget_medal, R.mipmap.click_violet_medal, R.mipmap.click_driver_medal};
+    private int not_dImage[] = new int[]{R.mipmap.click_commer_medal, R.mipmap.click_forget_medal, R.mipmap.click_violet_medal, R.mipmap.click_driver_medal};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
