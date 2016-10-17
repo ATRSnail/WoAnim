@@ -2,6 +2,7 @@ package com.wodm.android.ui.newview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -42,6 +43,10 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     private TextView tv_no_vip_username;
     @ViewIn(R.id.tv_speed)
     private TextView tv_speed;
+    @ViewIn(R.id.btn_grade_name)
+    private TextView btn_grade_name;
+    @ViewIn(R.id.tv_endof_vip)
+    private TextView tv_endof_vip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,10 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
            rl_isVip.setVisibility(View.VISIBLE);
            rl_noVip.setVisibility(View.GONE);
            vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
+       }
+       String gradename = accountBean.getGradeName();
+       if (!TextUtils.isEmpty(gradename)) {
+           btn_grade_name.setText(gradename);
        }
        tv_speed.setText("LV."+accountBean.getGradeValue());
        tv_no_vip_username.setText(accountBean.getNickName());

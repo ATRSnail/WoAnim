@@ -130,6 +130,7 @@
                             android:background="@mipmap/sex_man" />
 
                         <Button
+                            android:id="@+id/btn_grade_name"
                             android:layout_width="@dimen/px_150"
                             android:layout_height="@dimen/px_44"
                             android:layout_gravity="center_vertical"
@@ -186,17 +187,33 @@
                             android:textColor="@color/color_e75151"
                             android:textSize="@dimen/text_size_28_px" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_sign"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ll_progress"
+                    <LinearLayout
                         android:layout_marginTop="@dimen/px_10"
-                        android:text="@string/day_of_end"
-                        android:textColor="@color/color_3f190c"
-                        android:textSize="@dimen/text_size_28_px" />
+                        android:layout_below="@+id/ll_progress"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_endof_vip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/day_of_end"
+                            android:textColor="@color/color_3f190c"
+                            android:textSize="@dimen/text_size_28_px" />
+                        <TextView
+                            android:text="30"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_e75151"
+                            android:textSize="@dimen/text_size_36_px" />
+                        <TextView
+                            android:text="天"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_3f190c"
+                            android:textSize="@dimen/text_size_28_px" />
 
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <Button
