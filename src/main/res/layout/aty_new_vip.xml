@@ -201,7 +201,7 @@
                             android:textColor="@color/color_3f190c"
                             android:textSize="@dimen/text_size_28_px" />
                         <TextView
-                            android:text="30"
+                            android:id="@+id/tv_endof_vip_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/color_e75151"

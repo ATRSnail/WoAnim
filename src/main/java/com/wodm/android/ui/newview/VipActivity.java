@@ -49,8 +49,8 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     private TextView tv_speed;
     @ViewIn(R.id.btn_grade_name)
     private TextView btn_grade_name;
-    @ViewIn(R.id.tv_endof_vip)
-    private TextView tv_endof_vip;
+    @ViewIn(R.id.tv_endof_vip_num)
+    private TextView tv_endof_vip_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                super.doAuthSuccess(result, obj);
                String day=obj.optString("data");
-               tv_endof_vip.setText(day+"");
+               tv_endof_vip_num.setText(day+"");
            }
 
            @Override
