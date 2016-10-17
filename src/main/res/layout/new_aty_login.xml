@@ -31,9 +31,10 @@
                 app:rightType="1" />
 
             <ImageView
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_282"
-                android:background="@color/color_666666" />
+                android:src="@mipmap/login_banner" />
 
             <LinearLayout
                 android:layout_width="match_parent"

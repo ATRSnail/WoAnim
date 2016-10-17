@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/not_renew"
+        android:alpha="0.5"
+        android:src="@mipmap/danmu"
         android:visibility="visible" />
 
     <RelativeLayout

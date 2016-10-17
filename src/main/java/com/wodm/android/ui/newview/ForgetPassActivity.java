@@ -230,5 +230,4 @@ public class ForgetPassActivity extends AppActivity implements AtyTopLayout.myTo
         btn_yzm.setBackgroundResource(R.drawable.shape_angle_rectangle_solid);
     }
 
-
 }

@@ -22,7 +22,11 @@ public class Constants {
 
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
 
+<<<<<<< HEAD
 //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
+=======
+    //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
+>>>>>>> 12a62973150a2133a0d8b77a53efe2a1b4d4d12e
 //     public final static String HOST = "http://202.106.63.82:19998/wodm-api/api/v1/";// 正式
     public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
@@ -32,11 +36,11 @@ public class Constants {
     public final static String SHARE_URL = "http://wodm.9mobi.cn/html/donghuaxiangqingye.html?id=";
 
     public final static String URL_SCORE = HOST + "user/countScore";// 获取积分
-//    public final static String URL_SIGNIN = HOST + "user/checkin";// 签到
+    //    public final static String URL_SIGNIN = HOST + "user/checkin";// 签到
     public final static String URL_SIGNIN = HOST + "newuser/checkin";// 签到
     public final static String URL_CHECK_SIGNIN = HOST + "user/judgeCheckin?userId=";// 签到
 
-//    public final static String ULR_COLLECT = HOST + "resource/collect?userId=";// 作品收藏
+    //    public final static String ULR_COLLECT = HOST + "resource/collect?userId=";// 作品收藏
     public final static String ULR_COLLECT = HOST + "newuser/collect?userId=";// 作品收藏
 
     public static final String USER_GET_CODE = HOST + "user/code";//获取验证码
@@ -89,7 +93,7 @@ public class Constants {
     public static final String URL_COMMENTS = HOST + "comment";//评论
     public static final String URL_FEEDBACK = HOST + "newuser/opinion";//意见反馈
     public static final String URL_ABOUT = HOST + "app/legal?appkey=" + APPKEY;//关于我们
-//    public static final String URL_USER = HOST + "user/profile20160920";//修改用户资料
+    //    public static final String URL_USER = HOST + "user/profile20160920";//修改用户资料
     public static final String URL_USER = HOST + "newuser/editProfile";//修改用户资料
     public static final String URL_NEWS_GET = HOST + "news/get";//咨询详情
     public static final String URL_GET_BARRAGE = HOST + "resource/barrage";//获取弹幕信息的
