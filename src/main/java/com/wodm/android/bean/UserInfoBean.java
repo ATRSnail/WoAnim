@@ -98,16 +98,7 @@ public class UserInfoBean {
 
         private int maxCheckinCount;//累计签到天数
         private int checkinCount;//连续签到天数
-        private int t_user_medal;
 
-        public int getT_user_medal() {
-            return t_user_medal;
-        }
-
-        public void setT_user_medal(int t_user_medal) {
-
-            this.t_user_medal = t_user_medal;
-        }
 
         public int getMaxCheckinCount() {
             return maxCheckinCount;
