@@ -2,7 +2,6 @@ package com.wodm.android;
 
 import android.os.Environment;
 
-import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 
 import java.io.File;

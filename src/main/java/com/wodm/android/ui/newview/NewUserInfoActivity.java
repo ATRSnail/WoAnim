@@ -8,12 +8,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -66,7 +69,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     @ViewIn(R.id.birthday_user)
     private TextView birthday_user;
     @ViewIn(R.id.sign_user)
-    private TextView sign_user;
+    private EditText sign_user;
     @ViewIn(R.id.btn_exit_login)
     private Button btn_exit_login;
     @ViewIn(R.id.rl_birthday)
@@ -112,12 +115,28 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }
         sex_user.setText(str_sex);
         birthday_user.setText(accountBean.getBirthday());
-        if (accountBean.getAutograph().equals("")){
+        if (accountBean.getAutograph().trim().equals("")){
             sign_user.setHint(getResources().getString(R.string.qianming));
         }else {
             sign_user.setText(accountBean.getAutograph());
         }
+        sign_user.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                sign_user.setText("");
+                sign_user.setSelection(s.toString().length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_circle, accountBean.getPortrait());
     }
     private void showLogout() {

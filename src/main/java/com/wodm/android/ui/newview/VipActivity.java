@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,6 +52,8 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     private TextView btn_grade_name;
     @ViewIn(R.id.tv_endof_vip_num)
     private TextView tv_endof_vip_num;
+    @ViewIn(R.id.img_sex)
+    private ImageView img_sex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +93,14 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
        String gradename = accountBean.getGradeName();
        if (!TextUtils.isEmpty(gradename)) {
            btn_grade_name.setText(gradename);
+       }
+       int sex_value = accountBean.getSex();
+       if (sex_value == 0) {
+           img_sex.setBackgroundResource(R.drawable.sex_radio_baomi);
+       } else if (sex_value == 1) {
+           img_sex.setBackgroundResource(R.mipmap.sex_man);
+       } else {
+           img_sex.setBackgroundResource(R.mipmap.sex_women);
        }
        tv_speed.setText("LV."+accountBean.getGradeValue());
        tv_no_vip_username.setText(accountBean.getNickName());

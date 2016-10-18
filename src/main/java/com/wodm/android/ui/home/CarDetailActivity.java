@@ -428,7 +428,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                         mCommentView.setText("");
                                         ll_qq_biaoqing.setVisibility(View.GONE);
                                         pullToLoadView.initLoad();
-//                                        CommentData();
+                                        CommentData();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
