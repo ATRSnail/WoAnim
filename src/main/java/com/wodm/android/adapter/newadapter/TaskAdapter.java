@@ -106,23 +106,21 @@ public class TaskAdapter extends BaseAdapter {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-
-                    Log.e("AAAA", "----------" + obj.toString());
                     JSONObject jsonObject = new JSONObject(obj.getString("data"));
                     if (jsonObject.optInt("status") == 1) {
                         imageView.setVisibility(View.VISIBLE);
                         tv_other_value.setVisibility(View.GONE);
                         tv_value.setVisibility(View.GONE);
                     } else {
-//                        if (value.equals("完善个人资料")) {
-//                            imageView.setVisibility(View.GONE);
-//                            tv_other_value.setVisibility(View.GONE);
-//                            tv_value.setVisibility(View.VISIBLE);
-//                        }
-                        imageView.setVisibility(View.GONE);
-                        tv_other_value.setVisibility(View.GONE);
-                        tv_value.setVisibility(View.VISIBLE);
-
+                        if (value.equals("完善个人资料")) {
+                            imageView.setVisibility(View.GONE);
+                            tv_other_value.setVisibility(View.GONE);
+                            tv_value.setVisibility(View.VISIBLE);
+                        } else {
+                            imageView.setVisibility(View.GONE);
+                            tv_other_value.setVisibility(View.VISIBLE);
+                            tv_value.setVisibility(View.INVISIBLE);
+                        }
 
                     }
                 } catch (JSONException e) {
