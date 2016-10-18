@@ -33,7 +33,7 @@
     </LinearLayout>
     <com.wodm.android.view.newview.NoScrollListView
         android:background="@color/color_eae7e7"
-        android:horizontalSpacing="@dimen/px_2"
+        android:horizontalSpacing="@dimen/px_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lv_task_adapter">

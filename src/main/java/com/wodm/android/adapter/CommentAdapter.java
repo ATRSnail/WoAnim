@@ -29,6 +29,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
     public CommentAdapter(Context context, List<CommentBean> data) {
         super(context, data);
         this.context=context;
+        notifyDataSetChanged();
     }
 
     @Override

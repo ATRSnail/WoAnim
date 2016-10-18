@@ -38,7 +38,14 @@ public class TaskAdapter extends BaseAdapter {
     private String[] personArray = {"完善个人资料", "使用搜索功能", "查看一次资讯"};
     private String[] messageArray = {"每日签到", "观看动漫", "发评论"};
     private int[] personIconArray = {R.mipmap.com_user_info, R.mipmap.img_task_search, R.mipmap.look_news};
+    /**
+     * taskType;
+     * /**任务类型(1：日常 2：新手 3：临时任务 4：临时活动)*/
 
+
+    /**taskValue   0：非 1：签到经验 2：观看动漫 3：发评论 4：完善个人资料
+     * 5：使用搜索功能 6：点击一次广告 7：查看一次新闻
+     * 8：添加一个好友 9：点一次赞 10：打赏一次 11：敬请期待*/
     private int[] messageIconArray = {R.mipmap.day_qiandao, R.mipmap.watch_anim, R.mipmap.img_commnts};
 
     public TaskAdapter(Context context) {
@@ -79,15 +86,16 @@ public class TaskAdapter extends BaseAdapter {
         TaskAdapter.Myadapter myadapter = null;
         if (position == 0) {
             myadapter = new TaskAdapter.Myadapter(personArray, personIconArray);
+            holder.lv_task_adapter.setAdapter(myadapter);
             holder.textView.setText(mContext.getString(R.string.new_user_task));
             holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
         } else {
             myadapter = new TaskAdapter.Myadapter(messageArray, messageIconArray);
+            holder.lv_task_adapter.setAdapter(myadapter);
             holder.textView.setText(mContext.getString(R.string.task_days));
             holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_89c997));
         }
-        if (myadapter != null)
-            holder.lv_task_adapter.setAdapter(myadapter);
+
 
         return convertView;
     }
@@ -227,13 +235,21 @@ public class TaskAdapter extends BaseAdapter {
                 String dataurl = url + "&taskType=1&taskValue=3";
                 getData(dataurl, gvHolder.img_right, gvHolder.tv_other_value, gvHolder.tv_value, value);
             } else if (value.equals("每日签到")) {
-                if (isQiandao) {
-                    gvHolder.img_right.setVisibility(View.VISIBLE);
-                    gvHolder.tv_other_value.setVisibility(View.GONE);
-                    gvHolder.tv_value.setVisibility(View.GONE);
-                }else {
-                    qianDaoListener.qiandao();
-                }
+                String dataurl = url + "&taskType=1&taskValue=1";
+                getData(dataurl, gvHolder.img_right, gvHolder.tv_other_value, gvHolder.tv_value, value);
+//                if (!isQiandao) {
+//                    gvHolder.img_right.setVisibility(View.VISIBLE);
+//                    gvHolder.tv_other_value.setVisibility(View.GONE);
+//                    gvHolder.tv_value.setVisibility(View.GONE);
+//                }
+                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!isQiandao) {
+                            qianDaoListener.qiandao();
+                        }
+                    }
+                });
             } else {
                 gvHolder.tv_other_value.setVisibility(View.VISIBLE);
                 gvHolder.img_right.setVisibility(View.GONE);
@@ -260,7 +276,6 @@ public class TaskAdapter extends BaseAdapter {
 
     public void setQiandaoType() {
         isQiandao = true;
-        notifyDataSetChanged();
     }
 
     /**

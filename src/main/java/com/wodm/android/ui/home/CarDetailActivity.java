@@ -144,7 +144,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         });
 
         if (Constants.CURRENT_USER != null) {
-            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId;
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
         getCarToon();
