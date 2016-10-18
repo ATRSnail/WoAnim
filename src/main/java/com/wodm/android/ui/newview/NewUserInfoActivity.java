@@ -217,8 +217,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             object.put("birthday", str_Birthday);
             object.put("autograph", sign_user.getText().toString());
             object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
-            object.put("taskType", 2);
-            object.put("taskValue", 4);
+            object.put("taskType", 2+"");
+            object.put("taskValue", 4+"");
 //            {"userId":1,"modifyName":"birthday","modifyValue":"2016/01/01"}
             httpPost(Constants.URL_USER, object, new HttpCallback() {
                 @Override

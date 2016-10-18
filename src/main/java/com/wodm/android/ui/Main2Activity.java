@@ -217,6 +217,7 @@ public class Main2Activity extends AppActivity {
                 Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
                 mfloatView.setVisibility(View.INVISIBLE);
             }
+
         });
     }
 
