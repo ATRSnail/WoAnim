@@ -173,7 +173,10 @@ public class SeacherActivity extends AppActivity {
                             }.getType());
 
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
-                            if (adapter.getItemCount() <= 0) mLayout.setVisibility(View.VISIBLE);
+                            if (adapter!=null&&adapter.getItemCount() <= 0){
+                                mLayout.setVisibility(View.VISIBLE);
+                            }
+
 //                            adapter.setOnItemClickListener(new HolderAdapter.OnItemClickListener() {
 //                                @Override
 //                                public void onItemClick(View view, Object o, int i) {
