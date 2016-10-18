@@ -8,8 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -120,23 +118,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }else {
             sign_user.setText(accountBean.getAutograph());
         }
-        sign_user.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                sign_user.setText("");
-                sign_user.setSelection(s.toString().length());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_circle, accountBean.getPortrait());
     }
     private void showLogout() {
@@ -217,8 +198,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             object.put("birthday", str_Birthday);
             object.put("autograph", sign_user.getText().toString());
             object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
-            object.put("taskType", 2+"");
-            object.put("taskValue", 4+"");
+//            object.put("taskType", "2");
+//            object.put("taskValue","4");
 //            {"userId":1,"modifyName":"birthday","modifyValue":"2016/01/01"}
             httpPost(Constants.URL_USER, object, new HttpCallback() {
                 @Override

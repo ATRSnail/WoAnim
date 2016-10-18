@@ -3,7 +3,6 @@ package com.wodm.android.adapter.newadapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.wodm.R.id.tv_other_value;
 import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
@@ -46,6 +44,7 @@ public class TaskAdapter extends BaseAdapter {
     public TaskAdapter(Context context) {
         this.mContext = context;
     }
+    private QianDaoListener qianDaoListener;
 
     @Override
     public int getCount() {
@@ -185,7 +184,7 @@ public class TaskAdapter extends BaseAdapter {
             gvHolder.tv_other_value.setTextSize(14);
             String value = mArray[position];
             if (value.equals("完善个人资料")) {
-                String dataurl = url + "&taskType=1&taskValue=4";
+                String dataurl = url + "&taskType=2&taskValue=4";
                 getData(dataurl, gvHolder.img_right, gvHolder.tv_other_value, gvHolder.tv_value, value);
                 gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -197,7 +196,7 @@ public class TaskAdapter extends BaseAdapter {
 //                gvHolder.tv_value.setVisibility(View.VISIBLE);
 //                gvHolder.img_right.setVisibility(View.GONE);
             } else if (value.equals("使用搜索功能")) {
-                String dataurl = url + "&taskType=1&taskValue=5";
+                String dataurl = url + "&taskType=2&taskValue=5";
                 getData(dataurl, gvHolder.img_right, gvHolder.tv_other_value, gvHolder.tv_value, value);
                 gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -207,7 +206,7 @@ public class TaskAdapter extends BaseAdapter {
                 });
 //                gvHolder.img_right.setVisibility(View.VISIBLE);
             } else if (value.equals("查看一次资讯")) {
-                String dataurl = url + "&taskType=1&taskValue=7";
+                String dataurl = url + "&taskType=2&taskValue=7";
                 getData(dataurl, gvHolder.img_right, gvHolder.tv_other_value, gvHolder.tv_value, value);
 //                gvHolder.ll_item_task.setOnClickListener(new View.OnClickListener() {
 //                    @Override
@@ -232,6 +231,8 @@ public class TaskAdapter extends BaseAdapter {
                     gvHolder.img_right.setVisibility(View.VISIBLE);
                     gvHolder.tv_other_value.setVisibility(View.GONE);
                     gvHolder.tv_value.setVisibility(View.GONE);
+                }else {
+                    qianDaoListener.qiandao();
                 }
             } else {
                 gvHolder.tv_other_value.setVisibility(View.VISIBLE);
@@ -249,6 +250,12 @@ public class TaskAdapter extends BaseAdapter {
             return convertView;
         }
 
+    }
+    public void setQiandapListener(QianDaoListener qianDaoListener){
+        this.qianDaoListener=qianDaoListener;
+    }
+    public interface QianDaoListener{
+        public void qiandao();
     }
 
     public void setQiandaoType() {

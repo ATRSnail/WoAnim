@@ -33,7 +33,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/10/12.
  */
 @Layout(R.layout.activity_task)
-public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter ,View.OnClickListener{
+public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter ,View.OnClickListener,TaskAdapter.QianDaoListener{
     @ViewIn(R.id.scrollView)
     private ScrollView scrollView;
     @ViewIn(R.id.lv_task)
@@ -67,6 +67,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         btn_open_vip.setOnClickListener(this);
         adapter=new TaskAdapter(this);
         lv_task.setAdapter(adapter);
+        adapter.setQiandapListener(this);
         initUserInfo();
         getWeatherQiandao();
     }
@@ -143,23 +144,30 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void rightClick() {
 
     }
-
+   private void QianDao(){
+       httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
+           @Override
+           public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+               super.doAuthSuccess(result, obj);
+               Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+               initfinsh();
+           }
+       });
+   }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_qiandao:
-                httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
-                    @Override
-                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                        super.doAuthSuccess(result, obj);
-                        Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
-                        initfinsh();
-                    }
-                });
+                QianDao();
                 break;
             case R.id.btn_open_vip:
                 startActivity(new Intent(this,VipOpenActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void qiandao() {
+        QianDao();
     }
 }

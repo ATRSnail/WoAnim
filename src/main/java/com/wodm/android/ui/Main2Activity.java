@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
@@ -34,7 +35,10 @@ import org.eteclab.base.utils.ReflectionUtil;
 import org.eteclab.track.TrackApplication;
 import org.eteclab.track.Tracker;
 import org.eteclab.track.annotation.TrackClick;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 @Layout(R.layout.activity_main2)
 public class Main2Activity extends AppActivity {
@@ -228,12 +232,20 @@ public class Main2Activity extends AppActivity {
     }
 
     private void checkSgin() {
-        if (Constants.CURRENT_USER != null)
-            httpGet(Constants.URL_CHECK_SIGNIN + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+        if (Constants.CURRENT_USER != null){
+            httpGet(Constants.APP_GET_TASKSTATUS+CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
+
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
-                    mfloatView.setVisibility(View.INVISIBLE);
+                    try {
+                        JSONObject jsonObject=new JSONObject(obj.getString("data"));
+                        if (jsonObject.optInt("status")== 1){
+                            mfloatView.setVisibility(View.INVISIBLE);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -242,6 +254,47 @@ public class Main2Activity extends AppActivity {
                     mfloatView.setVisibility(View.VISIBLE);
                 }
             });
+//            httpGet(Constants.URL_CHECK_SIGNIN + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+//                @Override
+//                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                    super.doAuthSuccess(result, obj);
+//                    mfloatView.setVisibility(View.INVISIBLE);
+//                }
+//
+//                @Override
+//                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                    super.doAuthFailure(result, obj);
+//                    mfloatView.setVisibility(View.VISIBLE);
+//                }
+//            });
+            UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
+            if (!accountBean.getPortrait().equals("")){
+                   if (!accountBean.getNickName().equals("")){
+                       if (accountBean.getSex()<3){
+                           if (!accountBean.getBirthday().equals("")){
+                               if (!accountBean.getAutograph().equals("")){
+                                   httpGet(Constants.APP_PERFECT_USERINFO + accountBean.getId()+"&taskType=2&taskValue=4", new HttpCallback() {
+                                       @Override
+                                       public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                                           super.doAuthSuccess(result, obj);
+                                       }
+
+                                       @Override
+                                       public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                                           super.doAuthFailure(result, obj);
+                                       }
+                                   });
+                               }
+                           }
+                       }
+                   }
+
+            }
+        }
+
+
+
     }
+
 
 }
