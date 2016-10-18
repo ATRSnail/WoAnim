@@ -87,6 +87,7 @@
     <string name="mine_header_img">我的头像</string>
     <string name="save">保存</string>
     <string name="exit_login">退出登录</string>
+    <string name="service">客服</string>
     <!--个人中心-->
     <string name="safety_user">账户安全中心</string>
     <string name="protect_user">空间隐私设置</string>

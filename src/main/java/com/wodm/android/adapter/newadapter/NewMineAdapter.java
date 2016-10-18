@@ -34,9 +34,9 @@ import org.eteclab.track.Tracker;
 
 public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] personArray = {"勋章", "足迹", "任务", "收藏", "缓存", "客服", "设置"};
+    private String[] personArray = {"勋章", "任务", "足迹", "收藏", "缓存", "客服", "设置"};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题"};
-    private int[] personIconArray = {R.drawable.medal_mine, R.drawable.footprint_mine, R.drawable.task_mine
+    private int[] personIconArray = {R.drawable.medal_mine, R.drawable.task_mine, R.drawable.footprint_mine
             , R.drawable.collect, R.drawable.cache, R.drawable.service_mine, R.drawable.settings};
 
     private int[] messageIconArray = {R.drawable.reply_mine, R.drawable.like_mine, R.drawable.inform_mine
@@ -111,7 +111,7 @@ public class NewMineAdapter extends BaseAdapter {
 
     private void getIntent(String text) {
         Tracker.getInstance(mContext).trackMethodInvoke("我的", "跳转" + text + "界面");
-        if (!UpdataUserInfo.isLogIn(mContext, true)&&!text.equals("设置")) {
+        if (!UpdataUserInfo.isLogIn(mContext, true) && !text.equals("设置")) {
             Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -198,9 +198,9 @@ public class NewMineAdapter extends BaseAdapter {
             gvHolder.tv_name.setText(mArray[position]);
 
             gvHolder.img_icon.setBackgroundResource(miconArray[position]);
-            int screenWidth=Tools.getScreenWidth((Activity) mContext);
-            int width=screenWidth/4;
-            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(width,width);
+            int screenWidth = Tools.getScreenWidth((Activity) mContext);
+            int width = screenWidth / 4;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width);
             gvHolder.ll_adapter.setLayoutParams(params);
             return convertView;
         }
