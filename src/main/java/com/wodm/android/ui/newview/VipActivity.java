@@ -29,7 +29,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/10/8.
  */
 @Layout(R.layout.aty_new_vip)
-public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
+public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
     @ViewIn(R.id.user_head_imgs)
     private CircularImage user_head_imgs;
     @ViewIn(R.id.vip_user_head_imgs)
@@ -54,10 +54,6 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     private TextView tv_endof_vip_num;
     @ViewIn(R.id.img_sex)
     private ImageView img_sex;
-<<<<<<< HEAD
-=======
-
->>>>>>> 7824ee45fd6acdeb16d59f37efe6264de1ab0a01
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,15 +65,14 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
         set_topbar.setOnTopbarClickListenter(this);
         setUserInfo();
     }
-
-    private void setUserInfo() {
-        httpGet(Constants.APP_GET_VIP_TIME + CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+    private void setUserInfo(){
+        httpGet(Constants.APP_GET_VIP_TIME+CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                String day = obj.optString("data");
-                tv_endof_vip_num.setText(day + "");
+                String day=obj.optString("data");
+                tv_endof_vip_num.setText(day+"");
             }
 
             @Override
@@ -85,12 +80,12 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
                 super.doAuthFailure(result, obj);
             }
         });
-        UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
-        if (accountBean.getVip() == 0) {
+        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
+        if (accountBean.getVip()==0){
             rl_isVip.setVisibility(View.GONE);
             rl_noVip.setVisibility(View.VISIBLE);
             vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
-        } else {
+        }else{
             rl_isVip.setVisibility(View.VISIBLE);
             rl_noVip.setVisibility(View.GONE);
             vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
@@ -99,10 +94,6 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
         if (!TextUtils.isEmpty(gradename)) {
             btn_grade_name.setText(gradename);
         }
-        tv_speed.setText("LV." + accountBean.getGradeValue());
-        tv_no_vip_username.setText(accountBean.getNickName());
-        tv_user_name.setText(accountBean.getNickName());
-        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {
             img_sex.setImageResource(R.drawable.sex_radio_baomi);
@@ -111,41 +102,10 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
         } else {
             img_sex.setImageResource(R.mipmap.sex_women);
         }
-
-<<<<<<< HEAD
-           @Override
-           public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-               super.doAuthFailure(result, obj);
-           }
-       });
-       UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
-       if (accountBean.getVip()==0){
-           rl_isVip.setVisibility(View.GONE);
-           rl_noVip.setVisibility(View.VISIBLE);
-           vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
-       }else{
-           rl_isVip.setVisibility(View.VISIBLE);
-           rl_noVip.setVisibility(View.GONE);
-           vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
-       }
-       String gradename = accountBean.getGradeName();
-       if (!TextUtils.isEmpty(gradename)) {
-           btn_grade_name.setText(gradename);
-       }
-       int sex_value = accountBean.getSex();
-       if (sex_value == 0) {
-           img_sex.setBackgroundResource(R.drawable.sex_radio_baomi);
-       } else if (sex_value == 1) {
-           img_sex.setBackgroundResource(R.mipmap.sex_man);
-       } else {
-           img_sex.setBackgroundResource(R.mipmap.sex_women);
-       }
-       tv_speed.setText("LV."+accountBean.getGradeValue());
-       tv_no_vip_username.setText(accountBean.getNickName());
-       tv_user_name.setText(accountBean.getNickName());
-       new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
-=======
->>>>>>> 7824ee45fd6acdeb16d59f37efe6264de1ab0a01
+        tv_speed.setText("LV."+accountBean.getGradeValue());
+        tv_no_vip_username.setText(accountBean.getNickName());
+        tv_user_name.setText(accountBean.getNickName());
+        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
     }
 
     @Override
@@ -161,9 +121,9 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
             case R.id.btn_open_vip:
-                startActivity(new Intent(this, VipOpenActivity.class));
+                startActivity(new Intent(this,VipOpenActivity.class));
                 break;
         }
     }
