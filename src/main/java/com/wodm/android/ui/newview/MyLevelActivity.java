@@ -90,7 +90,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
         }
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {
-            sex.setImageResource(R.mipmap.sex_radio_baomi);
+            sex.setImageResource(R.drawable.sex_radio_baomi);
         } else if (sex_value == 1) {
             sex.setImageResource(R.mipmap.sex_man);
         } else {

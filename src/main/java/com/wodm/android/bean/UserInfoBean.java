@@ -89,6 +89,16 @@ public class UserInfoBean {
          * map.put("countScore", countScore);//今日总共能获得的积分
          * map.put("currentScore", currentScore);//今日获得的积分
          * map.put("needScore", needScore);//今日未获得的积分
+         * /**任务类型(1：日常 2：新手 3：临时任务 4：临时活动)
+         * private int taskType;
+         * 0：非 1：签到经验 2：观看动漫 3：发评论 4：完善个人资料
+         * 5：使用搜索功能 6：点击一次广告 7：查看一次新闻
+         * 8：添加一个好友 9：点一次赞 10：打赏一次 11：敬请期待
+         * private int taskValue;
+         * :newuser/perfectUserInfo
+         * Long userId   用户的id
+         * int taskType, 任务的大类 2
+         * int taskValue 任务的小类  4
          */
 
         private AccountBean account;

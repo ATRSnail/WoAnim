@@ -124,7 +124,7 @@ public class AtyTopLayout extends RelativeLayout {
         }else if (rightType==1){
             tv_right = new TextView(context);
             tv_right.setText(rightText);
-            tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, rightTextSize);
+            tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_28_px));
             tv_right.setTextColor(rightTextColor);
             tv_right.setPaddingRelative(15, 0, 15, 0);
             addView(tv_right, rightLayoutParams);
