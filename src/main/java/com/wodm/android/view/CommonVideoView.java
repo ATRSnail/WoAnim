@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -139,6 +140,9 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
     public void start(String url) {
+        if (TextUtils.isEmpty(url)){
+            return;
+        }
         videoView.stopPlayback();
         videoPauseBtn.setEnabled(false);
         videoSeekBar.setEnabled(false);

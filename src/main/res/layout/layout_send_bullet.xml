@@ -24,8 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="5dp"
-                android:padding="5dp"
                 android:background="#585d61"
                 android:textSize="15sp"
                 android:textColorHint="#85898c"
@@ -45,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/px_36"
             android:layout_gravity="center_vertical"
-            android:padding="10dp"
             android:gravity="center"
             android:textColor="#487fe8"
             android:text="发送"/>
