@@ -2,6 +2,7 @@ package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -59,13 +60,15 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
             return;
         }
 
-        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
-        String score = String.valueOf(dataBean.getScore());
-        String needscore = String.valueOf(dataBean.getNeedScore());
-        String currentscore = String.valueOf(dataBean.getCurrentScore());
+        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
+        String score = String.valueOf(accountBean.getScore());
+        String needscore = String.valueOf(accountBean.getNeedScore());
+        String currentscore = String.valueOf(accountBean.getCurrentScore());
         if (!TextUtils.isEmpty(score)) {
             score_wallet.setText(score);
         }
+
+
         if (!TextUtils.isEmpty(score)) {
             need_score_wallet.setText(needscore);
         }

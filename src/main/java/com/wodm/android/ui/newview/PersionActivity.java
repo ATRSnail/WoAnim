@@ -109,7 +109,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     }
 
     private void initLinearLayout(LinearLayout layout, int medalType) {
-        int size = 4;
+        int size = 1;
         switch (medalType) {
             case 4:
                 size = 2;
@@ -118,6 +118,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 size = 3;
                 break;
             case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
                 size = 4;
                 break;
         }
@@ -149,12 +153,16 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 break;
             case 5:
                 if (i == 1 || i == 0) {
-                    image.setImageResource(medalImage[1]);
+                    image.setImageResource(medalImage[i]);
                 }
                 break;
             case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
                 if (i != 3) {
-                    image.setImageResource(medalImage[2]);
+                    image.setImageResource(medalImage[i]);
                 }
                 break;
         }

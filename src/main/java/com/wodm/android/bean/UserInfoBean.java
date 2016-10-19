@@ -113,45 +113,6 @@ public class UserInfoBean {
         }
 
         private float wallet;
-        private int score;//积分
-        private int currentScore;
-        private int needScore;
-
-        public int getCurrentScore() {
-            return currentScore;
-        }
-
-        public void setCurrentScore(int currentScore) {
-            this.currentScore = currentScore;
-        }
-
-        public int getNeedScore() {
-            return needScore;
-        }
-
-        public void setNeedScore(int needScore) {
-            this.needScore = needScore;
-        }
-
-        private int maxCheckinCount;//累计签到天数
-        private int checkinCount;//连续签到天数
-
-
-        public int getMaxCheckinCount() {
-            return maxCheckinCount;
-        }
-
-        public void setMaxCheckinCount(int maxCheckinCount) {
-            this.maxCheckinCount = maxCheckinCount;
-        }
-
-        public int getCheckinCount() {
-            return checkinCount;
-        }
-
-        public void setCheckinCount(int checkinCount) {
-            this.checkinCount = checkinCount;
-        }
 
         public float getWallet() {
             return wallet;
@@ -161,13 +122,6 @@ public class UserInfoBean {
             this.wallet = wallet;
         }
 
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
-        }
 
         private int nextGradeEmpirical;
 
@@ -204,6 +158,7 @@ public class UserInfoBean {
         }
 
         public static class AccountBean {
+            private int score;//积分
             private int id;
             private String appkey;
             private String uuid;
@@ -227,6 +182,14 @@ public class UserInfoBean {
             private int empiricalValue;//累计经验
             private String gradeName;
             private int gradeImageId;
+
+            public int getScore() {
+                return score;
+            }
+
+            public void setScore(int score) {
+                this.score = score;
+            }
 
             public int getCountScore() {
                 return countScore;

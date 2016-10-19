@@ -1,7 +1,6 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -123,6 +122,12 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                     image.setImageResource(medalImage[i]);
                 }
                 break;
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                image.setImageResource(medalImage[i]);
+                break;
         }
     }
 
@@ -172,9 +177,8 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         if (key == i) {
             switch (medalType) {
                 case 4:
-                    if (i == 0) {
+                    if (i == 0)
                         image.setImageResource(clickedImage[i]);
-                    }
                     break;
                 case 5:
                     if (i == 1 || i == 0) {
@@ -185,6 +189,14 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                     if (i != 3) {
                         image.setImageResource(clickedImage[i]);
                     }
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+
+                    image.setImageResource(clickedImage[i]);
+
                     break;
             }
         }
