@@ -67,6 +67,7 @@ public class ForgetPassActivity extends AppActivity implements AtyTopLayout.myTo
     }
 
     private void sendResigter() {
+
         final String phone = Tools.getText(et_phone);
         final String password = Tools.getText(et_password);
         String yzm = Tools.getText(et_yzm);
@@ -79,6 +80,7 @@ public class ForgetPassActivity extends AppActivity implements AtyTopLayout.myTo
                 Toast.makeText(getApplicationContext(), "密码长度为6到18位", Toast.LENGTH_SHORT).show();
                 return;
             }
+
             JSONObject obj = new JSONObject();
             obj.put("accountName", phone);
             obj.put("authCode", yzm);
@@ -90,8 +92,12 @@ public class ForgetPassActivity extends AppActivity implements AtyTopLayout.myTo
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
                         Toast.makeText(ForgetPassActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        Intent intent =new Intent();
+                        intent.setClass(ForgetPassActivity.this,LgoinActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
 //                                mLoginRegistPager.setCurrentItem(0);
-                        login(phone, password);
+//                        login(phone, password);
                                 /*bean.setUserId(obj.getLong("userId"));
                                 bean.setToken(obj.getString("token"));*/
                         //info.getUserInfo(getApplicationContext(), bean.getUserId());

@@ -90,6 +90,7 @@
                     android:src="@mipmap/touxiang" />
 
                 <org.eteclab.ui.widget.CircularImage
+                    android:visibility="gone"
                     android:id="@+id/vip_user_head_imgs"
                     android:layout_width="@dimen/px_162"
                     android:layout_height="@dimen/px_162"

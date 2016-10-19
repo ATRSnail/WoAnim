@@ -1,6 +1,7 @@
 package com.wodm.android.ui;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -22,6 +23,7 @@ public class WebViewActivity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("活动");
         Bundle bundle=getIntent().getExtras();
         adsUrl=bundle.getString("adsUrl");
         if (adsUrl.equals("")){
@@ -38,10 +40,21 @@ public class WebViewActivity extends AppActivity {
         // 加载需要显示的网页
         webView.loadUrl(adsUrl);
         // 设置Web视图
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
         webView.setWebViewClient(new HelloWebViewClient());
         webView.getSettings().setBuiltInZoomControls(true); // 显示放大缩小 controler
         webView.getSettings().setSupportZoom(true); // 可以缩放
-        webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.CLOSE);// 默认缩放模式
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int mDensity = metrics.densityDpi;
+        if (mDensity == 120) {
+            webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.CLOSE);
+        }else if (mDensity == 160) {
+            webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.MEDIUM);
+        }else if (mDensity == 240) {
+            webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+        }
     }
 
     @Override

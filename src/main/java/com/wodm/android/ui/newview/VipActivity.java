@@ -81,15 +81,15 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
             }
         });
         UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
-        if (accountBean.getVip()==0){
-            rl_isVip.setVisibility(View.GONE);
-            rl_noVip.setVisibility(View.VISIBLE);
-            vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
-        }else{
-            rl_isVip.setVisibility(View.VISIBLE);
-            rl_noVip.setVisibility(View.GONE);
-            vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
-        }
+//        if (accountBean.getVip()==0){
+//            rl_isVip.setVisibility(View.GONE);
+//            rl_noVip.setVisibility(View.VISIBLE);
+//            vip_user_head_imgs.setBackgroundResource(R.mipmap.circle_novip);
+//        }else{
+//            rl_isVip.setVisibility(View.VISIBLE);
+//            rl_noVip.setVisibility(View.GONE);
+//            vip_user_head_imgs.setBackgroundResource(R.mipmap.circlr_vip);
+//        }
         String gradename = accountBean.getGradeName();
         if (!TextUtils.isEmpty(gradename)) {
             btn_grade_name.setText(gradename);

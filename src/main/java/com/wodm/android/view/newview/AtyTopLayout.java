@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wodm.R;
+import com.wodm.android.tools.DisplayUtil;
 
 /**
  * Created by songchenyu on 16/9/26.
@@ -109,11 +110,12 @@ public class AtyTopLayout extends RelativeLayout {
         rightLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE); //设置右对齐
         rightLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE); //设置右对齐
 //        rightLayoutParams.setMarginEnd((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
+        int padding= DisplayUtil.px2dip(getContext(),30);
         if (rightType==2){
             rightImage = new ImageView(context);
             Toast.makeText(context, ""+rightDrawable, Toast.LENGTH_SHORT).show();
             rightImage.setImageResource(rightDrawable);
-            rightImage.setPaddingRelative(15, 0, 15, 0);
+            rightImage.setPaddingRelative(padding, 0, padding, 0);
             addView(rightImage, rightLayoutParams);//rightButton以rightLayoutParams的形式加入到ViewGroup中
             rightImage.setOnClickListener(new OnClickListener() {
                 @Override
@@ -126,7 +128,7 @@ public class AtyTopLayout extends RelativeLayout {
             tv_right.setText(rightText);
             tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_28_px));
             tv_right.setTextColor(rightTextColor);
-            tv_right.setPaddingRelative(15, 0, 15, 0);
+            tv_right.setPaddingRelative(padding, 0, padding, 0);
             addView(tv_right, rightLayoutParams);
 
             tv_right.setOnClickListener(new OnClickListener() {

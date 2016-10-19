@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/more"
-            android:textColor="@color/more_color"
+            android:textColor="@color/color_999999"
             android:textSize="@dimen/text_size_22_px" />
 
 

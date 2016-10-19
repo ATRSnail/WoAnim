@@ -34,13 +34,13 @@ import org.eteclab.track.Tracker;
 
 public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] personArray = {"勋章", "任务", "足迹", "收藏", "缓存", "客服", "设置"};
-    private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题"};
+    private String[] personArray = {"成就", "任务", "足迹", "收藏", "缓存", "客服", "设置",""};
+    private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题","","",""};
     private int[] personIconArray = {R.drawable.medal_mine, R.drawable.task_mine, R.drawable.footprint_mine
-            , R.drawable.collect, R.drawable.cache, R.drawable.service_mine, R.drawable.settings};
+            , R.drawable.collect, R.drawable.cache, R.drawable.service_mine, R.drawable.settings,0};
 
     private int[] messageIconArray = {R.drawable.reply_mine, R.drawable.like_mine, R.drawable.inform_mine
-            , R.drawable.mine, R.drawable.topic_mine};
+            , R.drawable.mine, R.drawable.topic_mine,0,0,0};
 
     public NewMineAdapter(Context context) {
         this.mContext = context;
@@ -196,8 +196,9 @@ public class NewMineAdapter extends BaseAdapter {
                 gvHolder = (GvHolder) convertView.getTag();
             }
             gvHolder.tv_name.setText(mArray[position]);
-
-            gvHolder.img_icon.setBackgroundResource(miconArray[position]);
+            if (miconArray[position]!=0){
+                gvHolder.img_icon.setBackgroundResource(miconArray[position]);
+            }
             int screenWidth = Tools.getScreenWidth((Activity) mContext);
             int width = screenWidth / 4;
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width);

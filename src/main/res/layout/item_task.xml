@@ -47,15 +47,6 @@
             android:textSize="@dimen/text_size_28_px"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_other_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/tv_task_item_value"
-            android:text="@string/days_add"
-            android:textSize="@dimen/text_size_28_px"
-            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_right"
