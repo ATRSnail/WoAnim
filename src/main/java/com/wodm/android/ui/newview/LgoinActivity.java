@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,6 +79,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 login(resigter, password);
                 break;
             case R.id.img_we_chat:
+                Log.e("AAAAA", "");
                 Wx.init(LgoinActivity.this).sendAuthRequest();
                 break;
             case R.id.forget_pass_login:

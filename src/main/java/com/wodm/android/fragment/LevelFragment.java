@@ -55,7 +55,7 @@ public class LevelFragment extends Fragment {
         holder.text_4 = (TextView) view.findViewById(R.id.leve_4);
         holder.text_5 = (TextView) view.findViewById(R.id.leve_5);
         holder.text_need = (TextView) view.findViewById(R.id.level_need);
-        holder.text_need.setText("距离LV" + gradeValue + "还有" + dataBean.getNeedEmpirical() + "经验值");
+        holder.text_need.setText("距离LV" + (gradeValue + 1) + "还有" + dataBean.getNeedEmpirical() + "经验值");
 
     }
 
