@@ -16,6 +16,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.NoScrollListView;
 
@@ -143,7 +144,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             int next_num=dataBean.getNextGradeEmpirical();
             int need_num=dataBean.getNeedEmpirical();
             int num= (int) (110*(1-((float)need_num/next_num)));
-            RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num,30);
+            int num_sc= DisplayUtil.px2dip(getActivity(),30);
+            RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num,num_sc);
             img_progress_params.setMargins(0,5,0,5);
             img_progress.setLayoutParams(img_progress_params);
             new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());

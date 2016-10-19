@@ -276,6 +276,7 @@ public class TaskAdapter extends BaseAdapter {
 
     public void setQiandaoType() {
         isQiandao = true;
+        notifyDataSetChanged();
     }
 
     /**

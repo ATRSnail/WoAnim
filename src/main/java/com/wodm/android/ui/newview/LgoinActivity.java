@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
@@ -18,7 +17,6 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -174,7 +172,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                         Preferences.getInstance(getApplicationContext()).setPreference("userId", Long.valueOf(obj.getString("userId")));
                         Preferences.getInstance(getApplicationContext()).setPreference("token", obj.getString("token"));
                         infos.getUserInfo(LgoinActivity.this, Long.valueOf(obj.getString("userId")));
-                        finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

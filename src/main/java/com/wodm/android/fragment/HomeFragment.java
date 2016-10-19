@@ -89,7 +89,8 @@ public class HomeFragment extends TrackFragment {
                     }.getType());
 
                     List<View> bannerViews = new ArrayList<View>();
-                    for (int i = 0; i < (list.size() > 5 ? 5 : list.size()); i++) {
+                    //(list.size() > 5 ? 5 : list.size())
+                    for (int i = 0; i < (list.size() > 5 ? 5 : list.size()) ; i++) {
                         ImageView v = new ImageView(getActivity());
                         v.setScaleType(ImageView.ScaleType.FIT_XY);
                         final BannerBean bean = list.get(i);
@@ -109,6 +110,7 @@ public class HomeFragment extends TrackFragment {
                                     } else if (bean.getType().equals("2")) {
                                         intent.setClass(getActivity(), CarDetailActivity.class);
                                     }else {
+                                        intent.putExtra("adsUrl",bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);
                                     }
                                     startActivity(intent);

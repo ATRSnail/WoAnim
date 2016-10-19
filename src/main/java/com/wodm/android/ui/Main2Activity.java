@@ -222,6 +222,11 @@ public class Main2Activity extends AppActivity {
                 mfloatView.setVisibility(View.INVISIBLE);
             }
 
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                Toast.makeText(Main2Activity.this, ""+obj.optString("msg"), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

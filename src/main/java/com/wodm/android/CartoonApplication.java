@@ -43,7 +43,7 @@ public class CartoonApplication extends TrackApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-//        CrashHandler.getInstance().init(getApplicationContext());
+        CrashHandler.getInstance().init(getApplicationContext());
         mContext = getApplicationContext();
         Fresco.initialize(mContext);
         ShareSdks.initShare(getApplicationContext());

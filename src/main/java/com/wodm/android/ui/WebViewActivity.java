@@ -2,6 +2,7 @@ package com.wodm.android.ui;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -17,9 +18,15 @@ import org.eteclab.base.annotation.ViewIn;
 public class WebViewActivity extends AppActivity {
     @ViewIn(R.id.webview)
     private WebView webView;
+    private String adsUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle=getIntent().getExtras();
+        adsUrl=bundle.getString("adsUrl");
+        if (adsUrl.equals("")){
+            finish();
+        }
         init();
     }
 
@@ -29,9 +36,12 @@ public class WebViewActivity extends AppActivity {
 
         webView.getSettings().setJavaScriptEnabled(true);
         // 加载需要显示的网页
-        webView.loadUrl("http://www.baidu.com/");
+        webView.loadUrl(adsUrl);
         // 设置Web视图
         webView.setWebViewClient(new HelloWebViewClient());
+        webView.getSettings().setBuiltInZoomControls(true); // 显示放大缩小 controler
+        webView.getSettings().setSupportZoom(true); // 可以缩放
+        webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.CLOSE);// 默认缩放模式
     }
 
     @Override

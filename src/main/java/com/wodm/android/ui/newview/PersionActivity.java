@@ -12,13 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.http.RequestParams;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -194,8 +194,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         int next_num = dataBean.getNextGradeEmpirical();
         int need_num = dataBean.getNeedEmpirical();
         int num = (int) (110 * (1 - ((float) need_num / next_num)));
-        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, 30);
-        img_progress_params.setMargins(0, 5, 0, 5);
+        int num_sc= DisplayUtil.px2dip(this,30);
+        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
+        int margin= DisplayUtil.px2dip(this,5);
+        img_progress_params.setMargins(0, margin, 0, margin);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();
