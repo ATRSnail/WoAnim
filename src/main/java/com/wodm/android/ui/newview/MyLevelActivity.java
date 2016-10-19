@@ -2,8 +2,11 @@ package com.wodm.android.ui.newview;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -28,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_my_level)
-public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
+public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
     @ViewIn(R.id.gv_level)
     private MyGridView gridView;
     private List<Map<String, String>> list;
@@ -48,7 +51,8 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     private TextView exper;
     @ViewIn(R.id.total_experience_tv)
     private TextView totalExp;
-
+    @ViewIn(R.id.kai_tong_level)
+    Button kai_tong_level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +60,11 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
         initData();
         gridView.setAdapter(adapter);
         topLayout.setOnTopbarClickListenter(this);
-
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_level, new LevelFragment());
         transaction.commit();
+        kai_tong_level.setOnClickListener(this);
     }
 
     private void initData() {
@@ -134,4 +138,12 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.kai_tong_level:
+                startActivity(new Intent(getApplicationContext(), VipOpenActivity.class));
+                break;
+        }
+    }
 }

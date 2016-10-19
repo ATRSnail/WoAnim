@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -47,7 +50,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     private int not_Image[] = new int[]{R.mipmap.not_commer_medal, R.mipmap.not_forget_medal, R.mipmap.not_forget_medal, R.mipmap.not_driver_medal};
     UserInfoBean.DataBean dataBean;
     List<MedalInfoBean.DataBean> dataBeanList;
-    private boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,31 +104,34 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 break;
             case 5:
                 break;
+            default:
+                initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+                break;
         }
     }
 
-    private void initMedalType(int medalType, ImageView image, int i) {
+    private void initMedalType(int medalType, ToggleButton image, int i) {
         switch (medalType) {
             case 4:
                 if (i == 0) {
-                    image.setImageResource(medalImage[0]);
+                    image.setBackgroundResource(medalImage[0]);
                 }
                 break;
             case 5:
                 if (i == 1 || i == 0) {
-                    image.setImageResource(medalImage[i]);
+                    image.setBackgroundResource(medalImage[i]);
                 }
                 break;
             case 6:
                 if (i != 3) {
-                    image.setImageResource(medalImage[i]);
+                    image.setBackgroundResource(medalImage[i]);
                 }
                 break;
             case 7:
             case 8:
             case 9:
             case 10:
-                image.setImageResource(medalImage[i]);
+                image.setBackgroundResource(medalImage[i]);
                 break;
         }
     }
@@ -134,13 +139,17 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     private void initLinearLayout(LinearLayout layout, int id, int medalType) {
 
         for (int i = 0; i < not_Image.length; i++) {
-            ImageView image = new ImageView(this);
-            image.setScaleType(ImageView.ScaleType.FIT_XY);
+            ToggleButton image = new ToggleButton(this);
+            image.setTextOn("");
+            image.setTextOff("");
+            image.setText("");
+//            image.setScaleType(ImageView.ScaleType.FIT_XY);
             int width = (Tools.getScreenWidth(this) - 60) / 12 * 4;
             int height = (int) ((Tools.getScreenWidth(this) - 60) / 12 * 4 * 1.35);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
             params.setMargins(0, 0, 30, 0);
-            image.setImageResource(not_Image[i]);
+
+            image.setBackgroundResource(not_Image[i]);
             initMedalType(medalType, image, i);
             image.setLayoutParams(params);
             image.setTag(i);
@@ -172,22 +181,23 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     void panduan(LinearLayout linearLayout, int i, int key, int medalType) {
-        ImageView image = (ImageView) linearLayout.getChildAt(i);
+        ToggleButton image = (ToggleButton) linearLayout.getChildAt(i);
 
         if (key == i) {
             switch (medalType) {
                 case 4:
-                    if (i == 0)
-                        image.setImageResource(clickedImage[i]);
+                    if (i == 0) {
+                        image.setBackgroundResource(image.isChecked() ? clickedImage[i] : medalImage[i]);
+                    }
                     break;
                 case 5:
                     if (i == 1 || i == 0) {
-                        image.setImageResource(clickedImage[i]);
+                        image.setBackgroundResource(image.isChecked() ? clickedImage[i] : medalImage[i]);
                     }
                     break;
                 case 6:
                     if (i != 3) {
-                        image.setImageResource(clickedImage[i]);
+                        image.setBackgroundResource(image.isChecked() ? clickedImage[i] : medalImage[i]);
                     }
                     break;
                 case 7:
@@ -195,7 +205,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 case 9:
                 case 10:
 
-                    image.setImageResource(clickedImage[i]);
+                    image.setBackgroundResource(image.isChecked() ? clickedImage[i] : medalImage[i]);
 
                     break;
             }
@@ -219,10 +229,10 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                         }
                         break;
                     case COMMENT:
-                        panduan(ll_comment_medal, i, key, 0);
+//                        panduan(ll_comment_medal, i, key, 0);
                         break;
                     case REGISTER:
-                        panduan(ll_register_medal, i, key, 0);
+//                        panduan(ll_register_medal, i, key, 0);
                         break;
                 }
             }

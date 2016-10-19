@@ -14,11 +14,13 @@
         android:weightSum="5">
 
         <LinearLayout
+            android:id="@+id/ll_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -73,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginLeft="@dimen/px_38"
+                android:layout_marginLeft="@dimen/px_36"
                 android:layout_marginTop="@dimen/px_40"
                 android:background="@mipmap/level_jiantou" />
 
@@ -87,7 +89,7 @@
                     android:layout_height="@dimen/px_96"
                     android:background="@drawable/btn_second_level_circle"
                     android:gravity="center"
-                    android:text="LV2书童"
+                    android:text="LV1"
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
@@ -100,12 +102,23 @@
 
 
             <TextView
-                android:id="@+id/level_need"
+                android:id="@+id/levelname_need"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/px_15"
-                android:text="距离LV3还有332经验值"
+                android:gravity="center"
+                android:text="距离LV3"
+                android:textColor="@color/color_ffcb4d"
+                android:textSize="@dimen/text_size_22_px" />
+
+            <TextView
+                android:id="@+id/levelexp_need"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="还有332经验值"
                 android:textColor="@color/color_ffcb4d"
                 android:textSize="@dimen/text_size_22_px" />
         </LinearLayout>
@@ -136,7 +149,7 @@
                     android:layout_height="@dimen/px_69"
                     android:background="@drawable/btn__level_three_circle"
                     android:gravity="center"
-                    android:text="LV3"
+                    android:text="LV2"
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
@@ -185,7 +198,7 @@
                     android:layout_height="@dimen/px_69"
                     android:background="@drawable/btn_second_level_circle"
                     android:gravity="center"
-                    android:text="LV4"
+                    android:text="LV3"
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
@@ -234,7 +247,7 @@
                     android:layout_height="@dimen/px_69"
                     android:background="@drawable/btn_level_circle"
                     android:gravity="center"
-                    android:text="LV5"
+                    android:text="LV4"
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
