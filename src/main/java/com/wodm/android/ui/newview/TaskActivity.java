@@ -33,7 +33,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/10/12.
  */
 @Layout(R.layout.activity_task)
-public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter ,View.OnClickListener,TaskAdapter.QianDaoListener{
+public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener, TaskAdapter.QianDaoListener {
     @ViewIn(R.id.scrollView)
     private ScrollView scrollView;
     @ViewIn(R.id.lv_task)
@@ -59,45 +59,48 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     private TextView lianxu_qiandao;
     @ViewIn(R.id.rl_open_vip)
     private RelativeLayout rl_open_vip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         top_task.setOnTopbarClickListenter(this);
         btn_qiandao.setOnClickListener(this);
         btn_open_vip.setOnClickListener(this);
-        adapter=new TaskAdapter(this);
+        adapter = new TaskAdapter(this);
         lv_task.setAdapter(adapter);
         adapter.setQiandapListener(this);
         initUserInfo();
         getWeatherQiandao();
     }
-    private void initUserInfo(){
-        if (CURRENT_USER == null){
+
+    private void initUserInfo() {
+        if (CURRENT_USER == null) {
             finish();
             return;
         }
-        UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
-        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_heade, accountBean.getPortrait());
-        total_day.setText(accountBean.getMaxCheckinCount()+"");
-        lianxu_qiandao.setText(accountBean.getCheckinCount()+"");
-        if (accountBean.getVip()!=0){
+        UserInfoBean.DataBean dataBean = CURRENT_USER.getData();
+        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_heade, dataBean.getAccount().getPortrait());
+        total_day.setText(dataBean.getMaxCheckinCount() + "");
+        lianxu_qiandao.setText(dataBean.getCheckinCount() + "");
+        if (dataBean.getAccount().getVip() != 0) {
             rl_open_vip.setVisibility(View.GONE);
         }
     }
-    private void getWeatherQiandao(){
-        if (CURRENT_USER==null){
+
+    private void getWeatherQiandao() {
+        if (CURRENT_USER == null) {
             finish();
             return;
         }
-        httpGet(Constants.APP_GET_TASKSTATUS+CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
+        httpGet(Constants.APP_GET_TASKSTATUS + CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    JSONObject jsonObject=new JSONObject(obj.getString("data"));
-                    if (jsonObject.optInt("status")== 1){
-                       initfinsh();
+                    JSONObject jsonObject = new JSONObject(obj.getString("data"));
+                    if (jsonObject.optInt("status") == 1) {
+                        initfinsh();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -110,7 +113,8 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             }
         });
     }
-    private void initfinsh(){
+
+    private void initfinsh() {
         top_line_view.setBackgroundColor(getResources().getColor(R.color.color_ef9429));
         top_task.setBackgroundResource("#ffa031");
         ll_top_task.setBackgroundResource(R.mipmap.qiandao_yellow_bg);
@@ -119,7 +123,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         btn_qiandao.setBackgroundResource(R.drawable.btn_task_qiandao_finish);
         btn_qiandao.setText("已签到");
         btn_qiandao.setFocusable(false);
-        if (adapter!=null){
+        if (adapter != null) {
             adapter.setQiandaoType();
         }
     }
@@ -135,6 +139,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         }
 
     }
+
     @Override
     public void leftClick() {
         finish();
@@ -144,24 +149,26 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void rightClick() {
 
     }
-   private void QianDao(){
-       httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
-           @Override
-           public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-               super.doAuthSuccess(result, obj);
-               Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
-               initfinsh();
-           }
-       });
-   }
+
+    private void QianDao() {
+        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+                initfinsh();
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_qiandao:
                 QianDao();
                 break;
             case R.id.btn_open_vip:
-                startActivity(new Intent(this,VipOpenActivity.class));
+                startActivity(new Intent(this, VipOpenActivity.class));
                 break;
         }
     }

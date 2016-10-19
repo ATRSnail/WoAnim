@@ -60,14 +60,13 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
             return;
         }
 
-        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
-        String score = String.valueOf(accountBean.getScore());
-        String needscore = String.valueOf(accountBean.getNeedScore());
-        String currentscore = String.valueOf(accountBean.getCurrentScore());
+        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
+        String score = String.valueOf(dataBean.getAccount().getScore());
+        String needscore = String.valueOf(dataBean.getNeedScore());
+        String currentscore = String.valueOf(dataBean.getCurrentScore());
         if (!TextUtils.isEmpty(score)) {
             score_wallet.setText(score);
         }
-
 
         if (!TextUtils.isEmpty(score)) {
             need_score_wallet.setText(needscore);

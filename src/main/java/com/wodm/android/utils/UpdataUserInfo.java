@@ -2,6 +2,7 @@ package com.wodm.android.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -24,6 +25,8 @@ public abstract class UpdataUserInfo {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
+
+                Log.e("AAAAA", "" + obj.toString());
                 getUserInfo(bean);
             }
 
