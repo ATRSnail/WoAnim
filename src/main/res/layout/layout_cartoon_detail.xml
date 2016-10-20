@@ -83,14 +83,27 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/px_10"
-            android:layout_marginTop="@dimen/px_12"
-            android:drawableLeft="@mipmap/tubiao"
-            android:drawablePadding="@dimen/px_19"
-            android:text="剧集列表" />
+       <LinearLayout
+           android:layout_marginBottom="@dimen/px_10"
+           android:layout_marginTop="@dimen/px_12"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:drawableLeft="@mipmap/tubiao"
+               android:drawablePadding="@dimen/px_19"
+               android:text="剧集列表" />
+           <TextView
+               android:id="@+id/dianji_num"
+               android:layout_marginLeft="@dimen/px_30"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="点击量:" />
+
+       </LinearLayout>
+
 
         <org.eteclab.ui.widget.NoScrollGridView
             android:id="@+id/grid_new"

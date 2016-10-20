@@ -155,6 +155,12 @@ public class CartoonReadActivity extends AppActivity {
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     private void startReadPath(String path) {
         ZipEctractAsyncTask asyncTask = new ZipEctractAsyncTask();
         getIntent().putExtra("beanPath", path);

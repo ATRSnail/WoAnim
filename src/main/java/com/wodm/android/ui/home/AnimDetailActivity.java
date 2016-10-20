@@ -79,6 +79,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private CircularImage img_xiaolian;
 
     private TextView mCarDesp;
+    @ViewIn(R.id.dianji_num)
+    private TextView dianji_num;
     private TextView mChapterDesp;
 
     private TextView mTitleDesp;
@@ -112,6 +114,37 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
         mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
         isCollectBox.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+        httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                int playcount=obj.optInt("playCount");
+                dianji_num.setText(playcount+"");
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
     @Override
