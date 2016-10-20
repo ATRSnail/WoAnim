@@ -7,20 +7,20 @@
     <Button
         android:id="@+id/action_item"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_120"
+        android:layout_height="wrap_content"
         android:background="@drawable/gonglue_rectangle"
         android:gravity="center"
         android:text="签到"
         android:textColor="@color/color_f7af00"
-        android:textSize="@dimen/text_size_36_px" />
+        android:textSize="@dimen/text_size_24_px" />
 
     <TextView
         android:id="@+id/experience_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/px_15"
+        android:layout_marginTop="@dimen/px_10"
         android:text="可得2经验值"
         android:textColor="@color/color_cccccc"
-        android:textSize="@dimen/text_size_30_px" />
+        android:textSize="20px" />
 </LinearLayout>

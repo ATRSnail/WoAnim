@@ -128,7 +128,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("设置")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
             startIntent(null, UsSetActivity.class);
-        } else if (text.equals("勋章")) {
+        } else if (text.equals("成就")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
             startIntent(null, MyMedalActivity.class);
         } else if (text.equals("足迹")) {

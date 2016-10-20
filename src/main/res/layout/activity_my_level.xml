@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/px_310"
             android:background="@mipmap/wallet_backg"
             android:orientation="vertical">
 
@@ -30,21 +30,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_330"
+                android:layout_height="@dimen/px_220"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <org.eteclab.ui.widget.CircularImage
                     android:id="@+id/icon_iv_level"
-                    android:layout_width="@dimen/px_138"
-                    android:layout_height="@dimen/px_138"
+                    android:layout_width="@dimen/px_92"
+                    android:layout_height="@dimen/px_92"
                     android:layout_gravity="center"
                     android:src="@mipmap/touxiang" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_15">
+                    android:layout_marginTop="@dimen/px_10">
 
                     <TextView
                         android:id="@+id/nickname_tv_level"
@@ -52,74 +52,81 @@
                         android:layout_height="wrap_content"
                         android:text="@string/level_nickname"
                         android:textColor="@color/color_333333"
-                        android:textSize="@dimen/px_36" />
+                        android:textSize="@dimen/text_size_24_px" />
 
                     <ImageView
                         android:id="@+id/sex_iv_level"
-                        android:layout_width="@dimen/px_27"
-                        android:layout_height="@dimen/px_27"
+                        android:layout_width="@dimen/px_18"
+                        android:layout_height="@dimen/px_18"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:layout_marginStart="@dimen/px_15"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:layout_marginStart="@dimen/px_10"
                         android:layout_toRightOf="@id/nickname_tv_level"
                         android:src="@mipmap/sex_women" />
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_15"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/level_experienece"
-                        android:textColor="@color/color_3f190c"
-                        android:textSize="@dimen/text_size_30_px" />
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/px_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_marginRight="@dimen/px_15"
+                        android:layout_alignRight="@+id/view"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_30">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/level_experienece"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_24_px" />
 
                         <TextView
                             android:id="@+id/experience_tv_level"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/px_15"
-                            android:layout_marginStart="@dimen/px_15"
+                            android:layout_height="match_parent"
                             android:text="020"
-                            android:textColor="@color/color_3f190c"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_24_px" />
 
-                        <View
-                            android:layout_width="@dimen/px_2"
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="@dimen/px_2"
+                        android:layout_height="@dimen/px_30"
+                        android:layout_centerInParent="true"
+                        android:background="@color/color_ffffff" />
+
+                    <LinearLayout
+                        android:layout_alignLeft="@+id/view"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_30">
+
+                        <TextView
+                            android:layout_marginRight="@dimen/px_15"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@id/experience_tv_level"
-                            android:layout_alignTop="@id/experience_tv_level"
-                            android:layout_marginLeft="@dimen/px_15"
-                            android:layout_toRightOf="@id/experience_tv_level"
-                            android:background="@color/color_3f190c" />
-                    </RelativeLayout>
+                            android:text="@string/level_total_experienece"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_24_px" />
+
+                        <TextView
+                            android:id="@+id/total_experience_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_10"
+                            android:text="557"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_24_px" />
+
+                    </LinearLayout>
+                </RelativeLayout>
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:text="@string/level_total_experienece"
-                        android:textColor="@color/color_3f190c"
-                        android:textSize="@dimen/text_size_30_px" />
-
-                    <TextView
-                        android:id="@+id/total_experience_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:text="557"
-                        android:textColor="@color/color_3f190c"
-                        android:textSize="@dimen/text_size_30_px" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -131,12 +138,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_96"
-            android:layout_marginLeft="@dimen/px_45"
+            android:layout_height="@dimen/px_64"
+            android:layout_marginLeft="@dimen/px_30"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="@dimen/px_12"
+                android:layout_width="@dimen/px_9"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/mylevel"
                 android:layout_alignTop="@+id/mylevel"
@@ -147,10 +154,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginLeft="@dimen/px_15"
                 android:text="@string/mine_level"
                 android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_22_px" />
 
         </RelativeLayout>
 
@@ -172,54 +179,54 @@
             android:background="@color/color_eeeeee" />
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_96"
-            android:background="@color/color_ffffff"
-            android:gravity="center_vertical">
+            android:layout_height="@dimen/px_64"
+            android:background="@color/color_ffffff">
 
             <TextView
-                android:layout_width="@dimen/px_48"
-                android:layout_height="@dimen/px_48"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="@dimen/px_45"
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_circle"
+                android:layout_alignParentLeft="true"
+                android:layout_width="@dimen/px_32"
+                android:layout_height="@dimen/px_32"
+                android:layout_marginLeft="@dimen/px_30"
                 android:background="@drawable/vip_icon_circle" />
 
             <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/px_15"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginLeft="@dimen/px_10"
                 android:text="@string/vip_speed_hint"
                 android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_22_px" />
 
             <Button
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
                 android:id="@+id/kai_tong_level"
-                android:layout_width="@dimen/px_126"
-                android:layout_height="@dimen/px_63"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="@dimen/px_45"
+                android:layout_width="@dimen/px_84"
+                android:layout_height="@dimen/px_42"
+                android:layout_marginRight="@dimen/px_30"
                 android:background="@drawable/kaitong_rectan"
-                android:gravity="center"
                 android:text="@string/open_vip_member"
                 android:textColor="@color/color_ff6361"
-                android:textSize="@dimen/text_size_24_px" />
+                android:textSize="14px" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_21"
+            android:layout_height="@dimen/px_14"
             android:background="@color/color_eeeeee" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_96"
-            android:layout_marginLeft="@dimen/px_45"
+            android:layout_height="@dimen/px_64"
+            android:layout_marginLeft="@dimen/px_30"
             android:gravity="center_vertical">
 
             <TextView
@@ -234,10 +241,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginLeft="@dimen/px_30"
                 android:text="@string/level_state"
                 android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_22_px" />
 
         </RelativeLayout>
 
@@ -250,7 +257,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/px_45"
+            android:layout_margin="@dimen/px_30"
             android:orientation="vertical">
 
             <TextView
@@ -258,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/level_up_method"
                 android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_22_px" />
 
 
             <com.wodm.android.view.newview.MyGridView
@@ -268,7 +275,7 @@
                 android:layout_marginTop="@dimen/px_45"
                 android:horizontalSpacing="@dimen/px_20"
                 android:numColumns="3"
-                android:verticalSpacing="@dimen/px_45" />
+                android:verticalSpacing="@dimen/px_30" />
         </LinearLayout>
 
         <View

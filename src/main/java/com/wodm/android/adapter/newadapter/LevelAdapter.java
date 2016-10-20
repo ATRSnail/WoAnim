@@ -1,20 +1,19 @@
 package com.wodm.android.adapter.newadapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wodm.R;
-import com.wodm.android.bean.TypeBean;
-import com.wodm.android.ui.newview.MyLevelActivity;
+import com.wodm.android.tools.Tools;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +57,10 @@ public class LevelAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        int width=Tools.getScreenWidth((Activity) mContext);
+        int view_width=(width-140)/3;
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(view_width,view_width/2);
+        holder.btn.setLayoutParams(params);
         Map<String, String> map = mList.get(position);
         holder.btn.setText(map.get("actionItem"));
         switch (position) {

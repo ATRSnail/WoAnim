@@ -1,265 +1,375 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_weight="4"
+        android:orientation="horizontal"
+        android:layout_marginRight="@dimen/px_76"
+        android:layout_marginLeft="@dimen/px_76"
+        android:layout_marginBottom="@dimen/px_15"
+        android:layout_marginTop="@dimen/px_30"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/px_45"
-        android:layout_marginRight="@dimen/px_15"
-        android:gravity="center"
-        android:weightSum="5">
-
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/ll_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginTop="@dimen/px_5"
+            android:id="@+id/ll_circle1"
             android:orientation="vertical"
-            android:visibility="invisible">
-
+            android:layout_width="@dimen/px_180"
+            android:layout_height="wrap_content">
             <ImageView
+                android:visibility="invisible"
+                android:layout_marginLeft="@dimen/px_30"
+                android:id="@+id/img_jiantou1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginLeft="@dimen/px_20"
-                android:layout_marginTop="@dimen/px_40"
                 android:background="@mipmap/level_jiantou"
-                android:visibility="invisible" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1"
+                android:layout_below="@+id/img_jiantou1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/leve_1"
-                    android:layout_width="@dimen/px_69"
-                    android:layout_height="@dimen/px_69"
-                    android:background="@drawable/btn_level_circle"
-                    android:gravity="center"
-                    android:text="LV1"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
-
                 <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_2"
-                    android:layout_gravity="center"
-                    android:background="@color/color_ffcb4d" />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="@dimen/px_15"
-                android:text="距离LV3还有332经验值"
-                android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginLeft="@dimen/px_36"
-                android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/leve_2"
-                    android:layout_width="@dimen/px_96"
-                    android:layout_height="@dimen/px_96"
-                    android:background="@drawable/btn_second_level_circle"
-                    android:gravity="center"
-                    android:text="LV1"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_2"
-                    android:layout_gravity="center"
-                    android:background="@color/color_ffcb4d" />
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/level_need"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/px_15"
-                android:gravity="center"
-                android:text="距离LV3还有332经验值"
-                android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/px_20"
-                android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou"
-                android:visibility="invisible" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/leve_3"
-                    android:layout_width="@dimen/px_69"
-                    android:layout_height="@dimen/px_69"
-                    android:background="@drawable/btn__level_three_circle"
-                    android:gravity="center"
-                    android:text="LV2"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_2"
-                    android:layout_gravity="center"
-                    android:background="@color/color_ffcb4d" />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="@dimen/px_15"
-                android:text="距离LV3还有332经验值"
-                android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/px_20"
-                android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou"
-                android:visibility="invisible" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/leve_4"
-                    android:layout_width="@dimen/px_69"
-                    android:layout_height="@dimen/px_69"
-                    android:background="@drawable/btn_second_level_circle"
-                    android:gravity="center"
-                    android:text="LV3"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_2"
-                    android:layout_gravity="center"
-                    android:background="@color/color_ffcb4d" />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="@dimen/px_15"
-                android:text="距离LV3还有332经验值"
-                android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/px_20"
-                android:layout_marginTop="@dimen/px_40"
-                android:background="@mipmap/level_jiantou"
-                android:visibility="invisible" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/leve_5"
-                    android:layout_width="@dimen/px_69"
-                    android:layout_height="@dimen/px_69"
-                    android:background="@drawable/btn_level_circle"
-                    android:gravity="center"
-                    android:text="LV4"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_2"
-                    android:layout_gravity="center"
+                    android:layout_centerVertical="true"
                     android:background="@color/color_ffcb4d"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_1"></View>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/leve_1"
+                        android:layout_width="@dimen/px_72"
+                        android:layout_height="@dimen/px_72"
+                        android:background="@drawable/btn_second_level_circle"
+                        android:text=""
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:id="@+id/tv_lv1"
+                        android:padding="@dimen/px_5"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_alignLeft="@+id/leve_1"
+                        android:layout_alignRight="@+id/leve_1"
+                        android:text="LV1"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_circle2"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:id="@+id/tv_jingyanzhi1"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:text="      距离LV3\n还有332经验值"
+                    android:textColor="@color/color_ffb164"
+                    android:textSize="14px"
                     android:visibility="invisible" />
             </LinearLayout>
 
-
-            <TextView
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="-10dp"
+            android:orientation="vertical"
+            android:layout_width="@dimen/px_180"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="@dimen/px_32"
+                android:id="@+id/img_jiantou2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@mipmap/level_jiantou"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_5"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_1"></View>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/leve_2"
+                        android:layout_width="@dimen/px_72"
+                        android:layout_height="@dimen/px_72"
+                        android:background="@drawable/btn_circle1"
+                        android:text=""
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:id="@+id/tv_lv2"
+                        android:padding="@dimen/px_5"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_alignLeft="@+id/leve_2"
+                        android:layout_alignRight="@+id/leve_2"
+                        android:text="LV1\n测试"
+                        android:layout_width="@dimen/px_64"
+                        android:layout_height="@dimen/px_64" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/px_5"
+                android:id="@+id/ll_circle3"
                 android:layout_gravity="left"
-                android:layout_marginTop="@dimen/px_15"
-                android:text="距离LV3还有332经验值"
-                android:textColor="@color/color_ffcb4d"
-                android:textSize="@dimen/text_size_22_px"
-                android:visibility="invisible" />
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_jingyanzhi2"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:text="      距离LV3\n还有332经验值"
+                    android:textColor="@color/color_ffb164"
+                    android:textSize="14px"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_marginLeft="-10dp"
+            android:orientation="vertical"
+            android:layout_width="@dimen/px_180"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginLeft="@dimen/px_30"
+                android:id="@+id/img_jiantou3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/level_jiantou"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_1"></View>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/leve_3"
+                        android:layout_width="@dimen/px_72"
+                        android:layout_height="@dimen/px_72"
+                        android:background="@drawable/btn_circle3"
+                        android:text=""
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/tv_lv3"
+                        android:padding="@dimen/px_5"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_alignLeft="@+id/leve_3"
+                        android:layout_alignRight="@+id/leve_3"
+                        android:text="LV1\n测试"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_circle4"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_jingyanzhi3"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:text="      距离LV3\n还有332经验值"
+                    android:textColor="@color/color_ffb164"
+                    android:textSize="14px"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_marginLeft="-10dp"
+            android:orientation="vertical"
+            android:layout_width="@dimen/px_180"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginLeft="@dimen/px_30"
+                android:id="@+id/img_jiantou4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/level_jiantou"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_1"></View>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/leve_4"
+                        android:layout_width="@dimen/px_72"
+                        android:layout_height="@dimen/px_72"
+                        android:background="@drawable/btn_circle4"
+                        android:text=""
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_lv4"
+                        android:padding="@dimen/px_5"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_alignLeft="@+id/leve_4"
+                        android:layout_alignRight="@+id/leve_4"
+                        android:text="LV1"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_circle5"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_jingyanzhi4"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:text="      距离LV3\n还有332经验值"
+                    android:textColor="@color/color_ffb164"
+                    android:textSize="14px"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_marginLeft="-10dp"
+            android:orientation="vertical"
+            android:layout_width="@dimen/px_100"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:visibility="invisible"
+                android:layout_marginLeft="@dimen/px_30"
+                android:id="@+id/img_jiantou5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/level_jiantou"
+                />
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/leve_5"
+                        android:layout_width="@dimen/px_72"
+                        android:layout_height="@dimen/px_72"
+                        android:background="@drawable/btn_circle1"
+                        android:text=""
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/tv_lv5"
+                        android:padding="@dimen/px_5"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_alignLeft="@+id/leve_5"
+                        android:layout_alignRight="@+id/leve_5"
+                        android:text="LV1\n测试"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_jingyanzhi5"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:text="      距离LV3\n还有332经验值"
+                    android:textColor="@color/color_ffb164"
+                    android:textSize="14px"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
         </LinearLayout>
 
+
+
+
+
+
     </LinearLayout>
+
 </LinearLayout>

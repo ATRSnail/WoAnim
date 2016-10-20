@@ -31,7 +31,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_86"
+                android:layout_height="@dimen/px_64"
                 android:orientation="horizontal">
 
                 <EditText
@@ -39,24 +39,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginLeft="@dimen/px_30"
                     android:background="@null"
                     android:hint="@string/input_phone"
                     android:inputType="phone"
                     android:textColor="@color/color_3d3d3d"
                     android:textColorHint="@color/color_cccccc"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_1"
+                android:layout_height="@dimen/px_2"
                 android:background="@color/color_eae7e7"></View>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_86"
+                android:layout_height="@dimen/px_64"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -65,13 +65,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginLeft="@dimen/px_30"
                     android:layout_toLeftOf="@+id/btn_yzm"
                     android:background="@null"
                     android:hint="@string/input_yzm"
                     android:textColor="@color/color_3d3d3d"
                     android:textColorHint="@color/color_cccccc"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
 
                 <Button
                     android:id="@+id/btn_yzm"
@@ -80,25 +80,25 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="@dimen/px_10"
                     android:layout_marginLeft="@dimen/px_20"
-                    android:layout_marginRight="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_30"
                     android:layout_marginTop="@dimen/px_10"
                     android:background="@drawable/btn_yzm"
                     android:gravity="center"
                     android:text="@string/input_yzm"
                     android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
+                    android:textSize="14px" />
 
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_1"
+                android:layout_height="@dimen/px_2"
                 android:background="@color/color_eae7e7"></View>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_86"
+                android:layout_height="@dimen/px_64"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -107,13 +107,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginLeft="@dimen/px_30"
                     android:background="@null"
                     android:hint="@string/new_password"
                     android:inputType="textPassword"
                     android:textColor="@color/color_3d3d3d"
                     android:textColorHint="@color/color_cccccc"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
 
             </LinearLayout>
         </LinearLayout>
@@ -123,20 +123,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/px_45"
+        android:layout_marginTop="@dimen/px_30"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_finish"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_83"
-            android:layout_marginLeft="@dimen/px_45"
-            android:layout_marginRight="@dimen/px_45"
-            android:layout_marginTop="@dimen/px_45"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_marginRight="@dimen/px_30"
+            android:layout_marginTop="@dimen/px_30"
             android:background="@drawable/btn_login_shape"
             android:text="@string/finsh"
             android:textColor="@color/color_3f190c"
-            android:textSize="@dimen/text_size_36_px" />
+            android:textSize="@dimen/text_size_24_px" />
     </LinearLayout>
 
 </LinearLayout>

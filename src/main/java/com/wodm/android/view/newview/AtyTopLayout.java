@@ -108,9 +108,10 @@ public class AtyTopLayout extends RelativeLayout {
 
         rightLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         rightLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE); //设置右对齐
-        rightLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE); //设置右对齐
-//        rightLayoutParams.setMarginEnd((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
+        rightLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE); //设置右对齐\
         int padding= DisplayUtil.px2dip(getContext(),30);
+        rightLayoutParams.setMargins(0,0,padding,0);
+//        rightLayoutParams.setMarginEnd((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
         if (rightType==2){
             rightImage = new ImageView(context);
             Toast.makeText(context, ""+rightDrawable, Toast.LENGTH_SHORT).show();

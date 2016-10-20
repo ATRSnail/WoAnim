@@ -125,5 +125,5 @@
     <string name="day_of_end">距离会员到期,剩余</string>
     <string name="only_guajian">专属挂件</string>
     <string name="no_vip_user">非VIP用户</string>
-
+    <string name="way_if_next">      距离 %2$d, 还有 %2$d 经验值</string>
 </resources>
