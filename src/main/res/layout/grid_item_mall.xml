@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <org.eteclab.ui.widget.CircularImage
+            android:id="@+id/icon_item_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/px_240"
+            android:background="@drawable/stroke_rectangle_mall3"
+            android:src="@mipmap/diamond" />
+
+        <TextView
+            android:id="@+id/name_item_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_15"
+            android:text="钻石头相框"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_30_px" />
+
+        <TextView
+            android:id="@+id/score_item_mall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_15"
+            android:text="930积分"
+            android:textColor="@color/color_ff6f21"
+            android:textSize="@dimen/text_size_24_px" />
+    </LinearLayout>
+
+</LinearLayout>

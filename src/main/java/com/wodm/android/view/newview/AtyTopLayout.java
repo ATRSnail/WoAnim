@@ -65,13 +65,13 @@ public class AtyTopLayout extends RelativeLayout {
         titleTextColor = ta.getColor(R.styleable.secondTopbar_CustomtitleTextColor, 0);
         backgroundColor = ta.getColor(R.styleable.secondTopbar_BackGroundColor, Color.TRANSPARENT);
         titleText = ta.getString(R.styleable.secondTopbar_Customtoptitle);
-        rightType = ta.getInteger(R.styleable.secondTopbar_rightType,0);
-        if (rightType==2){
+        rightType = ta.getInteger(R.styleable.secondTopbar_rightType, 0);
+        if (rightType == 2) {
             rightDrawable = ta.getResourceId(R.styleable.secondTopbar_rightBackGround, 0);
-        }else if (rightType==1){
-            rightText= ta.getString(R.styleable.secondTopbar_rightText);
-            rightTextColor = ta.getColor(R.styleable.secondTopbar_rightTextColor,0);
-            rightTextSize = ta.getDimension(R.styleable.secondTopbar_rightTextSize,0);
+        } else if (rightType == 1) {
+            rightText = ta.getString(R.styleable.secondTopbar_rightText);
+            rightTextColor = ta.getColor(R.styleable.secondTopbar_rightTextColor, 0);
+            rightTextSize = ta.getDimension(R.styleable.secondTopbar_rightTextSize, 0);
         }
 
         ta.recycle();
@@ -109,12 +109,12 @@ public class AtyTopLayout extends RelativeLayout {
         rightLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         rightLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE); //设置右对齐
         rightLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE); //设置右对齐\
-        int padding= DisplayUtil.px2dip(getContext(),30);
-        rightLayoutParams.setMargins(0,0,padding,0);
+        int padding = DisplayUtil.px2dip(getContext(), 30);
+        rightLayoutParams.setMargins(0, 0, padding, 0);
 //        rightLayoutParams.setMarginEnd((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
-        if (rightType==2){
+        if (rightType == 2) {
             rightImage = new ImageView(context);
-            Toast.makeText(context, ""+rightDrawable, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "" + rightDrawable, Toast.LENGTH_SHORT).show();
             rightImage.setImageResource(rightDrawable);
             rightImage.setPaddingRelative(padding, 0, padding, 0);
             addView(rightImage, rightLayoutParams);//rightButton以rightLayoutParams的形式加入到ViewGroup中
@@ -124,7 +124,7 @@ public class AtyTopLayout extends RelativeLayout {
                     clicklistenter.rightClick();
                 }
             });
-        }else if (rightType==1){
+        } else if (rightType == 1) {
             tv_right = new TextView(context);
             tv_right.setText(rightText);
             tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_28_px));
@@ -147,7 +147,6 @@ public class AtyTopLayout extends RelativeLayout {
                 clicklistenter.leftClick();
             }
         });
-
 
 
     }
@@ -176,15 +175,22 @@ public class AtyTopLayout extends RelativeLayout {
         if (flag) {
             rightImage.setVisibility(View.VISIBLE);
         } else {
-            if (rightImage!=null) {
+            if (rightImage != null) {
                 rightImage.setVisibility(View.GONE);
             }
         }
     }
+
     // 设置右Button是否显示
     public void setRightImageResource(int imageResource) {
         rightImage.setImageResource(imageResource);
     }
+
+    // 设置左Button是否显示
+    public void setLeftImageResource(int imageResource) {
+        leftImage.setImageResource(imageResource);
+    }
+
     public void setBackgroundResource(String backgroundColor) {
         setBackgroundColor(Color.parseColor(backgroundColor));
     }

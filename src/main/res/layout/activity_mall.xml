@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_mall"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/back_mall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_f5c92f"
+            app:CustomtitleTextColor="@color/color_3f190c"
+            app:CustomtitleTextSize="@dimen/text_size_38_px"
+            app:Customtoptitle="商城"
+            app:leftBackGround="@mipmap/back_mall_dark"
+            app:rightText="交易记录"
+            app:rightTextColor="@color/color_3f190c"
+            app:rightTextSize="@dimen/text_size_36_px"
+            app:rightType="1" />
+
+        <LinearLayout
+            android:id="@+id/ll_buy_mall"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_281"
+            android:layout_margin="@dimen/px_45"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_2"
+            android:background="@color/color_eae7e7" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_96"
+            android:layout_marginLeft="@dimen/px_45"
+            android:layout_marginRight="@dimen/px_45"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/hot_tv_mall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日热点"
+                android:textColor="@color/color_ff6f21"
+                android:textSize="@dimen/text_size_36_px"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/hot_line_mall"
+                android:layout_width="@dimen/px_2"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/hot_tv_mall"
+                android:layout_alignTop="@id/hot_tv_mall"
+                android:layout_marginLeft="@dimen/px_15"
+                android:layout_toRightOf="@id/hot_tv_mall"
+                android:background="@color/color_cccccc" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@id/hot_line_mall"
+                android:layout_marginLeft="@dimen/px_15"
+                android:layout_toRightOf="@id/hot_line_mall"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:text="头部挂件"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/text_size_28_px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:text="'憋得慌潜水头盔'"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/text_size_28_px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:ellipsize="end"
+                    android:maxEms="3"
+                    android:singleLine="true"
+                    android:text="今日限时特价"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/text_size_28_px" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="@dimen/px_45"
+                android:layout_height="@dimen/px_45"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/hot_rectangle_mall"
+                android:gravity="center"
+                android:text="GO!"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_size_36_px"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_21"
+            android:background="@color/color_efefef" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_30"
+            android:layout_marginLeft="@dimen/px_45"
+            android:layout_marginRight="@dimen/px_45"
+            android:layout_marginTop="@dimen/px_30"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px_141"
+                    android:layout_height="@dimen/px_75"
+                    android:background="@drawable/new_rectangle_mall1"
+                    android:gravity="center"
+                    android:text="最近新品"
+                    android:textColor="@color/color_ffffff"
+                    android:textStyle="bold" />
+
+                <com.wodm.android.view.newview.MyGridView
+                    android:id="@+id/new_grid_mall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_30"
+                    android:gravity="center"
+                    android:horizontalSpacing="@dimen/px_21"
+                    android:numColumns="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@mipmap/more_mall" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_30"
+            android:layout_marginLeft="@dimen/px_45"
+            android:layout_marginRight="@dimen/px_45"
+            android:layout_marginTop="@dimen/px_30"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/px_141"
+                    android:layout_height="@dimen/px_75"
+                    android:background="@drawable/new_rectangle_mall2"
+                    android:gravity="center"
+                    android:text="人气排行"
+                    android:textColor="@color/color_ffffff"
+                    android:textStyle="bold" />
+
+                <com.wodm.android.view.newview.MyGridView
+                    android:id="@+id/renqi_grid_mall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_30"
+                    android:gravity="center"
+                    android:horizontalSpacing="@dimen/px_21"
+                    android:numColumns="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@mipmap/more_mall" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_efefef"></View>
+    </LinearLayout>
+</ScrollView>
