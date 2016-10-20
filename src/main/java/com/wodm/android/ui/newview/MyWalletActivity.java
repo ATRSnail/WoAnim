@@ -1,9 +1,10 @@
 package com.wodm.android.ui.newview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -13,12 +14,9 @@ import com.wodm.android.adapter.newadapter.WalletAdapter;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
-import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
-import org.eteclab.base.utils.AsyncImageLoader;
-import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_my_wallet)
-public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
+public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
 
     @ViewIn(R.id.scrllow_mywallet)
     private ScrollView scrllow_mywallet;
@@ -45,6 +43,9 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     private TextView need_score_wallet;
     @ViewIn(R.id.current_score_wallet)
     private TextView current_score_wallet;
+    @ViewIn(R.id.kai_tong_wallet)
+    Button kai_tong_wallet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
         init();
 
         topLayout.setOnTopbarClickListenter(this);
+        kai_tong_wallet.setOnClickListener(this);
     }
 
     private void init() {
@@ -100,5 +102,14 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     @Override
     public void rightClick() {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.kai_tong_wallet:
+                startActivity(new Intent(getApplicationContext(), VipOpenActivity.class));
+                break;
+        }
     }
 }

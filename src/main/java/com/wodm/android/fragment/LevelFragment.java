@@ -52,6 +52,27 @@ public class LevelFragment extends TrackFragment {
 
     }
 
+//<<<<<<< HEAD
+//    @Override
+//    protected void setDatas(Bundle bundle) {
+//=======
+//    private void initView(ViewHolder holder, View view) {
+//        holder.text_1 = (TextView) view.findViewById(R.id.leve_1);
+//        holder.linearLayout = (LinearLayout) view.findViewById(R.id.ll_level);
+//        holder.text_2 = (TextView) view.findViewById(R.id.leve_2);
+//        holder.text_3 = (TextView) view.findViewById(R.id.leve_3);
+//        holder.text_4 = (TextView) view.findViewById(R.id.leve_4);
+//        holder.text_5 = (TextView) view.findViewById(R.id.leve_5);
+//        holder.text_need = (TextView) view.findViewById(R.id.level_need);
+////        holder.name_need = (TextView) view.findViewById(R.id.levelname_need);
+////        holder.exp_need = (TextView) view.findViewById(R.id.levelexp_need);
+//        holder.text_need.setText("距离LV" + (gradeValue + 1) + "还有" + dataBean.getNeedEmpirical() + "经验值");
+////        holder.name_need.setText("距离LV" + (gradeValue + 1));
+////        holder.exp_need.setText("还有" + dataBean.getNeedEmpirical() + "经验值");
+//>>>>>>> 95aa3f69c6df6626cab110801f6a4fe4617a4884
+//
+//    }
+
     private void initView(ViewHolder holder, View view) {
         holder.ll_circle1 = (LinearLayout) view.findViewById(R.id.ll_circle1);
         holder.ll_circle2 = (LinearLayout) view.findViewById(R.id.ll_circle2);
@@ -106,6 +127,8 @@ public class LevelFragment extends TrackFragment {
         TextView text_4;
         TextView text_5;
         TextView text_need;
+        TextView name_need;
+        TextView exp_need;
         LinearLayout linearLayout;
         LinearLayout ll_circle1;
         LinearLayout ll_circle2;

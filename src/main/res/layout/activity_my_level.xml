@@ -241,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/px_30"
+                android:layout_marginLeft="@dimen/px_20"
                 android:text="@string/level_state"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/text_size_22_px" />
