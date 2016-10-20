@@ -326,7 +326,12 @@
         <!-- <meta-data -->
         <!-- android:name="com.google.android.gms.version" -->
         <!-- android:value="4030500" /> -->
-        <activity android:name=".android.ui.newview.CustomerServiceActivity"></activity>
+        <activity
+            android:name=".android.ui.newview.CustomerServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.MallActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

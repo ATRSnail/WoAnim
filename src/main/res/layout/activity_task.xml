@@ -1,609 +1,670 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:scrollbars="none"
     android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/color_efefef"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:scrollbars="none">
 
-    <com.wodm.android.view.newview.AtyTopLayout
-        android:id="@+id/top_task"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_90"
-        app:BackGroundColor="@color/color_9ec4cf"
-        app:CustomtitleTextColor="@color/color_ffffff"
-        app:CustomtitleTextSize="@dimen/text_size_36_px"
-        app:Customtoptitle="@string/mine_qiandao"
-        app:leftBackGround="@mipmap/back_white" />
-    <View
-        android:background="@color/color_8465c3"
-        android:id="@+id/top_line_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_2"></View>
     <LinearLayout
-        android:id="@+id/ll_top_task"
-        android:background="@mipmap/task_bg"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_450">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_marginTop="@dimen/px_51"
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/top_task"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_9ec4cf"
+            app:CustomtitleTextColor="@color/color_ffffff"
+            app:CustomtitleTextSize="@dimen/text_size_36_px"
+            app:Customtoptitle="@string/mine_qiandao"
+            app:leftBackGround="@mipmap/back_white" />
+
+        <View
+            android:id="@+id/top_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_2"
+            android:background="@color/color_8465c3"></View>
+
+        <LinearLayout
+            android:id="@+id/ll_top_task"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_450"
+            android:background="@mipmap/task_bg"
+            android:orientation="vertical">
+
             <RelativeLayout
-                android:layout_centerHorizontal="true"
-                android:id="@+id/rl_head_imgs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <org.eteclab.ui.widget.CircularImage
-                    android:id="@+id/img_heade"
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/px_120"
-                    android:layout_height="@dimen/px_120"
-                    android:src="@mipmap/touxiang" />
-                <org.eteclab.ui.widget.CircularImage
-                    android:visibility="gone"
-                    android:layout_centerVertical="true"
-                    android:layout_width="@dimen/px_92"
-                    android:layout_height="@dimen/px_92"
-                    android:src="@mipmap/touxiang" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_51">
+
+                <RelativeLayout
+                    android:id="@+id/rl_head_imgs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <org.eteclab.ui.widget.CircularImage
+                        android:id="@+id/img_heade"
+                        android:layout_width="@dimen/px_120"
+                        android:layout_height="@dimen/px_120"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/touxiang" />
+
+                    <org.eteclab.ui.widget.CircularImage
+                        android:layout_width="@dimen/px_92"
+                        android:layout_height="@dimen/px_92"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/touxiang"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+                <Button
+                    android:id="@+id/btn_slow"
+                    android:layout_width="@dimen/px_45"
+                    android:layout_height="@dimen/px_45"
+                    android:layout_alignBottom="@+id/rl_head_imgs"
+                    android:layout_marginRight="@dimen/px_5"
+                    android:layout_toLeftOf="@+id/rl_head_imgs"
+                    android:background="@drawable/btn_task_slow"
+                    android:gravity="center"
+                    android:text="@string/slow"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_size_28_px" />
+
+                <LinearLayout
+                    android:id="@+id/rl_qiandao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btn_slow"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/px_15"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_qiandao"
+                        android:layout_width="@dimen/px_273"
+                        android:layout_height="@dimen/px_69"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/px_15"
+                        android:background="@drawable/btn_task_qiandao"
+                        android:gravity="center"
+                        android:text="@string/qiandao"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_28_px" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/rl_qiandao"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_toRightOf="@+id/rl_qiandao"
+                    android:background="@mipmap/img_buqian" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_87"
+                android:layout_marginTop="@dimen/px_15"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/view"
+                    android:layout_alignTop="@+id/view"
+                    android:layout_marginRight="@dimen/px_15"
+                    android:layout_toLeftOf="@+id/view"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/total_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_44"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_36_px" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_44"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:text="累计天数"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_26_px" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="@dimen/px_2"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/color_ffffff"></View>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/view"
+                    android:layout_alignTop="@+id/view"
+                    android:layout_marginLeft="@dimen/px_15"
+                    android:layout_toRightOf="@+id/view"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/lianxu_qiandao"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_44"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_36_px" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_44"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:text="连续签到"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_26_px" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="@dimen/px_15"
+                android:layout_weight="1"
+                android:gravity="top|center"
+                android:text="@string/qiandao_get"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_size_24_px" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_open_vip"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_96"
+            android:layout_marginTop="@dimen/px_15"
+            android:background="@color/color_ffffff">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_45"
+                android:background="@mipmap/vip_add_sudu" />
 
             <Button
+                android:id="@+id/btn_open_vip"
+                android:layout_width="@dimen/px_126"
+                android:layout_height="@dimen/px_63"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px_45"
+                android:background="@drawable/btn_open_vip"
                 android:gravity="center"
-                android:text="@string/slow"
-                android:layout_marginRight="@dimen/px_5"
-                android:layout_alignBottom="@+id/rl_head_imgs"
-                android:layout_toLeftOf="@+id/rl_head_imgs"
-                android:id="@+id/btn_slow"
-                android:layout_width="@dimen/px_45"
-                android:layout_height="@dimen/px_45"
-                android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_size_28_px"
-                android:background="@drawable/btn_task_slow"/>
-            <LinearLayout
-                android:layout_centerHorizontal="true"
-                android:id="@+id/rl_qiandao"
-                android:orientation="vertical"
-                android:layout_below="@+id/btn_slow"
-                android:layout_marginTop="@dimen/px_15"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <Button
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:id="@+id/btn_qiandao"
-                    android:text="@string/qiandao"
-                    android:layout_marginTop="@dimen/px_15"
-                    android:layout_width="@dimen/px_273"
-                    android:layout_height="@dimen/px_69"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:background="@drawable/btn_task_qiandao"/>
+                android:text="@string/open_vip"
+                android:textColor="@color/color_ff6361"
+                android:textSize="@dimen/text_size_24_px" />
 
-            </LinearLayout>
-            <ImageView
-                android:layout_marginTop="-10dp"
-                android:layout_marginLeft="-20dp"
-                android:layout_toRightOf="@+id/rl_qiandao"
-                android:layout_alignTop="@+id/rl_qiandao"
-                android:background="@mipmap/img_buqian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="@dimen/px_15"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_87">
-            <LinearLayout
-                android:weightSum="2"
-                android:layout_alignTop="@+id/view"
-                android:layout_alignBottom="@+id/view"
-                android:layout_marginRight="@dimen/px_15"
-                android:layout_toLeftOf="@+id/view"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/total_day"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_36_px"
-                    android:textColor="@color/color_ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_44" />
-                <TextView
-                    android:gravity="bottom"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/text_size_26_px"
-                    android:textColor="@color/color_ffffff"
-                    android:text="累计天数"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_44" />
-            </LinearLayout>
-            <View
-                android:id="@+id/view"
-                android:layout_centerInParent="true"
-                android:background="@color/color_ffffff"
-                android:layout_width="@dimen/px_2"
-                android:layout_height="match_parent"></View>
-            <LinearLayout
-                android:weightSum="2"
-                android:layout_alignTop="@+id/view"
-                android:layout_alignBottom="@+id/view"
-                android:layout_marginLeft="@dimen/px_15"
-                android:layout_toRightOf="@+id/view"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/lianxu_qiandao"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="@dimen/text_size_36_px"
-                    android:textColor="@color/color_ffffff"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_44" />
-                <TextView
-                    android:gravity="bottom"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/text_size_26_px"
-                    android:textColor="@color/color_ffffff"
-                    android:text="连续签到"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_44" />
-            </LinearLayout>
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_marginTop="@dimen/px_15"
-            android:gravity="top|center"
-            android:layout_gravity="top|center"
-            android:layout_weight="1"
-            android:textSize="@dimen/text_size_24_px"
-            android:textColor="@color/color_ffffff"
-            android:text="@string/qiandao_get"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/rl_open_vip"
-        android:layout_marginTop="@dimen/px_15"
-        android:background="@color/color_ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_96">
-        <ImageView
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/px_45"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/vip_add_sudu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btn_open_vip"
-            android:gravity="center"
-            android:background="@drawable/btn_open_vip"
-            android:textSize="@dimen/text_size_24_px"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/px_45"
-            android:layout_centerVertical="true"
-            android:textColor="@color/color_ff6361"
-            android:text="@string/open_vip"
-            android:layout_width="@dimen/px_126"
-            android:layout_height="@dimen/px_63" />
+            android:layout_height="@dimen/px_22"
+            android:background="@color/color_f4f4f4"></View>
 
-
-    </RelativeLayout>
-    <View
-        android:background="@color/color_f4f4f4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_22"></View>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:background="@color/color_ffffff"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96">
-                <View
-                    android:layout_marginLeft="@dimen/px_45"
-                    android:id="@+id/adapter_view"
-                    android:background="@color/color_facd89"
-                    android:layout_width="@dimen/px_14"
-                    android:layout_height="@dimen/px_33"></View>
-                <TextView
-                    android:text="新手任务"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/px_15"
-                    android:textSize="@dimen/text_size_32_px"
-                    android:textColor="@color/color_333333"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:background="@color/color_ffffff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/adapter_view"
+                        android:layout_width="@dimen/px_14"
+                        android:layout_height="@dimen/px_33"
+                        android:layout_marginLeft="@dimen/px_45"
+                        android:background="@color/color_facd89"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:gravity="center_vertical"
+                        android:text="新手任务"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_32_px" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <include
+                layout="@layout/devid_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"></include>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_ffffff"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_complete_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/com_user_info" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="完善个人资料"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <include
+                    layout="@layout/devid_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_2"></include>
+
+                <RelativeLayout
+                    android:id="@+id/ll_task_adapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_task_item"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/img_task_search" />
+
+                        <TextView
+                            android:id="@+id/tv_task_item_key"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="使用搜索功能"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <include
+                    layout="@layout/devid_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_2"></include>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/look_news" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="查看一次资讯"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="visible" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-        <LinearLayout
-            android:background="@color/color_ffffff"
-            android:orientation="vertical"
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
+            android:layout_height="@dimen/px_22"
+            android:background="@color/color_f4f4f4"></View>
 
-                <LinearLayout
-                    android:id="@+id/ll_complete_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/com_user_info" />
-
-                    <TextView
-                        android:text="完善个人资料"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/img_right"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-            <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-            <RelativeLayout
-                android:id="@+id/ll_task_adapter"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/ll_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/img_task_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/img_task_search" />
-
-                    <TextView
-                        android:text="使用搜索功能"
-                        android:id="@+id/tv_task_item_key"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/img_right1"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-            <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/look_news" />
-
-                    <TextView
-                        android:text="查看一次资讯"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/img_right2"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:background="@color/color_f4f4f4"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_22"></View>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:gravity="center_vertical"
-                android:background="@color/color_ffffff"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96">
-                <View
-                    android:layout_marginLeft="@dimen/px_45"
-                    android:background="@color/color_89c997"
-                    android:layout_width="@dimen/px_14"
-                    android:layout_height="@dimen/px_33"></View>
-                <TextView
-                    android:text="日常任务"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/px_15"
-                    android:textSize="@dimen/text_size_32_px"
-                    android:textColor="@color/color_333333"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:background="@color/color_ffffff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/px_14"
+                        android:layout_height="@dimen/px_33"
+                        android:layout_marginLeft="@dimen/px_45"
+                        android:background="@color/color_89c997"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/px_15"
+                        android:gravity="center_vertical"
+                        android:text="日常任务"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/text_size_32_px" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <include
+                layout="@layout/devid_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_2"></include>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_60"
+                android:background="@color/color_ffffff"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_qiandao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/day_qiandao" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="每日签到"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+                <include
+                    layout="@layout/devid_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_2"></include>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/watch_anim" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="观看动漫"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
+                <include
+                    layout="@layout/devid_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_2"></include>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_96"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/img_commnts" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/px_15"
+                            android:text="发评论"
+                            android:textSize="@dimen/text_size_28_px" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task_item_value5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:text="@string/days_add"
+                        android:textSize="@dimen/text_size_28_px"
+                        android:visibility="visible" />
+
+
+                    <ImageView
+                        android:id="@+id/img_right5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/px_45"
+                        android:src="@mipmap/img_com_right"
+                        android:visibility="visible" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-        <LinearLayout
-            android:layout_marginBottom="@dimen/px_60"
-            android:background="@color/color_ffffff"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/ll_qiandao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/day_qiandao" />
-
-                    <TextView
-                        android:text="每日签到"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
 
 
-                <ImageView
-                    android:id="@+id/img_right3"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-            <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/watch_anim" />
-
-                    <TextView
-                        android:text="观看动漫"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/img_right4"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-            <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/img_commnts" />
-
-                    <TextView
-                        android:text="发评论"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/px_15"
-                        android:textSize="@dimen/text_size_28_px" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_task_item_value5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:text="@string/days_add"
-                    android:textSize="@dimen/text_size_28_px"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/img_right5"
-                    android:visibility="visible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_45"
-                    android:src="@mipmap/img_com_right" />
-            </RelativeLayout>
-        </LinearLayout>
     </LinearLayout>
-
-
-
-
-</LinearLayout>
 </ScrollView>
