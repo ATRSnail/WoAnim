@@ -1,13 +1,10 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -131,7 +128,6 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 
     @Override
     public void leftClick() {
-        back_mall.setLeftImageResource(R.mipmap.back_mall_white);
         finish();
     }
 

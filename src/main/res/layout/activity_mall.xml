@@ -19,7 +19,7 @@
             app:CustomtitleTextColor="@color/color_3f190c"
             app:CustomtitleTextSize="@dimen/text_size_38_px"
             app:Customtoptitle="商城"
-            app:leftBackGround="@mipmap/back_mall_dark"
+            app:leftBackGround="@drawable/back_drawable"
             app:rightText="交易记录"
             app:rightTextColor="@color/color_3f190c"
             app:rightTextSize="@dimen/text_size_36_px"
