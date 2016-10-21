@@ -1,10 +1,15 @@
 package com.wodm.android.ui.newview;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -35,6 +40,8 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     MyGridView renqi_grid_mall;
     @ViewIn(R.id.back_mall)
     AtyTopLayout back_mall;
+    @ViewIn(R.id.go_btn)
+    Button go_btn;
 
     String[] buyName = new String[]{"会员", "头像框", "挂件", "周边"};
     String[] name = new String[]{"钻石头像框", "狗熊头像框", "小黄鸡头像框"};
@@ -50,12 +57,16 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         initLinearLayout();
         initList();
         back_mall.setOnTopbarClickListenter(this);
+        back_mall.setLeftImageMargin(30);
+        back_mall.setRightImageMargin(30);
+
+        go_btn.setOnClickListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        httpGet(Constants.APP_UPDATERESOURCECOUNT+3, new HttpCallback() {
+        httpGet(Constants.APP_UPDATERESOURCECOUNT + 3, new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -67,12 +78,12 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 super.doAuthFailure(result, obj);
             }
         });
-        httpGet(Constants.APP_GETATERESOURCECOUNT+3, new HttpCallback() {
+        httpGet(Constants.APP_GETATERESOURCECOUNT + 3, new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                int playcount=obj.optInt("playCount");
+                int playcount = obj.optInt("playCount");
             }
 
             @Override
@@ -91,7 +102,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             map.put("icon", icon[i]);
             list.add(map);
         }
-        adapter = new MallAdapter(getApplicationContext(), list);
+        adapter = new MallAdapter(this, list);
         new_grid_mall.setAdapter(adapter);
         renqi_grid_mall.setAdapter(adapter);
     }
@@ -107,18 +118,9 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             buy_font_mall = (TextView) view.findViewById(R.id.buy_font_mall);
             buy_font_mall.setText(buyName[i]);
             buy_colcor_mall.setBackgroundResource(color[i]);
-//            view.setClickable(true);
-//            view.setFocusable(true);
-//            view.setOnClickListener(this);
-//            view.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                    builder.setTitle("用户您好：");
-//                    builder.setMessage("您的积分不足！");
-//                    builder.create().show();
-//                }
-//            });
+            view.setClickable(true);
+            view.setFocusable(true);
+            view.setOnClickListener(this);
             ll_buy_mall.addView(view);
         }
 
@@ -138,6 +140,10 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 
     @Override
     public void onClick(View v) {
-
+//        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
+        new AlertDialog.Builder(MallActivity.this)
+                .setTitle("用户您好：")
+                .setMessage("您的积分不足！")
+                .create().show();
     }
 }

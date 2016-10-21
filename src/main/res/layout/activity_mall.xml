@@ -17,7 +17,7 @@
             android:layout_height="@dimen/px_90"
             app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@color/color_3f190c"
-            app:CustomtitleTextSize="@dimen/text_size_38_px"
+            app:CustomtitleTextSize="@dimen/text_size_48_px"
             app:Customtoptitle="商城"
             app:leftBackGround="@drawable/back_drawable"
             app:rightText="交易记录"
@@ -103,6 +103,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/go_btn"
                 android:layout_width="@dimen/px_45"
                 android:layout_height="@dimen/px_45"
                 android:layout_alignParentRight="true"

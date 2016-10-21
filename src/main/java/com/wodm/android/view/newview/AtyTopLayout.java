@@ -186,6 +186,20 @@ public class AtyTopLayout extends RelativeLayout {
         rightImage.setImageResource(imageResource);
     }
 
+    // 设置左边图片距离左边的距离
+    public void setLeftImageMargin(int px) {
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftImage.getLayoutParams();
+        params.leftMargin = 30;
+        leftImage.setLayoutParams(params);
+    }
+
+    // 设置右边文字距离右边的距离
+    public void setRightImageMargin(int px) {
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tv_right.getLayoutParams();
+        params.rightMargin = 30;
+        tv_right.setLayoutParams(params);
+    }
+
     // 设置左Button是否显示
     public void setLeftImageResource(int imageResource) {
         leftImage.setImageResource(imageResource);

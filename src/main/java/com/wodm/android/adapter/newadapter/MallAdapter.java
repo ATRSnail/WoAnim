@@ -1,5 +1,6 @@
 package com.wodm.android.adapter.newadapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,18 +67,16 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
         holder.name.setText(name);
         holder.score.setText(score);
         holder.icon.setImageResource((Integer) map.get("icon"));
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "您的积分不足！", Toast.LENGTH_SHORT);
-            }
-        });
+        convertView.setOnClickListener(this);
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(context, "您的积分不足！", Toast.LENGTH_SHORT);
+        new AlertDialog.Builder(context)
+                .setTitle("用户您好：")
+                .setMessage("您的积分不足！")
+                .create().show();
     }
 
     static class ViewHolder {
