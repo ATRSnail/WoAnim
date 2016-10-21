@@ -288,8 +288,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/px_60"
-                    android:layout_height="@dimen/px_60"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
                     android:background="@mipmap/vip" />
 
                 <TextView
@@ -317,8 +317,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/px_60"
-                    android:layout_height="@dimen/px_60"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
                     android:background="@mipmap/moneypackage" />
 
                 <TextView
@@ -346,8 +346,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/px_60"
-                    android:layout_height="@dimen/px_60"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
                     android:background="@mipmap/degree" />
 
                 <TextView

@@ -79,9 +79,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private CircularImage img_xiaolian;
 
     private TextView mCarDesp;
-    @ViewIn(R.id.dianji_num)
-    private TextView dianji_num;
     private TextView mChapterDesp;
+    private TextView dianji_num;
 
     private TextView mTitleDesp;
     public EditText mCommentView;
@@ -106,6 +105,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         videoView.setSendBulletListener(this);
+        dianji_num= (TextView) mHeaderView.findViewById(R.id.dianji_num);
         mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
         mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
         mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
@@ -116,36 +116,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         isCollectBox.setOnClickListener(onClickListener);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
 
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
-        httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                int playcount=obj.optInt("playCount");
-                dianji_num.setText(playcount+"");
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,9 +189,38 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
 
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
 
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+        httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
 
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    JSONObject jsonObject=new JSONObject(obj.optString("data"));
+                    int playcount=jsonObject.optInt("playCount");
+                    dianji_num.setText("点击量:"+playcount+"");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
 
         videoView.setVideoCall(new CommonVideoView.VideoViewCall() {
             @Override

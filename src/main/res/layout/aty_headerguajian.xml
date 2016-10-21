@@ -22,7 +22,7 @@
                 app:BackGroundColor="@android:color/transparent"
                 app:CustomtitleTextColor="@android:color/white"
                 app:CustomtitleTextSize="@dimen/text_size_32_px"
-                app:Customtoptitle="@string/login"
+                app:Customtoptitle="头部挂件"
                 app:leftBackGround="@mipmap/back_mall_white"
                 app:rightType="0" />
             <LinearLayout
@@ -39,7 +39,7 @@
                     android:id="@+id/user_head_imgs"
                     android:layout_width="@dimen/px_92"
                     android:layout_height="@dimen/px_92"
-                    android:src="@mipmap/touxiang" />
+                    android:src="@mipmap/touxiang_moren" />
 
                 <Button
                     android:layout_gravity="center"
@@ -129,9 +129,54 @@
                 <!--android:textSize="20px" />-->
 
         </RelativeLayout>
-
-
+        <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+       <LinearLayout
+           android:background="@color/color_ffffff"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <com.wodm.android.view.newview.MyGridView
+               android:layout_marginRight="@dimen/px_60"
+               android:layout_marginLeft="@dimen/px_60"
+               android:background="@color/color_ffffff"
+               android:id="@+id/guajian_free"
+               android:horizontalSpacing="@dimen/px_50"
+               android:verticalSpacing="@dimen/px_50"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:numColumns="3" />
+       </LinearLayout>
+        <TabHost
+            android:background="@color/color_ffffff"
+            android:layout_marginTop="@dimen/px_14"
+            android:id="@+id/mypage_tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/mypage_r0">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"/>
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dip"
+                    android:layout_weight="0"/>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/mypage_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </TabHost>
 
     </LinearLayout>
+
 
 </ScrollView>

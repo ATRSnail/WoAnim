@@ -64,6 +64,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
     @InflateView(R.layout.layout_cartoon_detail)
+    private TextView dianji_num;
     private View mHeaderView;
     @ViewIn(R.id.video_name)
     private TextView mCarTitle;
@@ -142,6 +143,26 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
 
             }
         });
+        httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    JSONObject jsonObject=new JSONObject(obj.optString("data"));
+                    int playcount=jsonObject.optInt("playCount");
+                    dianji_num.setText("点击量:"+playcount+"");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
 
         if (Constants.CURRENT_USER != null) {
             String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
@@ -194,6 +215,18 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     @TrackClick(value = R.id.full, location = TITLE, eventName = "跳转阅读漫画界面")
     private void clickFull(View view) {
         startRead(0);
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
     private void startRead(int index) {
@@ -310,7 +343,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
         mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
         mChapterView = (NoScrollGridView) mHeaderView.findViewById(R.id.grid_new);
-
+        dianji_num= (TextView) mHeaderView.findViewById(R.id.dianji_num);
         isCollectBox = (CheckBox) mHeaderView.findViewById(R.id.anim_collect2);
 
         mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
