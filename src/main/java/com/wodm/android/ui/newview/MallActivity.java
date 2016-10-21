@@ -1,6 +1,8 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -26,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_mall)
-public class MallActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
+public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
 
     @ViewIn(R.id.ll_buy_mall)
     LinearLayout ll_buy_mall;
@@ -108,17 +110,24 @@ public class MallActivity extends AppActivity implements View.OnClickListener, A
             buy_font_mall = (TextView) view.findViewById(R.id.buy_font_mall);
             buy_font_mall.setText(buyName[i]);
             buy_colcor_mall.setBackgroundResource(color[i]);
-            view.setOnClickListener(this);
+//            view.setClickable(true);
+//            view.setFocusable(true);
+//            view.setOnClickListener(this);
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                    builder.setTitle("用户您好：");
+//                    builder.setMessage("您的积分不足！");
+//                    builder.create().show();
+//                }
+//            });
             ll_buy_mall.addView(view);
         }
 
 
     }
 
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(getApplicationContext(), "您的积分不足！", Toast.LENGTH_SHORT);
-    }
 
     @Override
     public void leftClick() {
@@ -128,6 +137,11 @@ public class MallActivity extends AppActivity implements View.OnClickListener, A
 
     @Override
     public void rightClick() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

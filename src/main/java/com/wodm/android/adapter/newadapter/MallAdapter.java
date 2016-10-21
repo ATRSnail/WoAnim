@@ -66,8 +66,12 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
         holder.name.setText(name);
         holder.score.setText(score);
         holder.icon.setImageResource((Integer) map.get("icon"));
-        convertView.setClickable(true);
-        convertView.setOnClickListener(this);
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "您的积分不足！", Toast.LENGTH_SHORT);
+            }
+        });
         return convertView;
     }
 
