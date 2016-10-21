@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:scrollbars="none"
     android:background="@color/color_efefef"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -151,8 +152,7 @@
             android:layout_marginTop="@dimen/px_14"
             android:id="@+id/mypage_tabhost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/mypage_r0">
+            android:layout_height="match_parent">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -161,18 +161,17 @@
                     android:id="@android:id/tabs"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"/>
+                    android:layout_height="wrap_content" />
+                <include android:layout_width="match_parent" android:layout_height="@dimen/px_2" layout="@layout/devid_line"></include>
                 <FrameLayout
                     android:id="@android:id/tabcontent"
-                    android:layout_width="0dp"
-                    android:layout_height="0dip"
-                    android:layout_weight="0"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                   />
                 <android.support.v4.view.ViewPager
                     android:id="@+id/mypage_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"/>
+                    android:layout_height="1320dp" />
             </LinearLayout>
         </TabHost>
 

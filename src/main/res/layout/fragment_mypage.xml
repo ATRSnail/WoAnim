@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/text"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:gravity="center_vertical|center_horizontal"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:text="Fasfasfa"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_efefef"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.wodm.android.view.newview.OfenUseView
+        app:rightBackGround_use="@mipmap/icon_more_normal"
+        app:leftBackGround_use="@color/color_dd977f"
+        app:Customtoptitle_use="会员免费"
+        app:BackGroundColor_use="@color/color_ffffff"
+        app:CustomtitleTextColor_use="@color/color_333333"
+        app:CustomtitleTextSize_use="@dimen/text_size_24_px"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_64">
+    </com.wodm.android.view.newview.OfenUseView>
+    <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+    <RelativeLayout
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.wodm.android.view.newview.MyGridView
+                android:layout_marginRight="@dimen/px_60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:background="@color/color_ffffff"
+                android:id="@+id/gv_guajian"
+                android:horizontalSpacing="@dimen/px_50"
+                android:verticalSpacing="@dimen/px_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/ll_guajian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.wodm.android.view.newview.MyGridView
+                android:layout_marginRight="@dimen/px_60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:id="@+id/gv_header"
+                android:horizontalSpacing="@dimen/px_50"
+                android:verticalSpacing="@dimen/px_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -22,10 +22,11 @@ import com.wodm.android.view.newview.MyGridView;
 
 import java.util.ArrayList;
 
+
 /**
  * Created by songchenyu on 16/10/21.
  */
-public class HeaderGuaJianActivity extends FragmentActivity {
+public class HeaderGuaJianActivity extends FragmentActivity implements FragmentMyPager.addClickIconListener{
     private MyGridView guajian_free;
     private GuaJianAdapter guaJianAdapter;
     private TabHost mTabHost;
@@ -33,6 +34,7 @@ public class HeaderGuaJianActivity extends FragmentActivity {
     private TabsAdapter mTabsAdapter;
     private TextView tabTv1,tabTv2;
     private View tabLine1,tabLine2,view1,view2;
+    private  FragmentMyPager frag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +70,15 @@ public class HeaderGuaJianActivity extends FragmentActivity {
                 FragmentMyPager.class,null);
         mTabsAdapter.addTab(mTabHost.newTabSpec("contacts").setIndicator(view2),
                 FragmentMyPager.class,null);
+        frag=FragmentMyPager.newInstance(0);
+        frag.setAddClickIconListener(this);
+    }
+
+    @Override
+    public void addImage(String title,int imageRescoure) {
 
     }
+
     private class TabInfo
     {
         private String tag;
@@ -168,8 +177,6 @@ public class HeaderGuaJianActivity extends FragmentActivity {
 //                tabTv1.setTextColor(getResources().getColor(R.color.colorAccent));
                 tabLine1.setBackgroundColor(Color.TRANSPARENT);
             }
-//            String tmp=mTabHost.getCurrentTabTag();
-//            mTabHost.getCurrentTabView().set
         }
 
         @Override
@@ -184,6 +191,7 @@ public class HeaderGuaJianActivity extends FragmentActivity {
             int oldFocusability=widget.getDescendantFocusability();
             widget.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
             mTabHost.setCurrentTab(position);
+            frag.setCurrentTabNum(position);
             widget.setDescendantFocusability(oldFocusability);
         }
         @Override

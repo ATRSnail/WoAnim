@@ -14,8 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dip"/>
     <View
-        android:layout_marginRight="@dimen/px_5"
-        android:layout_marginLeft="@dimen/px_5"
+        android:layout_marginRight="@dimen/px_10"
+        android:layout_marginLeft="@dimen/px_10"
         android:id="@+id/tabwidget_line"
         android:layout_width="match_parent"
         android:layout_height="1dip"
