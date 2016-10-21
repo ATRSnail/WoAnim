@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            app:BackGroundColor="@color/color_f5c92f"
+            app:CustomtitleTextColor="@android:color/black"
+            app:CustomtitleTextSize="@dimen/text_size_32_px"
+            app:Customtoptitle="@string/login"
+            app:leftBackGround="@mipmap/back"
+            app:rightType="0" />
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -7,7 +7,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.MallAdapter;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -15,6 +17,8 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +51,36 @@ public class MallActivity extends AppActivity implements View.OnClickListener, A
         initLinearLayout();
         initList();
         back_mall.setOnTopbarClickListenter(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+3, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+        httpGet(Constants.APP_GETATERESOURCECOUNT+3, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                int playcount=obj.optInt("playCount");
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
     private void initList() {
