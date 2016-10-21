@@ -2,23 +2,133 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/color_efefef"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.wodm.android.view.newview.AtyTopLayout
-            android:id="@+id/set_topbar"
+        <RelativeLayout
+            android:orientation="vertical"
+            android:background="@mipmap/guajian_bg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
-            app:BackGroundColor="@color/color_f5c92f"
-            app:CustomtitleTextColor="@android:color/black"
-            app:CustomtitleTextSize="@dimen/text_size_32_px"
-            app:Customtoptitle="@string/login"
-            app:leftBackGround="@mipmap/back"
-            app:rightType="0" />
+            android:layout_height="wrap_content">
+            <com.wodm.android.view.newview.AtyTopLayout
+                android:layout_alignParentTop="true"
+                android:id="@+id/set_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_90"
+                app:BackGroundColor="@android:color/transparent"
+                app:CustomtitleTextColor="@android:color/white"
+                app:CustomtitleTextSize="@dimen/text_size_32_px"
+                app:Customtoptitle="@string/login"
+                app:leftBackGround="@mipmap/back_mall_white"
+                app:rightType="0" />
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/px_20"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <org.eteclab.ui.widget.CircularImage
+                    android:layout_marginBottom="@dimen/px_10"
+                    android:layout_gravity="center"
+                    android:id="@+id/user_head_imgs"
+                    android:layout_width="@dimen/px_92"
+                    android:layout_height="@dimen/px_92"
+                    android:src="@mipmap/touxiang" />
+
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/btn_buy_now"
+                    android:background="@drawable/btn_buy_now"
+                    android:padding="@dimen/px_2"
+                    android:textSize="18px"
+                    android:text="@string/buy_now"
+                    android:textColor="@color/color_ffffff"
+                    android:layout_width="@dimen/px_176"
+                    android:layout_height="@dimen/px_42" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/px_14"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_64"
+            android:background="@color/color_ffffff">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_circle"
+                android:layout_alignParentLeft="true"
+                android:layout_width="@dimen/px_32"
+                android:layout_height="@dimen/px_32"
+                android:layout_marginLeft="@dimen/px_30"
+                android:background="@drawable/vip_icon_circle" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_10"
+                android:text="@string/vip_speed_hint"
+                android:textColor="@color/color_f29b76"
+                android:textSize="@dimen/text_size_22_px" />
+
+            <Button
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/kai_tong_level"
+                android:layout_width="@dimen/px_84"
+                android:layout_height="@dimen/px_42"
+                android:layout_marginRight="@dimen/px_30"
+                android:background="@drawable/kaitong_rectan"
+                android:text="@string/open_vip_member"
+                android:textColor="@color/color_ff6361"
+                android:textSize="14px" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="@dimen/px_14"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_64"
+            android:background="@color/color_ffffff">
+            <com.wodm.android.view.newview.OfenUseView
+                app:rightBackGround_use="@mipmap/icon_more_normal"
+                app:leftBackGround_use="@color/color_dd977f"
+                app:Customtoptitle_use="会员免费"
+                app:BackGroundColor_use="@color/color_ffffff"
+                app:CustomtitleTextColor_use="@color/color_333333"
+                app:CustomtitleTextSize_use="@dimen/text_size_24_px"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_64">
+
+
+            </com.wodm.android.view.newview.OfenUseView>
+
+            <!--<TextView-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:id="@+id/tv_circle1"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_width="@dimen/px_32"-->
+                <!--android:layout_height="@dimen/px_32"-->
+                <!--android:layout_marginLeft="@dimen/px_30"-->
+                <!--android:background="@drawable/circlr_guajian_open_vip" />-->
+
+            <!--<TextView-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_toRightOf="@+id/tv_circle1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/px_10"-->
+                <!--android:text="@string/guajian_hint"-->
+                <!--android:textColor="@color/color_333333"-->
+                <!--android:textSize="20px" />-->
+
+        </RelativeLayout>
 
 
 

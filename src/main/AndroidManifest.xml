@@ -168,7 +168,7 @@
         <service android:name=".android.service.DownLoadServices" />
 
         <activity
-            android:name=".android.ui.newview.MallActivity"
+            android:name=".android.ui.newview.HeaderGuaJianActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>

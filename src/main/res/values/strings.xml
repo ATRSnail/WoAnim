@@ -126,4 +126,6 @@
     <string name="only_guajian">专属挂件</string>
     <string name="no_vip_user">非VIP用户</string>
     <string name="way_if_next">      距离 %2$d, 还有 %2$d 经验值</string>
+    <string name="buy_now">立即购买</string>
+    <string name="guajian_hint">会员可定制稀有头部挂件</string>
 </resources>

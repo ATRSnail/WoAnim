@@ -23,6 +23,7 @@
     <color name="color_cccccc">#cccccc</color>
     <color name="color_eae7e7">#eae7e7</color>
     <color name="color_ff8d35">#ff8d35</color>
+    <!--背景图颜色-->
     <color name="color_efefef">#efefef</color>
     <color name="color_ffda2f">#ffda2f</color>
     <color name="color_facf88">#facf88</color>
@@ -74,5 +75,8 @@
     <color name="color_ffb040">#ffb040</color>
     <color name="color_ff6f20">#ff6f20</color>
     <color name="color_ec5b76">#ec5b76</color>
+    <color name="color_dd2e5c">#dd2e5c</color>
+    <color name="color_ffc061">#ffc061</color>
+    <color name="color_dd977f">#dd977f</color>
 
 </resources>

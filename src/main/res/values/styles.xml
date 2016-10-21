@@ -106,5 +106,15 @@
         <attr name="rightText" format="string"/>
         <attr name="rightTextSize" format="reference|dimension"/>
     </declare-styleable>
+    <declare-styleable name="ofenuseview">
+        <!-- BackGround属性可以颜色，也可以是一个资源文件 -->
+        <!-- 所以BackGround是 format="reference|color"-->
+        <attr name="leftBackGround_use" format="reference|color"/>
+        <attr name="Customtoptitle_use" format="string"/>
+        <attr name="CustomtitleTextSize_use" format="reference|dimension"/>
+        <attr name="CustomtitleTextColor_use" format="color"/>
+        <attr name="BackGroundColor_use" format="color"/>
+        <attr name="rightBackGround_use" format="reference|color"/>
+    </declare-styleable>
 
 </resources>
