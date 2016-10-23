@@ -42,7 +42,7 @@
                     android:scaleType="fitXY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/touxiang" />
+                    android:background="@mipmap/touxiang_moren"/>
 
                 <Button
                     android:layout_gravity="center"
