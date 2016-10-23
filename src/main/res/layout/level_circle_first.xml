@@ -127,17 +127,18 @@
 
                     <TextView
                         android:id="@+id/leve_2"
-                        android:layout_width="@dimen/px_72"
-                        android:layout_height="@dimen/px_72"
+                        android:layout_width="@dimen/px_84"
+                        android:layout_height="@dimen/px_84"
                         android:background="@drawable/btn_circle1"
                         android:text=""
+                        android:gravity="center"
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
 
                     <TextView
                         android:id="@+id/tv_lv2"
-                        android:layout_width="@dimen/px_64"
-                        android:layout_height="@dimen/px_64"
+                        android:layout_width="@dimen/px_80"
+                        android:layout_height="@dimen/px_80"
                         android:layout_alignLeft="@+id/leve_2"
                         android:layout_alignRight="@+id/leve_2"
                         android:gravity="center"

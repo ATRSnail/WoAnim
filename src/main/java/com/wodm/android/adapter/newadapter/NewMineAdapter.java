@@ -30,6 +30,8 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.track.Tracker;
 
+import static com.wodm.R.id.adapter_view;
+
 /**
  * Created by songchenyu on 16/9/26.
  */
@@ -77,7 +79,7 @@ public class NewMineAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.mine_adapter, null, false);
             holder.textView = (TextView) convertView.findViewById(R.id.tv_title);
             holder.gridView = (MyGridView) convertView.findViewById(R.id.gv_mygirdview);
-            holder.adapter_view = convertView.findViewById(R.id.adapter_view);
+            holder.adapter_view = convertView.findViewById(adapter_view);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();
@@ -201,6 +203,7 @@ public class NewMineAdapter extends BaseAdapter {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_gv, null, false);
                 gvHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
                 gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.gv_img);
+                gvHolder.adapter_view=convertView.findViewById(adapter_view);
                 gvHolder.ll_adapter = (LinearLayout) convertView.findViewById(R.id.ll_adapter);
                 convertView.setTag(gvHolder);
             } else {
@@ -223,5 +226,6 @@ public class NewMineAdapter extends BaseAdapter {
         TextView tv_name;
         ImageView img_icon;
         LinearLayout ll_adapter;
+        View adapter_view;
     }
 }

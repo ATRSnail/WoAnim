@@ -82,8 +82,8 @@ public class AtyTopLayout extends RelativeLayout {
 
 
         // 将自定义的属性设置到控件上
-        leftImage.setImageDrawable(leftDrawable);
-
+//        leftImage.setImageDrawable(leftDrawable);
+         leftImage.setBackgroundResource(R.mipmap.back);
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_32_px));
         tvTitle.setText(titleText);

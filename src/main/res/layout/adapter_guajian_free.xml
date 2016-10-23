@@ -26,7 +26,7 @@
             android:id="@+id/tv_name"
             android:textColor="@color/color_333333"
             android:paddingBottom="@dimen/px_20"
-            android:textSize="20px"
+            android:textSize="@dimen/text_size_22_px"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="熊仔头像框"

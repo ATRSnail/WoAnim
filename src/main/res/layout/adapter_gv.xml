@@ -26,4 +26,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <include android:id="@+id/adapter_view" layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
 </LinearLayout>

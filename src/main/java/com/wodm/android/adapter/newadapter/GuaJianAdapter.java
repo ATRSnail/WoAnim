@@ -19,13 +19,14 @@ import com.wodm.android.view.newview.MyGridView;
 public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private Context mContext;
     private int imageRescoures[]={R.mipmap.guajian_xiong,R.mipmap.guajian_wukong,R.mipmap.guajian_lvmaozi};
-    private String strRescoures[]={"熊仔头像框","悟空头像框","绿帽子头像框"};
+    private String strRescoures[]={"狗熊头像框","悟空头像框","绿帽子头像框"};
     private String clickStr;
     private MyGridView mGirdview;
     private FragmentMyPager.addClickIconListener addClickIconListener;
-    public GuaJianAdapter(MyGridView girdview,Context context){
+    public GuaJianAdapter(MyGridView girdview,Context context,String nameClick){
         this.mContext=context;
         this.mGirdview=girdview;
+        this.clickStr=nameClick;
         mGirdview.setOnItemClickListener(this);
 
     }
@@ -63,6 +64,7 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         }
         if (clickStr!=null&&clickStr.equals(strRescoures[position])){
             holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+            addClickIconListener.addImage(clickStr,imageRescoures[position]);
         }else {
             holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
         }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
+    android:background="@null"
     android:orientation="vertical">
 
     <LinearLayout
+        android:background="@null"
         android:id="@+id/layout_mall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/new_rectangle_mall">
 
@@ -27,8 +28,8 @@
 
             <org.eteclab.ui.widget.CircularImage
                 android:id="@+id/icon_item_mall"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/px_240"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@mipmap/diamond" />
         </RelativeLayout>

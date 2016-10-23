@@ -8,7 +8,7 @@
     <com.wodm.android.view.newview.OfenUseView
         app:rightBackGround_use="@mipmap/icon_more_normal"
         app:leftBackGround_use="@color/color_dd977f"
-        app:Customtoptitle_use="会员免费"
+        app:Customtoptitle_use=""
         app:BackGroundColor_use="@color/color_ffffff"
         app:CustomtitleTextColor_use="@color/color_333333"
         app:CustomtitleTextSize_use="@dimen/text_size_24_px"
@@ -30,8 +30,8 @@
                 android:layout_marginLeft="@dimen/px_60"
                 android:background="@color/color_ffffff"
                 android:id="@+id/gv_guajian"
-                android:horizontalSpacing="@dimen/px_50"
-                android:verticalSpacing="@dimen/px_10"
+                android:horizontalSpacing="@dimen/px_20"
+                android:verticalSpacing="@dimen/px_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="3" />
@@ -44,8 +44,8 @@
                 android:layout_marginRight="@dimen/px_60"
                 android:layout_marginLeft="@dimen/px_60"
                 android:id="@+id/gv_header"
-                android:horizontalSpacing="@dimen/px_50"
-                android:verticalSpacing="@dimen/px_10"
+                android:horizontalSpacing="@dimen/px_20"
+                android:verticalSpacing="@dimen/px_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="3" />

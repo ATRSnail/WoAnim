@@ -27,6 +27,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private TextView tabTv1,tabTv2;
-    private  FragmentMyPager frag;
+    private FragmentMyPager frag;
     private AtyTopLayout set_topbar;
     private CircularImage user_head_imgs;
     private Button btn_buy_now;
@@ -55,11 +56,32 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private RelativeLayout ll_open_vip;
     private Button btn_open_vip;
     private View tabLine1,tabLine2,view1,view2;
+    private String clickImage="";
+    private String string[]={"花心眼睛","波特的眼睛","蓝色太阳镜","普通款式","蛤蟆镜","熊仔头像框","悟空头像框","绿帽头像框","鱼缸头像框","钻石头像框","企鹅头像框","白兔子头像框","海贼头像框","龙虾头像框","潜水艇头像框","小黄鸡头像框"};
+    private int icon[]={R.mipmap.guajian_huaxin, R.mipmap.guajian_bote,R.mipmap.guajian_lanse,R.mipmap.guajian_putong,R.mipmap.guajian_hama,R.mipmap.touxiang_xiong, R.mipmap.touxiang_wukong,R.mipmap.touxiang_lvmaozi,R.mipmap.touxiang_yugang,R.mipmap.touxiang_zhuanshi,
+            R.mipmap.touxiang_qie,R.mipmap.touxiang_baiduzi,R.mipmap.touxiang_haizei,R.mipmap.touxiang_longxia,R.mipmap.touxiang_qianshuiting,R.mipmap.touxiang_xiaohuangji};
+    private int clckIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_headerguajian);
+        Bundle bundle=getIntent().getExtras();
+        if (bundle!=null){
+            clickImage=bundle.getString("iconClick");
+        }
+        initClickImage(clickImage);
         initView();
+    }
+    private void initClickImage(String name){
+        if (name==null||name.equals(""))
+            return;
+
+        for (int i = 0; i <string.length ; i++) {
+            if (name.equals(string[i])){
+                clckIcon=icon[i];
+            }
+        }
+
     }
     private void initView(){
         btn_open_vip= (Button) findViewById(R.id.btn_open_vip);
@@ -68,7 +90,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         btn_buy_now.setOnClickListener(this);
         guajian_free= (MyGridView) findViewById(R.id.guajian_free);
         guajian_free.setSelector(new ColorDrawable(Color.TRANSPARENT));
-        guaJianAdapter=new GuaJianAdapter(guajian_free,this);
+        guaJianAdapter=new GuaJianAdapter(guajian_free,this,clickImage);
         guaJianAdapter.setAddClickIconListener(this);
         guajian_free.setAdapter(guaJianAdapter);
         mTabHost=(TabHost)findViewById(R.id.mypage_tabhost);
@@ -81,7 +103,9 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         tabTv1=(TextView)view1.findViewById(R.id.tabwidget_tv);
         tabLine1=(View)view1.findViewById(R.id.tabwidget_line);
         user_head_imgs= (CircularImage) findViewById(R.id.user_head_imgs);
+        user_head_imgs.setBackgroundResource(clckIcon);
 
+        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
         view2=(View) LayoutInflater.from(this).inflate(R.layout.tabwidget_layout,null);
         tabTv2=(TextView)view2.findViewById(R.id.tabwidget_tv);
         tabLine2=(View)view2.findViewById(R.id.tabwidget_line);
@@ -97,7 +121,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 FragmentMyPager.class,null);
         mTabsAdapter.addTab(mTabHost.newTabSpec("contacts").setIndicator(view2),
                 FragmentMyPager.class,null);
-        frag=FragmentMyPager.newInstance(0);
+        frag=FragmentMyPager.newInstance(0,clickImage);
         frag.setAddClickIconListener(this);
         if (scrollView != null) {
             scrollView.scrollTo(0, 0);

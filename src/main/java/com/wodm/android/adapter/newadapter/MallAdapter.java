@@ -3,7 +3,6 @@ package com.wodm.android.adapter.newadapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wodm.R;
 
@@ -78,10 +76,10 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
 //        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
 //        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
 //        holder.layout.measure(w, h);
-        int width = params.width;
-        params.height = width * 146 / 160;
-        holder.layout.setLayoutParams(params);
-        convertView.setOnClickListener(this);
+//        int width = params.width;
+//        params.height = width * 146 / 160;
+//        holder.layout.setLayoutParams(params);
+//        convertView.setOnClickListener(this);
 
         if (flag == 0 && position == 0) {
             holder.xianshi_mall.setVisibility(View.VISIBLE);

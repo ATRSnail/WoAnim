@@ -38,12 +38,14 @@ public class FragmentMyPager extends Fragment
     private static Context mContext;
     private static RelativeLayout ll_header;
     private static RelativeLayout ll_guajian;
+    private static String myClickImage;
     private static addClickIconListener addClickIconListener;
-    public static FragmentMyPager newInstance(int num)
+    public static FragmentMyPager newInstance(int num,String clickImage)
     {
         FragmentMyPager f=new FragmentMyPager();
         Bundle args=new Bundle();
         args.putInt("num",num);
+        myClickImage=clickImage;
         f.setArguments(args);
         return f;
     }
@@ -83,11 +85,11 @@ public class FragmentMyPager extends Fragment
         mContext=getActivity();
         ll_header.setVisibility(View.VISIBLE);
         ll_guajian.setVisibility(View.GONE);
-        gv_guajian.setAdapter(new GuaJianAdapter(gv_guajian,arrayGuaJian,stringGuaJian));
+        gv_guajian.setAdapter(new GuaJianAdapter(gv_guajian,arrayGuaJian,stringGuaJian,myClickImage));
 //        } else {
 //            ll_guajian.setVisibility(View.VISIBLE);
 //            ll_header.setVisibility(View.VISIBLE);
-        gv_header.setAdapter(new TouXiangAdapter(gv_header,headerGuaJian,headerStrGuaJian));
+        gv_header.setAdapter(new TouXiangAdapter(gv_header,headerGuaJian,headerStrGuaJian,myClickImage));
 //        }
 
         return v;
@@ -98,10 +100,11 @@ public class FragmentMyPager extends Fragment
         private int imageRescoures[];
         private String strRescoures[];
 
-        public GuaJianAdapter(MyGridView girdview,int imageRescoures[],String strRescoures[]){
+        public GuaJianAdapter(MyGridView girdview,int imageRescoures[],String strRescoures[],String clickImage){
             this.mGirdview=girdview;
             this.imageRescoures=imageRescoures;
             this.strRescoures=strRescoures;
+            this.clickStr=clickImage;
             mGirdview.setOnItemClickListener(this);
         }
         @Override
@@ -134,6 +137,7 @@ public class FragmentMyPager extends Fragment
             }
             if (clickStr!=null&&clickStr.equals(strRescoures[position])){
                 holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+                addClickIconListener.addImage(clickStr,imageRescoures[position]);
             }else {
                 holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
             }
@@ -162,10 +166,11 @@ public class FragmentMyPager extends Fragment
         private int imageRescoures[];
         private String strRescoures[];
 
-        public TouXiangAdapter(MyGridView girdview,int imageRescoures[],String strRescoures[]){
+        public TouXiangAdapter(MyGridView girdview,int imageRescoures[],String strRescoures[],String clickImage){
             this.mGirdview=girdview;
             this.imageRescoures=imageRescoures;
             this.strRescoures=strRescoures;
+            this.clickStr=clickImage;
             mGirdview.setOnItemClickListener(this);
         }
         @Override
@@ -198,6 +203,7 @@ public class FragmentMyPager extends Fragment
             }
             if (clickStr!=null&&clickStr.equals(strRescoures[position])){
                 holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+                addClickIconListener.addImage(clickStr,imageRescoures[position]);
             }else {
                 holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
             }

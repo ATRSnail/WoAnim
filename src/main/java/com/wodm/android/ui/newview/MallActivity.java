@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_mall)
-public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
+public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener ,AdapterView.OnItemClickListener{
 
     @ViewIn(R.id.ll_buy_mall)
     LinearLayout ll_buy_mall;
@@ -73,8 +74,10 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         }
         adapter = new MallAdapter(this, list, 0);
         new_grid_mall.setAdapter(adapter);
+        new_grid_mall.setOnItemClickListener(this);
         adapter = new MallAdapter(this, list, 1);
         renqi_grid_mall.setAdapter(adapter);
+        renqi_grid_mall.setOnItemClickListener(this);
     }
 
     private void initLinearLayout() {
@@ -184,4 +187,13 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 
             }
         }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent=new Intent(MallActivity.this,HeaderGuaJianActivity.class);
+        String nameClick=name[position];
+        intent.putExtra("iconClick",nameClick);
+        startActivity(intent);
+
+    }
 }

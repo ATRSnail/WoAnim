@@ -159,8 +159,8 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:layout_width="@dimen/px_40"
-                                android:layout_height="@dimen/px_26"
+                                android:layout_width="@dimen/px_60"
+                                android:layout_height="@dimen/px_36"
                                 android:background="@drawable/btn_vip"
                                 android:gravity="center"
                                 android:padding="@dimen/px_2"
@@ -304,7 +304,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/free_look"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
+                            android:textSize="@dimen/text_size_26_px" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -312,7 +312,7 @@
                             android:layout_marginTop="@dimen/px_14"
                             android:text="@string/free_look_info"
                             android:textColor="@color/color_666666"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textSize="@dimen/text_size_22_px" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -346,7 +346,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/special_show"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
+                            android:textSize="@dimen/text_size_26_px" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -354,7 +354,7 @@
                             android:layout_marginTop="@dimen/px_14"
                             android:text="@string/special_show_info"
                             android:textColor="@color/color_666666"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textSize="@dimen/text_size_22_px" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -388,7 +388,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/growth_accelerate"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
+                            android:textSize="@dimen/text_size_26_px" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -396,7 +396,7 @@
                             android:layout_marginTop="@dimen/px_14"
                             android:text="@string/growth_accelerate_info"
                             android:textColor="@color/color_666666"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textSize="@dimen/text_size_22_px" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -430,7 +430,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/follow_heart"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
+                            android:textSize="@dimen/text_size_26_px" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -438,7 +438,7 @@
                             android:layout_marginTop="@dimen/px_14"
                             android:text="@string/follow_heart_info"
                             android:textColor="@color/color_666666"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textSize="@dimen/text_size_22_px" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -472,7 +472,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/get_score"
                             android:textColor="@color/color_333333"
-                            android:textSize="@dimen/text_size_36_px" />
+                            android:textSize="@dimen/text_size_26_px" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -480,7 +480,7 @@
                             android:layout_marginTop="@dimen/px_14"
                             android:text="@string/get_score_info"
                             android:textColor="@color/color_666666"
-                            android:textSize="@dimen/text_size_30_px" />
+                            android:textSize="@dimen/text_size_22_px" />
                     </LinearLayout>
 
                 </LinearLayout>
