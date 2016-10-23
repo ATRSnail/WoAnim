@@ -167,7 +167,7 @@
                     android:padding="@dimen/px_2"
                     android:text="@string/edit"
                     android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_34_px" />
+                    android:textSize="@dimen/text_size_26_px" />
             </RelativeLayout>
 
             <LinearLayout

@@ -78,7 +78,7 @@ public class LevelAdapter extends BaseAdapter {
         holder.btn.setText(map.get("actionItem"));
         holder.textView.setText(map.get("experience"));
         if (position == 7) {
-            holder.btn.setTextSize(TypedValue.COMPLEX_UNIT_PX, 50);
+            holder.btn.setTextSize(TypedValue.COMPLEX_UNIT_PX, 36);
         }
         return convertView;
     }

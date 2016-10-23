@@ -99,7 +99,6 @@
                         android:hint="@string/password_hint"
                         android:inputType="textPassword"
                         android:maxLength="18"
-                        android:text="123456"
                         android:textColor="@color/color_3d3d3d"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="@dimen/text_size_36_px" />
