@@ -8,15 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/px_15"
-        android:layout_marginLeft="@dimen/px_76"
-        android:layout_marginRight="@dimen/px_76"
+        android:layout_marginLeft="@dimen/px_60"
+        android:layout_marginRight="@dimen/px_60"
         android:layout_marginTop="@dimen/px_30"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/ll_circle1"
-            android:layout_width="@dimen/px_180"
+            android:layout_width="@dimen/px_200"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_5"
             android:layout_weight="1"
@@ -95,7 +95,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/px_180"
+            android:layout_width="@dimen/px_200"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-10dp"
             android:layout_weight="1"
@@ -174,7 +174,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/px_180"
+            android:layout_width="@dimen/px_200"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="@dimen/px_5"
@@ -253,7 +253,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/px_180"
+            android:layout_width="@dimen/px_200"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="@dimen/px_5"
@@ -333,7 +333,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/px_100"
+            android:layout_width="@dimen/px_200"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="@dimen/px_5"
