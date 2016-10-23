@@ -3,6 +3,8 @@ package com.wodm.android.ui.newview;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 @Layout(R.layout.activity_mall)
-public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener ,AdapterView.OnItemClickListener{
+public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener, AdapterView.OnItemClickListener {
 
     @ViewIn(R.id.ll_buy_mall)
     LinearLayout ll_buy_mall;
@@ -53,6 +55,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        renqi_grid_mall.setSelector(new ColorDrawable(Color.TRANSPARENT));
         initLinearLayout();
         initList();
         back_mall.setOnTopbarClickListenter(this);
@@ -64,6 +67,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     }
 
     private void initList() {
+
         list = new ArrayList<>();
         for (int i = 0; i < name.length; i++) {
             Map<String, Object> map = new HashMap<>();
@@ -150,49 +154,50 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 .setMessage("您的积分不足！")
                 .create().show();
     }
-        @Override
-        public void onClick (View v){
-//        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
-            switch (v.getId()) {
-                case 0:
-                    break;
-                case 1:
-//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
-                    break;
-                case 2:
-//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
-                    break;
-                case 3:
-                    new AlertDialog.Builder(this)
-                            .setMessage("正在建设中...")
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .create().show();
-                    break;
-                case R.id.go_btn:
-                    new AlertDialog.Builder(this)
-                            .setMessage("您的积分不足")
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .create().show();
-                    break;
 
-            }
+    @Override
+    public void onClick(View v) {
+//        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
+        switch (v.getId()) {
+            case 0:
+                break;
+            case 1:
+//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
+                break;
+            case 2:
+//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
+                break;
+            case 3:
+                new AlertDialog.Builder(this)
+                        .setMessage("正在建设中...")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+                break;
+            case R.id.go_btn:
+                new AlertDialog.Builder(this)
+                        .setMessage("您的积分不足")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+                break;
+
         }
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent=new Intent(MallActivity.this,HeaderGuaJianActivity.class);
-        String nameClick=name[position];
-        intent.putExtra("iconClick",nameClick);
+        Intent intent = new Intent(MallActivity.this, HeaderGuaJianActivity.class);
+        String nameClick = name[position];
+        intent.putExtra("iconClick", nameClick);
         startActivity(intent);
 
     }

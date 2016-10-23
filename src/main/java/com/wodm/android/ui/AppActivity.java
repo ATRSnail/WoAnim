@@ -61,7 +61,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     protected SlideBackUtil mSlideBackUtil;
     private int ScreenWidth, ScreenHight;
     private DialogFragment bulletDialog;
-    public static MedalInfoBean MEDALINFOBEAN;
+    public static MedalInfoBean MEDALINFOBEAN = null;
 
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);

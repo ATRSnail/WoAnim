@@ -3,6 +3,7 @@ package com.wodm.android.adapter.newadapter;
 import android.app.Activity;
 import android.content.Context;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,9 +58,10 @@ public class LevelAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        int width=Tools.getScreenWidth((Activity) mContext);
-        int view_width=(width-140)/3;
-        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(view_width,view_width/2);
+        int width = Tools.getScreenWidth((Activity) mContext);
+        int view_width = (width - 140) / 3;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view_width, view_width / 2);
+        params.gravity = Gravity.CENTER;
         holder.btn.setLayoutParams(params);
         Map<String, String> map = mList.get(position);
         holder.btn.setText(map.get("actionItem"));
