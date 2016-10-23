@@ -12,12 +12,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:id="@+id/buy_colcor_mall"
             android:layout_width="@dimen/px_90"
             android:layout_height="@dimen/px_90"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/buy_rectangle_mall" />
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/buy_font_mall"

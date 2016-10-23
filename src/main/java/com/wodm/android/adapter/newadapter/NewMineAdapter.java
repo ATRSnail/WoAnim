@@ -36,10 +36,10 @@ import org.eteclab.track.Tracker;
 
 public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
-    private String[] personArray = {"成就", "任务", "足迹", "收藏", "缓存", "客服", "设置", "商城"};
+    private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "", "", ""};
     private int[] personIconArray = {R.drawable.medal_mine, R.drawable.task_mine, R.drawable.footprint_mine
-            , R.drawable.collect, R.drawable.cache, R.drawable.service_mine, R.drawable.settings, R.mipmap.mall};
+            , R.drawable.collect, R.drawable.service_mine, R.drawable.settings, R.mipmap.mall, 0};
 
     private int[] messageIconArray = {R.drawable.reply_mine, R.drawable.like_mine, R.drawable.inform_mine
             , R.drawable.mine, R.drawable.topic_mine, 0, 0, 0};
@@ -48,9 +48,14 @@ public class NewMineAdapter extends BaseAdapter {
         this.mContext = context;
     }
 
+//    @Override
+//    public int getCount() {
+//        return 2;
+//    }
+
     @Override
     public int getCount() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -95,9 +100,9 @@ public class NewMineAdapter extends BaseAdapter {
             holder.textView.setText(mContext.getString(R.string.center_people));
             holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_cce198));
         } else {
-            myadapter = new Myadapter(messageArray, messageIconArray);
-            holder.textView.setText(mContext.getString(R.string.message));
-            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
+//            myadapter = new Myadapter(messageArray, messageIconArray);
+//            holder.textView.setText(mContext.getString(R.string.message));
+//            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
         }
         if (myadapter != null)
             holder.gridView.setAdapter(myadapter);

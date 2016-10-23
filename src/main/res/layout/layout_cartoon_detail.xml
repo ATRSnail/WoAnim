@@ -55,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/px_30"
                 android:paddingLeft="@dimen/px_30"
+                android:visibility="invisible"
                 android:src="@mipmap/icon_xiazai" />
 
             <CheckBox

@@ -64,8 +64,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
     @InflateView(R.layout.layout_cartoon_detail)
-    private TextView dianji_num;
     private View mHeaderView;
+    private TextView dianji_num;
     @ViewIn(R.id.video_name)
     private TextView mCarTitle;
     @ViewIn(R.id.header)

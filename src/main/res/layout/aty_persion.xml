@@ -69,7 +69,8 @@
                     android:layout_height="@dimen/px_52"
                     android:layout_marginLeft="-16dp"
                     android:layout_toRightOf="@+id/user_head_imgs"
-                    android:src="@mipmap/touxiang" />
+                    android:src="@mipmap/touxiang"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -166,7 +167,7 @@
                     android:padding="@dimen/px_2"
                     android:text="@string/edit"
                     android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/text_size_22_px" />
+                    android:textSize="@dimen/text_size_34_px" />
             </RelativeLayout>
 
             <LinearLayout
@@ -197,7 +198,7 @@
                         <ImageView
                             android:id="@+id/img_persion_progress"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/px_30"
+                            android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/px_5"
                             android:layout_marginTop="@dimen/px_5"
                             android:background="@mipmap/pro_progress" />
@@ -287,9 +288,9 @@
                     android:background="@color/color_f8b551"></View>
 
                 <TextView
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/px_15"
                     android:layout_toRightOf="@+id/view_color"
                     android:text="@string/mine_xunzhang"
@@ -308,11 +309,11 @@
                     android:textSize="@dimen/text_size_30_px" />
 
                 <ImageView
-                    android:layout_centerVertical="true"
                     android:id="@+id/img_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:background="@mipmap/persion_heng" />
 
             </RelativeLayout>

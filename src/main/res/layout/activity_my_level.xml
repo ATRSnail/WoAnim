@@ -64,22 +64,25 @@
                         android:layout_toRightOf="@id/nickname_tv_level"
                         android:src="@mipmap/sex_women" />
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/px_10"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_10">
+
                     <LinearLayout
-                        android:gravity="right"
-                        android:layout_marginRight="@dimen/px_15"
-                        android:layout_alignRight="@+id/view"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/px_30">
+                        android:layout_height="@dimen/px_30"
+                        android:layout_alignRight="@+id/view"
+                        android:layout_marginRight="@dimen/px_15"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="@string/level_experienece"
                             android:layout_marginLeft="@dimen/px_15"
+                            android:text="@string/level_experienece"
                             android:textColor="@color/color_ffffff"
                             android:textSize="@dimen/text_size_24_px" />
 
@@ -92,6 +95,7 @@
                             android:textSize="@dimen/text_size_24_px" />
 
                     </LinearLayout>
+
                     <View
                         android:id="@+id/view"
                         android:layout_width="@dimen/px_2"
@@ -100,16 +104,16 @@
                         android:background="@color/color_ffffff" />
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_30"
                         android:layout_alignLeft="@+id/view"
                         android:layout_marginLeft="@dimen/px_15"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/px_30">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_marginRight="@dimen/px_15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/px_15"
                             android:text="@string/level_total_experienece"
                             android:textColor="@color/color_ffffff"
                             android:textSize="@dimen/text_size_24_px" />
@@ -181,39 +185,39 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_64"
+            android:layout_height="@dimen/px_96"
             android:background="@color/color_ffffff">
 
             <TextView
-                android:layout_centerVertical="true"
                 android:id="@+id/tv_circle"
-                android:layout_alignParentLeft="true"
                 android:layout_width="@dimen/px_32"
                 android:layout_height="@dimen/px_32"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/px_30"
                 android:background="@drawable/vip_icon_circle" />
 
             <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/tv_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/px_10"
+                android:layout_toRightOf="@+id/tv_circle"
                 android:text="@string/vip_speed_hint"
                 android:textColor="@color/color_f29b76"
                 android:textSize="@dimen/text_size_22_px" />
 
             <Button
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:id="@+id/kai_tong_level"
-                android:layout_width="@dimen/px_84"
-                android:layout_height="@dimen/px_42"
+                android:layout_width="@dimen/px_126"
+                android:layout_height="@dimen/px_63"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/px_30"
                 android:background="@drawable/kaitong_rectan"
                 android:text="@string/open_vip_member"
                 android:textColor="@color/color_ff6361"
-                android:textSize="14px" />
+                android:textSize="@dimen/text_size_22_px" />
 
         </RelativeLayout>
 

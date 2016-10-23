@@ -1,11 +1,16 @@
 package com.wodm.android.ui.newview;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,13 +46,15 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @ViewIn(R.id.back_mall)
     AtyTopLayout back_mall;
     @ViewIn(R.id.go_btn)
-    Button go_btn;
+    ImageButton go_btn;
 
     String[] buyName = new String[]{"会员", "头像框", "挂件", "周边"};
     String[] name = new String[]{"钻石头像框", "狗熊头像框", "小黄鸡头像框"};
     String[] score = new String[]{"930积分", "930积分", "930积分"};
     int[] icon = new int[]{R.mipmap.diamond, R.mipmap.bear, R.mipmap.ji};
+    int[] icon2 = new int[]{R.mipmap.rabbit, R.mipmap.wukong, R.mipmap.hat};
     int[] color = new int[]{R.drawable.buy_rectangle_mall1, R.drawable.buy_rectangle_mall, R.drawable.buy_rectangle_mall3, R.drawable.buy_rectangle_mall4};
+    int[] colors = new int[]{R.mipmap.member_mall, R.mipmap.touxiang_mall, R.mipmap.guajian_mall, R.mipmap.zhoubian_mall};
     MallAdapter adapter;
     List<Map<String, Object>> list;
 
@@ -102,8 +109,9 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             map.put("icon", icon[i]);
             list.add(map);
         }
-        adapter = new MallAdapter(this, list);
+        adapter = new MallAdapter(this, list, 0);
         new_grid_mall.setAdapter(adapter);
+        adapter = new MallAdapter(this, list, 1);
         renqi_grid_mall.setAdapter(adapter);
     }
 
@@ -112,14 +120,13 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             LinearLayout view = (LinearLayout) LayoutInflater.from(getApplicationContext()).inflate(R.layout.buy_item_mall, null, false);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
             view.setLayoutParams(params);
-            TextView buy_colcor_mall;
+            ImageView buy_colcor_mall;
             TextView buy_font_mall;
-            buy_colcor_mall = (TextView) view.findViewById(R.id.buy_colcor_mall);
+            buy_colcor_mall = (ImageView) view.findViewById(R.id.buy_colcor_mall);
             buy_font_mall = (TextView) view.findViewById(R.id.buy_font_mall);
             buy_font_mall.setText(buyName[i]);
-            buy_colcor_mall.setBackgroundResource(color[i]);
-            view.setClickable(true);
-            view.setFocusable(true);
+            buy_colcor_mall.setBackgroundResource(colors[i]);
+            view.setId(i);
             view.setOnClickListener(this);
             ll_buy_mall.addView(view);
         }
@@ -141,9 +148,38 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @Override
     public void onClick(View v) {
 //        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
-        new AlertDialog.Builder(MallActivity.this)
-                .setTitle("用户您好：")
-                .setMessage("您的积分不足！")
-                .create().show();
+        switch (v.getId()) {
+            case 0:
+                break;
+            case 1:
+//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
+                break;
+            case 2:
+//                startActivity(new Intent(this, HeaderGuaJianActivity.class));
+                break;
+            case 3:
+                new AlertDialog.Builder(this)
+                        .setMessage("正在建设中...")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+                break;
+            case R.id.go_btn:
+                new AlertDialog.Builder(this)
+                        .setMessage("您的积分不足")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+                break;
+
+        }
     }
 }
