@@ -89,6 +89,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     private LinearLayout ll_complete_info;
     @ViewIn(R.id.ll_qiandao)
     private LinearLayout ll_qiandao;
+    private int qiandao_day=0;
 
 
     @Override
@@ -115,7 +116,9 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         }
         UserInfoBean.DataBean dataBean = CURRENT_USER.getData();
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_heade, dataBean.getAccount().getPortrait());
-        total_day.setText(dataBean.getMaxCheckinCount() + "");
+        qiandao_day=dataBean.getCheckinCount();
+        total_day.setText(qiandao_day+ "");
+
         lianxu_qiandao.setText(dataBean.getCheckinCount() + "");
         if (dataBean.getAccount().getVip() != 0) {
             rl_open_vip.setVisibility(View.GONE);
@@ -156,6 +159,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     }
 
     private void initfinsh() {
+        total_day.setText((qiandao_day+1)+ "");
         top_line_view.setBackgroundColor(getResources().getColor(R.color.color_ef9429));
         top_task.setBackgroundResource("#ffa031");
         ll_top_task.setBackgroundResource(R.mipmap.qiandao_yellow_bg);
