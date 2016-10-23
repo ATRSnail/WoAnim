@@ -98,8 +98,8 @@ public class AtyTopLayout extends RelativeLayout {
         leftLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         leftLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);     //设置左对齐
         leftLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+        leftLayoutParams.setMargins(30,0,0,0);
 //        leftLayoutParams.setMarginStart((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
-        leftImage.setPaddingRelative(20, 0, 15, 0);
         addView(leftImage, leftLayoutParams);  //leftButton以leftLayoutParams的形式加入到ViewGroup中
 
         titleLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

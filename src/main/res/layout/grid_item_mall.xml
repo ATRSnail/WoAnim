@@ -38,7 +38,7 @@
             android:id="@+id/name_item_mall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_15"
+            android:layout_marginTop="@dimen/px_10"
             android:text="钻石头相框"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_30_px" />
@@ -47,7 +47,7 @@
             android:id="@+id/score_item_mall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_15"
+            android:layout_marginTop="@dimen/px_10"
             android:text="930积分"
             android:textColor="@color/color_ff6f21"
             android:textSize="@dimen/text_size_24_px" />
