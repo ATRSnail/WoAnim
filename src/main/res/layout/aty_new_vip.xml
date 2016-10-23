@@ -166,7 +166,7 @@
                                 android:padding="@dimen/px_2"
                                 android:text="vip"
                                 android:textColor="@color/color_ffae00"
-                                android:textSize="14px" />
+                                android:textSize="@dimen/text_size_22_px" />
 
                             <TextView
                                 android:layout_width="wrap_content"

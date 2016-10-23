@@ -62,7 +62,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/px_10"
                         android:background="@null"
-                        android:text="18510726703"
+                        android:text="18519206703"
                         android:hint="@string/input_phone"
                         android:inputType="phone"
                         android:textColor="@color/color_3d3d3d"
@@ -91,7 +91,6 @@
                         android:background="@mipmap/login_password" />
 
                     <EditText
-                        android:text="123456"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -101,6 +100,7 @@
                         android:hint="@string/password_hint"
                         android:inputType="textPassword"
                         android:maxLength="18"
+                        android:text="123456"
                         android:textColor="@color/color_3d3d3d"
                         android:textColorHint="@color/color_cccccc"
                         android:textSize="@dimen/text_size_36_px" />
