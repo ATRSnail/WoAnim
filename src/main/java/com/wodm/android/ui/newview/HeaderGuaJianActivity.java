@@ -27,6 +27,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         tabTv1=(TextView)view1.findViewById(R.id.tabwidget_tv);
         tabLine1=(View)view1.findViewById(R.id.tabwidget_line);
         user_head_imgs= (CircularImage) findViewById(R.id.user_head_imgs);
-//        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
+        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
         view2=(View) LayoutInflater.from(this).inflate(R.layout.tabwidget_layout,null);
         tabTv2=(TextView)view2.findViewById(R.id.tabwidget_tv);
         tabLine2=(View)view2.findViewById(R.id.tabwidget_line);

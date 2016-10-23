@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@mipmap/login_banner" />
+                android:background="@mipmap/login_banner" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_64"
+                    android:layout_height="@dimen/px_96"
                     android:layout_marginLeft="@dimen/px_30"
                     android:layout_marginRight="@dimen/px_30"
                     android:orientation="horizontal">
@@ -62,7 +62,6 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/px_10"
                         android:background="@null"
-                        android:text="18510726703"
                         android:hint="@string/input_phone"
                         android:inputType="phone"
                         android:textColor="@color/color_3d3d3d"
@@ -78,7 +77,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_64"
+                    android:layout_height="@dimen/px_96"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/px_30"
                     android:layout_marginRight="@dimen/px_30"
@@ -91,7 +90,6 @@
                         android:background="@mipmap/login_password" />
 
                     <EditText
-                        android:text="123456"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
