@@ -6,17 +6,33 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layout_mall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
         android:orientation="vertical">
 
-        <org.eteclab.ui.widget.CircularImage
-            android:id="@+id/icon_item_mall"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/px_240"
-            android:background="@drawable/stroke_rectangle_mall3"
-            android:src="@mipmap/diamond" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/new_rectangle_mall">
+
+            <ImageView
+                android:id="@+id/xianshi_mall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/px_10"
+                android:src="@mipmap/xianshi"
+                android:visibility="invisible" />
+
+            <org.eteclab.ui.widget.CircularImage
+                android:id="@+id/icon_item_mall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/px_240"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/diamond" />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/name_item_mall"

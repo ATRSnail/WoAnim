@@ -5,43 +5,48 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_weight="4"
-        android:orientation="horizontal"
-        android:layout_marginRight="@dimen/px_76"
-        android:layout_marginLeft="@dimen/px_76"
-        android:layout_marginBottom="@dimen/px_15"
-        android:layout_marginTop="@dimen/px_30"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_15"
+        android:layout_marginLeft="@dimen/px_76"
+        android:layout_marginRight="@dimen/px_76"
+        android:layout_marginTop="@dimen/px_30"
+        android:layout_weight="4"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/px_5"
             android:id="@+id/ll_circle1"
-            android:orientation="vertical"
             android:layout_width="@dimen/px_180"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <ImageView
-                android:visibility="invisible"
-                android:layout_marginLeft="@dimen/px_30"
                 android:id="@+id/img_jiantou1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
                 android:background="@mipmap/level_jiantou"
-                />
+                android:visibility="invisible" />
+
             <RelativeLayout
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_1"
-                android:layout_below="@+id/img_jiantou1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_jiantou1"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1">
+
                 <View
-                    android:layout_centerVertical="true"
-                    android:background="@color/color_ffcb4d"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_1"></View>
+                    android:layout_height="@dimen/px_1"
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"></View>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/leve_1"
                         android:layout_width="@dimen/px_72"
@@ -50,33 +55,36 @@
                         android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
+
                     <TextView
                         android:id="@+id/tv_lv1"
-                        android:padding="@dimen/px_5"
-                        android:layout_centerInParent="true"
-                        android:gravity="center"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46"
                         android:layout_alignLeft="@+id/leve_1"
                         android:layout_alignRight="@+id/leve_1"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="@dimen/px_5"
                         android:text="LV1"
-                        android:layout_width="@dimen/px_46"
-                        android:layout_height="@dimen/px_46" />
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
                 </RelativeLayout>
 
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/ll_circle2"
-                android:layout_gravity="left"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+
                 <TextView
 
                     android:id="@+id/tv_jingyanzhi1"
-                    android:layout_gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="left"
                     android:layout_marginTop="@dimen/px_10"
                     android:text="      距离LV3\n还有332经验值"
                     android:textColor="@color/color_ffb164"
@@ -85,33 +93,38 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginLeft="-10dp"
-            android:orientation="vertical"
             android:layout_width="@dimen/px_180"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <ImageView
-                android:layout_marginLeft="@dimen/px_32"
                 android:id="@+id/img_jiantou2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/level_jiantou"
-                />
+                android:layout_marginLeft="@dimen/px_32"
+                android:background="@mipmap/level_jiantou" />
+
             <RelativeLayout
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_5"
-                android:layout_below="@+id/img_jiantou2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_5">
+
                 <View
-                    android:layout_centerVertical="true"
-                    android:background="@color/color_ffcb4d"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_1"></View>
+                    android:layout_height="@dimen/px_1"
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"></View>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/leve_2"
                         android:layout_width="@dimen/px_72"
@@ -120,33 +133,36 @@
                         android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
+
                     <TextView
                         android:id="@+id/tv_lv2"
-                        android:padding="@dimen/px_5"
-                        android:gravity="center"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_width="@dimen/px_64"
+                        android:layout_height="@dimen/px_64"
                         android:layout_alignLeft="@+id/leve_2"
                         android:layout_alignRight="@+id/leve_2"
+                        android:gravity="center"
+                        android:padding="@dimen/px_5"
                         android:text="LV1\n测试"
-                        android:layout_width="@dimen/px_64"
-                        android:layout_height="@dimen/px_64" />
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
                 </RelativeLayout>
 
             </RelativeLayout>
+
             <LinearLayout
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/px_5"
                 android:id="@+id/ll_circle3"
-                android:layout_gravity="left"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/px_5"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_jingyanzhi2"
-                    android:layout_gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="left"
                     android:layout_marginTop="@dimen/px_10"
                     android:text="      距离LV3\n还有332经验值"
                     android:textColor="@color/color_ffb164"
@@ -155,35 +171,40 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/px_5"
-            android:layout_marginLeft="-10dp"
-            android:orientation="vertical"
             android:layout_width="@dimen/px_180"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <ImageView
-                android:visibility="invisible"
-                android:layout_marginLeft="@dimen/px_30"
                 android:id="@+id/img_jiantou3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
                 android:background="@mipmap/level_jiantou"
-                />
+                android:visibility="invisible" />
+
             <RelativeLayout
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_1"
-                android:layout_below="@+id/img_jiantou2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1">
+
                 <View
-                    android:layout_centerVertical="true"
-                    android:background="@color/color_ffcb4d"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_1"></View>
+                    android:layout_height="@dimen/px_1"
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"></View>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/leve_3"
                         android:layout_width="@dimen/px_72"
@@ -192,32 +213,35 @@
                         android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
+
                     <TextView
-                        android:layout_centerInParent="true"
                         android:id="@+id/tv_lv3"
-                        android:padding="@dimen/px_5"
-                        android:gravity="center"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46"
                         android:layout_alignLeft="@+id/leve_3"
                         android:layout_alignRight="@+id/leve_3"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="@dimen/px_5"
                         android:text="LV1\n测试"
-                        android:layout_width="@dimen/px_46"
-                        android:layout_height="@dimen/px_46" />
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
                 </RelativeLayout>
 
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/ll_circle4"
-                android:layout_gravity="left"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_jingyanzhi3"
-                    android:layout_gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="left"
                     android:layout_marginTop="@dimen/px_10"
                     android:text="      距离LV3\n还有332经验值"
                     android:textColor="@color/color_ffb164"
@@ -226,35 +250,40 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/px_5"
-            android:layout_marginLeft="-10dp"
-            android:orientation="vertical"
             android:layout_width="@dimen/px_180"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <ImageView
-                android:visibility="invisible"
-                android:layout_marginLeft="@dimen/px_30"
                 android:id="@+id/img_jiantou4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
                 android:background="@mipmap/level_jiantou"
-                />
+                android:visibility="invisible" />
+
             <RelativeLayout
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_1"
-                android:layout_below="@+id/img_jiantou2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1">
+
                 <View
-                    android:layout_centerVertical="true"
-                    android:background="@color/color_ffcb4d"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_1"></View>
+                    android:layout_height="@dimen/px_1"
+                    android:layout_centerVertical="true"
+                    android:background="@color/color_ffcb4d"></View>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/leve_4"
                         android:layout_width="@dimen/px_72"
@@ -263,33 +292,36 @@
                         android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
+
                     <TextView
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
                         android:id="@+id/tv_lv4"
-                        android:padding="@dimen/px_5"
-                        android:gravity="center"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46"
                         android:layout_alignLeft="@+id/leve_4"
                         android:layout_alignRight="@+id/leve_4"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="@dimen/px_5"
                         android:text="LV1"
-                        android:layout_width="@dimen/px_46"
-                        android:layout_height="@dimen/px_46" />
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
                 </RelativeLayout>
 
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/ll_circle5"
-                android:layout_gravity="left"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_jingyanzhi4"
-                    android:layout_gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="left"
                     android:layout_marginTop="@dimen/px_10"
                     android:text="      距离LV3\n还有332经验值"
                     android:textColor="@color/color_ffb164"
@@ -298,31 +330,34 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/px_5"
-            android:layout_marginLeft="-10dp"
-            android:orientation="vertical"
             android:layout_width="@dimen/px_100"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="@dimen/px_5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
             <ImageView
-                android:visibility="invisible"
-                android:layout_marginLeft="@dimen/px_30"
                 android:id="@+id/img_jiantou5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
                 android:background="@mipmap/level_jiantou"
-                />
+                android:visibility="invisible" />
+
             <RelativeLayout
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_1"
-                android:layout_below="@+id/img_jiantou2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_jiantou2"
+                android:layout_marginLeft="@dimen/px_10"
+                android:layout_marginTop="@dimen/px_1">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/leve_5"
                         android:layout_width="@dimen/px_72"
@@ -331,31 +366,34 @@
                         android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
+
                     <TextView
-                        android:layout_centerInParent="true"
                         android:id="@+id/tv_lv5"
-                        android:padding="@dimen/px_5"
-                        android:gravity="center"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
+                        android:layout_width="@dimen/px_46"
+                        android:layout_height="@dimen/px_46"
                         android:layout_alignLeft="@+id/leve_5"
                         android:layout_alignRight="@+id/leve_5"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="@dimen/px_5"
                         android:text="LV1\n测试"
-                        android:layout_width="@dimen/px_46"
-                        android:layout_height="@dimen/px_46" />
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px" />
                 </RelativeLayout>
 
             </RelativeLayout>
+
             <LinearLayout
-                android:layout_gravity="left"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_jingyanzhi5"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/px_10"
                     android:text="      距离LV3\n还有332经验值"
                     android:textColor="@color/color_ffb164"
@@ -364,10 +402,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
-
-
 
 
     </LinearLayout>

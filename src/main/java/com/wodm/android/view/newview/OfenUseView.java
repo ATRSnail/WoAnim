@@ -53,7 +53,7 @@ public class OfenUseView extends RelativeLayout{
 
         ImageView imageView=new ImageView(getContext());
         imageView.setBackgroundColor(left_color);
-        imageView.setId(10);
+//        imageView.setId(10);
 
         //将自定义的控件放到Layout中（以LayoutParams的形式）
         leftLayoutParams = new RelativeLayout.LayoutParams(6, 24);

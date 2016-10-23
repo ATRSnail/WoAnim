@@ -31,16 +31,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_221"
+            android:layout_height="@dimen/px_332"
             android:background="@color/color_ffffff">
 
             <ImageView
                 android:id="@+id/icon_wallet"
-                android:layout_width="@dimen/px_92"
-                android:layout_height="@dimen/px_92"
+                android:layout_width="@dimen/px_138"
+                android:layout_height="@dimen/px_138"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/px_10"
-                android:layout_marginTop="@dimen/px_30"
+                android:layout_marginBottom="@dimen/px_15"
+                android:layout_marginTop="@dimen/px_45"
                 android:src="@mipmap/icon_wallet" />
 
             <LinearLayout
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="积分"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_24_px" />
+                    android:textSize="@dimen/text_size_36_px" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                     android:layout_marginLeft="@dimen/px_10"
                     android:text=":"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_24_px" />
+                    android:textSize="@dimen/text_size_36_px" />
 
                 <TextView
                     android:id="@+id/score_wallet"
@@ -74,22 +74,22 @@
                     android:layout_marginLeft="@dimen/px_10"
                     android:text="203"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_24_px" />
+                    android:textSize="@dimen/text_size_36_px" />
             </LinearLayout>
 
 
             <RelativeLayout
-                android:layout_centerHorizontal="true"
                 android:id="@+id/rl_jingyan"
-                android:layout_below="@id/ll_score_wallet"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_score_wallet"
+                android:layout_centerHorizontal="true">
+
                 <LinearLayout
-                    android:layout_centerInParent="true"
                     android:id="@+id/ll_score_describ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_centerInParent="true">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                         android:gravity="center"
                         android:text="已获得"
                         android:textColor="@color/color_666666"
-                        android:textSize="20px" />
+                        android:textSize="@dimen/text_size_30_px" />
 
                     <TextView
                         android:id="@+id/current_score_wallet"
@@ -107,7 +107,7 @@
                         android:gravity="center"
                         android:text="020"
                         android:textColor="@color/color_666666"
-                        android:textSize="20px" />
+                        android:textSize="@dimen/text_size_30_px" />
 
                     <View
                         android:layout_width="@dimen/px_2"
@@ -123,7 +123,7 @@
                         android:gravity="center"
                         android:text="未获得"
                         android:textColor="@color/color_666666"
-                        android:textSize="20px" />
+                        android:textSize="@dimen/text_size_30_px" />
 
                     <TextView
                         android:id="@+id/need_score_wallet"
@@ -133,19 +133,20 @@
                         android:gravity="center"
                         android:text="012"
                         android:textColor="@color/color_666666"
-                        android:textSize="20px" />
+                        android:textSize="@dimen/text_size_30_px" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <ImageView
-                android:layout_marginBottom="-5dp"
-                android:layout_marginLeft="-5dp"
-                android:layout_above="@+id/rl_jingyan"
-                android:layout_toRightOf="@+id/rl_jingyan"
                 android:id="@+id/get_score_wallet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/rl_jingyan"
+                android:layout_marginBottom="-5dp"
+                android:layout_marginLeft="-5dp"
+                android:layout_toRightOf="@+id/rl_jingyan"
                 android:src="@mipmap/getscore_wallet" />
         </RelativeLayout>
 
@@ -157,37 +158,37 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_64"
+            android:layout_height="@dimen/px_96"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="@dimen/px_36"
-                android:layout_height="@dimen/px_36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="@dimen/px_30"
                 android:background="@drawable/vip_icon_circle" />
 
             <TextView
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_10"
+                android:layout_weight="1"
                 android:text="@string/vip_speed_hint"
                 android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/text_size_22_px" />
+                android:textSize="@dimen/text_size_34_px" />
 
             <Button
                 android:id="@+id/kai_tong_wallet"
-                android:layout_width="@dimen/px_84"
-                android:layout_height="@dimen/px_42"
+                android:layout_width="@dimen/px_126"
+                android:layout_height="@dimen/px_63"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="@dimen/px_30"
                 android:background="@drawable/kaitong_rectan"
                 android:gravity="center"
                 android:text="@string/open_vip_member"
                 android:textColor="@color/color_ff6361"
-                android:textSize="16px" />
+                android:textSize="@dimen/text_size_24_px" />
 
         </LinearLayout>
 
@@ -218,7 +219,7 @@
                 android:gravity="center"
                 android:text="已购买动画/漫画"
                 android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_22_px" />
+                android:textSize="@dimen/text_size_34_px" />
 
         </RelativeLayout>
 

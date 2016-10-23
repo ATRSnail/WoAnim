@@ -168,7 +168,11 @@
         <service android:name=".android.service.DownLoadServices" />
 
         <activity
+<<<<<<< HEAD
             android:name=".android.ui.newview.MallActivity"
+=======
+            android:name=".android.ui.WelcomeActivity"
+>>>>>>> 63277a32e3ddb12c4596bd4673bda12cdff3e47a
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
@@ -333,9 +337,18 @@
         <activity
             android:name=".android.ui.newview.CustomerServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
         <!--<activity-->
             <!--android:name=".android.ui.newview.MallActivity"-->
             <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+=======
+        <activity
+            android:name=".android.ui.newview.MallActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.HeaderGuaJianActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+>>>>>>> 63277a32e3ddb12c4596bd4673bda12cdff3e47a
     </application>
 
 </manifest>

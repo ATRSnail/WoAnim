@@ -32,7 +32,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_188"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:src="@mipmap/login_banner" />
 
@@ -63,11 +63,10 @@
                         android:layout_marginLeft="@dimen/px_10"
                         android:background="@null"
                         android:hint="@string/input_phone"
-                        android:text="18519206703"
                         android:inputType="phone"
                         android:textColor="@color/color_3d3d3d"
                         android:textColorHint="@color/color_cccccc"
-                        android:textSize="@dimen/text_size_24_px" />
+                        android:textSize="@dimen/text_size_36_px" />
 
                 </LinearLayout>
 
@@ -98,12 +97,11 @@
                         android:layout_marginLeft="@dimen/px_10"
                         android:background="@null"
                         android:hint="@string/password_hint"
-                        android:text="123456"
                         android:inputType="textPassword"
                         android:maxLength="18"
                         android:textColor="@color/color_3d3d3d"
                         android:textColorHint="@color/color_cccccc"
-                        android:textSize="@dimen/text_size_24_px" />
+                        android:textSize="@dimen/text_size_36_px" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -113,6 +111,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_f4f4f4"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
@@ -123,22 +122,22 @@
                     android:background="@drawable/btn_login_shape"
                     android:text="@string/login"
                     android:textColor="@color/color_3f190c"
-                    android:textSize="@dimen/text_size_24_px" />
+                    android:textSize="@dimen/text_size_36_px" />
 
                 <Button
-                    android:layout_marginBottom="@dimen/px_10"
-                    android:layout_marginRight="@dimen/px_30"
-                    android:layout_marginTop="@dimen/px_20"
-                    android:gravity="right"
-                    android:layout_gravity="right"
                     android:id="@+id/forget_pass_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/px_10"
+                    android:layout_marginRight="@dimen/px_30"
+                    android:layout_marginTop="@dimen/px_20"
                     android:background="@null"
+                    android:gravity="right"
                     android:text="@string/forget_password"
                     android:textColor="@color/color_cccccc"
-                    android:textSize="18px" />
+                    android:textSize="@dimen/text_size_28_px" />
 
             </LinearLayout>
         </LinearLayout>
@@ -173,7 +172,7 @@
                     android:layout_centerInParent="true"
                     android:text="@string/other_login_way"
                     android:textColor="@color/color_666666"
-                    android:textSize="20px" />
+                    android:textSize="@dimen/text_size_30_px" />
 
                 <View
                     android:layout_width="match_parent"

@@ -295,7 +295,7 @@
                 <TextView
                     android:layout_marginTop="@dimen/px_10"
                     android:textColor="@color/color_666666"
-                    android:textSize="20px"
+                    android:textSize="@dimen/text_size_30_px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vip_people" />
@@ -324,7 +324,7 @@
                 <TextView
                     android:layout_marginTop="@dimen/px_10"
                     android:textColor="@color/color_666666"
-                    android:textSize="20px"
+                    android:textSize="@dimen/text_size_30_px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/money_package" />
@@ -353,7 +353,7 @@
                 <TextView
                     android:layout_marginTop="@dimen/px_10"
                     android:textColor="@color/color_666666"
-                    android:textSize="20px"
+                    android:textSize="@dimen/text_size_30_px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/degreee" />

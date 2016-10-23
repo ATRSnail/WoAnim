@@ -38,13 +38,15 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/10/21.
  */
 public class HeaderGuaJianActivity extends FragmentActivity implements FragmentMyPager.addClickIconListener,AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
+/**
+ * Created by songchenyu on 16/10/21.
+ */
     private MyGridView guajian_free;
     private GuaJianAdapter guaJianAdapter;
     private TabHost mTabHost;
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private TextView tabTv1,tabTv2;
-    private  View tabLine1,tabLine2,view1,view2;
     private  FragmentMyPager frag;
     private AtyTopLayout set_topbar;
     private CircularImage user_head_imgs;
@@ -52,7 +54,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private ScrollView scrollView;
     private RelativeLayout ll_open_vip;
     private Button btn_open_vip;
-
+    private View tabLine1,tabLine2,view1,view2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +116,6 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 
     @Override
     public void addImage(String title,int imageRescoure) {
-
         user_head_imgs.setBackgroundResource(imageRescoure);
     }
 
@@ -145,7 +146,6 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         }
 
     }
-
     private class TabInfo
     {
         private String tag;
@@ -244,6 +244,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                tabTv1.setTextColor(getResources().getColor(R.color.colorAccent));
                 tabLine1.setBackgroundColor(Color.TRANSPARENT);
             }
+//            String tmp=mTabHost.getCurrentTabTag();
+//            mTabHost.getCurrentTabView().set
         }
 
         @Override

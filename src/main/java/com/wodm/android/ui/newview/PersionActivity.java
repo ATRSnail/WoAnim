@@ -202,10 +202,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         int next_num = dataBean.getNextGradeEmpirical();
         int need_num = dataBean.getNeedEmpirical();
         int num = (int) (110 * (1 - ((float) need_num / next_num)));
-        int num_sc= DisplayUtil.px2dip(this,30);
-        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
-        int margin= DisplayUtil.px2dip(this,5);
-        img_progress_params.setMargins(0, margin, 0, margin);
+        int num_sc = DisplayUtil.px2dip(this, 30);
+//        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
+//        int margin= DisplayUtil.px2dip(this,5);
+//        img_progress_params.setMargins(0, margin, 0, margin);
+//        img_persion_progress.setLayoutParams(img_progress_params);
+
+        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
+        img_progress_params.setMargins(0, 5, 0, 5);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();
