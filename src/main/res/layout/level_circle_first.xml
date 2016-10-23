@@ -104,7 +104,7 @@
                 android:id="@+id/img_jiantou2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/px_32"
+                android:layout_marginLeft="@dimen/px_38"
                 android:background="@mipmap/level_jiantou" />
 
             <RelativeLayout
@@ -129,8 +129,8 @@
                         android:layout_width="@dimen/px_84"
                         android:layout_height="@dimen/px_84"
                         android:background="@drawable/btn_circle1"
-                        android:text=""
                         android:gravity="center"
+                        android:text=""
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
 

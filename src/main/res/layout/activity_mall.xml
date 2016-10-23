@@ -2,9 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_mall"
-    android:background="@color/color_efefef"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_efefef"
     android:scrollbars="none">
 
     <LinearLayout
@@ -26,121 +26,124 @@
             app:rightTextSize="@dimen/text_size_36_px"
             app:rightType="1" />
 
-       <LinearLayout
-           android:background="@color/white"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <LinearLayout
-               android:id="@+id/ll_buy_mall"
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/px_281"
-               android:layout_margin="@dimen/px_45"
-               android:gravity="center"
-               android:orientation="horizontal"
-               android:weightSum="4" />
-       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/ll_buy_mall"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_281"
+                android:layout_margin="@dimen/px_45"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="4" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_2"
             android:background="@color/color_eae7e7" />
 
-       <LinearLayout
-           android:orientation="vertical"
-           android:background="@color/color_ffffff"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/px_96"
-               android:layout_marginLeft="@dimen/px_45"
-               android:layout_marginRight="@dimen/px_45">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
 
-               <TextView
-                   android:id="@+id/hot_tv_mall"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:text="今日热点"
-                   android:layout_marginRight="@dimen/px_10"
-                   android:textColor="@color/color_ff6f21"
-                   android:textSize="@dimen/text_size_30_px"
-                   android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_96"
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginRight="@dimen/px_45">
 
-               <TextView
-                   android:id="@+id/hot_line_mall"
-                   android:layout_width="@dimen/px_2"
-                   android:layout_height="wrap_content"
-                   android:layout_alignBottom="@id/hot_tv_mall"
-                   android:layout_alignTop="@id/hot_tv_mall"
-                   android:layout_centerVertical="true"
-                   android:layout_marginLeft="@dimen/px_10"
-                   android:layout_toRightOf="@id/hot_tv_mall"
-                   android:background="@color/color_cccccc" />
+                <TextView
+                    android:id="@+id/hot_tv_mall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/px_10"
+                    android:text="今日热点"
+                    android:textColor="@color/color_ff6f21"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:textStyle="bold" />
 
-               <LinearLayout
-                   android:id="@+id/ll_view"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:layout_alignBottom="@id/hot_line_mall"
-                   android:layout_centerVertical="true"
-                   android:layout_marginLeft="@dimen/px_10"
-                   android:layout_toRightOf="@id/hot_line_mall"
-                   android:layout_toLeftOf="@+id/go_btn"
-                   android:gravity="bottom"
-                   android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/hot_line_mall"
+                    android:layout_width="@dimen/px_2"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/hot_tv_mall"
+                    android:layout_alignTop="@id/hot_tv_mall"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/px_10"
+                    android:layout_toRightOf="@id/hot_tv_mall"
+                    android:background="@color/color_cccccc" />
 
-                   <TextView
-                       android:id="@+id/header_guajian"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/px_10"
-                       android:text="头部挂件"
-                       android:textColor="@color/color_999999"
-                       android:textSize="@dimen/text_size_22_px" />
+                <LinearLayout
+                    android:id="@+id/ll_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@id/hot_line_mall"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/px_10"
+                    android:layout_toLeftOf="@+id/go_btn"
+                    android:layout_toRightOf="@id/hot_line_mall"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/px_10"
-                       android:text="'憋得慌潜水头盔'"
-                       android:textColor="@color/color_999999"
-                       android:textSize="@dimen/text_size_22_px" />
+                    <TextView
+                        android:id="@+id/header_guajian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:text="头部挂件"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/text_size_22_px" />
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginLeft="@dimen/px_10"
-                       android:text="今日限时特价"
-                       android:textColor="@color/color_999999"
-                       android:textSize="@dimen/text_size_22_px" />
-               </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:text="'憋得慌潜水头盔'"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/text_size_22_px" />
 
-               <ImageButton
-                   android:id="@+id/go_btn"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentRight="true"
-                   android:layout_centerVertical="true"
-                   android:background="@null"
-                   android:gravity="center"
-                   android:src="@mipmap/go" />
-           </RelativeLayout>
-       </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/px_10"
+                        android:text="今日限时特价"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/text_size_22_px" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/go_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:src="@mipmap/go" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="@dimen/px_21"
-            android:background="@color/color_ffffff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_21"
+            android:background="@color/color_ffffff">
+
             <LinearLayout
-                android:background="@color/white"
-                android:layout_marginBottom="@dimen/px_30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_30"
                 android:layout_marginLeft="@dimen/px_45"
                 android:layout_marginRight="@dimen/px_45"
                 android:layout_marginTop="@dimen/px_30"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -149,14 +152,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:padding="@dimen/px_2"
-                        android:textSize="@dimen/text_size_22_px"
                         android:layout_width="@dimen/px_100"
                         android:layout_height="@dimen/px_50"
                         android:background="@drawable/new_rectangle_mall1"
                         android:gravity="center"
+                        android:padding="@dimen/px_2"
                         android:text="最近新品"
                         android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
                         android:textStyle="bold" />
 
                     <com.wodm.android.view.newview.MyGridView
@@ -166,13 +169,14 @@
                         android:layout_marginLeft="@dimen/px_30"
                         android:gravity="center"
                         android:horizontalSpacing="@dimen/px_21"
+                        android:listSelector="@android:color/transparent"
                         android:numColumns="3" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/px_30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_30"
                     android:gravity="right">
 
                     <ImageView
@@ -186,20 +190,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="@dimen/px_21"
-            android:layout_marginBottom="@dimen/px_60"
-            android:background="@color/color_ffffff"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_60"
+            android:layout_marginTop="@dimen/px_21"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/px_30"
                 android:layout_marginLeft="@dimen/px_45"
                 android:layout_marginRight="@dimen/px_45"
                 android:layout_marginTop="@dimen/px_30"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -208,14 +213,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:padding="@dimen/px_2"
-                        android:textSize="@dimen/text_size_22_px"
                         android:layout_width="@dimen/px_100"
                         android:layout_height="@dimen/px_50"
                         android:background="@drawable/new_rectangle_mall2"
                         android:gravity="center"
+                        android:padding="@dimen/px_2"
                         android:text="人气排行"
                         android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/text_size_22_px"
                         android:textStyle="bold" />
 
                     <com.wodm.android.view.newview.MyGridView
@@ -228,9 +233,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="@dimen/px_30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/px_30"
                     android:gravity="right">
 
                     <ImageView
