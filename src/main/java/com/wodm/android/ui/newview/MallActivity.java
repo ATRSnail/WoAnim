@@ -1,22 +1,17 @@
 package com.wodm.android.ui.newview;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
-import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.MallAdapter;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -24,8 +19,6 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
-import org.eteclab.base.http.HttpCallback;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,40 +55,11 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         initLinearLayout();
         initList();
         back_mall.setOnTopbarClickListenter(this);
+        back_mall.setRightIsVisible(false);
         back_mall.setLeftImageMargin(30);
         back_mall.setRightImageMargin(30);
 
         go_btn.setOnClickListener(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        httpGet(Constants.APP_UPDATERESOURCECOUNT + 3, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
-        httpGet(Constants.APP_GETATERESOURCECOUNT + 3, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                int playcount = obj.optInt("playCount");
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
     }
 
     private void initList() {
@@ -131,7 +95,15 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        initDialog();
+                        new AlertDialog.Builder(MallActivity.this)
+                                .setMessage("正在建设中...")
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .create().show();
                     }
                 });
             } else {
@@ -154,7 +126,6 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             }
             buy_colcor_mall.setBackgroundResource(colors[i]);
             view.setId(i);
-            view.setOnClickListener(this);
             ll_buy_mall.addView(view);
         }
     }

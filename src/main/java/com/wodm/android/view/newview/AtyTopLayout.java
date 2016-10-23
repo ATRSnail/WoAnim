@@ -173,10 +173,18 @@ public class AtyTopLayout extends RelativeLayout {
     // 设置右Button是否显示
     public void setRightIsVisible(boolean flag) {
         if (flag) {
-            rightImage.setVisibility(View.VISIBLE);
+            if (tv_right!=null){
+                tv_right.setVisibility(View.VISIBLE);
+            }
+            if (rightImage!=null){
+                rightImage.setVisibility(View.VISIBLE);
+            }
         } else {
             if (rightImage != null) {
                 rightImage.setVisibility(View.GONE);
+            }
+            if (tv_right!=null){
+                tv_right.setVisibility(View.GONE);
             }
         }
     }

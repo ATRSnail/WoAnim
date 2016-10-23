@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_mall"
+    android:background="@color/color_efefef"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
@@ -133,8 +134,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/px_141"
-                    android:layout_height="@dimen/px_75"
+                    android:padding="@dimen/px_2"
+                    android:textSize="@dimen/text_size_22_px"
+                    android:layout_width="@dimen/px_100"
+                    android:layout_height="@dimen/px_50"
                     android:background="@drawable/new_rectangle_mall1"
                     android:gravity="center"
                     android:text="最近新品"
@@ -181,8 +184,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/px_141"
-                    android:layout_height="@dimen/px_75"
+                    android:padding="@dimen/px_2"
+                    android:textSize="@dimen/text_size_22_px"
+                    android:layout_width="@dimen/px_100"
+                    android:layout_height="@dimen/px_50"
                     android:background="@drawable/new_rectangle_mall2"
                     android:gravity="center"
                     android:text="人气排行"
