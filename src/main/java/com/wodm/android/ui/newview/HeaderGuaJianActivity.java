@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -138,7 +139,9 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 
     @Override
     public void addImage(String title,int imageRescoure) {
-        user_head_imgs.setBackgroundResource(imageRescoure);
+        Drawable drawable=getResources().getDrawable(imageRescoure);
+        user_head_imgs.setImageDrawable(drawable);
+//        user_head_imgs.setBackgroundResource(imageRescoure);
     }
 
     @Override

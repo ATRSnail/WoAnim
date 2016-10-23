@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="积分"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                     android:layout_marginLeft="@dimen/px_10"
                     android:text=":"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
 
                 <TextView
                     android:id="@+id/score_wallet"
@@ -74,7 +74,7 @@
                     android:layout_marginLeft="@dimen/px_10"
                     android:text="203"
                     android:textColor="@color/color_333333"
-                    android:textSize="@dimen/text_size_36_px" />
+                    android:textSize="@dimen/text_size_24_px" />
             </LinearLayout>
 
 
@@ -97,7 +97,7 @@
                         android:gravity="center"
                         android:text="已获得"
                         android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                        android:textSize="@dimen/px_20" />
 
                     <TextView
                         android:id="@+id/current_score_wallet"
@@ -107,7 +107,7 @@
                         android:gravity="center"
                         android:text="020"
                         android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                        android:textSize="@dimen/px_20" />
 
                     <View
                         android:layout_width="@dimen/px_2"
@@ -123,7 +123,7 @@
                         android:gravity="center"
                         android:text="未获得"
                         android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                        android:textSize="@dimen/px_20" />
 
                     <TextView
                         android:id="@+id/need_score_wallet"
@@ -133,7 +133,7 @@
                         android:gravity="center"
                         android:text="012"
                         android:textColor="@color/color_666666"
-                        android:textSize="@dimen/text_size_30_px" />
+                        android:textSize="@dimen/px_20" />
 
                 </LinearLayout>
 
@@ -176,7 +176,7 @@
                 android:layout_weight="1"
                 android:text="@string/vip_speed_hint"
                 android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_22_px" />
 
             <Button
                 android:id="@+id/kai_tong_wallet"
@@ -188,7 +188,7 @@
                 android:gravity="center"
                 android:text="@string/open_vip_member"
                 android:textColor="@color/color_ff6361"
-                android:textSize="@dimen/text_size_24_px" />
+                android:textSize="@dimen/px_18" />
 
         </LinearLayout>
 
@@ -219,7 +219,7 @@
                 android:gravity="center"
                 android:text="已购买动画/漫画"
                 android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_34_px" />
+                android:textSize="@dimen/text_size_24_px" />
 
         </RelativeLayout>
 

@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="@null"
         android:id="@+id/layout_mall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -40,7 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_10"
-            android:text="钻石头相框"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="钻石头像框"
             android:textColor="@color/color_666666"
             android:textSize="@dimen/text_size_30_px" />
 
