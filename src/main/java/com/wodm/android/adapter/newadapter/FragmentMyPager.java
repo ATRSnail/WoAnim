@@ -38,7 +38,7 @@ public class FragmentMyPager extends Fragment
     private static Context mContext;
     private static RelativeLayout ll_header;
     private static RelativeLayout ll_guajian;
-    private addClickIconListener addClickIconListener;
+    private static addClickIconListener addClickIconListener;
     public static FragmentMyPager newInstance(int num)
     {
         FragmentMyPager f=new FragmentMyPager();

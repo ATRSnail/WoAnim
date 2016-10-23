@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:scrollbars="none"
+    android:id="@+id/scrollView"
     android:background="@color/color_efefef"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -38,16 +39,17 @@
                     android:layout_marginBottom="@dimen/px_10"
                     android:layout_gravity="center"
                     android:id="@+id/user_head_imgs"
-                    android:layout_width="@dimen/px_92"
-                    android:layout_height="@dimen/px_92"
-                    android:src="@mipmap/touxiang_moren" />
+                    android:scaleType="fitXY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/touxiang_moren" />
 
                 <Button
                     android:layout_gravity="center"
                     android:id="@+id/btn_buy_now"
                     android:background="@drawable/btn_buy_now"
                     android:padding="@dimen/px_2"
-                    android:textSize="18px"
+                    android:textSize="@dimen/px_28"
                     android:text="@string/buy_now"
                     android:textColor="@color/color_ffffff"
                     android:layout_width="@dimen/px_176"
@@ -55,6 +57,7 @@
             </LinearLayout>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/ll_open_vip"
             android:layout_marginTop="@dimen/px_14"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_64"
@@ -82,14 +85,14 @@
             <Button
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/kai_tong_level"
+                android:id="@+id/btn_open_vip"
                 android:layout_width="@dimen/px_84"
                 android:layout_height="@dimen/px_42"
                 android:layout_marginRight="@dimen/px_30"
                 android:background="@drawable/kaitong_rectan"
                 android:text="@string/open_vip_member"
                 android:textColor="@color/color_ff6361"
-                android:textSize="14px" />
+                android:textSize="@dimen/px_16" />
 
         </RelativeLayout>
         <RelativeLayout

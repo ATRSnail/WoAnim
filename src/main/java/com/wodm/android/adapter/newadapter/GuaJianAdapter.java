@@ -22,13 +22,17 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
     private String strRescoures[]={"熊仔头像框","悟空头像框","绿帽子头像框"};
     private String clickStr;
     private MyGridView mGirdview;
-
+    private FragmentMyPager.addClickIconListener addClickIconListener;
     public GuaJianAdapter(MyGridView girdview,Context context){
         this.mContext=context;
         this.mGirdview=girdview;
         mGirdview.setOnItemClickListener(this);
 
     }
+    public void setAddClickIconListener(FragmentMyPager.addClickIconListener listener){
+        this.addClickIconListener=listener;
+    }
+
     @Override
     public int getCount() {
         return imageRescoures.length;
@@ -72,6 +76,7 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         clickStr=strRescoures[position];
         notifyDataSetChanged();
+        addClickIconListener.addImage("",imageRescoures[position]);
     }
 
     class Holder{

@@ -1,15 +1,13 @@
 package com.wodm.android.ui.newview;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -120,12 +118,37 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             buy_colcor_mall.setBackgroundResource(color[i]);
             view.setClickable(true);
             view.setFocusable(true);
-            view.setOnClickListener(this);
+            String name=buyName[i];
+            if (name.equals("周边")){
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        initDialog();
+                    }
+                });
+            }
+            else {
+                Class atyClass=null;
+                if (name.equals("会员")){
+                    atyClass=VipOpenActivity.class;
+                } else {
+                    atyClass = HeaderGuaJianActivity.class;
+                }
+                final Class finalAtyClass = atyClass;
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (finalAtyClass==null)
+                            return;
+                        Intent intent=new Intent(MallActivity.this, finalAtyClass);
+                        startActivity(intent);
+                    }
+                });
+            }
             ll_buy_mall.addView(view);
         }
-
-
     }
+
 
 
     @Override
@@ -137,13 +160,15 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void rightClick() {
 
     }
-
-    @Override
-    public void onClick(View v) {
-//        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
+    private void initDialog(){
         new AlertDialog.Builder(MallActivity.this)
                 .setTitle("用户您好：")
                 .setMessage("您的积分不足！")
                 .create().show();
+    }
+    @Override
+    public void onClick(View v) {
+//        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
+        initDialog();
     }
 }

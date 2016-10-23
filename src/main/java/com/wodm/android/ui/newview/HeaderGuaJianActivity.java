@@ -1,6 +1,8 @@
 package com.wodm.android.ui.newview;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -18,23 +23,36 @@ import android.widget.TextView;
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.FragmentMyPager;
 import com.wodm.android.adapter.newadapter.GuaJianAdapter;
+import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
+import org.eteclab.ui.widget.CircularImage;
+
 import java.util.ArrayList;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 
 /**
  * Created by songchenyu on 16/10/21.
  */
-public class HeaderGuaJianActivity extends FragmentActivity implements FragmentMyPager.addClickIconListener{
+public class HeaderGuaJianActivity extends FragmentActivity implements FragmentMyPager.addClickIconListener,AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
     private MyGridView guajian_free;
     private GuaJianAdapter guaJianAdapter;
     private TabHost mTabHost;
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
     private TextView tabTv1,tabTv2;
-    private View tabLine1,tabLine2,view1,view2;
+    private  View tabLine1,tabLine2,view1,view2;
     private  FragmentMyPager frag;
+    private AtyTopLayout set_topbar;
+    private CircularImage user_head_imgs;
+    private Button btn_buy_now;
+    private ScrollView scrollView;
+    private RelativeLayout ll_open_vip;
+    private Button btn_open_vip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,24 +60,31 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         initView();
     }
     private void initView(){
+        btn_open_vip= (Button) findViewById(R.id.btn_open_vip);
+        btn_open_vip.setOnClickListener(this);
+        btn_buy_now= (Button) findViewById(R.id.btn_buy_now);
+        btn_buy_now.setOnClickListener(this);
         guajian_free= (MyGridView) findViewById(R.id.guajian_free);
         guajian_free.setSelector(new ColorDrawable(Color.TRANSPARENT));
         guaJianAdapter=new GuaJianAdapter(guajian_free,this);
+        guaJianAdapter.setAddClickIconListener(this);
         guajian_free.setAdapter(guaJianAdapter);
         mTabHost=(TabHost)findViewById(R.id.mypage_tabhost);
         mTabHost.setup();
-
+        scrollView= (ScrollView) findViewById(R.id.scrollView);
         mViewPager=(ViewPager)findViewById(R.id.mypage_pager);
         mTabsAdapter=new TabsAdapter(this,mTabHost,mViewPager);
-
+        ll_open_vip= (RelativeLayout) findViewById(R.id.ll_open_vip);
         view1=(View) LayoutInflater.from(this).inflate(R.layout.tabwidget_layout,null);
         tabTv1=(TextView)view1.findViewById(R.id.tabwidget_tv);
         tabLine1=(View)view1.findViewById(R.id.tabwidget_line);
+        user_head_imgs= (CircularImage) findViewById(R.id.user_head_imgs);
 
         view2=(View) LayoutInflater.from(this).inflate(R.layout.tabwidget_layout,null);
         tabTv2=(TextView)view2.findViewById(R.id.tabwidget_tv);
         tabLine2=(View)view2.findViewById(R.id.tabwidget_line);
-
+        set_topbar= (AtyTopLayout) findViewById(R.id.set_topbar);
+        set_topbar.setOnTopbarClickListenter(this);
         tabTv1.setText("头像框");
         tabTv1.setTextColor(getResources().getColor(R.color.color_333333));
         tabLine1.setBackgroundColor(getResources().getColor(R.color.color_dd2e5c));
@@ -72,10 +97,52 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 FragmentMyPager.class,null);
         frag=FragmentMyPager.newInstance(0);
         frag.setAddClickIconListener(this);
+        if (scrollView != null) {
+            scrollView.scrollTo(0, 0);
+            scrollView.setFocusable(true);
+            scrollView.setFocusableInTouchMode(true);
+            scrollView.requestFocus();
+        }
+        if (CURRENT_USER!=null){
+            UserInfoBean.DataBean dataBean = CURRENT_USER.getData();
+            if (dataBean.getAccount().getVip() != 0) {
+                ll_open_vip.setVisibility(View.GONE);
+            }
+        }
+
     }
 
     @Override
     public void addImage(String title,int imageRescoure) {
+
+        user_head_imgs.setBackgroundResource(imageRescoure);
+    }
+
+    @Override
+    public void leftClick() {
+        finish();
+
+    }
+
+    @Override
+    public void rightClick() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_open_vip:
+                Intent intent=new Intent(HeaderGuaJianActivity.this,VipOpenActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                new AlertDialog.Builder(HeaderGuaJianActivity.this)
+                        .setTitle("用户您好：")
+                        .setMessage("您的积分不足！")
+                        .create().show();
+                break;
+        }
 
     }
 
@@ -192,6 +259,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             widget.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
             mTabHost.setCurrentTab(position);
             frag.setCurrentTabNum(position);
+            frag.setAddClickIconListener(HeaderGuaJianActivity.this);
             widget.setDescendantFocusability(oldFocusability);
         }
         @Override
