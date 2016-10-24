@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
@@ -108,12 +109,14 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         super.onResume();
         Tracker.getInstance(this).onResume();
         JPushInterface.onResume(this);
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         JPushInterface.onPause(AppActivity.this);
+        MobclickAgent.onPause(this);
     }
 
     @Override

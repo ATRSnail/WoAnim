@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
@@ -55,7 +56,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/10/11.
  */
 @Layout(R.layout.aty_newuserinfo)
-public class NewUserInfoActivity extends AppActivity implements View.OnClickListener,AtyTopLayout.myTopbarClicklistenter {
+public class NewUserInfoActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
     @ViewIn(R.id.set_topbar)
     private AtyTopLayout set_topbar;
     @ViewIn(R.id.img_circle)
@@ -80,12 +81,13 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private String mPhotoPath;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
         btn_exit_login.setOnClickListener(this);
-        if (CURRENT_USER == null){
+        if (CURRENT_USER == null) {
             finish();
         }
         img_circle.setOnClickListener(this);
@@ -100,26 +102,27 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         return super.onTouchEvent(event);
     }
 
-    private void serUserInfo(){
-        UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
+    private void serUserInfo() {
+        UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
-        String str_sex="";
+        String str_sex = "";
         if (accountBean.getSex() == 0) {
-            str_sex="保密";
+            str_sex = "保密";
         } else if (accountBean.getSex() == 1) {
-            str_sex="男";
+            str_sex = "男";
         } else {
-            str_sex="女";
+            str_sex = "女";
         }
         sex_user.setText(str_sex);
         birthday_user.setText(accountBean.getBirthday());
-        if (accountBean.getAutograph().trim().equals("")){
+        if (accountBean.getAutograph().trim().equals("")) {
             sign_user.setHint(getResources().getString(R.string.qianming));
-        }else {
+        } else {
             sign_user.setText(accountBean.getAutograph());
         }
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(img_circle, accountBean.getPortrait());
     }
+
     private void showLogout() {
         View view = getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
         TextView mPopText = (TextView) view.findViewById(R.id.popup_text);
@@ -152,6 +155,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                                 Constants.CURRENT_USER = null;
                                 Preferences.getInstance(getApplicationContext()).setPreference("token", "");
                                 builder.cancel();
+                                //统计登录时，必须在登出时调用此方法
+                                MobclickAgent.onProfileSignOff();
                                 finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -181,6 +186,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         builder.show();
         builder.setCanceledOnTouchOutside(false);
     }
+
     @Override
     public void leftClick() {
         finish();
@@ -190,6 +196,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     public void rightClick() {
         submint();
     }
+
     private void submint() {
         JSONObject object = new JSONObject();
         try {
@@ -224,9 +231,10 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             e.printStackTrace();
         }
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_exit_login:
                 showLogout();
                 break;
@@ -235,7 +243,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                 wheelWindow.showPopWindow(NewUserInfoActivity.this, mContentView, Gravity.BOTTOM, "yyyy年MM月dd日", new DateWheelWindow.DateResultCall() {
                     void resultCall(String result) {
 //                        birthday_user.setText(result);
-                        str_Birthday=result;
+                        str_Birthday = result;
 //                submint("birthday", result);
                     }
                 });
@@ -248,14 +256,14 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        sex=dialog.getSexResult();
-                        String sexResult="";
+                        sex = dialog.getSexResult();
+                        String sexResult = "";
                         if (sex == 0) {
-                            sexResult="保密";
+                            sexResult = "保密";
                         } else if (sex == 1) {
-                            sexResult="男";
+                            sexResult = "男";
                         } else if (sex == 2) {
-                            sexResult="女";
+                            sexResult = "女";
                         }
                         sex_user.setText(sexResult);
 //                submint("sex", dialog.getSexResult());
@@ -268,6 +276,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                 break;
         }
     }
+
     private void clickIcon() {
         List<BottomPopupMenu.TagAndEvent> list = new ArrayList<>();
         list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
@@ -340,6 +349,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     UpdataUserInfo updataUserInfo = new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {

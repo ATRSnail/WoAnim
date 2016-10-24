@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
@@ -72,14 +73,21 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     @Override
     public void onClick(View v) {
+        String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+
         switch (v.getId()) {
             case R.id.btn_login:
                 String password = et_password.getText().toString();
                 String resigter = et_resigter.getText().toString();
+                if (!TextUtils.isEmpty(userID)) {
+                    MobclickAgent.onProfileSignIn(userID);//统计登录
+                }
                 login(resigter, password);
                 break;
             case R.id.img_we_chat:
-                Log.e("AAAAA", "");
+                if (!TextUtils.isEmpty(userID)) {
+                    MobclickAgent.onProfileSignIn("WX", userID);//统计微信登录
+                }
                 Wx.init(LgoinActivity.this).sendAuthRequest();
                 break;
             case R.id.forget_pass_login:
