@@ -150,6 +150,13 @@
             android:name="WEIBO_Share_APPKEY"
             android:value="317879547" />
 
+
+        <!-- 友盟多渠道打包-->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+
         <activity
             android:name="com.unicom.dm.wxapi.WXEntryActivity"
             android:exported="true"
@@ -334,8 +341,8 @@
             android:name=".android.ui.newview.CustomerServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--<activity-->
-            <!--android:name=".android.ui.newview.MallActivity"-->
-            <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+        <!--android:name=".android.ui.newview.MallActivity"-->
+        <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
         <activity
             android:name=".android.ui.newview.MallActivity"
             android:theme="@style/AppTheme.NoActionBar" />

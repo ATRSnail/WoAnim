@@ -99,10 +99,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
-                        android:layout_toLeftOf="@+id/img_right1"
-                        android:layout_toRightOf="@id/tv_name_key"
+                        android:layout_toLeftOf="@id/img_right1"
                         android:background="@null"
-                        android:gravity="center"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/text_size_30_px" />
 
@@ -145,8 +143,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
                         android:layout_toLeftOf="@+id/img_right2"
-                        android:layout_toRightOf="@id/sex_name"
-                        android:gravity="center"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/text_size_30_px" />
 
@@ -189,8 +185,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
                         android:layout_toLeftOf="@+id/img_right3"
-                        android:layout_toRightOf="@id/birthday_name"
-                        android:gravity="center"
                         android:text="@string/safety_user"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/text_size_30_px" />
@@ -235,9 +229,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
                         android:layout_toLeftOf="@+id/img_right_4"
-                        android:layout_toRightOf="@id/sign_name"
                         android:background="@null"
-                        android:gravity="center"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/text_size_30_px" />
 

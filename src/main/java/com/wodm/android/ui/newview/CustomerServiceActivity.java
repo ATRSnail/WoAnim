@@ -1,8 +1,11 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.wodm.R;
+import com.wodm.android.Constants;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 
@@ -18,6 +21,8 @@ public class CustomerServiceActivity extends AppActivity implements AtyTopLayout
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
+
+
     }
 
     @Override

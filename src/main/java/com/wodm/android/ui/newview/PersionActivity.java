@@ -92,8 +92,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-        if (MEDALINFOBEAN != null)
-            dataBeanList = MEDALINFOBEAN.getData();
+        if (Constants.MEDALINFOBEAN != null)
+            dataBeanList = Constants.MEDALINFOBEAN.getData();
         initMyMedal();
         show_more_persion.setOnClickListener(this);
     }

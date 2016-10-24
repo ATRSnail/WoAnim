@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,21 +57,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
         dataBean = Constants.CURRENT_USER.getData();
-//        String url = Constants.APP_GET_MEDALLIST + dataBean.getAccount().getId();
-//        httpGet(url, new HttpCallback() {
-//            @Override
-//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-//                super.doAuthSuccess(result, obj);
-//                MEDALINFOBEAN = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
-//                downData();
-//            }
-//
-//            @Override
-//            public void doRequestFailure(Exception exception, String msg) {
-//                super.doRequestFailure(exception, msg);
-//            }
-//        });
-//        initLinearLayout(ll_comment_medal, COMMENT, 0);
         downData();
     }
 
@@ -81,7 +67,8 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
          * @return
          */
 
-        dataBeanList = MEDALINFOBEAN.getData();
+
+        dataBeanList = Constants.MEDALINFOBEAN.getData();
 
         for (int i = 0; i < dataBeanList.size(); i++) {
             medalType = dataBeanList.get(i).getMedal().getMedalType();
@@ -143,7 +130,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
             image.setTextOn("");
             image.setTextOff("");
             image.setText("");
-//            image.setScaleType(ImageView.ScaleType.FIT_XY);
             int width = (Tools.getScreenWidth(this) - 60) / 12 * 4;
             int height = (int) ((Tools.getScreenWidth(this) - 60) / 12 * 4 * 1.35);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);

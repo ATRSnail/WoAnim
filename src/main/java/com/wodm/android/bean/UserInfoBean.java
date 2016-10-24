@@ -20,6 +20,22 @@ public class UserInfoBean {
      * token : null
      * account : {"id":143,"appkey":"","uuid":"03c661af0aa680f3fa7705259bc19399","udid":"f35fe3d2366cf53c94a7bf87e849aa7f","nickName":"Chhhhgg","registTime":1474978930000,"sex":0,"birthday":"","mobile":"18519206703","email":"","portrait":"http://172.16.2.125:8899/static//head/20160927/143/143690449.JPEG","type":0,"autograph":"wwwfttgf000tttttttthhh","osName":"Android","openId":null,"unionId":null,"plainPassword":"","vip":1,"vipFlag":1,"gradeValue":1,"empiricalValue":0,"gradeName":"萌新I","gradeImageId":1}
      * needEmpirical : 12
+     * /newuser/appVersion   请求方式:post请求                 参数 :verion 版本  platform:表示平台系统
+     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
+     * private int platform;
+     * 版本号
+     * private String verion;
+     * 是否需要升级 0:表示不需要 1:表示需要
+     * private int isUpdate;
+     * 更新描述
+     * private String updateDes;
+     * 版本状态 0 表示不可用 1:表示的是可用的
+     * private int status;
+     * 版本创建的时间
+     * private Date createTime;
+     * 更新的时间
+     * private Date updateTime;
+     * 下载地址*private String downloadUrl
      */
 
     private DataBean data;

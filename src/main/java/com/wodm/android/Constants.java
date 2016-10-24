@@ -1,7 +1,9 @@
 package com.wodm.android;
 
 import android.os.Environment;
+import android.util.Log;
 
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 
 import java.io.File;
@@ -20,6 +22,7 @@ public class Constants {
     public static final boolean DEBUG = true;
 
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
+    public static MedalInfoBean MEDALINFOBEAN /* = new UserBean()*/;
 
     //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
