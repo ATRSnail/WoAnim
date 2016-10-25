@@ -87,8 +87,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
 
-        set_topbar.setRightTextMargin((int) getResources().getDimension(R.dimen.px_45));
-        set_topbar.setLeftImageMargin((int) getResources().getDimension(R.dimen.px_45));
+//        set_topbar.setRightTextMargin((int) getResources().getDimension(R.dimen.px_40));
+        set_topbar.setLeftImageMargin((int) getResources().getDimension(R.dimen.px_40));
         btn_exit_login.setOnClickListener(this);
         if (CURRENT_USER == null) {
             finish();

@@ -36,6 +36,12 @@ public class UserInfoBean {
      * 更新的时间
      * private Date updateTime;
      * 下载地址*private String downloadUrl
+     * 渠道的id
+     * private Long channelId;
+     * 产品的名称
+     * private String productName;
+     * 1表示安卓的
+     * private int platformType;
      */
 
     private DataBean data;
