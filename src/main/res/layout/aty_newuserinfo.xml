@@ -94,14 +94,13 @@
                         android:textSize="@dimen/text_size_30_px" />
 
                     <EditText
-                        android:layout_toRightOf="@+id/tv_name_key"
                         android:id="@+id/nickname_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
                         android:layout_toLeftOf="@id/img_right1"
-                        android:layout_toRightOf="@id/tv_name_key"
+                        android:layout_toRightOf="@+id/tv_name_key"
                         android:background="@null"
                         android:gravity="right"
                         android:textColor="@color/color_333333"
@@ -230,14 +229,13 @@
                         android:textSize="@dimen/text_size_30_px" />
 
                     <EditText
-                        android:layout_toRightOf="@+id/sign_name"
                         android:id="@+id/sign_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/px_40"
                         android:layout_toLeftOf="@+id/img_right_4"
-                        android:layout_toRightOf="@id/sign_name"
+                        android:layout_toRightOf="@+id/sign_name"
                         android:background="@null"
                         android:gravity="right"
                         android:textColor="@color/color_333333"

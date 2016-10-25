@@ -96,6 +96,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             initMyMedal();
+        } else {
+            initLinearLayout(my_medal_persion, 0);
         }
         show_more_persion.setOnClickListener(this);
     }
@@ -105,9 +107,23 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         for (int i = 0; i < dataBeanList.size(); i++) {
             int medalType = dataBeanList.get(i).getMedal().getMedalType();
             int medalScore = dataBeanList.get(i).getMedal().getMedalSource();
-            if (medalScore == 1) {
-                initLinearLayout(my_medal_persion, medalType);
+            switch (medalScore) {
+                case 1:
+                    initLinearLayout(my_medal_persion, medalType);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    initLinearLayout(my_medal_persion, medalType);
+                    break;
             }
+
         }
     }
 
@@ -234,10 +250,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_user_info:
-                startActivity(new Intent(this, NewUserInfoActivity.class));
+                startActivity(new Intent(PersionActivity.this, NewUserInfoActivity.class));
                 break;
             case R.id.show_more_persion:
-                startActivity(new Intent(this, MyMedalActivity.class));
+                startActivity(new Intent(PersionActivity.this, MyMedalActivity.class));
                 break;
         }
     }
