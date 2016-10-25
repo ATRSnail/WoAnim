@@ -18,7 +18,7 @@
             <com.wodm.android.view.newview.AtyTopLayout
                 android:id="@+id/set_topbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_90"
+                android:layout_height="@dimen/y90"
                 app:BackGroundColor="@color/color_f5c92f"
                 app:CustomtitleTextColor="@android:color/black"
                 app:CustomtitleTextSize="@dimen/text_size_32_px"

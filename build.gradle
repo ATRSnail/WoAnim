@@ -13,20 +13,22 @@ android {
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default_channel"]
     }
     productFlavors {
-        _91 {}
-        _hiapk {}
-        _wandoujia {}
-        _baidu {}
-        _360 {}
-        _uc {}
-        _xiaomi {}
-        _qq {}
-        _anzhi {}
-        _appchina {}
-
-        productFlavors.all { flavor ->
-            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        _91 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1"]
         }
+//        _hiapk {}
+//        _wandoujia {}
+//        _baidu {}
+//        _360 {}
+//        _uc {}
+//        _xiaomi {}
+//        _qq {}
+//        _anzhi {}
+//        _appchina {}
+
+//        productFlavors.all { flavor ->
+//            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+//        }
 
     }
 
@@ -56,7 +58,7 @@ buildscript {
     dependencies {
 //        classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
 
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:2.1.3'
 
 
     }

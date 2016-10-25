@@ -1,6 +1,8 @@
 package com.wodm.android.ui.newview;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -87,7 +89,14 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             obj.put("authCode", yzm);
             obj.put("password", password);
             obj.put("osName", "android");
-
+            obj.put("platformType",1);
+            ApplicationInfo appInfo = getPackageManager()
+                    .getApplicationInfo(getPackageName(),
+                            PackageManager.GET_META_DATA);
+            String msg=appInfo.metaData.getString("UMENG_CHANNEL");
+            obj.put("channelId",msg);
+            obj.put("productName","联通动漫");
+            Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
             httpPost(Constants.USER_REGIST, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -117,6 +126,8 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                 }
             });
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }

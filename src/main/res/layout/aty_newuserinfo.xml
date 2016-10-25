@@ -94,6 +94,7 @@
                         android:textSize="@dimen/text_size_30_px" />
 
                     <EditText
+                        android:layout_toRightOf="@+id/tv_name_key"
                         android:id="@+id/nickname_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -223,6 +224,7 @@
                         android:textSize="@dimen/text_size_30_px" />
 
                     <EditText
+                        android:layout_toRightOf="@+id/sign_name"
                         android:id="@+id/sign_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
