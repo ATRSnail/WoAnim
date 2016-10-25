@@ -39,8 +39,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_187"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80">
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -78,8 +78,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45"
                     android:focusable="true"
                     android:focusableInTouchMode="true">
 
@@ -123,8 +123,8 @@
                     android:id="@+id/rl_sex"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80">
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45">
 
                     <TextView
                         android:id="@+id/sex_name"
@@ -165,8 +165,8 @@
                     android:id="@+id/rl_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80">
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45">
 
                     <TextView
                         android:id="@+id/birthday_name"
@@ -207,8 +207,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45"
                     android:focusable="true"
                     android:focusableInTouchMode="true">
 
@@ -256,8 +256,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80">
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -286,8 +286,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_96"
-                    android:layout_marginLeft="@dimen/px_80"
-                    android:layout_marginRight="@dimen/px_80">
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -313,8 +313,8 @@
                 android:id="@+id/btn_exit_login"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_86"
-                android:layout_marginLeft="@dimen/px_36"
-                android:layout_marginRight="@dimen/px_36"
+                android:layout_marginLeft="@dimen/px_45"
+                android:layout_marginRight="@dimen/px_45"
                 android:layout_marginTop="@dimen/px_28"
                 android:background="@drawable/btn_exit_login"
                 android:text="@string/exit_login"

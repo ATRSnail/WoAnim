@@ -3,6 +3,7 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -92,9 +93,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-        if (Constants.MEDALINFOBEAN != null)
+        if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
-        initMyMedal();
+            initMyMedal();
+        }
         show_more_persion.setOnClickListener(this);
     }
 

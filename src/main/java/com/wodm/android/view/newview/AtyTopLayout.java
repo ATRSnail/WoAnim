@@ -83,7 +83,7 @@ public class AtyTopLayout extends RelativeLayout {
 
         // 将自定义的属性设置到控件上
 //        leftImage.setImageDrawable(leftDrawable);
-         leftImage.setBackgroundResource(R.mipmap.back);
+        leftImage.setBackgroundResource(R.mipmap.back);
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_32_px));
         tvTitle.setText(titleText);
@@ -98,7 +98,7 @@ public class AtyTopLayout extends RelativeLayout {
         leftLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         leftLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);     //设置左对齐
         leftLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
-        leftLayoutParams.setMargins(30,0,0,0);
+        leftLayoutParams.setMargins(30, 0, 0, 0);
 //        leftLayoutParams.setMarginStart((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
         addView(leftImage, leftLayoutParams);  //leftButton以leftLayoutParams的形式加入到ViewGroup中
 
@@ -173,17 +173,17 @@ public class AtyTopLayout extends RelativeLayout {
     // 设置右Button是否显示
     public void setRightIsVisible(boolean flag) {
         if (flag) {
-            if (tv_right!=null){
+            if (tv_right != null) {
                 tv_right.setVisibility(View.VISIBLE);
             }
-            if (rightImage!=null){
+            if (rightImage != null) {
                 rightImage.setVisibility(View.VISIBLE);
             }
         } else {
             if (rightImage != null) {
                 rightImage.setVisibility(View.GONE);
             }
-            if (tv_right!=null){
+            if (tv_right != null) {
                 tv_right.setVisibility(View.GONE);
             }
         }
@@ -197,14 +197,14 @@ public class AtyTopLayout extends RelativeLayout {
     // 设置左边图片距离左边的距离
     public void setLeftImageMargin(int px) {
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) leftImage.getLayoutParams();
-        params.leftMargin = 30;
+        params.leftMargin = px;
         leftImage.setLayoutParams(params);
     }
 
     // 设置右边文字距离右边的距离
-    public void setRightImageMargin(int px) {
+    public void setRightTextMargin(int px) {
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tv_right.getLayoutParams();
-        params.rightMargin = 30;
+        params.rightMargin = px;
         tv_right.setLayoutParams(params);
     }
 

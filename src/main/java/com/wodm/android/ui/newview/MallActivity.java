@@ -60,9 +60,8 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         initList();
         back_mall.setOnTopbarClickListenter(this);
         back_mall.setRightIsVisible(false);
-        back_mall.setLeftImageMargin(30);
-        back_mall.setRightImageMargin(30);
-
+        back_mall.setRightTextMargin((int) getResources().getDimension(R.dimen.px_45));
+        back_mall.setLeftImageMargin((int) getResources().getDimension(R.dimen.px_45));
         go_btn.setOnClickListener(this);
     }
 

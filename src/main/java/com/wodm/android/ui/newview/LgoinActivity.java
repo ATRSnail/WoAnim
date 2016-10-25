@@ -19,6 +19,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -32,6 +33,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by songchenyu on 16/9/26.
@@ -58,6 +61,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         btn_login.setOnClickListener(this);
         img_we_chat.setOnClickListener(this);
         forget_pass_login.setOnClickListener(this);
+
     }
 
     @Override
@@ -73,27 +77,39 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     @Override
     public void onClick(View v) {
-        String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+
 
         switch (v.getId()) {
             case R.id.btn_login:
                 String password = et_password.getText().toString();
                 String resigter = et_resigter.getText().toString();
-                if (!TextUtils.isEmpty(userID)) {
-                    MobclickAgent.onProfileSignIn(userID);//统计登录
-                }
                 login(resigter, password);
+
+                if (!TextUtils.isEmpty(getUserId())) {
+                    MobclickAgent.onProfileSignIn(getUserId());//统计登录
+                }
                 break;
             case R.id.img_we_chat:
-                if (!TextUtils.isEmpty(userID)) {
-                    MobclickAgent.onProfileSignIn("WX", userID);//统计微信登录
-                }
                 Wx.init(LgoinActivity.this).sendAuthRequest();
+                if (!TextUtils.isEmpty(getUserId())) {
+                    MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
+                }
+                //自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
+//                Map<String, String> map = new HashMap<String, String>();
+//                map.put("WXID", Wx.WxUserBean);
+//                MobclickAgent.onEvent(LgoinActivity.this, "register", map);
                 break;
             case R.id.forget_pass_login:
                 startActivity(new Intent(this, ForgetPassActivity.class));
                 break;
         }
+    }
+
+    private String getUserId() {
+        if (Constants.CURRENT_USER == null)
+            return null;
+        String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+        return userID;
     }
 
     private void login(String phone, String password) {
