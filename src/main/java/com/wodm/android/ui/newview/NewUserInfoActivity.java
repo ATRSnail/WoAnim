@@ -158,8 +158,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                                 Constants.CURRENT_USER = null;
                                 Preferences.getInstance(getApplicationContext()).setPreference("token", "");
                                 builder.cancel();
-                                //统计登录时，必须在登出时调用此方法
-                                MobclickAgent.onProfileSignOff();
                                 finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -239,6 +237,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_exit_login:
+                //统计登录时，必须在登出时调用此方法
+                MobclickAgent.onProfileSignOff();
                 showLogout();
                 break;
             case R.id.rl_birthday:
