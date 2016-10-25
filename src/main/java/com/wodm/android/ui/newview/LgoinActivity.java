@@ -94,10 +94,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 if (!TextUtils.isEmpty(getUserId())) {
                     MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
                 }
-                //自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
-//                Map<String, String> map = new HashMap<String, String>();
-//                map.put("WXID", Wx.WxUserBean);
-//                MobclickAgent.onEvent(LgoinActivity.this, "register", map);
                 break;
             case R.id.forget_pass_login:
                 startActivity(new Intent(this, ForgetPassActivity.class));
@@ -176,6 +172,10 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         JSONObject obj = new JSONObject();
+        // 自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("WX", unionid);
+        MobclickAgent.onEvent(LgoinActivity.this, "register", map);
         try {
             obj.put("openId", openid);
             obj.put("unionId", unionid);
