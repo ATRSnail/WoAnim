@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
@@ -101,6 +102,7 @@ public class Main2Activity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //增加缓存表情字段
         new Thread(new Runnable() {
             @Override
@@ -122,6 +124,8 @@ public class Main2Activity extends AppActivity {
         initTabViews();
         initTapView();
         new UpdateUtils(this).checkUpdate(false);
+
+
     }
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
@@ -214,7 +218,7 @@ public class Main2Activity extends AppActivity {
         if (!UpdataUserInfo.isLogIn(this, true)) {
             return;
         }
-        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
+        httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -225,7 +229,7 @@ public class Main2Activity extends AppActivity {
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
-                Toast.makeText(Main2Activity.this, ""+obj.optString("msg"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Main2Activity.this, "" + obj.optString("msg"), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -237,15 +241,15 @@ public class Main2Activity extends AppActivity {
     }
 
     private void checkSgin() {
-        if (Constants.CURRENT_USER != null){
-            httpGet(Constants.APP_GET_TASKSTATUS+CURRENT_USER.getData().getAccount().getId()+"&taskType=1&taskValue=1", new HttpCallback() {
+        if (Constants.CURRENT_USER != null) {
+            httpGet(Constants.APP_GET_TASKSTATUS + CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {
 
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     try {
-                        JSONObject jsonObject=new JSONObject(obj.getString("data"));
-                        if (jsonObject.optInt("status")== 1){
+                        JSONObject jsonObject = new JSONObject(obj.getString("data"));
+                        if (jsonObject.optInt("status") == 1) {
                             mfloatView.setVisibility(View.INVISIBLE);
                         }
                     } catch (JSONException e) {
@@ -272,31 +276,30 @@ public class Main2Activity extends AppActivity {
 //                    mfloatView.setVisibility(View.VISIBLE);
 //                }
 //            });
-            UserInfoBean.DataBean.AccountBean accountBean= CURRENT_USER.getData().getAccount();
-            if (!accountBean.getPortrait().equals("")){
-                   if (!accountBean.getNickName().equals("")){
-                       if (accountBean.getSex()<3){
-                           if (!accountBean.getBirthday().equals("")){
-                               if (!accountBean.getAutograph().equals("")){
-                                   httpGet(Constants.APP_PERFECT_USERINFO + accountBean.getId()+"&taskType=2&taskValue=4", new HttpCallback() {
-                                       @Override
-                                       public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                                           super.doAuthSuccess(result, obj);
-                                       }
+            UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
+            if (!accountBean.getPortrait().equals("")) {
+                if (!accountBean.getNickName().equals("")) {
+                    if (accountBean.getSex() < 3) {
+                        if (!accountBean.getBirthday().equals("")) {
+                            if (!accountBean.getAutograph().equals("")) {
+                                httpGet(Constants.APP_PERFECT_USERINFO + accountBean.getId() + "&taskType=2&taskValue=4", new HttpCallback() {
+                                    @Override
+                                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                                        super.doAuthSuccess(result, obj);
+                                    }
 
-                                       @Override
-                                       public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                                           super.doAuthFailure(result, obj);
-                                       }
-                                   });
-                               }
-                           }
-                       }
-                   }
+                                    @Override
+                                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                                        super.doAuthFailure(result, obj);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
 
             }
         }
-
 
 
     }

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.utils.Preferences;
+import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
 
 import org.eteclab.base.annotation.Layout;
@@ -31,9 +34,10 @@ public class WelcomeActivity extends AppActivity {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
 //                        try {
-                            Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
+                        Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
 //                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                            userInfo.getUserInfo(getApplicationContext(), userId);
+                        userInfo.getUserInfo(getApplicationContext(), userId);
+                        medalInfo.getMedalInfo(getApplicationContext(), userId);
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
 //                            handler.sendEmptyMessageDelayed(1, 0);
@@ -85,6 +89,13 @@ public class WelcomeActivity extends AppActivity {
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             handler.sendEmptyMessageDelayed(1, 0);
+        }
+    };
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
         }
     };
 }

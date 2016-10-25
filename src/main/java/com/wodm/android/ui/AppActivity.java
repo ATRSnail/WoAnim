@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
@@ -61,7 +63,6 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     protected SlideBackUtil mSlideBackUtil;
     private int ScreenWidth, ScreenHight;
     private DialogFragment bulletDialog;
-    public static MedalInfoBean MEDALINFOBEAN = null;
 
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);
@@ -84,26 +85,10 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         ScreenWidth = wm.getDefaultDisplay().getWidth();
         ScreenHight = wm.getDefaultDisplay().getHeight();
         setTitle("");
-        initMedal();
+
+
     }
 
-    private void initMedal() {
-        if (Constants.CURRENT_USER == null)
-            return;
-        String url = Constants.APP_GET_MEDALLIST + Constants.CURRENT_USER.getData().getAccount().getId();
-        httpGet(url, new HttpCallback() {
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                MEDALINFOBEAN = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
-            }
-
-            @Override
-            public void doRequestFailure(Exception exception, String msg) {
-                super.doRequestFailure(exception, msg);
-            }
-        });
-    }
 
     public void setCustomTitle(String title) {
         mToolbarTitle.setText(title);
@@ -124,12 +109,14 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         super.onResume();
         Tracker.getInstance(this).onResume();
         JPushInterface.onResume(this);
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        JPushInterface.onPause(this);
+        JPushInterface.onPause(AppActivity.this);
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -201,6 +188,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         ft.addToBackStack(null);
         bulletDialog = BulletSendDialog.newInstance(this);
         bulletDialog.show(ft, "dialog");
+
     }
 
     @Override

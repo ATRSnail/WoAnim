@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserBean;
@@ -26,6 +27,8 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,7 +36,7 @@ import java.util.TimerTask;
  * Created by songchenyu on 16/9/27.
  */
 @Layout(R.layout.new_aty_resita)
-public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener{
+public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
     @ViewIn(R.id.set_topbar)
     private AtyTopLayout atyTopLayout;
     @ViewIn(R.id.et_phone)
@@ -46,6 +49,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     private Button btn_finish;
     @ViewIn(R.id.btn_yzm)
     private Button btn_yzm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +68,12 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     public void rightClick() {
 
     }
-    private void sendResigter(){
-        final String phone= Tools.getText(et_phone);
-        final String password= Tools.getText(et_password);
-        String yzm= Tools.getText(et_yzm);
-        if (TextUtils.isEmpty(yzm)||TextUtils.isEmpty(phone)||TextUtils.isEmpty(password)){
+
+    private void sendResigter() {
+        final String phone = Tools.getText(et_phone);
+        final String password = Tools.getText(et_password);
+        String yzm = Tools.getText(et_yzm);
+        if (TextUtils.isEmpty(yzm) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "输入的内容不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -89,7 +94,11 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                     try {
                         Toast.makeText(ResingeActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
 //                                mLoginRegistPager.setCurrentItem(0);
-                        login(phone,password);
+                        //自定义注册统计事件，需要在友盟注册事件ID,key 统计注册手机号
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("phone", phone);
+                        MobclickAgent.onEvent(ResingeActivity.this, "register", map);
+                        login(phone, password);
                                 /*bean.setUserId(obj.getLong("userId"));
                                 bean.setToken(obj.getString("token"));*/
                         //info.getUserInfo(getApplicationContext(), bean.getUserId());
@@ -111,7 +120,8 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             e.printStackTrace();
         }
     }
-    private void login(String phone, String password){
+
+    private void login(String phone, String password) {
         try {
             if (!Tools.isMobileNO(phone)) {
                 showFial();
@@ -121,7 +131,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                 Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (password.length()<6||password.length()>18) {
+            if (password.length() < 6 || password.length() > 18) {
                 Toast.makeText(getApplicationContext(), "密码长度在6--18位之间", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -142,8 +152,9 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                         Preferences.getInstance(getApplicationContext()).setPreference("userId", bean.getUserId());
                         Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
                         infos.getUserInfo(ResingeActivity.this, bean.getUserId());
-                        Intent intent =new Intent(ResingeActivity.this, Main2Activity.class);
+                        Intent intent = new Intent(ResingeActivity.this, Main2Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -163,6 +174,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             e.printStackTrace();
         }
     }
+
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {
@@ -170,9 +182,10 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             ResingeActivity.this.finish();
         }
     };
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_finish:
                 sendResigter();
                 break;
@@ -181,7 +194,8 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                 break;
         }
     }
-    private void getYzm(){
+
+    private void getYzm() {
         String phoneNum = Tools.getText(et_phone);
         if ("".equals(phoneNum) || !Tools.isMobileNO(phoneNum)) {
             showFial();

@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.user.LoginRegistActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -31,6 +33,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by songchenyu on 16/9/26.
@@ -57,6 +61,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         btn_login.setOnClickListener(this);
         img_we_chat.setOnClickListener(this);
         forget_pass_login.setOnClickListener(this);
+
     }
 
     @Override
@@ -72,20 +77,35 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     @Override
     public void onClick(View v) {
+
+
         switch (v.getId()) {
             case R.id.btn_login:
                 String password = et_password.getText().toString();
                 String resigter = et_resigter.getText().toString();
                 login(resigter, password);
+
+                if (!TextUtils.isEmpty(getUserId())) {
+                    MobclickAgent.onProfileSignIn(getUserId());//统计登录
+                }
                 break;
             case R.id.img_we_chat:
-                Log.e("AAAAA", "");
                 Wx.init(LgoinActivity.this).sendAuthRequest();
+                if (!TextUtils.isEmpty(getUserId())) {
+                    MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
+                }
                 break;
             case R.id.forget_pass_login:
                 startActivity(new Intent(this, ForgetPassActivity.class));
                 break;
         }
+    }
+
+    private String getUserId() {
+        if (Constants.CURRENT_USER == null)
+            return null;
+        String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+        return userID;
     }
 
     private void login(String phone, String password) {
@@ -152,6 +172,10 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         JSONObject obj = new JSONObject();
+        // 自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("WX", unionid);
+        MobclickAgent.onEvent(LgoinActivity.this, "register", map);
         try {
             obj.put("openId", openid);
             obj.put("unionId", unionid);
