@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.user.LoginRegistActivity;
+import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -166,7 +165,8 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         @Override
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
-            LgoinActivity.this.finish();
+            Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
+            startActivity(intent);
         }
     };
 
