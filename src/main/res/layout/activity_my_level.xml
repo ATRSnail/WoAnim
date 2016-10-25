@@ -141,6 +141,7 @@
             android:background="@color/color_eeeeee" />
 
         <RelativeLayout
+            android:layout_marginBottom="@dimen/px_20"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_64"
             android:layout_marginLeft="@dimen/px_30"
