@@ -49,17 +49,20 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     private int medalImage[] = new int[]{R.mipmap.comer_achieve, R.mipmap.normal_forget_achieve, R.mipmap.violet_forget_achieve, R.mipmap.driver_achieve};
     private int clickedImage[] = new int[]{R.mipmap.click_commer_medal, R.mipmap.click_forget_medal, R.mipmap.click_violet_medal, R.mipmap.click_driver_medal};
     private int not_Image[] = new int[]{R.mipmap.not_commer_medal, R.mipmap.not_forget_medal, R.mipmap.not_forget_medal, R.mipmap.not_driver_medal};
-    UserInfoBean.DataBean dataBean;
     List<MedalInfoBean.DataBean> dataBeanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
-        if (Constants.CURRENT_USER != null)
-            dataBean = Constants.CURRENT_USER.getData();
-        if (dataBean != null)
+        if (Constants.MEDALINFOBEAN != null) {
             downData();
+        } else {
+            initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+        }
+
+
+
     }
 
     private void downData() {

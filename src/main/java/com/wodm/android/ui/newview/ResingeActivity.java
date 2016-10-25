@@ -72,6 +72,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void sendResigter() {
+       login("18639918352","123456");
         final String phone = Tools.getText(et_phone);
         final String password = Tools.getText(et_password);
         String yzm = Tools.getText(et_yzm);
@@ -182,7 +183,6 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             e.printStackTrace();
         }
     }
-
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {

@@ -40,7 +40,7 @@ android {
         _3gmenhu{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "9"]
         }
-        _yingyonghu{
+        _{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "9"]
         }
 
