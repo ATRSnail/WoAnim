@@ -93,10 +93,9 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             ApplicationInfo appInfo = getPackageManager()
                     .getApplicationInfo(getPackageName(),
                             PackageManager.GET_META_DATA);
-            String msg=appInfo.metaData.getString("UMENG_CHANNEL");
+            int msg=appInfo.metaData.getInt("UMENG_CHANNEL",0);
             obj.put("channelId",msg);
             obj.put("productName","联通动漫");
-            Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
             httpPost(Constants.USER_REGIST, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -164,8 +163,6 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                         Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
                         infos.getUserInfo(ResingeActivity.this, bean.getUserId());
                         Intent intent = new Intent(ResingeActivity.this, Main2Activity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
