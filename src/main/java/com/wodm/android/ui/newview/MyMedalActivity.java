@@ -56,11 +56,11 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
         if (Constants.MEDALINFOBEAN != null) {
+            dataBeanList = Constants.MEDALINFOBEAN.getData();
             downData();
         } else {
             initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
         }
-
 
 
     }
@@ -72,8 +72,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
          * @return
          */
 
-
-        dataBeanList = Constants.MEDALINFOBEAN.getData();
 
         for (int i = 0; i < dataBeanList.size(); i++) {
             medalType = dataBeanList.get(i).getMedal().getMedalType();
@@ -206,28 +204,30 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void onClick(View v) {
-        int key = (int) v.getTag();
-        int id = v.getId();
+        if (dataBeanList != null && dataBeanList.size() > 0) {
 
-        for (int i = 0; i < not_Image.length; i++) {
+            int key = (int) v.getTag();
+            int id = v.getId();
 
-            for (int j = 0; j < dataBeanList.size(); j++) {
-                int medalScore = dataBeanList.get(j).getMedal().getMedalSource();
-                switch (id) {
-                    case ATTENDANCE:
-                        if (medalScore == 1) {
-                            panduan(ll_attendance_medal, i, key, dataBeanList.get(j).getMedal().getMedalType());
-                        }
-                        break;
-                    case COMMENT:
+            for (int i = 0; i < not_Image.length; i++) {
+
+                for (int j = 0; j < dataBeanList.size(); j++) {
+                    int medalScore = dataBeanList.get(j).getMedal().getMedalSource();
+                    switch (id) {
+                        case ATTENDANCE:
+                            if (medalScore == 1) {
+                                panduan(ll_attendance_medal, i, key, dataBeanList.get(j).getMedal().getMedalType());
+                            }
+                            break;
+                        case COMMENT:
 //                        panduan(ll_comment_medal, i, key, 0);
-                        break;
-                    case REGISTER:
+                            break;
+                        case REGISTER:
 //                        panduan(ll_register_medal, i, key, 0);
-                        break;
+                            break;
+                    }
                 }
             }
-
 
         }
 

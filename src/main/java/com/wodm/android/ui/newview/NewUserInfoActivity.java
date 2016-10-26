@@ -245,7 +245,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                 DateWheelWindow wheelWindow = new DateWheelWindow();
                 wheelWindow.showPopWindow(NewUserInfoActivity.this, mContentView, Gravity.BOTTOM, "yyyy年MM月dd日", new DateWheelWindow.DateResultCall() {
                     void resultCall(String result) {
-//                        birthday_user.setText(result);
+                        birthday_user.setText(result);
                         str_Birthday = result;
 //                submint("birthday", result);
                     }

@@ -42,6 +42,10 @@ public class UserInfoBean {
      * private String productName;
      * 1表示安卓的
      * private int platformType;
+     * 关于版本的名称
+     * private String versionName;
+     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
+     * private int platform;
      */
 
     private DataBean data;
