@@ -161,6 +161,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 break;
             case R.id.no_login:
                 Intent intent = new Intent(getActivity(), LgoinActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 getActivity().finish();
                 break;

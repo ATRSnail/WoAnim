@@ -13,6 +13,7 @@ import com.wodm.android.ui.AppActivity;
 import org.eteclab.OnkeyShare;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.share.call.ShareResultCall;
+import org.eteclab.share.ui.share.ShareWX;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,6 +64,11 @@ public class WebViewJsInterface {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    @JavascriptInterface
+    public void webViewShareWX(){
+        ShareWX share = new ShareWX(mContext);
+
     }
     @JavascriptInterface
     public void webViewYZM(String phoneNum){

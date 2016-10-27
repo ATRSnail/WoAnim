@@ -50,6 +50,7 @@ import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
 import org.eteclab.share.call.ShareResultCall;
+import org.eteclab.share.ui.share.ShareWX;
 import org.eteclab.track.Tracker;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.NoScrollGridView;

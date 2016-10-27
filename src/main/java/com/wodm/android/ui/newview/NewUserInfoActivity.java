@@ -81,7 +81,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private String mPhotoPath;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
-    boolean saveFlag = false;
+    boolean saveFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,7 +196,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
-        saveFlag = true;
         submint();
     }
 

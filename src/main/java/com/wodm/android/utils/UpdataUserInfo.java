@@ -2,7 +2,6 @@ package com.wodm.android.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -46,7 +45,8 @@ public abstract class UpdataUserInfo {
 
     public static Boolean isLogIn(Context ctx, Boolean isLogin) {
         if (isLogin && Constants.CURRENT_USER == null) {
-            ctx.startActivity(new Intent(ctx, LgoinActivity.class));
+            Intent intent=new Intent(ctx, LgoinActivity.class);
+            ctx.startActivity(intent);
         }
         return Constants.CURRENT_USER != null;
     }
