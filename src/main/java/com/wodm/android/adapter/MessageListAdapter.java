@@ -2,6 +2,7 @@ package com.wodm.android.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class MessageListAdapter extends HolderAdapter<MessageBean> {
     @Override
     protected void bindView(RecyclerView.ViewHolder viewHolder, int i) {
         MessageBean bean = mData.get(i);
+        Log.e("AAAAAAAAAAA",""+bean.getContent());
         ((ViewHolder)viewHolder).mMsgContent.setText(bean.getContent());
         ((ViewHolder) viewHolder).mMsgTime.setText(DeviceUtils.getTimes(bean.getCreateTime()));
     }

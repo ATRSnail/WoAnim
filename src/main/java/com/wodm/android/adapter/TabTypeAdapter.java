@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -53,6 +54,8 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                 holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
                 adapter.setIndex(-1);
                 adapter.notifyDataSetChanged();
+
+
             }
         });
         adapter.setOnItemClickListener(new OnItemClickListener<TabItemBean>() {
@@ -64,6 +67,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                 holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
                 adapter.setIndex(i);
                 adapter.notifyDataSetChanged();
+
             }
         });
         holder.mTabList.setAdapter(adapter);
@@ -74,6 +78,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         private TextView mName;
         @ViewIn(R.id.tab_list)
         private RecyclerView mTabList;
+
         public Holder(View view) {
             super(view);
         }
@@ -88,6 +93,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
 
     public interface OnClickListener {
         void onTypaAll(TypeBean bean);
+
         void onTypaOne(TabItemBean tabItemBean, TypeBean bean);
     }
 

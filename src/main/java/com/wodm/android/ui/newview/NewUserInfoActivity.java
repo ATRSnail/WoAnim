@@ -81,6 +81,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private String mPhotoPath;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
+    boolean saveFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +196,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
+        saveFlag = true;
         submint();
     }
 
@@ -333,24 +335,27 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
-                    httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
-
-                        @Override
-                        public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
-                            super.doUploadSuccess(result, obj);
-                            updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
-                        }
-
-                        @Override
-                        public void doUploadFailure(Exception exception, String msg) {
-                            super.doUploadFailure(exception, msg);
-                        }
-                    });
                     break;
                 default:
             }
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (saveFlag == true) {//头像更换修改
+            String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+            httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
+
+                @Override
+                public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doUploadSuccess(result, obj);
+                    updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
+                }
+
+                @Override
+                public void doUploadFailure(Exception exception, String msg) {
+                    super.doUploadFailure(exception, msg);
+                }
+            });
+        }
     }
 
     UpdataUserInfo updataUserInfo = new UpdataUserInfo() {

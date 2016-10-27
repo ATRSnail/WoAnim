@@ -102,9 +102,9 @@ public class NewMineAdapter extends BaseAdapter {
             holder.textView.setText(mContext.getString(R.string.center_people));
             holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_cce198));
         } else {
-//            myadapter = new Myadapter(messageArray, messageIconArray);
-//            holder.textView.setText(mContext.getString(R.string.message));
-//            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
+            myadapter = new Myadapter(messageArray, messageIconArray);
+            holder.textView.setText(mContext.getString(R.string.message));
+            holder.adapter_view.setBackgroundColor(mContext.getResources().getColor(R.color.color_facd89));
         }
         if (myadapter != null)
             holder.gridView.setAdapter(myadapter);

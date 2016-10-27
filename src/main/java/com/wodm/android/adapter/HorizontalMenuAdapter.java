@@ -3,6 +3,7 @@ package com.wodm.android.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,11 +39,12 @@ public class HorizontalMenuAdapter extends HolderAdapter<TabItemBean> {
 
     @Override
     protected void bindView(RecyclerView.ViewHolder holder, int position) {
+
         ((Holder) holder).text.setText(mData.get(position).getName());
         if (index == position) {
             ((Holder) holder).text.setBackgroundResource(R.drawable.shape_text_color);
             ((Holder) holder).text.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-        }else {
+        } else {
             ((Holder) holder).text.setBackgroundResource(R.drawable.shape_text_bg);
             ((Holder) holder).text.setTextColor(Color.BLACK);
         }
@@ -51,6 +53,7 @@ public class HorizontalMenuAdapter extends HolderAdapter<TabItemBean> {
     class Holder extends HolderAdapter.BaseViewHolder {
         @ViewIn(R.id.tab_name)
         TextView text;
+
         public Holder(View view) {
             super(view);
         }
