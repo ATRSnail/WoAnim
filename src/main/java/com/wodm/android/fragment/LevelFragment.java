@@ -22,7 +22,7 @@ import org.eteclab.track.fragment.TrackFragment;
 public class LevelFragment extends TrackFragment {
     private UserInfoBean.DataBean dataBean;
     private int gradeValue;
-    private String  gradeName;
+    private String gradeName;
 
     @Nullable
     @Override
@@ -38,8 +38,16 @@ public class LevelFragment extends TrackFragment {
         if (gradeValue > 1) {
             holder.text_1.setText("LV" + (gradeValue - 1));
             if (!TextUtils.isEmpty(name))
-                gradeName="LV"+gradeValue;
-                holder.text_2.setText("LV"+ gradeValue+"\n萌呷");
+                gradeName = "LV" + gradeValue;
+            holder.text_2.setText("LV" + gradeValue + "\n萌呷");
+            holder.text_3.setText("LV" + (gradeValue + 1));
+            holder.text_4.setText("LV" + (gradeValue + 2));
+            holder.text_5.setText("LV" + (gradeValue + 3));
+        } else {
+            holder.ll_circle1.setVisibility(View.INVISIBLE);
+            if (!TextUtils.isEmpty(name))
+                gradeName = "LV" + gradeValue;
+            holder.text_2.setText("LV" + gradeValue + "\n萌呷");
             holder.text_3.setText("LV" + (gradeValue + 1));
             holder.text_4.setText("LV" + (gradeValue + 2));
             holder.text_5.setText("LV" + (gradeValue + 3));
@@ -104,7 +112,7 @@ public class LevelFragment extends TrackFragment {
 //        holder.text_4.setGravity(Gravity.CENTER);
 //        holder.text_5.setGravity(Gravity.CENTER);
         holder.tv_jingyanzhi2.setVisibility(View.VISIBLE);
-        holder.tv_jingyanzhi2.setText("      距离 "+(gradeValue + 1)+" \n 还有 "+dataBean.getNeedEmpirical()+" 经验值");
+        holder.tv_jingyanzhi2.setText("      距离LV " + (gradeValue + 1) + " \n 还有 " + dataBean.getNeedEmpirical() + " 经验值");
 //        int screen= Tools.getScreenWidth(getActivity());
 //        int width=(screen-76*2-72)/4;
 //        LinearLayout.LayoutParams ll_params=new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT);
