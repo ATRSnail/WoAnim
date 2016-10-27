@@ -64,7 +64,16 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void leftClick() {
+        Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
+        startActivity(intent);
         finish();
     }
 

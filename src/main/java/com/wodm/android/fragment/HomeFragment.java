@@ -14,8 +14,6 @@ import com.wodm.android.adapter.HomeAdapter;
 import com.wodm.android.bean.BannerBean;
 import com.wodm.android.bean.ObjectDataBean;
 import com.wodm.android.ui.WebViewActivity;
-import com.wodm.android.ui.home.AnimDetailActivity;
-import com.wodm.android.ui.home.CarDetailActivity;
 
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
@@ -103,16 +101,16 @@ public class HomeFragment extends TrackFragment {
                                 try {
                                     Intent intent = new Intent();
                                     intent.putExtra("resourceId", Integer.valueOf(bean.getResourceId()).intValue());
-                                    if (bean.getType().equals("1")) {
-                                        intent.setClass(getActivity(), AnimDetailActivity.class);
-                                    } else if (bean.getType().equals("2")) {
-                                        intent.setClass(getActivity(), CarDetailActivity.class);
-                                    } else if (bean.getType().equals("2")) {
-                                        intent.setClass(getActivity(), CarDetailActivity.class);
-                                    }else {
+//                                    if (bean.getType().equals("1")) {
+//                                        intent.setClass(getActivity(), AnimDetailActivity.class);
+//                                    } else if (bean.getType().equals("2")) {
+//                                        intent.setClass(getActivity(), CarDetailActivity.class);
+//                                    } else if (bean.getType().equals("2")) {
+//                                        intent.setClass(getActivity(), CarDetailActivity.class);
+//                                    }else {
                                         intent.putExtra("adsUrl",bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);
-                                    }
+//                                    }
                                     startActivity(intent);
                                 } catch (Exception e) {
                                     e.printStackTrace();

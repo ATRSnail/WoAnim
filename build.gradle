@@ -8,8 +8,8 @@ android {
         applicationId "com.unicom.dm"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.1.0.0"
+        versionCode 3
+        versionName "1.2.0.0"
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default_channel"]
     }
     productFlavors {
@@ -40,8 +40,8 @@ android {
         _3gmenhu{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "9"]
         }
-        _{
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "9"]
+        _yingyonghu{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "10"]
         }
 
 //        productFlavors.all { flavor ->

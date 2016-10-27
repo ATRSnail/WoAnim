@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8"> 
+  <title>联通</title>
+  <link rel="stylesheet" href="css/intel.css"/> 
+  <link rel="stylesheet" href="css/index.css"/> 
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/bootstrap.min.js"></script>  
+  <script type="text/javascript" src="js/scroll.js"></script>  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.list_lh li:even').addClass('lieven');
+    })
+    $(function(){
+      $("div.list_lh").myScroll({ 
+        speed:54, //数值越大，速度越慢
+        rowHeight:44 //li的高度
+      });
+    }); 
+  </script>
+
+</head>
+<body style="position: relative;">
+
+<div id="yi" class="img-responsive">
+  <div class="container">
+    <div class="row yi">
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <img src="images/1logo.png" alt="" class="img-responsive center-block logo"/>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3 denl1">
+        <div id="di">
+          <div id="xia">
+	          <p id="dengl" class="deng_btn" onclick="funCent()">登录 </p>
+	          <img src="images/1line_02.jpg" class="line" />
+	          <p><img src="images/1fen.png" alt="" class="img-responsive center-block"/></p>
+	          <p id="zhuc" onclick="funSent()" class="deng_btn">注册 </p>
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-5 col-md-5 col-lg-5"> </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 right">
+        <img src="images/1yun2.png" alt="" class="img-responsive center-block" />
+      </div>
+    </div> 
+		<div class="row" style="position: relative;">
+			<div class="col-sm-3 col-md-3 col-lg-3">
+				<img src="images/1yun1.png" alt="" class="img-responsive center-block" style="margin: 15% 0 0 0;" />
+			</div>
+			<div class="col-sm-7 col-md-7 col-lg-7 center_img">
+				<img src="images/1center_img.png" alt="" class="img-responsive center-block"/>
+			</div> 
+			<img src="images/1yun3.png" alt="" class="yun3" /> 
+		</div>
+  </div>
+</div>
+ 
+<div id="er" >
+	<img src="images/er_img.png" style="width: 100%; margin-top: -10%;" />
+</div>
+ 
+<div id="san">
+	<img src="images/san_img.png" style="width: 100%; margin-top: -15%;"/>
+  <div class="container"> 
+		<!--抽奖-->
+    <div class="row" >
+    	<div class="draw">
+    		<img src="images/girl_1.png" class="girl" />
+    		<div class="chou_bg">
+    			<div class="bg_In"><img src="images/bg_In.png" /></div>
+    		</div> 
+	      <div class="chou">   
+	        <div  class="aa">   
+	        	<ul style="margin-bottom: 0">
+	        		<li class=" cc"><img src="images/c1.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c2.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c3.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c4.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c5.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c6.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c7.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c8.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c9.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c10.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c11.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c12.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c13.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c14.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c15.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc"><img src="images/c16.png"  class="img-responsive center-block"  alt=""></li>
+	        	</ul> 
+	        	<div id="my_jp">
+		          <div id="meme" onclick="myjp()" ></div> 
+		          <div id="mekr">
+		             <img src="" alt="" id="oImg" />
+		             <span class="next_btn" onclick="nextBtn()" >下一步</span>
+		          </div> 
+		          <!--收货地址-->
+		          <div id="addres" >
+		          	<img src="images/close_03.png" id="zhuce_close"  onclick="men_close()" />
+		          	<form>
+			          	<h4>添加收货地址
+					        	<p style="margin-top: 5px;">差出人の宛先</p>
+					        </h4> 
+					        <input type="text" placeholder=">请输入姓名" style="width: 30%;" />
+					        <input type="text" placeholder=">请输入邮寄地址+邮编" />
+					        <input type="text" placeholder=">请输入联系手机" />
+					        <input type="button" value="提交" />
+				        </form>
+				        <p class="tishi">请正确填写您的邮寄地址，礼品将在您提交资料后5~15个工作日发出，请您注意查收！</p>
+		          </div>
+		          <!--/收货地址--> 
+	          </div>
+	          
+	        </div>
+	        <div class="kaishi"> 
+	        	<p class="fx_tishi">分享即可参与抽奖！</p> 
+	          <button style="width: 100%;height: 100%;">分享至微信朋友圈</button>
+	          <span class="fx_jq">剩余奖券（1）</span>
+	          <img src="images/chou_lq.png" class="LingQu" />
+	        </div>
+	      </div>
+				
+    	</div>
+    </div>
+    <!--/抽奖-->
+   <!--中奖-->
+   <div>
+    <div class="row gun">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+      </div>
+      <div class="col-sm-9 col-md-9 col-lg-9">
+        <div class="box">
+          <div class="bcon">
+            <div class="ff"><h1 ><b>中奖榜单</b></h1>
+            <h1 class="r" ><b>累计中奖人数</b></h1></div>
+            <div class="list_lh">
+              <ul>
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+                <li>
+                  <p><a href="" target="_blank">15242547859</a><a href="" target="_blank" class="btn_lh">中了1000积分</a><a>2016-5-12</a></p>
+                </li> 
+              </ul>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+   </div>
+   <!--/中奖-->
+   
+  </div>
+</div>
+
+<!----地下一块--->
+<div>
+
+  <div id="men"></div>
+	<section id="menIn">
+	  <div class="container">
+	    <div class="row  male">
+	      <div class="zhuce" id="txt" style="left: 25%;">
+	      	<img src="images/close_03.png" id="zhuce_close"  onclick="men_close()" />
+	        <h4>用户登录
+	        	<p style="margin-top: 5px;">ログイン</p>
+	        </h4>
+	        <form action="">
+	          <div class="warp">
+	            <input type="text"  id="input" placeholder=">请输入手机号码"   name="username"   />
+	            <span id="tel"></span>
+	          </div>
+	          <div><input type="text" placeholder=">请输入密码" id="dengl_pwd"/></div>
+	          <p class="yz">
+	            <input id="textN" type="text" placeholder=">请输入右方验证码（区分大小写）"/>
+	            <span id="zsm">acdv</span>
+	            <a id="kyt"></a>
+	          </p>
+				<input type="button" value="登录" id="dengBtn" onclick="deng()" /><br>
+	          <div class="wj">
+	          	<a href="javascript:;" class="qzc" onclick="funSent()" style="color:#c8264d;text-decoration: underline;">去注册~</a>
+	          	<a href="javascript:;" class="qwj" onclick="funMent()" style="text-decoration: underline;">忘记密码?</a>
+	          </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+  
+ 
+  <div id="smen"></div>
+	<section id="smenIn" >
+	  <div class="container">
+	    <div class="row  male">
+	      <div class="zhuce kuai" id="txt1">
+	      	<img src="images/close_03.png" id="zhuce_close" onclick="men_close()" />
+	        <h4>快速注册
+	        	<p style="margin-top: 5px;">ユーザー</p>
+	        </h4>
+	        <form action="">
+	          <div class="warp">   
+	            <input type="text"  id="input1" style="width: 90%" placeholder=">请设置用户名/输入11位手机号码"  name="username"   />
+	            <span id="te1"></span>
+	          </div>
+	          <div>
+	          	<input type="password" id="mima" style="width: 90%" name="password" placeholder=">请设置密码/6-8位数字或字母组成" />
+	          	<span id="te2"></span>
+	          </div>
+	          <div>
+	          	<input type="password" id="mima2" style="width: 90%" placeholder=">请确认密码"/>
+	          	<span id="te3"></span>
+	          </div>
+	          <p class="yz"> 
+	            <input id="textN1" style="display: inline-block;width: 65%;" type="text" placeholder=">短信验证码( 测试用 azsx )"/>
+	            <input class="checkCode" type="button" id="btn3"  value="免费获取验证码" />
+	            <a id="kyt1"></a>
+	          </p>
+	          <input type="button" value="注册" id="zc_btn" /><br/> 
+	          <div class="wj" style="color: #c8264d">注册成功后自动领取小M纪念版头像装饰~</div>
+	        </form>
+	        
+	      </div>
+	    </div>
+	  </div>
+	</section> 
+
+
+  <div id="zmen" ></div>
+    <section id="zmenIn" >
+      <div class="container">
+        <div class="row  male">
+          <div class="zhuce" id="txt2" style="width: 50%; left: 25%;">
+          	<img src="images/close_03.png" id="zhuce_close"  onclick="men_close()" />
+            <h4>找回密码
+            	<p style="margin-top: 5px;">パスワードを忘れました</p>
+            </h4>
+            <form action="">
+              <div class="warp"> 
+                <input type="text"  id="input2" style="width: 90%" placeholder=">输入11位手机号码"  name="username"   />
+                <span id="tel12" style="display: inline-block;width: 15em"></span>
+              </div>
+              <p class="yz" style="width: 90%;">
+                <input id="textN12" style="display: inline-block;width: 60%" type="text" placeholder=">获取验证码"/>
+                <input class="checkCode" type="button" id="btn2" value="免费获取验证码" style="display: inline-block;width: 39%;border-radius: 0"/>
+                <a id="kyt12"></a>
+              </p>
+              <div>
+              	<input type="password" id="mima12" style="width: 90%" name="password" placeholder=">请输入新密码"/>
+              	<span id="te22" style="display: inline-block;width: 12em;height: 2em"></span>
+              </div>
+              <div>
+              	<input type="password" id="mima22" style="width: 90%" placeholder=">请确认新密码"/>
+              	<span id="te32" style="display: inline-block;width: 12em"></span>
+              </div>
+
+              <input type="button" value="提交" /><br>
+              <div class="wj" style="color: #c8264d">这次一定要记住我哦~</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  <!--头像赠送-->
+  <div id="bg" onclick="tou_box()" style="display: none;"></div>
+	<div id="toux" style="display: none;">
+		<img src="images/yuedu_03.png" id="yue" />
+		<span id="append_jp"> </span> 
+	</div>
+	<!--/头像赠送-->
+	
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/rectC.js"></script>
+
+</body>
+</html>
+

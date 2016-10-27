@@ -61,6 +61,7 @@ public class Main2Activity extends AppActivity {
     }
 
     private void initTapView() {
+
         if (((HomeFragment) mSurfaceParams.get(R.id.tab_home).fragment).IndexTabId == R.id.enetic_cartoon) {
             mTab2.setBackgroundResource(R.drawable.enetic_home_title_left);
             mTab2.setTextColor(getResources().getColor(android.R.color.white));

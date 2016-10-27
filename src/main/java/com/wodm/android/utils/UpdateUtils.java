@@ -54,6 +54,8 @@ public class UpdateUtils {
             o.put("versionCode", getVersionCode(mCtx));
             o.put("packageName", mCtx.getPackageName());
             o.put("osVersion", android.os.Build.VERSION.SDK_INT);
+            o.put("platform", 1);
+
             ((AppActivity) (mCtx)).httpPost(Constants.APP_UPGRADE_URL, o, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -183,6 +185,20 @@ public class UpdateUtils {
         } catch (NameNotFoundException e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+    /*
+    * 获取应用的版本号
+    */
+    private String getVersionName(Context context) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            PackageInfo packInfo = pm.getPackageInfo(context.getPackageName(),
+                    0);
+            return packInfo.versionName;
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 }

@@ -163,6 +163,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                         Preferences.getInstance(getApplicationContext()).setPreference("token", bean.getToken());
                         infos.getUserInfo(ResingeActivity.this, bean.getUserId());
                         Intent intent = new Intent(ResingeActivity.this, Main2Activity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
