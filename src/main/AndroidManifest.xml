@@ -316,10 +316,7 @@
             android:name=".android.ui.newview.HeaderGuaJianActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!-- <activity -->
-        <!-- android:name=".android.ui.newview.TaskActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+
 
 
         <!-- <activity -->
@@ -344,12 +341,11 @@
         <activity
             android:name=".android.ui.newview.CustomerServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity-->
-        <!--android:name=".android.ui.newview.MallActivity"-->
-        <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+
         <activity
             android:name=".android.ui.newview.MallActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
     </application>
 

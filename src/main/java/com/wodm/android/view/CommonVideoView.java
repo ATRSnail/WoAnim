@@ -86,11 +86,12 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private LinearLayout ll_bottom;
     private SendBulletListener sendBulletListener;
 
-    public interface SendBulletListener{
+    public interface SendBulletListener {
         public void sendBullet();
     }
-    public void setSendBulletListener(SendBulletListener listener){
-        this.sendBulletListener=listener;
+
+    public void setSendBulletListener(SendBulletListener listener) {
+        this.sendBulletListener = listener;
     }
 
 
@@ -140,7 +141,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
     public void start(String url) {
-        if (TextUtils.isEmpty(url)){
+        if (TextUtils.isEmpty(url)) {
             return;
         }
         videoView.stopPlayback();
@@ -162,6 +163,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
     public void setNormalScreen() {
+
         orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
         this.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
@@ -397,8 +399,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
                 break;
             case R.id.send_bullet:
-                if (sendBulletListener!=null)
-                  sendBulletListener.sendBullet();
+                if (sendBulletListener != null)
+                    sendBulletListener.sendBullet();
                 break;
 
 //            case R.id.screen_lock:

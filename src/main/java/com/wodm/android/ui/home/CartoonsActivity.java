@@ -2,6 +2,7 @@ package com.wodm.android.ui.home;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -49,6 +50,7 @@ public class CartoonsActivity extends AppActivity {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
                         loadOK();
+                        Log.e("AAAAAAAAAA", "" + obj.toString());
                         try {
                             List<ObjectBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());

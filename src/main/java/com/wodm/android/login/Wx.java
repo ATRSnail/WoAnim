@@ -1,6 +1,7 @@
 package com.wodm.android.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -12,6 +13,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.ui.newview.LgoinActivity;
 
 import org.eteclab.Constants;
