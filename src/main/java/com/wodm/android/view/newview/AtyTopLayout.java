@@ -85,7 +85,7 @@ public class AtyTopLayout extends RelativeLayout {
 //        leftImage.setImageDrawable(leftDrawable);
         leftImage.setBackgroundResource(R.mipmap.back);
         tvTitle.setTextColor(titleTextColor);
-        tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_32_px));
+        tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.x32));
         tvTitle.setText(titleText);
         tvTitle.setGravity(Gravity.CENTER);    // 设置文字居中
 
@@ -127,7 +127,7 @@ public class AtyTopLayout extends RelativeLayout {
         } else if (rightType == 1) {
             tv_right = new TextView(context);
             tv_right.setText(rightText);
-            tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_28_px));
+            tv_right.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.x28));
             tv_right.setTextColor(rightTextColor);
             tv_right.setPaddingRelative(padding, 0, padding, 0);
             addView(tv_right, rightLayoutParams);

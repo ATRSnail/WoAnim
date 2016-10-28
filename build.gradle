@@ -43,6 +43,36 @@ android {
         _yingyonghu{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "10"]
         }
+        _woshangdian1027 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "11"]
+        }
+        _360_1027 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "12"]
+        }
+        _91_1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "13"]
+        }
+        _baidu_1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "14"]
+        }
+        _qq_1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "15"]
+        }
+        _anzhishichang1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "16"]
+        }
+        _3gmenhu1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "17"]
+        }
+        _sougoushichang_1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "18"]
+        }
+        _mumayi_1027{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "19"]
+        }
+
+
+
 
 //        productFlavors.all { flavor ->
 //            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]

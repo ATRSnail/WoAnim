@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
@@ -51,7 +52,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     @ViewIn(R.id.img_we_chat)
     private ImageView img_we_chat;
     @ViewIn(R.id.forget_pass_login)
-    private Button forget_pass_login;
+    private TextView forget_pass_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +196,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             obj.put("portrait", headimgurl);
             File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "json.txt");
             try {
+                //42268986033
                 FileWriter fileWriter = new FileWriter(f);
                 fileWriter.write(obj.toString());
                 fileWriter.close();
