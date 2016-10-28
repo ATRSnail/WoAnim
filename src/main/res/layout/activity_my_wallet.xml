@@ -156,42 +156,59 @@
             android:layout_height="@dimen/y14"
             android:background="@color/color_efefef" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/y64"
+            android:layout_marginLeft="@dimen/x30"
             android:layout_marginRight="@dimen/x30"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_marginLeft="@dimen/x30"
+            <LinearLayout
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:src="@mipmap/vip" />
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical">
 
-            <TextView
+                <TextView
+                    android:id="@+id/tv_circle"
+                    android:layout_width="@dimen/x32"
+                    android:layout_height="@dimen/y32"
+                    android:gravity="center"
+                    android:background="@mipmap/vip" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x14"
+                    android:text="@string/vip_speed_hint"
+                    android:textColor="@color/color_f29b76"
+                    android:textSize="@dimen/x22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x14"
-                android:layout_weight="1"
-                android:text="@string/vip_speed_hint"
-                android:textColor="@color/color_ee974a"
-                android:textSize="@dimen/x24"
-                android:textStyle="bold" />
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical">
 
-            <Button
-                android:id="@+id/kai_tong_wallet"
-                android:layout_width="@dimen/x84"
-                android:layout_height="@dimen/y42"
-                android:layout_gravity="right|center_vertical"
-                android:background="@drawable/kaitong_rectan"
-                android:gravity="center"
-                android:text="@string/open_vip_member"
-                android:textColor="@color/color_ff6361"
-                android:textSize="@dimen/x16" />
+                <Button
+                    android:gravity="center"
+                    android:id="@+id/kai_tong_wallet"
+                    android:layout_width="@dimen/x84"
+                    android:layout_height="@dimen/y42"
+                    android:background="@drawable/kaitong_rectan"
+                    android:text="@string/open_vip_member"
+                    android:textColor="@color/color_ff6361"
+                    android:textSize="@dimen/x16" />
 
-        </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

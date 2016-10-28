@@ -99,6 +99,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             initMyMedal();
         } else {
             initLinearLayout(my_medal_persion, 0);
+
         }
         show_more_persion.setOnClickListener(this);
     }
@@ -213,10 +214,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        btn_degree.setText("LV"+accountBean.getGradeValue());
         tv_sign.setText(accountBean.getAutograph() + "");
         UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
-        int total = dataBean.getNextGradeEmpirical() + dataBean.getCurrentEmpirical();
+        int total = dataBean.getAccount().getEmpiricalValue() + dataBean.getNeedEmpirical();
+
         int progress = 0;
         if (total != 0) {
-            progress = dataBean.getCurrentEmpirical() / total;
+            progress = dataBean.getAccount().getEmpiricalValue() / total;
         }
 //        degree_progress.setProgress(progress);
         int next_num = dataBean.getNextGradeEmpirical();
@@ -241,8 +243,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(grad)) {
             tv_num.setText(grad);
         }
-        empiral_degree.setText(dataBean.getCurrentEmpirical() + "/" + dataBean.getNextGradeEmpirical());
-
+        empiral_degree.setText(dataBean.getAccount().getEmpiricalValue() + "/" + dataBean.getNextGradeEmpirical());
 //        initMyMedal(accountBean);
 
     }

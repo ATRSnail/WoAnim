@@ -82,7 +82,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private String mPhotoPath;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
-    boolean saveFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +91,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 //        set_topbar.setRightTextMargin((int) getResources().getDimension(R.dimen.px_40));
         set_topbar.setLeftImageMargin((int) getResources().getDimension(R.dimen.px_40));
         btn_exit_login.setOnClickListener(this);
-        if (CURRENT_USER == null) {
-            finish();
-        }
+
         img_circle.setOnClickListener(this);
         rl_birthday.setOnClickListener(this);
         rl_sex.setOnClickListener(this);
@@ -197,7 +194,25 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
+       postPicture();
         submint();
+    }
+
+    private void postPicture() {
+        String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+        httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
+
+            @Override
+            public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doUploadSuccess(result, obj);
+                updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
+            }
+
+            @Override
+            public void doUploadFailure(Exception exception, String msg) {
+                super.doUploadFailure(exception, msg);
+            }
+        });
     }
 
     private void submint() {
@@ -340,23 +355,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             }
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (saveFlag == true) {//头像更换修改
-            Log.e("AAAAAAAAAAAAAAAAAAA", "" + saveFlag);
-            String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
-            httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 
-                @Override
-                public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    super.doUploadSuccess(result, obj);
-                    updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
-                }
-
-                @Override
-                public void doUploadFailure(Exception exception, String msg) {
-                    super.doUploadFailure(exception, msg);
-                }
-            });
-        }
     }
 
     UpdataUserInfo updataUserInfo = new UpdataUserInfo() {

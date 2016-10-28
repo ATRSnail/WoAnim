@@ -21,9 +21,9 @@ public class Constants {
     public static final boolean DEBUG = true;
 
     public static UserInfoBean CURRENT_USER/* = new UserBean()*/;
-    public static MedalInfoBean MEDALINFOBEAN /* = new UserBean()*/;
+    public static MedalInfoBean MEDALINFOBEAN;
 
-    //         public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
+    //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
 //     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
     public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式

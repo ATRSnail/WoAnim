@@ -18,6 +18,7 @@ import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
@@ -55,15 +56,31 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
+
+        if (Constants.CURRENT_USER == null) {
+            finish();
+            return;
+        } else {
+            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+
+        }
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             downData();
         } else {
-            initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+            initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
         }
 
-
     }
+
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
 
     private void downData() {
         /** medalSource 勋章来源(1：签到 2：节日活动 3：购买vip 4：新手任务 5：线下活动)
