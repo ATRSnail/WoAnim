@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -340,6 +341,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
 
         if (saveFlag == true) {//头像更换修改
+            Log.e("AAAAAAAAAAAAAAAAAAA", "" + saveFlag);
             String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
             httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 

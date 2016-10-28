@@ -17,7 +17,7 @@
         <com.wodm.android.view.newview.AtyTopLayout
             android:id="@+id/back_wallet"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
+            android:layout_height="@dimen/y90"
             app:BackGroundColor="@color/color_f5c92f"
             app:CustomtitleTextColor="@color/color_3f190c"
             app:CustomtitleTextSize="@dimen/x36"
@@ -31,16 +31,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x221"
+            android:layout_height="@dimen/y221"
             android:background="@color/color_ffffff">
 
             <ImageView
                 android:id="@+id/icon_wallet"
                 android:layout_width="@dimen/x92"
-                android:layout_height="@dimen/x92"
+                android:layout_height="@dimen/y92"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/x10"
-                android:layout_marginTop="@dimen/x30"
+                android:layout_marginBottom="@dimen/y10"
+                android:layout_marginTop="@dimen/y30"
                 android:src="@mipmap/icon_wallet" />
 
             <LinearLayout
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_wallet"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/x20"
+                android:layout_marginBottom="@dimen/y20"
                 android:gravity="center_horizontal">
 
                 <TextView
@@ -110,8 +110,8 @@
                         android:textSize="@dimen/x20" />
 
                     <View
-                        android:layout_width="@dimen/px_2"
-                        android:layout_height="@dimen/px_10"
+                        android:layout_width="@dimen/x2"
+                        android:layout_height="@dimen/y10"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@color/color_efefef" />
@@ -153,37 +153,38 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x14"
+            android:layout_height="@dimen/y14"
             android:background="@color/color_efefef" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x64"
+            android:layout_height="@dimen/y64"
+            android:layout_marginRight="@dimen/x30"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical">
 
-            <TextView
+            <ImageView
+                android:layout_marginLeft="@dimen/x30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="@dimen/x30"
-                android:background="@drawable/vip_icon_circle" />
+                android:src="@mipmap/vip" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginLeft="@dimen/x14"
                 android:layout_weight="1"
                 android:text="@string/vip_speed_hint"
-                android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/x22" />
+                android:textColor="@color/color_ee974a"
+                android:textSize="@dimen/x24"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/kai_tong_wallet"
                 android:layout_width="@dimen/x84"
-                android:layout_height="@dimen/x42"
+                android:layout_height="@dimen/y42"
                 android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="@dimen/x30"
                 android:background="@drawable/kaitong_rectan"
                 android:gravity="center"
                 android:text="@string/open_vip_member"
@@ -198,18 +199,19 @@
             android:background="@color/color_efefef" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x64"
-            android:layout_marginLeft="@dimen/x30"
+            android:layout_height="@dimen/y64"
             android:background="@color/color_ffffff"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="@dimen/x12"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/pay_cartoon"
                 android:layout_alignTop="@+id/pay_cartoon"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="@dimen/x30"
                 android:background="@color/color_b3d465" />
 
             <TextView
@@ -231,4 +233,4 @@
     </LinearLayout>
 
 
-    </ScrollView>
+</ScrollView>

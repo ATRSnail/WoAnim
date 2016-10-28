@@ -52,6 +52,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     private ImageView img_we_chat;
     @ViewIn(R.id.forget_pass_login)
     private Button forget_pass_login;
+    boolean loginFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +67,14 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
+        Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
     @Override
     public void leftClick() {
-        Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
+        Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
@@ -176,12 +177,16 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         @Override
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
-            Intent intent=new Intent(LgoinActivity.this, Main2Activity.class);
-            startActivity(intent);
+
+            if (loginFlag) {
+                Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
+                startActivity(intent);
+            }
         }
     };
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
+        loginFlag = false;
         JSONObject obj = new JSONObject();
         // 自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
         Map<String, String> map = new HashMap<String, String>();

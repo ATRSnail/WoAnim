@@ -59,7 +59,7 @@
     <string name="vip_false_hint">您还不是会员用户</string>
     <string name="no_login_hint">亲,您还没有登录哦~</string>
     <string name="vip_tequan">会员特权</string>
-    <!--vip-->
+    <!--vip_mine-->
     <string name="free_look">免费看</string>
     <string name="free_look_info">漫画动画免费看VIP章节</string>
     <string name="follow_heart">随心装扮</string>

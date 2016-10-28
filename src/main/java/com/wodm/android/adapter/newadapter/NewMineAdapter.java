@@ -40,11 +40,11 @@ public class NewMineAdapter extends BaseAdapter {
     private Context mContext;
     private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "", "", ""};
-    private int[] personIconArray = {R.drawable.medal_mine, R.drawable.task_mine, R.drawable.footprint_mine
-            , R.drawable.collect, R.drawable.service_mine, R.drawable.settings, R.mipmap.mall, 0};
+    private int[] personIconArray = {R.mipmap.medal_mine, R.mipmap.task_mine, R.mipmap.footprint_mine
+            , R.mipmap.collect_mine, R.mipmap.service_mine, R.mipmap.setting_mine, R.mipmap.mall_mine, 0};
 
-    private int[] messageIconArray = {R.drawable.reply_mine, R.drawable.like_mine, R.drawable.inform_mine
-            , R.drawable.mine, R.drawable.topic_mine, 0, 0, 0};
+    private int[] messageIconArray = {R.mipmap.reply_mine, R.mipmap.like_mine, R.mipmap.inform_mine
+            , R.mipmap.my_mine, R.mipmap.topic_mine, 0, 0, 0};
 
     public NewMineAdapter(Context context) {
         this.mContext = context;
@@ -203,7 +203,7 @@ public class NewMineAdapter extends BaseAdapter {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_gv, null, false);
                 gvHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
                 gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.gv_img);
-                gvHolder.adapter_view=convertView.findViewById(adapter_view);
+                gvHolder.adapter_view = convertView.findViewById(adapter_view);
                 gvHolder.ll_adapter = (LinearLayout) convertView.findViewById(R.id.ll_adapter);
                 convertView.setTag(gvHolder);
             } else {
