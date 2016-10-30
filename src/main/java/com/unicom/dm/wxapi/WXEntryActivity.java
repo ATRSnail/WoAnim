@@ -3,7 +3,6 @@ package com.unicom.dm.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -49,9 +48,9 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         if (ShareResultCall.call == null && resp.errCode == BaseResp.ErrCode.ERR_OK) {
             //用户同意
             Wx.init(getApplicationContext()).sendHttp(resp);
-            Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
         }
 
         finish();

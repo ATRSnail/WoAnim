@@ -178,11 +178,14 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         @Override
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
-
-            if (loginFlag) {
-                Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+//            if (loginFlag) {
+//                Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
+//                startActivity(intent);
+//            }
         }
     };
 
