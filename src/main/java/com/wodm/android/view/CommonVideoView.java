@@ -72,7 +72,6 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
     private int orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
-
     private int duration;
     private String formatTotalTime;
 
@@ -159,10 +158,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public void setFullScreen() {
         orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
-
         this.setLayoutParams(new
                 RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
         setlandLayout(View.VISIBLE);
         videoTitleLayout.setBackgroundColor(Color.argb(0xcc, 0x28, 0x28, 0x28));
     }
@@ -202,18 +199,13 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private void initView() {
         View view = inflate(context, R.layout.layout_common_video_view, this);
         view.findViewById(R.id.send_bullet).setOnClickListener(this);
-
         mListAnim = (TextView) view.findViewById(R.id.list_anim);
-
         mListAnim.setOnClickListener(this);
         viewBox = (FrameLayout) view.findViewById(R.id.viewBox);
         videoView = (MyVideoView) view.findViewById(R.id.videoView);
         videoPauseBtn = (LinearLayout) view.findViewById(R.id.videoPauseBtn);
 //        screenSwitchBtn = (LinearLayout) view.findViewById(R.id.screen_status_btn);
         videoControllerLayout = (LinearLayout) view.findViewById(R.id.videoControllerLayout);
-
-
-
         videoTitleLayout = (RelativeLayout) view.findViewById(R.id.videoTopLayout);
         touchStatusView = (LinearLayout) view.findViewById(R.id.touch_view);
         touchStatusImg = (ImageView) view.findViewById(R.id.touchStatusImg);
