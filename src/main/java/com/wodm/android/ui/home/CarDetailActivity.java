@@ -1,10 +1,10 @@
 package com.wodm.android.ui.home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,20 +25,19 @@ import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.DownDialog;
+import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.DividerLine;
 import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 
-import org.eteclab.OnkeyShare;
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
-import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
 import org.eteclab.track.annotation.TrackClick;
 import org.eteclab.ui.widget.CircularImage;
@@ -84,6 +83,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private BiaoqingTools biaoqingtools;
     private ArrayList<CommentBean> commentBeanList;
     private ImageView danmu_kaiguan;
+    private Dialog dialog=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,6 +233,14 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dialog!=null&&dialog.isShowing()){
+            dialog.dismiss();
+        }
+    }
+
     private void startRead(int index) {
         if (!(mChapterList != null && index < mChapterList.size())) {
             return;
@@ -277,27 +285,29 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     }
 
     private void showShare() {
-        OnkeyShare share = new OnkeyShare(this);
-        share.setPlatform();
-        share.setTitle(bean.getName());
-        share.setDescription(bean.getDesp());
-        share.setImageUrl(bean.getShowImage());
-        share.setTargUrl(Constants.SHARE_URL + resourceId);
-        share.addShareCall(new ShareResultCall() {
-            @Override
-            public void onShareSucess() {
-                super.onShareSucess();
-                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onShareCancel() {
-                super.onShareCancel();
-                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
-            }
-        });
-        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
-        share.show();
+        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_URL + resourceId,bean.getShowImage());
+        dialog.show();
+//        OnkeyShare share = new OnkeyShare(this);
+//        share.setPlatform();
+//        share.setTitle(bean.getName());
+//        share.setDescription(bean.getDesp());
+//        share.setImageUrl(bean.getShowImage());
+//        share.setTargUrl(Constants.SHARE_URL + resourceId);
+//        share.addShareCall(new ShareResultCall() {
+//            @Override
+//            public void onShareSucess() {
+//                super.onShareSucess();
+//                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onShareCancel() {
+//                super.onShareCancel();
+//                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
+//        share.show();
 //        ShareSDK.initSDK(this);
 //        OnekeyShare oks = new OnekeyShare();
 //        //关闭sso授权

@@ -1,6 +1,7 @@
 package com.wodm.android.ui.home;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -31,6 +32,7 @@ import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ChapterDialog;
 import com.wodm.android.dialog.DownDialog;
+import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
@@ -43,7 +45,6 @@ import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 import com.wodm.android.view.danmu.DanmakuItem;
 import com.wodm.android.view.danmu.IDanmakuItem;
 
-import org.eteclab.OnkeyShare;
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -51,7 +52,6 @@ import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
-import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.NoScrollGridView;
@@ -104,6 +104,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private CircularImage header;
     private ImageView danmu_kaiguan;
     private boolean isOpen=true;
+    private Dialog dialog=null;
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -360,7 +361,10 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     protected void onDestroy() {
         super.onDestroy();
         if (danmuControler!=null)
-        danmuControler.release();
+            danmuControler.release();
+        if (dialog!=null&&dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 
     private void showDowmData() {
@@ -526,27 +530,29 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     }
 
     private void showShare() {
-        OnkeyShare share = new OnkeyShare(this);
-        share.setPlatform();
-        share.setTitle(bean.getName());
-        share.setDescription(bean.getDesp());
-        share.setTargUrl(Constants.SHARE_URL + resourceId);
-        share.setImageUrl(bean.getShowImage());
-        share.addShareCall(new ShareResultCall() {
-            @Override
-            public void onShareSucess() {
-                super.onShareSucess();
-                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onShareCancel() {
-                super.onShareCancel();
-                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
-            }
-        });
-        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
-        share.show();
+        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_URL + resourceId,bean.getShowImage());
+        dialog.show();
+//        OnkeyShare share = new OnkeyShare(this);
+//        share.setPlatform();
+//        share.setTitle(bean.getName());
+//        share.setDescription(bean.getDesp());
+//        share.setTargUrl(Constants.SHARE_URL + resourceId);
+//        share.setImageUrl(bean.getShowImage());
+//        share.addShareCall(new ShareResultCall() {
+//            @Override
+//            public void onShareSucess() {
+//                super.onShareSucess();
+//                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onShareCancel() {
+//                super.onShareCancel();
+//                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
+//        share.show();
 
     }
 

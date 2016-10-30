@@ -2,6 +2,7 @@ package com.wodm.android.ui.home;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -34,18 +35,17 @@ import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.DowmBean;
 import com.wodm.android.bean.ObjectBean;
+import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
-import org.eteclab.OnkeyShare;
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
-import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
 import org.eteclab.track.annotation.TrackClick;
 import org.eteclab.ui.widget.animation.RotateLoading;
@@ -91,6 +91,7 @@ public class CartoonReadActivity extends AppActivity {
     private ObjectBean bean = null;
     private boolean videoControllerShow = false;//底部状态栏的显示状态
     private boolean animation = false;
+    private Dialog dialog=null;
 
 
     private int orientation = 1;
@@ -605,26 +606,28 @@ public class CartoonReadActivity extends AppActivity {
     @TrackClick(value = R.id.anim_share)
     private void clickShare(View view) {
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "分享");
-        OnkeyShare share = new OnkeyShare(this);
-        share.setTitle(bean.getName());
-        share.setImageUrl(bean.getShowImage());
-        share.setDescription(bean.getDesp());
-        share.setTargUrl(Constants.SHARE_URL + bean.getId());
-        share.addShareCall(new ShareResultCall() {
-            @Override
-            public void onShareSucess() {
-                super.onShareSucess();
-                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onShareCancel() {
-                super.onShareCancel();
-                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
-            }
-        });
-        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
-        share.show();
+        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_URL + bean.getId(),bean.getShowImage());
+        dialog.show();
+//        OnkeyShare share = new OnkeyShare(this);
+//        share.setTitle(bean.getName());
+//        share.setImageUrl(bean.getShowImage());
+//        share.setDescription(bean.getDesp());
+//        share.setTargUrl(Constants.SHARE_URL + bean.getId());
+//        share.addShareCall(new ShareResultCall() {
+//            @Override
+//            public void onShareSucess() {
+//                super.onShareSucess();
+//                Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onShareCancel() {
+//                super.onShareCancel();
+//                Toast.makeText(getApplicationContext(), "用户取消分享", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
+//        share.show();
     }
 
     @TrackClick(value = R.id.anim_dowm)
@@ -715,5 +718,8 @@ public class CartoonReadActivity extends AppActivity {
         super.onDestroy();
         if (danmuControler != null)
             danmuControler.release();
+        if (dialog!=null&&dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 }
