@@ -169,6 +169,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         this.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
         setlandLayout(GONE);
         videoTitleLayout.setBackgroundColor(Color.argb(0x0, 0x0, 0x00, 0x00));
+//        videoTitleLayout.setBackgroundColor(Color.argb(0xcc, 0x28, 0x28, 0x28));
     }
 
 
@@ -278,6 +279,15 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         videoSeekBar.setProgress(0);
         videoPauseImg.setImageResource(R.mipmap.play_start);
         videoPlayImg.setVisibility(View.VISIBLE);
+        playEnd();
+    }
+
+    /**
+     * 一集播放完，自动跳转到下一集
+     */
+    void playEnd() {
+        if (this.call != null)
+            this.call.doVideoPlayNext();
     }
 
     @Override
@@ -449,19 +459,21 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private void videoViewOnclick() {
         float curY = videoControllerLayout.getY();
         float cursY = videoTitleLayout.getY();
-        if (!animation && videoControllerShow) {
-            animation = true;
-            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-                startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);
-            startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
-        } else if (!animation) {
-            animation = true;
-            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-                startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);
-            startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
-            videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
-            videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
-        }
+//        if (!animation && videoControllerShow) {
+//            animation = true;
+//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+//                startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);
+//            startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
+//        } else if (!animation) {
+//            animation = true;
+//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+//                startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);
+//            startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
+//            videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
+//            videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
+//        }
+
+
     }
 
     private void startAnimation(View vi, float fromy, float toy, Animator.AnimatorListener l) {

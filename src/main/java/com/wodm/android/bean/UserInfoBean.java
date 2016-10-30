@@ -46,6 +46,74 @@ public class UserInfoBean {
      * private String versionName;
      * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
      * private int platform;
+     * 应用标识
+     * private String appkey = Strings.EMPTY;
+     * 唯一身份ID
+     * private String uuid = Strings.EMPTY;
+     * 唯一设备ID
+     * private String udid = Strings.EMPTY;
+     * 用户昵称
+     * private String nickName = Strings.EMPTY;
+     * 密码
+     * private String password = Strings.EMPTY;
+     * 密码加密所用的盐
+     * private String salt = Strings.EMPTY;
+     * 状态（-1：删除；0：禁用；1：生效）
+     * <p>
+     * private int status = 0;
+     * 注册时间
+     * private Date registTime = DateUtils.getCurrentDateTime();
+     * 性别  1 男   2  女   0 保密
+     * private int sex = 0;
+     * 生日
+     * private String birthday = Strings.EMPTY;
+     * 手机
+     * private String mobile = Strings.EMPTY;
+     * 邮箱
+     * private String email = Strings.EMPTY;
+     * <p>
+     * 积分
+     * private int score = 0;
+     * <p>
+     * 钱包余额
+     * <p>
+     * private float wallet = 0.0f;
+     * 用户头像
+     * private String portrait = Strings.EMPTY;
+     * 用户主页背景图
+     * private String background = Strings.EMPTY;
+     * 账号名
+     * private String accountName = Strings.EMPTY;
+     * 身份类型  1 个人   2 团体
+     * private int type = 0;
+     * 关注数
+     * private int attentionCount = 0;
+     * 收藏数
+     * private int collectCount = 0;
+     * private String autograph = Strings.EMPTY;//个性签名
+     * <p>
+     * private String osName = Strings.EMPTY;//系统名称
+     * private String openId = Strings.EMPTY;//微信的用户唯一标识
+     * private String unionId = Strings.EMPTY;//微信unionId
+     * <p>
+     * private String plainPassword = Strings.EMPTY;
+     * <p>
+     * 用户的会员类型0:普通 1:vip 2:vvip
+     * private Integer vip;
+     * <p>
+     * vip 的标识 vip标识(t_image_dictionary中id)
+     * private Long vipFlag=0l;
+     * <p>
+     * 等级（3级开启自定义头像、4级开启发送表情、6级开启新边框、8级开启新表情、10级开启新挂件）、上限30级
+     * private Integer gradeValue;
+     * <p>
+     * 经验值
+     * private Integer empiricalValue=0;
+     * 等级称号
+     * private String gradeName;
+     * 等级图片id
+     * private	Integer gradeImageId;
+     * needEmpirical 表示的是 升到下一级所需要的经验        currentEmpirical  表示今天获得经验值
      */
 
     private DataBean data;
