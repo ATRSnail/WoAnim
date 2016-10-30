@@ -21,6 +21,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
@@ -92,7 +93,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
+        if (Constants.CURRENT_USER == null) {
+            finish();
+            return;
+        } else {
+            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
 
+        }
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             initMyMedal();
@@ -102,6 +109,15 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         }
         show_more_persion.setOnClickListener(this);
     }
+
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
 
     private void initMyMedal() {
 

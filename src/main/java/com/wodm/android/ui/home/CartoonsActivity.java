@@ -50,7 +50,7 @@ public class CartoonsActivity extends AppActivity {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
                         loadOK();
-                        Log.e("AAAAAAAAAA", "" + obj.toString());
+
                         try {
                             List<ObjectBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());

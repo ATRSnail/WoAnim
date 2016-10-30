@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -124,6 +125,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
                             try {
+
+
                                 ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
                                 }.getType());
                                 commentBeanList=beanList;
@@ -329,6 +332,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
+
                     bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     setViews(bean);
                 } catch (JSONException e) {

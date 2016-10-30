@@ -12,9 +12,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private TextView mListAnim;
 
     private int orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+
 
     private int duration;
     private String formatTotalTime;
@@ -156,8 +159,10 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public void setFullScreen() {
         orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
+
         this.setLayoutParams(new
                 RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
         setlandLayout(View.VISIBLE);
         videoTitleLayout.setBackgroundColor(Color.argb(0xcc, 0x28, 0x28, 0x28));
     }
@@ -169,7 +174,6 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         this.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
         setlandLayout(GONE);
         videoTitleLayout.setBackgroundColor(Color.argb(0x0, 0x0, 0x00, 0x00));
-//        videoTitleLayout.setBackgroundColor(Color.argb(0xcc, 0x28, 0x28, 0x28));
     }
 
 
@@ -198,13 +202,18 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private void initView() {
         View view = inflate(context, R.layout.layout_common_video_view, this);
         view.findViewById(R.id.send_bullet).setOnClickListener(this);
+
         mListAnim = (TextView) view.findViewById(R.id.list_anim);
+
         mListAnim.setOnClickListener(this);
         viewBox = (FrameLayout) view.findViewById(R.id.viewBox);
         videoView = (MyVideoView) view.findViewById(R.id.videoView);
         videoPauseBtn = (LinearLayout) view.findViewById(R.id.videoPauseBtn);
 //        screenSwitchBtn = (LinearLayout) view.findViewById(R.id.screen_status_btn);
         videoControllerLayout = (LinearLayout) view.findViewById(R.id.videoControllerLayout);
+
+
+
         videoTitleLayout = (RelativeLayout) view.findViewById(R.id.videoTopLayout);
         touchStatusView = (LinearLayout) view.findViewById(R.id.touch_view);
         touchStatusImg = (ImageView) view.findViewById(R.id.touchStatusImg);
@@ -456,22 +465,49 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         }
     }
 
+    float y;
+
+    @Override
+    public float getY() {
+        return y;
+    }
+
+    @Override
+    public void setY(float y) {
+        this.y = y;
+    }
+
+//    public void orientationPORTRAIT() {
+//
+//        videoTitleLayout.setY(0);
+//        videoTitleLayout.setX(0);
+//        if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && videoControllerShow == false) {
+//                startAnimation(videoControllerLayout, getY(), getY() + videoControllerLayout.getHeight(), this);
+//            }
+//
+//        }
+//    }
+
+
     private void videoViewOnclick() {
+
+
         float curY = videoControllerLayout.getY();
         float cursY = videoTitleLayout.getY();
-//        if (!animation && videoControllerShow) {
-//            animation = true;
-//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-//                startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);
-//            startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
-//        } else if (!animation) {
-//            animation = true;
-//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-//                startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);
-//            startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
-//            videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
-//            videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
-//        }
+        if (!animation && videoControllerShow) {
+            animation = true;
+            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+                startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);
+            startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
+        } else if (!animation) {
+            animation = true;
+            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+                startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);
+            startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
+            videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
+            videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
+        }
 
 
     }
