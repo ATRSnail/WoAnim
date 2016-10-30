@@ -581,7 +581,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+//            videoView.orientationLanScape();
             WindowManager.LayoutParams attrs = getWindow().getAttributes();
             attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
             getWindow().setAttributes(attrs);
@@ -600,9 +601,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             getWindow().clearFlags(
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             pullToLoadView.setVisibility(View.VISIBLE);
-
             ll_bottom.setVisibility(View.VISIBLE);
             videoView.setNormalScreen();
+            videoView.orientationPORTRAIT();
         }
     }
 
