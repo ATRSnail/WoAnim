@@ -48,14 +48,19 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center">
+            <ImageView
+                android:paddingRight="@dimen/px_30"
+                android:id="@+id/danmu_kaiguan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/danmu_open"/>
 
             <ImageView
                 android:id="@+id/anim_dowm1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/px_30"
-                android:paddingLeft="@dimen/px_30"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:src="@mipmap/icon_xiazai" />
 
             <CheckBox

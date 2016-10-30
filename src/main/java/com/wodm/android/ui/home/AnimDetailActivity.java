@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,6 @@ import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
 import org.eteclab.share.call.ShareResultCall;
-import org.eteclab.share.ui.share.ShareWX;
 import org.eteclab.track.Tracker;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.NoScrollGridView;
@@ -101,12 +101,16 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private DanmuControler danmuControler;
     @ViewIn(R.id.header)
     private CircularImage header;
+    private ImageView danmu_kaiguan;
+    private boolean isOpen=true;
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         videoView.setSendBulletListener(this);
         dianji_num= (TextView) mHeaderView.findViewById(R.id.dianji_num);
+        danmu_kaiguan= (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
+        danmu_kaiguan.setOnClickListener(onClickListener);
         mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
         mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
         mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
@@ -402,6 +406,17 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                     eventName = "弹出分享界面";
                     showShare();
                     break;
+                case R.id.danmu_kaiguan:
+                    if (isOpen){
+                        danmuControler.hide();
+                        danmu_kaiguan.setImageResource(R.mipmap.danmu_open);
+                        isOpen=false;
+                    }else {
+                        danmuControler.show();
+                        danmu_kaiguan.setImageResource(R.mipmap.danmu_close);
+                        isOpen=true;
+                    }
+                    break;
                 case R.id.anim_collect2:
                     eventName = "收藏/取消收藏 操作";
                     collction((CheckBox) v);
@@ -511,6 +526,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 
     private void showShare() {
         OnkeyShare share = new OnkeyShare(this);
+        share.setPlatform();
         share.setTitle(bean.getName());
         share.setDescription(bean.getDesp());
         share.setTargUrl(Constants.SHARE_URL + resourceId);

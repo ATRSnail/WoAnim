@@ -3,7 +3,6 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -229,7 +228,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        img_persion_progress.setLayoutParams(img_progress_params);
 
         RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
-        img_progress_params.setMargins(0, 5, 0, 5);
+        img_progress_params.setMargins(0,2, 0, 2);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();

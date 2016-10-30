@@ -112,6 +112,8 @@ public class CartoonReadActivity extends AppActivity {
     private ImageView send_bullet;
     private ReadCarAdapter adapter;
     private DanmuControler danmuControler;
+    private ImageView danmu_kaiguan;
+    private boolean isOpen=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +137,7 @@ public class CartoonReadActivity extends AppActivity {
             String path = getIntent().getStringExtra("beanPath");
             startReadPath(path);
         }
+
         barrage_rescourceId = bean.getId();
         barrage_charterId = mChapterList.get(0).getId();
         setBottoms();
@@ -229,6 +232,7 @@ public class CartoonReadActivity extends AppActivity {
                             lists.addAll(mCarList);
                         }
                         adapter.setListData(lists);
+                        adapter.notifyDataSetChanged();
                         stopLoad();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -407,6 +411,7 @@ public class CartoonReadActivity extends AppActivity {
         int i = getResources().getConfiguration().orientation;
         int visibility = View.GONE;
         if (i == Configuration.ORIENTATION_PORTRAIT) {
+            adapter.notifyDataSetChanged();
             mBottomView.addView(mBottomPortView);
             mBottomPortView.findViewById(R.id.collect_box).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -444,6 +449,25 @@ public class CartoonReadActivity extends AppActivity {
             mCollect_box.setChecked(1 == bean.getIsCollect());
             mCollectView.setChecked(mCollect_box.isChecked());
         }
+        final TextView tv_danmu_kaiguan= (TextView) mBottomView.findViewById(R.id.tv_danmu_kaiguan);
+        final ImageView danmu_kaiguan= (ImageView) mBottomView.findViewById(R.id.danmu_kaiguan);
+        danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
+        mBottomView.findViewById(R.id.ll_danmu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOpen){
+                    danmuControler.hide();
+                    tv_danmu_kaiguan.setText("开启弹幕");
+                    danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
+                    isOpen=false;
+                }else {
+                    danmuControler.show();
+                    tv_danmu_kaiguan.setText("关闭弹幕");
+                    danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
+                    isOpen=true;
+                }
+            }
+        });
         mBottomView.findViewById(R.id.chapter_type).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -485,8 +509,16 @@ public class CartoonReadActivity extends AppActivity {
                 mLeftBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 mRightBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 pullToLoadView.setLayoutManager(manager);
+                String textStr=mScrollText.getText().toString();
+                int type=0;
+                if (textStr.equals("上下")){
+                    type=1;
+                }
+                adapter.setType(type);
             }
         });
+
+
         mBottomView.findViewById(R.id.screen_type).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

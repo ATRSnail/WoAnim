@@ -27,6 +27,7 @@ import java.util.List;
 public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<CarBean> mData = new ArrayList<>();
+    private int type=0;
 
 //    List<String> mUrls = new ArrayList();
 
@@ -72,6 +73,17 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return new ViewHolders(LayoutInflater.from(mContext).inflate(R.layout.adapter_readcar,parent,false));
     }
 
+    /**
+     * 0 代表上下
+     * 1 代表左右
+     * @param type
+     */
+    public void setType(int type){
+
+        this.type=type;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolders holders = (ViewHolders) holder;
@@ -85,7 +97,11 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
         } else {
             params.height = DeviceUtils.getScreenWH((Activity) mContext)[0];
-            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
+            params.width = DeviceUtils.getScreenWH((Activity) mContext)[1];
+            if (type==1){
+                params.height =DeviceUtils.getScreenWH((Activity) mContext)[0];
+                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
+            }
         }
         params.gravity= Gravity.CENTER;
         holders.imageView.setLayoutParams(params);

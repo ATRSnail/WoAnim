@@ -7,6 +7,9 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.AppActivity;
 
@@ -21,12 +24,13 @@ import org.json.JSONObject;
  * Created by songchenyu on 16/10/26.
  */
 
-public class WebViewJsInterface {
+public class WebViewJsInterface implements IWXAPIEventHandler {
     private Context mContext;
     private  webViewCallBackListener listener;
     public WebViewJsInterface(Context context){
         this.mContext=context;
     }
+    @JavascriptInterface
     public boolean webViewWeatherLogon(){
         if (Constants.CURRENT_USER==null){
             return false;
@@ -36,6 +40,39 @@ public class WebViewJsInterface {
     public void setwebViewCallBackListener(webViewCallBackListener mListener){
         this.listener=mListener;
     }
+
+    @Override
+    public void onReq(BaseReq baseReq) {
+
+    }
+
+    @Override
+    public void onResp(BaseResp resp) {
+        String result = "";
+
+        if (ShareResultCall.call == null) {
+            return;
+        }
+        switch (resp.errCode) {
+            case BaseResp.ErrCode.ERR_OK:
+                result = "分享成功";
+                ShareResultCall.call.onShareSucess();
+                break;
+            case BaseResp.ErrCode.ERR_USER_CANCEL:
+                result = "取消分享";
+                ShareResultCall.call.onShareCancel();
+                break;
+            case BaseResp.ErrCode.ERR_AUTH_DENIED:
+                result = "分享失败";
+                ShareResultCall.call.onShareFailure(resp.errStr, resp.errCode);
+                break;
+            default:
+                result = "分享错误" + resp.errStr;
+                ShareResultCall.call.onShareError(resp.errStr, resp.errCode);
+                break;
+        }
+    }
+
     public interface webViewCallBackListener{
         public void setJsInfo(Object info);
     }
@@ -68,7 +105,7 @@ public class WebViewJsInterface {
     @JavascriptInterface
     public void webViewShareWX(){
         ShareWX share = new ShareWX(mContext);
-
+        share.shareText("ffffffff");
     }
     @JavascriptInterface
     public void webViewYZM(String phoneNum){

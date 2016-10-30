@@ -90,6 +90,11 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @ViewIn(R.id.ll_qiandao)
     private LinearLayout ll_qiandao;
     private int qiandao_day=0;
+    @ViewIn(R.id.ll_task_adapter)
+    private RelativeLayout ll_task_adapter;
+    @ViewIn(R.id.rl_complete_info)
+    private RelativeLayout rl_complete_info;
+
 
 
     @Override
@@ -101,6 +106,8 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         ll_qiandao.setOnClickListener(this);
         ll_complete_info.setOnClickListener(this);
         ll_search.setOnClickListener(this);
+        ll_task_adapter.setOnClickListener(this);
+        rl_complete_info.setOnClickListener(this);
 //        adapter = new TaskAdapter(this);
 //        lv_task.setAdapter(adapter);
 
@@ -307,10 +314,10 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             case R.id.btn_open_vip:
                 startActivity(new Intent(this, VipOpenActivity.class));
                 break;
-            case R.id.ll_search:
+            case R.id.ll_task_adapter:
                 startActivity(new Intent(this, SeacherActivity.class));
                 break;
-            case R.id.ll_complete_info:
+            case R.id.rl_complete_info:
                 startActivity(new Intent(this, NewUserInfoActivity.class));
                 break;
             case R.id.ll_qiandao:

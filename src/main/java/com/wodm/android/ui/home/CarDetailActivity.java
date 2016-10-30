@@ -82,6 +82,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private CircularImage img_xiaolian;
     private BiaoqingTools biaoqingtools;
     private ArrayList<CommentBean> commentBeanList;
+    private ImageView danmu_kaiguan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -274,6 +275,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
 
     private void showShare() {
         OnkeyShare share = new OnkeyShare(this);
+        share.setPlatform();
         share.setTitle(bean.getName());
         share.setDescription(bean.getDesp());
         share.setImageUrl(bean.getShowImage());
@@ -293,7 +295,6 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         });
         share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
         share.show();
-
 //        ShareSDK.initSDK(this);
 //        OnekeyShare oks = new OnekeyShare();
 //        //关闭sso授权
@@ -345,7 +346,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         mChapterView = (NoScrollGridView) mHeaderView.findViewById(R.id.grid_new);
         dianji_num= (TextView) mHeaderView.findViewById(R.id.dianji_num);
         isCollectBox = (CheckBox) mHeaderView.findViewById(R.id.anim_collect2);
-
+        danmu_kaiguan= (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
+        danmu_kaiguan.setVisibility(View.GONE);
         mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
         mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
         isCollectBox.setOnClickListener(onClickListener);

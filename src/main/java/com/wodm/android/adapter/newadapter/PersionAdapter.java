@@ -43,7 +43,7 @@ public class PersionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder=null;
         if (convertView==null){
             holder=new Holder();
@@ -66,6 +66,11 @@ public class PersionAdapter extends BaseAdapter {
                 Intent i=new Intent();
                 i.putExtra("tid", R.id.my_collcet);
                 i.putExtra("title", R.string.collect);
+                if (position==0){
+                    i.putExtra("position","动画");
+                }else if (position==1){
+                    i.putExtra("position","漫画");
+                }
                 i.setClass((Activity)mContext, RecordActivity.class);
                 mContext.startActivity(i);
             }

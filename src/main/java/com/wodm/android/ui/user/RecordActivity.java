@@ -53,6 +53,10 @@ public class RecordActivity extends AppActivity {
         super.onCreate(savedInstanceState);
         tid = getIntent().getIntExtra("tid", 0);
         int title = getIntent().getIntExtra("title", 0);
+        String position="";
+        if (getIntent().hasExtra("position")){
+            position=getIntent().getStringExtra("position");
+        }
         setTitleRight("全部清空");
         setCustomTitle(getString(title));
 
@@ -69,6 +73,13 @@ public class RecordActivity extends AppActivity {
         mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
         mTabType.getTabAt(0).setText("动画");
         mTabType.getTabAt(1).setText("漫画");
+        if (!position.equals("")){
+            if (position.equals("漫画")){
+                mTabType.getTabAt(1).select();
+            }else {
+                mTabType.getTabAt(0).select();
+            }
+        }
     }
 
     private void initpage(final View view, final int type) {

@@ -108,6 +108,10 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     }
 
     private void serUserInfo() {
+        if (CURRENT_USER==null){
+            Toast.makeText(this, "未找到用户信息,请重新进入!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
         String str_sex = "";
@@ -343,6 +347,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         if (saveFlag == true) {//头像更换修改
             Log.e("AAAAAAAAAAAAAAAAAAA", "" + saveFlag);
             String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+            if (url==null||url.equals(""))
+                return;
             httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 
                 @Override

@@ -12,8 +12,6 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.wodm.android.login.Wx;
-import com.wodm.android.ui.Main2Activity;
-import com.wodm.android.ui.newview.LgoinActivity;
 
 import org.eteclab.Constants;
 import org.eteclab.share.call.ShareResultCall;
@@ -51,10 +49,9 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         if (ShareResultCall.call == null && resp.errCode == BaseResp.ErrCode.ERR_OK) {
             //用户同意
             Wx.init(getApplicationContext()).sendHttp(resp);
-
-            startActivity(new Intent(this, Main2Activity.class));
+            Toast.makeText(getApplicationContext(), "分享成功", Toast.LENGTH_SHORT).show();
         } else {
-//            Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "授权失败", Toast.LENGTH_SHORT).show();
         }
 
         finish();

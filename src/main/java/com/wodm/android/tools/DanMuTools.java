@@ -162,7 +162,6 @@ public class DanMuTools {
 
     /**
      * 添加文本弹幕
-     * @param islive
      */
     private void addDanmaku(String text) {
         BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
@@ -175,7 +174,7 @@ public class DanMuTools {
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
         danmaku.isLive = true; //是否是直播弹幕
         danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
-        danmaku.textSize = 16;
+        danmaku.textSize = mContext.getResources().getDimension(R.dimen.x24);
         danmaku.textColor = mContext.getResources().getColor(R.color.color_669900);
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框

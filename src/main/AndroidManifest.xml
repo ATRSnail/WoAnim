@@ -149,8 +149,7 @@
             android:value="222222" />
         <meta-data
             android:name="WEIBO_Share_APPKEY"
-            android:value="317879547" />
-
+            android:value="3178795471" />
 
         <!-- 友盟多渠道打包-->
         <meta-data
@@ -172,6 +171,21 @@
 
                 <data android:scheme="sdksample" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.unicom.dm.wxapi.WeiboActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+
         </activity>
 
         <receiver android:name=".android.receiver.AlarmReceiver" />

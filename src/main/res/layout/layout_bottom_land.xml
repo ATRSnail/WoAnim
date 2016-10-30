@@ -108,7 +108,29 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_22_px" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_danmu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/danmu_kaiguan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+
+            <TextView
+                android:id="@+id/tv_danmu_kaiguan"
+                android:text="关闭弹幕"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_10"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_22_px" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
