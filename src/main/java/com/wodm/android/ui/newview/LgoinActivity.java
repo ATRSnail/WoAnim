@@ -84,6 +84,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     @Override
     public void rightClick() {
         Intent intent = new Intent(this, ResingeActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
