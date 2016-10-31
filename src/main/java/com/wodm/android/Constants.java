@@ -114,7 +114,8 @@ public class Constants {
     //获取点击量
     public static final String APP_GETATERESOURCECOUNT = HOST + "newuser/getResourceCount?resourceId=";
     public static final String APP_GET_WEATHRE_ISRECEIVER="newuser/isReceive?userId=";
-    public static final String APP_GET_SHARE="/newuser/share?userId=";
+    public static final String APP_GET_SHARE=HOST + "/newuser/share?userId=";
+    public static final String APP_GET_WATCHNEWS=HOST + "/newuser/watchNews?userId=";
     public static String OFFTIME;
 
 

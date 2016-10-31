@@ -17,6 +17,8 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.wodm.android.Constants.CURRENT_USER;
+
 @Layout(R.layout.activity_news_detail)
 public class NewsDetailActivity extends AppActivity {
     private static final String TITLE = "资讯详情";
@@ -27,8 +29,14 @@ public class NewsDetailActivity extends AppActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle(TITLE);
-
-        String url = Constants.URL_NEWS_GET+"?id=" + getIntent().getStringExtra("bean")+"&taskType=2&taskValue=7";
+        if (CURRENT_USER!=null){
+            httpGet(Constants.APP_GET_WATCHNEWS + CURRENT_USER.getData().getAccount().getId() + "&taskType=2&taskValue=7", new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                }
+            });
+        }
+        String url = Constants.URL_NEWS_GET+"?id=" + getIntent().getStringExtra("bean");
 
         httpGet(url, new HttpCallback() {
             @Override

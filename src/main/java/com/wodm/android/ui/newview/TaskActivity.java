@@ -211,6 +211,12 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
                 initfinsh();
             }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                Toast.makeText(getApplicationContext(), obj.optString("message"), Toast.LENGTH_SHORT).show();
+            }
         });
     }
     private void getData(final String value) {

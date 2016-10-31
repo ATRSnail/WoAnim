@@ -230,7 +230,8 @@ public class Main2Activity extends AppActivity {
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
-                Toast.makeText(Main2Activity.this, "" + obj.optString("msg"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), obj.optString("message"), Toast.LENGTH_SHORT).show();
+                mfloatView.setVisibility(View.INVISIBLE);
             }
         });
     }

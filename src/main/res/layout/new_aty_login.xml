@@ -121,7 +121,7 @@
                     android:background="@drawable/btn_login_shape"
                     android:text="@string/login"
                     android:textColor="@color/color_3f190c"
-                    android:textSize="@dimen/text_size_24_px" />
+                    android:textSize="@dimen/text_size_36_px" />
 
                 <TextView
                     android:id="@+id/forget_pass_login"
