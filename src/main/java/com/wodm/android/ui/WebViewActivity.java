@@ -1,6 +1,7 @@
 package com.wodm.android.ui;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.tools.WebViewJsInterface;
 
 import org.eteclab.base.annotation.Layout;
@@ -30,11 +32,11 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("活动");
-        Bundle bundle=getIntent().getExtras();
-        adsUrl=bundle.getString("adsUrl");
-        if (adsUrl.equals("")){
-            finish();
-        }
+//        Bundle bundle=getIntent().getExtras();
+//        adsUrl=bundle.getString("adsUrl");
+//        if (adsUrl.equals("")){
+//            finish();
+//        }
         init();
     }
 
@@ -56,6 +58,20 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         webView.getSettings().setSupportZoom(true); // 可以缩放
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        webView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                String isLogin="";
+                if (Constants.CURRENT_USER!=null){
+                    isLogin=Constants.CURRENT_USER.getData().getAccount().getId()+"";
+                }
+                webView.loadUrl("javascript:webViewWeatherLogon('" + isLogin + "')");
+            }
+        });
         int mDensity = metrics.densityDpi;
         if (mDensity == 120) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.CLOSE);
@@ -64,8 +80,9 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }else if (mDensity == 240) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         }
-//        webView.loadUrl("file:///android_asset/index.html");
-        webView.loadUrl(adsUrl);
+        webView.loadUrl("file:///android_asset/index.html");
+//        handler.sendEmptyMessageAtTime(3,200);
+//        webView.loadUrl(adsUrl);
     }
 
     @Override
@@ -80,24 +97,39 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
     }
 
     //在java中调用js代码
-    public void sendInfoToJs(Object info) {
+
+    /**
+     * type=1 登录和注册成功失败
+     * type=2 webViewWeatherCanReceiver 是否可以分享和抽奖
+     * type=3 向js上传是否登录
+     * @param info
+     * @param type
+     */
+    public void sendInfoToJs(Object info,int type) {
 //        String msg = ((EditText) findViewById(R.id.input_et)).getText().toString();
         //调用js中的函数：showInfoFromJava(msg)
         Message msg=new Message();
         msg.obj=info;
+        msg.what=type;
         handler.sendMessage(msg);
     }
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            webView.loadUrl("javascript:showInfoFromJava('" + msg.obj + "')");
+            if (msg.what==1){
+                webView.loadUrl("javascript:showInfoFromJava('" + msg.obj + "')");
+            }else if (msg.what==2){
+
+            }else if (msg.what==3){
+
+            }
         }
     };
 
     @Override
-    public void setJsInfo(Object info) {
-        sendInfoToJs(info);
+    public void setJsInfo(Object info,int type) {
+        sendInfoToJs(info,type);
     }
 
     // Web视图

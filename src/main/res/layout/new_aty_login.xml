@@ -114,7 +114,7 @@
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y64"
+                    android:layout_height="@dimen/y96"
                     android:layout_marginLeft="@dimen/x30"
                     android:layout_marginRight="@dimen/x30"
                     android:layout_marginTop="@dimen/x20"

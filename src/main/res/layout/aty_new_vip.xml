@@ -36,6 +36,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:layout_marginBottom="@dimen/px_30"
                     android:id="@+id/rl_noVip"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_188"
@@ -50,7 +51,7 @@
                         android:layout_marginBottom="@dimen/px_15"
                         android:text="@string/no_vip_user"
                         android:textColor="@color/color_333333"
-                        android:textSize="@dimen/text_size_24_px" />
+                        android:textSize="@dimen/text_size_30_px" />
 
                     <TextView
                         android:id="@+id/tv_speed"
@@ -59,12 +60,12 @@
                         android:layout_centerInParent="true"
                         android:text="LV.4"
                         android:textColor="@color/color_666666"
-                        android:textSize="20px" />
+                        android:textSize="@dimen/text_size_28_px" />
 
                     <Button
                         android:id="@+id/btn_open_vip"
                         android:layout_width="@dimen/px_160"
-                        android:layout_height="@dimen/px_36"
+                        android:layout_height="@dimen/px_48"
                         android:layout_below="@+id/tv_speed"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/px_20"
@@ -72,7 +73,7 @@
                         android:padding="@dimen/px_2"
                         android:text="@string/open_vip_new_hint"
                         android:textColor="@color/color_ffffff"
-                        android:textSize="18px" />
+                        android:textSize="@dimen/text_size_26_px" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -140,7 +141,7 @@
 
                             <Button
                                 android:id="@+id/btn_grade_name"
-                                android:layout_width="@dimen/px_120"
+                                android:layout_width="@dimen/px_90"
                                 android:layout_height="@dimen/px_33"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="@dimen/px_10"

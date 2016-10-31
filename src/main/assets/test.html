@@ -13,10 +13,13 @@
 	<script>
   function sendInfoToJava(){
     //调用android程序中的方法，并传递参数
-    window.AndroidWebView.showInfoFromJs("aaa");
+    <!--window.AndroidWebView.showInfoFromJs("aaa");-->
+    alert("ssss");
     //
   }
-
+function webViewWeatherLogon(msg){
+  alert(msg+" - ---  ");
+}
   //android传递信息给js
   function showInfoFromJava(msg){
   document.getElementById("haha").innerHTML="hha";

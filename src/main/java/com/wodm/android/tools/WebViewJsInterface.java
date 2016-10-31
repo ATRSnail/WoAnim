@@ -30,15 +30,31 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
     public WebViewJsInterface(Context context){
         this.mContext=context;
     }
-    @JavascriptInterface
-    public boolean webViewWeatherLogon(){
-        if (Constants.CURRENT_USER==null){
-            return false;
-        }
-        return true;
-    }
+//    @JavascriptInterface
+//    public void webViewWeatherLogon(){
+//        if (Constants.CURRENT_USER==null){
+//            listener.setJsInfo(false);
+//        }
+//        listener.setJsInfo(true);
+//    }
+//    @JavascriptInterface
+//    public void webViewUserId(){
+//        if (Constants.CURRENT_USER!=null){
+//            listener.setJsInfo(Constants.CURRENT_USER.getData().getAccount().getId());
+//        }
+//    }
     public void setwebViewCallBackListener(webViewCallBackListener mListener){
         this.listener=mListener;
+    }
+    @JavascriptInterface
+    public void webViewWeatherCanReceiver(String userId){
+        String url = Constants.APP_GET_WEATHRE_ISRECEIVER + "" +userId;
+        ((AppActivity)mContext).httpGet(url, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                listener.setJsInfo(true,2);
+            }
+        });
     }
 
     @Override
@@ -56,6 +72,12 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 result = "分享成功";
+                ((AppActivity)mContext).httpGet(Constants.APP_GET_SHARE, new HttpCallback() {
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+
+                    }
+                });
                 ShareResultCall.call.onShareSucess();
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
@@ -64,6 +86,12 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
                 result = "分享失败";
+                ((AppActivity)mContext).httpGet(Constants.APP_GET_SHARE, new HttpCallback() {
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+
+                    }
+                });
                 ShareResultCall.call.onShareFailure(resp.errStr, resp.errCode);
                 break;
             default:
@@ -74,7 +102,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
     }
 
     public interface webViewCallBackListener{
-        public void setJsInfo(Object info);
+        public void setJsInfo(Object info,int type);
     }
     @JavascriptInterface
     public void webViewLogin(String userName,String userPassword){
@@ -85,13 +113,13 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
             ((AppActivity)mContext).httpPost(Constants.USER_LOGIN, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    listener.setJsInfo(true);
+                    listener.setJsInfo(true,1);
                 }
 
                 @Override
                 public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                     try {
-                        listener.setJsInfo(false);
+                        listener.setJsInfo(false,1);
                         Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -195,7 +223,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
-                        listener.setJsInfo(true);
+                        listener.setJsInfo(true,1);
                         Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -205,7 +233,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                 @Override
                 public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                     try {
-                        listener.setJsInfo(false);
+                        listener.setJsInfo(false,1);
                         Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -163,7 +163,6 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 Intent intent = new Intent(getActivity(), LgoinActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                getActivity().finish();
                 break;
             case R.id.ll_vip:
                 if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
