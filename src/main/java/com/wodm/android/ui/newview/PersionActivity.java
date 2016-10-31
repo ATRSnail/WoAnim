@@ -93,13 +93,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-        if (Constants.CURRENT_USER == null) {
-            finish();
-            return;
-        } else {
-            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+//        if (Constants.CURRENT_USER == null) {
+//            finish();
+//            return;
+//        } else {
+//            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+//        }
 
-        }
+
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             initMyMedal();
@@ -215,6 +216,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             finish();
             return;
         }
+        medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
         UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
         tv_nickname.setText(accountBean.getNickName());
@@ -246,7 +248,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        img_persion_progress.setLayoutParams(img_progress_params);
 
         RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
-        img_progress_params.setMargins(0,2, 0, 2);
+        img_progress_params.setMargins(0, 2, 0, 2);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();

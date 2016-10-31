@@ -23,9 +23,6 @@
             app:CustomtitleTextSize="@dimen/text_size_36_px"
             app:Customtoptitle="@string/mine_wallet"
             app:leftBackGround="@mipmap/back"
-            app:rightText="充值"
-            app:rightTextColor="@color/color_3f190c"
-            app:rightTextSize="@dimen/text_size_24_px"
             app:rightType="0" />
 
 
@@ -110,7 +107,7 @@
                         android:textSize="@dimen/text_size_30_px" />
 
                     <View
-                        android:layout_width="@dimen/x2"
+                        android:layout_width="@dimen/px_2"
                         android:layout_height="@dimen/px_15"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/px_15"
@@ -153,7 +150,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y14"
+            android:layout_height="@dimen/px_14"
             android:background="@color/color_efefef" />
 
         <RelativeLayout
@@ -184,8 +181,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x14"
                     android:text="@string/vip_speed_hint"
-                    android:textColor="@color/color_f29b76"
-                    android:textSize="@dimen/text_size_30_px" />
+                    android:textStyle="bold"
+                    android:textColor="@color/color_ee974a"
+                    android:textSize="@dimen/text_size_36_px" />
             </LinearLayout>
 
             <LinearLayout
@@ -217,7 +215,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y64"
+            android:layout_height="@dimen/px_64"
             android:background="@color/color_ffffff"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -228,14 +226,14 @@
                 android:layout_alignBottom="@+id/pay_cartoon"
                 android:layout_alignTop="@+id/pay_cartoon"
                 android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="@dimen/x30"
+                android:layout_marginLeft="@dimen/px_45"
                 android:background="@color/color_b3d465" />
 
             <TextView
                 android:id="@+id/pay_cartoon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginLeft="@dimen/px_15"
                 android:gravity="center"
                 android:text="已购买动画/漫画"
                 android:textColor="@color/color_333333"
