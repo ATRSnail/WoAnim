@@ -56,31 +56,19 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
+//        getData();
 
-        if (Constants.CURRENT_USER == null) {
-            finish();
-            return;
-        } else {
-            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
-
-        }
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             downData();
         } else {
             initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
+            getData();
         }
 
     }
 
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
 
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-
-        }
-    };
 
     private void downData() {
         /** medalSource 勋章来源(1：签到 2：节日活动 3：购买vip 4：新手任务 5：线下活动)
@@ -184,8 +172,23 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
             scrollView.setFocusableInTouchMode(true);
             scrollView.requestFocus();
         }
+
+
     }
 
+    private void getData() {
+        if (Constants.CURRENT_USER != null) {
+            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+        }
+    }
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
     void panduan(LinearLayout linearLayout, int i, int key, int medalType) {
         ToggleButton image = (ToggleButton) linearLayout.getChildAt(i);
 
@@ -249,6 +252,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         }
 
     }
+
 
 
 }

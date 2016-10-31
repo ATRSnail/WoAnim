@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -82,7 +83,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private String mPhotoPath;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
-    boolean saveFlag = true;
+//    boolean saveFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +198,30 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
     @Override
     public void rightClick() {
+
         submint();
+        savePhoto();
+    }
+
+    private void savePhoto() {
+             //头像更换修改
+
+            String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+        if(!TextUtils.isEmpty(url)&&!TextUtils.isEmpty(mPhotoPath))
+            httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
+
+                @Override
+                public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doUploadSuccess(result, obj);
+                    updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
+                }
+
+                @Override
+                public void doUploadFailure(Exception exception, String msg) {
+                    super.doUploadFailure(exception, msg);
+                }
+            });
+
     }
 
     private void submint() {
@@ -340,23 +364,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             }
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (saveFlag == true) {//头像更换修改
-            Log.e("AAAAAAAAAAAAAAAAAAA", "" + saveFlag);
-            String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
-            httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 
-                @Override
-                public void doUploadSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    super.doUploadSuccess(result, obj);
-                    updataUserInfo.getUserInfo(getApplicationContext(), Constants.CURRENT_USER.getData().getAccount().getId());
-                }
-
-                @Override
-                public void doUploadFailure(Exception exception, String msg) {
-                    super.doUploadFailure(exception, msg);
-                }
-            });
-        }
     }
 
     UpdataUserInfo updataUserInfo = new UpdataUserInfo() {

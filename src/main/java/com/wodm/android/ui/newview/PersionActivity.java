@@ -3,6 +3,7 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -93,31 +94,24 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-        if (Constants.CURRENT_USER == null) {
-            finish();
-            return;
-        } else {
-            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
 
-        }
+
+//        getData();
+
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
+
             initMyMedal();
+
         } else {
             initLinearLayout(my_medal_persion, 0);
+            getData();
 
         }
         show_more_persion.setOnClickListener(this);
     }
 
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
 
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-
-        }
-    };
 
     private void initMyMedal() {
 
@@ -208,13 +202,29 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
         setUserInfo();
+
     }
+
+    private void getData() {
+        if (Constants.CURRENT_USER != null) {
+            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+        }
+    }
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
 
     private void setUserInfo() {
         if (Constants.CURRENT_USER == null) {
             finish();
             return;
         }
+
         UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
         tv_nickname.setText(accountBean.getNickName());
@@ -246,7 +256,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        img_persion_progress.setLayoutParams(img_progress_params);
 
         RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
-        img_progress_params.setMargins(0,2, 0, 2);
+        img_progress_params.setMargins(0, 2, 0, 2);
         img_persion_progress.setLayoutParams(img_progress_params);
 
         String gradename = accountBean.getGradeName();

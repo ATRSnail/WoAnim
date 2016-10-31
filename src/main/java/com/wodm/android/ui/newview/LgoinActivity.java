@@ -78,7 +78,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 //        Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
-//        finish();
+        finish();
     }
 
     @Override
