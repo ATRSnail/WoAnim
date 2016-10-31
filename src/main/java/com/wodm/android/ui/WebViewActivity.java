@@ -32,11 +32,11 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("活动");
-//        Bundle bundle=getIntent().getExtras();
-//        adsUrl=bundle.getString("adsUrl");
-//        if (adsUrl.equals("")){
-//            finish();
-//        }
+        Bundle bundle=getIntent().getExtras();
+        adsUrl=bundle.getString("adsUrl");
+        if (adsUrl.equals("")){
+            finish();
+        }
         init();
     }
 
@@ -80,9 +80,9 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }else if (mDensity == 240) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         }
-        webView.loadUrl("file:///android_asset/index.html");
+//        webView.loadUrl("file:///android_asset/index.html");
 //        handler.sendEmptyMessageAtTime(3,200);
-//        webView.loadUrl(adsUrl);
+        webView.loadUrl(adsUrl);
     }
 
     @Override
