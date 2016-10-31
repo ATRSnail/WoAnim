@@ -25,6 +25,7 @@
 
 <div id="yi" class="img-responsive">
   <div class="container">
+  	 
     <div class="row yi">
       <div class="col-sm-2 col-md-2 col-lg-2">
         <img src="images/1logo.png" alt="" class="img-responsive center-block logo"/>
@@ -39,14 +40,16 @@
           </div>
         </div>
       </div> 
-      <div class="col-sm-5 col-md-5 col-lg-5"> </div>
+      <div class="col-sm-5 col-md-5 col-lg-5" style="padding: 0;">
+      	<img src="images/ewm_img.png" style="width: 96%; margin-top: 8em; margin-left: 4%;" />
+      </div>
       <div class="col-sm-2 col-md-2 col-lg-2 right">
         <img src="images/1yun2.png" alt="" class="img-responsive center-block" />
       </div>
     </div> 
 		<div class="row" style="position: relative;">
 			<div class="col-sm-3 col-md-3 col-lg-3">
-				<img src="images/1yun1.png" alt="" class="img-responsive center-block" style="margin: 15% 0 0 0;" />
+				<img src="images/1yun1.png" alt="" class="img-responsive center-block" style="margin: 70% 0 0 0;" />
 			</div>
 			<div class="col-sm-7 col-md-7 col-lg-7 center_img">
 				<img src="images/1center_img.png" alt="" class="img-responsive center-block"/>
@@ -73,7 +76,7 @@
 	      <div class="chou">   
 	        <div  class="aa">   
 	        	<ul style="margin-bottom: 0">
-	        		<li class=" cc"><img src="images/c1.png"  class="img-responsive center-block"  alt=""></li>
+	        		<li class=" cc" id="88" ><img src="images/c1.png" class="img-responsive center-block"  alt=""></li>
 	        		<li class=" cc"><img src="images/c2.png"  class="img-responsive center-block"  alt=""></li>
 	        		<li class=" cc"><img src="images/c3.png"  class="img-responsive center-block"  alt=""></li>
 	        		<li class=" cc"><img src="images/c4.png"  class="img-responsive center-block"  alt=""></li>
@@ -116,9 +119,10 @@
 	        </div>
 	        <div class="kaishi"> 
 	        	<p class="fx_tishi">分享即可参与抽奖！</p> 
-	          <button style="width: 100%;height: 100%;">分享至微信朋友圈</button>
+	          <button style="width: 100%;height: 100%;">抽奖</button> 
 	          <span class="fx_jq">剩余奖券（1）</span>
-	          <img src="images/chou_lq.png" class="LingQu" />
+	          <div class="fx" onclick="fenx()">分享至微信朋友圈</div>
+	         <!-- <img src="images/chou_lq.png" class="LingQu" />-->
 	        </div>
 	      </div>
 				
@@ -133,8 +137,12 @@
       <div class="col-sm-9 col-md-9 col-lg-9">
         <div class="box">
           <div class="bcon">
-            <div class="ff"><h1 ><b>中奖榜单</b></h1>
-            <h1 class="r" ><b>累计中奖人数</b></h1></div>
+            <div class="ff">
+            	<h1 ><b>中奖榜单</b></h1>
+	            <h1 class="r" >
+	            	<b>累计<span id="jpNum" style="font-size: 1em;">296</span>人中奖</b>
+	            </h1>
+            </div>
             <div class="list_lh">
               <ul>
                 <li>
@@ -205,7 +213,7 @@
 	            <span id="zsm">acdv</span>
 	            <a id="kyt"></a>
 	          </p>
-				<input type="button" value="登录" id="dengBtn" onclick="deng()" /><br>
+	          <input type="button" value="登录" id="dengBtn" onclick="dengBtn()" /><br>
 	          <div class="wj">
 	          	<a href="javascript:;" class="qzc" onclick="funSent()" style="color:#c8264d;text-decoration: underline;">去注册~</a>
 	          	<a href="javascript:;" class="qwj" onclick="funMent()" style="text-decoration: underline;">忘记密码?</a>

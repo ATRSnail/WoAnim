@@ -103,9 +103,10 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
         }
     }
     @JavascriptInterface
-    public void webViewShareWX(){
+    public void webViewShareWX(String webpageUrl,String title,String description,String thumUrl){
         ShareWX share = new ShareWX(mContext);
-        share.shareText("ffffffff");
+        share.setScene(0);
+        share.shareWeb(webpageUrl,title,description,thumUrl);
     }
     @JavascriptInterface
     public void webViewYZM(String phoneNum){
@@ -140,6 +141,34 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
         });
         share.setShareType(OnkeyShare.SHARE_TYPE.SHARE_WEB);
         share.show();
+    }
+    @JavascriptInterface
+    public void webViewForgetPassword(String phone,String password,String yzm){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("mobile",phone);
+            obj.put("authCode", yzm);
+            obj.put("password", password);
+            ((AppActivity) mContext).httpPost(Constants.USER_RESET_PWD, obj, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void doRequestFailure(Exception exception, String msg) {
+                    super.doRequestFailure(exception, msg);
+                    Toast.makeText(mContext, "" + msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     @JavascriptInterface
     public void webViewResiger(String phone,String password,String yzm){

@@ -64,8 +64,8 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }else if (mDensity == 240) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         }
-        webView.loadUrl("file:///android_asset/index.html");
-//        webView.loadUrl(adsUrl);
+//        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl(adsUrl);
     }
 
     @Override

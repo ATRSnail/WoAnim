@@ -67,10 +67,10 @@ function   funSent() {
 } 
 
 //  ------------- ------------- ------------- -------------注册 ------------- ------------- ------------- -------------
-// #input1 用户名           #mima 密码           #mima2 确认密码           #btn3 免费获取验证码          #zc_btn 注册
-var zc_user = document.getElementById("input1");
-var zc_mima = document.getElementById("mima");
-var zc_mima_que = document.getElementById("mima2");
+// #input1 用户名           #mima 密码           #mima2 确认密码           #btn3 免费获取验证码          #zc_btn 注册  
+var zc_user = document.getElementById("input1"); 
+var zc_mima = document.getElementById("mima"); 
+var zc_mima_que = document.getElementById("mima2");  
 var te1 = document.getElementById("te1");
 var te2 = document.getElementById("te2");
 var te3 = document.getElementById("te3");
@@ -79,42 +79,42 @@ var zc_btn = document.getElementById("zc_btn");
 var bg = document.getElementById("bg");
 var toux = document.getElementById("toux");
 
-function ZCuser(){
+function ZCuser(){ 
 	var name = zc_user.value;
 	var parrent = /^1[34578]\d{9}$/;
-
+	
 	if(parrent.test(name)){
-		te1.innerHTML = "手机号码正确";
+		te1.innerHTML = "手机号码正确";  
 		ZCyzm();
 	} else{
 		te1.innerHTML = "请输正确的手机号!";
-		this.value = "";
-	}
+		this.value = ""; 
+	} 
 	return name;
 }
 
-zc_mima.onblur = function ZCmima(){
+zc_mima.onblur = function ZCmima(){ 
 	var mima = zc_mima.value;
 	var parrent = /^[a-zA-Z\d+]{6,8}$/;
 	if( mima == ""){
 		te2.innerHTML = "密码不能为空!";
 	}else{
 		if(parrent.test(mima)){
-			te2.innerHTML = "密码正确";
+			te2.innerHTML = "密码正确"; 
 			ZCmimaQR();
 		} else{
 			te2.innerHTML = "请输正确的密码!";
-			this.value = "";
-		}
+			this.value = ""; 
+		} 
 	}
 	return mima;
 }
 
 zc_mima_que.onblur =  function(){ ZCmimaQR() };
-function ZCmimaQR(){
+function ZCmimaQR(){  
 	var flag;
 	var mima1 = zc_mima.value;//前
-	var mima_qr = zc_mima_que.value;  //后
+	var mima_qr = zc_mima_que.value;  //后 
 	if( mima_qr == ""){
 		te3.innerHTML = "确认密码不能为空!";
 	}else{
@@ -130,20 +130,20 @@ function ZCmimaQR(){
 }
 
 //验证码发送
-btn3.onclick = function(){
+btn3.onclick = function(){ 
 	var zc_user = ZCuser();
-	window.AndroidWebView.webViewShareWX();
+	window.AndroidWebView.webViewYZM( zc_user ); 
 };
 //发送注册验证码
 function ZCyzm(){
 	var sleep = 5;   //测试设置5s
 	var interval = null;
-	if (!interval){
+	if (!interval){ 
 	    this.disabled = "disabled";
 	    this.value = "重新发送 (" + sleep-- + ")";
 	    btn3.style.backgroundColor = '#666';
-
-	    interval = setInterval (function () {
+	    
+	    interval = setInterval (function () { 
 		    if (sleep == 0) {
 		        if (!!interval) {
 		          clearInterval (interval);
@@ -152,7 +152,7 @@ function ZCyzm(){
 		          btn3.style.cursor = "pointer";
 		          btn3.removeAttribute ('disabled');
 		          btn3.value = "免费获取验证码";
-		          btn3.style.backgroundColor = '#c8264d';
+		          btn3.style.backgroundColor = '#c8264d'; 
 		        }
 		        return false;
 		    }
@@ -160,20 +160,22 @@ function ZCyzm(){
 		}, 1000);
 	}
 }
+
+
 //注册成功后弹出奖品
-zc_btn.onclick = function(){
+zc_btn.onclick = function(){ 
 	var zc_user = ZCuser(); //注册用户名
 	var zc_mima = ZCmimaQR(); //注册密码
 	var zc_yzm = document.getElementById("textN1").value; //输入的验证码
 	console.log(zc_user)
-//	//console.log(flag);
+//	//console.log(flag); 
 //	if( zc_mima == 1 && zc_yzm == "azsx"  ){
 //		console.log("注册成功！！");
 //		zc_succeed();
 //	}else{
 //		alert("您的输入有误")
 //	}
-	window.AndroidWebView.webViewResiger( zc_user , zc_mima , yzm);
+	window.AndroidWebView.webViewResiger( zc_user , zc_mima , yzm ); 
 }
 
 //注册成功后 
@@ -191,12 +193,20 @@ function tou_box(){ //点击背景隐藏
 
 //------------- -------------------------- -------------登录------------- -------------------------- -------------
 // #input 登录号             #dengl_pwd 密码                #textN  验证码           #dengBtn 登录按钮       
-var dengBtn = document.getElementById("dengBtn");
-var pwd_test = "123456";
-var user_test = "15910854249";
+/*
+ function sendInfoToJava(){
+    //调用android程序中的方法，并传递参数
+    window.AndroidWebView.webViewLogin("username","password");
+  }
 
-//随机验证码
-function random(Flag, min, max){
+  //android传递信息给js
+  function showInfoFromJava(msg){ 
+    alert("来自客户端的信息："+msg);
+  }
+ */
+var dengBtn = document.getElementById("dengBtn"); 
+
+function random(Flag, min, max){ //随机验证码
     var str = "", range = min,
         arr = [ '1', '2', '3', '4','5', '6', '7', '8', '9', 
         		'a', 'b', 'c', 'd', 'e','f', 'g', 'h', 'i', 'j',
@@ -216,71 +226,33 @@ function random(Flag, min, max){
 function deng(){
 	var dengl_user = document.getElementById("input").value;
 	var dengl_pwd = document.getElementById("dengl_pwd").value;
-	var deng_yzm = document.getElementById("textN").value;
+	var deng_yzm = document.getElementById("textN").value;  
 	var d_user = dengl_user.value;
 	var d_pwd = dengl_pwd.value;
 	var d_yzm = deng_yzm.value;
-
+	
 	console.log("随机验证码"+yzm);
 	console.log("输入验证码"+d_yzm);
 	var parrentUser = /^1[34578]\d{9}$/;
 	var parrentPwd = /^[a-zA-Z\d+]{6,18}$/;
-
+	
 	if( parrentUser.test(dengl_user) && parrentPwd.test(dengl_pwd) ){
-		 //调用android程序中的方法，并传递参数
+		 //调用android程序中的方法，并传递参数 
 		window.AndroidWebView.webViewLogin( dengl_user , dengl_pwd );
 	} else{
 		alert("输入有误，请重新输入！！")
-	}
-
-
-
+	}   
 }
 
 //android传递信息给js
-function showInfoFromJava(msg){
+function showInfoFromJava(msg){ 
 //  	alert("来自客户端的信息："+msg);
 		alert("收到的信息"+msg)
 		if(msg == "true"){
 			alert("登录成功！！");
-		}
+		} 
 }
-//
-// //android传递信息给js
-//function showInfoFromJava(msg){
-// //		document.getElementById("haha").innerHTML="hha";
-// //		document.getElementById("haha").innerHTML=msg;
-//   	    alert("来自客户端的信息："+msg);
-// //		console.log("收到的信息"+msg)
-//}
-//function deng(){  //dengBtn.onclick =
-//	var dengl_user = document.getElementById("input").value;
-//	var dengl_pwd = document.getElementById("dengl_pwd").value;
-//	var deng_yzm = document.getElementById("textN").value;
-//	var d_user = dengl_user.value;
-//	var d_pwd = dengl_pwd.value;
-//	var d_yzm = deng_yzm.value;
-//
-//	console.log("随机验证码"+yzm);
-//	console.log("输入验证码"+d_yzm);
-//	alert("chuandishuju");
-//	//调用android程序中的方法，并传递参数
-//    window.AndroidWebView.webViewLogin( dengl_user , dengl_pwd );
-//
-//
-//
-////	if( user_test == d_user && pwd_test == d_pwd && yzm == d_yzm){
-////		alert("登录成功！！");
-////		//清空
-////		dengl_user.value = "";
-////		dengl_pwd.value = "";
-////		deng_yzm.value = "";
-////		men_close();
-////	}else{
-////		alert("输入有误，请重新输入！！")
-////	}
-//}
-
+	
 //------------- -------------------------- -------------找回密码（接口完成后验证）------------- -------------------------- -------------
 //
 var sleep = 60, interval = null;
@@ -361,7 +333,8 @@ $('button').click(function () {
   }
   function pic() {
     b = a();
-    $('.aa li').eq(b).addClass('bb').siblings().removeClass('bb');
+    //$('.aa li').eq(b).addClass('bb').siblings().removeClass('bb');
+    $('#88').addClass('bb').siblings().removeClass('bb');
   }
   
 })
@@ -374,5 +347,22 @@ function nextBtn() {
 	mekr.style.display="none";
 }
 
-
+// webViewShareWX(String webpageUrl,String title,String description,String thumUrl){ }
 /*分享朋友圈*/
+function fenx() {
+	var hrefUrl = 'https://www.baidu.com/';
+	var title = '初次 见面，请多多关照~';
+	var explain = '下载"萌呷"赢好礼！iphone7送不停！:)';
+	var imgUrl = '../images/fxImg.jpg';
+	window.AndroidWebView.webViewShareWX( hrefUrl, title, explain, imgUrl )
+}
+
+
+
+
+
+
+
+
+
+
