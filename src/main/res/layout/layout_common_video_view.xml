@@ -199,6 +199,7 @@
                 android:paddingRight="@dimen/px_30" />
 
             <ImageView
+                android:visibility="invisible"
                 android:id="@+id/anim_dowm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

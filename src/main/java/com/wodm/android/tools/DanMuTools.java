@@ -99,7 +99,7 @@ public class DanMuTools {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
                     ba.setFontColor("#669900");
-                    ba.setFontSize("16");
+                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_24_px)+"");
                     int time=random.nextInt(timeArr.length);
                     ba.setTime(time);
                     ba.setId(bean.getId());
@@ -174,8 +174,8 @@ public class DanMuTools {
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
         danmaku.isLive = true; //是否是直播弹幕
         danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
-        danmaku.textSize = mContext.getResources().getDimension(R.dimen.x24);
-        danmaku.textColor = mContext.getResources().getColor(R.color.color_669900);
+        danmaku.textSize = mContext.getResources().getDimension(R.dimen.text_size_24_px);
+        danmaku.textColor = mContext.getResources().getColor(R.color.color_333333);
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
         mDanmakuView.addDanmaku(danmaku);

@@ -3,20 +3,19 @@ package com.wodm.android.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wodm.R;
 import com.wodm.android.bean.CarBean;
 import com.wodm.android.utils.DeviceUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +78,6 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      * @param type
      */
     public void setType(int type){
-
         this.type=type;
         notifyDataSetChanged();
     }
@@ -88,24 +86,25 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolders holders = (ViewHolders) holder;
         CarBean bean = mData.get(position);
-        Uri url = bean.getContentUrl().startsWith("http") ? Uri.parse(bean.getContentUrl()) :
-                Uri.fromFile(new File(bean.getContentUrl()));
+//        Uri url = bean.getContentUrl().startsWith("http") ? Uri.parse(bean.getContentUrl()) :
+//                Uri.fromFile(new File(bean.getContentUrl()));
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holders.imageView.getLayoutParams();
         int org = mContext.getResources().getConfiguration().orientation;
         if (org == Configuration.ORIENTATION_PORTRAIT) {
-            params.height = DeviceUtils.getScreenWH((Activity) mContext)[1];
+            params.height =(int)(DeviceUtils.getScreenWH((Activity) mContext)[1]);
             params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
         } else {
-            params.height = DeviceUtils.getScreenWH((Activity) mContext)[0];
-            params.width = DeviceUtils.getScreenWH((Activity) mContext)[1];
+            params.height = DeviceUtils.getScreenWH((Activity) mContext)[1]*3;
+            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
             if (type==1){
-                params.height =DeviceUtils.getScreenWH((Activity) mContext)[0];
-                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
+                params.height =DeviceUtils.getScreenWH((Activity) mContext)[1];
+                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0]/2;
             }
         }
-        params.gravity= Gravity.CENTER;
-        holders.imageView.setLayoutParams(params);
-        holders.imageView.setImageURI(url);
+        Glide.with(mContext).load(bean.getContentUrl()).placeholder(R.mipmap.loading).into(holders.img_read);
+//        params.gravity= Gravity.CENTER;
+        holders.img_read.setLayoutParams(params);
+//        holders.imageView.setImageURI(url);
     }
 
     @Override
@@ -117,6 +116,7 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     class ViewHolders extends RecyclerView.ViewHolder {
 
         private SimpleDraweeView imageView;
+        private ImageView img_read;
 
         public ViewHolders(android.view.View view) {
             super(view);
@@ -125,7 +125,7 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         private void init(View view) {
             imageView = (SimpleDraweeView) view.findViewById(R.id.read_img);
-
+            img_read = (ImageView) view.findViewById(R.id.img_read);
         }
     }
 

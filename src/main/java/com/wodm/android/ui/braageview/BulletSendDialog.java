@@ -62,7 +62,7 @@ public class BulletSendDialog extends DialogFragment{
             @Override
             public void onClick(View v) {
                 String content=et_content.getText().toString();
-                if (content.length()>100){
+                if (content.length()>50){
                     Toast.makeText(getActivity(), "亲,最多只能输入50个字哦!", Toast.LENGTH_SHORT).show();
                     return;
                 }

@@ -136,4 +136,5 @@ dependencies {
     compile files('libs/jpush-android-2.1.5.jar')
     compile 'com.github.ctiao:DanmakuFlameMaster:0.4.9'//弹幕
     compile 'com.umeng.analytics:analytics:latest.integration'//友盟
+    compile 'com.github.bumptech.glide:glide:3.5.2'
 }

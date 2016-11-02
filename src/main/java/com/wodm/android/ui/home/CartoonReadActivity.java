@@ -13,7 +13,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -93,7 +92,7 @@ public class CartoonReadActivity extends AppActivity {
     private ObjectBean bean = null;
     private boolean videoControllerShow = false;//底部状态栏的显示状态
     private boolean animation = false;
-    private Dialog dialog = null;
+    private Dialog dialog=null;
 
 
     private int orientation = 1;
@@ -116,6 +115,8 @@ public class CartoonReadActivity extends AppActivity {
     private ReadCarAdapter adapter;
     private DanmuControler danmuControler;
     private ImageView danmu_kaiguan;
+    private boolean isOpen=true;
+    private int position = 0;
     private boolean isOpen = true;
 
     @Override
@@ -298,18 +299,6 @@ public class CartoonReadActivity extends AppActivity {
         });
     }
 
-//    private void myAnimation(float bvy) {
-//        if (flag) {
-//            flag = false;
-//            startAnimation(mBottomView, bvy, bvy + mBottomView.getHeight(), animatorListener);
-//            Log.e("AAAAAAAAAAAAA","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
-//        } else if (!flag ) {
-//            startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
-//            Log.e("BBBBBBBBBBBBBBB","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
-//            flag = true;
-//        }
-//    }
-
     private void setLoadAndRefresh() {
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         progressBar.setColor(R.color.colorPrimary);
@@ -335,7 +324,6 @@ public class CartoonReadActivity extends AppActivity {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                int position = 0;
                 if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
                     position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 } else if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
@@ -451,8 +439,6 @@ public class CartoonReadActivity extends AppActivity {
             //notifi主要是为了切换屏幕时让图片跟着变换
             adapter.notifyDataSetChanged();
             mBottomView.addView(mBottomLandView);
-//            mBottomLandView.setX(0);
-//            mBottomLandView.setY(Tools.getScreenHeight(this));
             visibility = View.VISIBLE;
         }
         final TextView mScreenText = (TextView) mBottomView.findViewById(R.id.screen_orient);
@@ -465,7 +451,7 @@ public class CartoonReadActivity extends AppActivity {
         }
         mScrollText.setText(orientation == 1 ? "左右" : "上下");
 
-        mDowmView.setVisibility(visibility);
+        mDowmView.setVisibility(View.GONE);
         mShareView.setVisibility(visibility);
         mCollectView.setVisibility(visibility);
 
@@ -531,6 +517,7 @@ public class CartoonReadActivity extends AppActivity {
         mBottomView.findViewById(R.id.orientation_type).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "滑动方向切换");
                 LinearLayoutManager manager = new LinearLayoutManager(CartoonReadActivity.this);
                 manager.setOrientation(orientation == LinearLayoutManager.HORIZONTAL ? 1 : 0);
@@ -545,6 +532,7 @@ public class CartoonReadActivity extends AppActivity {
                     type = 1;
                 }
                 adapter.setType(type);
+                pullToLoadView.smoothScrollToPosition(position);
             }
         });
 

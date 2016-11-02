@@ -34,6 +34,10 @@ public class ImageUtils {
                         new FileInputStream(new File(path)));
                 options.inSampleSize = (int) Math.pow(2.0D, i);
                 options.inJustDecodeBounds = false;
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                options.inPurgeable = true;
+                options.inSampleSize = 4;
+                options.inInputShareable = true;
                 bitmap = BitmapFactory.decodeStream(in, null, options);
                 break;
             }

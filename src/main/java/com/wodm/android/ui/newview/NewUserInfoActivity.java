@@ -4,12 +4,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -320,6 +320,10 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                 } else {
                     return;
                 }
+//                File file=new File(mPhotoPath);
+//                if (!file.exists()){
+//                    mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + mPhotoPath;
+//                }
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
                 startActivityForResult(intent, TAKE_PRICTURE);
 
@@ -345,7 +349,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }));
         bottomPopupMenu = BottomPopupMenu.showMenu(this, getContentView(), list);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -355,7 +358,10 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                     mPhotoPath = getSelectMediaPath(data);
                 case TAKE_PRICTURE:
                     try {
-                        mPhotoPath = FileUtils.saveBitmap(ImageUtils.revitionImageSize(mPhotoPath), mPhotoPath.substring(mPhotoPath.lastIndexOf("/")));
+                        Bitmap bitmap=ImageUtils.revitionImageSize(mPhotoPath);
+                        mPhotoPath = FileUtils.saveBitmap(bitmap, mPhotoPath.substring(mPhotoPath.lastIndexOf("/")));
+                        img_circle.setImageBitmap(bitmap);
+                        Toast.makeText(this, "点击保存后才能更换您喜欢的头像哦!", Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
