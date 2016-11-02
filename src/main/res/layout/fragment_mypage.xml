@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/color_efefef"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical">
+
     <com.wodm.android.view.newview.OfenUseView
-        app:rightBackGround_use="@mipmap/icon_more_normal"
-        app:leftBackGround_use="@color/color_dd977f"
-        app:Customtoptitle_use=""
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_64"
         app:BackGroundColor_use="@color/color_ffffff"
         app:CustomtitleTextColor_use="@color/color_333333"
         app:CustomtitleTextSize_use="@dimen/text_size_24_px"
+        app:Customtoptitle_use="限时免费"
+        app:leftBackGround_use="@color/color_dd977f"
+        app:rightBackGround_use="@mipmap/icon_more_normal" />
+
+    <include
+        layout="@layout/devid_line"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_64">
-    </com.wodm.android.view.newview.OfenUseView>
-    <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+        android:layout_height="@dimen/px_2"/>
+
     <RelativeLayout
-        android:background="@color/color_ffffff"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/ll_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.wodm.android.view.newview.MyGridView
-                android:layout_marginRight="@dimen/px_60"
-                android:layout_marginLeft="@dimen/px_60"
-                android:background="@color/color_ffffff"
                 android:id="@+id/gv_guajian"
-                android:horizontalSpacing="@dimen/px_20"
-                android:verticalSpacing="@dimen/px_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="3" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/ll_guajian"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.wodm.android.view.newview.MyGridView
-                android:layout_marginRight="@dimen/px_60"
                 android:layout_marginLeft="@dimen/px_60"
-                android:id="@+id/gv_header"
+                android:layout_marginRight="@dimen/px_60"
+                android:background="@color/color_ffffff"
                 android:horizontalSpacing="@dimen/px_20"
-                android:verticalSpacing="@dimen/px_20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:numColumns="3" />
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/px_20" />
         </RelativeLayout>
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/ll_guajian"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<com.wodm.android.view.newview.MyGridView-->
+        <!--android:id="@+id/gv_header"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/px_60"-->
+        <!--android:layout_marginRight="@dimen/px_60"-->
+        <!--android:horizontalSpacing="@dimen/px_20"-->
+        <!--android:numColumns="3"-->
+        <!--android:verticalSpacing="@dimen/px_20" />-->
+        <!--</RelativeLayout>-->
 
     </RelativeLayout>
 </LinearLayout>

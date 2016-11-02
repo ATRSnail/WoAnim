@@ -1,93 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:scrollbars="none"
     android:id="@+id/scrollView"
-    android:background="@color/color_efefef"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <RelativeLayout
-            android:orientation="vertical"
-            android:background="@mipmap/guajian_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@mipmap/guajian_bg"
+            android:orientation="vertical">
+
             <com.wodm.android.view.newview.AtyTopLayout
-                android:layout_alignParentTop="true"
                 android:id="@+id/set_topbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_90"
+                android:layout_alignParentTop="true"
                 app:BackGroundColor="@android:color/transparent"
                 app:CustomtitleTextColor="@android:color/white"
                 app:CustomtitleTextSize="@dimen/text_size_32_px"
                 app:Customtoptitle="头部挂件"
                 app:leftBackGround="@mipmap/back_mall_white"
                 app:rightType="0" />
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/px_20"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:paddingBottom="@dimen/px_20">
 
                 <org.eteclab.ui.widget.CircularImage
-                    android:layout_marginBottom="@dimen/px_10"
-                    android:layout_gravity="center"
                     android:id="@+id/user_head_imgs"
-                    android:scaleType="fitXY"
                     android:layout_width="@dimen/px_138"
                     android:layout_height="@dimen/px_138"
-                   />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/px_10"
+                    android:scaleType="fitXY" />
 
                 <Button
-                    android:layout_gravity="center"
                     android:id="@+id/btn_buy_now"
+                    android:layout_width="@dimen/px_176"
+                    android:layout_height="@dimen/px_63"
+                    android:layout_gravity="center"
                     android:background="@drawable/btn_buy_now"
                     android:padding="@dimen/px_2"
-                    android:textSize="@dimen/px_28"
                     android:text="@string/buy_now"
                     android:textColor="@color/color_ffffff"
-                    android:layout_width="@dimen/px_176"
-                    android:layout_height="@dimen/px_63" />
+                    android:textSize="@dimen/px_28" />
             </LinearLayout>
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/ll_open_vip"
-            android:layout_marginTop="@dimen/px_14"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_64"
+            android:layout_marginTop="@dimen/px_14"
             android:background="@color/color_ffffff">
 
             <TextView
-                android:layout_centerVertical="true"
                 android:id="@+id/tv_circle"
-                android:layout_alignParentLeft="true"
                 android:layout_width="@dimen/px_32"
                 android:layout_height="@dimen/px_32"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/px_30"
                 android:background="@drawable/vip_icon_circle" />
 
             <TextView
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/tv_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/px_10"
+                android:layout_toRightOf="@+id/tv_circle"
                 android:text="@string/vip_speed_hint"
                 android:textColor="@color/color_f29b76"
                 android:textSize="@dimen/text_size_22_px" />
 
             <Button
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:id="@+id/btn_open_vip"
                 android:layout_width="@dimen/px_84"
                 android:layout_height="@dimen/px_42"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/px_30"
                 android:background="@drawable/kaitong_rectan"
                 android:text="@string/open_vip_member"
@@ -95,89 +99,117 @@
                 android:textSize="@dimen/px_16" />
 
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_marginTop="@dimen/px_14"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_64"
+            android:layout_marginTop="@dimen/px_14"
             android:background="@color/color_ffffff">
+
             <com.wodm.android.view.newview.OfenUseView
-                app:rightBackGround_use="@mipmap/icon_more_normal"
-                app:leftBackGround_use="@color/color_dd977f"
-                app:Customtoptitle_use=""
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_64"
                 app:BackGroundColor_use="@color/color_ffffff"
                 app:CustomtitleTextColor_use="@color/color_333333"
                 app:CustomtitleTextSize_use="@dimen/text_size_24_px"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_64">
-
-
-            </com.wodm.android.view.newview.OfenUseView>
+                app:Customtoptitle_use="会员免费"
+                app:leftBackGround_use="@color/color_dd977f"
+                app:rightBackGround_use="@mipmap/icon_more_normal" />
 
             <!--<TextView-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:id="@+id/tv_circle1"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_width="@dimen/px_32"-->
-                <!--android:layout_height="@dimen/px_32"-->
-                <!--android:layout_marginLeft="@dimen/px_30"-->
-                <!--android:background="@drawable/circlr_guajian_open_vip" />-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:id="@+id/tv_circle1"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_width="@dimen/px_32"-->
+            <!--android:layout_height="@dimen/px_32"-->
+            <!--android:layout_marginLeft="@dimen/px_30"-->
+            <!--android:background="@drawable/circlr_guajian_open_vip" />-->
 
             <!--<TextView-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_toRightOf="@+id/tv_circle1"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="@dimen/px_10"-->
-                <!--android:text="@string/guajian_hint"-->
-                <!--android:textColor="@color/color_333333"-->
-                <!--android:textSize="20px" />-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toRightOf="@+id/tv_circle1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/px_10"-->
+            <!--android:text="@string/guajian_hint"-->
+            <!--android:textColor="@color/color_333333"-->
+            <!--android:textSize="20px" />-->
 
         </RelativeLayout>
-        <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
-       <LinearLayout
-           android:background="@color/color_ffffff"
-           android:orientation="vertical"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <com.wodm.android.view.newview.MyGridView
-               android:layout_marginRight="@dimen/px_60"
-               android:layout_marginLeft="@dimen/px_60"
-               android:background="@color/color_ffffff"
-               android:id="@+id/guajian_free"
-               android:horizontalSpacing="@dimen/px_20"
-               android:verticalSpacing="@dimen/px_20"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:numColumns="3" />
-       </LinearLayout>
-        <TabHost
-            android:layout_marginBottom="@dimen/px_20"
-            android:background="@color/color_ffffff"
-            android:layout_marginTop="@dimen/px_14"
-            android:id="@+id/mypage_tabhost"
+
+        <include
+            layout="@layout/devid_line"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
+            android:layout_height="@dimen/px_2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_ffffff"
+            android:orientation="vertical">
+
+            <com.wodm.android.view.newview.MyGridView
+                android:id="@+id/guajian_free"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TabWidget
-                    android:id="@android:id/tabs"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <include android:layout_width="match_parent" android:layout_height="@dimen/px_2" layout="@layout/devid_line"></include>
-                <FrameLayout
-                    android:id="@android:id/tabcontent"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                   />
-                <com.wodm.android.view.newview.WrapContentHeightViewPager
-                    android:id="@+id/mypage_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </TabHost>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_60"
+                android:layout_marginRight="@dimen/px_60"
+                android:background="@color/color_ffffff"
+                android:horizontalSpacing="@dimen/px_20"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/px_20" />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_14"
+            android:background="@color/color_ffffff"
+            app:tabIndicatorColor="@color/color_ff8d35"
+            app:tabSelectedTextColor="@color/transparent_black"
+            app:tabTextColor="@color/transparent_black" />
+
+        <com.wodm.android.view.newview.WrapContentHeightViewPager
+            android:id="@+id/mypage_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--<TabHost-->
+        <!--android:id="@+id/mypage_tabhost"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="@dimen/px_20"-->
+        <!--android:layout_marginTop="@dimen/px_14"-->
+        <!--android:background="@color/color_ffffff">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<TabWidget-->
+        <!--android:id="@android:id/tabs"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal" />-->
+
+        <!--<include-->
+        <!--layout="@layout/devid_line"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/px_2"/>-->
+
+        <!--<FrameLayout-->
+        <!--android:id="@android:id/tabcontent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp" />-->
+
+        <!--<com.wodm.android.view.newview.WrapContentHeightViewPager-->
+        <!--android:id="@+id/mypage_pager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--</TabHost>-->
 
     </LinearLayout>
 

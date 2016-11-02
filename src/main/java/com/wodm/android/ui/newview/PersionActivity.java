@@ -13,11 +13,16 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.ComicAdapter;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.MedalInfoBean;
+import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.tools.Tools;
@@ -28,7 +33,10 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -294,4 +302,49 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     public void rightClick() {
 
     }
+//
+//
+//    private void loadCollectNum(){
+//        httpGet(url + "&type=" + type + "&page=" + page, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    List<ObjectBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
+//                    }.getType());
+//
+//                    final ComicAdapter adapter = (ComicAdapter) handleData(page, beanList, ComicAdapter.class, b);
+//                    edit.setVisibility(adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+//                    edit.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if (edit.getTag().toString().equals("0")) {
+//                                edit.setText("完成");
+//                                edit.setTag("1");
+//                                adapter.setOnItemDeleteListener(new ComicAdapter.OnItemDeleteListener() {
+//                                    @Override
+//                                    public void onItemDelete(int position, ObjectBean bean) {
+//                                        delete(type, adapter, position, bean);
+//                                    }
+//                                });
+//                            } else {
+//                                edit.setText("编辑");
+//                                edit.setTag("0");
+//                                adapter.setOnItemDeleteListener(null);
+//                            }
+//                        }
+//                    });
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//                edit.setVisibility(View.GONE);
+//            }
+//        });
+//    }
 }

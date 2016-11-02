@@ -79,13 +79,13 @@ public class ComicAdapter extends HolderAdapter<ObjectBean> {
         lp.height = (CartoonApplication.getScreenWidth() - 40) / 3;
         holders.cover.setLayoutParams(lp);
         holders.delete.setVisibility(isShowDelete ? View.VISIBLE : View.INVISIBLE);
+        System.out.println("position---->");
         if (isShowDelete) {
             holders.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onItemDelete(i, bean);
-                    }
+                    System.out.println("position---->");
+                    listener.onItemDelete(i, bean);
                 }
             });
         }

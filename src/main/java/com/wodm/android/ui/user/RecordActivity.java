@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -53,9 +54,9 @@ public class RecordActivity extends AppActivity {
         super.onCreate(savedInstanceState);
         tid = getIntent().getIntExtra("tid", 0);
         int title = getIntent().getIntExtra("title", 0);
-        String position="";
-        if (getIntent().hasExtra("position")){
-            position=getIntent().getStringExtra("position");
+        String position = "";
+        if (getIntent().hasExtra("position")) {
+            position = getIntent().getStringExtra("position");
         }
         setTitleRight("全部清空");
         setCustomTitle(getString(title));
@@ -73,18 +74,20 @@ public class RecordActivity extends AppActivity {
         mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
         mTabType.getTabAt(0).setText("动画");
         mTabType.getTabAt(1).setText("漫画");
-        if (!position.equals("")){
-            if (position.equals("漫画")){
+        if (!position.equals("")) {
+            if (position.equals("漫画")) {
                 mTabType.getTabAt(1).select();
-            }else {
+            } else {
                 mTabType.getTabAt(0).select();
             }
         }
     }
 
+    private TextView edit;
+
     private void initpage(final View view, final int type) {
         PullToLoadView page = (PullToLoadView) view.findViewById(R.id.pull_lists);
-        final TextView edit = (TextView) view.findViewById(R.id.edit_query);
+        edit = (TextView) view.findViewById(R.id.edit_query);
         page.setLoadingColor(R.color.colorPrimary);
         page.setPullCallback(new PullCallbackImpl(page, new GridLayoutManager(this, 3)) {
             @Override
@@ -98,11 +101,11 @@ public class RecordActivity extends AppActivity {
 
                 } else if (tid == R.id.watch_records) {
                     //观看记录
-                    deleteUrl = Constants.HOST + Constants.URL_USER_DELETE_WATCH_RECORD + Constants.CURRENT_USER.getData().getAccount().getId();
+                    deleteUrl = Constants.URL_USER_DELETE_WATCH_RECORD + Constants.CURRENT_USER.getData().getAccount().getId();
                     url = Constants.HOST + "user/watchRecordByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 } else if (tid == R.id.my_collcet) {
                     //我的收藏
-                    deleteUrl = Constants.HOST + Constants.URL_USER_DELETE_COLLECTION + Constants.CURRENT_USER.getData().getAccount().getId();
+                    deleteUrl = Constants.URL_USER_DELETE_COLLECTION + Constants.CURRENT_USER.getData().getAccount().getId();
                     url = Constants.HOST + "user/collectByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
                 }
 
@@ -156,13 +159,18 @@ public class RecordActivity extends AppActivity {
     private String deleteUrl = "";
 
     private void delete(int type, final ComicAdapter adapter, final int position, ObjectBean bean) {
+        System.out.println("position---->" + position + deleteUrl);
         httpGet(deleteUrl + "&type=" + type + "&ids=" + bean.getId(), new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
+                System.out.println("position---->succ");
                 if (adapter != null) {
                     adapter.removeItem(position);
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
+                    if (adapter.getItemCount() == 0) {
+                        edit.setVisibility(View.GONE);
+                    }
                 } else {
                     initpage(pageOne, 1);
                     initpage(pageTwo, 2);
@@ -172,6 +180,17 @@ public class RecordActivity extends AppActivity {
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
+                try {
+                    if (adapter != null) {
+                        adapter.removeItem(position);
+                        if (adapter.getItemCount() == 0) {
+                            edit.setVisibility(View.GONE);
+                        }
+                    }
+                    Toast.makeText(RecordActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -187,20 +206,28 @@ public class RecordActivity extends AppActivity {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
+
                 adapter.setListData(new ArrayList<ObjectBean>());
-                adapter.notifyDataSetChanged();
                 mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.edit_query).setVisibility(View.GONE);
             }
 
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
+                try {
+                    adapter.setListData(new ArrayList<ObjectBean>());
+                    edit.setVisibility(View.GONE);
+                    Toast.makeText(RecordActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
     @TrackClick(value = R.id.tooltitle_right, location = "记录", eventName = "清空")
     private void clickClean(View v) {
+        System.out.println("position---->succ");
         PullToLoadView pullToLoadView = (PullToLoadView) mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.pull_lists);
         ComicAdapter adapter = (ComicAdapter) pullToLoadView.getRecyclerView().getAdapter();
         if (adapter != null && adapter.getItemCount() >= 0) deleteAll(adapter);
