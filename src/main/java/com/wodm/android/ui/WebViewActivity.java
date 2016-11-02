@@ -32,11 +32,11 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("活动");
-        Bundle bundle=getIntent().getExtras();
-        adsUrl=bundle.getString("adsUrl");
-        if (adsUrl.equals("")){
-            finish();
-        }
+//        Bundle bundle=getIntent().getExtras();
+//        adsUrl=bundle.getString("adsUrl");
+//        if (adsUrl.equals("")){
+//            finish();
+//        }
         init();
     }
 
@@ -80,9 +80,9 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }else if (mDensity == 240) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         }
-//        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/index.html");
 //        handler.sendEmptyMessageAtTime(3,200);
-        webView.loadUrl(adsUrl);
+//        webView.loadUrl(adsUrl);
     }
 
     @Override
@@ -113,16 +113,27 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         msg.what=type;
         handler.sendMessage(msg);
     }
+    /*1. 是否登录成功的返回状态
+    2.是否注册成功的返回状态
+    3.是否分享成功的返回状态
+    4.修改密码是否成功的返回状态
+    5.传递给js用户id
+
+ **/
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what==1){
-                webView.loadUrl("javascript:showInfoFromJava('" + msg.obj + "')");
+                webView.loadUrl("javascript:showInfoFromJava('" + msg.obj +"')");
             }else if (msg.what==2){
-
+                webView.loadUrl("javascript:showWeatherResiger('" + msg.obj + "')");
             }else if (msg.what==3){
-
+                webView.loadUrl("javascript:showWeatherShare('" + msg.obj + "')");
+            }else if (msg.what==4){
+                webView.loadUrl("javascript:showWeatherPassWord('" + msg.obj + "')");
+            }else if (msg.what==5){
+                webView.loadUrl("javascript:setLoginUserId('" + msg.obj + "')");
             }
         }
     };

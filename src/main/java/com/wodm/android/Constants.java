@@ -34,6 +34,10 @@ public class Constants {
     //分享详情页
     public final static String SHARE_URL = "http://mk.wo.com.cn/html/donghuaxiangqingye.html?id=";
 
+  // 漫画详情页
+    public final static String SHARE_ANIM_URL= "http://mk.wo.com.cn/html/manhuaxiangqingye.html?id=";
+    //动画详情页
+    public final static String SHARE_CARREAD_URL= "http://mk.wo.com.cn/html/donghuaxiangqingye.html?id=";
     public final static String URL_SCORE = HOST + "user/countScore";// 获取积分
     //    public final static String URL_SIGNIN = HOST + "user/checkin";// 签到
     public final static String URL_SIGNIN = HOST + "newuser/checkin";// 签到
@@ -114,7 +118,7 @@ public class Constants {
     //获取点击量
     public static final String APP_GETATERESOURCECOUNT = HOST + "newuser/getResourceCount?resourceId=";
     public static final String APP_GET_WEATHRE_ISRECEIVER="newuser/isReceive?userId=";
-    public static final String APP_GET_SHARE=HOST + "/newuser/share?userId=";
+    public static final String APP_GET_SHARE=HOST + "/newuser/share";
     public static final String APP_GET_WATCHNEWS=HOST + "/newuser/watchNews?userId=";
     public static String OFFTIME;
 

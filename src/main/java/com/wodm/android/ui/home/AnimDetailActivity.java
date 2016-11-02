@@ -3,7 +3,6 @@ package com.wodm.android.ui.home;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableString;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,7 +43,6 @@ import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.newview.LgoinActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.view.CommonVideoView;
 import com.wodm.android.view.DividerLine;
@@ -549,7 +546,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     }
 
     private void showShare() {
-        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_URL + resourceId, bean.getShowImage());
+        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_ANIM_URL + resourceId, bean.getShowImage());
 
         dialog.show();
 //        OnkeyShare share = new OnkeyShare(this);

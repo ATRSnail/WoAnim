@@ -285,7 +285,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     }
 
     private void showShare() {
-        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_URL + resourceId,bean.getShowImage());
+        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_CARREAD_URL + resourceId,bean.getShowImage());
         dialog.show();
 //        OnkeyShare share = new OnkeyShare(this);
 //        share.setPlatform();

@@ -30,6 +30,7 @@ public class FeekBackActivity extends AppActivity {
         setTitleRight("提交");
         if(Constants.CURRENT_USER==null){
             Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+            finish();
             return;
         }
     }

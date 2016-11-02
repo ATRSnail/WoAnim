@@ -60,6 +60,10 @@ public class UsSetActivity extends AppActivity {
 
     @TrackClick(value = R.id.feek_back, location = TITLE, eventName = "进入意见反馈页面")
     private void clickFeekBack(View view) {
+        if (!UpdataUserInfo.isLogIn(this, true)) {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+            return;
+        }
         startActivity(new Intent(this, FeekBackActivity.class));
     }
 

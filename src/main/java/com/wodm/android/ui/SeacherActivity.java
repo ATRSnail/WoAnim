@@ -163,8 +163,12 @@ public class SeacherActivity extends AppActivity {
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int page, final boolean b) {
+                String url=Constants.URL_SEARCH + key + "&page=" + page + "&type=" + mTypeView.getTag().toString()+"&taskType=2&taskValue=5";
+                if (Constants.CURRENT_USER!=null){
+                    url=url+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+                }
 
-                httpGet(Constants.URL_SEARCH + key + "&page=" + page + "&type=" + mTypeView.getTag().toString()+"&taskType=2&taskValue=5", new HttpCallback() {
+                httpGet(url, new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);

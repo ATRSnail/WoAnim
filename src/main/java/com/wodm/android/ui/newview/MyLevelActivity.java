@@ -109,7 +109,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
             if (i == (actions.length - 1)) {
                 map.put("experience", "添加更多");
             } else {
-                map.put("experience", "可得2经验值");
+                map.put("experience", "可得4经验值");
             }
 
             list.add(map);

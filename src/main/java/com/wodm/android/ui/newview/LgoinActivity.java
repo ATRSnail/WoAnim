@@ -19,7 +19,6 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -179,9 +178,9 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         @Override
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
-            Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+//            Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
             finish();
 //            if (loginFlag) {
 //                Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
