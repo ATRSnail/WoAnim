@@ -107,7 +107,7 @@ public class RecordActivity extends AppActivity {
                     //我的收藏
                     deleteUrl = Constants.URL_USER_DELETE_COLLECTION + Constants.CURRENT_USER.getData().getAccount().getId();
                     url = Constants.HOST + "user/collectByType?userId=" + Constants.CURRENT_USER.getData().getAccount().getId();
-                }
+            }
 
                 httpGet(url + "&type=" + type + "&page=" + page, new HttpCallback() {
 

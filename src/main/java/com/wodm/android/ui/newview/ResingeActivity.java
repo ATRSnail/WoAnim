@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -100,9 +101,11 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
+
                         Toast.makeText(ResingeActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
 //                                mLoginRegistPager.setCurrentItem(0);
                         //自定义注册统计事件，需要在友盟注册事件ID,key 统计注册手机号
+
                         Map<String, String> map = new HashMap<String, String>();
                         map.put("phone", phone);
                         MobclickAgent.onEvent(ResingeActivity.this, "register", map);
@@ -118,6 +121,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
                 @Override
                 public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                     try {
+                        Log.e("","*****************"+obj.getString("message"));
                         Toast.makeText(ResingeActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();

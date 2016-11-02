@@ -7,7 +7,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -108,6 +114,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private ImageView danmu_kaiguan;
     private boolean isOpen = true;
     private Dialog dialog = null;
+    private boolean isLandscape;
+    private boolean isClickFullScreenButton;
+    private boolean isSennor=true;
 
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -616,6 +625,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             videoView.setNormalScreen();
             videoView.orientationPORTRAIT();
         }
+
+
     }
 
 
@@ -765,4 +776,96 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 //        getBarrageResource(barrage_charterId);
 
     }
+
+//    private Handler rotateHandler = new Handler() {
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case 10001:
+//                    if ((msg.arg1 > 45 && msg.arg1 <= 135) || (msg.arg1 > 225 && msg.arg1 <= 315)) {
+//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+//                    } else {
+//                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                        }
+//                    }
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    };
+//
+//    @Override
+//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//    }
+//
+//    @Override
+//    public void onSensorChanged(SensorEvent event) {
+//
+//        float[] values = event.values;
+//        int orientation = 0;
+//        float X = -values[SensorManager.DATA_X];
+//        float Y = -values[SensorManager.DATA_Y];
+//        float Z = -values[SensorManager.DATA_Z];
+//        float magnitude = X * X + Y * Y;
+//        // Don't trust the angle if the magnitude is small compared to the y
+//        // value
+//        if (magnitude * 4 >= Z * Z) {
+//            float OneEightyOverPi = 57.29577957855f;
+//            float angle = (float) Math.atan2(-Y, X) * OneEightyOverPi;
+//            orientation = 90 - (int) Math.round(angle);
+//            // normalize to 0 - 359 range
+//            if (orientation >= 360) {
+//                orientation -= 360;
+//            }
+//            if (orientation < 0) {
+//                orientation += 360;
+//            }
+//        }
+//
+//        Log.e("","-------------------------"+isClickFullScreenButton);
+//        Log.e("","*************************"+isSennor);
+//
+//        if (isClickFullScreenButton) {
+//            // 竖屏
+//
+//            if (isLandscape
+//                    && (((orientation > 315 && orientation <= 360) || (orientation >= 0 && orientation <= 45)) || (orientation > 135 && orientation <= 225))) {
+//                isLandscape = false;
+//                isClickFullScreenButton = false;
+//                isSennor = true;
+//            }
+//
+//            // 横屏
+//            if (!isLandscape
+//                    && ((orientation > 45 && orientation <= 135) || (orientation > 225 && orientation <= 315))) {
+//                isLandscape = true;
+//                isClickFullScreenButton = false;
+//                isSennor = true;
+//            }
+//        }
+//        if (!isSennor) {// 判断是否要进行中断信息传递
+//            return;
+//        }
+//        if (rotateHandler != null) {//发送消息
+//            rotateHandler.obtainMessage(10001, orientation, 0).sendToTarget();
+//        }
+//    }
+//
+//    /** 点击屏幕切换按钮的时候 同时调用该方法 ： 中断Handler信息传递 */
+//    public void setIsSennor() {
+//        isSennor = false;
+//    }
+//
+//    /** 点击屏幕切换按钮的时候 同时调用该方法 ： 确认此时屏幕的方向 */
+//    public void setIsLandscape(boolean bool) {
+//        isLandscape = bool;
+//    }
+//
+//    /** 点击屏幕切换按钮的时候 同时调用该方法 ：设置按钮是否已被点击 */
+//    public void setButtonFullScreenClicked() {
+//        isClickFullScreenButton = true;
+//    }
+
+
 }

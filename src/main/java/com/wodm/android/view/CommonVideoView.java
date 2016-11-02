@@ -446,12 +446,17 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
                 int i = getResources().getConfiguration().orientation;
                 if (i == Configuration.ORIENTATION_PORTRAIT) {
+//                    ((AnimDetailActivity) context).setIsLandscape(false);
                     setFullScreen();
                 } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+//                    ((AnimDetailActivity) context).setIsLandscape(true);
                     setNormalScreen();
                 }
 
                 ((AnimDetailActivity) context).setLandPort();
+//                ((AnimDetailActivity) context).setIsSennor();
+//                ((AnimDetailActivity) context).setButtonFullScreenClicked();
+
                 break;
 
         }
@@ -650,6 +655,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         public void doVideoPlayNext() {
         }
     }
+
 
 
 }
