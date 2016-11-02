@@ -239,8 +239,8 @@ public class CartoonReadActivity extends AppActivity {
                         adapter.setListData(lists);
                         adapter.notifyDataSetChanged();
                         //（修改）每一次请求漫画时，就重新设定seekbar的值
-                        if(adapter!=null&& adapter.getItemCount()>0)
-                            setSeekBarView(adapter.getItemCount(),0);
+                        if(lists!=null&& lists.size()>0)
+                            setSeekBarView(lists.size(),0);
                         stopLoad();
                     } catch (JSONException e) {
                         e.printStackTrace();
