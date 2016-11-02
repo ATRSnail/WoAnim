@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
@@ -145,7 +146,7 @@ public class Main2Activity extends AppActivity {
         setTabViews(mRecom, R.string.enetic_recom, indexId == R.id.tab_tuijian ? R.mipmap.tab_guangchang_select : R.mipmap.tab_guangchang, indexId == R.id.tab_tuijian);
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke("", "跳转到" + setTabSelection(indexId) + "页");
         setCustomTitle(indexId == R.id.tab_home ? "" : setTabSelection(indexId));
-
+        Log.e("AAAAAAAA",""+indexId);
 
         showOrGoneCheckButton(indexId == R.id.tab_home ? View.VISIBLE : View.GONE);
     }

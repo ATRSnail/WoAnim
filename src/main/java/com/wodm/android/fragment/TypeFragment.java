@@ -3,6 +3,7 @@ package com.wodm.android.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -43,7 +44,9 @@ public class TypeFragment extends TrackFragment {
 
     private ArrayList<TypeBean> retList;
 
-    String utrdata = "";
+   static String  utrdata = "";
+    String postData = "";
+
     ComicAdapter comicAdapter;
 
     @Override
@@ -55,7 +58,14 @@ public class TypeFragment extends TrackFragment {
         mOpusList.setPullCallback(new PullCallbackImpl(mOpusList, lmGrid) {
             @Override
             protected void requestData(final int pager, final boolean follow) {
-                String url = Constants.GET_CATRESOURCE + "?page=" + pager + utrdata;
+                utrdata=postData;
+/**              final String url = Constants.GET_CATRESOURCE + "?page=" + pager + utrdata;
+ * 多次请求Pager+1,而pager=1时才有数据
+ * */
+
+                final String url = Constants.GET_CATRESOURCE + "?page=1"  + utrdata;
+                postData = utrdata;
+
                 HttpUtil.httpGet(getActivity(), url, new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -65,13 +75,16 @@ public class TypeFragment extends TrackFragment {
 //                            comicAdapter.setListData(objectBeen);
                             List<ObjectBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());
+
                             utrdata = "";
-                            if (beanList.size()==0){
+
+                            if (beanList.size() == 0) {
                                 ComicAdapter adapter = (ComicAdapter) mOpusList.getRecyclerView().getAdapter();
                                 adapter.setListData(new ArrayList<ObjectBean>());
                                 adapter.notifyDataSetChanged();
                                 mOpusList.setComplete();
-                            }else {
+                            } else {
+
                                 handleData(pager, beanList, ComicAdapter.class, follow/*, mTypeHeaderOne*/);
                             }
 
@@ -128,38 +141,57 @@ public class TypeFragment extends TrackFragment {
         adapter.setOnClickListener(new TabTypeAdapter.OnClickListener() {
             @Override
             public void onTypaAll(TypeBean bean) {
-                if (utrdata.indexOf(bean.getParameter()) >= 0) {
-                    utrdata = utrdata.replace(bean.getParameter(), "");
-                    String[] datas = utrdata.split("&");
-                    utrdata = "";
+                if (postData.indexOf(bean.getParameter()) >= 0) {
+                    postData = postData.replace(bean.getParameter(), "");
+                    String[] datas = postData.split("&");
+                    postData = "";
                     for (String str : datas) {
                         if (!str.startsWith("=") && !TextUtils.isEmpty(str)) {
-                            utrdata += ("&" + str);
+                            postData+= ("&" + str);
                         }
                     }
                 }
                 mOpusList.initLoad();
+
             }
 
             @Override
             public void onTypaOne(TabItemBean tabItemBean, TypeBean bean) {
                 String data = "&" + bean.getParameter() + "=";
-                if (-1 == utrdata.indexOf(data)) {
-                    utrdata += (data + tabItemBean.getId());
-                } else {
-                    utrdata = utrdata.replace(bean.getParameter(), "");
-                    String[] datas = utrdata.split("&");
-                    utrdata = "";
+//                if (-1 == utrdata.indexOf(data)) {
+//                    utrdata += (data + tabItemBean.getId());
+//                } else  {
+//                    utrdata = utrdata.replace(bean.getParameter(), "");
+//                    String[] datas = utrdata.split("&");
+//                    utrdata = "";
+//                    for (String str : datas) {
+//                        if (!str.startsWith("=") && !TextUtils.isEmpty(str)) {
+//                            utrdata += ("&" + str);
+//                        }
+//                    }
+//                    utrdata += (data + tabItemBean.getId());
+
+//                }
+                if (postData.indexOf(bean.getParameter()) >= 0) {
+                    postData = postData.replace(bean.getParameter(), "");
+                    String[] datas = postData.split("&");
+                    postData = "";
                     for (String str : datas) {
                         if (!str.startsWith("=") && !TextUtils.isEmpty(str)) {
-                            utrdata += ("&" + str);
+                            postData += ("&" + str);
                         }
                     }
-                    utrdata += (data + tabItemBean.getId());
                 }
+                String string =data + tabItemBean.getId();
+                postData += string;
                 mOpusList.initLoad();
             }
+
+
+
         });
+
+
     }
 
 }

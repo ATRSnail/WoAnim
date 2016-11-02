@@ -95,6 +95,8 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         void onTypaAll(TypeBean bean);
 
         void onTypaOne(TabItemBean tabItemBean, TypeBean bean);
+
+
     }
 
 

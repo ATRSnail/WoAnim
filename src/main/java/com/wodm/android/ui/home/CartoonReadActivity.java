@@ -13,6 +13,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -37,6 +38,7 @@ import com.wodm.android.bean.DowmBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.ZipEctractAsyncTask;
@@ -91,7 +93,7 @@ public class CartoonReadActivity extends AppActivity {
     private ObjectBean bean = null;
     private boolean videoControllerShow = false;//底部状态栏的显示状态
     private boolean animation = false;
-    private Dialog dialog=null;
+    private Dialog dialog = null;
 
 
     private int orientation = 1;
@@ -114,7 +116,7 @@ public class CartoonReadActivity extends AppActivity {
     private ReadCarAdapter adapter;
     private DanmuControler danmuControler;
     private ImageView danmu_kaiguan;
-    private boolean isOpen=true;
+    private boolean isOpen = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,6 +203,7 @@ public class CartoonReadActivity extends AppActivity {
 
     private void requestHttp(final int index, final boolean b) {
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {
+
             CurrChapter = mChapterList.get(index);
             barrage_charterId = CurrChapter.getId();
             httpGet(Constants.HOST + "resource/cartoon/" + CurrChapter.getId(), new HttpCallback() {
@@ -234,6 +237,8 @@ public class CartoonReadActivity extends AppActivity {
                         }
                         adapter.setListData(lists);
                         adapter.notifyDataSetChanged();
+                        Log.e("","-------------------"+adapter.getItemCount());
+//                        setSeekBarView(adapter.getItemCount(),0);
                         stopLoad();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -245,6 +250,8 @@ public class CartoonReadActivity extends AppActivity {
         }
     }
 
+    boolean flag = true;
+
     private void setListView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -253,6 +260,7 @@ public class CartoonReadActivity extends AppActivity {
         orientation = layoutManager.getOrientation();
         adapter = new ReadCarAdapter(this);
         pullToLoadView.setAdapter(adapter);
+
         pullToLoadView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -268,6 +276,7 @@ public class CartoonReadActivity extends AppActivity {
 
                         if (Math.sqrt(((startx - endx) * (startx - endx) + (starty - endy) * (starty - endy))) < 5) {
                             float bvy = mBottomView.getY();
+//                            Log.e("AAAAAAAAAAAAA","*****************"+bvy);
                             float tvy = mTopView.getY();
                             if (!videoControllerShow && !animation) {
                                 animation = true;
@@ -277,6 +286,9 @@ public class CartoonReadActivity extends AppActivity {
                                 videoControllerShow = !videoControllerShow;
                                 startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
                             }
+
+//                            myAnimation(bvy);
+
                         }
                         break;
                 }
@@ -285,6 +297,18 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
+
+//    private void myAnimation(float bvy) {
+//        if (flag) {
+//            flag = false;
+//            startAnimation(mBottomView, bvy, bvy + mBottomView.getHeight(), animatorListener);
+//            Log.e("AAAAAAAAAAAAA","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
+//        } else if (!flag ) {
+//            startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
+//            Log.e("BBBBBBBBBBBBBBB","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
+//            flag = true;
+//        }
+//    }
 
     private void setLoadAndRefresh() {
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -318,6 +342,7 @@ public class CartoonReadActivity extends AppActivity {
                     position = ((GridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 }
                 if (pullToLoadView.getAdapter() != null)
+                    Log.e("","*******************"+pullToLoadView.getAdapter().getItemCount());
                     setSeekBarView(pullToLoadView.getAdapter().getItemCount(), position + 1);
             }
 
@@ -414,6 +439,8 @@ public class CartoonReadActivity extends AppActivity {
         if (i == Configuration.ORIENTATION_PORTRAIT) {
             adapter.notifyDataSetChanged();
             mBottomView.addView(mBottomPortView);
+//            mBottomPortView.setX(0);
+//            mBottomPortView.setY(Tools.getScreenHeight(this));
             mBottomPortView.findViewById(R.id.collect_box).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -424,6 +451,8 @@ public class CartoonReadActivity extends AppActivity {
             //notifi主要是为了切换屏幕时让图片跟着变换
             adapter.notifyDataSetChanged();
             mBottomView.addView(mBottomLandView);
+//            mBottomLandView.setX(0);
+//            mBottomLandView.setY(Tools.getScreenHeight(this));
             visibility = View.VISIBLE;
         }
         final TextView mScreenText = (TextView) mBottomView.findViewById(R.id.screen_orient);
@@ -450,22 +479,22 @@ public class CartoonReadActivity extends AppActivity {
             mCollect_box.setChecked(1 == bean.getIsCollect());
             mCollectView.setChecked(mCollect_box.isChecked());
         }
-        final TextView tv_danmu_kaiguan= (TextView) mBottomView.findViewById(R.id.tv_danmu_kaiguan);
-        final ImageView danmu_kaiguan= (ImageView) mBottomView.findViewById(R.id.danmu_kaiguan);
+        final TextView tv_danmu_kaiguan = (TextView) mBottomView.findViewById(R.id.tv_danmu_kaiguan);
+        final ImageView danmu_kaiguan = (ImageView) mBottomView.findViewById(R.id.danmu_kaiguan);
         danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
         mBottomView.findViewById(R.id.ll_danmu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOpen){
+                if (isOpen) {
                     danmuControler.hide();
                     tv_danmu_kaiguan.setText("开启弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
-                    isOpen=false;
-                }else {
+                    isOpen = false;
+                } else {
                     danmuControler.show();
                     tv_danmu_kaiguan.setText("关闭弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
-                    isOpen=true;
+                    isOpen = true;
                 }
             }
         });
@@ -510,10 +539,10 @@ public class CartoonReadActivity extends AppActivity {
                 mLeftBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 mRightBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 pullToLoadView.setLayoutManager(manager);
-                String textStr=mScrollText.getText().toString();
-                int type=0;
-                if (textStr.equals("上下")){
-                    type=1;
+                String textStr = mScrollText.getText().toString();
+                int type = 0;
+                if (textStr.equals("上下")) {
+                    type = 1;
                 }
                 adapter.setType(type);
             }
@@ -606,7 +635,7 @@ public class CartoonReadActivity extends AppActivity {
     @TrackClick(value = R.id.anim_share)
     private void clickShare(View view) {
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "分享");
-        dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_URL + bean.getId(),bean.getShowImage());
+        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_URL + bean.getId(), bean.getShowImage());
         dialog.show();
 //        OnkeyShare share = new OnkeyShare(this);
 //        share.setTitle(bean.getName());
@@ -646,6 +675,7 @@ public class CartoonReadActivity extends AppActivity {
         SeekBar mSeek = (SeekBar) mBottomView.findViewById(R.id.carSeekBar);
         mSeek.setMax(max);
         mSeek.setProgress(progress);
+
         mProView.setText(progress + "/" + max);
         mSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -718,7 +748,7 @@ public class CartoonReadActivity extends AppActivity {
         super.onDestroy();
         if (danmuControler != null)
             danmuControler.release();
-        if (dialog!=null&&dialog.isShowing()){
+        if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
     }
