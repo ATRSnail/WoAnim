@@ -64,7 +64,7 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         }
         if (clickStr!=null&&clickStr.equals(strRescoures[position])){
             holder.img_guajian_kuang.setVisibility(View.VISIBLE);
-            addClickIconListener.addImage(clickStr,imageRescoures[position]);
+ //           addClickIconListener.addImage(clickStr,imageRescoures[position],true,0);
         }else {
             holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
         }
@@ -78,7 +78,15 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         clickStr=strRescoures[position];
         notifyDataSetChanged();
-        addClickIconListener.addImage("",imageRescoures[position]);
+        addClickIconListener.addImage("",imageRescoures[position],true,0);
+    }
+
+    /**
+     * 不选择时
+     */
+    public void onUnselect(){
+        clickStr= null;
+        notifyDataSetChanged();
     }
 
     class Holder{
