@@ -95,6 +95,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     }
 
     private void getData() {
+
         if (CURRENT_USER != null) {
             long userId = CURRENT_USER.getData().getAccount().getId();
             infos.getUserInfo(getActivity(), userId);

@@ -7,9 +7,7 @@
     <string name="enetic_recom">广场</string>
     <string name="enetic_home">首页</string>
     <string name="enetic_type">分类</string>
-    <string name="enetic_us">
-        我的
-    </string>
+    <string name="enetic_us">我的</string>
     <string name="crash_program_restart">稍等，需要重新启动程序哦~</string>
     <string name="submint">提交</string>
     <string name="more">更多</string>

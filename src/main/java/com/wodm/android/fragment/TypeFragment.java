@@ -63,9 +63,10 @@ public class TypeFragment extends TrackFragment {
  * 多次请求Pager+1,而pager=1时才有数据
  * */
 
-                final String url = Constants.GET_CATRESOURCE + "?page=1"  + utrdata;
+                final String url = Constants.GET_CATRESOURCE + "?page="+pager + utrdata;
                 postData = utrdata;
 
+                System.out.println("ssss---->"+url);
                 HttpUtil.httpGet(getActivity(), url, new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -78,13 +79,12 @@ public class TypeFragment extends TrackFragment {
 
                             utrdata = "";
 
-                            if (beanList.size() == 0) {
+                            if (beanList.size() == 0 && pager == 1) {
                                 ComicAdapter adapter = (ComicAdapter) mOpusList.getRecyclerView().getAdapter();
                                 adapter.setListData(new ArrayList<ObjectBean>());
                                 adapter.notifyDataSetChanged();
                                 mOpusList.setComplete();
                             } else {
-
                                 handleData(pager, beanList, ComicAdapter.class, follow/*, mTypeHeaderOne*/);
                             }
 
@@ -127,6 +127,7 @@ public class TypeFragment extends TrackFragment {
                     retList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<TypeBean>>() {
                     }.getType());
                     setColums(mTabList, retList);
+                    System.out.println("ssss----two");
                     mOpusList.initLoad();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -141,6 +142,7 @@ public class TypeFragment extends TrackFragment {
         adapter.setOnClickListener(new TabTypeAdapter.OnClickListener() {
             @Override
             public void onTypaAll(TypeBean bean) {
+                System.out.println("ssss----all");
                 if (postData.indexOf(bean.getParameter()) >= 0) {
                     postData = postData.replace(bean.getParameter(), "");
                     String[] datas = postData.split("&");
@@ -157,6 +159,7 @@ public class TypeFragment extends TrackFragment {
 
             @Override
             public void onTypaOne(TabItemBean tabItemBean, TypeBean bean) {
+                System.out.println("ssss----one");
                 String data = "&" + bean.getParameter() + "=";
 //                if (-1 == utrdata.indexOf(data)) {
 //                    utrdata += (data + tabItemBean.getId());

@@ -154,6 +154,8 @@ public class UserInfoBean {
         private int nextGradeEmpirical;
         private int maxCheckinCount;
         private int checkinCount;
+        private int animationCount;
+        private int cartoonCount;
 
         public void setNeedEmpirical(int needEmpirical) {
             this.needEmpirical = needEmpirical;
@@ -174,7 +176,21 @@ public class UserInfoBean {
         public void setMaxCheckinCount(int maxCheckinCount) {
             this.maxCheckinCount = maxCheckinCount;
         }
+        public int getCartoonCount() {
+            return cartoonCount;
+        }
 
+        public void setCartoonCount(int cartoonCount) {
+            this.cartoonCount = cartoonCount;
+        }
+
+        public int getAnimationCount() {
+            return animationCount;
+        }
+
+        public void setAnimationCount(int animationCount) {
+            this.animationCount = animationCount;
+        }
         public int getCheckinCount() {
             return checkinCount;
         }

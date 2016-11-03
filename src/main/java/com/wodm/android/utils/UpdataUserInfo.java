@@ -19,6 +19,7 @@ import org.json.JSONObject;
 public abstract class UpdataUserInfo {
 
     public void getUserInfo(final Context ctx, long userId) {
+        System.out.println("ssss--->"+Constants.APP_GET_USERINFO + userId);
         HttpUtil.httpGet(ctx, Constants.APP_GET_USERINFO + userId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

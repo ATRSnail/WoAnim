@@ -145,7 +145,7 @@ public class UpdateUtils {
             public void doDownloadSuccess(File file) {
                 manager.cancel(R.string.app_name);
 //                    intallApk(file);
-                Toast.makeText(mCtx, file.getAbsolutePath() + " -- file", 0).show();
+                Toast.makeText(mCtx, file.getAbsolutePath() + " -- file", Toast.LENGTH_SHORT).show();
             }
 
             @Override

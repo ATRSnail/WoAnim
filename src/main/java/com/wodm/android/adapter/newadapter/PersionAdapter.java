@@ -17,6 +17,7 @@ import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.view.newview.MyGridView;
 
 import static com.wodm.R.id.rl_comments;
+import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
  * Created by songchenyu on 16/10/8.
@@ -71,11 +72,12 @@ public class PersionAdapter extends BaseAdapter {
                 }else if (position==1){
                     i.putExtra("position","漫画");
                 }
-                i.setClass((Activity)mContext, RecordActivity.class);
+                i.setClass(mContext, RecordActivity.class);
                 mContext.startActivity(i);
             }
         });
-        holder.textView.setText("0");
+        holder.textView.setText(position == 0? CURRENT_USER.getData().getAnimationCount()+""
+                :""+CURRENT_USER.getData().getCartoonCount());
 
         return convertView;
     }

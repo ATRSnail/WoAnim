@@ -27,6 +27,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
@@ -74,6 +75,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     LinearLayout linearLayout;
     @ViewIn(R.id.img_persion_progress)
     ImageView img_persion_progress;
+    @ViewIn(R.id.tv_edit)
+    TextView editTv;
 
     //    @ViewIn(R.id.btn_degree)
 //    private Button btn_degree;
@@ -100,6 +103,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         scrollow.setFocusableInTouchMode(true);
         scrollow.requestFocus();
         btn_user_info.setOnClickListener(this);
+        editTv.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
 
@@ -289,6 +293,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 break;
             case R.id.show_more_persion:
                 startActivity(new Intent(PersionActivity.this, MyMedalActivity.class));
+                break;
+            case R.id.tv_edit:
+                Intent i=new Intent();
+                i.putExtra("tid", R.id.my_collcet);
+                i.putExtra("title", R.string.collect);
+                i.putExtra("position","动画");
+                i.setClass(PersionActivity.this, RecordActivity.class);
+                startActivity(i);
                 break;
         }
     }
