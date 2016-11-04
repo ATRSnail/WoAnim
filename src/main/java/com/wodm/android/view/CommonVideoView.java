@@ -426,15 +426,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                 videoPauseImg.setImageResource(R.mipmap.play_stop);
                 break;
             case R.id.videoPauseBtn:
-                if (videoView.isPlaying()) {
-                    videoView.pause();
-                    videoPauseImg.setImageResource(R.mipmap.play_start);
-                    videoPlayImg.setVisibility(View.VISIBLE);
-                } else {
-                    videoView.start();
-                    videoPauseImg.setImageResource(R.mipmap.play_stop);
-                    videoPlayImg.setVisibility(View.INVISIBLE);
-                }
+                touchPlayOrPause();
                 break;
             case R.id.viewBox:
                 if (!isScreenLock)
@@ -462,6 +454,22 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                 break;
 
         }
+    }
+
+    public void touchPlayOrPause(){
+        if (videoView.isPlaying()) {
+            videoView.pause();
+            videoPauseImg.setImageResource(R.mipmap.play_start);
+            videoPlayImg.setVisibility(View.VISIBLE);
+        } else {
+            videoView.start();
+            videoPauseImg.setImageResource(R.mipmap.play_stop);
+            videoPlayImg.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public boolean isPlaying(){
+        return videoView.isPlaying();
     }
 
     float y;

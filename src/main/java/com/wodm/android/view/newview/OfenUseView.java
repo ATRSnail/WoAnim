@@ -69,7 +69,7 @@ public class OfenUseView extends RelativeLayout{
         titleLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         titleLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);  //设置居中对齐
         titleLayoutParams.addRule(RelativeLayout.RIGHT_OF, 10);
-        titleLayoutParams.setMargins(10,0,0,0);
+        titleLayoutParams.setMargins(48,0,0,0);
         addView(textView, titleLayoutParams);    //tvTitle以titleLayoutParams的形式加入到ViewGroup中
 //
         ImageView img_right=new ImageView(getContext());

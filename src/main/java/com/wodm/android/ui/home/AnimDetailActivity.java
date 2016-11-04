@@ -2,7 +2,11 @@ package com.wodm.android.ui.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -10,6 +14,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +44,8 @@ import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ChapterDialog;
 import com.wodm.android.dialog.DownDialog;
 import com.wodm.android.dialog.ShareDialog;
+import com.wodm.android.receiver.NetworkChangeListener;
+import com.wodm.android.receiver.NetworkChangeReceive;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
@@ -71,7 +78,7 @@ import java.util.List;
 
 
 @Layout(R.layout.activity_anim_detail)
-public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener {
+public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener,NetworkChangeListener {
     @ViewIn(R.id.common_videoView)
     private CommonVideoView videoView;
     private final String TITLE = "动画详情";
@@ -114,6 +121,8 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private boolean isLandscape;
     private boolean isClickFullScreenButton;
     private boolean isSennor=true;
+
+    private NetworkChangeReceive networkChangeReceive;
 
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -163,6 +172,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         ll_qq_biaoqing = (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing);
         ll_qq_biaoqing.setOnCorpusSelectedListener(this);
 //        findViewById(R.id.anim_send_comment).setEnabled(Constants.CURRENT_USER != null);
+        registerReceiver();
         pullToLoadView.getRecyclerView().addItemDecoration(line);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
         commentBeanList = new ArrayList<>();
@@ -377,6 +387,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
+        unregisterReceiver();
     }
 
     private void showDowmData() {
@@ -680,11 +691,13 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         });
     }
 
+    private boolean isTip = false;//是否已经提示过
     public void startPlay(final ChapterBean bean) {
 
         String network = HttpUtil.getNetworkType(this.getApplicationContext());
         if (!Preferences.getInstance(getApplicationContext()).getPreference("netPlay", false)) {
-            if (!network.equals("WIFI")) {
+            if (!network.equals("WIFI") && !isTip) {
+                isTip = true;
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("是否允许在2G/3G/4G网络下播放").setPositiveButton("允许", new DialogInterface.OnClickListener() {
                     @Override
@@ -772,6 +785,37 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         danmuControler.addBuilt(content);
 //        getBarrageResource(barrage_charterId);
 
+    }
+
+    @Override
+    public void networkChangeListener() {
+        if (isTip || !videoView.isPlaying()) return;
+        videoView.touchPlayOrPause();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("是否允许在2G/3G/4G网络下播放").setPositiveButton("允许", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                videoView.touchPlayOrPause();
+            }
+        }).setNegativeButton("不允许", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
+
+    }
+
+    private  void registerReceiver(){
+        IntentFilter filter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        networkChangeReceive=new NetworkChangeReceive();
+        networkChangeReceive.setNetworkChangeListener(this);
+        this.registerReceiver(networkChangeReceive, filter);
+    }
+
+    private  void unregisterReceiver(){
+        this.unregisterReceiver(networkChangeReceive);
     }
 
 //    private Handler rotateHandler = new Handler() {
@@ -863,6 +907,5 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 //    public void setButtonFullScreenClicked() {
 //        isClickFullScreenButton = true;
 //    }
-
 
 }
