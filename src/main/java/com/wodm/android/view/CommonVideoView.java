@@ -179,7 +179,9 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         tan_anim.setVisibility(v);
         anim_share.setVisibility(v);
         more.setVisibility(v);
-        anim_dowm.setVisibility(v);
+        /**
+         * 将缓存图标隐藏
+       anim_dowm.setVisibility(v);*/
 //        mListAnim.setVisibility(v);
         videoView.requestLayout();
 //        screenLock.setVisibility(v);

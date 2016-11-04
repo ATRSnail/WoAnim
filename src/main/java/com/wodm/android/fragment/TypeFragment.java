@@ -66,7 +66,6 @@ public class TypeFragment extends TrackFragment {
                 final String url = Constants.GET_CATRESOURCE + "?page="+pager + utrdata;
                 postData = utrdata;
 
-                System.out.println("ssss---->"+url);
                 HttpUtil.httpGet(getActivity(), url, new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -106,16 +105,16 @@ public class TypeFragment extends TrackFragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (retList != null && retList.size() > 0 && "1".equals(v.getTag())) {
+                if (retList != null && retList.size() > 0 && "0".equals(v.getTag())) {
+                    imageButton.setTag("1");
+                    setColums(mTabList, retList);
+                    imageButton.setImageResource(R.mipmap.type_shouqi);
+                } else {
                     ArrayList list = new ArrayList();
                     list.add(retList.get(0));
                     setColums(mTabList, list);
                     imageButton.setTag("0");
                     imageButton.setImageResource(R.mipmap.type_xiala);
-                } else {
-                    imageButton.setTag("1");
-                    setColums(mTabList, retList);
-                    imageButton.setImageResource(R.mipmap.type_shouqi);
                 }
             }
         });
@@ -126,8 +125,10 @@ public class TypeFragment extends TrackFragment {
                 try {
                     retList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<TypeBean>>() {
                     }.getType());
-                    setColums(mTabList, retList);
-                    System.out.println("ssss----two");
+                    ArrayList list = new ArrayList();
+                    list.add(retList.get(0));
+                    setColums(mTabList, list);
+//                    setColums(mTabList, retList);
                     mOpusList.initLoad();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -142,7 +143,6 @@ public class TypeFragment extends TrackFragment {
         adapter.setOnClickListener(new TabTypeAdapter.OnClickListener() {
             @Override
             public void onTypaAll(TypeBean bean) {
-                System.out.println("ssss----all");
                 if (postData.indexOf(bean.getParameter()) >= 0) {
                     postData = postData.replace(bean.getParameter(), "");
                     String[] datas = postData.split("&");
@@ -159,7 +159,6 @@ public class TypeFragment extends TrackFragment {
 
             @Override
             public void onTypaOne(TabItemBean tabItemBean, TypeBean bean) {
-                System.out.println("ssss----one");
                 String data = "&" + bean.getParameter() + "=";
 //                if (-1 == utrdata.indexOf(data)) {
 //                    utrdata += (data + tabItemBean.getId());

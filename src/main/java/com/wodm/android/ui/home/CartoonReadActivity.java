@@ -448,6 +448,10 @@ public class CartoonReadActivity extends AppActivity {
             mBottomPortView.findViewById(R.id.collect_box).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (Constants.CURRENT_USER == null) {
+                        Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     collction((CheckBox) v);
                 }
             });
@@ -468,8 +472,8 @@ public class CartoonReadActivity extends AppActivity {
             mScreenText.setText("竖屏");
         }
         mScrollText.setText(orientation == 1 ? "左右" : "上下");
-
-        mDowmView.setVisibility(visibility);
+//将缓存图标隐藏
+//        mDowmView.setVisibility(visibility);
         mShareView.setVisibility(visibility);
         mCollectView.setVisibility(visibility);
 
@@ -480,6 +484,7 @@ public class CartoonReadActivity extends AppActivity {
         if (bean == null) {
             mCollect_box.setEnabled(false);
         } else {
+            Log.e("","---------------------"+"动了");
             mCollect_box.setChecked(1 == bean.getIsCollect());
             mCollectView.setChecked(mCollect_box.isChecked());
         }
@@ -629,12 +634,18 @@ public class CartoonReadActivity extends AppActivity {
 
     @TrackClick(value = R.id.collect_boxtop)
     private void clickCollect(View view) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
+        if (Constants.CURRENT_USER == null) {
+            Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (view.getId() == R.id.collect_boxtop) {
-            mCollectView.setChecked(!mCollectView.isChecked());
-        }
+            if (view.getId() == R.id.collect_boxtop) {
+                mCollectView.setChecked(!mCollectView.isChecked());
+            }
+
+
+
+
+
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "点击收藏");
         collction((CheckBox) view);
     }
@@ -682,7 +693,7 @@ public class CartoonReadActivity extends AppActivity {
         final SeekBar mSeek = (SeekBar) mBottomView.findViewById(R.id.carSeekBar);
         mSeek.setMax(max);
         mSeek.setProgress(progress);
-
+        if(progress==1||progress==0) mSeek.setProgress(0);
         mProView.setText(progress + "/" + max);
         mSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -697,6 +708,7 @@ public class CartoonReadActivity extends AppActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                if(seekBar.getProgress()==0){ pullToLoadView.smoothScrollToPosition(1);}
                 pullToLoadView.smoothScrollToPosition(seekBar.getProgress());
             }
         });
@@ -704,9 +716,7 @@ public class CartoonReadActivity extends AppActivity {
 
 
     private void collction(final CheckBox v) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
-            return;
-        }
+
 
         httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + (bean == null ? "-1" : bean.getId()), new HttpCallback() {
             @Override

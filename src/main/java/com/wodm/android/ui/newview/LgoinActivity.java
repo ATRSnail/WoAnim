@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.tencent.tauth.Tencent;
 import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -19,6 +20,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.QQUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -50,6 +52,8 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     private Button btn_login;
     @ViewIn(R.id.img_we_chat)
     private ImageView img_we_chat;
+    @ViewIn(R.id.img_qq)
+    private ImageView img_qq;
     @ViewIn(R.id.forget_pass_login)
     private TextView forget_pass_login;
     boolean loginFlag = true;
@@ -60,6 +64,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_login.setOnClickListener(this);
         img_we_chat.setOnClickListener(this);
+        img_qq.setOnClickListener(this);
         forget_pass_login.setOnClickListener(this);
 
     }
@@ -107,10 +112,22 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                     MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
                 }
                 break;
+            case R.id.img_qq:
+//                Tencent mTencent = Tencent.createInstance("222222", this.getApplicationContext());
+//                tencentLogin(mTencent);
+//                if (!TextUtils.isEmpty(getUserId())) {
+//                    MobclickAgent.onProfileSignIn("QQ", getUserId());//统计微信登录
+//                }
+                break;
             case R.id.forget_pass_login:
                 startActivity(new Intent(this, ForgetPassActivity.class));
                 break;
         }
+    }
+
+    private void tencentLogin(Tencent mTencent) {
+            QQUtils qq = new QQUtils(mTencent,LgoinActivity.this);
+        qq.login();
     }
 
     private String getUserId() {
@@ -234,5 +251,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             e.printStackTrace();
         }
     }
+
 
 }

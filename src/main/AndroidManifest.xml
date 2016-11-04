@@ -335,10 +335,10 @@
 
 
 
-        <!-- <activity -->
-        <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
+         <!--<activity -->
+         <!--android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
+         <!--android:screenOrientation="portrait" -->
+         <!--android:theme="@style/AppTheme.NoActionBar" /> -->
 
         <activity
             android:name=".android.ui.newview.VipOpenActivity"
@@ -362,7 +362,21 @@
             android:name=".android.ui.newview.MallActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-
+        <!--qq第三方登录注册的活动AuthActivity，AssistActivity -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="222222"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
     </application>
 
 </manifest>
