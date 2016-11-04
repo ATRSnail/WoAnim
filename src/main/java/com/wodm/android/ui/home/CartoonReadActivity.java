@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -68,7 +69,7 @@ public class CartoonReadActivity extends AppActivity {
     private ImageView mShareView;
     @ViewIn(R.id.collect_boxtop)
     private CheckBox mCollectView;
-
+static
     @ViewIn(R.id.read_left)
     private ImageButton mLeftBtn;
     @ViewIn(R.id.read_right)
@@ -441,24 +442,30 @@ public class CartoonReadActivity extends AppActivity {
         int i = getResources().getConfiguration().orientation;
         int visibility = View.GONE;
         if (i == Configuration.ORIENTATION_PORTRAIT) {
+            mBottomView.forceLayout();
+            mBottomView.removeAllViews();
             adapter.notifyDataSetChanged();
-            mBottomView.addView(mBottomPortView);
-//            mBottomPortView.setX(0);
-//            mBottomPortView.setY(Tools.getScreenHeight(this));
+            mBottomView.addView(mBottomPortView,-1);
             mBottomPortView.findViewById(R.id.collect_box).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (Constants.CURRENT_USER == null) {
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                        CheckBox   mCollect_box = (CheckBox) mBottomPortView.findViewById(R.id.collect_box);
+                        mCollect_box.setChecked(!mCollect_box.isChecked());
                         return;
+                    }else {
+                        collction((CheckBox) v);
                     }
-                    collction((CheckBox) v);
+
                 }
             });
         } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+            mBottomView.forceLayout();
+            mBottomView.removeAllViews();
             //notifi主要是为了切换屏幕时让图片跟着变换
             adapter.notifyDataSetChanged();
-            mBottomView.addView(mBottomLandView);
+            mBottomView.addView(mBottomLandView,-1);
 //            mBottomLandView.setX(0);
 //            mBottomLandView.setY(Tools.getScreenHeight(this));
             visibility = View.VISIBLE;
@@ -484,7 +491,6 @@ public class CartoonReadActivity extends AppActivity {
         if (bean == null) {
             mCollect_box.setEnabled(false);
         } else {
-            Log.e("","---------------------"+"动了");
             mCollect_box.setChecked(1 == bean.getIsCollect());
             mCollectView.setChecked(mCollect_box.isChecked());
         }
@@ -634,20 +640,20 @@ public class CartoonReadActivity extends AppActivity {
 
     @TrackClick(value = R.id.collect_boxtop)
     private void clickCollect(View view) {
+
         if (Constants.CURRENT_USER == null) {
+            mCollectView.setChecked(!mCollectView.isChecked());
             Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }else {
             if (view.getId() == R.id.collect_boxtop) {
                 mCollectView.setChecked(!mCollectView.isChecked());
+                Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "点击收藏");
+                collction((CheckBox) view);
             }
 
+        }
 
-
-
-
-        Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "点击收藏");
-        collction((CheckBox) view);
     }
 
     @TrackClick(value = R.id.anim_share)
@@ -715,8 +721,7 @@ public class CartoonReadActivity extends AppActivity {
     }
 
 
-    private void collction(final CheckBox v) {
-
+    public void collction(final CheckBox v) {
 
         httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + (bean == null ? "-1" : bean.getId()), new HttpCallback() {
             @Override
@@ -726,11 +731,11 @@ public class CartoonReadActivity extends AppActivity {
                     if (obj.getString("code").equals("1000")) {
                         bean.setIsCollect(1);
                         v.setChecked(bean.getIsCollect() == 1);
-
+                        mCollectView.setChecked(bean.getIsCollect() == 1);
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT
                         ).show();
                     }
-                    mCollectView.setChecked(bean.getIsCollect() == 1);
+//                    mCollectView.setChecked(bean.getIsCollect() == 1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -749,9 +754,7 @@ public class CartoonReadActivity extends AppActivity {
                         CheckBox box = v;
                         box.setChecked(!box.isChecked());
                     }
-
                     v.setChecked(bean.getIsCollect() == 1);
-
                     mCollectView.setChecked(bean.getIsCollect() == 1);
                 } catch (JSONException e) {
                     e.printStackTrace();

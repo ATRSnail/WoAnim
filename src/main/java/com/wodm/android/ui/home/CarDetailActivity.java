@@ -497,6 +497,9 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
             Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
         }
     };
+
+
+
     private void CommentData(){
         httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
 

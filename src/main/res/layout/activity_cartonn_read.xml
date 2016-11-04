@@ -109,6 +109,7 @@
 
                 <CheckBox
                     android:id="@+id/collect_boxtop"
+                    android:checked="false"
                     style="@style/CustomCheckboxTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

@@ -251,8 +251,13 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         videoView.setVideoCall(new CommonVideoView.VideoViewCall() {
             @Override
             public void doVideoCollection(CheckBox box) {
-                box.setChecked(1 != bean.getIsCollect());
-                collction(box);
+                if (Constants.CURRENT_USER == null) {
+                    box.setChecked(!box.isChecked());
+                    Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }else
+                {box.setChecked(1 != bean.getIsCollect());
+                collction(box);}
             }
 
             @Override
@@ -448,7 +453,12 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                     break;
                 case R.id.anim_collect2:
                     eventName = "收藏/取消收藏 操作";
-                    collction((CheckBox) v);
+                    if (Constants.CURRENT_USER == null) {
+                        isCollectBox.setChecked(!isCollectBox.isChecked());
+                        Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else
+                    { collction((CheckBox) v);}
                     break;
                 case R.id.anim_send_comment:
                     eventName = "发布评论操作";
@@ -510,11 +520,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
 
     private void collction(final CheckBox v) {
 
-        if (Constants.CURRENT_USER == null) {
-            isCollectBox.setChecked(!isCollectBox.isChecked());
-            Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
 
         httpGet(Constants.ULR_COLLECT + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId, new HttpCallback() {
             @Override
