@@ -60,11 +60,13 @@ public class UsSetActivity extends AppActivity {
 
     @TrackClick(value = R.id.feek_back, location = TITLE, eventName = "进入意见反馈页面")
     private void clickFeekBack(View view) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
+        Intent intent=new Intent();
+        intent.setClass(this,FeekBackActivity.class);
+        if (!UpdataUserInfo.isLogIn(this, true,intent)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
-        startActivity(new Intent(this, FeekBackActivity.class));
+        startActivity(intent);
     }
 
     @TrackClick(value = R.id.connect_us, location = TITLE, eventName = "进入关于我们页面")
@@ -86,7 +88,7 @@ public class UsSetActivity extends AppActivity {
 
     @TrackClick(value = R.id.Reset_pass, location = TITLE, eventName = "修改密码")
     private void clickResetPass(View view) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
+        if (!UpdataUserInfo.isLogIn(this, true,null)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }

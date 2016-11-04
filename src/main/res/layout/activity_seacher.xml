@@ -91,59 +91,64 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <LinearLayout
-        android:id="@+id/layout_views"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:padding="@dimen/px_20"
-            android:text="热门搜索"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <com.wodm.android.view.FlowLayout
-            android:id="@+id/flow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:paddingLeft="@dimen/px_20"
-            android:paddingRight="@dimen/px_20" />
-
-        <include layout="@layout/layout_line" />
-
-        <org.eteclab.ui.widget.NoScrollGridView
-            android:id="@+id/hostory_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cacheColorHint="#0000"
-            android:listSelector="#0000"
-            android:numColumns="1"
-            android:verticalSpacing="@dimen/px_1" />
-
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/clear_layout"
+            android:id="@+id/layout_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/layout_line" />
-
             <TextView
-                android:id="@+id/clear_jilu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/px_40"
-                android:text="清空搜索记录"
-                android:textColor="#F34F85"
-                android:textSize="@dimen/text_size_34_px" />
-        </LinearLayout>
+                android:background="@android:color/white"
+                android:padding="@dimen/px_20"
+                android:text="热门搜索"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </LinearLayout>
+            <com.wodm.android.view.FlowLayout
+                android:id="@+id/flow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="@dimen/px_20"
+                android:paddingRight="@dimen/px_20" />
+
+            <include layout="@layout/layout_line" />
+
+            <org.eteclab.ui.widget.NoScrollGridView
+                android:id="@+id/hostory_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="#0000"
+                android:listSelector="#0000"
+                android:numColumns="1"
+                android:verticalSpacing="@dimen/px_1" />
+
+            <LinearLayout
+                android:id="@+id/clear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_line" />
+
+                <TextView
+                    android:id="@+id/clear_jilu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/px_40"
+                    android:text="清空搜索记录"
+                    android:textColor="#F34F85"
+                    android:textSize="@dimen/text_size_34_px" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 
     <org.eteclab.ui.widget.pulltorefresh.PullToLoadView

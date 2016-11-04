@@ -7,7 +7,6 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,13 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -193,7 +190,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
     @Override
     public void addBullet(final String content) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
+        if (!UpdataUserInfo.isLogIn(this, true,null)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }

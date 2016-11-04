@@ -12,11 +12,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.ui.home.AnimDetailActivity;
@@ -87,6 +86,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private boolean animation = false;
     private LinearLayout ll_bottom;
     private SendBulletListener sendBulletListener;
+    private setTimeDBListener settimeListener;
 
     public interface SendBulletListener {
         public void sendBullet();
@@ -155,6 +155,14 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         videoView.start();
     }
 
+
+    public interface setTimeDBListener{
+        public void setTime(String playUrl,int time);
+    }
+    public void setTimeListener(setTimeDBListener listener){
+        this.settimeListener=listener;
+
+    }
     public void setFullScreen() {
         orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
@@ -627,6 +635,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         videoView.seekTo(videoSeekBar.getProgress());
+        Toast.makeText(context, ""+videoSeekBar.getProgress(), Toast.LENGTH_SHORT).show();
         videoView.start();
         videoPlayImg.setVisibility(View.INVISIBLE);
         videoPauseImg.setImageResource(R.mipmap.play_stop);

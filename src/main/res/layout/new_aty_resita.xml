@@ -8,7 +8,7 @@
     <com.wodm.android.view.newview.AtyTopLayout
         android:id="@+id/set_topbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y90"
+        android:layout_height="@dimen/px_90"
         app:CustomtitleTextColor="@android:color/black"
         app:CustomtitleTextSize="@dimen/text_size_48_px"
         app:BackGroundColor="@color/color_f5c92f"
@@ -28,7 +28,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y86">
+                android:layout_height="@dimen/px_86">
 
                 <EditText
                     android:inputType="phone"
@@ -39,7 +39,7 @@
                     android:textColor="@color/color_3d3d3d"
                     android:hint="@string/input_phone"
                     android:textColorHint="@color/color_cccccc"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginLeft="@dimen/px_40"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -52,7 +52,7 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y86">
+                android:layout_height="@dimen/px_86">
 
                 <EditText
                     android:inputType="textPassword"
@@ -63,7 +63,7 @@
                     android:textColorHint="@color/color_cccccc"
                     android:textColor="@color/color_3d3d3d"
                     android:hint="@string/password"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginLeft="@dimen/px_40"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -76,7 +76,7 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y86">
+                android:layout_height="@dimen/px_86">
 
                 <EditText
                     android:textColorHint="@color/color_cccccc"
@@ -87,14 +87,14 @@
                     android:textSize="@dimen/text_size_36_px"
                     android:textColor="@color/color_3d3d3d"
                     android:hint="@string/input_yzm"
-                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginLeft="@dimen/px_40"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
                 <Button
-                    android:layout_marginRight="@dimen/x40"
-                    android:layout_marginTop="@dimen/y10"
-                    android:layout_marginBottom="@dimen/y10"
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/px_40"
+                    android:layout_marginTop="@dimen/px_10"
+                    android:layout_marginBottom="@dimen/px_10"
+                    android:layout_marginLeft="@dimen/px_20"
                     android:id="@+id/btn_yzm"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
@@ -102,29 +102,29 @@
                     android:background="@drawable/btn_yzm"
                     android:text="@string/get_code"
                     android:textColor="@color/color_ffffff"
-                    android:layout_width="@dimen/x107"
-                    android:layout_height="@dimen/y64" />
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="@dimen/px_64" />
 
             </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
-         android:layout_marginTop="@dimen/y30"
+         android:layout_marginTop="@dimen/px_30"
          android:orientation="vertical"
          android:layout_width="match_parent"
          android:layout_height="match_parent">
     <Button
         android:id="@+id/btn_finish"
-        android:layout_marginLeft="@dimen/x40"
-        android:layout_marginRight="@dimen/x40"
-        android:layout_marginTop="@dimen/y40"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_40"
         android:textColor="@color/color_3f190c"
         android:text="@string/finsh"
         android:textSize="@dimen/text_size_36_px"
         android:background="@drawable/btn_login_shape"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y83" />
+        android:layout_height="@dimen/px_83" />
     </LinearLayout>
 
 </LinearLayout>

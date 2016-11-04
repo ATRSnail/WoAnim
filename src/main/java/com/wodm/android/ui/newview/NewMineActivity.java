@@ -16,6 +16,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.NoScrollListView;
 
@@ -161,30 +162,39 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;
             case R.id.no_login:
+                Intent intent22=new Intent();
+                intent22.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent22.setClass(getActivity(), Main2Activity.class);
                 Intent intent = new Intent(getActivity(), LgoinActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("intentclass",intent22);
                 startActivity(intent);
                 break;
             case R.id.ll_vip:
-                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                startActivity(new Intent(getActivity(), VipActivity.class));
+                Intent i=new Intent();
+                i.setClass(getActivity(), VipActivity.class);
+                if (!UpdataUserInfo.isLogIn(getActivity(), true,i)) {
+                Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                return;
+                 }
+                startActivity(i);
                 break;
             case R.id.ll_degree:
-                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                Intent i2=new Intent();
+                i2.setClass(getActivity(), MyLevelActivity.class);
+                if (!UpdataUserInfo.isLogIn(getActivity(), true, i2)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                startActivity(new Intent(getActivity(), MyLevelActivity.class));
+                startActivity(i2);
                 break;
             case R.id.ll_my_wallet:
-                if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                Intent i3=new Intent();
+                i3.setClass(getActivity(), MyWalletActivity.class);
+                if (!UpdataUserInfo.isLogIn(getActivity(), true, i3)) {
                     Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                startActivity(new Intent(getActivity(), MyWalletActivity.class));
+                startActivity(i3);
                 break;
 
         }

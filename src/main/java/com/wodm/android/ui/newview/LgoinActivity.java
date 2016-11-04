@@ -57,10 +57,14 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     @ViewIn(R.id.forget_pass_login)
     private TextView forget_pass_login;
     boolean loginFlag = true;
+    private Intent intentclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent().getExtras()!=null){
+            intentclass=getIntent().getParcelableExtra("intentclass");
+        }
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_login.setOnClickListener(this);
         img_we_chat.setOnClickListener(this);
@@ -94,8 +98,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     @Override
     public void onClick(View v) {
-
-
         switch (v.getId()) {
             case R.id.btn_login:
                 String password = et_password.getText().toString();
@@ -195,10 +197,16 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
         @Override
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
+            if (intentclass!=null){
+                startActivity(intentclass);
+                finish();
+                return;
+            }
+            finish();
 //            Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //            startActivity(intent);
-            finish();
+//            finish();
 //            if (loginFlag) {
 //                Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
 //                startActivity(intent);
@@ -233,9 +241,12 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     try {
-                        Preferences.getInstance(getApplicationContext()).setPreference("userId", Long.valueOf(obj.getString("userId")));
+                        Preferences.getInstance(getApplicationContext()).setPreference("userId", obj.optInt("userId"));
                         Preferences.getInstance(getApplicationContext()).setPreference("token", obj.getString("token"));
                         infos.getUserInfo(LgoinActivity.this, Long.valueOf(obj.getString("userId")));
+//                        Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

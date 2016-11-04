@@ -76,7 +76,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private TextView mChapterDesp;
 
     private TextView mTitleDesp;
-    public EditText mCommentView;
+    public  EditText mCommentView;
     private CheckBox isCollectBox;
     private FaceRelativeLayout ll_qq_biaoqing;
     private CircularImage img_xiaolian;
@@ -84,7 +84,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private ArrayList<CommentBean> commentBeanList;
     private ImageView danmu_kaiguan;
     private Dialog dialog=null;
-
+    private boolean isLoadMore=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,15 +118,13 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean b) {
-                if (commentBeanList.size()%10==0){
+                if (commentBeanList.size()%10==0||isLoadMore){
                     httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
 
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
                             try {
-
-
                                 ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
                                 }.getType());
                                 commentBeanList=beanList;
@@ -142,6 +140,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         }
                     });
                 }else {
+                    isLoadMore=false;
                     pullToLoadView.setComplete();
                 }
 
@@ -472,6 +471,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                 super.doAuthSuccess(result, obj);
                                 try {
                                     if (obj.getString("code").equals("1000")) {
+                                        isLoadMore=true;
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
                                         mCommentView.setText("");
@@ -512,6 +512,10 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     if (beanList.size() == 0) {
                         beanList.add(new CommentBean());
                     }
+                    if (beanList.size()%10==0){
+                        isLoadMore=false;
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

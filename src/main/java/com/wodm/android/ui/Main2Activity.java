@@ -217,7 +217,7 @@ public class Main2Activity extends AppActivity {
 
     @TrackClick(value = R.id.enter_floating, location = "", eventName = "签到")
     private void clickSignin(View v) {
-        if (!UpdataUserInfo.isLogIn(this, true)) {
+        if (!UpdataUserInfo.isLogIn(this, true,null)) {
             return;
         }
         httpGet(Constants.URL_SIGNIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {

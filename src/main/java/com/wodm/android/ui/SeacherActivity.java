@@ -46,6 +46,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+
 @Layout(R.layout.activity_seacher)
 public class SeacherActivity extends AppActivity {
 
@@ -71,6 +72,7 @@ public class SeacherActivity extends AppActivity {
     @ViewIn(R.id.hostory_list)
     private NoScrollGridView hostoryList;
     private SeacherAdapter adapter;
+    private List<HotWordBean> hotWordBeanList;
 
     @TrackClick(value = R.id.search_type, location = TITLE, eventName = "选择类型")
     private void clickType(View view) {
@@ -157,6 +159,9 @@ public class SeacherActivity extends AppActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 mClear.setVisibility(s.length() > 0 ? View.VISIBLE : View.INVISIBLE);
+//                if (s.length()==0){
+//                    clearEdittext();
+//                }
             }
         });
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
@@ -175,12 +180,11 @@ public class SeacherActivity extends AppActivity {
                         try {
                             List<ObjectBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());
-
+                            pullToLoadView.setVisibility(View.VISIBLE);
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
                             if (adapter!=null&&adapter.getItemCount() <= 0){
                                 mLayout.setVisibility(View.VISIBLE);
                             }
-
 //                            adapter.setOnItemClickListener(new HolderAdapter.OnItemClickListener() {
 //                                @Override
 //                                public void onItemClick(View view, Object o, int i) {
@@ -221,7 +225,9 @@ public class SeacherActivity extends AppActivity {
                 try {
                     List<HotWordBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<HotWordBean>>() {
                     }.getType());
+                    hotWordBeanList=beanList;
                     setFlowViews(beanList);
+                    mLayout.setVisibility(View.VISIBLE);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -254,6 +260,8 @@ public class SeacherActivity extends AppActivity {
             public void onClick(View v) {
                 HotWordBean item = (HotWordBean) v.getTag();
                 startSeacher(item.getName());
+                CommonUtil.hideKeyboard(getApplicationContext(), mDataText);
+                mDataText.setText(item.getName());
             }
         });
         view.setLayoutParams(lp);
@@ -264,7 +272,13 @@ public class SeacherActivity extends AppActivity {
     @TrackClick(R.id.clear)
     private void clear(View v) {
         mDataText.setText("");
+        setFlowViews(hotWordBeanList);
+        uphostortList();
+        CommonUtil.hideKeyboard(getApplicationContext(), mDataText);
+        mLayout.setVisibility(View.VISIBLE);
+        pullToLoadView.setVisibility(View.GONE);
     }
+
 
 
     @TrackClick(R.id.clear_jilu)

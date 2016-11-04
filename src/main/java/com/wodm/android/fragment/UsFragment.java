@@ -100,18 +100,20 @@ public class UsFragment extends TrackFragment {
                     startActivity(i);
                     break;
                 case R.id.message:
-                    if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                    i.setClass(getActivity(),UserMessageActivity.class);
+                    if(!UpdataUserInfo.isLogIn(getActivity(),true,i)){
                         Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    startActivity(new Intent(getActivity(), UserMessageActivity.class));
+                    startActivity(i);
                     break;
                 case R.id.my_dowm:
-                    if (!UpdataUserInfo.isLogIn(getActivity(), true)) {
+                    i.setClass(getActivity(),UserCacheActivity.class);
+                    if (!UpdataUserInfo.isLogIn(getActivity(), true,i)) {
                         Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    startActivity(new Intent(getActivity(), UserCacheActivity.class));
+                    startActivity(i);
                     break;
                 case R.id.watch_records:
                     i.putExtra("tid", R.id.watch_records);
@@ -119,19 +121,20 @@ public class UsFragment extends TrackFragment {
                     startActivity(i);
                     break;
                 case R.id.my_collcet:
-                    if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                    i.putExtra("tid", R.id.my_collcet);
+                    i.putExtra("title", R.string.collect);
+                    if(!UpdataUserInfo.isLogIn(getActivity(),true,i)){
                         Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    i.putExtra("tid", R.id.my_collcet);
-                    i.putExtra("title", R.string.collect);
                     startActivity(i);
                     break;
                 case R.id.integral:
-                    if(!UpdataUserInfo.isLogIn(getActivity(),true)){
+                    i.setClass(getActivity(),UserIntegralActivity.class);
+                    if(!UpdataUserInfo.isLogIn(getActivity(),true,i)){
                         return;
                     }
-                    startActivity(new Intent(getActivity(), UserIntegralActivity.class));
+                    startActivity(i);
                     break;
                 case R.id.set_layout:
                     startActivity(new Intent(getActivity(), UsSetActivity.class));
@@ -143,8 +146,10 @@ public class UsFragment extends TrackFragment {
 
     @TrackClick(value = R.id.user_info, location = TITLE, eventName = "跳转登录注册界面")
     private void clickUserInfo(View view) {
-        if (UpdataUserInfo.isLogIn(getActivity(),true))
-            startActivity(new Intent(getActivity(), UserInfoActivity.class));
+        Intent intent=new Intent();
+        intent.setClass(getActivity(), UserInfoActivity.class);
+        if (UpdataUserInfo.isLogIn(getActivity(),true,intent))
+            startActivity(intent);
     }
 
 }

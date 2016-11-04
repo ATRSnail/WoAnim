@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.wodm.android.Constants.CURRENT_USER;
+import static com.wodm.android.utils.ImageTools.getPath;
 
 /**
  * Created by songchenyu on 16/10/11.
@@ -306,24 +307,27 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }
     }
 
+
     private void clickIcon() {
         List<BottomPopupMenu.TagAndEvent> list = new ArrayList<>();
         list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (bottomPopupMenu != null)
                     bottomPopupMenu.dismiss();
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                File filesss=getPath();
                 mPhotoPath = "img-" + System.currentTimeMillis() + ".jpg";
                 if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
                     mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
                 } else {
                     return;
                 }
-//                File file=new File(mPhotoPath);
-//                if (!file.exists()){
-//                    mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + mPhotoPath;
-//                }
+                File file=new File(mPhotoPath);
+                if (!file.exists()){
+                    mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + mPhotoPath;
+                }
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
                 startActivityForResult(intent, TAKE_PRICTURE);
 

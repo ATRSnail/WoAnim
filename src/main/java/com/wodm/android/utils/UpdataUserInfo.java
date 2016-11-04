@@ -43,10 +43,19 @@ public abstract class UpdataUserInfo {
     }
 
     public abstract void getUserInfo(UserInfoBean bean);
-
-    public static Boolean isLogIn(Context ctx, Boolean isLogin) {
+    public static Boolean isLogIn(){
+        if (Constants.CURRENT_USER == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+    public static Boolean isLogIn(Context ctx, Boolean isLogin,Intent intentclass) {
         if (isLogin && Constants.CURRENT_USER == null) {
             Intent intent=new Intent(ctx, LgoinActivity.class);
+            if (intentclass!=null){
+                intent.putExtra("intentclass",intentclass);
+            }
             ctx.startActivity(intent);
         }
         return Constants.CURRENT_USER != null;

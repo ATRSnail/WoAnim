@@ -70,6 +70,7 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
                     isLogin=Constants.CURRENT_USER.getData().getAccount().getId()+"";
                 }
                 webView.loadUrl("javascript:webViewWeatherLogon('" + isLogin + "')");
+                sendInfoToJs(isLogin,5);
             }
         });
         int mDensity = metrics.densityDpi;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -34,8 +33,8 @@ public class WelcomeActivity extends AppActivity {
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
 //                        try {
+
                         Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
-//                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                         userInfo.getUserInfo(getApplicationContext(), userId);
                         medalInfo.getMedalInfo(getApplicationContext(), userId);
 //                        } catch (JSONException e) {

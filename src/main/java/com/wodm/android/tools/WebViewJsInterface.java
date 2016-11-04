@@ -36,6 +36,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
     }
     private String title="";
     private String description="";
+    private int userId;
 //    @JavascriptInterface
 //    public void webViewWeatherLogon(){
 //        if (Constants.CURRENT_USER==null){
@@ -144,7 +145,9 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                         accountBean.setType(obj.getInt("type"));
                         dataBean.setAccount(accountBean);
                         bean.setData(dataBean);
-                        int userId=obj.getInt("userId");
+                        int id=obj.getInt("userId");
+                        userId=id;
+                        listener.setJsInfo(userId,1);
                         listener.setJsInfo(userId,5);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -171,16 +174,18 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
         listener.setJsInfo(true,3);
         try {
             JSONObject jsonObject=new JSONObject();
-            long userId = CURRENT_USER.getData().getAccount().getId();
+            if (CURRENT_USER!=null){
+                userId = CURRENT_USER.getData().getAccount().getId();
+            }
             jsonObject.put("userId",userId);
             jsonObject.put("stype",2);
             jsonObject.put("sname",title);
             jsonObject.put("tochannel",1);
             jsonObject.put("description",description);
+            Log.e("SCY"," - -  -- -  "+userId);
             ((AppActivity)mContext).httpPost(Constants.APP_GET_SHARE,jsonObject, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-
                     Log.e("SCY"," - - - -"+obj.toString());
                 }
             });

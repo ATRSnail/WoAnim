@@ -25,12 +25,12 @@ import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
 import com.wodm.android.ui.user.UserIntegralActivity;
 import com.wodm.android.ui.user.UserMessageActivity;
-import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.track.Tracker;
 
 import static com.wodm.R.id.adapter_view;
+import static com.wodm.android.utils.UpdataUserInfo.isLogIn;
 
 /**
  * Created by songchenyu on 16/9/26.
@@ -120,8 +120,8 @@ public class NewMineAdapter extends BaseAdapter {
 
     private void getIntent(String text) {
         Tracker.getInstance(mContext).trackMethodInvoke("我的", "跳转" + text + "界面");
-        if (!UpdataUserInfo.isLogIn(mContext, true) && !text.equals("设置")) {
-            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
+        if (!isLogIn()&& !text.equals("设置")){
+            startActivity(text);
             return;
         }
         Intent i = new Intent();
@@ -163,7 +163,39 @@ public class NewMineAdapter extends BaseAdapter {
             Toast.makeText(mContext, "此功能暂未开通,敬请期待!", Toast.LENGTH_SHORT).show();
         }
     }
-
+    private void startActivity(String text){
+        Intent i = new Intent();
+        if (text.equals("@我的")) {
+            i.setClass(mContext,UserMessageActivity.class);
+        } else if (text.equals("收藏")) {
+            i.putExtra("tid", R.id.my_collcet);
+            i.putExtra("title", R.string.collect);
+            i.setClass(mContext, RecordActivity.class);
+        } else if (text.equals("积分")) {
+            i.setClass(mContext, UserIntegralActivity.class);
+        } else if (text.equals("设置")) {
+            i.setClass(mContext, UsSetActivity.class);
+        } else if (text.equals("成就")) {
+            i.setClass(mContext, MyMedalActivity.class);
+        } else if (text.equals("足迹")) {
+            i.putExtra("tid", R.id.watch_records);
+            i.putExtra("title", R.string.wathc_recoder);
+            i.setClass(mContext, RecordActivity.class);
+        } else if (text.equals("缓存")) {
+            i.putExtra("tid", R.id.watch_records);
+            i.putExtra("title", R.string.wathc_recoder);
+        } else if (text.equals("任务")) {
+            i.setClass(mContext, TaskActivity.class);
+        } else if (text.equals("客服")) {
+            i.setClass(mContext, CustomerServiceActivity.class);
+        } else if (text.equals("商城")) {
+            i.setClass(mContext, MallActivity.class);
+        }
+        if (!isLogIn(mContext, true,i) && !text.equals("设置")) {
+            Toast.makeText(mContext, "请先登录", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
     private void startIntent(Intent intent, Class classs) {
         if (intent == null)
             intent = new Intent();

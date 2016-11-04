@@ -69,7 +69,7 @@ public class CartoonReadActivity extends AppActivity {
     private ImageView mShareView;
     @ViewIn(R.id.collect_boxtop)
     private CheckBox mCollectView;
-static
+
     @ViewIn(R.id.read_left)
     private ImageButton mLeftBtn;
     @ViewIn(R.id.read_right)
