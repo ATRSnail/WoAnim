@@ -2,20 +2,14 @@ package com.wodm.android.ui.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
@@ -83,7 +77,7 @@ import static com.wodm.R.id.pull_list;
 
 
 @Layout(R.layout.activity_anim_detail)
-public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
+public class AnimDetailActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
     @ViewIn(R.id.common_videoView)
     private CommonVideoView videoView;
     private final String TITLE = "动画详情";
@@ -792,14 +786,21 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             }
         }
     }
+    private void getAllLookHistory() {
+
+
+    }
     private void saveSeacherHos(ChapterBean bean) {
         try {
             AnimLookCookieBean animLookCookieBean=new AnimLookCookieBean();
             animLookCookieBean.setRescoureid(bean.getId());
             animLookCookieBean.setAnimname(bean.getTitle());
-            animLookCookieBean.setAnimUrl(bean.getContentUrl());
-            WoDbUtils.initialize(getApplicationContext()).delete(AnimLookCookieBean.class, WhereBuilder.b().and("animUrl", "=", animLookCookieBean.getAnimUrl()));
+            int index=bean.getContentUrl().indexOf("?");
+            String playUrl=bean.getContentUrl().substring(0,index);
+            animLookCookieBean.setAnimUrl(playUrl);
+            WoDbUtils.initialize(getApplicationContext()).delete(AnimLookCookieBean.class,WhereBuilder.b("animUrl"," = ",playUrl));
             WoDbUtils.initialize(getApplicationContext()).save(animLookCookieBean);
+//            List<AnimLookCookieBean> beanList= WoDbUtils.initialize(getApplicationContext()).findAll(Selector.from(AnimLookCookieBean.class).where("animUrl", "=", playUrl));
          } catch (DbException e) {
             e.printStackTrace();
         }
@@ -827,10 +828,18 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     }
 
     @Override
-    public void setTime(String playUrl,int time) {
+    public void setTime(String playUrl,int time,int totalTime) {
         try {
-            WoDbUtils.initialize(getApplicationContext()).update(AnimLookCookieBean.class, WhereBuilder.b("animUrl","=",playUrl));
-        } catch (DbException e) {
+            AnimLookCookieBean animLookCookieBean=new AnimLookCookieBean();
+            if (time>totalTime){
+                animLookCookieBean.setLookTime(time);
+                animLookCookieBean.setTotalTime(totalTime);
+                WoDbUtils.initialize(getApplicationContext()).update(AnimLookCookieBean.class, WhereBuilder.b("animUrl","=",playUrl));
+            }else if (time==totalTime){
+                animLookCookieBean.setPlayState(1);
+                WoDbUtils.initialize(getApplicationContext()).update(AnimLookCookieBean.class, WhereBuilder.b("animUrl","=",playUrl));
+            }
+            } catch (DbException e) {
             e.printStackTrace();
         }
     }

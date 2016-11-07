@@ -13,8 +13,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -39,9 +37,7 @@ import com.wodm.android.bean.DowmBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
-import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
@@ -254,6 +250,7 @@ public class CartoonReadActivity extends AppActivity {
     }
 
     boolean flag = true;
+    int mBottomViewHight=0;
 
     private void setListView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -281,18 +278,19 @@ public class CartoonReadActivity extends AppActivity {
 
                         if (Math.sqrt(((startx - endx) * (startx - endx) + (starty - endy) * (starty - endy))) < 5) {
                             float bvy = mBottomView.getY();
-//                            Log.e("AAAAAAAAAAAAA","*****************"+bvy);
-                            float tvy = mTopView.getY();
+                            int hight=mBottomView.getHeight();
+                            if (mBottomViewHight<hight){
+                                mBottomViewHight=hight;
+                            }
+
                             if (!videoControllerShow && !animation) {
                                 animation = true;
                                 videoControllerShow = !videoControllerShow;
-                                startAnimation(mBottomView, bvy, bvy + mBottomView.getHeight(), animatorListener);
+                                startAnimation(mBottomView, bvy, bvy +mBottomViewHight, animatorListener);
                             } else if (!animation) {
                                 videoControllerShow = !videoControllerShow;
-                                startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
+                                startAnimation(mBottomView, bvy, bvy - mBottomViewHight, animatorListener);
                             }
-
-//                            myAnimation(bvy);
 
                         }
                         break;
