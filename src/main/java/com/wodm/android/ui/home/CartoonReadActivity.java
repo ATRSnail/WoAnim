@@ -76,7 +76,7 @@ public class CartoonReadActivity extends AppActivity {
     @ViewIn(R.id.read_right)
     private ImageButton mRightBtn;
 
-     int flag=0;
+     int flagNum=0;
     @InflateView(R.layout.layout_bottom_port)
     private View mBottomPortView;
     @InflateView(R.layout.layout_bottom_land)
@@ -305,18 +305,6 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
-
-//    private void myAnimation(float bvy) {
-//        if (flag) {
-//            flag = false;
-//            startAnimation(mBottomView, bvy, bvy + mBottomView.getHeight(), animatorListener);
-//            Log.e("AAAAAAAAAAAAA","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
-//        } else if (!flag ) {
-//            startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
-//            Log.e("BBBBBBBBBBBBBBB","*****************"+bvy+"----------"+mBottomView.getHeight()+"-----------"+ Tools.getScreenHeight(this));
-//            flag = true;
-//        }
-//    }
 
     private void setLoadAndRefresh() {
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -639,10 +627,10 @@ public class CartoonReadActivity extends AppActivity {
     @TrackClick(value = R.id.layout_top, location = TITLE, eventName = "退出界面")
     private void clickfinish(View view) {
             Intent intent=new Intent();
-            intent.putExtra("key",flag);
+            intent.putExtra("key",flagNum);
             intent.putExtra("bean", bean);
             setResult(RESULT_OK, intent);
-            flag=0;
+            flagNum=0;
         finish();
     }
 
@@ -740,7 +728,7 @@ public class CartoonReadActivity extends AppActivity {
                         bean.setIsCollect(1);
                         v.setChecked(bean.getIsCollect() == 1);
                         mCollectView.setChecked(bean.getIsCollect() == 1);
-                       flag=1;
+                        flagNum=1;
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT
                         ).show();
                     }

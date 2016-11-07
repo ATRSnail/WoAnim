@@ -87,7 +87,6 @@ import static com.wodm.R.id.pull_list;
 
 @Layout(R.layout.activity_anim_detail)
 public class AnimDetailActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
-public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener,NetworkChangeListener {
     @ViewIn(R.id.common_videoView)
     private CommonVideoView videoView;
     private final String TITLE = "动画详情";
@@ -158,7 +157,7 @@ private ScreenSwitchUtils screenSwitchUtils;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initHeaderViews();
-        videoView.setTimeListener(this);
+        videoView.setTimeListener(AnimDetailActivity.this);
         biaoqingtools = BiaoqingTools.getInstance();
         resourceId = getIntent().getIntExtra("resourceId", -1);
         DividerLine line = new DividerLine();
