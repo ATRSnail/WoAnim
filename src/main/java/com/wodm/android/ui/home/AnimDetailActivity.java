@@ -2,6 +2,8 @@ package com.wodm.android.ui.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -20,7 +22,6 @@ import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -31,19 +32,15 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
-import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.CommentAdapter;
 import com.wodm.android.adapter.SeriesAdapter;
-import com.wodm.android.bean.AnimLookCookieBean;
 import com.wodm.android.bean.BarrageBean;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
-import com.wodm.android.db.WoDbUtils;
 import com.wodm.android.dialog.ChapterDialog;
 import com.wodm.android.dialog.DownDialog;
 import com.wodm.android.dialog.ShareDialog;
@@ -54,6 +51,7 @@ import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.Preferences;
+import com.wodm.android.utils.ScreenSwitchUtils;
 import com.wodm.android.view.CommonVideoView;
 import com.wodm.android.view.DividerLine;
 import com.wodm.android.view.biaoqing.FaceConversionUtil;
@@ -79,18 +77,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wodm.R.id.pull_list;
-
 
 @Layout(R.layout.activity_anim_detail)
-public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
+public class AnimDetailActivity extends AppActivity implements FaceRelativeLayout.BiaoQingClickListener,NetworkChangeListener {
     @ViewIn(R.id.common_videoView)
     private CommonVideoView videoView;
     private final String TITLE = "动画详情";
 
     private List<ChapterBean> mChapterList;
 
-    @ViewIn(pull_list)
+    @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
 
     @InflateView(R.layout.layout_cartoon_detail)
@@ -126,8 +122,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private boolean isLandscape;
     private boolean isClickFullScreenButton;
     private boolean isSennor=true;
-    private boolean isLoadMore=false;
-
+private ScreenSwitchUtils screenSwitchUtils;
     private NetworkChangeReceive networkChangeReceive;
 
     private void initHeaderViews() {
@@ -146,6 +141,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
         mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
         isCollectBox.setOnClickListener(onClickListener);
+        screenSwitchUtils=ScreenSwitchUtils.init(this);
     }
 
 
@@ -153,7 +149,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initHeaderViews();
-        videoView.setTimeListener(this);
         biaoqingtools = BiaoqingTools.getInstance();
         resourceId = getIntent().getIntExtra("resourceId", -1);
         DividerLine line = new DividerLine();
@@ -187,7 +182,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             @Override
             protected void requestData(final int pager, final boolean b) {
                 //解决分页重复请求只能请求到同一个数据BUG
-                if (commentBeanList.size() % 10 == 0||isLoadMore) {
+                if (commentBeanList.size() % 10 == 0) {
                     httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
 
                         @Override
@@ -212,7 +207,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                         }
                     });
                 } else {
-                    isLoadMore=false;
                     pullToLoadView.setComplete();
                 }
 
@@ -318,9 +312,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                     if (beanList.size() == 0) {
                         beanList.add(new CommentBean());
                     }
-                    if (beanList.size()%10==0){
-                        isLoadMore=false;
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -404,6 +395,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             dialog.dismiss();
         }
         unregisterReceiver();
+        screenSwitchUtils.stop();
     }
 
     private void showDowmData() {
@@ -437,15 +429,9 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                 case R.id.img_xiaolian:
                     int visibility = ll_qq_biaoqing.getVisibility();
                     if (visibility == View.GONE) {
-//                        JianpanTools.HideKeyboard(mCommentView);
-                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING); //  不改变布局，隐藏键盘，emojiView弹出
-                        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(mCommentView.getApplicationWindowToken(), 0);
+                        JianpanTools.HideKeyboard(mCommentView);
                         ll_qq_biaoqing.setVisibility(View.VISIBLE);
                     } else {
-                        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(mCommentView.getApplicationWindowToken(), 0);
-                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                         ll_qq_biaoqing.setVisibility(View.GONE);
                     }
                     break;
@@ -506,7 +492,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
                                 super.doAuthSuccess(result, obj);
                                 try {
                                     if (obj.getString("code").equals("1000")) {
-                                        isLoadMore=true;
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
                                         ll_qq_biaoqing.setVisibility(View.GONE);
@@ -632,6 +617,7 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        screenSwitchUtils.start(AnimDetailActivity.this);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 //            videoView.orientationLanScape();
@@ -772,13 +758,11 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     public void start(ChapterBean bean) {
         if (bean != null) {
             mCurrintChapter = bean;
-            saveSeacherHos(mCurrintChapter);
             ArrayList<ChapterBean> list = new ArrayList<ChapterBean>();
             for (ChapterBean bn : mChapterList) {
                 bn.setCheck(bean.getId() == bn.getId() ? 3 : 0);
                 list.add(bn);
             }
-
             seriesAdapter.setData(list);
             mChapterList = seriesAdapter.getData();
             mChapterView.setAdapter(seriesAdapter);
@@ -792,19 +776,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
             }
         }
     }
-    private void saveSeacherHos(ChapterBean bean) {
-        try {
-            AnimLookCookieBean animLookCookieBean=new AnimLookCookieBean();
-            animLookCookieBean.setRescoureid(bean.getId());
-            animLookCookieBean.setAnimname(bean.getTitle());
-            animLookCookieBean.setAnimUrl(bean.getContentUrl());
-            WoDbUtils.initialize(getApplicationContext()).delete(AnimLookCookieBean.class, WhereBuilder.b().and("animUrl", "=", animLookCookieBean.getAnimUrl()));
-            WoDbUtils.initialize(getApplicationContext()).save(animLookCookieBean);
-         } catch (DbException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 
     @Override
@@ -824,15 +795,6 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
         danmuControler.addBuilt(content);
 //        getBarrageResource(barrage_charterId);
 
-    }
-
-    @Override
-    public void setTime(String playUrl,int time) {
-        try {
-            WoDbUtils.initialize(getApplicationContext()).update(AnimLookCookieBean.class, WhereBuilder.b("animUrl","=",playUrl));
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -865,96 +827,4 @@ public class AnimDetailActivity extends AppActivity implements FaceRelativeLayou
     private  void unregisterReceiver(){
         this.unregisterReceiver(networkChangeReceive);
     }
-
-//    private Handler rotateHandler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case 10001:
-//                    if ((msg.arg1 > 45 && msg.arg1 <= 135) || (msg.arg1 > 225 && msg.arg1 <= 315)) {
-//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-//                    } else {
-//                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                        }
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//    };
-//
-//    @Override
-//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-//    }
-//
-//    @Override
-//    public void onSensorChanged(SensorEvent event) {
-//
-//        float[] values = event.values;
-//        int orientation = 0;
-//        float X = -values[SensorManager.DATA_X];
-//        float Y = -values[SensorManager.DATA_Y];
-//        float Z = -values[SensorManager.DATA_Z];
-//        float magnitude = X * X + Y * Y;
-//        // Don't trust the angle if the magnitude is small compared to the y
-//        // value
-//        if (magnitude * 4 >= Z * Z) {
-//            float OneEightyOverPi = 57.29577957855f;
-//            float angle = (float) Math.atan2(-Y, X) * OneEightyOverPi;
-//            orientation = 90 - (int) Math.round(angle);
-//            // normalize to 0 - 359 range
-//            if (orientation >= 360) {
-//                orientation -= 360;
-//            }
-//            if (orientation < 0) {
-//                orientation += 360;
-//            }
-//        }
-//
-//        Log.e("","-------------------------"+isClickFullScreenButton);
-//        Log.e("","*************************"+isSennor);
-//
-//        if (isClickFullScreenButton) {
-//            // 竖屏
-//
-//            if (isLandscape
-//                    && (((orientation > 315 && orientation <= 360) || (orientation >= 0 && orientation <= 45)) || (orientation > 135 && orientation <= 225))) {
-//                isLandscape = false;
-//                isClickFullScreenButton = false;
-//                isSennor = true;
-//            }
-//
-//            // 横屏
-//            if (!isLandscape
-//                    && ((orientation > 45 && orientation <= 135) || (orientation > 225 && orientation <= 315))) {
-//                isLandscape = true;
-//                isClickFullScreenButton = false;
-//                isSennor = true;
-//            }
-//        }
-//        if (!isSennor) {// 判断是否要进行中断信息传递
-//            return;
-//        }
-//        if (rotateHandler != null) {//发送消息
-//            rotateHandler.obtainMessage(10001, orientation, 0).sendToTarget();
-//        }
-//    }
-//
-//    /** 点击屏幕切换按钮的时候 同时调用该方法 ： 中断Handler信息传递 */
-//    public void setIsSennor() {
-//        isSennor = false;
-//    }
-//
-//    /** 点击屏幕切换按钮的时候 同时调用该方法 ： 确认此时屏幕的方向 */
-//    public void setIsLandscape(boolean bool) {
-//        isLandscape = bool;
-//    }
-//
-//    /** 点击屏幕切换按钮的时候 同时调用该方法 ：设置按钮是否已被点击 */
-//    public void setButtonFullScreenClicked() {
-//        isClickFullScreenButton = true;
-//    }
-
-
 }

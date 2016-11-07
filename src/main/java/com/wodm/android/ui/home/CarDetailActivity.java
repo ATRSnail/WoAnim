@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -257,10 +258,30 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         seriesAdapter.setData(list);
         mChapterView.setAdapter(seriesAdapter);
         mChapterList = (ArrayList<ChapterBean>) seriesAdapter.getData();
-        startActivity(new Intent(this, CartoonReadActivity.class).putExtra("ChapterList", mChapterList)
-                .putExtra("bean", bean).putExtra("index", index).putExtra("commentList",commentBeanList));
+        startActivityForResult(new Intent(this, CartoonReadActivity.class).putExtra("ChapterList", mChapterList)
+                .putExtra("bean", bean).putExtra("index", index).putExtra("commentList",commentBeanList),0);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==0&&resultCode==RESULT_OK){
+            bean = (ObjectBean) data.getSerializableExtra("bean");
+            if(bean!=null){
+                if(data.getIntExtra("key",0)==1)
+                {
+//                  isCollectBox.setChecked(1==data.getIntExtra("bean",0));
+                    isCollectBox.setChecked(bean.getIsCollect() == 1);
+                }
+              else   if(data.getIntExtra("key",0)==0)
+                {
+//                    isCollectBox.setChecked(1==data.getIntExtra("bean",0));}
+                    isCollectBox.setChecked(bean.getIsCollect() == 1);
+            }
+
+    }
+
+        }}
 
     private void showDowmData() {
         final DownDialog downDialog = new DownDialog(this, 2) {
@@ -416,9 +437,9 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                     bean.setIsCollect(1);
                                     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT
                                     ).show();
-
+                                    isCollectBox.setChecked(bean.getIsCollect() == 1);
                                 }
-                                isCollectBox.setChecked(bean.getIsCollect() == 1);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -437,8 +458,6 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                     box.setChecked(!box.isChecked());
                                 }
                                 isCollectBox.setChecked(bean.getIsCollect() == 1);
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

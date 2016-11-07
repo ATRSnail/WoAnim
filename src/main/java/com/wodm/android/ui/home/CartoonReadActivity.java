@@ -3,6 +3,7 @@ package com.wodm.android.ui.home;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -64,18 +65,17 @@ import master.flame.danmaku.ui.widget.DanmakuView;
 @Layout(R.layout.activity_cartonn_read)
 public class CartoonReadActivity extends AppActivity {
     @ViewIn(R.id.anim_dowm)
-    private ImageView mDowmView;
+    private ImageView  mDowmView;
     @ViewIn(R.id.anim_share)
     private ImageView mShareView;
     @ViewIn(R.id.collect_boxtop)
     private CheckBox mCollectView;
-
     @ViewIn(R.id.read_left)
     private ImageButton mLeftBtn;
     @ViewIn(R.id.read_right)
     private ImageButton mRightBtn;
 
-
+     int flag=0;
     @InflateView(R.layout.layout_bottom_port)
     private View mBottomPortView;
     @InflateView(R.layout.layout_bottom_land)
@@ -153,6 +153,8 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
+
+
 
     Handler handler = new Handler() {
         @Override
@@ -253,7 +255,7 @@ public class CartoonReadActivity extends AppActivity {
         }
     }
 
-    boolean flag = true;
+
 
     private void setListView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -635,6 +637,11 @@ public class CartoonReadActivity extends AppActivity {
 
     @TrackClick(value = R.id.layout_top, location = TITLE, eventName = "退出界面")
     private void clickfinish(View view) {
+            Intent intent=new Intent();
+            intent.putExtra("key",flag);
+            intent.putExtra("bean", bean);
+            setResult(RESULT_OK, intent);
+            flag=0;
         finish();
     }
 
@@ -647,7 +654,7 @@ public class CartoonReadActivity extends AppActivity {
             return;
         }else {
             if (view.getId() == R.id.collect_boxtop) {
-                mCollectView.setChecked(!mCollectView.isChecked());
+//                mCollectView.setChecked(!mCollectView.isChecked());
                 Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, "点击收藏");
                 collction((CheckBox) view);
             }
@@ -732,6 +739,7 @@ public class CartoonReadActivity extends AppActivity {
                         bean.setIsCollect(1);
                         v.setChecked(bean.getIsCollect() == 1);
                         mCollectView.setChecked(bean.getIsCollect() == 1);
+                       flag=1;
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT
                         ).show();
                     }
@@ -754,6 +762,7 @@ public class CartoonReadActivity extends AppActivity {
                         CheckBox box = v;
                         box.setChecked(!box.isChecked());
                     }
+                    setResult(RESULT_CANCELED);
                     v.setChecked(bean.getIsCollect() == 1);
                     mCollectView.setChecked(bean.getIsCollect() == 1);
                 } catch (JSONException e) {

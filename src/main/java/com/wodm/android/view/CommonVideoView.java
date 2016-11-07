@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.ui.home.AnimDetailActivity;
+import com.wodm.android.utils.ScreenSwitchUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,7 +45,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private final int UPDATE_VIDEO_SEEKBAR = 1000;
     private final int UPDATE_VIDEO_SEEKBAR_TIME = 1001;
     private Boolean isScreenLock = false;
-
+    private ScreenSwitchUtils screenSwitchUtils;
     private Context context;
     private FrameLayout viewBox;
     private MyVideoView videoView;
@@ -263,6 +264,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         viewBox.setOnClickListener(this);
 //        addView(view);
         setNormalScreen();
+        screenSwitchUtils =ScreenSwitchUtils.init(context);
+        screenSwitchUtils.isPortrait();
     }
 
     @Override
@@ -445,11 +448,13 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
                 break;
             case R.id.screen_status_img:
-
+                screenSwitchUtils.toggleScreen();
+                screenSwitchUtils.setIsSennor();
                 int i = getResources().getConfiguration().orientation;
                 if (i == Configuration.ORIENTATION_PORTRAIT) {
 //                    ((AnimDetailActivity) context).setIsLandscape(false);
                     setFullScreen();
+
                 } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
 //                    ((AnimDetailActivity) context).setIsLandscape(true);
                     setNormalScreen();
@@ -493,7 +498,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
     public void orientationPORTRAIT() {
-
+//        portraitFlag=2;
         videoTitleLayout.setY(0);
         videoTitleLayout.setX(0);
 //        if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
@@ -511,7 +516,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
     boolean flag = true;
     int i = 0;
-
+//   int portraitFlag = 0;
     private void videoViewOnclick() {
 
 
@@ -520,12 +525,16 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
 
         if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+//            if(portraitFlag==2) {   i=1;portraitFlag=0;}
+//            Log.i("","--------------------------------"+i);
             if (i == 1) {
                 startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
                 i = 0;
+                flag = true;
             } else if(i==0){
 
-                if (!animation && videoControllerShow) {
+
+                 if (!animation && videoControllerShow) {
                     animation = true;
                     startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);
                     startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
@@ -535,8 +544,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                     startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);
                     startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
                     flag = true;
-                    videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
-                    videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
+//                    videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
+//                    videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
                 }
             }
 
@@ -546,18 +555,19 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
 
             if (flag) {
+//                portraitFlag=1;
                 i = 1;
                 startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
                 flag = false;
             } else if (!flag) {
                 i=0;
                 startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
-                videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
-                videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
+//                portraitFlag=1;
                 flag = true;
             }
         }
-
+        videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
+        videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
 
 //        if (!animation && videoControllerShow) {
 //            animation = true;
