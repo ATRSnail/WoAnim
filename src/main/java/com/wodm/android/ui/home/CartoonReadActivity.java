@@ -65,11 +65,12 @@ import master.flame.danmaku.ui.widget.DanmakuView;
 @Layout(R.layout.activity_cartonn_read)
 public class CartoonReadActivity extends AppActivity {
     @ViewIn(R.id.anim_dowm)
-    private ImageView  mDowmView;
+    private ImageView mDowmView;
     @ViewIn(R.id.anim_share)
     private ImageView mShareView;
     @ViewIn(R.id.collect_boxtop)
     private CheckBox mCollectView;
+
     @ViewIn(R.id.read_left)
     private ImageButton mLeftBtn;
     @ViewIn(R.id.read_right)
@@ -153,8 +154,6 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
-
-
 
     Handler handler = new Handler() {
         @Override
@@ -255,7 +254,8 @@ public class CartoonReadActivity extends AppActivity {
         }
     }
 
-
+    boolean flag = true;
+    int mBottomViewHight=0;
 
     private void setListView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -283,18 +283,19 @@ public class CartoonReadActivity extends AppActivity {
 
                         if (Math.sqrt(((startx - endx) * (startx - endx) + (starty - endy) * (starty - endy))) < 5) {
                             float bvy = mBottomView.getY();
-//                            Log.e("AAAAAAAAAAAAA","*****************"+bvy);
-                            float tvy = mTopView.getY();
+                            int hight=mBottomView.getHeight();
+                            if (mBottomViewHight<hight){
+                                mBottomViewHight=hight;
+                            }
+
                             if (!videoControllerShow && !animation) {
                                 animation = true;
                                 videoControllerShow = !videoControllerShow;
-                                startAnimation(mBottomView, bvy, bvy + mBottomView.getHeight(), animatorListener);
+                                startAnimation(mBottomView, bvy, bvy +mBottomViewHight, animatorListener);
                             } else if (!animation) {
                                 videoControllerShow = !videoControllerShow;
-                                startAnimation(mBottomView, bvy, bvy - mBottomView.getHeight(), animatorListener);
+                                startAnimation(mBottomView, bvy, bvy - mBottomViewHight, animatorListener);
                             }
-
-//                            myAnimation(bvy);
 
                         }
                         break;

@@ -20,6 +20,7 @@ public class WoDbUtils {
             instance = com.lidroid.xutils.DbUtils.create(context, "wodm.db", VERSION, new com.lidroid.xutils.DbUtils.DbUpgradeListener() {
                 public void onUpgrade(com.lidroid.xutils.DbUtils utils, int oldVersion, int newVersion) {
                     try {
+                        utils.configDebug(true);
                         utils.dropTable(SeacherBean.class);
                         utils.createTableIfNotExist(SeacherBean.class);
                         utils.createTableIfNotExist(AnimLookCookieBean.class);

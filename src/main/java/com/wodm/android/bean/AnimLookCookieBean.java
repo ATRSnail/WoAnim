@@ -16,9 +16,16 @@ public class AnimLookCookieBean {
     @Expose
     public String animUrl;
     @Expose
-    public String lookTime;
+    public int lookTime;
     @Expose
     public String animname;
+    @Expose
+    public int totalTime;
+    /**
+     * 1 表示播放完成
+     */
+    @Expose
+    public int playState;
     public String getRescoureid() {
         return rescoureid;
     }
@@ -35,11 +42,11 @@ public class AnimLookCookieBean {
         this.animUrl = animUrl;
     }
 
-    public String getLookTime() {
+    public int getLookTime() {
         return lookTime;
     }
 
-    public void setLookTime(String lookTime) {
+    public void setLookTime(int lookTime) {
         this.lookTime = lookTime;
     }
 
@@ -52,4 +59,19 @@ public class AnimLookCookieBean {
     }
 
 
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public int getPlayState() {
+        return playState;
+    }
+
+    public void setPlayState(int playState) {
+        this.playState = playState;
+    }
 }

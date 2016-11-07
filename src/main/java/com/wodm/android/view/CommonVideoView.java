@@ -26,7 +26,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.ui.home.AnimDetailActivity;
@@ -88,6 +87,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private LinearLayout ll_bottom;
     private SendBulletListener sendBulletListener;
     private setTimeDBListener settimeListener;
+    private String videoUrl;
 
     public interface SendBulletListener {
         public void sendBullet();
@@ -153,12 +153,12 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         videoPlayImg.setVisibility(View.INVISIBLE);
         videoView.setVideoURI(Uri.parse(url));
         videoPauseImg.setImageResource(R.mipmap.play_stop);
+        videoUrl=url;
         videoView.start();
     }
 
-
     public interface setTimeDBListener{
-        public void setTime(String playUrl,int time);
+        public void setTime(String playUrl,int time,int totalTime);
     }
     public void setTimeListener(setTimeDBListener listener){
         this.settimeListener=listener;
@@ -635,6 +635,15 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int[] time = getMinuteAndSecond(progress);
         videoCurTimeText.setText(String.format("%02d:%02d", time[0], time[1]));
+//        Log.e("SCY"," - - --progress -  - --  "+progress);
+//        Log.e("SCY"," - - - - progress  - - - --  "+String.format("%02d:%02d", time[0], time[1]));
+        int[] times = getMinuteAndSecond(duration);
+//        Log.e("SCY"," - - -- -  -duration --  "+duration);
+//        Log.e("SCY"," - - -- -  duration- --  "+String.format("%02d:%02d", times[0], times[1]));
+        if (videoUrl==null||videoUrl.equals("")){
+            return;
+        }
+        settimeListener.setTime(videoUrl,progress,duration);
     }
 
     @Override
@@ -645,7 +654,6 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         videoView.seekTo(videoSeekBar.getProgress());
-        Toast.makeText(context, ""+videoSeekBar.getProgress(), Toast.LENGTH_SHORT).show();
         videoView.start();
         videoPlayImg.setVisibility(View.INVISIBLE);
         videoPauseImg.setImageResource(R.mipmap.play_stop);
