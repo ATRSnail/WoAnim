@@ -90,7 +90,7 @@ public class CartoonReadActivity extends AppActivity {
     private ArrayList<ChapterBean> mChapterList;
     private ArrayList<CarBean> mCarList;
     private ArrayList<CommentBean> commentBeanList;
-    private int index = 0;
+    private int  index= 0;
     private ChapterBean CurrChapter;
     private ObjectBean bean = null;
     private boolean videoControllerShow = false;//底部状态栏的显示状态
@@ -119,29 +119,28 @@ public class CartoonReadActivity extends AppActivity {
     private DanmuControler danmuControler;
     private ImageView danmu_kaiguan;
     private boolean isOpen = true;
-
+     private String num="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handler.sendEmptyMessageAtTime(0, 10000);
         setListView();
         setLoadAndRefresh();
+
         if (!getIntent().hasExtra("beanPath")) {
             setListView();
             mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
             commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
             index = getIntent().getIntExtra("index", index);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
-            if (mTitleView != null && bean != null) {
-                mTitleView.setText(bean.getName());
-                mCollectView.setChecked(1 == bean.getIsCollect());
-            }
+
             requestHttp(index, true);
 
         } else {
             String path = getIntent().getStringExtra("beanPath");
             startReadPath(path);
         }
+
 
         barrage_rescourceId = bean.getId();
         barrage_charterId = mChapterList.get(0).getId();
@@ -205,6 +204,11 @@ public class CartoonReadActivity extends AppActivity {
     }
 
     private void requestHttp(final int index, final boolean b) {
+        if (mTitleView != null && bean != null) {
+            num = bean.getName()+" "+(index+1);
+            mTitleView.setText(num);
+            mCollectView.setChecked(1 == bean.getIsCollect());
+        }
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {
 
             CurrChapter = mChapterList.get(index);
@@ -634,6 +638,7 @@ public class CartoonReadActivity extends AppActivity {
         finish();
     }
 
+
     @TrackClick(value = R.id.collect_boxtop)
     private void clickCollect(View view) {
 
@@ -731,6 +736,7 @@ public class CartoonReadActivity extends AppActivity {
                         flagNum=1;
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT
                         ).show();
+
                     }
 //                    mCollectView.setChecked(bean.getIsCollect() == 1);
                 } catch (JSONException e) {

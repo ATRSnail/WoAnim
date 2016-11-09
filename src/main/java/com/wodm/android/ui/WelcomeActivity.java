@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -75,7 +76,10 @@ public class WelcomeActivity extends AppActivity {
                     finish();
                     break;
                 case 2:
-                    startActivity(new Intent(WelcomeActivity.this, LeaderActivity.class));
+                    //去掉引导页
+//                    startActivity(new Intent(WelcomeActivity.this, LeaderActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this, Main2Activity.class));
+                    Preferences.getInstance(getApplicationContext()).setPreference("is_first", true);
                     finish();
                     break;
             }

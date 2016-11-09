@@ -638,6 +638,7 @@ private ScreenSwitchUtils screenSwitchUtils;
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         screenSwitchUtils.start(AnimDetailActivity.this);
+        videoView.orientation(this);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 //            videoView.orientationLanScape();
@@ -661,7 +662,6 @@ private ScreenSwitchUtils screenSwitchUtils;
             pullToLoadView.setVisibility(View.VISIBLE);
             ll_bottom.setVisibility(View.VISIBLE);
             videoView.setNormalScreen();
-            videoView.orientationPORTRAIT();
         }
 
 

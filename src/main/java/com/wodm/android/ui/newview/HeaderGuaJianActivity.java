@@ -100,6 +100,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TabFragmentAdapter tabFragmentAdapter;
 
     private void initView() {
+        set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
         guanJianFrag = new GuaJianFragment();
         touXiangFrg = new TouXiangFragment();
         guanJianFrag.setAddClickIconListener(this);
@@ -115,6 +116,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         btn_open_vip = (Button) findViewById(R.id.btn_open_vip);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         user_head_imgs = (CircularImage) findViewById(R.id.user_head_imgs);
+        if(CURRENT_USER.getData().getAccount().getPortrait()!=null)
         new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
         btn_open_vip.setOnClickListener(this);
         ll_open_vip = (RelativeLayout) findViewById(R.id.ll_open_vip);

@@ -108,7 +108,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         set_topbar.setOnTopbarClickListenter(this);
 
 
-//        getData();
+        getData();
 
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();

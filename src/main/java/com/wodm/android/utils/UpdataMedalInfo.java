@@ -26,8 +26,8 @@ public abstract class UpdataMedalInfo {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                MedalInfoBean bean = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
-                getMedalInfo(bean);
+                Constants.MEDALINFOBEAN  = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
+                getMedalInfo(Constants.MEDALINFOBEAN );
             }
 
             @Override

@@ -24,6 +24,7 @@ import com.wodm.android.view.newview.AtyTopLayout;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
-//        getData();
+        getData();
 
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();
@@ -177,6 +178,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void getData() {
+
         if (Constants.CURRENT_USER != null) {
             medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
         }

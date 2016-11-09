@@ -116,15 +116,15 @@ private CommonVideoView commonvideo;
     public void toggleScreen() {
         sm.unregisterListener(listener);
         sm1.registerListener(listener1, sensor1,SensorManager.SENSOR_DELAY_UI);
-        if (isPortrait) {
-            isPortrait = false;
-            // 切换成横屏
+//        if (isPortrait) {
+//            isPortrait = false;
+//            // 切换成横屏
 //            mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-            isPortrait = true;
-            // 切换成竖屏
+//        } else {
+//            isPortrait = true;
+//            // 切换成竖屏
 //            mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+//        }
     }
 
     public boolean isPortrait(){

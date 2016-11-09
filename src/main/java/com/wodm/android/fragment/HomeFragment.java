@@ -80,7 +80,8 @@ public class HomeFragment extends TrackFragment {
     }
 
     private void initTapPageView() {
-        HttpUtil.httpGet(getActivity(), Constants.URL_HOME_TOP_LIST + "&type=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1), new HttpCallback() {
+         final String string =Constants.URL_HOME_TOP_LIST + "&type=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1);
+        HttpUtil.httpGet(getActivity(), string, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);

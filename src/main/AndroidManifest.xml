@@ -156,7 +156,7 @@
         <!-- 友盟多渠道打包-->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="580eebbf734be438db00291a"></meta-data>
+            android:value="582191a682b6356279000511"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
