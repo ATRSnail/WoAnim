@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +26,8 @@ import com.wodm.android.tools.DisplayUtil;
 
 public class AtyTopLayout extends RelativeLayout {
     // 自定义的控件和自定义的属性（values下mytopbar.xml）的声明
-    private ImageView leftImage, rightImage;
+    private ImageButton leftImage;
+    private ImageView rightImage;
     private TextView tv_right;
     private TextView tvTitle;
 
@@ -77,13 +79,14 @@ public class AtyTopLayout extends RelativeLayout {
         ta.recycle();
 
         //组件定义
-        leftImage = new ImageView(context);
+        leftImage = new ImageButton(context);
         tvTitle = new TextView(context);
 
 
         // 将自定义的属性设置到控件上
 //        leftImage.setImageDrawable(leftDrawable);
-        leftImage.setBackgroundResource(R.mipmap.back);
+        leftImage.setImageDrawable(getResources().getDrawable(R.drawable.back_drawable));
+        leftImage.getBackground().setAlpha(1);
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_36_px));
         tvTitle.setText(titleText);
@@ -95,10 +98,9 @@ public class AtyTopLayout extends RelativeLayout {
         setBackgroundColor(backgroundColor);    // 设置背景颜色
 
         //将自定义的控件放到Layout中（以LayoutParams的形式）
-        leftLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        leftLayoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
         leftLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, TRUE);     //设置左对齐
         leftLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
-        leftLayoutParams.setMargins(30, 0, 0, 0);
 //        leftLayoutParams.setMarginStart((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
         addView(leftImage, leftLayoutParams);  //leftButton以leftLayoutParams的形式加入到ViewGroup中
 

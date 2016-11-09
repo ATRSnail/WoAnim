@@ -189,7 +189,7 @@
 
 
         </activity>
-
+        <service android:name=".android.run.VideoService"></service>
         <receiver android:name=".android.receiver.AlarmReceiver" />
 
         <service android:name=".android.service.DownLoadServices" />
