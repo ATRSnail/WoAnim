@@ -136,7 +136,7 @@
                     android:gravity="right"
                     android:text="@string/forget_password"
                     android:textColor="@color/color_cccccc"
-                    android:textSize="@dimen/x18" />
+                    android:textSize="@dimen/text_size_28_px" />
 
             </LinearLayout>
         </LinearLayout>
