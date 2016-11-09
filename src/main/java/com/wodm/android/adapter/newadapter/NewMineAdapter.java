@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wodm.R;
+import com.wodm.android.Constants;
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
 import com.wodm.android.ui.newview.MallActivity;
@@ -25,6 +27,7 @@ import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
 import com.wodm.android.ui.user.UserIntegralActivity;
 import com.wodm.android.ui.user.UserMessageActivity;
+import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.track.Tracker;
@@ -37,6 +40,21 @@ import static com.wodm.android.utils.UpdataUserInfo.isLogIn;
  */
 
 public class NewMineAdapter extends BaseAdapter {
+
+    private void getData(Context context) {
+
+        if (Constants.CURRENT_USER != null) {
+            medalInfo.getMedalInfo(context, Constants.CURRENT_USER.getData().getAccount().getId());
+        }
+    }
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
     private Context mContext;
     private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "", "", ""};
@@ -178,6 +196,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("成就")) {
             i.setClass(mContext, MyMedalActivity.class);
         } else if (text.equals("足迹")) {
+            getData(mContext);
             i.putExtra("tid", R.id.watch_records);
             i.putExtra("title", R.string.wathc_recoder);
             i.setClass(mContext, RecordActivity.class);

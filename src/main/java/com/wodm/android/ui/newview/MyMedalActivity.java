@@ -57,7 +57,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         atyTopLayout.setOnTopbarClickListenter(this);
-        getData();
+//        getData();
 
         if (Constants.MEDALINFOBEAN != null) {
             dataBeanList = Constants.MEDALINFOBEAN.getData();

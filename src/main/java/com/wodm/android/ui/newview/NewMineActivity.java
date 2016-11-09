@@ -15,8 +15,10 @@ import android.widget.Toast;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
+import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.Main2Activity;
+import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.NoScrollListView;
 
@@ -95,8 +97,22 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         getData();
     }
 
-    private void getData() {
 
+    private void getMedalData() {
+
+        if (Constants.CURRENT_USER != null) {
+            medalInfo.getMedalInfo(getActivity(), Constants.CURRENT_USER.getData().getAccount().getId());
+        }
+    }
+    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
+
+        @Override
+        public void getMedalInfo(MedalInfoBean bean) {
+            Constants.MEDALINFOBEAN = bean;
+
+        }
+    };
+    private void getData() {
         if (CURRENT_USER != null) {
             long userId = CURRENT_USER.getData().getAccount().getId();
             infos.getUserInfo(getActivity(), userId);
@@ -159,6 +175,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(new Intent(getActivity(), NewUserInfoActivity.class));
                 break;
             case R.id.rl_login:
+                getMedalData();
                 startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;
             case R.id.no_login:

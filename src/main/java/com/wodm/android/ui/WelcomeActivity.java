@@ -36,8 +36,9 @@ public class WelcomeActivity extends AppActivity {
 //                        try {
 
                         Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
-                        userInfo.getUserInfo(getApplicationContext(), userId);
                         medalInfo.getMedalInfo(getApplicationContext(), userId);
+                        userInfo.getUserInfo(getApplicationContext(), userId);
+
 //                        } catch (JSONException e) {
 //                            e.printStackTrace();
 //                            handler.sendEmptyMessageDelayed(1, 0);
