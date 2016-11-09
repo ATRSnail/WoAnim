@@ -28,7 +28,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.wodm.R;
-import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.utils.ScreenSwitchUtils;
 
@@ -143,8 +142,10 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         super(context, attrs, defStyleAttr);
         this.context = context;
     }
-
-    public void start(String url) {
+    public void start(String url){
+        start(url,0);
+    };
+    public void start(String url,int lookTime) {
         if (TextUtils.isEmpty(url)) {
             return;
         }
@@ -155,6 +156,9 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         videoView.setVideoURI(Uri.parse(url));
         videoPauseImg.setImageResource(R.mipmap.play_stop);
         videoUrl=url;
+        if (lookTime!=0){
+            videoView.seekTo(lookTime);
+        }
         videoView.start();
     }
 
@@ -570,11 +574,11 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int[] time = getMinuteAndSecond(progress);
         videoCurTimeText.setText(String.format("%02d:%02d", time[0], time[1]));
-//        Log.e("SCY"," - - --progress -  - --  "+progress);
-//        Log.e("SCY"," - - - - progress  - - - --  "+String.format("%02d:%02d", time[0], time[1]));
+        Log.e("SCY"," - - --progress -  - --  "+progress);
+        Log.e("SCY"," - - - - progress  - - - --  "+String.format("%02d:%02d", time[0], time[1]));
         int[] times = getMinuteAndSecond(duration);
-//        Log.e("SCY"," - - -- -  -duration --  "+duration);
-//        Log.e("SCY"," - - -- -  duration- --  "+String.format("%02d:%02d", times[0], times[1]));
+        Log.e("SCY"," - - -- -  -duration --  "+duration);
+        Log.e("SCY"," - - -- -  duration- --  "+String.format("%02d:%02d", times[0], times[1]));
         if (videoUrl==null||videoUrl.equals("")){
             return;
         }

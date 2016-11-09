@@ -2,6 +2,7 @@
  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_anim_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFEFF4"
@@ -45,8 +46,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-     <include layout="@layout/activity_comment"></include>
-     <include android:id="@+id/ll_qq_biaoqing" layout="@layout/qq_biaoqing" android:visibility="gone" android:layout_alignParentBottom="true" android:layout_height="@dimen/px_480" android:layout_width="match_parent"></include>
+     <include layout="@layout/qq_biaoqing_new" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"></include>
+     <!--<include layout="@layout/activity_comment" android:visibility="gone"></include>-->
+     <!--<include android:id="@+id/ll_qq_biaoqing" layout="@layout/qq_biaoqing" android:visibility="gone"></include>-->
     </LinearLayout>
 
 </RelativeLayout>

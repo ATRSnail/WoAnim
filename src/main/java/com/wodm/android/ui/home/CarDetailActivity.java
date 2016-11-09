@@ -1,16 +1,21 @@
 package com.wodm.android.ui.home;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +31,7 @@ import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.DownDialog;
 import com.wodm.android.dialog.ShareDialog;
+import com.wodm.android.qq.KeyboardLayout;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
@@ -85,32 +91,130 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private ImageView danmu_kaiguan;
     private Dialog dialog=null;
     private boolean isLoadMore=false;
+    //---------------------
+    private KeyboardLayout mKeyboardLayout;
+    private View mEmojiView;
+    private CircularImage mEmojiBtn;
+    private EditText mInput;
+    private RelativeLayout ll_car_details;
+
+    int mKeyboardHeight = 400; // 输入法默认高度为400
+    private void initView(){
+
+        // 起初的布局可自动调整大小
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        mKeyboardLayout = (KeyboardLayout) findViewById(R.id.keyboard_layout);
+        mEmojiView = findViewById(R.id.ll_qq_biaoqing);
+        mEmojiBtn = (CircularImage) findViewById(R.id.img_xiaolian);
+
+        mInput = (EditText) findViewById(R.id.comment_text);
+
+        // 点击输入框
+        mInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mKeyboardLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() { // 输入法弹出之后，重新调整
+                        mEmojiBtn.setSelected(false);
+                        mEmojiView.setVisibility(View.GONE);
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                    }
+                }, 250); // 延迟一段时间，等待输入法完全弹出
+            }
+        });
+
+        mEmojiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEmojiBtn.setSelected(!mEmojiBtn.isSelected());
+
+                if (mKeyboardLayout.isKeyboardActive()) { // 输入法打开状态下
+                    if (mEmojiBtn.isSelected()) { // 打开表情
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING); //  不改变布局，隐藏键盘，emojiView弹出
+                        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(mInput.getApplicationWindowToken(), 0);
+                        mEmojiView.setVisibility(View.VISIBLE);
+                    } else {
+                        mEmojiView.setVisibility(View.GONE);
+                        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(mInput.getApplicationWindowToken(), 0);
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                    }
+                } else { //  输入法关闭状态下
+                    if (mEmojiBtn.isSelected()) {
+                        // 设置为不会调整大小，以便输入弹起时布局不会改变。若不设置此属性，输入法弹起时布局会闪一下
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+                        mEmojiView.setVisibility(View.VISIBLE);
+                    } else {
+                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                        mEmojiView.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+        mKeyboardLayout.setKeyboardListener(new KeyboardLayout.KeyboardLayoutListener() {
+            @Override
+            public void onKeyboardStateChanged(boolean isActive, int keyboardHeight) {
+
+                if (isActive) { // 输入法打开
+                    if (mKeyboardHeight != keyboardHeight) { // 键盘发生改变时才设置emojiView的高度，因为会触发onGlobalLayoutChanged，导致onKeyboardStateChanged再次被调用
+                        mKeyboardHeight = keyboardHeight;
+                        initEmojiView(); // 每次输入法弹起时，设置emojiView的高度为键盘的高度，以便下次emojiView弹出时刚好等于键盘高度
+                    }
+                    if (mEmojiBtn.isSelected()) { // 表情打开状态下
+                        mEmojiView.setVisibility(View.GONE);
+                        mEmojiBtn.setSelected(false);
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (mEmojiView.getVisibility()==View.VISIBLE){
+            mEmojiView.setVisibility(View.GONE);
+            return;
+        }
+
+    }
+
+    // 设置表情栏的高度
+    private void initEmojiView() {
+        ViewGroup.LayoutParams layoutParams = mEmojiView.getLayoutParams();
+        layoutParams.height = mKeyboardHeight;
+        mEmojiView.setLayoutParams(layoutParams);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initHeaderViews();
+        initView();
         biaoqingtools=BiaoqingTools.getInstance();
         resourceId = getIntent().getIntExtra("resourceId", -1);
         DividerLine line = new DividerLine();
         line.setSize(getResources().getDimensionPixelSize(R.dimen.px_1));
         line.setColor(Color.rgb(0xD8, 0xD8, 0xD8));
-        mCommentView = (EditText) findViewById(R.id.comment_text);
-        mCommentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (JianpanTools.KeyBoard(mCommentView)){
-                    ll_qq_biaoqing.setVisibility(View.GONE);
-                }
-            }
-        });
+//        mCommentView = (EditText) findViewById(R.id.comment_text);
+//        mCommentView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (JianpanTools.KeyBoard(mCommentView)){
+//                    ll_qq_biaoqing.setVisibility(View.GONE);
+//                }
+//            }
+//        });
         if (Constants.CURRENT_USER != null) {
             new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
         }
         findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
-        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
-        img_xiaolian.setOnClickListener(onClickListener);
+//        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
+//        img_xiaolian.setOnClickListener(onClickListener);
         //增加表情
-        ll_qq_biaoqing= (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing);
+        ll_qq_biaoqing = (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing).findViewById(R.id.faceRelativeLayout);
         ll_qq_biaoqing.setOnCorpusSelectedListener(this);
         pullToLoadView.getRecyclerView().addItemDecoration(line);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
@@ -345,7 +449,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        JianpanTools.HideKeyboard(mCommentView);
+        JianpanTools.HideKeyboard(mInput);
         return super.onTouchEvent(event);
     }
     /**
@@ -403,15 +507,15 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         public void onClick(final View v) {
             String eventName = "";
             switch (v.getId()) {
-                case R.id.img_xiaolian:
-                    int visibility=ll_qq_biaoqing.getVisibility();
-                    if (visibility==View.GONE){
-                        JianpanTools.HideKeyboard(mCommentView);
-                        ll_qq_biaoqing.setVisibility(View.VISIBLE);
-                    }else {
-                        ll_qq_biaoqing.setVisibility(View.GONE);
-                    }
-                    break;
+//                case R.id.img_xiaolian:
+//                    int visibility=ll_qq_biaoqing.getVisibility();
+//                    if (visibility==View.GONE){
+//                        JianpanTools.HideKeyboard(mCommentView);
+//                        ll_qq_biaoqing.setVisibility(View.VISIBLE);
+//                    }else {
+//                        ll_qq_biaoqing.setVisibility(View.GONE);
+//                    }
+//                    break;
                 case R.id.anim_dowm1:
                     eventName = "弹出下载界面";
                     showDowmData();
@@ -471,18 +575,18 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    String text=mCommentView.getText().toString();
+                    String text=mInput.getText().toString();
                     if (text.equals("")) {
                         Toast.makeText(getApplicationContext(), "评论内容不能为空!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    CommonUtil.hideKeyboard(getApplicationContext(), mCommentView);
+                    CommonUtil.hideKeyboard(getApplicationContext(), mInput);
                     JSONObject obj = new JSONObject();
                     try {
                         obj.put("resourceId", resourceId);
                         obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
-                        obj.put("content", mCommentView.getText().toString());
+                        obj.put("content", mInput.getText().toString());
                         httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
                             @Override
                             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -492,7 +596,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                         isLoadMore=true;
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
-                                        mCommentView.setText("");
+                                        mInput.setText("");
                                         ll_qq_biaoqing.setVisibility(View.GONE);
                                         pullToLoadView.initLoad();
                                         CommentData();
@@ -567,12 +671,12 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     @Override
     public void deleteBiaoQing() {
 
-        biaoqingtools.delete(mCommentView);
+        biaoqingtools.delete(mInput);
 
     }
 
     @Override
     public void insertBiaoQing(SpannableString character) {
-        biaoqingtools.insert(character,mCommentView);
+        biaoqingtools.insert(character,mInput);
     }
 }

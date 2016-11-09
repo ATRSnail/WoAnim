@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.wodm.android.view.biaoqing.FaceRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/faceRelativeLayout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
-
+<com.wodm.android.view.biaoqing.FaceRelativeLayout
+    android:id="@+id/faceRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px_600"
+    >
     <RelativeLayout
         android:id="@+id/ll_facechoose"
         android:layout_width="match_parent"
@@ -29,5 +32,5 @@
             android:orientation="horizontal" >
         </LinearLayout>
     </RelativeLayout>
-
 </com.wodm.android.view.biaoqing.FaceRelativeLayout>
+</FrameLayout>

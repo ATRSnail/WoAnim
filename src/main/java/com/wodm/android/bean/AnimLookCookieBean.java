@@ -1,16 +1,23 @@
 package com.wodm.android.bean;
 
 import com.google.gson.annotations.Expose;
+import com.lidroid.xutils.db.annotation.Table;
 
 /**
  * Created by songchenyu on 16/11/3.
  */
-
+@Table(name = "animlookcookie")
 public class AnimLookCookieBean {
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
-    private int id;
+
     @Expose
     public String rescoureid;
     @Expose

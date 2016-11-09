@@ -168,7 +168,7 @@ public class FaceRelativeLayout extends RelativeLayout implements
 			view.setPadding(5, 0, 5, 0);
 			view.setSelector(new ColorDrawable(Color.TRANSPARENT));
 			view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
+					200));
 			view.setGravity(Gravity.CENTER);
 			pageViews.add(view);
 		}
