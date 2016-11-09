@@ -3,6 +3,7 @@ package com.wodm.android.adapter.newadapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,8 @@ public class NewMineAdapter extends BaseAdapter {
         @Override
         public void getMedalInfo(MedalInfoBean bean) {
             Constants.MEDALINFOBEAN = bean;
-
+if(Constants.MEDALINFOBEAN!=null) Log.e("BB","------------------------------"+"不为空");
+            else  Log.e("aa","------------------------------"+"为空");
         }
     };
     private Context mContext;
@@ -157,6 +159,7 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, UsSetActivity.class);
         } else if (text.equals("成就")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
+            getData(mContext);
             startIntent(null, MyMedalActivity.class);
         } else if (text.equals("足迹")) {
             i.putExtra("tid", R.id.watch_records);
@@ -196,7 +199,6 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("成就")) {
             i.setClass(mContext, MyMedalActivity.class);
         } else if (text.equals("足迹")) {
-            getData(mContext);
             i.putExtra("tid", R.id.watch_records);
             i.putExtra("title", R.string.wathc_recoder);
             i.setClass(mContext, RecordActivity.class);

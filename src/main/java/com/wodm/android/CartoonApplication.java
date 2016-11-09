@@ -62,7 +62,6 @@ public class CartoonApplication extends TrackApplication {
         }
 
         setHttpSuccessCode("1000");
-
     }
     public boolean hasVideoPermission(){
         if(Build.VERSION.SDK_INT<23)

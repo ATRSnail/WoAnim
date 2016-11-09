@@ -60,9 +60,11 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
 //        getData();
 
         if (Constants.MEDALINFOBEAN != null) {
+//            Log.e("aa","------------------------------"+"不为空");
             dataBeanList = Constants.MEDALINFOBEAN.getData();
             downData();
         } else {
+//            Log.e("aa","------------------------------"+"为空");
             initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
             getData();
         }
