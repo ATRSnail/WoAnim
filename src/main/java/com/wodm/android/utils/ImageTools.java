@@ -18,7 +18,7 @@ public class ImageTools {
             filePath=Environment.getRootDirectory();
 
         }
-        String file=filePath+"/wodom";
+        String file=filePath+"/wodom/";
         File file1=new File(file);
         if (file1.exists()){
             return file1;

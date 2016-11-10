@@ -98,7 +98,7 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
             if (type==1){
                 params.height =DeviceUtils.getScreenWH((Activity) mContext)[1];
-                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0]/2;
+                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0]/3;
             }
         }
         Glide.with(mContext).load(bean.getContentUrl()).placeholder(R.mipmap.loading).into(holders.img_read);

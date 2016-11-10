@@ -35,6 +35,7 @@ import com.wodm.android.qq.KeyboardLayout;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.DividerLine;
 import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 
@@ -526,7 +527,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     break;
                 case R.id.anim_collect2:
                     eventName = "收藏/取消收藏 操作";
-                    if (Constants.CURRENT_USER == null) {
+                    if (!UpdataUserInfo.isLogIn(CarDetailActivity.this,true,null)) {
                         isCollectBox.setChecked(!isCollectBox.isChecked());
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
@@ -570,7 +571,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     break;
                 case R.id.anim_send_comment:
                     eventName = "发布评论操作";
-                    if (Constants.CURRENT_USER == null) {
+                    if (!UpdataUserInfo.isLogIn(CarDetailActivity.this,true,null)) {
 //            未登录
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;

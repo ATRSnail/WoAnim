@@ -3,7 +3,6 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,16 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.ComicAdapter;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.MedalInfoBean;
-import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DisplayUtil;
 import com.wodm.android.tools.Tools;
@@ -34,10 +28,7 @@ import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
-import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -260,8 +251,9 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        degree_progress.setProgress(progress);
         int next_num = dataBean.getNextGradeEmpirical();
         int need_num = dataBean.getNeedEmpirical();
-        int num = (int) (110 * (1 - ((float) need_num / next_num)));
-        int num_sc = DisplayUtil.px2dip(this, 30);
+        int num_sc = DisplayUtil.px2dip(this, 110);
+        int num = (int) (num_sc * (1 - ((float) need_num / next_num)));
+//        int num_sc = DisplayUtil.px2dip(this, 30);
 //        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
 //        int margin= DisplayUtil.px2dip(this,5);
 //        img_progress_params.setMargins(0, margin, 0, margin);

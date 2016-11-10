@@ -1,14 +1,17 @@
 package com.wodm.android.ui.newview;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -32,7 +35,9 @@ import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.FileUtils;
+import com.wodm.android.utils.ImageTools;
 import com.wodm.android.utils.ImageUtils;
+import com.wodm.android.utils.PermissionInfoTools;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.DateWheelWindow;
@@ -53,7 +58,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.wodm.android.Constants.CURRENT_USER;
-import static com.wodm.android.utils.ImageTools.getPath;
+import static com.wodm.android.utils.PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS;
 
 /**
  * Created by songchenyu on 16/10/11.
@@ -313,24 +318,14 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (bottomPopupMenu != null)
-                    bottomPopupMenu.dismiss();
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File filesss=getPath();
-                mPhotoPath = "img-" + System.currentTimeMillis() + ".jpg";
-                if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-                    mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
-                } else {
-                    return;
-                }
-                File file=new File(mPhotoPath);
-                if (!file.exists()){
-                    mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + mPhotoPath;
-                }
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
-                startActivityForResult(intent, TAKE_PRICTURE);
-
+                PermissionInfoTools.getWritePermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
+                    @Override
+                    public void IPsermission(boolean isPermsion) {
+                        if (isPermsion){
+                            takePhotos();
+                        }
+                    }
+                });
             }
         }));
         list.add(new BottomPopupMenu.TagAndEvent("从相册选取", new View.OnClickListener() {
@@ -353,6 +348,55 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }));
         bottomPopupMenu = BottomPopupMenu.showMenu(this, getContentView(), list);
     }
+//    @TargetApi(Build.VERSION_CODES.M)
+//    private void hasPermission(){
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+////			//申请WRITE_EXTERNAL_STORAGE权限
+//            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                    PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS);
+//            shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        }
+//    }
+
+    private void takePhotos(){
+        if (bottomPopupMenu != null)
+            bottomPopupMenu.dismiss();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File filesss= ImageTools.getPath();
+        if (filesss.exists()){
+            mPhotoPath = filesss+"img-" + System.currentTimeMillis() + ".jpg";
+        }
+
+//        if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+//            mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
+//        } else {
+//            return;
+//        }
+        File file=new File(mPhotoPath);
+        if (!file.exists()){
+            mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "img-" + System.currentTimeMillis() + ".jpg";
+        }
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
+        startActivityForResult(intent, TAKE_PRICTURE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+           if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_CONTACTS) {
+               takePhotos();
+           }
+
+        }else {
+            new AlertDialog.Builder(NewUserInfoActivity.this)
+                    .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!").create().show();
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
