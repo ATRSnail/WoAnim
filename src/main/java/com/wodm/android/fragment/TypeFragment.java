@@ -105,10 +105,14 @@ public class TypeFragment extends TrackFragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //收起或下拉都刷新一次
+                postData="";
+                mOpusList.initLoad();
                 if (retList != null && retList.size() > 0 && "0".equals(v.getTag())) {
                     imageButton.setTag("1");
                     setColums(mTabList, retList);
                     imageButton.setImageResource(R.mipmap.type_shouqi);
+
                 } else {
                     ArrayList list = new ArrayList();
                     list.add(retList.get(0));

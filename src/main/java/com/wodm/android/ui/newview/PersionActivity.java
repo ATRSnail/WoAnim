@@ -90,7 +90,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     LinearLayout my_medal_persion;
     List<MedalInfoBean.DataBean> dataBeanList;
     @ViewIn(R.id.show_more_persion)
-    Button show_more_persion;
+    TextView show_more_persion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

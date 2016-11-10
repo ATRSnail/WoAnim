@@ -300,7 +300,7 @@
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_36_px" />
 
-                <Button
+                <TextView
                     android:id="@+id/show_more_persion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -308,6 +308,7 @@
                     android:layout_toLeftOf="@+id/img_more"
                     android:background="@null"
                     android:text="@string/more_view"
+                    android:clickable="true"
                     android:textColor="@color/color_999999"
                     android:textSize="@dimen/text_size_30_px" />
 
@@ -363,6 +364,7 @@
                     android:layout_marginLeft="@dimen/px_15"
                     android:layout_toRightOf="@+id/view1_color"
                     android:text="@string/mine_comments"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_36_px" />
 
