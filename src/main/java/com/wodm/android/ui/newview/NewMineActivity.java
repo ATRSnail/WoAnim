@@ -95,23 +95,17 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
         }
         init();
         getData();
+        getMedalData();
     }
 
 
     private void getMedalData() {
 
         if (Constants.CURRENT_USER != null) {
-            medalInfo.getMedalInfo(getActivity(), Constants.CURRENT_USER.getData().getAccount().getId());
+            UpdataMedalInfo.getMedalInfo(getActivity(), Constants.CURRENT_USER.getData().getAccount().getId());
         }
     }
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
 
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-
-        }
-    };
     private void getData() {
         if (CURRENT_USER != null) {
             long userId = CURRENT_USER.getData().getAccount().getId();
@@ -175,7 +169,6 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 startActivity(new Intent(getActivity(), NewUserInfoActivity.class));
                 break;
             case R.id.rl_login:
-                getMedalData();
                 startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;
             case R.id.no_login:

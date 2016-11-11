@@ -103,7 +103,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 String password = et_password.getText().toString();
                 String resigter = et_resigter.getText().toString();
                 login(resigter, password);
-
                 if (!TextUtils.isEmpty(getUserId())) {
                     MobclickAgent.onProfileSignIn(getUserId());//统计登录
                 }
