@@ -13,7 +13,7 @@ import android.support.v4.content.ContextCompat;
  */
 
 public class PermissionInfoTools {
-    public static final int MY_PERMISSIONS_REQUEST_COMEAT_CONTACTS=1000000;
+    public static final int MY_PERMISSIONS_REQUEST_COMERA_CONTACTS=1000000;
     public static final int MY_PERMISSIONS_REQUEST_WRITE_CONTACTS=2000000;
     private Context mContxt;
     public PermissionInfoTools(Context context){
@@ -36,7 +36,7 @@ public class PermissionInfoTools {
 //			//申请WRITE_EXTERNAL_STORAGE权限
             callBack.IPsermission(false);
             activity.requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    MY_PERMISSIONS_REQUEST_COMEAT_CONTACTS);
+                    MY_PERMISSIONS_REQUEST_COMERA_CONTACTS);
             activity.shouldShowRequestPermissionRationale(Manifest.permission.CAMERA);
         }else {
             callBack.IPsermission(true);

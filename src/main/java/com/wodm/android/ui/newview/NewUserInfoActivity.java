@@ -1,5 +1,6 @@
 package com.wodm.android.ui.newview;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,10 +9,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -58,7 +61,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.wodm.android.Constants.CURRENT_USER;
-import static com.wodm.android.utils.PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS;
 
 /**
  * Created by songchenyu on 16/10/11.
@@ -318,14 +320,14 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionInfoTools.getWritePermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
-                    @Override
-                    public void IPsermission(boolean isPermsion) {
-                        if (isPermsion){
-                            takePhotos();
-                        }
-                    }
-                });
+                if (getPermission()){
+                    takePhotos();
+                }else if (!hasCameraPermission()){
+                    getComeraPermission();
+                }else if (!hasWritePermission()){
+                    getWritePermission();
+                }
+
             }
         }));
         list.add(new BottomPopupMenu.TagAndEvent("从相册选取", new View.OnClickListener() {
@@ -348,6 +350,26 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }));
         bottomPopupMenu = BottomPopupMenu.showMenu(this, getContentView(), list);
     }
+    private void getWritePermission(){
+        PermissionInfoTools.getWritePermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
+            @Override
+            public void IPsermission(boolean isPermsion) {
+                if (isPermsion&&hasWritePermission()){
+                    takePhotos();
+                }
+            }
+        });
+    }
+    private void getComeraPermission(){
+        PermissionInfoTools.getComeraPermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
+            @Override
+            public void IPsermission(boolean isPermsion) {
+                if (isPermsion&&hasWritePermission()){
+                    takePhotos();
+                }
+            }
+        });
+    }
 //    @TargetApi(Build.VERSION_CODES.M)
 //    private void hasPermission(){
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -367,7 +389,6 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         if (filesss.exists()){
             mPhotoPath = filesss+"img-" + System.currentTimeMillis() + ".jpg";
         }
-
 //        if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
 //            mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
 //        } else {
@@ -381,13 +402,58 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         startActivityForResult(intent, TAKE_PRICTURE);
 
     }
+    private boolean getPermission(){
+        if (hasCameraPermission()&&hasWritePermission()){
+            return true;
+        }
+        return false;
 
+    }
+    public boolean hasCameraPermission(){
+        if(Build.VERSION.SDK_INT<23)
+            return true;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+//			//申请WRITE_EXTERNAL_STORAGE权限
+//			ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
+//					WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+    public boolean hasWritePermission(){
+        if(Build.VERSION.SDK_INT<23)
+            return true;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+//			//申请WRITE_EXTERNAL_STORAGE权限
+//			ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
+//					WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+            return false;
+        }else {
+            return true;
+        }
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-           if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_CONTACTS) {
-               takePhotos();
+           if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS) {
+               if (hasCameraPermission()){
+                   takePhotos();
+               }else {
+                   getComeraPermission();
+               }
+           }else if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_COMERA_CONTACTS){
+               if (hasWritePermission()){
+                   takePhotos();
+               }else {
+                   getWritePermission();
+
+               }
            }
 
         }else {
