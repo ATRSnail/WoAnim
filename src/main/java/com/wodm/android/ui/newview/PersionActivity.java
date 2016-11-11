@@ -101,10 +101,14 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
 //        getData();
 
-        if (Constants.MEDALINFOBEAN != null) {
-            dataBeanList = Constants.MEDALINFOBEAN.getData();
+        if (Constants.getMEDALINFOBEAN() != null) {
+            dataBeanList = Constants.getMEDALINFOBEAN().getData();
+            if(dataBeanList!=null&&dataBeanList.size()>0)
+            {initMyMedal();}
+            else {
+                initLinearLayout(my_medal_persion, 0);
+            }
 
-            initMyMedal();
 
         } else {
             initLinearLayout(my_medal_persion, 0);
@@ -126,15 +130,15 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                     initLinearLayout(my_medal_persion, medalType);
                     break;
                 case 2:
-                    break;
+//                    break;
                 case 3:
-                    break;
+//                    break;
                 case 4:
-                    break;
+//                    break;
                 case 5:
-                    break;
+//                    break;
                 default:
-                    initLinearLayout(my_medal_persion, medalType);
+                    initLinearLayout(my_medal_persion, 0);
                     break;
             }
 
@@ -142,6 +146,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     }
 
     private void initLinearLayout(LinearLayout layout, int medalType) {
+        layout.removeAllViews();
         int size = 1;
         switch (medalType) {
             case 4:
@@ -210,17 +215,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     private void getData() {
         if (Constants.CURRENT_USER != null) {
-            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+            UpdataMedalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
         }
     }
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
 
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-
-        }
-    };
 
     private void setUserInfo() {
         if (Constants.CURRENT_USER == null) {

@@ -42,21 +42,8 @@ import static com.wodm.android.utils.UpdataUserInfo.isLogIn;
 
 public class NewMineAdapter extends BaseAdapter {
 
-    private void getData(Context context) {
 
-        if (Constants.CURRENT_USER != null) {
-            medalInfo.getMedalInfo(context, Constants.CURRENT_USER.getData().getAccount().getId());
-        }
-    }
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
 
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-if(Constants.MEDALINFOBEAN!=null) Log.e("BB","------------------------------"+"不为空");
-            else  Log.e("aa","------------------------------"+"为空");
-        }
-    };
     private Context mContext;
     private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
     private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "", "", ""};
@@ -159,7 +146,6 @@ if(Constants.MEDALINFOBEAN!=null) Log.e("BB","------------------------------"+"�
             startIntent(null, UsSetActivity.class);
         } else if (text.equals("成就")) {
 //           mContext.startActivity(new Intent(mContext, UsSetActivity.class));
-            getData(mContext);
             startIntent(null, MyMedalActivity.class);
         } else if (text.equals("足迹")) {
             i.putExtra("tid", R.id.watch_records);

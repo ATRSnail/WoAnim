@@ -343,7 +343,7 @@ public class CartoonReadActivity extends AppActivity {
                 }
                 if (pullToLoadView.getAdapter() != null)
 
-                    setSeekBarView(pullToLoadView.getAdapter().getItemCount(), position + 1);
+                    setSeekBarView(pullToLoadView.getAdapter().getItemCount(), position);
             }
 
             @Override
@@ -695,13 +695,15 @@ public class CartoonReadActivity extends AppActivity {
         setBottoms();
     }
 
+
     private void setSeekBarView(final int max, int progress) {
-        TextView mProView = (TextView) mBottomView.findViewById(R.id.progress);
+
+        final TextView mProView = (TextView) mBottomView.findViewById(R.id.progress);
         final SeekBar mSeek = (SeekBar) mBottomView.findViewById(R.id.carSeekBar);
-        mSeek.setMax(max);
+        mSeek.setMax(max-1);
         mSeek.setProgress(progress);
-        if(progress==1||progress==0) mSeek.setProgress(0);
-        mProView.setText(progress + "/" + max);
+//        if(progress==1||progress==0) mSeek.setProgress(0);
+        mProView.setText((progress+1) + "/" + (max));
         mSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -715,7 +717,6 @@ public class CartoonReadActivity extends AppActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if(seekBar.getProgress()==0){ pullToLoadView.smoothScrollToPosition(1);}
                 pullToLoadView.smoothScrollToPosition(seekBar.getProgress());
             }
         });

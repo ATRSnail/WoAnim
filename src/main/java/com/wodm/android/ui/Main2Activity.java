@@ -23,6 +23,7 @@ import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.service.DownLoadServices;
+import com.wodm.android.ui.newview.LgoinActivity;
 import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -89,7 +90,7 @@ public class Main2Activity extends AppActivity {
 
     private FragmentManager mFragmentManager;
 
-    private int indexId = R.id.tab_home;
+    private int indexId=R.id.tab_home ;
     private long mExitTime;
 
     static {
@@ -102,7 +103,6 @@ public class Main2Activity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //增加缓存表情字段
         new Thread(new Runnable() {
             @Override
@@ -121,8 +121,9 @@ public class Main2Activity extends AppActivity {
         mToolbar.setNavigationIcon(null);
         mToolbar.setNavigationOnClickListener(null);
         mToolbar.findViewById(R.id.img_right).setVisibility(View.VISIBLE);
-        initTabViews();
-        initTapView();
+            initTabViews();
+            initTapView();
+
         new UpdateUtils(this).checkUpdate(false);
 
 
@@ -146,8 +147,6 @@ public class Main2Activity extends AppActivity {
         setTabViews(mRecom, R.string.enetic_recom, indexId == R.id.tab_tuijian ? R.mipmap.tab_guangchang_select : R.mipmap.tab_guangchang, indexId == R.id.tab_tuijian);
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke("", "跳转到" + setTabSelection(indexId) + "页");
         setCustomTitle(indexId == R.id.tab_home ? "" : setTabSelection(indexId));
-
-
         showOrGoneCheckButton(indexId == R.id.tab_home ? View.VISIBLE : View.GONE);
     }
 

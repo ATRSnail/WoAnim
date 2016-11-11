@@ -59,10 +59,14 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
         atyTopLayout.setOnTopbarClickListenter(this);
 //        getData();
 
-        if (Constants.MEDALINFOBEAN != null) {
+        if (Constants.getMEDALINFOBEAN() != null) {
 //            Log.e("aa","------------------------------"+"不为空");
-            dataBeanList = Constants.MEDALINFOBEAN.getData();
-            downData();
+            dataBeanList = Constants.getMEDALINFOBEAN().getData();
+            if(dataBeanList!=null&&dataBeanList.size()>0)
+            {downData();}
+            else {
+                initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
+            }
         } else {
 //            Log.e("aa","------------------------------"+"为空");
             initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
@@ -95,15 +99,15 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 break;
             case 2:
 //                initLinearLayout(ll_register_medal, REGISTER, medalType);
-                break;
+//                break;
             case 3:
-                break;
+//                break;
             case 4:
-                break;
+//                break;
             case 5:
-                break;
+//                break;
             default:
-                initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+                initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
                 break;
         }
     }
@@ -135,7 +139,7 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void initLinearLayout(LinearLayout layout, int id, int medalType) {
-
+             layout.removeAllViews();
         for (int i = 0; i < not_Image.length; i++) {
             ToggleButton image = new ToggleButton(this);
             image.setTextOn("");
@@ -182,17 +186,9 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
     private void getData() {
 
         if (Constants.CURRENT_USER != null) {
-            medalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+            UpdataMedalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
         }
     }
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
-
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
-
-        }
-    };
     void panduan(LinearLayout linearLayout, int i, int key, int medalType) {
         ToggleButton image = (ToggleButton) linearLayout.getChildAt(i);
 

@@ -36,7 +36,8 @@ public class WelcomeActivity extends AppActivity {
 //                        try {
 
                         Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
-                        medalInfo.getMedalInfo(getApplicationContext(), userId);
+                        if(userId!=null)
+                        UpdataMedalInfo.getMedalInfo(getApplicationContext(), userId);
                         userInfo.getUserInfo(getApplicationContext(), userId);
 
 //                        } catch (JSONException e) {
@@ -93,13 +94,6 @@ public class WelcomeActivity extends AppActivity {
         public void getUserInfo(UserInfoBean bean) {
             Constants.CURRENT_USER = bean;
             handler.sendEmptyMessageDelayed(1, 0);
-        }
-    };
-    UpdataMedalInfo medalInfo = new UpdataMedalInfo() {
-
-        @Override
-        public void getMedalInfo(MedalInfoBean bean) {
-            Constants.MEDALINFOBEAN = bean;
         }
     };
 }

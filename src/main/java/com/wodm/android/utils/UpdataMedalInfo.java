@@ -20,31 +20,27 @@ import org.json.JSONObject;
  */
 public abstract class UpdataMedalInfo {
 
-    public void getMedalInfo(final Context ctx, long userId) {
+    public static void getMedalInfo(final Context ctx, long userId) {
 
         HttpUtil.httpGet(ctx, Constants.APP_GET_MEDALLIST + userId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 MedalInfoBean bean = new Gson().fromJson(obj.toString(), MedalInfoBean.class);
-                getMedalInfo(bean);
+                Constants.setMEDALINFOBEAN(bean);
             }
 
             @Override
             public void doRequestFailure(Exception exception, String msg) {
                 super.doRequestFailure(exception, msg);
-                getMedalInfo(null);
+                Constants.setMEDALINFOBEAN(null);
             }
 
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
-                getMedalInfo(null);
+                Constants.setMEDALINFOBEAN(null);
             }
         });
     }
-
-    public abstract void getMedalInfo(MedalInfoBean bean);
-
-
 }
