@@ -60,7 +60,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
 //        getData();
 
         if (Constants.getMEDALINFOBEAN() != null) {
-//            Log.e("aa","------------------------------"+"不为空");
             dataBeanList = Constants.getMEDALINFOBEAN().getData();
             if(dataBeanList!=null&&dataBeanList.size()>0)
             {downData();}
@@ -68,7 +67,6 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
                 initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
             }
         } else {
-//            Log.e("aa","------------------------------"+"为空");
             initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
             getData();
         }
@@ -84,32 +82,39 @@ public class MyMedalActivity extends AppActivity implements AtyTopLayout.myTopba
          * @return
          */
 
-
+        boolean flag =false;
         for (int i = 0; i < dataBeanList.size(); i++) {
             medalType = dataBeanList.get(i).getMedal().getMedalType();
             int medalScore = dataBeanList.get(i).getMedal().getMedalSource();
-            initMedal(medalScore, medalType);
+            if(medalScore==1){
+                initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+                flag =true;
+            }else
+            initMedal(medalScore, medalType,flag);
         }
     }
 
-    private void initMedal(int medalScore, int medalType) {
-        switch (medalScore) {
-            case 1:
-                initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
-                break;
-            case 2:
-//                initLinearLayout(ll_register_medal, REGISTER, medalType);
-//                break;
-            case 3:
-//                break;
-            case 4:
-//                break;
-            case 5:
-//                break;
-            default:
+    private void initMedal(int medalScore, int medalType, boolean flag) {
+            if(!flag)
                 initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
-                break;
-        }
+
+//        switch (medalScore) {
+//            case 1:
+//                initLinearLayout(ll_attendance_medal, ATTENDANCE, medalType);
+//                break;
+//            case 2:
+////                initLinearLayout(ll_register_medal, REGISTER, medalType);
+////                break;
+//            case 3:
+////                break;
+//            case 4:
+////                break;
+//            case 5:
+////                break;
+//            default:
+//                initLinearLayout(ll_attendance_medal, ATTENDANCE, 0);
+//                break;
+//        }
     }
 
     private void initMedalType(int medalType, ToggleButton image, int i) {

@@ -121,26 +121,35 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
 
     private void initMyMedal() {
-
+                boolean flag =false;
         for (int i = 0; i < dataBeanList.size(); i++) {
             int medalType = dataBeanList.get(i).getMedal().getMedalType();
             int medalScore = dataBeanList.get(i).getMedal().getMedalSource();
-            switch (medalScore) {
-                case 1:
-                    initLinearLayout(my_medal_persion, medalType);
-                    break;
-                case 2:
-//                    break;
-                case 3:
-//                    break;
-                case 4:
-//                    break;
-                case 5:
-//                    break;
-                default:
-                    initLinearLayout(my_medal_persion, 0);
-                    break;
+            if(medalScore==1){
+                initLinearLayout(my_medal_persion, medalType);
+                flag =true;
+            }else {
+                if(!flag)
+                initLinearLayout(my_medal_persion, 0);
             }
+
+
+//            switch (medalScore) {
+//                case 1:
+//                    initLinearLayout(my_medal_persion, medalType);
+//                    break;
+//                case 2:
+//                    break;
+//                case 3:
+//                    break;
+//                case 4:
+//                    break;
+//                case 5:
+//                    break;
+//                default:
+//                    initLinearLayout(my_medal_persion, 0);
+//                    break;
+//            }
 
         }
     }

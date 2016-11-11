@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class RecordActivity extends AppActivity {
 
     @InflateView(R.layout.layout_record_edit)
     private View pageOne;
+
     @InflateView(R.layout.layout_record_edit)
     private View pageTwo;
     private List<View> pagerViews;
@@ -64,6 +66,8 @@ public class RecordActivity extends AppActivity {
         pagerViews = new ArrayList<>();
         initpage(pageOne, 1);
         initpage(pageTwo, 2);
+
+
         pagerViews.add(pageOne);
         pagerViews.add(pageTwo);
         pagerAdapter = new TabPagerAdapter(pagerViews);
@@ -83,11 +87,13 @@ public class RecordActivity extends AppActivity {
         }
     }
 
-    private TextView edit;
+//    private TextView edit;
+
+
 
     private void initpage(final View view, final int type) {
         PullToLoadView page = (PullToLoadView) view.findViewById(R.id.pull_lists);
-        edit = (TextView) view.findViewById(R.id.edit_query);
+        final TextView edit = (TextView) view.findViewById(R.id.edit_query);
         page.setLoadingColor(R.color.colorPrimary);
         page.setPullCallback(new PullCallbackImpl(page, new GridLayoutManager(this, 3)) {
             @Override
@@ -119,17 +125,18 @@ public class RecordActivity extends AppActivity {
                             }.getType());
 
                             final ComicAdapter adapter = (ComicAdapter) handleData(page, beanList, ComicAdapter.class, b);
-                            edit.setVisibility(adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+
+                           edit.setVisibility(adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
                             edit.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    if (edit.getTag().toString().equals("0")) {
+                                    if ( edit.getTag().toString().equals("0")) {
                                         edit.setText("完成");
                                         edit.setTag("1");
                                         adapter.setOnItemDeleteListener(new ComicAdapter.OnItemDeleteListener() {
                                             @Override
                                             public void onItemDelete(int position, ObjectBean bean) {
-                                                delete(type, adapter, position, bean);
+                                                delete(type, adapter, position, bean,edit);
                                             }
                                         });
                                     } else {
@@ -158,7 +165,7 @@ public class RecordActivity extends AppActivity {
 
     private String deleteUrl = "";
 
-    private void delete(int type, final ComicAdapter adapter, final int position, ObjectBean bean) {
+    private void delete(int type, final ComicAdapter adapter, final int position, ObjectBean bean, final TextView edit) {
         System.out.println("position---->" + position + deleteUrl);
         httpGet(deleteUrl + "&type=" + type + "&ids=" + bean.getId(), new HttpCallback() {
             @Override
@@ -196,7 +203,7 @@ public class RecordActivity extends AppActivity {
 
     }
 
-    private void deleteAll(final ComicAdapter adapter) {
+    private void deleteAll(final ComicAdapter adapter, final TextView edit) {
         String url = deleteUrl;
         for (ObjectBean bean : adapter.getData()) {
             url += "&ids=" + bean.getId();
@@ -229,8 +236,9 @@ public class RecordActivity extends AppActivity {
     private void clickClean(View v) {
         System.out.println("position---->succ");
         PullToLoadView pullToLoadView = (PullToLoadView) mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.pull_lists);
+        TextView edit = (TextView) mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.edit_query);
         ComicAdapter adapter = (ComicAdapter) pullToLoadView.getRecyclerView().getAdapter();
-        if (adapter != null && adapter.getItemCount() >= 0) deleteAll(adapter);
+        if (adapter != null && adapter.getItemCount() >= 0) deleteAll(adapter,edit);
     }
 
 }
