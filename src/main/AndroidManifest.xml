@@ -26,14 +26,14 @@
 
     <!-- 摇一摇震动 -->
     <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
-
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--友盟权限-->
+    <!-- 友盟权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:name=".android.CartoonApplication"
         android:allowBackup="true"
@@ -154,14 +154,13 @@
             android:name="WEIBO_Share_APPKEY"
             android:value="3178795471" />
 
-        <!-- 友盟多渠道打包-->
+        <!-- 友盟多渠道打包 -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="582191a682b6356279000511"></meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
-
 
         <activity
             android:name="com.unicom.dm.wxapi.WXEntryActivity"
@@ -187,8 +186,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
 
             </intent-filter>
-
-
         </activity>
         <service android:name=".android.run.VideoService"></service>
         <receiver android:name=".android.receiver.AlarmReceiver" />
@@ -334,12 +331,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-
-
-         <!--<activity -->
-         <!--android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
-         <!--android:screenOrientation="portrait" -->
-         <!--android:theme="@style/AppTheme.NoActionBar" /> -->
+        <!-- <activity -->
+        <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
 
         <activity
             android:name=".android.ui.newview.VipOpenActivity"
@@ -358,26 +353,28 @@
         <activity
             android:name=".android.ui.newview.CustomerServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".android.ui.newview.MallActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!--qq第三方登录注册的活动AuthActivity，AssistActivity -->
+        <!-- qq第三方登录注册的活动AuthActivity，AssistActivity -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
-            android:noHistory="true"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="222222"/>
+
+                <data android:scheme="222222" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tencent.connect.common.AssistActivity"
-              android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            />
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".android.ui.ShareActivity"></activity>
     </application>
 
 </manifest>

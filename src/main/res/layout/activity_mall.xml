@@ -1,252 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_mall"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_efefef"
-    android:scrollbars="none">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/back_mall"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        app:BackGroundColor="@color/color_f5c92f"
+        app:CustomtitleTextColor="@color/color_3f190c"
+        app:CustomtitleTextSize="@dimen/text_size_48_px"
+        app:Customtoptitle="商城"
+        app:leftBackGround="@drawable/back_drawable"
+        app:rightText="交易记录"
+        app:rightTextColor="@color/color_3f190c"
+        app:rightTextSize="@dimen/text_size_36_px"
+        app:rightType="1" />
+
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.wodm.android.view.newview.AtyTopLayout
-            android:id="@+id/back_mall"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_90"
-            app:BackGroundColor="@color/color_f5c92f"
-            app:CustomtitleTextColor="@color/color_3f190c"
-            app:CustomtitleTextSize="@dimen/text_size_48_px"
-            app:Customtoptitle="商城"
-            app:leftBackGround="@drawable/back_drawable"
-            app:rightText="交易记录"
-            app:rightTextColor="@color/color_3f190c"
-            app:rightTextSize="@dimen/text_size_36_px"
-            app:rightType="1" />
+        android:background="@color/color_efefef"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white">
-
-            <LinearLayout
-                android:id="@+id/ll_buy_mall"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_281"
-                android:layout_margin="@dimen/px_45"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="4" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_2"
-            android:background="@color/color_eae7e7" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_ffffff"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <org.eteclab.ui.widget.viewpager.BannerView
+                android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_96"
-                android:layout_marginLeft="@dimen/px_45"
-                android:layout_marginRight="@dimen/px_45">
+                android:layout_height="110dp">
+            </org.eteclab.ui.widget.viewpager.BannerView>
 
-                <TextView
-                    android:id="@+id/hot_tv_mall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/px_10"
-                    android:text="今日热点"
-                    android:textColor="@color/color_ff6f21"
-                    android:textSize="@dimen/text_size_30_px"
-                    android:textStyle="bold" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white">-->
 
-                <TextView
-                    android:id="@+id/hot_line_mall"
-                    android:layout_width="@dimen/px_2"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/hot_tv_mall"
-                    android:layout_alignTop="@id/hot_tv_mall"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/px_10"
-                    android:layout_toRightOf="@id/hot_tv_mall"
-                    android:background="@color/color_cccccc" />
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_buy_mall"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/px_281"-->
+                    <!--android:layout_margin="@dimen/px_45"-->
+                    <!--android:gravity="center"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:weightSum="4" />-->
+            <!--</LinearLayout>-->
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/ll_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignBottom="@id/hot_line_mall"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/px_10"
-                    android:layout_toLeftOf="@+id/go_btn"
-                    android:layout_toRightOf="@id/hot_line_mall"
-                    android:gravity="bottom"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
 
-                    <TextView
-                        android:id="@+id/header_guajian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_10"
-                        android:text="头部挂件"
-                        android:textColor="@color/color_999999"
-                        android:textSize="@dimen/text_size_22_px" />
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/driver_achieve" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_10"
-                        android:text="'憋得慌潜水头盔'"
-                        android:textColor="@color/color_999999"
-                        android:textSize="@dimen/text_size_22_px" />
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/driver_achieve" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_10"
-                        android:text="今日限时特价"
-                        android:textColor="@color/color_999999"
-                        android:textSize="@dimen/text_size_22_px" />
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/driver_achieve" />
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/driver_achieve" />
+
                 </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/go_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:src="@mipmap/go" />
-            </RelativeLayout>
-        </LinearLayout>
+            </HorizontalScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_21"
-            android:background="@color/color_ffffff">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/px_2"-->
+                <!--android:background="@color/color_eae7e7" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/color_ffffff"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/px_96"-->
+                    <!--android:layout_marginLeft="@dimen/px_45"-->
+                    <!--android:layout_marginRight="@dimen/px_45">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/hot_tv_mall"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginRight="@dimen/px_10"-->
+                        <!--android:text="今日热点"-->
+                        <!--android:textColor="@color/color_ff6f21"-->
+                        <!--android:textSize="@dimen/text_size_30_px"-->
+                        <!--android:textStyle="bold" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/hot_line_mall"-->
+                        <!--android:layout_width="@dimen/px_2"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@id/hot_tv_mall"-->
+                        <!--android:layout_alignTop="@id/hot_tv_mall"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="@dimen/px_10"-->
+                        <!--android:layout_toRightOf="@id/hot_tv_mall"-->
+                        <!--android:background="@color/color_cccccc" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_view"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_alignBottom="@id/hot_line_mall"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="@dimen/px_10"-->
+                        <!--android:layout_toLeftOf="@+id/go_btn"-->
+                        <!--android:layout_toRightOf="@id/hot_line_mall"-->
+                        <!--android:gravity="bottom"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/header_guajian"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="@dimen/px_10"-->
+                            <!--android:text="头部挂件"-->
+                            <!--android:textColor="@color/color_999999"-->
+                            <!--android:textSize="@dimen/text_size_22_px" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="@dimen/px_10"-->
+                            <!--android:text="'憋得慌潜水头盔'"-->
+                            <!--android:textColor="@color/color_999999"-->
+                            <!--android:textSize="@dimen/text_size_22_px" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="@dimen/px_10"-->
+                            <!--android:text="今日限时特价"-->
+                            <!--android:textColor="@color/color_999999"-->
+                            <!--android:textSize="@dimen/text_size_22_px" />-->
+                    <!--</LinearLayout>-->
+
+                    <!--<ImageButton-->
+                        <!--android:id="@+id/go_btn"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@null"-->
+                        <!--android:gravity="center"-->
+                        <!--android:src="@mipmap/go" />-->
+                <!--</RelativeLayout>-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/px_30"
-                android:layout_marginLeft="@dimen/px_45"
-                android:layout_marginRight="@dimen/px_45"
-                android:layout_marginTop="@dimen/px_30"
-                android:background="@color/white"
+                android:background="@color/color_ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/px_30"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45"
+                    android:layout_marginTop="@dimen/px_30"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/px_50"
+                            android:layout_height="@dimen/px_100"
+                            android:background="@drawable/new_rectangle_mall1"
+                            android:gravity="center"
+                            android:padding="@dimen/px_2"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textStyle="bold" />
+
+                        <com.wodm.android.view.newview.MyGridView
+                            android:id="@+id/new_grid_mall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_30"
+                            android:gravity="center"
+                            android:horizontalSpacing="@dimen/px_21"
+                            android:listSelector="@android:color/transparent"
+                            android:numColumns="3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_30"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:src="@mipmap/more_mall" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_60"
+                android:layout_marginTop="@dimen/px_21"
+                android:background="@color/color_ffffff"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="@dimen/px_30"
+                    android:layout_marginLeft="@dimen/px_45"
+                    android:layout_marginRight="@dimen/px_45"
+                    android:layout_marginTop="@dimen/px_30"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="@dimen/px_100"
-                        android:layout_height="@dimen/px_50"
-                        android:background="@drawable/new_rectangle_mall1"
-                        android:gravity="center"
-                        android:padding="@dimen/px_2"
-                        android:text="最近新品"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
-                        android:textStyle="bold" />
-
-                    <com.wodm.android.view.newview.MyGridView
-                        android:id="@+id/new_grid_mall"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_30"
-                        android:gravity="center"
-                        android:horizontalSpacing="@dimen/px_21"
-                        android:listSelector="@android:color/transparent"
-                        android:numColumns="3" />
-                </LinearLayout>
+                        android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_30"
-                    android:gravity="right">
+                        <TextView
+                            android:layout_width="@dimen/px_50"
+                            android:layout_height="@dimen/px_100"
+                            android:background="@drawable/new_rectangle_mall2"
+                            android:gravity="center"
+                            android:padding="@dimen/px_2"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/text_size_22_px"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:src="@mipmap/more_mall" />
-                </LinearLayout>
+                        <com.wodm.android.view.newview.MyGridView
+                            android:id="@+id/renqi_grid_mall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/px_30"
+                            android:horizontalSpacing="@dimen/px_21"
+                            android:numColumns="3" />
+                    </LinearLayout>
 
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/px_60"
-            android:layout_marginTop="@dimen/px_21"
-            android:background="@color/color_ffffff"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/px_30"
-                android:layout_marginLeft="@dimen/px_45"
-                android:layout_marginRight="@dimen/px_45"
-                android:layout_marginTop="@dimen/px_30"
-                android:background="@color/white"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="@dimen/px_100"
-                        android:layout_height="@dimen/px_50"
-                        android:background="@drawable/new_rectangle_mall2"
-                        android:gravity="center"
-                        android:padding="@dimen/px_2"
-                        android:text="人气排行"
-                        android:textColor="@color/color_ffffff"
-                        android:textSize="@dimen/text_size_22_px"
-                        android:textStyle="bold" />
-
-                    <com.wodm.android.view.newview.MyGridView
-                        android:id="@+id/renqi_grid_mall"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/px_30"
-                        android:horizontalSpacing="@dimen/px_21"
-                        android:numColumns="3" />
+                        android:layout_marginTop="@dimen/px_30"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:src="@mipmap/more_mall" />
+                    </LinearLayout>
+
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_30"
-                    android:gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:src="@mipmap/more_mall" />
-                </LinearLayout>
-
             </LinearLayout>
-        </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
