@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+     <corners android:radius="@dimen/x10"></corners>
+    <solid android:color="@color/color_cccccc"></solid>
+
+    <!-- 支付页面获取验证码后的矩形 -->
+</shape>

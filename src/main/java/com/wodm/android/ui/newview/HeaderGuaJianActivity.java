@@ -193,8 +193,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 break;
             default:
                 new AlertDialog.Builder(HeaderGuaJianActivity.this)
-                        .setTitle("用户您好：")
-                        .setMessage("您的积分不足！")
+                        .setTitle("砖石头像框")
+                        .setMessage("确定使用930积分兑换？")
                         .create().show();
                 break;
         }

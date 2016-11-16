@@ -87,8 +87,15 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private int sex;
     @ViewIn(R.id.rl_sex)
     private RelativeLayout rl_sex;
+    @ViewIn(R.id.bindphone_rl)
+    private RelativeLayout bindphone_rl;
+    @ViewIn(R.id.bind_state)
+    private TextView bind_state;
+    @ViewIn(R.id.bind_phone)
+    private TextView bind_phone;
     private BottomPopupMenu bottomPopupMenu = null;
     private String mPhotoPath;
+    private final static int BIND_PHONE = 0x003;
     private final static int TAKE_PRICTURE = 0x002;
     private final static int GET_PRICTURE = 0x001;
 //    boolean saveFlag = false;
@@ -107,6 +114,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         img_circle.setOnClickListener(this);
         rl_birthday.setOnClickListener(this);
         rl_sex.setOnClickListener(this);
+        bindphone_rl.setOnClickListener(this);
         serUserInfo();
     }
 
@@ -212,10 +220,10 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     }
 
     private void savePhoto() {
-             //头像更换修改
+        //头像更换修改
 
-            String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
-        if(!TextUtils.isEmpty(url)&&!TextUtils.isEmpty(mPhotoPath))
+        String url = Constants.USER_UPLOAD_PORTRAIT + Constants.CURRENT_USER.getData().getAccount().getId();
+        if (!TextUtils.isEmpty(url) && !TextUtils.isEmpty(mPhotoPath))
             httpUpload(url, null, new File(mPhotoPath), new HttpCallback() {
 
                 @Override
@@ -311,6 +319,9 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             case R.id.img_circle:
                 clickIcon();
                 break;
+            case R.id.bindphone_rl:
+                startActivityForResult(new Intent(NewUserInfoActivity.this, BindPhoActivity.class), BIND_PHONE);
+                break;
         }
     }
 
@@ -320,11 +331,11 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         list.add(new BottomPopupMenu.TagAndEvent("拍照", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getPermission()){
+                if (getPermission()) {
                     takePhotos();
-                }else if (!hasCameraPermission()){
+                } else if (!hasCameraPermission()) {
                     getComeraPermission();
-                }else if (!hasWritePermission()){
+                } else if (!hasWritePermission()) {
                     getWritePermission();
                 }
 
@@ -350,21 +361,23 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         }));
         bottomPopupMenu = BottomPopupMenu.showMenu(this, getContentView(), list);
     }
-    private void getWritePermission(){
+
+    private void getWritePermission() {
         PermissionInfoTools.getWritePermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
             @Override
             public void IPsermission(boolean isPermsion) {
-                if (isPermsion&&hasWritePermission()){
+                if (isPermsion && hasWritePermission()) {
                     takePhotos();
                 }
             }
         });
     }
-    private void getComeraPermission(){
+
+    private void getComeraPermission() {
         PermissionInfoTools.getComeraPermission(NewUserInfoActivity.this, new PermissionInfoTools.SetPermissionCallBack() {
             @Override
             public void IPsermission(boolean isPermsion) {
-                if (isPermsion&&hasWritePermission()){
+                if (isPermsion && hasWritePermission()) {
                     takePhotos();
                 }
             }
@@ -381,36 +394,38 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 //        }
 //    }
 
-    private void takePhotos(){
+    private void takePhotos() {
         if (bottomPopupMenu != null)
             bottomPopupMenu.dismiss();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File filesss= ImageTools.getPath();
-        if (filesss.exists()){
-            mPhotoPath = filesss+"img-" + System.currentTimeMillis() + ".jpg";
+        File filesss = ImageTools.getPath();
+        if (filesss.exists()) {
+            mPhotoPath = filesss + "img-" + System.currentTimeMillis() + ".jpg";
         }
 //        if (Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
 //            mPhotoPath = Environment.getExternalStorageDirectory().getPath() + "/" + mPhotoPath;
 //        } else {
 //            return;
 //        }
-        File file=new File(mPhotoPath);
-        if (!file.exists()){
+        File file = new File(mPhotoPath);
+        if (!file.exists()) {
             mPhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "img-" + System.currentTimeMillis() + ".jpg";
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPath)));
         startActivityForResult(intent, TAKE_PRICTURE);
 
     }
-    private boolean getPermission(){
-        if (hasCameraPermission()&&hasWritePermission()){
+
+    private boolean getPermission() {
+        if (hasCameraPermission() && hasWritePermission()) {
             return true;
         }
         return false;
 
     }
-    public boolean hasCameraPermission(){
-        if(Build.VERSION.SDK_INT<23)
+
+    public boolean hasCameraPermission() {
+        if (Build.VERSION.SDK_INT < 23)
             return true;
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -418,13 +433,14 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 //			ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
 //					WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
             return false;
-        }else {
+        } else {
             return true;
         }
 
     }
-    public boolean hasWritePermission(){
-        if(Build.VERSION.SDK_INT<23)
+
+    public boolean hasWritePermission() {
+        if (Build.VERSION.SDK_INT < 23)
             return true;
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -432,31 +448,32 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 //			ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
 //					WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
             return false;
-        }else {
+        } else {
             return true;
         }
 
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-           if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS) {
-               if (hasCameraPermission()){
-                   takePhotos();
-               }else {
-                   getComeraPermission();
-               }
-           }else if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_COMERA_CONTACTS){
-               if (hasWritePermission()){
-                   takePhotos();
-               }else {
-                   getWritePermission();
+            if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_WRITE_CONTACTS) {
+                if (hasCameraPermission()) {
+                    takePhotos();
+                } else {
+                    getComeraPermission();
+                }
+            } else if (requestCode == PermissionInfoTools.MY_PERMISSIONS_REQUEST_COMERA_CONTACTS) {
+                if (hasWritePermission()) {
+                    takePhotos();
+                } else {
+                    getWritePermission();
 
-               }
-           }
+                }
+            }
 
-        }else {
+        } else {
             new AlertDialog.Builder(NewUserInfoActivity.this)
                     .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!").create().show();
         }
@@ -468,11 +485,20 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
         if (resultCode == RESULT_OK)
             switch (requestCode) {
+                case BIND_PHONE:
+                    int state = data.getIntExtra("state", 0);
+                    int phone = data.getIntExtra("pnone", 0);
+                    if (state == 1) {
+                        bind_state.setText("已绑定");
+                        bind_state.setTextColor(getResources().getColor(R.color.color_f5912f));
+                        bind_phone.setText(phone);
+                    }
+                    break;
                 case GET_PRICTURE:
                     mPhotoPath = getSelectMediaPath(data);
                 case TAKE_PRICTURE:
                     try {
-                        Bitmap bitmap=ImageUtils.revitionImageSize(mPhotoPath);
+                        Bitmap bitmap = ImageUtils.revitionImageSize(mPhotoPath);
                         mPhotoPath = FileUtils.saveBitmap(bitmap, mPhotoPath.substring(mPhotoPath.lastIndexOf("/")));
                         img_circle.setImageBitmap(bitmap);
                         Toast.makeText(this, "点击保存后才能更换您喜欢的头像哦!", Toast.LENGTH_SHORT).show();

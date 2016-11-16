@@ -7,6 +7,7 @@
     <color name="luck_top_bg_color">#c0bebc</color>
     <color name="more_color">#F34F85</color>
     <color name="transparent_black">#88000000</color>
+    <color name="transparent_ban">#000000</color>
     <color name="logout_color">#3D3D3D</color>
     <color name="transparent_blacks">#11000000</color>
     <color name="color_333333">#333333</color>
@@ -79,5 +80,6 @@
     <color name="color_ffc061">#ffc061</color>
     <color name="color_dd977f">#dd977f</color>
     <color name="color_ee974a">#ee974a</color>
+    <color name="color_f5912f">#f5912f</color>
 
 </resources>

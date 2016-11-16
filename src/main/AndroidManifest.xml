@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
@@ -33,7 +32,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 友盟权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
     <application
         android:name=".android.CartoonApplication"
         android:allowBackup="true"
@@ -154,7 +152,7 @@
             android:name="WEIBO_Share_APPKEY"
             android:value="3178795471" />
 
-        <!-- 友盟多渠道打包 -->
+        <!-- 友盟多渠道打包-->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="582191a682b6356279000511"></meta-data>
@@ -182,10 +180,12 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
 
             <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+
         </activity>
         <service android:name=".android.run.VideoService"></service>
         <receiver android:name=".android.receiver.AlarmReceiver" />
@@ -364,17 +364,18 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="222222" />
+                <data android:scheme="222222"/>
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".android.ui.ShareActivity"></activity>
+        <activity
+            android:name=".android.ui.newview.PayActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".android.ui.newview.BindPhoActivity"></activity>
     </application>
 
 </manifest>

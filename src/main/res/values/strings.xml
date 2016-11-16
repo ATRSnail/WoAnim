@@ -28,6 +28,8 @@
     <string name="lose_possword">忘记密码？</string>
     <string name="user_possword">密码</string>
     <string name="user_phone">手机号</string>
+    <string name="bind_phone">绑定手机号</string>
+    <string name="bind_pho">绑定手机</string>
     <string name="user_input_phone">输入手机号</string>
     <string name="login_type">使用其他方式登录</string>
     <string name="get_code">获取验证码</string>
@@ -43,6 +45,7 @@
     <string name="resiner">注册</string>
     <string name="forget_pass">忘记密码</string>
     <string name="login_hint">输入用户名/手机号/邮箱</string>
+    <string name="bind_hint">输入手机号码</string>
     <string name="password_hint">请输入密码</string>
     <string name="forget_password"><u>忘记密码 ?</u></string>
     <string name="other_login_way">其他登录方式</string>
@@ -126,4 +129,5 @@
     <string name="way_if_next">      距离 %2$d, 还有 %2$d 经验值</string>
     <string name="buy_now">立即购买</string>
     <string name="guajian_hint">会员可定制稀有头部挂件</string>
+
 </resources>
