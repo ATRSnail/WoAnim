@@ -197,7 +197,7 @@ public class DialogUtils extends Dialog {
             // set the content message
             if (message != null) {
                 //设置字间距
-                ((TextView) layout.findViewById(R.id.message_dialog)).setTextScaleX(1.8f);
+//                ((TextView) layout.findViewById(R.id.message_dialog)).setTextScaleX(1.8f);
                 ((TextView) layout.findViewById(R.id.message_dialog)).setText(message);
             } else {
                 if (contentView != null) {

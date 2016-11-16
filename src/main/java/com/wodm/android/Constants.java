@@ -59,6 +59,7 @@ public class Constants {
     //忘记密码
     public static final String USER_FORGET_PASSWORD = HOST + "/newuser/editPassword";//注册
     public static final String USER_LOGIN = HOST + "user/login";//登录
+    public static final String BIND_WEIXIN = HOST + "newuser/weixin/binding";// 微信绑定的接口
     public static final String USER_LOGIN_WX = HOST + "user/weixin/login";//登录
     public static final String USER_LOGOUT = HOST + "user/logout";//退出登录
     public static final String USER_TOKEN = HOST + "user/token/";//TOKEN验证

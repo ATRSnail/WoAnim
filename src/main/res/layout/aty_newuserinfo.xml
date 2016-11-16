@@ -327,8 +327,7 @@
                     android:layout_height="@dimen/px_96"
                     android:layout_marginLeft="@dimen/px_45"
                     android:layout_marginRight="@dimen/px_45"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true">
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/bind_state"

@@ -35,6 +35,7 @@ import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.dialog.SexDialog;
 import com.wodm.android.tools.JianpanTools;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.FileUtils;
@@ -127,6 +128,15 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
     private void serUserInfo() {
         UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
         nickname_user.setText(accountBean.getNickName());
+
+        //联通手机登录---标记已经绑定
+        String phone = accountBean.getMobile();
+        if (Tools.isMobileNO(phone)) {
+            bind_state.setText("已绑定");
+            bind_state.setTextColor(getResources().getColor(R.color.color_f5912f));
+            bind_phone.setText(phone);
+        }
+
         String str_sex = "";
         if (accountBean.getSex() == 0) {
             str_sex = "保密";
@@ -487,11 +497,12 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             switch (requestCode) {
                 case BIND_PHONE:
                     int state = data.getIntExtra("state", 0);
-                    int phone = data.getIntExtra("pnone", 0);
+                    String phone = data.getStringExtra("phone");
                     if (state == 1) {
                         bind_state.setText("已绑定");
                         bind_state.setTextColor(getResources().getColor(R.color.color_f5912f));
-                        bind_phone.setText(phone);
+                        if (phone != null || !"".equals(phone))
+                            bind_phone.setText(phone);
                     }
                     break;
                 case GET_PRICTURE:

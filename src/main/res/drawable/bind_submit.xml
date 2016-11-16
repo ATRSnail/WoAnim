@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners android:radius="@dimen/x10"></corners>
-    <solid android:color="@color/color_ffffff"></solid>
-    <!-- 绑定手机.输入手机号码、验证码的矩形 -->
+    <solid android:color="@color/color_f5c92f"></solid>
+    <!-- 绑定手机.获取验证码、提交的矩形 -->
 </shape>

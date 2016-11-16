@@ -21,38 +21,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x30"
-        android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="@dimen/y14"
+        android:layout_marginLeft="@dimen/px_45"
+        android:layout_marginRight="@dimen/px_45"
+        android:layout_marginTop="@dimen/px_21"
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/phone_bind"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y64"
+            android:layout_height="@dimen/px_86"
             android:background="@drawable/bind_phone"
             android:hint="@string/bind_hint"
-            android:paddingLeft="@dimen/x30"
+            android:paddingLeft="@dimen/px_45"
             android:textColorHint="@color/color_999999"
-            android:textSize="@dimen/x20" />
+            android:textSize="@dimen/text_size_22_px" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y14"
+            android:layout_height="@dimen/px_86"
+            android:layout_marginTop="@dimen/px_21"
             android:orientation="horizontal">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y64"
+                android:id="@+id/yzm_bind"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
                 android:background="@drawable/bind_phone"
                 android:hint="@string/input_yzm"
-                android:paddingLeft="@dimen/x30"
+                android:paddingLeft="@dimen/px_45"
                 android:textColorHint="@color/color_999999"
-                android:textSize="@dimen/x20" />
+                android:textSize="@dimen/text_size_22_px" />
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:id="@+id/get_yzm_bind"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/px_21"
+                android:background="@drawable/bind_submit"
+                android:text="@string/get_code"
+                android:textColor="@color/color_ffffff"
+                android:textSize="@dimen/text_size_22_px" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_bind"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_86"
+            android:layout_marginTop="@dimen/px_21"
+            android:background="@drawable/bind_submit"
+            android:text="@string/submint"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_size_30_px" />
     </LinearLayout>
 
 

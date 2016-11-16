@@ -20,6 +20,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DialogUtils;
@@ -35,6 +36,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 @Layout(R.layout.activity_pay)
 public class PayActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
@@ -65,8 +68,12 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
     }
 
     private void initPhone() {
-        phone = "18900000000";
-        if (phone1_pay != null) {
+
+
+        phone = getIntent().getStringExtra("phone");
+
+
+        if (phone != null) {
             phone1_pay.setText(phone.substring(0, 3));
             phone2_pay.setText(phone.substring(3, 7));
             phone3_pay.setText(phone.substring(7));
@@ -89,24 +96,9 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
         switch (v.getId()) {
             case R.id.yzm_pay:
                 getYzm();
-                DialogUtils.Builder builder = new DialogUtils.Builder(this);
-                builder.setMessage("对不起，您不是联通用户无法进行支付");
-//                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                builder.create().show();
                 break;
             case R.id.zhifu_pay:
-                zhifuResult();
+//                zhifuResult();
 
                 break;
         }
