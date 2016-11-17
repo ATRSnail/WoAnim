@@ -1,7 +1,6 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ScrollView;
 
 import com.google.gson.Gson;
@@ -87,7 +86,6 @@ public class BuyingHistoryActivity extends AppActivity implements AtyTopLayout.m
                 dataBeanList = null;
             }
         });
-        Log.e("AA","----------------------------"+dataBeanList.size());
         if(dataBeanList!=null&&dataBeanList.size()>0){
             }
 

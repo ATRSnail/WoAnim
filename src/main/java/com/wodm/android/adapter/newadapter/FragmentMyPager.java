@@ -142,7 +142,7 @@ public class FragmentMyPager extends Fragment {
                 final MyGridView gv_guajian= (MyGridView) convertView.findViewById(R.id.gv_guajian);
                 String name=columnBeanList.get(position).getName();
                 ofenuserview.setTitle(name);
-                httpGet(Constants.APP_GET_PRODUCT_PAGEBYCLIUMN +198+"&productType="+productType+"&name="+name, new HttpCallback() {
+                httpGet(Constants.APP_GET_PRODUCT_PAGEBYCLIUMN +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType="+productType+"&name="+name, new HttpCallback() {
 
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

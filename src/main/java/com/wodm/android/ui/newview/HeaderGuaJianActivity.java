@@ -380,11 +380,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                if (obj.optInt("data")==1){
-                    BuyingGoodsDialog();
-                }else {
-                    NoScore();
-                }
+                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
             }
 
             @Override

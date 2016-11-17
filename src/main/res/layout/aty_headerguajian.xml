@@ -129,7 +129,7 @@
                     <ImageView
                         android:layout_marginLeft="@dimen/px_8"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/icon_more"
+                        android:background="@mipmap/mall_mine_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

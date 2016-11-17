@@ -46,7 +46,6 @@
                         android:layout_marginTop="@dimen/px_54"
                         android:layout_marginLeft="@dimen/px_30"
                         android:id="@+id/img_user_header"
-                        android:background="@mipmap/moren_header"
                         android:layout_width="@dimen/x108"
                         android:layout_height="@dimen/x108" />
                 <ImageView
@@ -105,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                android:background="@mipmap/vip_speed"
+                                android:id="@+id/img_speed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView

@@ -3,6 +3,7 @@ package com.wodm.android.ui.newview;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,10 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -46,7 +51,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
  * Created by songchenyu on 16/11/15.
  */
 
-public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.myTopbarClicklistenter, View.OnClickListener  {
+public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myTopbarClicklistenter, View.OnClickListener {
     /**
      * Created by songchenyu on 16/10/21.
      */
@@ -58,20 +63,30 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     private TabLayout tabLayout;
     private LinearLayout ll_tiaokuan;
     private Button btn_open_vip;
-    private boolean isOpenVip=true;
+    private boolean isOpenVip = true;
     private ImageView img_dagou;
     private ImageView img_vip_circle;
     private TextView tv_endof_vip_num;
     private TextView nick_value;
     private TextView nick_name;
-    private LinearLayout ll_novip_hint,ll_vip_jiasu,ll_novip_open_vip,ll_vip_time;
+    private LinearLayout ll_novip_hint, ll_vip_jiasu, ll_novip_open_vip, ll_vip_time;
     private TextView tv_score;
+    private ImageView img_speed;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_newvip);
 
         initView();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -83,16 +98,17 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     private ImageView img_vip;
 
     private void initView() {
-        tv_score= (TextView) findViewById(R.id.tv_score);
-        img_vip= (ImageView) findViewById(R.id.img_vip);
-        ll_novip_open_vip= (LinearLayout) findViewById(R.id.ll_novip_open_vip);
-        ll_vip_time= (LinearLayout) findViewById(R.id.ll_vip_time);
-        ll_novip_hint= (LinearLayout) findViewById(R.id.ll_novip_hint);
-        ll_vip_jiasu= (LinearLayout) findViewById(R.id.ll_vip_jiasu);
-        nick_value= (TextView) findViewById(R.id.nick_value);
-        nick_name= (TextView) findViewById(R.id.nick_name);
-        tv_endof_vip_num= (TextView) findViewById(R.id.tv_endof_vip_num);
-        img_vip_circle= (ImageView) findViewById(R.id.img_vip_circle);
+        img_speed = (ImageView) findViewById(R.id.img_speed);
+        tv_score = (TextView) findViewById(R.id.tv_score);
+        img_vip = (ImageView) findViewById(R.id.img_vip);
+        ll_novip_open_vip = (LinearLayout) findViewById(R.id.ll_novip_open_vip);
+        ll_vip_time = (LinearLayout) findViewById(R.id.ll_vip_time);
+        ll_novip_hint = (LinearLayout) findViewById(R.id.ll_novip_hint);
+        ll_vip_jiasu = (LinearLayout) findViewById(R.id.ll_vip_jiasu);
+        nick_value = (TextView) findViewById(R.id.nick_value);
+        nick_name = (TextView) findViewById(R.id.nick_name);
+        tv_endof_vip_num = (TextView) findViewById(R.id.tv_endof_vip_num);
+        img_vip_circle = (ImageView) findViewById(R.id.img_vip_circle);
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
         vipPagerFragment = new VipFragment();
         vvipPagerFragment = new VvipFragment();
@@ -100,16 +116,17 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
         fragments.add(vipPagerFragment);
         mTitles.add("VIP用户");
         mTitles.add("VVIP用户");
+        ll_tiaokuan = (LinearLayout) findViewById(R.id.ll_tiaokuan);
         set_topbar.setOnTopbarClickListenter(this);
         ll_tiaokuan= (LinearLayout) findViewById(R.id.ll_tiaokuan);
         ll_tiaokuan.setOnClickListener(this);
-        img_dagou= (ImageView) findViewById(R.id.img_dagou);
-        btn_open_vip= (Button) findViewById(R.id.btn_open_vip);
+        img_dagou = (ImageView) findViewById(R.id.img_dagou);
+        btn_open_vip = (Button) findViewById(R.id.btn_open_vip);
         btn_open_vip.setOnClickListener(this);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         user_head_imgs = (CircularImage) findViewById(R.id.img_user_header);
-//        if(CURRENT_USER.getData().getAccount().getPortrait()!=null)
-//            new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
+        if (CURRENT_USER.getData().getAccount().getPortrait() != null)
+            new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         mViewPager = (ViewPager) findViewById(R.id.mypage_pager);
         tabFragmentAdapter = new TabFragmentAdapter(fragments, mTitles, getSupportFragmentManager(), getApplicationContext());
@@ -149,14 +166,14 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
         setUserInfo();
     }
 
-    private void setUserInfo(){
-        httpGet(Constants.APP_GET_VIP_TIME+CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+    private void setUserInfo() {
+        httpGet(Constants.APP_GET_VIP_TIME + CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                String day=obj.optString("data");
-                tv_endof_vip_num.setText(day+"");
+                String day = obj.optString("data");
+                tv_endof_vip_num.setText(day + "");
             }
 
             @Override
@@ -164,33 +181,39 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
                 super.doAuthFailure(result, obj);
             }
         });
-        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
-        int vip=accountBean.getVip();
-        if (vip==0){
+        UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
+        int vip = accountBean.getVip();
+        if (vip == 0) {
             ll_novip_open_vip.setVisibility(View.VISIBLE);
             ll_novip_hint.setVisibility(View.VISIBLE);
             ll_vip_time.setVisibility(View.GONE);
             ll_vip_jiasu.setVisibility(View.GONE);
-        } else if (vip==1){
+        } else if (vip == 1) {
+            btn_open_vip.setText("续费VIP");
             ll_novip_open_vip.setVisibility(View.GONE);
             ll_novip_hint.setVisibility(View.GONE);
             ll_vip_time.setVisibility(View.VISIBLE);
             ll_vip_jiasu.setVisibility(View.VISIBLE);
+
             img_vip.setBackgroundResource(R.mipmap.img_vip_vip);
+            img_speed.setBackgroundResource(R.mipmap.vip_speed);
             img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);
-        }else if (vip==2){
+        } else if (vip == 2) {
+            btn_open_vip.setText("续费VVIP");
             ll_novip_open_vip.setVisibility(View.GONE);
             ll_novip_hint.setVisibility(View.GONE);
             ll_vip_time.setVisibility(View.VISIBLE);
             ll_vip_jiasu.setVisibility(View.VISIBLE);
+            img_speed.setBackgroundResource(R.mipmap.vvip_speed);
             img_vip.setBackgroundResource(R.mipmap.img_vip_vvip);
             img_vip_circle.setBackgroundResource(R.mipmap.vvip_circle);
         }
-        tv_score.setText(accountBean.getScore()+"");
-        nick_value.setText("LV."+accountBean.getGradeValue());
+        tv_score.setText(accountBean.getScore() + "");
+        nick_value.setText("LV." + accountBean.getGradeValue());
         nick_name.setText(accountBean.getNickName());
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
     }
+
     public void httpGet(String url, final HttpCallback callback) {
 
         try {
@@ -201,6 +224,7 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
         }
 
     }
+
     @Override
     public void leftClick() {
         finish();
@@ -216,6 +240,8 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_open_vip:
+//                if (isOpenVip) {
+//                    Intent intent = new Intent(NewVipActivity.this, NewVipActivity.class);
                     String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
                 if (isOpenVip){
                     Intent intent = new Intent();
@@ -230,20 +256,56 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
                      }
                     startActivity(intent);
                 }
-            break;
+                break;
             case R.id.ll_tiaokuan:
-               if (isOpenVip){
-                   img_dagou.setBackgroundResource(R.mipmap.vip_quxiaodagou);
-                   btn_open_vip.setBackgroundResource(R.drawable.btn_open_vip);
-                   isOpenVip=false;
-               }else {
-                   img_dagou.setBackgroundResource(R.mipmap.vip_dagou);
-                   btn_open_vip.setBackgroundResource(R.drawable.btn_open_vip_click);
-                   isOpenVip=true;
-               }
+                if (isOpenVip) {
+                    img_dagou.setBackgroundResource(R.mipmap.vip_quxiaodagou);
+                    btn_open_vip.setBackgroundResource(R.drawable.btn_open_vip);
+                    isOpenVip = false;
+                } else {
+                    img_dagou.setBackgroundResource(R.mipmap.vip_dagou);
+                    btn_open_vip.setBackgroundResource(R.drawable.btn_open_vip_click);
+                    isOpenVip = true;
+                }
                 break;
         }
 
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("NewVip Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 
     private class TabInfo {

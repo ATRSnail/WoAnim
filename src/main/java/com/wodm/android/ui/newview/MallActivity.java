@@ -1,6 +1,5 @@
 package com.wodm.android.ui.newview;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -54,6 +54,8 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 //    ImageButton go_btn;
     @ViewIn(R.id.banner)
     BannerView mBannerView;
+    @ViewIn(R.id.scrollView)
+    private ScrollView scrollView;
     private LinearLayout mall_more1, mall_more;
 
     MallAdapter adapter;
@@ -63,6 +65,12 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (scrollView != null) {
+            scrollView.scrollTo(0, 0);
+            scrollView.setFocusable(true);
+            scrollView.setFocusableInTouchMode(true);
+            scrollView.requestFocus();
+        }
         renqi_grid_mall.setSelector(new ColorDrawable(Color.TRANSPARENT));
         mall_more1 = (LinearLayout) findViewById(R.id.mall_more1);
         mall_more = (LinearLayout) findViewById(R.id.mall_more);
@@ -325,6 +333,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         intent.putExtra("text", text);
         intent.setClass(this, GuaJianHeaderImageActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
