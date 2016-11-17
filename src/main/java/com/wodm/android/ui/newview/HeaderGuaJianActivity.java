@@ -153,6 +153,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TabFragmentAdapter tabFragmentAdapter;
 
     private void initView() {
+        img_vip_circle= (ImageView) findViewById(R.id.img_vip_circle);
         btn_buy_now= (Button) findViewById(R.id.btn_buy_now);
         btn_buy_now.setOnClickListener(this);
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
@@ -303,20 +304,21 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                        dialog.dismiss();
 //                    }
 //                }).create().show();
-                new DialogUtils.Builder(HeaderGuaJianActivity.this)
-                        .setTitle("砖石头像框")
-                        .setMessage("确定使用"+clickBean.getNeedScore()+"积分兑换？")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                BuyingGoods();
-                            }
-                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                httpGet(Constants.APP_GET_PRODUCT_IS_BUY +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode() , new HttpCallback() {
 
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthSuccess(result, obj);
+                        Log.e("SCY"," - - --  ");
                     }
-                }).create().show();
+
+                    @Override
+                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthFailure(result, obj);
+                        Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
 //            default:
 //                new AlertDialog.Builder(HeaderGuaJianActivity.this)
@@ -328,20 +330,20 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 
     }
     private void BuyingGoods(){
-        httpGet(Constants.APP_GET_PRODUCT_IS_BUY +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode() , new HttpCallback() {
-
+        new DialogUtils.Builder(HeaderGuaJianActivity.this)
+                .setTitle("砖石头像框")
+                .setMessage("确定使用"+clickBean.getNeedScore()+"积分兑换？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BuyingGoods();
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                Log.e("SCY",""+obj.toString());
-            }
+            public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
             }
-        });
+        }).create().show();
     }
 
     private class TabInfo {
