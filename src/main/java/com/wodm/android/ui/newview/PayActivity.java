@@ -1,15 +1,12 @@
 package com.wodm.android.ui.newview;
 
 
-import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
-import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
@@ -32,12 +26,8 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static com.wodm.android.Constants.CURRENT_USER;
 
 @Layout(R.layout.activity_pay)
 public class PayActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
@@ -60,6 +50,14 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vpay);
+        String vip = getIntent().getStringExtra("vip");
+
+//        if("开通VIP".equals(vip)){
+//            setContentView(R.layout.activity_vpay);
+//        }else {
+//            setContentView(R.layout.activity_vvpay);
+//        }
         initPhone();
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_yzm.setOnClickListener(this);
@@ -68,12 +66,8 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
     }
 
     private void initPhone() {
-
-
         phone = getIntent().getStringExtra("phone");
-
-
-        if (phone != null) {
+        if (phone != null&&phone.length()>0) {
             phone1_pay.setText(phone.substring(0, 3));
             phone2_pay.setText(phone.substring(3, 7));
             phone3_pay.setText(phone.substring(7));

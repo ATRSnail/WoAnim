@@ -21,6 +21,7 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/px_72">
                <TextView
+                   android:id="@+id/productTypeFlag"
                    android:gravity="center"
                    android:layout_marginLeft="30dp"
                    android:layout_alignParentLeft="true"
@@ -30,6 +31,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content" />
                <TextView
+                   android:id="@+id/description"
                    android:gravity="center"
                    android:layout_marginRight="@dimen/px_30"
                    android:layout_alignParentRight="true"
@@ -52,6 +54,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <RelativeLayout
+                   android:gravity="center"
                    android:id="@+id/ll_buy"
                    android:background="@drawable/item_history"
                    android:layout_width="@dimen/px_192"
@@ -63,7 +66,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="@dimen/px_168">
                        <org.eteclab.ui.widget.CircularImage
-                           android:id="@+id/img_user_header"
+                           android:id="@+id/productImageUrl"
                            android:layout_centerHorizontal="true"
                            android:layout_alignParentBottom="true"
                            android:background="@mipmap/moren_header"
@@ -98,7 +101,8 @@
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content">
                        <TextView
-                           android:text="[头像框]企鹅仔头像框"
+                           android:id="@+id/productName"
+                           android:text="[头像框] 企鹅仔头像框"
                            android:textSize="@dimen/text_size_30_px"
                            android:textColor="@color/color_666666"
                            android:layout_width="wrap_content"
@@ -112,6 +116,7 @@
                            android:layout_height="wrap_content" />
                    </RelativeLayout>
                    <TextView
+                       android:id="@+id/numberflag"
                        android:text="930积分"
                        android:textColor="@color/color_f5921f"
                        android:textSize="@dimen/text_size_36_px"
@@ -142,6 +147,7 @@
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content" />
                            <TextView
+                               android:id="@+id/numberflag2"
                                android:textSize="@dimen/text_size_30_px"
                                android:textColor="@color/color_f5912f"
                                android:text="930积分"

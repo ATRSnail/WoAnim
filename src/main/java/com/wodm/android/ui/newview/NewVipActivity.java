@@ -100,6 +100,7 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
         fragments.add(vipPagerFragment);
         mTitles.add("VIP用户");
         mTitles.add("VVIP用户");
+        set_topbar.setOnTopbarClickListenter(this);
         ll_tiaokuan= (LinearLayout) findViewById(R.id.ll_tiaokuan);
         ll_tiaokuan.setOnClickListener(this);
         img_dagou= (ImageView) findViewById(R.id.img_dagou);
@@ -123,6 +124,28 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
             scrollView.setFocusableInTouchMode(true);
             scrollView.requestFocus();
         }
+
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position==0){
+                    btn_open_vip.setText("开通VIP");
+                }else {
+                    btn_open_vip.setText("开通VVIP");
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         setUserInfo();
     }
 
@@ -193,8 +216,18 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_open_vip:
+                    String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
                 if (isOpenVip){
-                    Intent intent = new Intent(NewVipActivity.this, NewVipActivity.class);
+                    Intent intent = new Intent();
+                     if(phone!=null)
+                     {
+                         intent.setClass(NewVipActivity.this, PayActivity.class);
+                         intent.putExtra("phone",phone);
+                         intent.putExtra("vip",btn_open_vip.getText());
+                     }
+                    else {
+                         intent.setClass(NewVipActivity.this, BindPhoActivity.class);
+                     }
                     startActivity(intent);
                 }
             break;

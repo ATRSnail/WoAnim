@@ -135,9 +135,6 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
     private void sendSubmit() {
         phone = Tools.getText(phone_bind);
         yzm = Tools.getText(yzm_bind);
-        if (Constants.CURRENT_USER == null) {
-            return;
-        }
         if (TextUtils.isEmpty(yzm) || TextUtils.isEmpty(phone)) {
             Toast.makeText(this, "输入的内容不能为空!", Toast.LENGTH_SHORT).show();
             return;
@@ -153,9 +150,12 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
                 return;
             }
         }
+        if (Constants.CURRENT_USER == null) {
+            return;
+        }
 
         //微信绑定手机号码
-        String url = Constants.BIND_WEIXIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&m=" + phone;
+        String url = Constants.BIND_WEIXIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&m=" + phone+ "&code=" + yzm;
         httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

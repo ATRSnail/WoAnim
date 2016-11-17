@@ -17,7 +17,7 @@
            app:BackGroundColor="@color/color_f5c92f"
            app:CustomtitleTextColor="@android:color/white"
            app:CustomtitleTextSize="@dimen/text_size_32_px"
-           app:Customtoptitle="头部挂件"
+           app:Customtoptitle="交易记录"
            app:leftBackGround="@mipmap/back_mall_white"
            app:rightType="0" />
 

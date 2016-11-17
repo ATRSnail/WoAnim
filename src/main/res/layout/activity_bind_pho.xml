@@ -34,7 +34,7 @@
             android:hint="@string/bind_hint"
             android:paddingLeft="@dimen/px_45"
             android:textColorHint="@color/color_999999"
-            android:textSize="@dimen/text_size_22_px" />
+            android:textSize="@dimen/text_size_28_px" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:hint="@string/input_yzm"
                 android:paddingLeft="@dimen/px_45"
                 android:textColorHint="@color/color_999999"
-                android:textSize="@dimen/text_size_22_px" />
+                android:textSize="@dimen/text_size_28_px" />
 
             <Button
                 android:id="@+id/get_yzm_bind"
@@ -62,7 +62,7 @@
                 android:background="@drawable/bind_submit"
                 android:text="@string/get_code"
                 android:textColor="@color/color_ffffff"
-                android:textSize="@dimen/text_size_22_px" />
+                android:textSize="@dimen/text_size_28_px" />
         </LinearLayout>
 
         <Button
@@ -74,7 +74,7 @@
             android:background="@drawable/bind_submit"
             android:text="@string/submint"
             android:textColor="@color/color_ffffff"
-            android:textSize="@dimen/text_size_30_px" />
+            android:textSize="@dimen/text_size_32_px" />
     </LinearLayout>
 
 
