@@ -115,6 +115,7 @@
                   android:layout_height="@dimen/px_61">
                   <include layout="@layout/devid_line" android:layout_height="@dimen/px_1" android:layout_width="match_parent"></include>
                 <LinearLayout
+                    android:id="@+id/ll_guajian_of_user"
                     android:layout_centerInParent="true"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"

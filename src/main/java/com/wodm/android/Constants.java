@@ -134,6 +134,9 @@ public class Constants {
     public static final String APP_GET_PRODUCT_PAGEBYCLIUMN=HOST + "/product/pageBycolumn?userId=";
     public static final String APP_GET_PRODUCT_BY_PRODUCTTYPE=HOST + "/product/getProductByProductType?productType=";
     public static final String APP_GET_PRODUCT_IS_BUY=HOST + "newuser/isBuy?userId=";
+    public static final String APP_GET_BUY_PRODUCT=HOST + "newuser/buyProduct?userId=";
+    public static final String APP_GET_MALL_OF_USER=HOST + "product/getPendantListByType?userId=";
+    public static final String APP_GET_MALL_OF_USER_PENADANT=HOST + "newuser/usePendant?userId=";
     public static String OFFTIME;
 
 

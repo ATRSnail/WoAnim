@@ -11,9 +11,12 @@
         app:BackGroundColor="@color/color_f5c92f"
         app:CustomtitleTextColor="@color/color_ffffff"
         app:CustomtitleTextSize="@dimen/text_size_48_px"
-        app:Customtoptitle="商城"
+        app:Customtoptitle="我的商品"
         app:leftBackGround="@drawable/back_drawable"
-        app:rightType="2" />
+        app:rightText="保存"
+        app:rightTextSize="@dimen/text_size_28_px"
+        app:rightTextColor="@color/color_ffffff"
+        app:rightType="1" />
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"

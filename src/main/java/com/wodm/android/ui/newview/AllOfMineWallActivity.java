@@ -14,18 +14,21 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.TabFragmentAdapter;
 import com.wodm.android.adapter.newadapter.MallAdapter;
 import com.wodm.android.bean.MallGuaJianBean;
-import com.wodm.android.fragment.newfragment.AllGuaJianFragment;
-import com.wodm.android.fragment.newfragment.AllTouXiangFragment;
+import com.wodm.android.fragment.newfragment.GuaJianOfMineFragment;
+import com.wodm.android.fragment.newfragment.TouXiangeOfMineFragment;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.eteclab.track.TrackApplication;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,7 @@ import java.util.List;
  * Created by songchenyu on 16/11/16.
  */
 
-public class AllOfMineWallActivity extends FragmentActivity {
+public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLayout.myTopbarClicklistenter,GuaJianOfMineFragment.addClickIconListener,TouXiangeOfMineFragment.addClickIconListener{
     private View tabLine1, tabLine2, view1, view2;
     private TabLayout tabLayout;
     private AtyTopLayout set_topbar;
@@ -56,12 +59,16 @@ public class AllOfMineWallActivity extends FragmentActivity {
     private List<Fragment> fragments = new ArrayList<>();
     private TabFragmentAdapter tabFragmentAdapter;
     private LinearLayout mall_more1, mall_more;
+    private MallGuaJianBean clickBean;
+    private int type;
 
     private void initView() {
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
+        set_topbar.setOnTopbarClickListenter(this);
         //Constants.CURRENT_USER.getData().getAccount().getId()
-        guanJianFrag = new AllGuaJianFragment();
-        touXiangFrg = new AllTouXiangFragment();
+        guanJianFrag = new GuaJianOfMineFragment();
+        TouXiangeOfMineFragment.setAddClickIconListener(this);
+        touXiangFrg = new TouXiangeOfMineFragment();
         fragments.add(guanJianFrag);
         fragments.add(touXiangFrg);
         mTitles.add("挂件");
@@ -91,6 +98,37 @@ public class AllOfMineWallActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void addImage(MallGuaJianBean mallGuaJianBean, boolean isVip, int index) {
+        clickBean=mallGuaJianBean;
+        type=index;
+    }
+
+    @Override
+    public void leftClick() {
+        finish();
+    }
+
+    @Override
+    public void rightClick() {
+        if (clickBean==null){
+            return;
+        }
+        httpGet(Constants.APP_GET_MALL_OF_USER_PENADANT + Constants.CURRENT_USER.getData().getAccount().getId() + "&productType=" + type + "&productCode=" + clickBean.getProductCode(), new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
     private class TabInfo {

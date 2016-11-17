@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
@@ -87,6 +88,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TextView tv_user_name;
     private ImageView img_vip_circle;
     private Button btn_buy_now;
+    private LinearLayout ll_guajian_of_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +154,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TabFragmentAdapter tabFragmentAdapter;
 
     private void initView() {
+        ll_guajian_of_user= (LinearLayout) findViewById(R.id.ll_guajian_of_user);
+        ll_guajian_of_user.setOnClickListener(this);
         img_vip_circle= (ImageView) findViewById(R.id.img_vip_circle);
         btn_buy_now= (Button) findViewById(R.id.btn_buy_now);
         btn_buy_now.setOnClickListener(this);
@@ -172,7 +176,15 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                     try {
                         List<MallGuaJianBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<MallGuaJianBean>>() {
                         }.getType());
-                        guaJianAdapter = new GuaJianAdapter(guajian_free, HeaderGuaJianActivity.this, clickBean,beanList);
+                        List<MallGuaJianBean> list=new ArrayList<MallGuaJianBean>();
+                        for (int i = 0; i < beanList.size(); i++) {
+                            MallGuaJianBean bean=beanList.get(i);
+                            list.add(bean);
+                            if (i==2){
+                                break;
+                            }
+                        }
+                        guaJianAdapter = new GuaJianAdapter(guajian_free, HeaderGuaJianActivity.this, clickBean,list);
                         guaJianAdapter.setAddClickIconListener(HeaderGuaJianActivity.this);
                         guajian_free.setAdapter(guaJianAdapter);
                     } catch (JSONException e) {
@@ -294,6 +306,10 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             case R.id.btn_open_vip:
                 Intent intent = new Intent(HeaderGuaJianActivity.this, NewVipActivity.class);
                 startActivity(intent);
+                break;case
+            R.id.ll_guajian_of_user:
+                Intent intent1 = new Intent(HeaderGuaJianActivity.this, AllOfMineWallActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.btn_buy_now:
 //                new DialogUtils.Builder(this)
@@ -309,7 +325,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
                        if (obj.optInt("data")==1){
-                           BuyingGoods();
+                           BuyingGoodsDialog();
                        }else {
                            NoScore();
                        }
@@ -341,21 +357,42 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             }
         }).create().show();
     }
-    private void BuyingGoods(){
+    private void BuyingGoodsDialog(){
         new DialogUtils.Builder(HeaderGuaJianActivity.this)
                 .setTitle("砖石头像框")
                 .setMessage("确定使用"+clickBean.getNeedScore()+"积分兑换？")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.dismiss();
+                        BuyingGoods();
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                dialog.dismiss();
             }
         }).create().show();
+    }
+    private void BuyingGoods(){
+        httpGet(Constants.APP_GET_BUY_PRODUCT +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode()+"&payType=1" , new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                if (obj.optInt("data")==1){
+                    BuyingGoodsDialog();
+                }else {
+                    NoScore();
+                }
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private class TabInfo {

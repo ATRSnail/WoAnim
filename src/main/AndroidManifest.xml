@@ -343,6 +343,10 @@
             android:name=".android.ui.newview.NewVipActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.AllOfMineWallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- <activity -->
         <!-- android:name="com.wodm.android.fragment.QQBiaoQingFra" -->

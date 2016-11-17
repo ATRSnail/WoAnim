@@ -41,7 +41,7 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
 
     @Override
     public int getCount() {
-        return 3;
+        return beanList.size()>0?beanList.size():0;
     }
 
     @Override

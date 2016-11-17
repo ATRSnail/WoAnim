@@ -17,18 +17,30 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
+import android.widget.TextView;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.TabFragmentAdapter;
+import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.newfragment.FragmentVipPager;
 import com.wodm.android.fragment.newfragment.VipFragment;
 import com.wodm.android.fragment.newfragment.VvipFragment;
 import com.wodm.android.view.newview.AtyTopLayout;
 
+import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
+import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.track.TrackApplication;
 import org.eteclab.ui.widget.CircularImage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
  * Created by songchenyu on 16/11/15.
@@ -48,6 +60,12 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     private Button btn_open_vip;
     private boolean isOpenVip=true;
     private ImageView img_dagou;
+    private ImageView img_vip_circle;
+    private TextView tv_endof_vip_num;
+    private TextView nick_value;
+    private TextView nick_name;
+    private LinearLayout ll_novip_hint,ll_vip_jiasu,ll_novip_open_vip,ll_vip_time;
+    private TextView tv_score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +80,19 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
     private List<String> mTitles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
     private TabFragmentAdapter tabFragmentAdapter;
+    private ImageView img_vip;
 
     private void initView() {
+        tv_score= (TextView) findViewById(R.id.tv_score);
+        img_vip= (ImageView) findViewById(R.id.img_vip);
+        ll_novip_open_vip= (LinearLayout) findViewById(R.id.ll_novip_open_vip);
+        ll_vip_time= (LinearLayout) findViewById(R.id.ll_vip_time);
+        ll_novip_hint= (LinearLayout) findViewById(R.id.ll_novip_hint);
+        ll_vip_jiasu= (LinearLayout) findViewById(R.id.ll_vip_jiasu);
+        nick_value= (TextView) findViewById(R.id.nick_value);
+        nick_name= (TextView) findViewById(R.id.nick_name);
+        tv_endof_vip_num= (TextView) findViewById(R.id.tv_endof_vip_num);
+        img_vip_circle= (ImageView) findViewById(R.id.img_vip_circle);
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
         vipPagerFragment = new VipFragment();
         vvipPagerFragment = new VvipFragment();
@@ -94,10 +123,61 @@ public class NewVipActivity extends FragmentActivity implements  AtyTopLayout.my
             scrollView.setFocusableInTouchMode(true);
             scrollView.requestFocus();
         }
-
+        setUserInfo();
     }
 
+    private void setUserInfo(){
+        httpGet(Constants.APP_GET_VIP_TIME+CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
 
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                String day=obj.optString("data");
+                tv_endof_vip_num.setText(day+"");
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
+        int vip=accountBean.getVip();
+        if (vip==0){
+            ll_novip_open_vip.setVisibility(View.VISIBLE);
+            ll_novip_hint.setVisibility(View.VISIBLE);
+            ll_vip_time.setVisibility(View.GONE);
+            ll_vip_jiasu.setVisibility(View.GONE);
+        } else if (vip==1){
+            ll_novip_open_vip.setVisibility(View.GONE);
+            ll_novip_hint.setVisibility(View.GONE);
+            ll_vip_time.setVisibility(View.VISIBLE);
+            ll_vip_jiasu.setVisibility(View.VISIBLE);
+            img_vip.setBackgroundResource(R.mipmap.img_vip_vip);
+            img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);
+        }else if (vip==2){
+            ll_novip_open_vip.setVisibility(View.GONE);
+            ll_novip_hint.setVisibility(View.GONE);
+            ll_vip_time.setVisibility(View.VISIBLE);
+            ll_vip_jiasu.setVisibility(View.VISIBLE);
+            img_vip.setBackgroundResource(R.mipmap.img_vip_vvip);
+            img_vip_circle.setBackgroundResource(R.mipmap.vvip_circle);
+        }
+        tv_score.setText(accountBean.getScore()+"");
+        nick_value.setText("LV."+accountBean.getGradeValue());
+        nick_name.setText(accountBean.getNickName());
+        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
+    }
+    public void httpGet(String url, final HttpCallback callback) {
+
+        try {
+            TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
+            HttpUtil.httpGet(this, url, TrackApplication.REQUEST_HEADER, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
     @Override
     public void leftClick() {
         finish();
