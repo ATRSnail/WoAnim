@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -309,7 +308,11 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
-                        Log.e("SCY"," - - --  ");
+                       if (obj.optInt("data")==1){
+                           BuyingGoods();
+                       }else {
+                           NoScore();
+                       }
                     }
 
                     @Override
@@ -328,6 +331,15 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                break;
         }
 
+    }
+    private void NoScore(){
+        new DialogUtils.Builder(this)
+                .setMessage("您的积分不足").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
     }
     private void BuyingGoods(){
         new DialogUtils.Builder(HeaderGuaJianActivity.this)
