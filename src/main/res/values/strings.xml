@@ -121,7 +121,7 @@
     <string name="qiandao_get">签到可获取2经验!</string>
     <string name="qiandao">签到</string>
     <string name="slow">慢</string>
-    <string name="open_vip">开通会员</string>
+    <string name="open_vip">开通VIP</string>
     <string name="mine_quanzi">我的圈子</string>
     <string name="day_of_end">距离会员到期,剩余</string>
     <string name="only_guajian">专属挂件</string>
@@ -130,4 +130,5 @@
     <string name="buy_now">立即购买</string>
     <string name="guajian_hint">会员可定制稀有头部挂件</string>
 
+    <string name="look_shipin_ofmine">查看我的饰品</string>
 </resources>

@@ -15,91 +15,127 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/guajian_bg"
-            android:orientation="vertical">
-
-            <com.wodm.android.view.newview.AtyTopLayout
-                android:id="@+id/set_topbar"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/top_bg"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_90"
-                android:layout_alignParentTop="true"
-                app:BackGroundColor="@android:color/transparent"
-                app:CustomtitleTextColor="@android:color/white"
-                app:CustomtitleTextSize="@dimen/text_size_32_px"
-                app:Customtoptitle="头部挂件"
-                app:leftBackGround="@mipmap/back_mall_white"
-                app:rightType="0" />
-
-            <LinearLayout
+                android:layout_height="@dimen/px_324"
+                android:background="@mipmap/headerguajian_bg"
+                android:orientation="vertical">
+                <com.wodm.android.view.newview.AtyTopLayout
+                    android:id="@+id/set_topbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_alignParentTop="true"
+                    app:BackGroundColor="@color/color_f5c92f"
+                    app:CustomtitleTextColor="@android:color/white"
+                    app:CustomtitleTextSize="@dimen/text_size_32_px"
+                    app:Customtoptitle="头部挂件"
+                    app:leftBackGround="@mipmap/back_mall_white"
+                    app:rightType="0" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="@dimen/px_120"
+                android:layout_marginRight="@dimen/px_60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:background="@drawable/header_guajian"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/px_20">
+                android:layout_height="@dimen/px_408">
+                <LinearLayout
+                    android:layout_above="@+id/ll_look_shipin_ofmine"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/px_168">
+                        <org.eteclab.ui.widget.CircularImage
+                            android:id="@+id/img_user_header"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@mipmap/moren_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:id="@+id/img_vip_circle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@mipmap/vip_circle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:layout_marginTop="-3dp"
+                            android:id="@+id/user_head_imgs"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                <org.eteclab.ui.widget.CircularImage
-                    android:id="@+id/user_head_imgs"
-                    android:layout_width="@dimen/px_138"
-                    android:layout_height="@dimen/px_138"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/px_10"
-                    android:scaleType="fitXY" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/px_16"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:textColor="@color/color_666666"
+                            android:textSize="@dimen/text_size_32_px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="LV3"
+                            android:layout_marginLeft="@dimen/px_8"
+                            android:textColor="@color/color_666666"
+                            android:textSize="@dimen/text_size_24_px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/btn_buy_now"
-                    android:layout_width="@dimen/px_176"
-                    android:layout_height="@dimen/px_63"
-                    android:layout_gravity="center"
-                    android:background="@drawable/btn_buy_now"
-                    android:padding="@dimen/px_2"
-                    android:text="@string/buy_now"
-                    android:textColor="@color/color_ffffff"
-                    android:textSize="@dimen/px_28" />
-            </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_buy_now"
+                        android:text="立即购买"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/px_30"
+                        android:layout_marginBottom="@dimen/px_30"
+                        android:background="@drawable/buy_now"
+                        android:textSize="@dimen/text_size_30_px"
+                        android:textColor="@color/color_ffffff"
+                        android:layout_width="@dimen/px_240"
+                        android:layout_height="@dimen/px_72" />
+                </LinearLayout>
+              <RelativeLayout
+                  android:id="@+id/ll_look_shipin_ofmine"
+                  android:layout_alignParentBottom="true"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/px_61">
+                  <include layout="@layout/devid_line" android:layout_height="@dimen/px_1" android:layout_width="match_parent"></include>
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/look_shipin_ofmine"
+                        android:textColor="@color/color_ff5e5c"
+                        android:textSize="@dimen/text_size_24_px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_marginLeft="@dimen/px_8"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/icon_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+              </RelativeLayout>
+            </RelativeLayout>
         </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/ll_open_vip"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_64"
-            android:layout_marginTop="@dimen/px_14"
-            android:background="@color/color_ffffff">
-
-            <TextView
-                android:id="@+id/tv_circle"
-                android:layout_width="@dimen/px_32"
-                android:layout_height="@dimen/px_32"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/px_30"
-                android:background="@drawable/vip_icon_circle" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/px_10"
-                android:layout_toRightOf="@+id/tv_circle"
-                android:text="@string/vip_speed_hint"
-                android:textColor="@color/color_f29b76"
-                android:textSize="@dimen/text_size_22_px" />
-
-            <Button
-                android:id="@+id/btn_open_vip"
-                android:layout_width="@dimen/px_84"
-                android:layout_height="@dimen/px_42"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/px_30"
-                android:background="@drawable/kaitong_rectan"
-                android:text="@string/open_vip_member"
-                android:textColor="@color/color_ff6361"
-                android:textSize="@dimen/px_16" />
-
-        </RelativeLayout>
-
+        <include layout="@layout/open_vip"></include>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_64"
@@ -107,6 +143,7 @@
             android:background="@color/color_ffffff">
 
             <com.wodm.android.view.newview.OfenUseView
+                android:id="@+id/rl_ofenusertime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_64"
                 app:BackGroundColor_use="@color/color_ffffff"
@@ -115,25 +152,6 @@
                 app:Customtoptitle_use="会员免费"
                 app:leftBackGround_use="@color/color_dd977f"
                 app:rightBackGround_use="@mipmap/icon_more_normal" />
-
-            <!--<TextView-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:id="@+id/tv_circle1"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_width="@dimen/px_32"-->
-            <!--android:layout_height="@dimen/px_32"-->
-            <!--android:layout_marginLeft="@dimen/px_30"-->
-            <!--android:background="@drawable/circlr_guajian_open_vip" />-->
-
-            <!--<TextView-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_toRightOf="@+id/tv_circle1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="@dimen/px_10"-->
-            <!--android:text="@string/guajian_hint"-->
-            <!--android:textColor="@color/color_333333"-->
-            <!--android:textSize="20px" />-->
 
         </RelativeLayout>
 

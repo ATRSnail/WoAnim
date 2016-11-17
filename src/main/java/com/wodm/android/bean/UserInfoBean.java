@@ -16,123 +16,21 @@ public class UserInfoBean {
     private int code;
     private String message;
     /**
+     * nextGradeEmpirical : 12
      * currentEmpirical : 0
-     * token : null
-     * account : {"id":143,"appkey":"","uuid":"03c661af0aa680f3fa7705259bc19399","udid":"f35fe3d2366cf53c94a7bf87e849aa7f","nickName":"Chhhhgg","registTime":1474978930000,"sex":0,"birthday":"","mobile":"18519206703","email":"","portrait":"http://172.16.2.125:8899/static//head/20160927/143/143690449.JPEG","type":0,"autograph":"wwwfttgf000tttttttthhh","osName":"Android","openId":null,"unionId":null,"plainPassword":"","vip_mine":1,"vipFlag":1,"gradeValue":1,"empiricalValue":0,"gradeName":"萌新I","gradeImageId":1}
-     * needEmpirical : 12
-     * /newuser/appVersion   请求方式:post请求                 参数 :verion 版本  platform:表示平台系统
-     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
-     * private int platform;
-     * 版本号
-     * private String verion;
-     * 是否需要升级 0:表示不需要 1:表示需要
-     * private int isUpdate;
-     * 更新描述
-     * private String updateDes;
-     * 版本状态 0 表示不可用 1:表示的是可用的
-     * private int status;
-     * 版本创建的时间
-     * private Date createTime;
-     * 更新的时间
-     * private Date updateTime;
-     * 下载地址*private String downloadUrl
-     * 渠道的id
-     * private Long channelId;
-     * 产品的名称
-     * private String productName;
-     * 1表示安卓的
-     * private int platformType;
-     * 关于版本的名称
-     * private String versionName;
-     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
-     * private int platform;
-     * 应用标识
-     * private String appkey = Strings.EMPTY;
-     * 唯一身份ID
-     * private String uuid = Strings.EMPTY;
-     * 唯一设备ID
-     * private String udid = Strings.EMPTY;
-     * 用户昵称
-     * private String nickName = Strings.EMPTY;
-     * 密码
-     * private String password = Strings.EMPTY;
-     * 密码加密所用的盐
-     * private String salt = Strings.EMPTY;
-     * 状态（-1：删除；0：禁用；1：生效）
-     * <p>
-     * private int status = 0;
-     * 注册时间
-     * private Date registTime = DateUtils.getCurrentDateTime();
-     * 性别  1 男   2  女   0 保密
-     * private int sex = 0;
-     * 生日
-     * private String birthday = Strings.EMPTY;
-     * 手机
-     * private String mobile = Strings.EMPTY;
-     * 邮箱
-     * private String email = Strings.EMPTY;
-     * <p>
-     * 积分
-     * private int score = 0;
-     * <p>
-     * 钱包余额
-     * <p>
-     * private float wallet = 0.0f;
-     * 用户头像
-     * private String portrait = Strings.EMPTY;
-     * 用户主页背景图
-     * private String background = Strings.EMPTY;
-     * 账号名
-     * private String accountName = Strings.EMPTY;
-     * 身份类型  1 个人   2 团体
-     * private int type = 0;
-     * 关注数
-     * private int attentionCount = 0;
-     * 收藏数
-     * private int collectCount = 0;
-     * private String autograph = Strings.EMPTY;//个性签名
-     * <p>
-     * private String osName = Strings.EMPTY;//系统名称
-     * private String openId = Strings.EMPTY;//微信的用户唯一标识
-     * private String unionId = Strings.EMPTY;//微信unionId
-     * <p>
-     * private String plainPassword = Strings.EMPTY;
-     * <p>
-     * 用户的会员类型0:普通 1:vip 2:vvip
-     * private Integer vip;
-     * <p>
-     * vip 的标识 vip标识(t_image_dictionary中id)
-     * private Long vipFlag=0l;
-     * <p>
-     * 等级（3级开启自定义头像、4级开启发送表情、6级开启新边框、8级开启新表情、10级开启新挂件）、上限30级
-     * private Integer gradeValue;
-     * <p>
-     * 经验值
-     * private Integer empiricalValue=0;
-     * 等级称号
-     * private String gradeName;
-     * 等级图片id
-     * private	Integer gradeImageId;
-     * needEmpirical 表示的是 升到下一级所需要的经验        currentEmpirical  表示今天获得经验值
+     * needScore : 4
+     * checkinCount : 0
+     * pandentDetail : {"imgUrlGJ":"http://mk.wo.com.cn/static/goods/6.png","codeTXK":"008","nameTXK":"潜水员","codeGJ":"006","imgUrlTXK":"http://mk.wo.com.cn/static/goods/8.png","nameGJ":"心型眼镜"}
+     * cartoonCount : 0
+     * countScore : 4
+     * account : {"id":198,"appkey":"","uuid":"","udid":"","nickName":"M197406","registTime":1477383788000,"sex":0,"birthday":"","mobile":"17777813895","email":"","score":2700,"portrait":"","type":0,"autograph":"","osName":"","openId":"","unionId":"哈哈","plainPassword":"","vip":2,"vipFlag":14,"gradeValue":1,"empiricalValue":10,"gradeName":"萌新I","gradeImageId":null}
+     * needEmpirical : 2
+     * animationCount : 0
+     * currentScore : 0
+     * maxCheckinCount : 0
      */
 
     private DataBean data;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public DataBean getData() {
         return data;
@@ -143,68 +41,78 @@ public class UserInfoBean {
     }
 
     public static class DataBean {
+        private int nextGradeEmpirical;
+        private int currentEmpirical;
+        private int needScore;
+        private int checkinCount;
+        /**
+         * imgUrlGJ : http://mk.wo.com.cn/static/goods/6.png
+         * codeTXK : 008
+         * nameTXK : 潜水员
+         * codeGJ : 006
+         * imgUrlTXK : http://mk.wo.com.cn/static/goods/8.png
+         * nameGJ : 心型眼镜
+         */
 
-        private Object token;
+        private PandentDetailBean pandentDetail;
+        private int cartoonCount;
+        private int countScore;
+        /**
+         * id : 198
+         * appkey :
+         * uuid :
+         * udid :
+         * nickName : M197406
+         * registTime : 1477383788000
+         * sex : 0
+         * birthday :
+         * mobile : 17777813895
+         * email :
+         * score : 2700
+         * portrait :
+         * type : 0
+         * autograph :
+         * osName :
+         * openId :
+         * unionId : 哈哈
+         * plainPassword :
+         * vip : 2
+         * vipFlag : 14
+         * gradeValue : 1
+         * empiricalValue : 10
+         * gradeName : 萌新I
+         * gradeImageId : null
+         */
+
         private AccountBean account;
         private int needEmpirical;
-        private int currentScore;
-        private int needScore;
-        private int countScore;
-        private int currentEmpirical;//今日经验
-        private int nextGradeEmpirical;
-        private int maxCheckinCount;
-        private int checkinCount;
         private int animationCount;
-        private int cartoonCount;
-
-        public void setNeedEmpirical(int needEmpirical) {
-            this.needEmpirical = needEmpirical;
+        private int currentScore;
+        private int maxCheckinCount;
+        public String getToken() {
+            return token;
         }
 
-        public int getCountScore() {
-            return countScore;
+        public void setToken(String token) {
+            this.token = token;
         }
 
-        public void setCountScore(int countScore) {
-            this.countScore = countScore;
+        private String token;
+
+        public int getNextGradeEmpirical() {
+            return nextGradeEmpirical;
         }
 
-        public int getMaxCheckinCount() {
-            return maxCheckinCount;
+        public void setNextGradeEmpirical(int nextGradeEmpirical) {
+            this.nextGradeEmpirical = nextGradeEmpirical;
         }
 
-        public void setMaxCheckinCount(int maxCheckinCount) {
-            this.maxCheckinCount = maxCheckinCount;
-        }
-        public int getCartoonCount() {
-            return cartoonCount;
+        public int getCurrentEmpirical() {
+            return currentEmpirical;
         }
 
-        public void setCartoonCount(int cartoonCount) {
-            this.cartoonCount = cartoonCount;
-        }
-
-        public int getAnimationCount() {
-            return animationCount;
-        }
-
-        public void setAnimationCount(int animationCount) {
-            this.animationCount = animationCount;
-        }
-        public int getCheckinCount() {
-            return checkinCount;
-        }
-
-        public void setCheckinCount(int checkinCount) {
-            this.checkinCount = checkinCount;
-        }
-
-        public int getCurrentScore() {
-            return currentScore;
-        }
-
-        public void setCurrentScore(int currentScore) {
-            this.currentScore = currentScore;
+        public void setCurrentEmpirical(int currentEmpirical) {
+            this.currentEmpirical = currentEmpirical;
         }
 
         public int getNeedScore() {
@@ -215,29 +123,36 @@ public class UserInfoBean {
             this.needScore = needScore;
         }
 
-        public int getNextGradeEmpirical() {
-            return nextGradeEmpirical;
+        public int getCheckinCount() {
+            return checkinCount;
         }
 
-        public void setNextGradeEmpirical(int nextGradeEmpirical) {
-            this.nextGradeEmpirical = nextGradeEmpirical;
+        public void setCheckinCount(int checkinCount) {
+            this.checkinCount = checkinCount;
         }
 
-
-        public int getCurrentEmpirical() {
-            return currentEmpirical;
+        public PandentDetailBean getPandentDetail() {
+            return pandentDetail;
         }
 
-        public void setCurrentEmpirical(int currentEmpirical) {
-            this.currentEmpirical = currentEmpirical;
+        public void setPandentDetail(PandentDetailBean pandentDetail) {
+            this.pandentDetail = pandentDetail;
         }
 
-        public Object getToken() {
-            return token;
+        public int getCartoonCount() {
+            return cartoonCount;
         }
 
-        public void setToken(Object token) {
-            this.token = token;
+        public void setCartoonCount(int cartoonCount) {
+            this.cartoonCount = cartoonCount;
+        }
+
+        public int getCountScore() {
+            return countScore;
+        }
+
+        public void setCountScore(int countScore) {
+            this.countScore = countScore;
         }
 
         public AccountBean getAccount() {
@@ -250,6 +165,91 @@ public class UserInfoBean {
 
         public int getNeedEmpirical() {
             return needEmpirical;
+        }
+
+        public void setNeedEmpirical(int needEmpirical) {
+            this.needEmpirical = needEmpirical;
+        }
+
+        public int getAnimationCount() {
+            return animationCount;
+        }
+
+        public void setAnimationCount(int animationCount) {
+            this.animationCount = animationCount;
+        }
+
+        public int getCurrentScore() {
+            return currentScore;
+        }
+
+        public void setCurrentScore(int currentScore) {
+            this.currentScore = currentScore;
+        }
+
+        public int getMaxCheckinCount() {
+            return maxCheckinCount;
+        }
+
+        public void setMaxCheckinCount(int maxCheckinCount) {
+            this.maxCheckinCount = maxCheckinCount;
+        }
+
+        public static class PandentDetailBean {
+            private String imgUrlGJ;
+            private String codeTXK;
+            private String nameTXK;
+            private String codeGJ;
+            private String imgUrlTXK;
+            private String nameGJ;
+
+            public String getImgUrlGJ() {
+                return imgUrlGJ;
+            }
+
+            public void setImgUrlGJ(String imgUrlGJ) {
+                this.imgUrlGJ = imgUrlGJ;
+            }
+
+            public String getCodeTXK() {
+                return codeTXK;
+            }
+
+            public void setCodeTXK(String codeTXK) {
+                this.codeTXK = codeTXK;
+            }
+
+            public String getNameTXK() {
+                return nameTXK;
+            }
+
+            public void setNameTXK(String nameTXK) {
+                this.nameTXK = nameTXK;
+            }
+
+            public String getCodeGJ() {
+                return codeGJ;
+            }
+
+            public void setCodeGJ(String codeGJ) {
+                this.codeGJ = codeGJ;
+            }
+
+            public String getImgUrlTXK() {
+                return imgUrlTXK;
+            }
+
+            public void setImgUrlTXK(String imgUrlTXK) {
+                this.imgUrlTXK = imgUrlTXK;
+            }
+
+            public String getNameGJ() {
+                return nameGJ;
+            }
+
+            public void setNameGJ(String nameGJ) {
+                this.nameGJ = nameGJ;
+            }
         }
 
         public static class AccountBean {
@@ -268,15 +268,17 @@ public class UserInfoBean {
             private int type;
             private String autograph;
             private String osName;
-            private Object openId;
-            private Object unionId;
+            private String openId;
+            private String unionId;
             private String plainPassword;
             private int vip;
             private int vipFlag;
             private int gradeValue;
             private int empiricalValue;
             private String gradeName;
-            private int gradeImageId;
+            private Object gradeImageId;
+
+
 
             public int getId() {
                 return id;
@@ -398,19 +400,19 @@ public class UserInfoBean {
                 this.osName = osName;
             }
 
-            public Object getOpenId() {
+            public String getOpenId() {
                 return openId;
             }
 
-            public void setOpenId(Object openId) {
+            public void setOpenId(String openId) {
                 this.openId = openId;
             }
 
-            public Object getUnionId() {
+            public String getUnionId() {
                 return unionId;
             }
 
-            public void setUnionId(Object unionId) {
+            public void setUnionId(String unionId) {
                 this.unionId = unionId;
             }
 
@@ -462,13 +464,115 @@ public class UserInfoBean {
                 this.gradeName = gradeName;
             }
 
-            public int getGradeImageId() {
+            public Object getGradeImageId() {
                 return gradeImageId;
             }
 
-            public void setGradeImageId(int gradeImageId) {
+            public void setGradeImageId(Object gradeImageId) {
                 this.gradeImageId = gradeImageId;
             }
         }
     }
+    /**
+     * currentEmpirical : 0
+     * token : null
+     * account : {"id":143,"appkey":"","uuid":"03c661af0aa680f3fa7705259bc19399","udid":"f35fe3d2366cf53c94a7bf87e849aa7f","nickName":"Chhhhgg","registTime":1474978930000,"sex":0,"birthday":"","mobile":"18519206703","email":"","portrait":"http://172.16.2.125:8899/static//head/20160927/143/143690449.JPEG","type":0,"autograph":"wwwfttgf000tttttttthhh","osName":"Android","openId":null,"unionId":null,"plainPassword":"","vip_mine":1,"vipFlag":1,"gradeValue":1,"empiricalValue":0,"gradeName":"萌新I","gradeImageId":1}
+     * needEmpirical : 12
+     * /newuser/appVersion   请求方式:post请求                 参数 :verion 版本  platform:表示平台系统
+     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
+     * private int platform;
+     * 版本号
+     * private String verion;
+     * 是否需要升级 0:表示不需要 1:表示需要
+     * private int isUpdate;
+     * 更新描述
+     * private String updateDes;
+     * 版本状态 0 表示不可用 1:表示的是可用的
+     * private int status;
+     * 版本创建的时间
+     * private Date createTime;
+     * 更新的时间
+     * private Date updateTime;
+     * 下载地址*private String downloadUrl
+     * 渠道的id
+     * private Long channelId;
+     * 产品的名称
+     * private String productName;
+     * 1表示安卓的
+     * private int platformType;
+     * 关于版本的名称
+     * private String versionName;
+     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
+     * private int platform;
+     * 应用标识
+     * private String appkey = Strings.EMPTY;
+     * 唯一身份ID
+     * private String uuid = Strings.EMPTY;
+     * 唯一设备ID
+     * private String udid = Strings.EMPTY;
+     * 用户昵称
+     * private String nickName = Strings.EMPTY;
+     * 密码
+     * private String password = Strings.EMPTY;
+     * 密码加密所用的盐
+     * private String salt = Strings.EMPTY;
+     * 状态（-1：删除；0：禁用；1：生效）
+     * <p>
+     * private int status = 0;
+     * 注册时间
+     * private Date registTime = DateUtils.getCurrentDateTime();
+     * 性别  1 男   2  女   0 保密
+     * private int sex = 0;
+     * 生日
+     * private String birthday = Strings.EMPTY;
+     * 手机
+     * private String mobile = Strings.EMPTY;
+     * 邮箱
+     * private String email = Strings.EMPTY;
+     * <p>
+     * 积分
+     * private int score = 0;
+     * <p>
+     * 钱包余额
+     * <p>
+     * private float wallet = 0.0f;
+     * 用户头像
+     * private String portrait = Strings.EMPTY;
+     * 用户主页背景图
+     * private String background = Strings.EMPTY;
+     * 账号名
+     * private String accountName = Strings.EMPTY;
+     * 身份类型  1 个人   2 团体
+     * private int type = 0;
+     * 关注数
+     * private int attentionCount = 0;
+     * 收藏数
+     * private int collectCount = 0;
+     * private String autograph = Strings.EMPTY;//个性签名
+     * <p>
+     * private String osName = Strings.EMPTY;//系统名称
+     * private String openId = Strings.EMPTY;//微信的用户唯一标识
+     * private String unionId = Strings.EMPTY;//微信unionId
+     * <p>
+     * private String plainPassword = Strings.EMPTY;
+     * <p>
+     * 用户的会员类型0:普通 1:vip 2:vvip
+     * private Integer vip;
+     * <p>
+     * vip 的标识 vip标识(t_image_dictionary中id)
+     * private Long vipFlag=0l;
+     * <p>
+     * 等级（3级开启自定义头像、4级开启发送表情、6级开启新边框、8级开启新表情、10级开启新挂件）、上限30级
+     * private Integer gradeValue;
+     * <p>
+     * 经验值
+     * private Integer empiricalValue=0;
+     * 等级称号
+     * private String gradeName;
+     * 等级图片id
+     * private	Integer gradeImageId;
+     * needEmpirical 表示的是 升到下一级所需要的经验        currentEmpirical  表示今天获得经验值
+     */
+
+  
 }

@@ -14,8 +14,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,9 +38,7 @@ import com.wodm.android.bean.DowmBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
-import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
@@ -118,7 +114,7 @@ public class CartoonReadActivity extends AppActivity {
     private ReadCarAdapter adapter;
     private DanmuControler danmuControler;
     private ImageView danmu_kaiguan;
-    private boolean isOpen = true;
+    private boolean isOpen = false;
      private String num="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,7 +249,7 @@ public class CartoonReadActivity extends AppActivity {
                     }
                 }
             });
-            getBarrageResource();
+//            getBarrageResource();
 
         }
     }
@@ -467,7 +463,7 @@ public class CartoonReadActivity extends AppActivity {
         }
         final TextView mScreenText = (TextView) mBottomView.findViewById(R.id.screen_orient);
         final TextView mScrollText = (TextView) mBottomView.findViewById(R.id.scroll_orient);
-        int org = getResources().getConfiguration().orientation;
+        final int org = getResources().getConfiguration().orientation;
         if (org == Configuration.ORIENTATION_PORTRAIT) {
             mScreenText.setText("横屏");
         } else {
@@ -491,17 +487,17 @@ public class CartoonReadActivity extends AppActivity {
         }
         final TextView tv_danmu_kaiguan = (TextView) mBottomView.findViewById(R.id.tv_danmu_kaiguan);
         final ImageView danmu_kaiguan = (ImageView) mBottomView.findViewById(R.id.danmu_kaiguan);
-        danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
+        danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
         mBottomView.findViewById(R.id.ll_danmu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isOpen) {
-                    danmuControler.hide();
+                    danmuControler.show();
                     tv_danmu_kaiguan.setText("开启弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
                     isOpen = false;
                 } else {
-                    danmuControler.show();
+                    danmuControler.hide();
                     tv_danmu_kaiguan.setText("关闭弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
                     isOpen = true;
@@ -551,13 +547,9 @@ public class CartoonReadActivity extends AppActivity {
                 mScrollText.setText(orientation == 1 ? "左右" : "上下");
                 mLeftBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 mRightBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
-                pullToLoadView.setLayoutManager(manager);
                 String textStr = mScrollText.getText().toString();
-                int type = 0;
-                if (textStr.equals("上下")) {
-                    type = 1;
-                }
-                adapter.setType(type);
+                setType(textStr);
+                pullToLoadView.setLayoutManager(manager);
             }
         });
 
@@ -574,9 +566,30 @@ public class CartoonReadActivity extends AppActivity {
                     mScreenText.setText("竖屏");
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
+                String textStr = mScrollText.getText().toString();
+                setType(textStr);
             }
         });
 
+    }
+    private void setType(String text){
+        int i = getResources().getConfiguration().orientation;
+        int type = 0;
+        if (i == Configuration.ORIENTATION_PORTRAIT) {
+            if (text.equals("上下")) {
+                type = 1;
+            }else {
+                type = 0;
+            }
+        } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+            adapter.setType(type);
+            if (text.equals("上下")) {
+                type = 3;
+            }else {
+                type = 2;
+            }
+        }
+        adapter.setType(type);
     }
 
     int startx = 0;

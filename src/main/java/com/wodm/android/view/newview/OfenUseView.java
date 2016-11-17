@@ -34,6 +34,7 @@ public class OfenUseView extends RelativeLayout{
     private int title_color;
     private float title_size;
     private int backgroundColor;
+    private TextView textView;
 
     //重写构造方法
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -62,7 +63,7 @@ public class OfenUseView extends RelativeLayout{
         leftLayoutParams.setMargins(30,0,0,0);
 //        leftLayoutParams.setMarginStart((int) getResources().getDimension(R.dimen.activity_horizontal_margin));
         addView(imageView, leftLayoutParams);  //leftButton以leftLayoutParams的形式加入到ViewGroup中
-        TextView textView=new TextView(getContext());
+        textView=new TextView(getContext());
         textView.setText(title);
         textView.setTextColor(title_color);
         textView.setTextSize(TypedValue.DENSITY_DEFAULT,title_size);
@@ -83,6 +84,11 @@ public class OfenUseView extends RelativeLayout{
         addView(img_right,rightLayoutParams);
        setBackgroundColor(backgroundColor);
 
+    }
+    public void setTitle(String title){
+      if (textView!=null){
+          textView.setText(title);
+      }
     }
 
     //自定义一个setOnClickListenter方法

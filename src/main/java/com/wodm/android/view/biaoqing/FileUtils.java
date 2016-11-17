@@ -41,4 +41,26 @@ public class FileUtils {
 		}
 		return null;
 	}
+	/**
+	 * 读取表情配置文件
+	 *
+	 * @param context
+	 * @return
+	 */
+	public static List<String> getMallFile(Context context) {
+		try {
+			List<String> list = new ArrayList<String>();
+			InputStream in = context.getResources().getAssets().open("mall.txt");// �ļ�����Ϊrose.txt
+			BufferedReader br = new BufferedReader(new InputStreamReader(in,
+					"UTF-8"));
+			String str = null;
+			while ((str = br.readLine()) != null) {
+				list.add(str);
+			}
+			return list;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

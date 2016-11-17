@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            android:layout_alignParentTop="true"
+            app:BackGroundColor="@android:color/transparent"
+            app:CustomtitleTextColor="@android:color/white"
+            app:CustomtitleTextSize="@dimen/text_size_32_px"
+            app:Customtoptitle="我的饰品"
+            app:leftBackGround="@mipmap/back_mall_white"
+            app:rightType="1"
+            app:rightText="保存"
+            app:rightTextColor="@color/color_ffffff"
+            app:rightTextSize="@dimen/text_size_28_px"
+            />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_100"
+            android:layout_marginTop="@dimen/px_30"
+            android:background="@color/color_ffffff"
+            app:tabIndicatorColor="@color/color_ff8d35"
+            app:tabSelectedTextColor="@color/color_f5912f"
+            app:tabTextColor="@color/color_666666" />
+
+        <com.wodm.android.view.newview.WrapContentHeightViewPager
+            android:id="@+id/mypage_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</ScrollView>

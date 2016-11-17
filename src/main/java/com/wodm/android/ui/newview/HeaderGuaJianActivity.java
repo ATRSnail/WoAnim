@@ -1,38 +1,56 @@
 package com.wodm.android.ui.newview;
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.TabFragmentAdapter;
 import com.wodm.android.adapter.newadapter.FragmentMyPager;
 import com.wodm.android.adapter.newadapter.GuaJianAdapter;
+import com.wodm.android.bean.ColumnBean;
+import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.GuaJianFragment;
 import com.wodm.android.fragment.TouXiangFragment;
+import com.wodm.android.tools.MallConversionUtil;
+import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
+import com.wodm.android.view.newview.OfenUseView;
 
+import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.track.TrackApplication;
 import org.eteclab.ui.widget.CircularImage;
+import org.eteclab.ui.widget.viewpager.BannerView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,18 +74,20 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private FragmentMyPager frag;
     private AtyTopLayout set_topbar;
     private CircularImage user_head_imgs;
-    private Button btn_buy_now;
+    private ImageView user_guajian;
     private ScrollView scrollView;
     private RelativeLayout ll_open_vip;
     private Button btn_open_vip;
     private View tabLine1, tabLine2, view1, view2;
-    private String clickImage = "";
-    private String string[] = {"花心眼睛", "波特的眼睛", "蓝色太阳镜", "普通款式", "蛤蟆镜", "熊仔头像框", "悟空头像框", "绿帽头像框", "鱼缸头像框", "钻石头像框", "企鹅头像框", "白兔子头像框", "海贼头像框", "龙虾头像框", "潜水艇头像框", "小黄鸡头像框"};
-    private int icon[] = {R.mipmap.guajian_huaxin, R.mipmap.guajian_bote, R.mipmap.guajian_lanse, R.mipmap.guajian_putong, R.mipmap.guajian_hama, R.mipmap.touxiang_xiong, R.mipmap.touxiang_wukong, R.mipmap.touxiang_lvmaozi, R.mipmap.touxiang_yugang, R.mipmap.touxiang_zhuanshi,
-            R.mipmap.touxiang_qie, R.mipmap.touxiang_baiduzi, R.mipmap.touxiang_haizei, R.mipmap.touxiang_longxia, R.mipmap.touxiang_qianshuiting, R.mipmap.touxiang_xiaohuangji};
+    private MallGuaJianBean clickBean;
     private int clckIcon;
-
+    private BannerView mBannerView;
     private TabLayout tabLayout;
+    private List<ColumnBean> columnBeanList;
+    private OfenUseView rl_ofenusertime;
+    private TextView tv_user_name;
+    private ImageView img_vip_circle;
+    private Button btn_buy_now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,20 +95,53 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         setContentView(R.layout.aty_headerguajian);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            clickImage = bundle.getString("iconClick");
+            clickBean = (MallGuaJianBean) bundle.getSerializable("iconClick");
         }
-        initClickImage(clickImage);
-        initView();
+
+        initData();
     }
 
-    private void initClickImage(String name) {
-        if (name == null || name.equals(""))
-            return;
+    private void initData(){
+        httpGet(Constants.APP_GET_PRODUCT_COLUMNLIST , new HttpCallback() {
 
-        for (int i = 0; i < string.length; i++) {
-            if (name.equals(string[i])) {
-                clckIcon = icon[i];
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    columnBeanList= new Gson().fromJson(obj.getString("data"), new TypeToken<List<ColumnBean>>() {
+                    }.getType());
+                    initView();
+                    initClickImage(clickBean);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    public void httpGet(String url, final HttpCallback callback) {
+
+        try {
+            TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
+            HttpUtil.httpGet(this, url, TrackApplication.REQUEST_HEADER, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void initClickImage(MallGuaJianBean clickBean) {
+        if (clickBean == null )
+            return;
+        try {
+            MallConversionUtil.getInstace().dealExpression(this,clickBean.getProductName(),user_guajian,"");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -100,33 +153,62 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TabFragmentAdapter tabFragmentAdapter;
 
     private void initView() {
+        btn_buy_now= (Button) findViewById(R.id.btn_buy_now);
+        btn_buy_now.setOnClickListener(this);
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
+        btn_open_vip = (Button) findViewById(R.id.btn_open_vip);
+        btn_open_vip.setOnClickListener(this);
+        rl_ofenusertime = (OfenUseView) findViewById(R.id.rl_ofenusertime);
+        tv_user_name= (TextView) findViewById(R.id.tv_user_name);
+        if (columnBeanList.size()>0){
+            String name=columnBeanList.get(0).getName();
+            rl_ofenusertime.setTitle(name);
+            columnBeanList.remove(0);
+            httpGet(Constants.APP_GET_MALL_TOUXIANG +Constants.CURRENT_USER.getData().getAccount().getId()+"&page="+1 , new HttpCallback() {
+
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        List<MallGuaJianBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<MallGuaJianBean>>() {
+                        }.getType());
+                        guaJianAdapter = new GuaJianAdapter(guajian_free, HeaderGuaJianActivity.this, clickBean,beanList);
+                        guaJianAdapter.setAddClickIconListener(HeaderGuaJianActivity.this);
+                        guajian_free.setAdapter(guaJianAdapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                    Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
         guanJianFrag = new GuaJianFragment();
         touXiangFrg = new TouXiangFragment();
         guanJianFrag.setAddClickIconListener(this);
         touXiangFrg.setAddClickIconListener(this);
-        guanJianFrag.setClickImage(clickImage);
-        touXiangFrg.setClickImage(clickImage);
+        guanJianFrag.setClickImage(clickBean);
+        touXiangFrg.setClickImage(clickBean);
         set_topbar.setOnTopbarClickListenter(this);
         fragments.add(guanJianFrag);
         fragments.add(touXiangFrg);
+        guanJianFrag.setNumClown(columnBeanList);
+        touXiangFrg.setNumClown(columnBeanList);
         mTitles.add("挂件");
         mTitles.add("头像");
 
-        btn_open_vip = (Button) findViewById(R.id.btn_open_vip);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        user_head_imgs = (CircularImage) findViewById(R.id.user_head_imgs);
-        if(CURRENT_USER.getData().getAccount().getPortrait()!=null)
-        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
-        btn_open_vip.setOnClickListener(this);
+        user_head_imgs = (CircularImage) findViewById(R.id.img_user_header);
+        user_guajian = (ImageView) findViewById(R.id.user_head_imgs);
+
         ll_open_vip = (RelativeLayout) findViewById(R.id.ll_open_vip);
-        btn_buy_now = (Button) findViewById(R.id.btn_buy_now);
-        btn_buy_now.setOnClickListener(this);
         guajian_free = (MyGridView) findViewById(R.id.guajian_free);
         guajian_free.setSelector(new ColorDrawable(Color.TRANSPARENT));
-        guaJianAdapter = new GuaJianAdapter(guajian_free, this, clickImage);
-        guaJianAdapter.setAddClickIconListener(this);
-        guajian_free.setAdapter(guaJianAdapter);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         mViewPager = (ViewPager) findViewById(R.id.mypage_pager);
         tabFragmentAdapter = new TabFragmentAdapter(fragments, mTitles, getSupportFragmentManager(), getApplicationContext());
@@ -144,19 +226,41 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             scrollView.setFocusableInTouchMode(true);
             scrollView.requestFocus();
         }
-        if (CURRENT_USER != null) {
-            UserInfoBean.DataBean dataBean = CURRENT_USER.getData();
-            if (dataBean.getAccount().getVip() != 0) {
-                ll_open_vip.setVisibility(View.GONE);
-            }
-        }
 
+        initUserInfo();
+
+    }
+    private void initUserInfo(){
+        if (CURRENT_USER==null){
+             return;
+        }
+        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
+        tv_user_name.setText(accountBean.getNickName());
+        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
+        int vip=accountBean.getVip();
+        if (vip==1){
+            img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);
+        }else if (vip==2){
+            img_vip_circle.setBackgroundResource(R.mipmap.vvip_circle);
+        }else {
+            img_vip_circle.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
-    public void addImage(String title, int imageRescoure, boolean isVip, int index) {
-        Drawable drawable = getResources().getDrawable(imageRescoure);
-        user_head_imgs.setImageDrawable(drawable);
+    public void addImage(MallGuaJianBean mallGuaJianBean, boolean isVip, int index) {
+        if (mallGuaJianBean==null){
+            return;
+        }
+        String name=mallGuaJianBean.getProductName();
+        try {
+            MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,mallGuaJianBean.getProductImageUrl());
+        } catch (Exception e) {
+            Glide.with(this).load(name).placeholder(R.mipmap.loading).into(user_guajian);
+            e.printStackTrace();
+        }
+//        Drawable drawable = getResources().getDrawable(imageRescoure);
+//        user_guajian.setImageDrawable(drawable);
         if (isVip) {
             if (guanJianFrag != null) guanJianFrag.onUnselect();
             if (touXiangFrg != null) touXiangFrg.onUnselect();
@@ -170,7 +274,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             }
         }
 
-//        user_head_imgs.setBackgroundResource(imageRescoure);
+//        user_guajian.setBackgroundResource(imageRescoure);
     }
 
     @Override
@@ -188,17 +292,56 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_open_vip:
-                Intent intent = new Intent(HeaderGuaJianActivity.this, VipOpenActivity.class);
+                Intent intent = new Intent(HeaderGuaJianActivity.this, NewVipActivity.class);
                 startActivity(intent);
                 break;
-            default:
-                new AlertDialog.Builder(HeaderGuaJianActivity.this)
+            case R.id.btn_buy_now:
+//                new DialogUtils.Builder(this)
+//                        .setMessage("对不起,您不是联通用户" + "\n" + "无法进行绑定").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                }).create().show();
+                new DialogUtils.Builder(HeaderGuaJianActivity.this)
                         .setTitle("砖石头像框")
-                        .setMessage("确定使用930积分兑换？")
-                        .create().show();
+                        .setMessage("确定使用"+clickBean.getNeedScore()+"积分兑换？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                BuyingGoods();
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create().show();
                 break;
+//            default:
+//                new AlertDialog.Builder(HeaderGuaJianActivity.this)
+//                        .setTitle("砖石头像框")
+//                        .setMessage("确定使用930积分兑换？")
+//                        .create().show();
+//                break;
         }
 
+    }
+    private void BuyingGoods(){
+        httpGet(Constants.APP_GET_PRODUCT_IS_BUY +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode() , new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                Log.e("SCY",""+obj.toString());
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private class TabInfo {

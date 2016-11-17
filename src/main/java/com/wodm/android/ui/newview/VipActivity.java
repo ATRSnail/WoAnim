@@ -123,7 +123,7 @@ public class VipActivity extends AppActivity implements AtyTopLayout.myTopbarCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_open_vip:
-                startActivity(new Intent(this,VipOpenActivity.class));
+                startActivity(new Intent(this,NewVipActivity.class));
                 break;
         }
     }

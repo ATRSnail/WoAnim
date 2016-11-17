@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:background="@color/color_efefef"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_marginTop="@dimen/px_16"
+           android:background="@color/color_ffffff"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <RelativeLayout
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/px_72">
+               <TextView
+                   android:gravity="center"
+                   android:layout_marginLeft="30dp"
+                   android:layout_alignParentLeft="true"
+                   android:textSize="@dimen/text_size_30_px"
+                   android:textColor="@color/color_666666"
+                   android:text="头像框"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+               <TextView
+                   android:gravity="center"
+                   android:layout_marginRight="@dimen/px_30"
+                   android:layout_alignParentRight="true"
+                   android:textSize="@dimen/text_size_24_px"
+                   android:textColor="@color/color_e73060"
+                   android:text="交易成功"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+           </RelativeLayout>
+           <View
+               android:background="@color/color_cccccc"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/px_1"></View>
+           <LinearLayout
+               android:layout_marginRight="@dimen/px_30"
+               android:layout_marginLeft="@dimen/px_30"
+               android:layout_marginBottom="@dimen/px_30"
+               android:layout_marginTop="@dimen/px_24"
+               android:orientation="horizontal"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <RelativeLayout
+                   android:id="@+id/ll_buy"
+                   android:background="@drawable/item_history"
+                   android:layout_width="@dimen/px_192"
+                   android:layout_height="@dimen/px_202">
+
+                   <RelativeLayout
+                       android:gravity="center"
+                       android:layout_gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="@dimen/px_168">
+                       <org.eteclab.ui.widget.CircularImage
+                           android:id="@+id/img_user_header"
+                           android:layout_centerHorizontal="true"
+                           android:layout_alignParentBottom="true"
+                           android:background="@mipmap/moren_header"
+                           android:layout_width="@dimen/x108"
+                           android:layout_height="@dimen/x108" />
+                       <ImageView
+                           android:layout_centerHorizontal="true"
+                           android:layout_alignParentBottom="true"
+                           android:background="@mipmap/vip_circle"
+                           android:layout_width="@dimen/x108"
+                           android:layout_height="@dimen/x108" />
+                       <ImageView
+                           android:layout_marginTop="-15dp"
+                           android:id="@+id/user_head_imgs"
+                           android:layout_centerHorizontal="true"
+                           android:layout_alignParentTop="true"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+
+                   </RelativeLayout>
+
+               </RelativeLayout>
+               <LinearLayout
+                   android:layout_marginLeft="@dimen/px_30"
+                   android:orientation="vertical"
+                   android:layout_alignBottom="@+id/ll_buy"
+                   android:layout_alignTop="@+id/ll_buy"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+                   <RelativeLayout
+                       android:layout_marginTop="@dimen/px_30"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:text="[头像框]企鹅仔头像框"
+                           android:textSize="@dimen/text_size_30_px"
+                           android:textColor="@color/color_666666"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <TextView
+                           android:layout_alignParentRight="true"
+                           android:text="X1"
+                           android:textSize="@dimen/text_size_30_px"
+                           android:textColor="@color/color_666666"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                   </RelativeLayout>
+                   <TextView
+                       android:text="930积分"
+                       android:textColor="@color/color_f5921f"
+                       android:textSize="@dimen/text_size_36_px"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+                   <LinearLayout
+                       android:gravity="bottom|right"
+                       android:layout_gravity="bottom|right"
+                       android:orientation="vertical"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:gravity="right"
+                           android:textSize="@dimen/text_size_30_px"
+                           android:textColor="@color/color_666666"
+                           android:text="共1件商品"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <LinearLayout
+                           android:gravity="right"
+                           android:orientation="horizontal"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+                           <TextView
+                               android:textSize="@dimen/text_size_24_px"
+                               android:textColor="@color/color_666666"
+                               android:text="已支付 : "
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content" />
+                           <TextView
+                               android:textSize="@dimen/text_size_30_px"
+                               android:textColor="@color/color_f5912f"
+                               android:text="930积分"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content" />
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+           </LinearLayout>
+
+       </LinearLayout>
+   </LinearLayout>
+
+</LinearLayout>

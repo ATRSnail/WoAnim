@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
-import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.UpdataMedalInfo;
@@ -181,7 +180,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 break;
             case R.id.ll_vip:
                 Intent i=new Intent();
-                i.setClass(getActivity(), VipActivity.class);
+                i.setClass(getActivity(), NewVipActivity.class);
                 if (!UpdataUserInfo.isLogIn(getActivity(), true,i)) {
                 Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
                 return;

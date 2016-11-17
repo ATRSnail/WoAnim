@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_90"
         app:BackGroundColor="@color/color_f5c92f"
-        app:CustomtitleTextColor="@color/color_3f190c"
+        app:CustomtitleTextColor="@color/color_ffffff"
         app:CustomtitleTextSize="@dimen/text_size_48_px"
         app:Customtoptitle="商城"
         app:leftBackGround="@drawable/back_drawable"
         app:rightText="交易记录"
-        app:rightTextColor="@color/color_3f190c"
-        app:rightTextSize="@dimen/text_size_36_px"
+        app:rightTextColor="@color/color_ffffff"
+        app:rightTextSize="@dimen/text_size_28_px"
         app:rightType="1" />
 
     <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -206,15 +206,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="@dimen/px_50"
-                            android:layout_height="@dimen/px_100"
-                            android:background="@drawable/new_rectangle_mall1"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/mall_news"
                             android:gravity="center"
                             android:padding="@dimen/px_2"
-                            android:textColor="@color/color_ffffff"
-                            android:textSize="@dimen/text_size_22_px"
-                            android:textStyle="bold" />
+                             />
 
                         <com.wodm.android.view.newview.MyGridView
                             android:id="@+id/new_grid_mall"
@@ -223,21 +221,30 @@
                             android:layout_marginLeft="@dimen/px_30"
                             android:gravity="center"
                             android:horizontalSpacing="@dimen/px_21"
+                            android:verticalSpacing="@dimen/px_21"
                             android:listSelector="@android:color/transparent"
                             android:numColumns="3" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/mall_more1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/px_30"
                         android:gravity="right">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="更多"
+                            android:textColor="@color/color_cccccc"
+                            android:textSize="@dimen/text_size_24_px"/>
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right|center_vertical"
-                            android:src="@mipmap/more_mall" />
+                            android:src="@mipmap/mall_more" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -266,15 +273,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="@dimen/px_50"
-                            android:layout_height="@dimen/px_100"
-                            android:background="@drawable/new_rectangle_mall2"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/mall_mans"
                             android:gravity="center"
                             android:padding="@dimen/px_2"
-                            android:textColor="@color/color_ffffff"
-                            android:textSize="@dimen/text_size_22_px"
-                            android:textStyle="bold" />
+                            />
 
                         <com.wodm.android.view.newview.MyGridView
                             android:id="@+id/renqi_grid_mall"
@@ -282,20 +287,28 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/px_30"
                             android:horizontalSpacing="@dimen/px_21"
+                            android:verticalSpacing="@dimen/px_21"
                             android:numColumns="3" />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/mall_more"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/px_30"
                         android:gravity="right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="更多"
+                            android:textColor="@color/color_cccccc"
+                            android:textSize="@dimen/text_size_24_px"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right|center_vertical"
-                            android:src="@mipmap/more_mall" />
+                            android:src="@mipmap/mall_more" />
                     </LinearLayout>
 
                 </LinearLayout>

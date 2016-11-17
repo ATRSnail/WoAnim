@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,7 +22,7 @@ import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.service.DownLoadServices;
-import com.wodm.android.ui.newview.LgoinActivity;
+import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -108,6 +107,7 @@ public class Main2Activity extends AppActivity {
             @Override
             public void run() {
                 FaceConversionUtil.getInstace().getFileText(getApplication());
+                MallConversionUtil.getInstace().getFileText(getApplication());
             }
         }).start();
         pref = Preferences.getInstance(getApplicationContext());

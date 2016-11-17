@@ -210,10 +210,10 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
 
     private void getYzm() {
         String phoneNum = Tools.getText(et_phone);
-        if ("".equals(phoneNum) || !Tools.isMobileNO(phoneNum)) {
-            showFial();
-            return;
-        }
+//        if ("".equals(phoneNum) || !Tools.isMobileNO(phoneNum)) {
+//            showFial();
+//            return;
+//        }
 
         String url = Constants.USER_GET_CODE + "?m=" + phoneNum;
         httpGet(url, new HttpCallback() {

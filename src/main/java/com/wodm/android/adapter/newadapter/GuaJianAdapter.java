@@ -9,8 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wodm.R;
+import com.wodm.android.bean.MallGuaJianBean;
+import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.view.newview.MyGridView;
+
+import java.util.List;
 
 /**
  * Created by songchenyu on 16/10/21.
@@ -18,15 +23,15 @@ import com.wodm.android.view.newview.MyGridView;
 
 public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private Context mContext;
-    private int imageRescoures[]={R.mipmap.guajian_xiong,R.mipmap.guajian_wukong,R.mipmap.guajian_lvmaozi};
-    private String strRescoures[]={"狗熊头像框","悟空头像框","绿帽子头像框"};
-    private String clickStr;
+    private MallGuaJianBean clickBean;
     private MyGridView mGirdview;
     private FragmentMyPager.addClickIconListener addClickIconListener;
-    public GuaJianAdapter(MyGridView girdview,Context context,String nameClick){
+    private  List<MallGuaJianBean> beanList;
+    public GuaJianAdapter(MyGridView girdview,Context context,MallGuaJianBean clickBean, List<MallGuaJianBean> beanList){
         this.mContext=context;
         this.mGirdview=girdview;
-        this.clickStr=nameClick;
+        this.clickBean=clickBean;
+        this.beanList=beanList;
         mGirdview.setOnItemClickListener(this);
 
     }
@@ -36,12 +41,12 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
 
     @Override
     public int getCount() {
-        return imageRescoures.length;
+        return 3;
     }
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return beanList.get(position);
     }
 
     @Override
@@ -62,30 +67,40 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         }else {
             holder= (Holder) convertView.getTag();
         }
-        if (clickStr!=null&&clickStr.equals(strRescoures[position])){
+        MallGuaJianBean mallGuaJianBean=beanList.get(position);
+        String name=mallGuaJianBean.getProductName();
+        if (clickBean!=null&&clickBean.getProductName().equals(name)){
             holder.img_guajian_kuang.setVisibility(View.VISIBLE);
- //           addClickIconListener.addImage(clickStr,imageRescoures[position],true,0);
         }else {
             holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
         }
 
-        holder.img_icon.setBackgroundResource(imageRescoures[position]);
-        holder.tv_name.setText(strRescoures[position]);
+        holder.tv_name.setText(name);
+        try {
+            MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
+        } catch (Exception e) {
+            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
+            e.printStackTrace();
+        }
+
+//        holder.img_icon.setBackgroundResource(mallGuaJianBean.get);
+        holder.tv_name.setText(name);
         return convertView;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        clickStr=strRescoures[position];
+        MallGuaJianBean mallGuaJianBean=beanList.get(position);
+        clickBean=mallGuaJianBean;
         notifyDataSetChanged();
-        addClickIconListener.addImage("",imageRescoures[position],true,0);
+        addClickIconListener.addImage(mallGuaJianBean,true,0);
     }
 
     /**
      * 不选择时
      */
     public void onUnselect(){
-        clickStr= null;
+        clickBean= null;
         notifyDataSetChanged();
     }
 

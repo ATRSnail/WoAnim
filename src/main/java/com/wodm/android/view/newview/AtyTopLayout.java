@@ -72,7 +72,7 @@ public class AtyTopLayout extends RelativeLayout {
             rightDrawable = ta.getResourceId(R.styleable.secondTopbar_rightBackGround, 0);
         } else if (rightType == 1) {
             rightText = ta.getString(R.styleable.secondTopbar_rightText);
-            rightTextColor = ta.getColor(R.styleable.secondTopbar_rightTextColor, 0);
+            rightTextColor = ta.getColor(R.styleable.secondTopbar_rightTextColor, Color.WHITE);
             rightTextSize = ta.getDimension(R.styleable.secondTopbar_rightTextSize, 0);
         }
 

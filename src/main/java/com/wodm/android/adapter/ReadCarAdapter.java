@@ -2,7 +2,7 @@ package com.wodm.android.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wodm.R;
 import com.wodm.android.bean.CarBean;
-import com.wodm.android.utils.DeviceUtils;
+import com.wodm.android.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,8 @@ import java.util.List;
 public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private List<CarBean> mData = new ArrayList<>();
-    private int type=0;
+    private static int type=0;
+    private int screenWidth=0,screenHigh=0;
 
 //    List<String> mUrls = new ArrayList();
 
@@ -73,8 +76,10 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     /**
-     * 0 代表上下
-     * 1 代表左右
+     * 0代表横屏  上下
+     * 1代表横屏  左右
+     * 2代表竖屏  上下
+     * 3代表竖屏  左右
      * @param type
      */
     public void setType(int type){
@@ -84,24 +89,103 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ViewHolders holders = (ViewHolders) holder;
-        CarBean bean = mData.get(position);
+        final ViewHolders holders = (ViewHolders) holder;
+        final CarBean bean = mData.get(position);
 //        Uri url = bean.getContentUrl().startsWith("http") ? Uri.parse(bean.getContentUrl()) :
 //                Uri.fromFile(new File(bean.getContentUrl()));
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holders.imageView.getLayoutParams();
-        int org = mContext.getResources().getConfiguration().orientation;
-        if (org == Configuration.ORIENTATION_PORTRAIT) {
-            params.height =(int)(DeviceUtils.getScreenWH((Activity) mContext)[1]);
-            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
-        } else {
-            params.height = DeviceUtils.getScreenWH((Activity) mContext)[1]*3;
-            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
-            if (type==1){
-                params.height =DeviceUtils.getScreenWH((Activity) mContext)[1];
-                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0]/3;
-            }
+        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holders.imageView.getLayoutParams();
+//        int org = mContext.getResources().getConfiguration().orientation;
+        if (screenWidth==0||screenHigh==0){
+            screenWidth= Tools.getScreenWidth((Activity) mContext);
+            screenHigh= Tools.getScreenHeight((Activity) mContext);
         }
-        Glide.with(mContext).load(bean.getContentUrl()).placeholder(R.mipmap.loading).into(holders.img_read);
+//        if (org == Configuration.ORIENTATION_PORTRAIT) {
+//            type=4;
+//            params.height =(int)(DeviceUtils.getScreenWH((Activity) mContext)[1]);
+//            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
+//        } else {
+//            params.height = DeviceUtils.getScreenWH((Activity) mContext)[1]*3;
+//            params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
+//            if (type==1){
+//                params.height = DeviceUtils.getScreenWH((Activity) mContext)[1];
+//                params.width = DeviceUtils.getScreenWH((Activity) mContext)[0]/3;
+//            }
+//        }
+        Glide.with(mContext).load(bean.getContentUrl()).asBitmap().placeholder(R.mipmap.loading).into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+               int img_width=resource.getWidth();
+               int img_height=resource.getHeight();
+               LinearLayout.LayoutParams img_params = (LinearLayout.LayoutParams) holders.imageView.getLayoutParams();
+                float num=0;
+                if (type==0){
+                    int width=screenWidth-10;
+//                    if (width>img_width){
+//                        num=(float)img_width/width;
+//                    }else {
+                        num=(float)width/img_width;
+//                    }
+                    int height=(int)(num*img_height);
+                    img_params.width=width;
+                    img_params.height=height;
+                }else if (type==1){
+                    int height =screenHigh-5;
+                    if (height>img_height){
+                        num=(float)img_height/height;
+                    }else {
+                    num=(float)height/img_height;
+                    }
+                    int width=(int)(num*img_width);
+                    img_params.width=width;
+                    img_params.height=height;
+                }
+//                if (type==1||type==3){
+//                    int height=screenHigh-5;
+//                    if (height>img_height){
+//                        num=((float)height/img_height);
+//                    }else {
+//                        num=((float)img_height/height);
+//
+//                    }
+//                    int width=(int)(num*img_width);
+//                    img_params.width=height;
+//                    img_params.height=width;
+//               } else if (type==2||type==0){
+//                    int width=screenWidth-10;
+//                    if (width>img_width){
+//                        num=(float)img_width/width;
+//                    }else {
+//                        num=(float)width/img_width;
+//                    }
+//                    int height=(int)(num*img_height);
+//                    img_params.width=width;
+//                    img_params.height=height;
+//
+//                }else if (type==3){
+//                    int width=screenWidth-10;
+//                    if (width>img_width){
+//                        num=(float)img_width/width;
+//                    }else {
+//                        num=(float)width/img_width;
+//                    }
+//                    int height=(int)(num*img_height);
+//                    img_params.width=width;
+//                    img_params.height=height;
+//
+//                }
+//                else {
+//                    int width=screenWidth-5;
+//                    int height=screenHigh;
+//                    params.width=width;
+//                    params.height=height;
+//                }
+                if (resource!=null){
+                    holders.img_read.setImageBitmap(resource);
+                    holders.img_read.setLayoutParams(img_params);
+                }
+            }
+        });
+//        Glide.with(mContext).load(bean.getContentUrl()).asBitmap().placeholder(R.mipmap.loading).into(holders.img_read);
 //        params.gravity= Gravity.CENTER;
         holders.img_read.setLayoutParams(params);
 //        holders.imageView.setImageURI(url);

@@ -53,7 +53,7 @@
                 android:id="@+id/danmu_kaiguan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/danmu_close"/>
+                android:src="@mipmap/danmu_open"/>
 
             <ImageView
                 android:id="@+id/anim_dowm1"

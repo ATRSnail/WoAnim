@@ -129,6 +129,11 @@ public class Constants {
     public static final String APP_GET_WEATHRE_ISRECEIVER="newuser/isReceive?userId=";
     public static final String APP_GET_SHARE=HOST + "/newuser/share";
     public static final String APP_GET_WATCHNEWS=HOST + "/newuser/watchNews?userId=";
+    public static final String APP_GET_MALL_TOUXIANG=HOST + "/product/pageProduct?userId=";
+    public static final String APP_GET_PRODUCT_COLUMNLIST=HOST + "/product/columnlist";
+    public static final String APP_GET_PRODUCT_PAGEBYCLIUMN=HOST + "/product/pageBycolumn?userId=";
+    public static final String APP_GET_PRODUCT_BY_PRODUCTTYPE=HOST + "/product/getProductByProductType?productType=";
+    public static final String APP_GET_PRODUCT_IS_BUY=HOST + "newuser/isBuy?userId=";
     public static String OFFTIME;
 
 

@@ -322,7 +322,6 @@ public class DanMuTools {
         mDanmakuView.hide();
     }
     protected void addData(ArrayList<BarrageBean> mChapterList){
-        mChapterList.clear();
         if (this.mChapterList!=null&&this.mChapterList.size()>0){
             this.mChapterList.addAll(mChapterList);
         }else {

@@ -318,7 +318,7 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 QianDao();
                 break;
             case R.id.btn_open_vip:
-                startActivity(new Intent(this, VipOpenActivity.class));
+                startActivity(new Intent(this, NewVipActivity.class));
                 break;
             case R.id.ll_task_adapter:
                 startActivity(new Intent(this, SeacherActivity.class));

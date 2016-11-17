@@ -121,7 +121,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @ViewIn(R.id.header)
     private CircularImage header;
     private ImageView danmu_kaiguan;
-    private boolean isOpen = true;
+    private boolean isOpen = false;
     private Dialog dialog = null;
     private boolean isLandscape;
     private boolean isClickFullScreenButton;
@@ -569,13 +569,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     break;
                 case R.id.danmu_kaiguan:
                     if (isOpen) {
-                        danmuControler.hide();
+                        danmuControler.show();
                         danmu_kaiguan.setImageResource(R.mipmap.danmu_open);
                         isOpen = false;
                     } else {
-                        danmuControler.show();
+                        danmuControler.hide();
                         danmu_kaiguan.setImageResource(R.mipmap.danmu_close);
                         isOpen = true;
+
                     }
                     break;
                 case R.id.anim_collect2:

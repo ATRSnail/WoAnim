@@ -7,26 +7,38 @@
     <RelativeLayout
         android:background="@null"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
+            android:layout_centerHorizontal="true"
             android:visibility="invisible"
             android:id="@+id/img_guajian_kuang"
-            android:layout_centerHorizontal="true"
             android:background="@mipmap/guajian_select_kuang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/img_icon"
+        <RelativeLayout
             android:layout_centerHorizontal="true"
-            android:background="@mipmap/guajian_xiong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <org.eteclab.ui.widget.CircularImage
+                android:layout_centerHorizontal="true"
+                android:id="@+id/user_head_imgs"
+                android:layout_alignParentBottom="true"
+                android:background="@mipmap/moren_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
         <TextView
             android:id="@+id/tv_name"
             android:textColor="@color/color_333333"
             android:paddingBottom="@dimen/px_20"
-            android:textSize="@dimen/text_size_22_px"
+            android:textSize="20px"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="熊仔头像框"

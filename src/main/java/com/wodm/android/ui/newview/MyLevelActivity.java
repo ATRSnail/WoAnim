@@ -142,7 +142,7 @@ public class MyLevelActivity extends AppActivity implements AtyTopLayout.myTopba
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.kai_tong_level:
-                startActivity(new Intent(getApplicationContext(), VipOpenActivity.class));
+                startActivity(new Intent(getApplicationContext(), NewVipActivity.class));
                 break;
         }
     }

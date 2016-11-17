@@ -108,7 +108,7 @@ public class MyWalletActivity extends AppActivity implements AtyTopLayout.myTopb
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.kai_tong_wallet:
-                startActivity(new Intent(getApplicationContext(), VipOpenActivity.class));
+                startActivity(new Intent(getApplicationContext(), NewVipActivity.class));
                 break;
         }
     }
