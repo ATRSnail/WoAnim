@@ -29,8 +29,8 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@Layout(R.layout.activity_pay)
-public class PayActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
+@Layout(R.layout.activity_vvpay)
+public class VVipPayActivity extends AppActivity implements View.OnClickListener, AtyTopLayout.myTopbarClicklistenter {
     @ViewIn(R.id.back_pay)
     AtyTopLayout atyTopLayout;
     @ViewIn(R.id.yzm_pay)
@@ -50,9 +50,8 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vpay);
-        String vip = getIntent().getStringExtra("vip");
-
+//        String vip = getIntent().getStringExtra("vip");
+//
 //        if("开通VIP".equals(vip)){
 //            setContentView(R.layout.activity_vpay);
 //        }else {
@@ -101,7 +100,7 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
     private void zhifuResult() {
         String yzm = Tools.getText(yzm_edit_pay);
         if (TextUtils.isEmpty(yzm)) {
-            Toast.makeText(PayActivity.this, "验证码不能为空", Toast.LENGTH_LONG).show();
+            Toast.makeText(VVipPayActivity.this, "验证码不能为空", Toast.LENGTH_LONG).show();
             return;
         }
         //点击支付上传支付验证码
@@ -123,7 +122,7 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         try {
-                            Toast.makeText(PayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -132,7 +131,7 @@ public class PayActivity extends AppActivity implements View.OnClickListener, At
                     @Override
                     public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                         try {
-                            Toast.makeText(PayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

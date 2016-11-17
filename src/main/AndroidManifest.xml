@@ -360,13 +360,7 @@
         <activity
             android:name=".android.ui.newview.ForgetPassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--
-    ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <!-- <meta-data -->
-        <!-- android:name="com.google.android.gms.version" -->
-        <!-- android:value="4030500" /> -->
+
         <activity
             android:name=".android.ui.newview.CustomerServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -392,15 +386,14 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".android.ui.newview.PayActivity"
+            android:name=".android.ui.newview.VipPayActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.VVipPayActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".android.ui.newview.BindPhoActivity"
-            android:theme="@style/AppTheme.NoActionBar" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
