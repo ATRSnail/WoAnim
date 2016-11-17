@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
     @ViewIn(R.id.phone3_pay)
     TextView phone3_pay;
     private String phone = null;
+    String code = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,46 +105,42 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
             Toast.makeText(VVipPayActivity.this, "验证码不能为空", Toast.LENGTH_LONG).show();
             return;
         }
-        //点击支付上传支付验证码
-        if (yzm.length() == 6) {
-            try {
-                JSONObject obj = new JSONObject();
-                obj.put("accountName", phone);
-//                obj.put("password", password);
-                obj.put("authCode", yzm);
-                obj.put("osName", "android");
-                obj.put("platformType", 1);
-                ApplicationInfo appInfo = getPackageManager()
-                        .getApplicationInfo(getPackageName(),
-                                PackageManager.GET_META_DATA);
-                int msg = appInfo.metaData.getInt("UMENG_CHANNEL", 0);
-                obj.put("channelId", msg);
-                obj.put("productName", "联通动漫");
-                httpPost(Constants.USER_REGIST, obj, new HttpCallback() {
-                    @Override
-                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                        try {
-                            Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
-                    @Override
-                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                        try {
-                            Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
+
+
+        code =getIntent().getStringExtra("productCode");
+        Log.e("AA",getIntent().getStringExtra("productCode")+"-------------------");
+        //点击支付上传支付验证码
+        String url = Constants.APP_GET_BUY_PRODUCT + Constants.CURRENT_USER.getData().getAccount().getId() + "&code=" + yzm + "&payType=4" + "&productCode=" + code;
+        httpGet(url, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+                try {
+                    Toast.makeText(VVipPayActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void doRequestFailure(Exception exception, String msg) {
+                super.doRequestFailure(exception, msg);
+
+                Toast.makeText(VVipPayActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 

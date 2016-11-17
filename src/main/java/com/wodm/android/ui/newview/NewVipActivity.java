@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,9 +20,12 @@ import android.widget.ScrollView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.TabFragmentAdapter;
+import com.wodm.android.bean.ProductByTypeBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.newfragment.FragmentVipPager;
 import com.wodm.android.fragment.newfragment.VipFragment;
@@ -239,12 +243,14 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
                     String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
                 if (isOpenVip){
                     Intent intent = new Intent();
-                     if(phone!=null)
+                     if(phone!=null&&phone.length()>0)
                      {
                          if(btn_open_vip.getText().toString().contains("VVIP")){
                              intent.setClass(NewVipActivity.this, VVipPayActivity.class);
+                             getProductCode(3,intent);
                            }else {
                              intent.setClass(NewVipActivity.this, VipPayActivity.class);
+                             getProductCode(2,intent);
                          }
                          intent.putExtra("phone",phone);
                          intent.putExtra("vip",btn_open_vip.getText());
@@ -252,6 +258,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
                     else {
                          intent.setClass(NewVipActivity.this, BindPhoActivity.class);
                      }
+                    intent.putExtra("productCode",getCode());
                     startActivity(intent);
                 }
             break;
@@ -269,6 +276,29 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
         }
 
     }
+
+    String code=null;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    private void getProductCode(int i, final Intent intent) {
+        httpGet(Constants.APP_GET_PRODUCT_BY_PRODUCTTYPE + i, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                ProductByTypeBean productByTypeBean = new Gson().fromJson(obj.toString(), ProductByTypeBean.class);
+                 String productCode = productByTypeBean.getData().get(0).getProductCode();
+                 setCode(productCode);
+            }
+        });
+    }
+
     private class TabInfo {
         private String tag;
         private Class<?> clss;
