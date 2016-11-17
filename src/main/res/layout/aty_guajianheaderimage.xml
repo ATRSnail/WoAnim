@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/set_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        app:BackGroundColor="@color/color_f5c92f"
+        app:CustomtitleTextColor="@color/color_ffffff"
+        app:CustomtitleTextSize="@dimen/text_size_48_px"
+        app:Customtoptitle="商城"
+        app:leftBackGround="@drawable/back_drawable"
+        app:rightType="2" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_14"
+        android:background="@color/color_ffffff"
+        app:tabIndicatorColor="@color/color_ff8d35"
+        app:tabSelectedTextColor="@color/transparent_black"
+        app:tabTextColor="@color/transparent_black" />
+
+    <com.wodm.android.view.newview.WrapContentHeightViewPager
+        android:id="@+id/mypage_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

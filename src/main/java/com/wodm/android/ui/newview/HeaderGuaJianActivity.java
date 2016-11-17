@@ -348,7 +348,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        BuyingGoods();
+
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
