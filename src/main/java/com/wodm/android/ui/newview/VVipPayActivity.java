@@ -93,7 +93,7 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
                 getYzm();
                 break;
             case R.id.zhifu_pay:
-//                zhifuResult();
+                zhifuResult();
 
                 break;
         }
@@ -111,7 +111,7 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
         code =getIntent().getStringExtra("productCode");
         Log.e("AA",getIntent().getStringExtra("productCode")+"-------------------");
         //点击支付上传支付验证码
-        String url = Constants.APP_GET_BUY_PRODUCT + Constants.CURRENT_USER.getData().getAccount().getId() + "&code=" + yzm + "&payType=4" + "&productCode=" + code;
+        String url = Constants.APP_GET_BUY_PRODUCT + Constants.CURRENT_USER.getData().getAccount().getId() + "&code=" + yzm + "&payType=5" + "&productCode=" + code;
         httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

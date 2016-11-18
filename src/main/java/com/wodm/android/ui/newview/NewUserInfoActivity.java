@@ -1,7 +1,6 @@
 package com.wodm.android.ui.newview;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,6 +37,7 @@ import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.DeviceUtils;
+import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.FileUtils;
 import com.wodm.android.utils.ImageTools;
 import com.wodm.android.utils.ImageUtils;
@@ -133,8 +133,11 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
         String phone = accountBean.getMobile();
         if (Tools.isMobileNO(phone)) {
             bind_state.setText("已绑定");
+            bindphone_rl.setEnabled(false);
             bind_state.setTextColor(getResources().getColor(R.color.color_f5912f));
             bind_phone.setText(phone);
+        }else {
+            bindphone_rl.setEnabled(true);
         }
 
         String str_sex = "";
@@ -484,7 +487,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             }
 
         } else {
-            new AlertDialog.Builder(NewUserInfoActivity.this)
+            new DialogUtils.Builder(NewUserInfoActivity.this)
                     .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!").create().show();
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -499,10 +502,13 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                     int state = data.getIntExtra("state", 0);
                     String phone = data.getStringExtra("phone");
                     if (state == 1) {
+                        bindphone_rl.setEnabled(false);
                         bind_state.setText("已绑定");
                         bind_state.setTextColor(getResources().getColor(R.color.color_f5912f));
                         if (phone != null || !"".equals(phone))
                             bind_phone.setText(phone);
+                    }else {
+                        bindphone_rl.setEnabled(true);
                     }
                     break;
                 case GET_PRICTURE:

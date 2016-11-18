@@ -155,7 +155,7 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
         }
 
         //微信绑定手机号码
-        String url = Constants.BIND_WEIXIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&m=" + phone+ "&code=" + yzm;
+        String url = Constants.BIND_WEIXIN + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&mobile=" + phone+ "&code=" + yzm;
         httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -167,6 +167,9 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
                         .setMessage("恭喜你\n手机绑定成功啦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
+                        NewVipActivity newVipActivity =new NewVipActivity();
+                        newVipActivity.setPhone(phone);
                         finish();
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {

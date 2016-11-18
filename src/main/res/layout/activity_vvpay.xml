@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <com.wodm.android.view.newview.AtyTopLayout
             android:id="@+id/back_pay"
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/y40"
+                    android:layout_marginBottom="@dimen/px_40"
                     android:layout_marginTop="@dimen/y16"
                     android:orientation="horizontal">
 
@@ -72,7 +72,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:layout_marginTop="@dimen/y16"
                         android:layout_weight="2"
                         android:gravity="right"
                         android:text="189"
@@ -84,7 +83,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/y16"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0000"
@@ -96,7 +94,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:layout_marginTop="@dimen/y16"
                         android:layout_weight="2"
                         android:text="0000"
                         android:textColor="@color/color_f5912f"
@@ -114,7 +111,7 @@
             android:layout_below="@id/pay_info"
             android:layout_marginLeft="@dimen/x30"
             android:layout_marginRight="@dimen/x30"
-            android:layout_marginTop="@dimen/y30"
+            android:layout_marginTop="@dimen/px_30"
             android:background="@drawable/pay_circle_corner"
             android:gravity="center_horizontal"
             android:orientation="vertical">
@@ -141,15 +138,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x60"
-                android:layout_marginRight="@dimen/x60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:layout_marginRight="@dimen/px_60"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginTop="@dimen/px_30"
                     android:text="类别：VVIP会员服务/30天"
                     android:textColor="@color/color_999999"
                     android:textSize="@dimen/x30" />
@@ -157,19 +154,27 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/y30"
-                    android:layout_marginTop="@dimen/y30"
+                    android:layout_marginBottom="@dimen/px_30"
+                    android:layout_marginTop="@dimen/px_30"
+                    android:gravity="top"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="购买即赠"
-                        android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="购买即赠"
+                            android:textColor="@color/color_f5912f"
+                            android:textSize="@dimen/x22" />
+                    </LinearLayout>
+
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x30"
                         android:layout_weight="1"
@@ -188,7 +193,7 @@
                             android:gravity="center"
                             android:text="VVIP尊贵标识"
                             android:textColor="@color/color_f5912f"
-                            android:textSize="@dimen/x24" />
+                            android:textSize="@dimen/x22" />
                     </LinearLayout>
 
 
@@ -211,7 +216,7 @@
                     </RelativeLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_weight="1"
@@ -231,7 +236,7 @@
                             android:gravity="center"
                             android:text="随机挂件X1"
                             android:textColor="@color/color_f5912f"
-                            android:textSize="@dimen/x24" />
+                            android:textSize="@dimen/x22" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -244,8 +249,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x60"
-                android:layout_marginRight="@dimen/x60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:layout_marginRight="@dimen/px_60"
                 android:orientation="vertical">
 
                 <TextView
@@ -259,41 +264,41 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y20">
+                    android:layout_marginBottom="@dimen/px_20"
+                    android:layout_marginTop="@dimen/px_20">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="会员单次购买，重复购买时间累积("
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="30"
                         android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="天/次)"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/y30">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="共计"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -301,7 +306,7 @@
                         android:layout_marginLeft="@dimen/x10"
                         android:text="¥"
                         android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -316,7 +321,7 @@
                         android:layout_marginLeft="@dimen/x16"
                         android:text="¥45"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -349,22 +354,29 @@
                         android:textSize="@dimen/x24" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/zhifu_pay"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/y41"
+                <LinearLayout
                     android:layout_marginTop="@dimen/y30"
-                    android:background="@drawable/pay_ran_getcode"
-                    android:enabled="false"
-                    android:text="确认支付"
-                    android:textColor="@color/color_999999"
-                    android:textSize="@dimen/x30" />
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="@dimen/y41"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhifu_pay"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pay_ran_getcode"
+                        android:enabled="false"
+                        android:text="确认支付"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/x30" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
         <View
+            android:layout_below="@id/pay_details"
+            android:background="@color/color_cccccc"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y30"></View>
     </RelativeLayout>

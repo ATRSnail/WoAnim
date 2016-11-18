@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <com.wodm.android.view.newview.AtyTopLayout
             android:id="@+id/back_pay"
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         <View
             android:id="@+id/line"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_30"
+            android:layout_height="@dimen/y30"
             android:layout_below="@id/back_pay"
             android:background="@color/color_f5c92f" />
 
@@ -37,7 +37,7 @@
             <View
 
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_100"
+                android:layout_height="@dimen/y100"
                 android:layout_alignParentTop="true"
                 android:background="@color/color_f5c92f" />
 
@@ -55,7 +55,7 @@
                     android:id="@+id/user_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_16"
+                    android:layout_marginTop="@dimen/y16"
                     android:text="中国联通用户"
                     android:textColor="@color/color_f5912f"
                     android:textSize="@dimen/x24" />
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/px_40"
-                    android:layout_marginTop="@dimen/px_16"
+                    android:layout_marginTop="@dimen/y16"
                     android:orientation="horizontal">
 
                     <TextView
@@ -72,7 +72,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-                        android:layout_marginTop="@dimen/px_16"
                         android:layout_weight="2"
                         android:gravity="right"
                         android:text="189"
@@ -84,7 +83,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/px_16"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="0000"
@@ -96,7 +94,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:layout_marginTop="@dimen/px_16"
                         android:layout_weight="2"
                         android:text="0000"
                         android:textColor="@color/color_f5912f"
@@ -121,7 +118,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_102"
+                android:layout_height="@dimen/y102"
                 android:gravity="center">
 
                 <TextView
@@ -135,14 +132,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_2"
+                android:layout_height="@dimen/y2"
                 android:background="@color/color_cccccc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x60"
-                android:layout_marginRight="@dimen/x60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:layout_marginRight="@dimen/px_60"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -159,17 +156,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/px_30"
                     android:layout_marginTop="@dimen/px_30"
+                    android:gravity="top"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="购买即赠"
-                        android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="购买即赠"
+                            android:textColor="@color/color_f5912f"
+                            android:textSize="@dimen/x22" />
+                    </LinearLayout>
+
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x30"
                         android:layout_weight="1"
@@ -184,11 +189,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/px_16"
+                            android:layout_marginTop="@dimen/y16"
                             android:gravity="center"
                             android:text="VIP尊贵标识"
                             android:textColor="@color/color_f5912f"
-                            android:textSize="@dimen/x24" />
+                            android:textSize="@dimen/x22" />
                     </LinearLayout>
 
 
@@ -200,7 +205,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/vip_pay"
+                            android:src="@mipmap/vvip_pay"
                             android:visibility="invisible" />
 
                         <ImageView
@@ -211,7 +216,7 @@
                     </RelativeLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:layout_weight="1"
@@ -227,31 +232,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/px_16"
+                            android:layout_marginTop="@dimen/y16"
                             android:gravity="center"
                             android:text="随机挂件X1"
                             android:textColor="@color/color_f5912f"
-                            android:textSize="@dimen/x24" />
+                            android:textSize="@dimen/x22" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_2"
+                android:layout_height="@dimen/y2"
                 android:background="@color/color_cccccc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x60"
-                android:layout_marginRight="@dimen/x60"
+                android:layout_marginLeft="@dimen/px_60"
+                android:layout_marginRight="@dimen/px_60"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_30"
+                    android:layout_marginTop="@dimen/y30"
                     android:text="支付说明："
                     android:textColor="@color/color_666666"
                     android:textSize="@dimen/x30" />
@@ -259,6 +264,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/px_20"
                     android:layout_marginTop="@dimen/px_20">
 
                     <TextView
@@ -266,34 +272,33 @@
                         android:layout_height="wrap_content"
                         android:text="会员单次购买，重复购买时间累积("
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="30"
                         android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="天/次)"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/px_30">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="共计"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -301,7 +306,7 @@
                         android:layout_marginLeft="@dimen/x10"
                         android:text="¥"
                         android:textColor="@color/color_f5912f"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -316,13 +321,13 @@
                         android:layout_marginLeft="@dimen/x16"
                         android:text="¥35"
                         android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x24" />
+                        android:textSize="@dimen/x23" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_72"
-                    android:layout_marginTop="@dimen/px_30">
+                    android:layout_height="@dimen/y72"
+                    android:layout_marginTop="@dimen/y30">
 
                     <EditText
                         android:id="@+id/yzm_edit_pay"
@@ -349,20 +354,30 @@
                         android:textSize="@dimen/x24" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/zhifu_pay"
-                    style="?android:attr/borderlessButtonStyle"
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/px_41"
-                    android:layout_marginTop="@dimen/px_30"
-                    android:background="@drawable/pay_ran_getcode"
-                    android:enabled="false"
-                    android:text="确认支付"
-                    android:textColor="@color/color_999999"
-                    android:textSize="@dimen/x30" />
+                    android:layout_marginBottom="@dimen/y41"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/zhifu_pay"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pay_ran_getcode"
+                        android:enabled="false"
+                        android:text="确认支付"
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/x30" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
+        <View
+            android:layout_below="@id/pay_details"
+            android:background="@color/color_cccccc"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"></View>
     </RelativeLayout>
 </ScrollView>
