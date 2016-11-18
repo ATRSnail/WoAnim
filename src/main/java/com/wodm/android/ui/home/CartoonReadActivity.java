@@ -548,7 +548,8 @@ public class CartoonReadActivity extends AppActivity {
                 mLeftBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 mRightBtn.setVisibility(orientation == 0 ? View.VISIBLE : View.INVISIBLE);
                 String textStr = mScrollText.getText().toString();
-                setType(textStr);
+                String textScreen = mScreenText.getText().toString();
+                setType(textStr,textScreen);
                 pullToLoadView.setLayoutManager(manager);
             }
         });
@@ -566,22 +567,23 @@ public class CartoonReadActivity extends AppActivity {
                     mScreenText.setText("竖屏");
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
-                String textStr = mScrollText.getText().toString();
-                setType(textStr);
+
             }
         });
+        String textStr = mScrollText.getText().toString();
+        String textScreen = mScreenText.getText().toString();
+        setType(textStr,textScreen);
 
     }
-    private void setType(String text){
-        int i = getResources().getConfiguration().orientation;
+    private void setType(String text,String textScreen){
         int type = 0;
-        if (i == Configuration.ORIENTATION_PORTRAIT) {
+        if (textScreen.equals("横屏")) {
             if (text.equals("上下")) {
                 type = 1;
             }else {
                 type = 0;
             }
-        } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+        } else if (textScreen.equals("竖屏")) {
             adapter.setType(type);
             if (text.equals("上下")) {
                 type = 3;
@@ -590,6 +592,7 @@ public class CartoonReadActivity extends AppActivity {
             }
         }
         adapter.setType(type);
+        adapter.notifyDataSetChanged();
     }
 
     int startx = 0;

@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.FragmentMyPager;
 import com.wodm.android.adapter.newadapter.MallAdapter;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.view.newview.MyGridView;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by songchenyu on 16/11/16.
  */
 
-public class AllGuaJianFragment extends Fragment {
+public class AllGuaJianFragment extends Fragment implements FragmentMyPager.addClickIconListener  {
     private List<MallGuaJianBean> newsbeanList;
     private MyGridView new_grid_mall;
     private MallAdapter adapter;
@@ -47,6 +48,7 @@ public class AllGuaJianFragment extends Fragment {
                         }.getType());
                     adapter = new MallAdapter(getActivity(), newsbeanList);
                     new_grid_mall.setAdapter(adapter);
+                    initClick();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -60,6 +62,9 @@ public class AllGuaJianFragment extends Fragment {
         });
         return view;
     }
+    private void initClick(){
+        adapter.setAddClickIconListener(this);
+    }
     public void httpGet(String url, final HttpCallback callback) {
 
         try {
@@ -68,6 +73,11 @@ public class AllGuaJianFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void addImage(MallGuaJianBean mallGuaJianBean, boolean isVip, int index) {
 
     }
 }
