@@ -39,6 +39,15 @@ public class VideoService extends Service {
                     insertVideo(bean);
                 }
             }
+        }else if (type.equals("buying")){
+//            MallGuaJianBean mallGuaJianBean=null;
+//            if (intent.getExtras()!=null){
+//                mallGuaJianBean= (MallGuaJianBean) intent.getExtras().getSerializable("bean");
+//                if (mallGuaJianBean!=null){
+//                    handler.sendEmptyMessage(1);
+//                    sendResuest(mallGuaJianBean);
+//                }
+//            }
         }
 
 
@@ -46,6 +55,7 @@ public class VideoService extends Service {
 
         return Service.START_NOT_STICKY;
     }
+
     private void insertVideo(ChapterBean bean){
         try {
             String rescoureId=bean.getId();

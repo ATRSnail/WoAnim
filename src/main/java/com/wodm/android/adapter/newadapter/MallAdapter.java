@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wodm.R;
 import com.wodm.android.bean.MallGuaJianBean;
+import com.wodm.android.run.VideoService;
+import com.wodm.android.tools.BuyingTools;
 import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.ui.newview.HeaderGuaJianActivity;
 
@@ -26,7 +28,8 @@ import java.util.List;
 public class MallAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
     private List<MallGuaJianBean> list;
-
+    private MallGuaJianBean clickBean;
+    private FragmentMyPager.addClickIconListener addClickIconListener;
     public MallAdapter(Context mcontext, List<MallGuaJianBean> mlist) {
         this.context = mcontext;
         this.list=mlist;
@@ -56,6 +59,7 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
             holder.name = (TextView) convertView.findViewById(R.id.name_item_mall);
             holder.score = (TextView) convertView.findViewById(R.id.score_item_mall);
             holder.xianshi_mall = (ImageView) convertView.findViewById(R.id.icon_item_mall);
+            holder.img_guajian_kuang = (ImageView) convertView.findViewById(R.id.img_guajian_kuang);
             holder.layout = (LinearLayout) convertView.findViewById(R.id.layout_mall);
             holder.rl_border = (RelativeLayout) convertView.findViewById(R.id.rl_border);
             convertView.setTag(holder);
@@ -64,6 +68,11 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
         }
         final MallGuaJianBean mallGuaJianBean=list.get(position);
         final String name=mallGuaJianBean.getProductName();
+        if (clickBean!=null&&clickBean.getProductName().equals(name)){
+            holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+        }else {
+            holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
+        }
         holder.name.setText(name);
         int flag=mallGuaJianBean.getFlag();
         if (flag==0){
@@ -82,9 +91,15 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View     v) {
-                Intent intent = new Intent(context, HeaderGuaJianActivity.class);
-                intent.putExtra("iconClick",mallGuaJianBean);
-                context.startActivity(intent);
+                if (addClickIconListener!=null){
+//                    startMyService(mallGuaJianBean);
+                    BuyingTools.getInstance(context,mallGuaJianBean).BuyingGoods();
+                }else {
+                    Intent intent = new Intent(context, HeaderGuaJianActivity.class);
+                    intent.putExtra("iconClick",mallGuaJianBean);
+                    context.startActivity(intent);
+                }
+
             }
         });
 //        holder.icon.setImageResource((Integer) map.get("icon"));
@@ -98,16 +113,30 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
 //        holder.rl_border.setLayoutParams(params);
         return convertView;
     }
-
+    private void startMyService(MallGuaJianBean mallGuaJianBean){
+        Intent serviceIntent=new Intent(context, VideoService.class);
+        serviceIntent.putExtra("type","buying");
+        serviceIntent.putExtra("bean", mallGuaJianBean);
+        context.startService(serviceIntent);
+    }
+    public void setAddClickIconListener(FragmentMyPager.addClickIconListener listener) {
+        addClickIconListener = listener;
+    }
     @Override
     public void onClick(View v) {
 
     }
-
+    /**
+     * 不选择时
+     */
+    public void onUnselect(){
+        clickBean= null;
+        notifyDataSetChanged();
+    }
     static class ViewHolder {
         TextView name;
         TextView score;
-        ImageView xianshi_mall;
+        ImageView xianshi_mall,img_guajian_kuang;
         LinearLayout layout;
         RelativeLayout rl_border;
     }

@@ -147,7 +147,7 @@ public class GuaJianImageHeaderMoreAty extends AppActivity implements FragmentMy
 
     @Override
     public void leftClick() {
-
+        finish();
     }
 
     @Override
