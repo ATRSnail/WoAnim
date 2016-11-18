@@ -61,6 +61,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     MallAdapter adapter;
     private List<MallGuaJianBean> newsbeanList;
     private List<MallGuaJianBean> mansbeanList;
+    private ImageView img_linshivip,img_touxiangkuang,img_guajian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         //1 挂件 2 头像
         initData(1);
         initData(2);
-        initBars();
+//        initBars();
         initTapPageView();
 //        initList();
         back_mall.setOnTopbarClickListenter(this);
@@ -88,7 +89,13 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     }
 
     private void initTapPageView() {
+        img_linshivip= (ImageView) findViewById(R.id.img_linshivip);
+        img_touxiangkuang= (ImageView) findViewById(R.id.img_touxiangkuang);
+        img_guajian= (ImageView) findViewById(R.id.img_guajian);
         mBannerView = (BannerView) findViewById(R.id.banner);
+        img_linshivip.setOnClickListener(this);
+        img_touxiangkuang.setOnClickListener(this);
+        img_guajian.setOnClickListener(this);
         final String string = Constants.URL_HOME_TOP_LIST + "&type=" + 1;
         HttpUtil.httpGet(MallActivity.this, string, new HttpCallback() {
             @Override
@@ -244,7 +251,15 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         for (int i = 0; i < 4; i++) {
             ImageView v = new ImageView(this);
             v.setScaleType(ImageView.ScaleType.FIT_XY);
-            new AsyncImageLoader(this, R.mipmap.loading, R.mipmap.loading).display(v, "");
+            if (i==0){
+                v.setBackgroundResource(R.mipmap.linshivip);
+            }else if (i==1){
+                v.setBackgroundResource(R.mipmap.touxiangkuang);
+            }else if (i==1){
+                v.setBackgroundResource(R.mipmap.zhoubian);
+            }else {
+                v.setBackgroundResource(R.mipmap.guajian);
+            }
             final int pos = i;
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -287,6 +302,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @Override
     public void onClick(View v) {
 //        Toast.makeText(MallActivity.this,"lf,gfllfdfdb,lfbld,fd",Toast.LENGTH_LONG);
+        Intent intent =new Intent();
         switch (v.getId()) {
             case 0:
                 break;
@@ -313,6 +329,18 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             case R.id.mall_more1:
                 startGuajian("最新");
                 break;
+            case R.id.img_guajian:
+                intent.setClass(this,GuaJianHeaderImageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_touxiangkuang:
+                intent.setClass(this,GuaJianHeaderImageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_linshivip:
+                intent.setClass(this,NewVipActivity.class);
+                startActivity(intent);
+                break;
 //            case R.id.go_btn:
 //                new AlertDialog.Builder(this)
 //                        .setMessage("您的积分不足")
@@ -331,9 +359,9 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     private void startGuajian(String text) {
         Intent intent = new Intent();
         intent.putExtra("text", text);
-        intent.setClass(this, GuaJianHeaderImageActivity.class);
+//        intent.setClass(this, GuaJianHeaderImageActivity.class);
+        intent.setClass(this, GuaJianImageHeaderMoreAty.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

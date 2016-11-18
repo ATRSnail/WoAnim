@@ -233,7 +233,7 @@ public class FragmentMyPager extends Fragment {
             }
             int flag=mallGuaJianBean.getFlag();
             if (flag==0){
-                holder.score.setText(mallGuaJianBean.getNeedScore()+"");
+                holder.score.setText(mallGuaJianBean.getNeedScore()+"积分");
             }else {
                 holder.score.setTextColor(mContext.getResources().getColor(R.color.color_999999));
                 holder.score.setText("已购买");

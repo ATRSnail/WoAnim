@@ -58,7 +58,7 @@ public class MallConversionUtil {
                    if (url==null||name.equals("")){
                        return;
                    }
-                   Glide.with(context).load(url).placeholder(R.mipmap.loading).into(imaegeview);
+                   Glide.with(context).load(url).asBitmap().placeholder(R.mipmap.loading).into(imaegeview);
                }
 
         }

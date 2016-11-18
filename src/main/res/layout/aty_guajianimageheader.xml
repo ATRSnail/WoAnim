@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/set_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        app:BackGroundColor="@color/color_f5c92f"
+        app:CustomtitleTextColor="@color/color_ffffff"
+        app:CustomtitleTextSize="@dimen/text_size_48_px"
+        app:Customtoptitle="全部商品"
+        app:leftBackGround="@drawable/back_drawable"
+        app:rightType="0" />
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <com.wodm.android.view.newview.MyGridView
+               android:layout_marginTop="@dimen/px_20"
+               android:id="@+id/new_grid_mall"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="@dimen/px_30"
+               android:layout_marginRight="@dimen/px_30"
+               android:horizontalSpacing="@dimen/px_21"
+               android:verticalSpacing="@dimen/px_21"
+               android:listSelector="@android:color/transparent"
+               android:numColumns="3" />
+       </LinearLayout>
+   </ScrollView>
+</LinearLayout>

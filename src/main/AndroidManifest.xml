@@ -312,6 +312,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".android.ui.newview.GuaJianImageHeaderMoreAty"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".android.ui.newview.LgoinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

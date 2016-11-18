@@ -54,8 +54,10 @@
             <!--</LinearLayout>-->
 
             <HorizontalScrollView
+                android:layout_marginBottom="@dimen/px_30"
+                android:layout_marginTop="@dimen/px_30"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="wrap_content"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -67,32 +69,35 @@
                     android:paddingRight="15dp">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
+                        android:id="@+id/img_linshivip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/driver_achieve" />
+                        android:src="@mipmap/linshivip" />
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
+                        android:id="@+id/img_touxiangkuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/driver_achieve" />
+                        android:src="@mipmap/touxiangkuang" />
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/driver_achieve" />
+                        android:src="@mipmap/zhoubian" />
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
+                        android:id="@+id/img_guajian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/driver_achieve" />
+                        android:src="@mipmap/guajian" />
 
                 </LinearLayout>
 

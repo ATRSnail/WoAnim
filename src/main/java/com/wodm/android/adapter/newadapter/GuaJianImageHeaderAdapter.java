@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,21 +22,20 @@ import java.util.List;
  * Created by songchenyu on 16/10/21.
  */
 
-public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class GuaJianImageHeaderAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private Context mContext;
     private MallGuaJianBean clickBean;
     private MyGridView mGirdview;
     private FragmentMyPager.addClickIconListener addClickIconListener;
     private  List<MallGuaJianBean> beanList;
-    public GuaJianAdapter(MyGridView girdview,Context context,MallGuaJianBean clickBean, List<MallGuaJianBean> beanList){
+    public GuaJianImageHeaderAdapter(MyGridView mGirdview,Context context,List<MallGuaJianBean> beanList){
         this.mContext=context;
-        this.mGirdview=girdview;
-        this.clickBean=clickBean;
         this.beanList=beanList;
+        this.mGirdview=mGirdview;
         mGirdview.setOnItemClickListener(this);
     }
-    public void setAddClickIconListener(FragmentMyPager.addClickIconListener listener){
-        this.addClickIconListener=listener;
+    public void setAddClickIconListener(FragmentMyPager.addClickIconListener listener) {
+        addClickIconListener = listener;
     }
 
     @Override
@@ -58,11 +58,12 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         Holder holder=null;
         if (convertView==null){
             holder=new Holder();
-            convertView= LayoutInflater.from(mContext).inflate(R.layout.adapter_guajian_free,null,false);
+            convertView= LayoutInflater.from(mContext).inflate(R.layout.item_all_guajian,null,false);
             holder.img_icon= (ImageView) convertView.findViewById(R.id.img_icon);
             holder.img_guajian_kuang= (ImageView) convertView.findViewById(R.id.img_guajian_kuang);
             holder.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_score= (TextView) convertView.findViewById(R.id.tv_score);
+            holder.ll_guajian_free= (RelativeLayout) convertView.findViewById(R.id.ll_guajian_free);
             convertView.setTag(holder);
         }else {
             holder= (Holder) convertView.getTag();
@@ -74,9 +75,8 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         }else {
             holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
         }
-
         holder.tv_name.setText(name);
-        holder.tv_score.setText(mallGuaJianBean.getNeedScore()+"积分");
+        holder.tv_score.setText(mallGuaJianBean.getNeedScore()+"");
         try {
             MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
         } catch (Exception e) {
@@ -105,7 +105,9 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         notifyDataSetChanged();
     }
 
+
     class Holder{
+        RelativeLayout ll_guajian_free;
         ImageView img_icon,img_guajian_kuang;
         TextView tv_name,tv_score;
     }

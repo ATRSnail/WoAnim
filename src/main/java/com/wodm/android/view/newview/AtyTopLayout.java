@@ -147,7 +147,7 @@ public class AtyTopLayout extends RelativeLayout {
         leftImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicklistenter.leftClick();
+                    clicklistenter.leftClick();
             }
         });
 
