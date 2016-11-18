@@ -309,6 +309,7 @@
                         android:textSize="@dimen/x23" />
 
                     <TextView
+                        android:id="@+id/price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="30.00"
@@ -316,6 +317,7 @@
                         android:textSize="@dimen/x60" />
 
                     <TextView
+                        android:id="@+id/discountPri"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x16"

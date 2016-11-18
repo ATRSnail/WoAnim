@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +20,10 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.android.Constants;
@@ -43,6 +46,7 @@ import com.wodm.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.wodm.R.string.code;
 import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
@@ -62,7 +66,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
     private LinearLayout ll_tiaokuan;
     private Button btn_open_vip;
     private Button open_now;
-    private boolean isOpenVip=true;
+    private boolean isOpenVip = true;
     private ImageView img_dagou;
     private ImageView img_vip_circle;
     private TextView tv_endof_vip_num;
@@ -71,7 +75,14 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
     private LinearLayout ll_novip_hint, ll_vip_jiasu, ll_novip_open_vip, ll_vip_time;
     private TextView tv_score;
     private ImageView img_speed;
-    String phone;
+    private String phone;
+    private String VipProductCode;
+    private String VVipProductCode;
+    private String VipPrice;
+    private String VVipPrice;
+    private String VipDiscountPrice;
+    private String VVipDiscountPrice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +90,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
         setContentView(R.layout.aty_newvip);
 
         initView();
+
 
     }
 
@@ -91,6 +103,8 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
     private ImageView img_vip;
 
     private void initView() {
+        phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
+        setPhone(phone);
         img_speed = (ImageView) findViewById(R.id.img_speed);
         tv_score = (TextView) findViewById(R.id.tv_score);
         img_vip = (ImageView) findViewById(R.id.img_vip);
@@ -111,12 +125,12 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
         mTitles.add("VVIP用户");
         ll_tiaokuan = (LinearLayout) findViewById(R.id.ll_tiaokuan);
         set_topbar.setOnTopbarClickListenter(this);
-        ll_tiaokuan= (LinearLayout) findViewById(R.id.ll_tiaokuan);
+        ll_tiaokuan = (LinearLayout) findViewById(R.id.ll_tiaokuan);
         ll_tiaokuan.setOnClickListener(this);
         img_dagou = (ImageView) findViewById(R.id.img_dagou);
         btn_open_vip = (Button) findViewById(R.id.btn_open_vip);
         btn_open_vip.setOnClickListener(this);
-        open_now= (Button) findViewById(R.id.open_now);
+        open_now = (Button) findViewById(R.id.open_now);
         open_now.setOnClickListener(this);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         user_head_imgs = (CircularImage) findViewById(R.id.img_user_header);
@@ -162,7 +176,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
             ll_vip_time.setVisibility(View.GONE);
             ll_vip_jiasu.setVisibility(View.GONE);
             setVipOpenButton("开通");
-        }  else if (vip==1){
+        } else if (vip == 1) {
             ll_novip_open_vip.setVisibility(View.GONE);
             ll_novip_hint.setVisibility(View.GONE);
             ll_vip_time.setVisibility(View.VISIBLE);
@@ -171,7 +185,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
             img_speed.setBackgroundResource(R.mipmap.vip_speed);
             img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);
             setVipOpenButton("续费");
-        }else if (vip==2){
+        } else if (vip == 2) {
             ll_novip_open_vip.setVisibility(View.GONE);
             ll_novip_hint.setVisibility(View.GONE);
             ll_vip_time.setVisibility(View.VISIBLE);
@@ -187,18 +201,18 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
         new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, CURRENT_USER.getData().getAccount().getPortrait());
     }
 
-    private void setVipOpenButton( final String vip) {
+    private void setVipOpenButton(final String vip) {
 
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                String str="VIP";
-                     if(position==0){
-                         str="VIP";
-                     }else {
-                         str="VVIP";
-                     }
-                btn_open_vip.setText(vip+str);
+                String str = "VIP";
+                if (position == 0) {
+                    str = "VIP";
+                } else {
+                    str = "VVIP";
+                }
+                btn_open_vip.setText(vip + str);
             }
 
             @Override
@@ -236,7 +250,6 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
     }
 
 
-
     public String getPhone() {
         return phone;
     }
@@ -247,33 +260,33 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
 
     @Override
     public void onClick(View v) {
-        phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
-        setPhone(phone);
+
         switch (v.getId()) {
             case R.id.open_now:
             case R.id.btn_open_vip:
 
-                if (isOpenVip){
+                if (isOpenVip) {
                     Intent intent = new Intent();
-                     if(getPhone()!=null&&getPhone().length()>0)
-                     {
-                         if(btn_open_vip.getText().toString().contains("VVIP")){
-                             intent.setClass(NewVipActivity.this, VVipPayActivity.class);
-                             getProductCode(3);
-                           }else {
-                             intent.setClass(NewVipActivity.this, VipPayActivity.class);
-                             getProductCode(2);
-                         }
-                         intent.putExtra("phone",phone);
-                         intent.putExtra("vip",btn_open_vip.getText());
-                     }
-                    else {
-                         intent.setClass(NewVipActivity.this, BindPhoActivity.class);
-                     }
-                    intent.putExtra("productCode",getCode());
+                    if (getPhone() != null && getPhone().length() > 0) {
+                        if (btn_open_vip.getText().toString().contains("VVIP")) {
+                            intent.setClass(NewVipActivity.this, VVipPayActivity.class);
+                            intent.putExtra("productCode", VVipProductCode);
+                            intent.putExtra("VVipPrice", VVipPrice);
+                            intent.putExtra("VVipDiscountPrice", VVipDiscountPrice);
+                        } else {
+                            intent.setClass(NewVipActivity.this, VipPayActivity.class);
+                            intent.putExtra("productCode", VipProductCode);
+                            intent.putExtra("VipPrice", VipPrice);
+                            intent.putExtra("VipDiscountPrice", VipDiscountPrice);
+                        }
+                        intent.putExtra("phone", phone);
+                        intent.putExtra("vip", btn_open_vip.getText());
+                    } else {
+                        intent.setClass(NewVipActivity.this, BindPhoActivity.class);
+                    }
                     startActivity(intent);
                 }
-            break;
+                break;
             case R.id.ll_tiaokuan:
                 if (isOpenVip) {
                     img_dagou.setBackgroundResource(R.mipmap.vip_quxiaodagou);
@@ -289,27 +302,41 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
 
     }
 
-    String code=null;
-
-    public String getCode() {
-        return code;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getVVipProductCode();
+        getVipProductCode();
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    private void getProductCode(int i) {
-        httpGet(Constants.APP_GET_PRODUCT_BY_PRODUCTTYPE + i, new HttpCallback() {
+    private void getVipProductCode() {
+        httpGet(Constants.APP_GET_PRODUCT_BY_PRODUCTTYPE + "2", new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 ProductByTypeBean productByTypeBean = new Gson().fromJson(obj.toString(), ProductByTypeBean.class);
-                 String productCode = productByTypeBean.getData().get(0).getProductCode();
-                 setCode(productCode);
+                VipProductCode = productByTypeBean.getData().get(0).getProductCode();
+                VipPrice =String.valueOf(productByTypeBean.getData().get(0).getPrice());
+                VipDiscountPrice=String.valueOf(productByTypeBean.getData().get(0).getDiscountPrice());
             }
         });
     }
+    private void getVVipProductCode() {
+        httpGet(Constants.APP_GET_PRODUCT_BY_PRODUCTTYPE + "3", new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                ProductByTypeBean productByTypeBean = new Gson().fromJson(obj.toString(), ProductByTypeBean.class);
+                VVipProductCode = productByTypeBean.getData().get(0).getProductCode();
+                VVipPrice =String.valueOf(productByTypeBean.getData().get(0).getPrice());
+                VVipDiscountPrice=String.valueOf(productByTypeBean.getData().get(0).getDiscountPrice());
+            }
+        });
+    }
+
+
+
+
 
     private class TabInfo {
         private String tag;

@@ -167,7 +167,6 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
                         .setMessage("恭喜你\n手机绑定成功啦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
                         NewVipActivity newVipActivity =new NewVipActivity();
                         newVipActivity.setPhone(phone);
                         finish();

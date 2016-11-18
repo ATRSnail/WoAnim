@@ -8,10 +8,11 @@ import java.util.List;
 
 public class ProductByTypeBean {
 
+
     /**
      * code : 1000
      * message : 获取信息成功
-     * data : [{"id":4,"productName":"vip一个月","productType":2,"productImageUrl":"http://mk.wo.com.cn/static/goods/4.png","productCode":"004","price":20,"needScore":222}]
+     * data : [{"id":4,"productName":"vip一个月","productType":2,"productImageUrl":"http://mk.wo.com.cn/static/goods/4.png","productCode":"004","price":20,"needScore":222,"discountPrice":35}]
      */
 
     private int code;
@@ -24,6 +25,7 @@ public class ProductByTypeBean {
      * productCode : 004
      * price : 20.0
      * needScore : 222
+     * discountPrice : 35.0
      */
 
     private List<DataBean> data;
@@ -60,6 +62,7 @@ public class ProductByTypeBean {
         private String productCode;
         private double price;
         private int needScore;
+        private double discountPrice;
 
         public int getId() {
             return id;
@@ -115,6 +118,14 @@ public class ProductByTypeBean {
 
         public void setNeedScore(int needScore) {
             this.needScore = needScore;
+        }
+
+        public double getDiscountPrice() {
+            return discountPrice;
+        }
+
+        public void setDiscountPrice(double discountPrice) {
+            this.discountPrice = discountPrice;
         }
     }
 }

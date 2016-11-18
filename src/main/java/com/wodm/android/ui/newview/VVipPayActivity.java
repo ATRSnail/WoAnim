@@ -48,32 +48,38 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
     TextView phone3_pay;
     private String phone = null;
     String code = null;
+    private String VVipPrice;
+    private String VVipDiscountPrice;
+    @ViewIn(R.id.price)
+    TextView price;
+    @ViewIn(R.id.discountPri)
+    TextView discountPri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        String vip = getIntent().getStringExtra("vip");
-//
-//        if("开通VIP".equals(vip)){
-//            setContentView(R.layout.activity_vpay);
-//        }else {
-//            setContentView(R.layout.activity_vvpay);
-//        }
-        initPhone();
+
+        init();
         atyTopLayout.setOnTopbarClickListenter(this);
         btn_yzm.setOnClickListener(this);
         zhifu_pay.setOnClickListener(this);
         yzm_edit_pay.addTextChangedListener(textWatcher);
     }
 
-    private void initPhone() {
+    private void init() {
         phone = getIntent().getStringExtra("phone");
-        if (phone != null&&phone.length()>0) {
+        code =getIntent().getStringExtra("productCode");
+        VVipPrice=getIntent().getStringExtra("VVipPrice");
+        VVipDiscountPrice=getIntent().getStringExtra("VVipDiscountPrice");
+        if (phone != null && phone.length() > 0) {
             phone1_pay.setText(phone.substring(0, 3));
             phone2_pay.setText(phone.substring(3, 7));
             phone3_pay.setText(phone.substring(7));
         }
-
+        if (!TextUtils.isEmpty(VVipPrice))
+            price.setText(VVipPrice);
+        if (!TextUtils.isEmpty(VVipDiscountPrice))
+            discountPri.setText("¥"+VVipDiscountPrice);
     }
 
     @Override
@@ -108,7 +114,6 @@ public class VVipPayActivity extends AppActivity implements View.OnClickListener
 
 
 
-        code =getIntent().getStringExtra("productCode");
         Log.e("AA",getIntent().getStringExtra("productCode")+"-------------------");
         //点击支付上传支付验证码
         String url = Constants.APP_GET_BUY_PRODUCT + Constants.CURRENT_USER.getData().getAccount().getId() + "&code=" + yzm + "&payType=5" + "&productCode=" + code;
