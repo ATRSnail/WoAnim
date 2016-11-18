@@ -1,6 +1,5 @@
 package com.wodm.android.ui.newview;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -107,10 +106,10 @@ public class BuyingOfMineActivity extends FragmentActivity implements  AtyTopLay
                 startActivity(intent);
                 break;
             default:
-                new AlertDialog.Builder(BuyingOfMineActivity.this)
-                        .setTitle("用户您好：")
-                        .setMessage("您的积分不足！")
-                        .create().show();
+//                new AlertDialog.Builder(BuyingOfMineActivity.this)
+//                        .setTitle("用户您好：")
+//                        .setMessage("您的积分不足！")
+//                        .create().show();
                 break;
         }
 

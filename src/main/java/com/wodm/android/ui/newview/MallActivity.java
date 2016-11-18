@@ -287,17 +287,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 
     }
 
-    private void initDialog() {
-        new DialogUtils.Builder(MallActivity.this)
-                .setTitle("用户您好：")
-                .setMessage("您的积分不足！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        })
-                .create().show();
-    }
+
 
     @Override
     public void onClick(View v) {

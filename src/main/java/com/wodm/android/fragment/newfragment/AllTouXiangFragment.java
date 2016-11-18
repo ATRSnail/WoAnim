@@ -37,7 +37,6 @@ public class AllTouXiangFragment extends Fragment implements FragmentMyPager.add
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.from(getActivity()).inflate(R.layout.all_guajian_fragment,null,false);
         new_grid_mall= (MyGridView) view.findViewById(R.id.new_grid_mall);
-        //Constants.CURRENT_USER.getData().getAccount().getId()
         httpGet(Constants.APP_GET_MALL_OF_PRODUCT_LIST +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType=5" , new HttpCallback() {
 
             @Override

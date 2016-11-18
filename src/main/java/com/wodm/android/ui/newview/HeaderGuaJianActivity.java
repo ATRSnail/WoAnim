@@ -1,7 +1,6 @@
 package com.wodm.android.ui.newview;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -37,8 +36,8 @@ import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.GuaJianFragment;
 import com.wodm.android.fragment.TouXiangFragment;
+import com.wodm.android.tools.BuyingTools;
 import com.wodm.android.tools.MallConversionUtil;
-import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 import com.wodm.android.view.newview.OfenUseView;
@@ -319,24 +318,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                        dialog.dismiss();
 //                    }
 //                }).create().show();
-                httpGet(Constants.APP_GET_PRODUCT_IS_BUY +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode() , new HttpCallback() {
-
-                    @Override
-                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                        super.doAuthSuccess(result, obj);
-                       if (obj.optInt("data")==1){
-                           BuyingGoodsDialog();
-                       }else {
-                           NoScore();
-                       }
-                    }
-
-                    @Override
-                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                        super.doAuthFailure(result, obj);
-                        Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                BuyingTools.getInstance(HeaderGuaJianActivity.this,clickBean).BuyingGoods();
 
                 break;
 //            default:
@@ -347,48 +329,6 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                break;
         }
 
-    }
-    private void NoScore(){
-        new DialogUtils.Builder(this)
-                .setMessage("您的积分不足").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).create().show();
-    }
-    private void BuyingGoodsDialog(){
-        new DialogUtils.Builder(HeaderGuaJianActivity.this)
-                .setTitle("砖石头像框")
-                .setMessage("确定使用"+clickBean.getNeedScore()+"积分兑换？")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        BuyingGoods();
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).create().show();
-    }
-    private void BuyingGoods(){
-        httpGet(Constants.APP_GET_BUY_PRODUCT +Constants.CURRENT_USER.getData().getAccount().getId()+"&productCode="+clickBean.getProductCode()+"&payType=1" , new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-                Toast.makeText(HeaderGuaJianActivity.this, ""+obj.optString("message"), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private class TabInfo {
