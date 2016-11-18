@@ -71,7 +71,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
     private LinearLayout ll_novip_hint, ll_vip_jiasu, ll_novip_open_vip, ll_vip_time;
     private TextView tv_score;
     private ImageView img_speed;
-
+    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -235,22 +235,34 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
 
     }
 
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public void onClick(View v) {
+        phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
+        setPhone(phone);
         switch (v.getId()) {
             case R.id.open_now:
             case R.id.btn_open_vip:
-                    String phone = Constants.CURRENT_USER.getData().getAccount().getMobile();
+
                 if (isOpenVip){
                     Intent intent = new Intent();
-                     if(phone!=null&&phone.length()>0)
+                     if(getPhone()!=null&&getPhone().length()>0)
                      {
                          if(btn_open_vip.getText().toString().contains("VVIP")){
                              intent.setClass(NewVipActivity.this, VVipPayActivity.class);
-                             getProductCode(3,intent);
+                             getProductCode(3);
                            }else {
                              intent.setClass(NewVipActivity.this, VipPayActivity.class);
-                             getProductCode(2,intent);
+                             getProductCode(2);
                          }
                          intent.putExtra("phone",phone);
                          intent.putExtra("vip",btn_open_vip.getText());
@@ -287,7 +299,7 @@ public class NewVipActivity extends FragmentActivity implements AtyTopLayout.myT
         this.code = code;
     }
 
-    private void getProductCode(int i, final Intent intent) {
+    private void getProductCode(int i) {
         httpGet(Constants.APP_GET_PRODUCT_BY_PRODUCTTYPE + i, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
