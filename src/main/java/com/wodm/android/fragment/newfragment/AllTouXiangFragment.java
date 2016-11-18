@@ -37,7 +37,7 @@ public class AllTouXiangFragment extends Fragment {
         View view=inflater.from(getActivity()).inflate(R.layout.all_guajian_fragment,null,false);
         new_grid_mall= (MyGridView) view.findViewById(R.id.new_grid_mall);
         //Constants.CURRENT_USER.getData().getAccount().getId()
-        httpGet(Constants.APP_GET_MALL_TOUXIANG +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType=5" , new HttpCallback() {
+        httpGet(Constants.APP_GET_MALL_OF_PRODUCT_LIST +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType=5" , new HttpCallback() {
 
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

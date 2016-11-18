@@ -138,6 +138,7 @@ public class Constants {
     public static final String APP_GET_BUY_PRODUCT=HOST + "newuser/buyProduct?userId=";
     public static final String APP_GET_MALL_OF_USER=HOST + "product/getPendantListByType?userId=";
     public static final String APP_GET_MALL_OF_USER_PENADANT=HOST + "newuser/usePendant?userId=";
+    public static final String APP_GET_MALL_OF_PRODUCT_LIST=HOST + "product/list?userId=";
     public static String OFFTIME;
 
 

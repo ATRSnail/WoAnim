@@ -115,7 +115,7 @@
                            android:layout_height="wrap_content" />
                    </RelativeLayout>
                    <TextView
-                       android:layout_marginTop="@dimen/px_30"
+                       android:layout_marginTop="@dimen/px_20"
                        android:id="@+id/numberflag"
                        android:text="930积分"
                        android:textColor="@color/color_f5921f"
@@ -123,7 +123,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content" />
                    <LinearLayout
-                       android:layout_marginTop="@dimen/px_16"
+                       android:layout_marginTop="@dimen/px_8"
                        android:gravity="bottom|right"
                        android:layout_gravity="bottom|right"
                        android:orientation="vertical"
@@ -137,7 +137,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content" />
                        <LinearLayout
-                           android:layout_marginTop="@dimen/px_16"
+                           android:layout_marginTop="@dimen/px_5"
                            android:gravity="right"
                            android:orientation="horizontal"
                            android:layout_width="wrap_content"

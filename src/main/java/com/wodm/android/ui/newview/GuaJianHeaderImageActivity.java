@@ -43,13 +43,9 @@ public class GuaJianHeaderImageActivity extends FragmentActivity implements AtyT
     private List<MallGuaJianBean> newsbeanList;
     private List<MallGuaJianBean> mansbeanList;
     private AtyTopLayout atyTopLayout;
-    private String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getIntent()!=null){
-            text=getIntent().getStringExtra("text");
-        }
         setContentView(R.layout.aty_guajianheaderimage);
         initView();
     }
@@ -63,7 +59,6 @@ public class GuaJianHeaderImageActivity extends FragmentActivity implements AtyT
     private void initView() {
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
         set_topbar.setOnTopbarClickListenter(this);
-        set_topbar.setTvTitle(text);
         //Constants.CURRENT_USER.getData().getAccount().getId()
         guanJianFrag = new AllGuaJianFragment();
         touXiangFrg = new AllTouXiangFragment();
