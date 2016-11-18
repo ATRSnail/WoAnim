@@ -61,7 +61,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     MallAdapter adapter;
     private List<MallGuaJianBean> newsbeanList;
     private List<MallGuaJianBean> mansbeanList;
-    private ImageView img_linshivip,img_touxiangkuang,img_guajian;
+    private ImageView img_linshivip,img_touxiangkuang,img_guajian,imag_zhoubian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         mall_more1 = (LinearLayout) findViewById(R.id.mall_more1);
         mall_more = (LinearLayout) findViewById(R.id.mall_more);
         mall_more1.setOnClickListener(this);
+        mall_more.setOnClickListener(this);
         mall_more.setOnClickListener(this);
 //        initLinearLayout();
         //1 挂件 2 头像
@@ -92,10 +93,12 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         img_linshivip= (ImageView) findViewById(R.id.img_linshivip);
         img_touxiangkuang= (ImageView) findViewById(R.id.img_touxiangkuang);
         img_guajian= (ImageView) findViewById(R.id.img_guajian);
+        imag_zhoubian= (ImageView) findViewById(R.id.imag_zhoubian);
         mBannerView = (BannerView) findViewById(R.id.banner);
         img_linshivip.setOnClickListener(this);
         img_touxiangkuang.setOnClickListener(this);
         img_guajian.setOnClickListener(this);
+        imag_zhoubian.setOnClickListener(this);
         final String string = Constants.URL_HOME_TOP_LIST + "&type=" + 1;
         HttpUtil.httpGet(MallActivity.this, string, new HttpCallback() {
             @Override
@@ -302,7 +305,7 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             case 2:
 //                startActivity(new Intent(this, HeaderGuaJianActivity.class));
                 break;
-            case 3:
+            case R.id.imag_zhoubian:
                 new DialogUtils.Builder(this)
                         .setMessage("正在建设中...")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
