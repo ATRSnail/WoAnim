@@ -23,7 +23,7 @@
         app:tabSelectedTextColor="@color/transparent_black"
         app:tabTextColor="@color/transparent_black" />
 
-    <com.wodm.android.view.newview.WrapContentHeightViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/mypage_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

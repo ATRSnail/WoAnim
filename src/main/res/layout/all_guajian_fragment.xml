@@ -3,16 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-   <ScrollView
-       android:scrollbars="none"
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       <LinearLayout
-           android:orientation="vertical"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <com.wodm.android.view.newview.MyGridView
+
+           <GridView
+               android:scrollbars="none"
                android:layout_marginTop="@dimen/px_20"
                android:id="@+id/new_grid_mall"
                android:layout_width="match_parent"
@@ -23,7 +16,5 @@
                android:verticalSpacing="@dimen/px_21"
                android:listSelector="@android:color/transparent"
                android:numColumns="3" />
-       </LinearLayout>
 
-   </ScrollView>
 </LinearLayout>
