@@ -6,6 +6,8 @@
     <com.wodm.android.view.newview.NoScrollListView
         android:id="@+id/lv_noscroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.wodm.android.view.newview.NoScrollListView>
+        android:layout_height="match_parent">
+
+    </com.wodm.android.view.newview.NoScrollListView>
 
 </LinearLayout>

@@ -43,7 +43,6 @@ import java.util.List;
 
 public class FragmentMyPager extends Fragment {
     int mNum = 0;
-    private MyGridView gv_guajian;
     private Context mContext;
     private RelativeLayout ll_header;
     private addClickIconListener addClickIconListener;
@@ -135,13 +134,13 @@ public class FragmentMyPager extends Fragment {
                 productType=4;
             }
             MyHolder myHolder=null;
+            String name=columnBeanList.get(position).getName();
             if (convertView==null){
                 myHolder=new MyHolder();
                 convertView=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_mypage,null,false);
-                OfenUseView ofenuserview= (OfenUseView) convertView.findViewById(R.id.ofenuserview);
-                final MyGridView gv_guajian= (MyGridView) convertView.findViewById(R.id.gv_guajian);
-                String name=columnBeanList.get(position).getName();
-                ofenuserview.setTitle(name);
+                myHolder.ofenuserview= (OfenUseView) convertView.findViewById(R.id.ofenuserview);
+                myHolder.gv_guajian= (MyGridView) convertView.findViewById(R.id.gv_guajian);
+                final MyHolder finalMyHolder = myHolder;
                 httpGet(Constants.APP_GET_PRODUCT_PAGEBYCLIUMN +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType="+productType+"&name="+name, new HttpCallback() {
 
                     @Override
@@ -151,7 +150,7 @@ public class FragmentMyPager extends Fragment {
                             List<MallGuaJianBean> beanList= new Gson().fromJson(obj.getString("data"), new TypeToken<List<MallGuaJianBean>>() {
                             }.getType());
                             if (beanList.size()>0){
-                                gv_guajian.setAdapter(new TouXiangAdapter(gv_guajian,beanList));
+                                finalMyHolder.gv_guajian.setAdapter(new TouXiangAdapter(finalMyHolder.gv_guajian,beanList));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -168,11 +167,14 @@ public class FragmentMyPager extends Fragment {
             }else {
                 myHolder= (MyHolder) convertView.getTag();
             }
+            myHolder.ofenuserview.setTitle(name);
+
             return convertView;
         }
     }
     private class MyHolder{
-
+     private OfenUseView ofenuserview;
+     private MyGridView gv_guajian;
     }
     public void httpGet(String url, final HttpCallback callback) {
 
@@ -190,6 +192,7 @@ public class FragmentMyPager extends Fragment {
 
         public TouXiangAdapter(MyGridView girdview, List<MallGuaJianBean> beanList) {
             this.mGirdview = girdview;
+            this.beanList=beanList;
             mGirdview.setOnItemClickListener(this);
         }
 
@@ -249,8 +252,10 @@ public class FragmentMyPager extends Fragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (addClickIconListener == null) return;
+            if (addClickIconListener == null)
+                return;
             MallGuaJianBean mallGuaJianBean = beanList.get(position);
+            clickBean=mallGuaJianBean;
             addClickIconListener.addImage(mallGuaJianBean,false,mNum);
             notifyDataSetChanged();
         }
