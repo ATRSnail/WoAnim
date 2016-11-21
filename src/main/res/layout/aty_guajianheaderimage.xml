@@ -21,6 +21,10 @@
         android:background="@color/color_ffffff"
         app:tabIndicatorColor="@color/color_ff8d35"
         app:tabSelectedTextColor="@color/transparent_black"
+        app:rightText="保存"
+        app:rightTextColor="@color/color_ffffff"
+        app:rightTextSize="@dimen/text_size_28_px"
+        app:rightType="1"
         app:tabTextColor="@color/transparent_black" />
 
     <android.support.v4.view.ViewPager

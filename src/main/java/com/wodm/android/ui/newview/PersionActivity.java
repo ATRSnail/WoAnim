@@ -6,19 +6,24 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
+import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.DisplayUtil;
+import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.user.RecordActivity;
@@ -29,6 +34,7 @@ import com.wodm.android.view.newview.MyGridView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.utils.AsyncImageLoader;
+import org.eteclab.ui.widget.CircularImage;
 
 import java.util.List;
 
@@ -50,7 +56,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @ViewIn(R.id.btn_user_info)
     private Button btn_user_info;
     @ViewIn(R.id.user_head_imgs)
-    private ImageView user_head_imgs;
+    private CircularImage user_head_imgs;
+    @ViewIn(R.id.img_vip_circle)
+    private ImageView img_vip_circle;
+    @ViewIn(R.id.user_guajian)
+    private ImageView user_guajian;
     @ViewIn(R.id.tv_nickname)
     private TextView tv_nickname;
     @ViewIn(R.id.img_sex)
@@ -68,6 +78,12 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     ImageView img_persion_progress;
     @ViewIn(R.id.tv_edit)
     TextView editTv;
+    @ViewIn(R.id.tv_attention)
+    TextView tv_attention;
+    @ViewIn(R.id.edit_persion)
+    ImageButton edit_persion;
+    @ViewIn(R.id.tv_likes)
+    TextView tv_likes;
 
     //    @ViewIn(R.id.btn_degree)
 //    private Button btn_degree;
@@ -95,6 +111,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         scrollow.requestFocus();
         btn_user_info.setOnClickListener(this);
         editTv.setOnClickListener(this);
+        edit_persion.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
 
@@ -229,14 +246,38 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     }
 
 
-    private void setUserInfo() {
+    private void setUserInfo(){
         if (Constants.CURRENT_USER == null) {
             finish();
             return;
         }
+        UserInfoBean.DataBean dataBean=Constants.CURRENT_USER.getData();
+        UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
+        if (!TextUtils.isEmpty(accountBean.getPortrait()))
+        new AsyncImageLoader(this, R.mipmap.moren_header, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
 
-        UserInfoBean.DataBean.AccountBean accountBean = Constants.CURRENT_USER.getData().getAccount();
-        new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
+
+
+        try {
+            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameGJ(),user_guajian,dataBean.getPandentDetail().getImgUrlGJ());
+        } catch (Exception e) {
+            Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_guajian);
+            e.printStackTrace();
+        }
+
+        int vip=accountBean.getVip();
+        if (vip==1){
+            img_vip_circle.setImageResource(R.mipmap.vip_circle);
+        }else if (vip==2){
+            img_vip_circle.setImageResource(R.mipmap.vvip_circle);
+        }else {
+            img_vip_circle.setVisibility(View.INVISIBLE);
+        }
+
+//        tv_attention.setText(dataBean.get);
+//        tv_likes.setText();
+
+
         tv_nickname.setText(accountBean.getNickName());
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {
@@ -247,8 +288,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             img_sex.setBackgroundResource(R.mipmap.sex_women);
         }
 //        btn_degree.setText("LV"+accountBean.getGradeValue());
-        tv_sign.setText(accountBean.getAutograph() + "");
-        UserInfoBean.DataBean dataBean = Constants.CURRENT_USER.getData();
+        if (!TextUtils.isEmpty(accountBean.getAutograph() + "")) {
+            tv_sign.setText(accountBean.getAutograph() + "");
+        }
+
+
         int total = dataBean.getAccount().getEmpiricalValue() + dataBean.getNeedEmpirical();
 
         int progress = 0;
@@ -259,7 +303,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         int next_num = dataBean.getNextGradeEmpirical();
         int need_num = dataBean.getNeedEmpirical();
         int num_sc = DisplayUtil.px2dip(this, 110);
-        int num = (int) (num_sc * (1 - ((float) need_num / next_num)));
+//        int num = (int) (num_sc * (1 - ((float) need_num / next_num)));
+        int num= (int) (110*(1-((float)need_num/next_num)));
 //        int num_sc = DisplayUtil.px2dip(this, 30);
 //        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
 //        int margin= DisplayUtil.px2dip(this,5);
@@ -272,7 +317,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
         String gradename = accountBean.getGradeName();
         if (!TextUtils.isEmpty(gradename)) {
-            grade_name_persion.setText(gradename);
+//            grade_name_persion.setText(gradename);
+            DegreeTools.getInstance(this).getDegree(this,accountBean.getGradeValue(),grade_name_persion);
         }
 
         String grad = String.valueOf(accountBean.getGradeValue());
@@ -287,6 +333,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.edit_persion:
+                break;
             case R.id.btn_user_info:
                 startActivity(new Intent(PersionActivity.this, NewUserInfoActivity.class));
                 break;
