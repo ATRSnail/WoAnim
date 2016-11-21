@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -31,13 +32,13 @@ import java.util.List;
 
 public class GuaJianOfMineFragment extends Fragment implements FragmentMyPager.addClickIconListener{
     private List<MallGuaJianBean> newsbeanList;
-    private MyGridView new_grid_mall;
+    private GridView new_grid_mall;
     private GuaJianAdapter adapter;
     private static GuaJianOfMineFragment.addClickIconListener addClickIconListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.from(getActivity()).inflate(R.layout.all_guajian_fragment,null,false);
-        new_grid_mall= (MyGridView) view.findViewById(R.id.new_grid_mall);
+        new_grid_mall= (GridView) view.findViewById(R.id.new_grid_mall);
         //Constants.CURRENT_USER.getData().getAccount().getId()
         httpGet(Constants.APP_GET_MALL_OF_USER +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType="+4 , new HttpCallback() {
 

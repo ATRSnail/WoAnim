@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.wodm.R;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.tools.MallConversionUtil;
-import com.wodm.android.view.newview.MyGridView;
 
 import java.util.List;
 
@@ -24,10 +24,10 @@ import java.util.List;
 public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
     private Context mContext;
     private MallGuaJianBean clickBean;
-    private MyGridView mGirdview;
+    private GridView mGirdview;
     private FragmentMyPager.addClickIconListener addClickIconListener;
     private  List<MallGuaJianBean> beanList;
-    public GuaJianAdapter(MyGridView girdview,Context context,MallGuaJianBean clickBean, List<MallGuaJianBean> beanList){
+    public GuaJianAdapter(GridView girdview, Context context, MallGuaJianBean clickBean, List<MallGuaJianBean> beanList){
         this.mContext=context;
         this.mGirdview=girdview;
         this.clickBean=clickBean;

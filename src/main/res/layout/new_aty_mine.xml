@@ -55,7 +55,7 @@
                 <LinearLayout
                     android:id="@+id/ll_top"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_45"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="@dimen/px_15"
                     android:layout_toRightOf="@+id/ll_head_image"
@@ -82,9 +82,10 @@
                         android:background="@mipmap/sex_man" />
 
                     <Button
+                        android:padding="@dimen/px_2"
                         android:id="@+id/grade_name"
-                        android:layout_width="@dimen/px_120"
-                        android:layout_height="@dimen/px_33"
+                        android:layout_width="@dimen/px_128"
+                        android:layout_height="@dimen/px_36"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/px_15"
                         android:background="@drawable/btn_mine"

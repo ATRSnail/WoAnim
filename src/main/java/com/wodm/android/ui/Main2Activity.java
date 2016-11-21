@@ -22,6 +22,7 @@ import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.service.DownLoadServices;
+import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
@@ -108,6 +109,7 @@ public class Main2Activity extends AppActivity {
             public void run() {
                 FaceConversionUtil.getInstace().getFileText(getApplication());
                 MallConversionUtil.getInstace().getFileText(getApplication());
+                DegreeTools.getInstance(getApplication());
             }
         }).start();
         pref = Preferences.getInstance(getApplicationContext());

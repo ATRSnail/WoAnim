@@ -16,6 +16,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -133,11 +134,13 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             if (!TextUtils.isEmpty(sign_name)) {
                 tv_sign.setText(sign_name);
             }
+
             String gradename = accountBean.getGradeName();
             if (!TextUtils.isEmpty(gradename)) {
                 grade_name.setText(gradename);
-            }
 
+            }
+            DegreeTools.getInstance(getActivity()).getDegree(getActivity(),accountBean.getGradeValue(),grade_name);
             String grad = String.valueOf(accountBean.getGradeValue());
             if (!TextUtils.isEmpty(grad)) {
                 tv_num.setText(grad);
