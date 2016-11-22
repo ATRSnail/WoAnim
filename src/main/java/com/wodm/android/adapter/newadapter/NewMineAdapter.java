@@ -177,6 +177,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("收藏")) {
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);
+
             i.setClass(mContext, RecordActivity.class);
         } else if (text.equals("积分")) {
             i.setClass(mContext, UserIntegralActivity.class);
