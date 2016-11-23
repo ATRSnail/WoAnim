@@ -45,6 +45,8 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
+import static com.wodm.android.tools.NetHeader.getHeaders;
+
 public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener, BulletSendDialog.SendBarrage {
 
     @ViewIn(R.id.toolbar)
@@ -132,6 +134,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
         try {
             TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
+            getHeaders(this);
             HttpUtil.httpGet(this, url, TrackApplication.REQUEST_HEADER, callback);
         } catch (JSONException e) {
             e.printStackTrace();

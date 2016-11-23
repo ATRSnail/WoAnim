@@ -263,6 +263,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         if (mallGuaJianBean==null){
             return;
         }
+        clickBean=mallGuaJianBean;
         String name=mallGuaJianBean.getProductName();
         try {
             MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,mallGuaJianBean.getProductImageUrl());

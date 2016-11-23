@@ -65,7 +65,7 @@
                             android:layout_width="@dimen/px_108"
                             android:layout_height="@dimen/px_108" />
                         <ImageView
-                            android:layout_marginTop="-3dp"
+                            android:layout_marginTop="@dimen/px_12"
                             android:id="@+id/user_head_imgs"
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentTop="true"
