@@ -23,6 +23,7 @@ public class BuyingTools {
     private static BuyingTools buyingTools;
     private static Context mContext;
     private static MallGuaJianBean mAllGuaJianBean;
+    private  String title="钻石头像框";
     public static BuyingTools getInstance(Context context,MallGuaJianBean mallGuaJianBean){
         mContext=context;
         mAllGuaJianBean=mallGuaJianBean;
@@ -38,6 +39,7 @@ public class BuyingTools {
         if (mAllGuaJianBean==null){
             return;
         }
+
         sendResuest();
     }
     private void sendResuest(){
@@ -71,8 +73,14 @@ public class BuyingTools {
     }
 
     private void BuyingGoodsDialog(){
+        if(mAllGuaJianBean.getProductType()==4){
+            title= mAllGuaJianBean.getProductName()+"头像框";
+        }
+        if(mAllGuaJianBean.getProductType()==5){
+            title= mAllGuaJianBean.getProductName()+"挂件";
+        }
         new DialogUtils.Builder(mContext)
-                .setTitle("钻石头像框")
+                .setTitle(title)
                 .setMessage("确定使用"+mAllGuaJianBean.getNeedScore()+"积分兑换？")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override

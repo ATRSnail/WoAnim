@@ -64,7 +64,6 @@ public class DialogUtils extends Dialog {
             this.message = message;
             return this;
         }
-
         /**
          * Set the Dialog title from String
          *
@@ -87,7 +86,6 @@ public class DialogUtils extends Dialog {
             this.message = (String) context.getText(message);
             return this;
         }
-
         /**
          * Set the Dialog title from resource
          *
