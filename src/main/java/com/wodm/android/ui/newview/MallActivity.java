@@ -324,10 +324,12 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                 break;
             case R.id.img_guajian:
                 intent.setClass(this,GuaJianHeaderImageActivity.class);
+                intent.putExtra("index",5);
                 startActivity(intent);
                 break;
             case R.id.img_touxiangkuang:
                 intent.setClass(this,GuaJianHeaderImageActivity.class);
+                intent.putExtra("index",4);
                 startActivity(intent);
                 break;
             case R.id.img_linshivip:

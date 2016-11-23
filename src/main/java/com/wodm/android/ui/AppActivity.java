@@ -24,6 +24,7 @@ import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DeviceUtils;
+import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
 
@@ -264,49 +265,57 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     }
 
     public void showFial() {
-        View view = getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
-        TextView mPopText = (TextView) view.findViewById(R.id.popup_text);
-        TextView mPopTextTitle = (TextView) view.findViewById(R.id.popup_text_title);
-        Button mPopBtnOne = (Button) view.findViewById(R.id.popup_btn_one);
-        Button mPopBtnTwo = (Button) view.findViewById(R.id.popup_btn_two);
-        mPopBtnTwo.setVisibility(View.GONE);
-        mPopTextTitle.setText("提示");
-        mPopText.setText("请输入正确手机号!");
-        mPopBtnOne.setText(getResources().getText(R.string.user_sure));
-        // mPopBtnTwo.setText(getResources().getText(R.string.user_fail));
-        final Dialog builder = new Dialog(this);
-        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.setContentView(view);
-        builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
+        new DialogUtils.Builder(this).setCancelable(false).setTitle("提示")
+                .setMessage("请输入正确手机号!").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                return true;
+            public void onClick(DialogInterface dialog, int which) {
+                     dialog.cancel();
             }
-        });
-        mPopBtnOne.setTextColor(getResources().getColor(R.color.colorPrimary));
-        mPopBtnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.cancel();
-            }
-        });
-        /*mPopBtnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.cancel();
-            }
-        });*/
-        Window window = builder.getWindow();
-        // window.setWindowAnimations(R.style.dialogAnim);
-        android.view.WindowManager.LayoutParams lp = window.getAttributes();
-        window.setGravity(Gravity.BOTTOM);
-        lp.width = (int) (DeviceUtils.getScreenWH(this)[0] * 0.9); // 宽度
-        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-        builder.getWindow().setGravity(Gravity.CENTER);
+        }).create().show();
 
-        builder.show();
-        builder.setCanceledOnTouchOutside(false);
+//        View view = getLayoutInflater().inflate(R.layout.layout_popupwindow, null);
+//        TextView mPopText = (TextView) view.findViewById(R.id.popup_text);
+//        TextView mPopTextTitle = (TextView) view.findViewById(R.id.popup_text_title);
+//        Button mPopBtnOne = (Button) view.findViewById(R.id.popup_btn_one);
+//        Button mPopBtnTwo = (Button) view.findViewById(R.id.popup_btn_two);
+//        mPopBtnTwo.setVisibility(View.GONE);
+//        mPopTextTitle.setText("提示");
+//        mPopText.setText("请输入正确手机号!");
+//        mPopBtnOne.setText(getResources().getText(R.string.user_sure));
+//        // mPopBtnTwo.setText(getResources().getText(R.string.user_fail));
+//        final Dialog builder = new Dialog(this);
+//        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        builder.setContentView(view);
+//        builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//            @Override
+//            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                return true;
+//            }
+//        });
+//        mPopBtnOne.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        mPopBtnOne.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                builder.cancel();
+//            }
+//        });
+//        /*mPopBtnTwo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                builder.cancel();
+//            }
+//        });*/
+//        Window window = builder.getWindow();
+//        // window.setWindowAnimations(R.style.dialogAnim);
+//        android.view.WindowManager.LayoutParams lp = window.getAttributes();
+//        window.setGravity(Gravity.BOTTOM);
+//        lp.width = (int) (DeviceUtils.getScreenWH(this)[0] * 0.9); // 宽度
+//        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//        window.setAttributes(lp);
+//        builder.getWindow().setGravity(Gravity.CENTER);
+//
+//        builder.show();
+//        builder.setCanceledOnTouchOutside(false);
     }
 
 

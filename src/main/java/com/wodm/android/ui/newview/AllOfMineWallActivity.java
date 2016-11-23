@@ -8,11 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
+import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
@@ -65,14 +67,17 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
     private void initView() {
         set_topbar = (AtyTopLayout) findViewById(R.id.set_topbar);
         set_topbar.setOnTopbarClickListenter(this);
+        set_topbar.setTvTitle("我的饰品");
+        set_topbar.setTvRight("保存");
+
         //Constants.CURRENT_USER.getData().getAccount().getId()
         guanJianFrag = new GuaJianOfMineFragment();
         TouXiangeOfMineFragment.setAddClickIconListener(this);
         touXiangFrg = new TouXiangeOfMineFragment();
-        fragments.add(guanJianFrag);
         fragments.add(touXiangFrg);
+        fragments.add(guanJianFrag);
+        mTitles.add("头像框");
         mTitles.add("挂件");
-        mTitles.add("头像");
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
 
@@ -113,6 +118,7 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
 
     @Override
     public void rightClick() {
+        Log.e("AA","*******************************");
         if (clickBean==null){
             return;
         }
@@ -121,12 +127,21 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-
+                try {
+                    Toast.makeText(AllOfMineWallActivity.this,obj.getString("message"),Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
+                try {
+                    Toast.makeText(AllOfMineWallActivity.this,obj.getString("message"),Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

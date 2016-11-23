@@ -44,11 +44,13 @@ public class GuaJianHeaderImageActivity extends FragmentActivity implements AtyT
     private List<MallGuaJianBean> mansbeanList;
     private AtyTopLayout atyTopLayout;
     private String text;
+    private int index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getIntent()!=null){
             text=getIntent().getStringExtra("text");
+            index=getIntent().getIntExtra("index",4);
         }
         setContentView(R.layout.aty_guajianheaderimage);
         initView();
@@ -67,10 +69,12 @@ public class GuaJianHeaderImageActivity extends FragmentActivity implements AtyT
         //Constants.CURRENT_USER.getData().getAccount().getId()
         guanJianFrag = new AllGuaJianFragment();
         touXiangFrg = new AllTouXiangFragment();
-        fragments.add(guanJianFrag);
         fragments.add(touXiangFrg);
+        fragments.add(guanJianFrag);
+
+        mTitles.add("头像框");
         mTitles.add("挂件");
-        mTitles.add("头像");
+
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
 
@@ -84,7 +88,8 @@ public class GuaJianHeaderImageActivity extends FragmentActivity implements AtyT
 //        mViewPager.addOnPageChangeListener(new MyPageChangeListener());
 //        frag = FragmentMyPager.newInstance(0, clickImage);
 //        frag.setAddClickIconListener(this);
-
+           if (index==4){mViewPager.setCurrentItem(0);}
+           if (index==5){mViewPager.setCurrentItem(1);}
     }
     public void httpGet(String url, final HttpCallback callback) {
 

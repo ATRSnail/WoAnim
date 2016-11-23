@@ -53,6 +53,7 @@ import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ScreenSwitchUtils;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -839,7 +840,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         if (!Preferences.getInstance(context).getPreference("netPlay", false)) {
             if (!network.equals("WIFI") && !isTip) {
                 isTip = true;
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                DialogUtils.Builder builder = new DialogUtils.Builder(this);
                 builder.setMessage("是否允许在2G/3G/4G网络下播放").setPositiveButton("允许", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -931,7 +932,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         int[] playTime = getMinuteAndSecond(times);
 
         String strTime=String.format("%02d:%02d", playTime[0], playTime[1]);
-        new AlertDialog.Builder(context)
+        new DialogUtils.Builder(context)
                 .setMessage("您上次看到了"+strTime+"是否继续观看")
                 .setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override

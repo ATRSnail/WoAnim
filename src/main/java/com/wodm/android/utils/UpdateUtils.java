@@ -63,8 +63,8 @@ public class UpdateUtils {
                         Log.e("checkUpdate", "" + obj.toString());
                         final UpgradeBean bean = new Gson().fromJson(obj.getString("data"), UpgradeBean.class);
                         if (bean.getVersionCode() > getVersionCode(mCtx)) {
-                            android.support.v7.app.AlertDialog
-                                    dialog = new android.support.v7.app.AlertDialog.Builder(mCtx).setTitle("发现新版本").setMessage(bean.getDescription())
+                            DialogUtils
+                                    dialog = new DialogUtils.Builder(mCtx).setTitle("发现新版本").setMessage(bean.getDescription())
                                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -101,7 +101,8 @@ public class UpdateUtils {
                                                 }
                                             });
                                         }
-                                    }).show();
+                                    }).create();
+                            dialog.show();
                             dialog.setCanceledOnTouchOutside(false);
                         }
                     } catch (Exception e) {

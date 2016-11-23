@@ -49,7 +49,7 @@ public class PersionAdapter extends BaseAdapter {
         if (convertView==null){
             holder=new Holder();
             convertView= LayoutInflater.from(mContext).inflate(R.layout.item_comments,null,false);
-            holder.rl_comments= (RelativeLayout) convertView.findViewById(rl_comments);
+            holder.rl_comments= (RelativeLayout) convertView.findViewById(R.id.rl_comments);
             holder.textView= (Button) convertView.findViewById(R.id.btn_num);
             holder.gridView= (MyGridView) convertView.findViewById(R.id.gv_item_comments);
             convertView.setTag(holder);

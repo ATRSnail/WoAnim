@@ -27,6 +27,7 @@ import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.user.RecordActivity;
+import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
@@ -54,13 +55,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @ViewIn(R.id.scrllow_mine)
     private ScrollView scrollow;
     @ViewIn(R.id.btn_user_info)
-    private Button btn_user_info;
+    private ImageButton btn_user_info;
     @ViewIn(R.id.user_head_imgs)
     private CircularImage user_head_imgs;
     @ViewIn(R.id.img_vip_circle)
     private ImageView img_vip_circle;
-    @ViewIn(R.id.user_guajian)
-    private ImageView user_guajian;
+    @ViewIn(R.id.user_txk)
+    private ImageView user_txk;
     @ViewIn(R.id.tv_nickname)
     private TextView tv_nickname;
     @ViewIn(R.id.img_sex)
@@ -71,7 +72,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @ViewIn(R.id.empiral_degree)
     TextView empiral_degree;
     @ViewIn(R.id.grade_name_persion)
-    Button grade_name_persion;
+    TextView grade_name_persion;
     @ViewIn(R.id.my_medal_persion)
     LinearLayout linearLayout;
     @ViewIn(R.id.img_persion_progress)
@@ -98,6 +99,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     List<MedalInfoBean.DataBean> dataBeanList;
     @ViewIn(R.id.show_more_persion)
     TextView show_more_persion;
+    @ViewIn(R.id.img_more)
+    ImageView img_more;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +135,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             getData();
 
         }
-        show_more_persion.setOnClickListener(this);
+//        show_more_persion.setOnClickListener(this);
+        img_more.setOnClickListener(this);
     }
 
 
@@ -236,7 +240,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
         setUserInfo();
-
     }
 
     private void getData() {
@@ -254,14 +257,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         UserInfoBean.DataBean dataBean=Constants.CURRENT_USER.getData();
         UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
         if (!TextUtils.isEmpty(accountBean.getPortrait()))
-        new AsyncImageLoader(this, R.mipmap.moren_header, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
-
+            new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
 
 
         try {
-            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameGJ(),user_guajian,dataBean.getPandentDetail().getImgUrlGJ());
+            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameTXK(),user_txk,dataBean.getPandentDetail().getImgUrlTXK());
         } catch (Exception e) {
-            Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_guajian);
+            Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_txk);
             e.printStackTrace();
         }
 
@@ -339,6 +341,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 startActivity(new Intent(PersionActivity.this, NewUserInfoActivity.class));
                 break;
             case R.id.show_more_persion:
+            case R.id.img_more:
                 startActivity(new Intent(PersionActivity.this, MyMedalActivity.class));
                 break;
             case R.id.tv_edit:

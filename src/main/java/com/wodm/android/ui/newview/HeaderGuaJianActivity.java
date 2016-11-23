@@ -206,12 +206,12 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         guanJianFrag.setClickImage(clickBean);
         touXiangFrg.setClickImage(clickBean);
         set_topbar.setOnTopbarClickListenter(this);
-        fragments.add(guanJianFrag);
         fragments.add(touXiangFrg);
+        fragments.add(guanJianFrag);
         guanJianFrag.setNumClown(columnBeanList);
         touXiangFrg.setNumClown(columnBeanList);
+        mTitles.add("头像框");
         mTitles.add("挂件");
-        mTitles.add("头像");
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         user_head_imgs = (CircularImage) findViewById(R.id.img_user_header);

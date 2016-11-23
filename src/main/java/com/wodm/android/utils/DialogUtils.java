@@ -34,9 +34,23 @@ public class DialogUtils extends Dialog {
         private View contentView;
         private OnClickListener positiveButtonClickListener;
         private OnClickListener negativeButtonClickListener;
+        private OnKeyListener onKeyListener;
+        boolean cancelable;
+
+
 
         public Builder(Context context) {
             this.context = context;
+        }
+
+        public Builder setOnKeyListener(OnKeyListener onKeyListener) {
+            this.onKeyListener = onKeyListener;
+            return this;
+        }
+
+        public Builder setCancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
         }
 
         /**
@@ -127,6 +141,7 @@ public class DialogUtils extends Dialog {
         }
 
 
+
         public DialogUtils create() {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -135,6 +150,12 @@ public class DialogUtils extends Dialog {
             View layout = inflater.inflate(R.layout.dialog_normal_layout, null);
             dialog.addContentView(layout, new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            if (!cancelable){
+                dialog.setCanceledOnTouchOutside(false);
+            }else {
+                dialog.setCanceledOnTouchOutside(true);
+            }
+
             // set the dialog title  判断title message button 为空或不为空展示的状态
             if (title != null) {
                 ((TextView) layout.findViewById(R.id.title_dialog)).setText(title);

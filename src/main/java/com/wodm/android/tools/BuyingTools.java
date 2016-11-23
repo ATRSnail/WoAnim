@@ -62,7 +62,7 @@ public class BuyingTools {
     }
     private void NoScore(){
         new DialogUtils.Builder(mContext)
-                .setMessage("您的积分不足").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setMessage("哦哟，很遗憾\n您的积分不足哦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -72,7 +72,7 @@ public class BuyingTools {
 
     private void BuyingGoodsDialog(){
         new DialogUtils.Builder(mContext)
-                .setTitle("砖石头像框")
+                .setTitle("钻石头像框")
                 .setMessage("确定使用"+mAllGuaJianBean.getNeedScore()+"积分兑换？")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override

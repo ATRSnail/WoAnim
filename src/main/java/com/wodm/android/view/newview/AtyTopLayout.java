@@ -223,6 +223,9 @@ public class AtyTopLayout extends RelativeLayout {
     public void setTvTitle(String text) {
         tvTitle.setText(text);
     }
+    public void setTvRight(String text) {
+        tv_right.setText(text);
+    }
 
     //自定义click的监听回调接口
     public interface myTopbarClicklistenter {

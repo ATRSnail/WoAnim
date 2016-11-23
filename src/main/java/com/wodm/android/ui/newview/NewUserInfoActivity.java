@@ -294,7 +294,8 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             case R.id.btn_exit_login:
                 //统计登录时，必须在登出时调用此方法
                 MobclickAgent.onProfileSignOff();
-                showLogout();
+                LogOut();
+//                showLogout();
                 break;
             case R.id.rl_birthday:
                 DateWheelWindow wheelWindow = new DateWheelWindow();
@@ -336,6 +337,42 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
                 startActivityForResult(new Intent(NewUserInfoActivity.this, BindPhoActivity.class), BIND_PHONE);
                 break;
         }
+    }
+
+    private void LogOut() {
+        new DialogUtils.Builder(this).setCancelable(false).setTitle("提示").setMessage("确认现在退出登录吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(final DialogInterface dialog, int which) {
+
+                        try {
+                            String url = Constants.USER_LOGOUT + "?token=" + Constants.CURRENT_USER.getData().getToken();
+                            httpGet(url, new HttpCallback() {
+                                @Override
+                                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                                    try {
+                                        Toast.makeText(NewUserInfoActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                        Constants.CURRENT_USER = null;
+                                        Preferences.getInstance(getApplicationContext()).setPreference("token", "");
+                                        dialog.cancel();
+                                        finish();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
     }
 
 

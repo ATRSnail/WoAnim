@@ -186,7 +186,7 @@
             android:layout_marginTop="@dimen/px_14"
             android:background="@color/color_ffffff"
             app:tabIndicatorColor="@color/color_ff8d35"
-            app:tabSelectedTextColor="@color/transparent_black"
+            app:tabSelectedTextColor="@color/color_ff8d35"
             app:tabTextColor="@color/transparent_black" />
 
         <com.wodm.android.view.newview.WrapContentHeightViewPager

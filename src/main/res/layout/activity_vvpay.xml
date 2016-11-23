@@ -316,14 +316,30 @@
                         android:textColor="@color/color_f5912f"
                         android:textSize="@dimen/x60" />
 
-                    <TextView
-                        android:id="@+id/discountPri"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x16"
-                        android:text="¥45"
-                        android:textColor="@color/color_999999"
-                        android:textSize="@dimen/x23" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_alignParentBottom="true"
+                            android:gravity="bottom"
+                            android:id="@+id/discountPri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/x16"
+                            android:text="¥45"
+                            android:textColor="@color/color_999999"
+                            android:textSize="@dimen/x23" />
+                        <View
+                            android:layout_marginTop="@dimen/y5"
+                            android:layout_alignLeft="@id/discountPri"
+                            android:layout_alignRight="@id/discountPri"
+                            android:layout_centerVertical="true"
+                            android:background="@color/color_cccccc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/y2"/>
+
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
