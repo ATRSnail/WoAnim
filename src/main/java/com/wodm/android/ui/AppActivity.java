@@ -134,7 +134,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
         try {
             TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
-            getHeaders(this);
+//            getHeaders(this);
             HttpUtil.httpGet(this, url, TrackApplication.REQUEST_HEADER, callback);
         } catch (JSONException e) {
             e.printStackTrace();

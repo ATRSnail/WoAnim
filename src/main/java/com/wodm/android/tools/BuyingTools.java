@@ -2,9 +2,13 @@ package com.wodm.android.tools;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.http.ResponseInfo;
+import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.utils.DialogUtils;
@@ -73,15 +77,17 @@ public class BuyingTools {
     }
 
     private void BuyingGoodsDialog(){
-        if(mAllGuaJianBean.getProductType()==4){
+        if(mAllGuaJianBean.getProductType()==5){
             title= mAllGuaJianBean.getProductName()+"头像框";
         }
-        if(mAllGuaJianBean.getProductType()==5){
+        if(mAllGuaJianBean.getProductType()==4){
             title= mAllGuaJianBean.getProductName()+"挂件";
         }
+        View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_buygood,null);
+        ((TextView)  view.findViewById(R.id.message_dialog)).setText(""+mAllGuaJianBean.getNeedScore());
         new DialogUtils.Builder(mContext)
                 .setTitle(title)
-                .setMessage("确定使用"+mAllGuaJianBean.getNeedScore()+"积分兑换？")
+                .setContentView(view)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

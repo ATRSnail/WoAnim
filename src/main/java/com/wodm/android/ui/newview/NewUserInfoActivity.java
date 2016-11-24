@@ -525,6 +525,7 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
 
         } else {
             new DialogUtils.Builder(NewUserInfoActivity.this)
+                    .setTitle(null)
                     .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!").create().show();
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

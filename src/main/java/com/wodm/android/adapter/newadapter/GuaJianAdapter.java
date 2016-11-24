@@ -1,6 +1,7 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +71,10 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         MallGuaJianBean mallGuaJianBean=beanList.get(position);
         String name=mallGuaJianBean.getProductName();
         if (clickBean!=null&&clickBean.getProductName().equals(name)){
+            Log.e("AC","---------------------");
             holder.img_guajian_kuang.setVisibility(View.VISIBLE);
         }else {
+            Log.e("AD","---------------------");
             holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
         }
 

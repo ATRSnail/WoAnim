@@ -46,7 +46,7 @@
                 android:gravity="center"
                 android:lineSpacingExtra="@dimen/x14"
                 android:text=""
-                android:textColor="@color/color_666666"
+                android:textColor="@color/color_999999"
                 android:textSize="@dimen/x36" />
         </LinearLayout>
 

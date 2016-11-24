@@ -211,7 +211,7 @@ public class DialogUtils extends Dialog {
                 layout.findViewById(R.id.negativeButton).setVisibility(
                         View.GONE);
                 layout.findViewById(R.id.line_dialog).setVisibility(
-                        View.INVISIBLE);
+                        View.GONE);
             }
             // set the content message
             if (message != null) {

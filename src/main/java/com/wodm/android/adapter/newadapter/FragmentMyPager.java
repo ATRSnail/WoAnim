@@ -3,6 +3,7 @@ package com.wodm.android.adapter.newadapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,9 +67,10 @@ public class FragmentMyPager extends Fragment {
     public void onUnselect() {
 
         if (touXiangAdapter != null) {
-            touXiangAdapter.onUnselect();
+            touXiangAdapter.onUnselec();
         }
     }
+
 
 
     public void setmNum(int position){
@@ -229,9 +231,11 @@ public class FragmentMyPager extends Fragment {
             String name=mallGuaJianBean.getProductName();
             holder.tv_name.setText(name);
             if (clickBean != null && clickBean.getProductName().equals(name)) {
+                Log.e("AA","---------------------");
                 holder.img_guajian_kuang.setVisibility(View.VISIBLE);
 //              addClickIconListener.addImage(clickStr, imageRescoures[position], false,mNum);
             } else {
+                Log.e("AB","---------------------");
                 holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
             }
             int flag=mallGuaJianBean.getFlag();
@@ -263,7 +267,7 @@ public class FragmentMyPager extends Fragment {
         /**
          * 不选择时
          */
-        public void onUnselect() {
+        public void onUnselec() {
             clickBean = null;
             notifyDataSetChanged();
         }
