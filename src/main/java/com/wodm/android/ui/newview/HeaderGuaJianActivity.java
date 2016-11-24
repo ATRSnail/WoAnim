@@ -274,8 +274,11 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //        Drawable drawable = getResources().getDrawable(imageRescoure);
 //        user_guajian.setImageDrawable(drawable);
         if (isVip) {
-            if (guanJianFrag != null) guanJianFrag.onUnselect();
-            if (touXiangFrg != null) touXiangFrg.onUnselect();
+
+               if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
+
+            if (guanJianFrag != null) guanJianFrag.setClickImage(null);
+
 
         } else {
             guaJianAdapter.onUnselect();

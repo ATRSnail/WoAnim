@@ -3,7 +3,6 @@ package com.wodm.android.adapter.newadapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,10 +51,11 @@ public class FragmentMyPager extends Fragment {
     private List<ColumnBean> columnBeanList=new ArrayList<>();
     private static MallGuaJianBean clickBean;
     public void setClickImage(MallGuaJianBean clickBean){
-        if (clickBean!=null){
-            this.clickBean=clickBean;
-        }
+        this.clickBean =clickBean;
+
         if (touXiangAdapter != null) {
+            setTouXiangAdapter(touXiangAdapter);
+            touXiangAdapter.setMclickBean(clickBean);
             touXiangAdapter.notifyDataSetChanged();
         }
     }
@@ -66,8 +66,8 @@ public class FragmentMyPager extends Fragment {
      */
     public void onUnselect() {
 
-        if (touXiangAdapter != null) {
-            touXiangAdapter.onUnselec();
+        if (getTouXiangAdapter() != null) {
+            getTouXiangAdapter().onUnselec(getTouXiangAdapter());
         }
     }
 
@@ -77,11 +77,17 @@ public class FragmentMyPager extends Fragment {
         this.mNum = position;
     }
 
-    public TouXiangAdapter getTouAdapter(){
+    public TouXiangAdapter getTouXiangAdapter() {
         return touXiangAdapter;
     }
 
-//
+    public void setTouXiangAdapter(TouXiangAdapter touXiangAdapter) {
+        this.touXiangAdapter = touXiangAdapter;
+    }
+
+
+
+    //
 //    @Override
 //    public void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -102,6 +108,7 @@ public class FragmentMyPager extends Fragment {
         mContext = getActivity();
         View v = inflater.inflate(R.layout.fragment_listview, container, false);
         lv_noscroll= (NoScrollListView) v.findViewById(R.id.lv_noscroll);
+        touXiangAdapter = new TouXiangAdapter();
         lv_noscroll.setAdapter(new HeaderImageGuajianAdapter());
         return v;
     }
@@ -152,7 +159,11 @@ public class FragmentMyPager extends Fragment {
                             List<MallGuaJianBean> beanList= new Gson().fromJson(obj.getString("data"), new TypeToken<List<MallGuaJianBean>>() {
                             }.getType());
                             if (beanList.size()>0){
-                                finalMyHolder.gv_guajian.setAdapter(new TouXiangAdapter(finalMyHolder.gv_guajian,beanList));
+                                touXiangAdapter.setBeanList(beanList);
+                                touXiangAdapter.setMclickBean(clickBean);
+                                touXiangAdapter.setmGirdview(finalMyHolder.gv_guajian);
+                                setTouXiangAdapter(touXiangAdapter);
+                                finalMyHolder.gv_guajian.setAdapter(touXiangAdapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -191,11 +202,37 @@ public class FragmentMyPager extends Fragment {
     public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
         private MyGridView mGirdview;
         private List<MallGuaJianBean> beanList;
+        MallGuaJianBean mclickBean;
 
-        public TouXiangAdapter(MyGridView girdview, List<MallGuaJianBean> beanList) {
-            this.mGirdview = girdview;
-            this.beanList=beanList;
+        public MyGridView getmGirdview() {
+            return mGirdview;
+        }
+
+        public void setmGirdview(MyGridView mGirdview) {
+            this.mGirdview = mGirdview;
             mGirdview.setOnItemClickListener(this);
+        }
+
+        public List<MallGuaJianBean> getBeanList() {
+            return beanList;
+        }
+
+        public void setBeanList(List<MallGuaJianBean> beanList) {
+            this.beanList = beanList;
+        }
+
+        public MallGuaJianBean getMclickBean() {
+            return mclickBean;
+        }
+
+        public void setMclickBean(MallGuaJianBean mclickBean) {
+            this.mclickBean = mclickBean;
+        }
+
+        public TouXiangAdapter() {
+
+
+
         }
 
         @Override
@@ -230,12 +267,16 @@ public class FragmentMyPager extends Fragment {
             MallGuaJianBean mallGuaJianBean=beanList.get(position);
             String name=mallGuaJianBean.getProductName();
             holder.tv_name.setText(name);
-            if (clickBean != null && clickBean.getProductName().equals(name)) {
-                Log.e("AA","---------------------");
-                holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+            if (getMclickBean() != null ) {
+                if(getMclickBean().getProductName().equals(name))
+                {
+                    holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+                }
+                else {
+                    holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
+                }
 //              addClickIconListener.addImage(clickStr, imageRescoures[position], false,mNum);
             } else {
-                Log.e("AB","---------------------");
                 holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
             }
             int flag=mallGuaJianBean.getFlag();
@@ -259,17 +300,18 @@ public class FragmentMyPager extends Fragment {
             if (addClickIconListener == null)
                 return;
             MallGuaJianBean mallGuaJianBean = beanList.get(position);
-            clickBean=mallGuaJianBean;
+           setMclickBean(mallGuaJianBean);
             addClickIconListener.addImage(mallGuaJianBean,false,mNum);
             notifyDataSetChanged();
         }
 
         /**
          * 不选择时
+         * @param touXiangAdapter
          */
-        public void onUnselec() {
-            clickBean = null;
-            notifyDataSetChanged();
+        public void onUnselec(TouXiangAdapter touXiangAdapter) {
+            setMclickBean(null);
+            touXiangAdapter.notifyDataSetChanged();
         }
 
         class Holder {

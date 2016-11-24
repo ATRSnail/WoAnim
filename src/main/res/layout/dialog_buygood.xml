@@ -18,12 +18,11 @@
             android:id="@+id/content_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/y60"
                 android:layout_marginTop="@dimen/y60"
                 android:gravity="right|bottom"
@@ -35,7 +34,6 @@
                 android:id="@+id/message_dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/y60"
                 android:layout_marginTop="@dimen/y60"
                 android:gravity="center_horizontal|bottom"
