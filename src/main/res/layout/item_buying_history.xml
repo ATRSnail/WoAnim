@@ -62,6 +62,7 @@
 
                    <RelativeLayout
                        android:id="@+id/rl_border"
+                       android:gravity="center"
                        android:layout_gravity="center"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
@@ -73,24 +74,20 @@
                            android:background="@mipmap/guajian_select_kuang"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content" />
+
                        <org.eteclab.ui.widget.CircularImage
                            android:id="@+id/productImageUrl"
                            android:layout_centerInParent="true"
                            android:background="@mipmap/moren_header"
                            android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"/>
-                       <ImageView
-                           android:layout_marginTop="@dimen/y15"
-                           android:layout_centerHorizontal="true"
-                           android:id="@+id/product_pendant"
-                           android:layout_width="wrap_content"
                            android:layout_height="wrap_content"  />
                        <ImageView
+                           android:layout_marginTop="@dimen/px_12"
                            android:layout_centerHorizontal="true"
-                           android:id="@+id/product_headframe"
-                           android:layout_alignParentTop="true"
+                           android:id="@+id/icon_item_mall"
                            android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"/>
+                           android:layout_height="match_parent" />
+
                    </RelativeLayout>
 
                </RelativeLayout>

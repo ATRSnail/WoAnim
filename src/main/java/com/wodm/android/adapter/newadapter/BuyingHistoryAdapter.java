@@ -57,9 +57,7 @@ public class BuyingHistoryAdapter extends BaseAdapter {
             holder.productName = (TextView) convertView.findViewById(R.id.productName);
             holder.description = (TextView) convertView.findViewById(R.id.description);
             holder.productTypeFlag = (TextView) convertView.findViewById(R.id.productTypeFlag);
-            holder.product_pendant = (ImageView) convertView.findViewById(R.id.product_pendant);
-            holder.product_headframe = (ImageView) convertView.findViewById(R.id.product_headframe);
-            holder.productImageUrl = (CircularImage) convertView.findViewById(R.id.productImageUrl);
+            holder.icon_item_mall = (ImageView) convertView.findViewById(R.id.icon_item_mall);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -80,28 +78,13 @@ public class BuyingHistoryAdapter extends BaseAdapter {
                 holder.productName.setText("["+dataBean.getProductTypeFlag()+"] "+dataBean.getProductName()+dataBean.getProductTypeFlag());
             }
 
-
         }
 
-        if("挂件".equals(dataBean.getProductTypeFlag()))
-        {
-            holder.product_headframe.setVisibility(View.GONE);
-            try {
-                MallConversionUtil.getInstace().dealExpression(mContext,name,holder.product_pendant,dataBean.getProductImageUrl());
-            } catch (Exception e) {
-                Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.product_pendant);
-                e.printStackTrace();
-            }
-        }
-        if("头相框".equals(dataBean.getProductTypeFlag()))
-        {
-            holder.product_pendant.setVisibility(View.GONE);
-            try {
-                MallConversionUtil.getInstace().dealExpression(mContext,name,holder.product_headframe,dataBean.getProductImageUrl());
-            } catch (Exception e) {
-                Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.product_headframe);
-                e.printStackTrace();
-            }
+        try {
+            MallConversionUtil.getInstace().dealExpression(mContext,name,holder.icon_item_mall,dataBean.getProductImageUrl());
+        } catch (Exception e) {
+            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.icon_item_mall);
+            e.printStackTrace();
         }
 
 //        String pic = dataBean.getProductImageUrl();
@@ -117,9 +100,8 @@ public class BuyingHistoryAdapter extends BaseAdapter {
         TextView productName;
         TextView description;
         TextView productTypeFlag;
-        ImageView product_pendant;
-        ImageView product_headframe;
-        CircularImage productImageUrl;
+        ImageView icon_item_mall;
+
     }
 
 
