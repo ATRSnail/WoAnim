@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.wodm.android.view.newview.NoScrollListView
+        android:scrollbars="none"
         android:id="@+id/lv_noscroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

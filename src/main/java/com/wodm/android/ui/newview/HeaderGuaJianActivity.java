@@ -201,6 +201,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         }
         guanJianFrag = new GuaJianFragment();
         touXiangFrg = new TouXiangFragment();
+//        guanJianFrag = new FragmentMyPager();
+//        touXiangFrg = new FragmentMyPager();
         guanJianFrag.setAddClickIconListener(this);
         touXiangFrg.setAddClickIconListener(this);
         guanJianFrag.setClickImage(clickBean);

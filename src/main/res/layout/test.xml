@@ -5,14 +5,16 @@
     android:background="@color/color_ffffff"
     android:gravity="center_vertical">
 
-    <TextView
-        android:layout_width="@dimen/px_48"
-        android:layout_height="@dimen/px_48"
-        android:layout_gravity="left|center_vertical"
-        android:layout_marginLeft="@dimen/px_45"
-        android:background="@drawable/vip_icon_circle" />
+    <!--<TextView-->
+       <!---->
+        <!--android:layout_width="@dimen/px_48"-->
+        <!--android:layout_height="@dimen/px_48"-->
+        <!--android:layout_gravity="left|center_vertical"-->
+        <!--android:layout_marginLeft="@dimen/px_45"-->
+        <!--android:background="@drawable/vip_icon_circle" />-->
 
     <TextView
+        android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,16 +25,16 @@
         android:textColor="@color/color_f29b76"
         android:textSize="@dimen/text_size_34_px" />
 
-    <Button
-        android:id="@+id/kai_tong_level"
-        android:layout_width="@dimen/px_126"
-        android:layout_height="@dimen/px_63"
-        android:layout_gravity="right|center_vertical"
-        android:layout_marginRight="@dimen/px_45"
-        android:background="@drawable/kaitong_rectan"
-        android:gravity="center"
-        android:text="@string/open_vip_member"
-        android:textColor="@color/color_ff6361"
-        android:textSize="@dimen/text_size_24_px" />
+    <!--<Button-->
+        <!--android:id="@+id/kai_tong_level"-->
+        <!--android:layout_width="@dimen/px_126"-->
+        <!--android:layout_height="@dimen/px_63"-->
+        <!--android:layout_gravity="right|center_vertical"-->
+        <!--android:layout_marginRight="@dimen/px_45"-->
+        <!--android:background="@drawable/kaitong_rectan"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/open_vip_member"-->
+        <!--android:textColor="@color/color_ff6361"-->
+        <!--android:textSize="@dimen/text_size_24_px" />-->
 
 </LinearLayout>

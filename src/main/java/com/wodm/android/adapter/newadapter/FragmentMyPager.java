@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ import java.util.List;
  */
 
 
-public class FragmentMyPager extends Fragment {
+public class FragmentMyPager extends Fragment implements View.OnTouchListener{
     int mNum = 0;
     private Context mContext;
     private RelativeLayout ll_header;
@@ -99,6 +101,17 @@ public class FragmentMyPager extends Fragment {
         addClickIconListener = listener;
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction()==event.ACTION_UP){
+            lv_noscroll.getParent().requestDisallowInterceptTouchEvent(false);
+        }else {
+            lv_noscroll.getParent().requestDisallowInterceptTouchEvent(true);
+        }
+
+        return false;
+    }
+
     public interface addClickIconListener {
         void addImage(MallGuaJianBean mallGuaJianBean ,boolean isVip, int index);
     }
@@ -111,8 +124,12 @@ public class FragmentMyPager extends Fragment {
         lv_noscroll= (NoScrollListView) v.findViewById(R.id.lv_noscroll);
         touXiangAdapter = new TouXiangAdapter();
         lv_noscroll.setAdapter(new HeaderImageGuajianAdapter());
+        lv_noscroll.setOnTouchListener(this);
         return v;
     }
+
+
+
     public void setNumClown(List<ColumnBean> columnBeanList){
         if (columnBeanList.size()>0){
             this.columnBeanList.addAll(columnBeanList);
@@ -186,6 +203,9 @@ public class FragmentMyPager extends Fragment {
             return convertView;
         }
     }
+
+
+
     private class MyHolder{
      private OfenUseView ofenuserview;
      private MyGridView gv_guajian;
@@ -200,14 +220,10 @@ public class FragmentMyPager extends Fragment {
         }
 
     }
-    public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+    public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener{
         private MyGridView mGirdview;
         private List<MallGuaJianBean> beanList;
         MallGuaJianBean mclickBean;
-
-        public MyGridView getmGirdview() {
-            return mGirdview;
-        }
 
         public void setmGirdview(MyGridView mGirdview) {
             this.mGirdview = mGirdview;
@@ -314,6 +330,8 @@ public class FragmentMyPager extends Fragment {
             setMclickBean(null);
             touXiangAdapter.notifyDataSetChanged();
         }
+
+
 
         class Holder {
             ImageView img_icon, img_guajian_kuang;

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wodm.R;
 import com.wodm.android.adapter.newadapter.FragmentMyPager;
 
 /**

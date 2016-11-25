@@ -24,6 +24,7 @@
 
        <com.wodm.android.view.newview.NoScrollListView
            android:background="@color/color_efefef"
+           android:scrollbars="none"
            android:id="@+id/lv_noscroll"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
