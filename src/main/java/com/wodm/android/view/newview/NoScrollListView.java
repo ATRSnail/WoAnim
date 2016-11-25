@@ -28,9 +28,4 @@ public class NoScrollListView extends ListView {
             super.onMeasure(widthMeasureSpec, expandSpec);
         }
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent ev) {
-//        getParent().getParent().requestDisallowInterceptTouchEvent(true);
-//        return super.onTouchEvent(ev);
-//    }
 }

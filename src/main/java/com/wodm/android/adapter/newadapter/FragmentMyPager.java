@@ -104,9 +104,9 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction()==event.ACTION_UP){
-            lv_noscroll.getParent().requestDisallowInterceptTouchEvent(false);
+            v.getParent().requestDisallowInterceptTouchEvent(false);
         }else {
-            lv_noscroll.getParent().requestDisallowInterceptTouchEvent(true);
+            v.getParent().requestDisallowInterceptTouchEvent(true);
         }
 
         return false;
@@ -220,7 +220,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
         }
 
     }
-    public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener{
+    public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener,View.OnTouchListener{
         private MyGridView mGirdview;
         private List<MallGuaJianBean> beanList;
         MallGuaJianBean mclickBean;
@@ -331,6 +331,15 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
             touXiangAdapter.notifyDataSetChanged();
         }
 
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction()==MotionEvent.ACTION_DOWN) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+            }else {
+               v.getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return false;
+        }
 
 
         class Holder {

@@ -32,13 +32,4 @@ public class MyGridView extends GridView {
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        if (ev.getAction()==MotionEvent.ACTION_DOWN) {
-            getParent().getParent().requestDisallowInterceptTouchEvent(true);
-        }else {
-            getParent().getParent().requestDisallowInterceptTouchEvent(false);
-        }
-        return super.onTouchEvent(ev);
-    }
 }
