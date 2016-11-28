@@ -319,9 +319,9 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 startActivity(intent);
                 break;case
             R.id.ll_guajian_of_user:
-//                if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
-//                if (guanJianFrag != null) guanJianFrag.setClickImage(null);
-//                guaJianAdapter.onUnselect();
+                if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
+                if (guanJianFrag != null) guanJianFrag.setClickImage(null);
+                guaJianAdapter.onUnselect();
 //                listener = true;
                 Intent intent1 = new Intent(HeaderGuaJianActivity.this, AllOfMineWallActivity.class);
                 startActivityForResult(intent1,REQUEST_CODE);
@@ -355,14 +355,14 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             if (RESULT_OK==resultCode){
                 MallGuaJianBean clikbean= (MallGuaJianBean) data.getSerializableExtra("MallGuaJianBean");
                 String name=clikbean.getProductName();
-                if (listener){
+//                if (listener){
                     try {
                         MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,clikbean.getProductImageUrl());
                     } catch (Exception e) {
                         Glide.with(this).load(name).placeholder(R.mipmap.loading).into(user_guajian);
                         e.printStackTrace();
                     }
-                }
+//                }
 
             }
         }

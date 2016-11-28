@@ -73,6 +73,7 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
         //Constants.CURRENT_USER.getData().getAccount().getId()
         guanJianFrag = new GuaJianOfMineFragment();
         TouXiangeOfMineFragment.setAddClickIconListener(this);
+        GuaJianOfMineFragment.setAddClickIconListener(this);
         touXiangFrg = new TouXiangeOfMineFragment();
         fragments.add(touXiangFrg);
         fragments.add(guanJianFrag);
@@ -121,9 +122,9 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
         if (clickBean==null){
             return;
         }
-//        Intent intent= new Intent();
-//        intent.putExtra("MallGuaJianBean",clickBean);
-//        setResult(RESULT_OK,intent);
+        Intent intent= new Intent();
+        intent.putExtra("MallGuaJianBean",clickBean);
+        setResult(RESULT_OK,intent);
         httpGet(Constants.APP_GET_MALL_OF_USER_PENADANT + Constants.CURRENT_USER.getData().getAccount().getId() + "&productType=" + type + "&productCode=" + clickBean.getProductCode(), new HttpCallback() {
 
             @Override
