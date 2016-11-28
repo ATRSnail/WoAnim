@@ -324,8 +324,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //                guaJianAdapter.onUnselect();
 //                listener = true;
                 Intent intent1 = new Intent(HeaderGuaJianActivity.this, AllOfMineWallActivity.class);
-//                startActivityForResult(intent1,REQUEST_CODE);
-                startActivity(intent1);
+                startActivityForResult(intent1,REQUEST_CODE);
+//                startActivity(intent1);
                 break;
             case R.id.btn_buy_now:
 //                new DialogUtils.Builder(this)
@@ -348,25 +348,25 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        if(REQUEST_CODE==requestCode){
-//            if (RESULT_OK==resultCode){
-//                MallGuaJianBean clikbean= (MallGuaJianBean) data.getSerializableExtra("MallGuaJianBean");
-//                String name=clikbean.getProductName();
-//                if (listener){
-//                    try {
-//                        MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,clikbean.getProductImageUrl());
-//                    } catch (Exception e) {
-//                        Glide.with(this).load(name).placeholder(R.mipmap.loading).into(user_guajian);
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//            }
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(REQUEST_CODE==requestCode){
+            if (RESULT_OK==resultCode){
+                MallGuaJianBean clikbean= (MallGuaJianBean) data.getSerializableExtra("MallGuaJianBean");
+                String name=clikbean.getProductName();
+                if (listener){
+                    try {
+                        MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,clikbean.getProductImageUrl());
+                    } catch (Exception e) {
+                        Glide.with(this).load(name).placeholder(R.mipmap.loading).into(user_guajian);
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }
+    }
 
     private class TabInfo {
         private String tag;
