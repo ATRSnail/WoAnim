@@ -15,7 +15,6 @@
         android:layout_height="wrap_content" />
 
     <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
-        android:visibility="gone"
         android:id="@+id/message_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

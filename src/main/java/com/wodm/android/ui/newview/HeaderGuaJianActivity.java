@@ -321,7 +321,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             R.id.ll_guajian_of_user:
                 if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
                 if (guanJianFrag != null) guanJianFrag.setClickImage(null);
-                guaJianAdapter.onUnselect();
+                if (guaJianAdapter != null)   guaJianAdapter.onUnselect();
 //                listener = true;
                 Intent intent1 = new Intent(HeaderGuaJianActivity.this, AllOfMineWallActivity.class);
                 startActivityForResult(intent1,REQUEST_CODE);

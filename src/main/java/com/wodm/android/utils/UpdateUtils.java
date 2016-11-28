@@ -11,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -60,7 +59,7 @@ public class UpdateUtils {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     try {
-                        Log.e("checkUpdate", "" + obj.toString());
+
                         final UpgradeBean bean = new Gson().fromJson(obj.getString("data"), UpgradeBean.class);
                         if (bean.getVersionCode() > getVersionCode(mCtx)) {
                             DialogUtils

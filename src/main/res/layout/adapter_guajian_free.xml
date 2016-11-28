@@ -15,7 +15,7 @@
         <ImageView
             android:layout_centerHorizontal="true"
             android:id="@+id/img_guajian_kuang"
-            android:background="@mipmap/guajian_select_kuang"
+            android:src="@mipmap/guajian_select_kuang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <RelativeLayout
@@ -27,7 +27,7 @@
                 android:layout_centerHorizontal="true"
                 android:id="@+id/user_head_imgs"
                 android:layout_alignParentBottom="true"
-                android:background="@mipmap/moren_header"
+                android:src="@mipmap/moren_header"
                 android:layout_width="@dimen/px_108"
                 android:layout_height="@dimen/px_108" />
             <ImageView

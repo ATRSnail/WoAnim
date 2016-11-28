@@ -57,15 +57,15 @@ public class NewMineAdapter extends BaseAdapter {
         this.mContext = context;
     }
 
-//    @Override
-//    public int getCount() {
-//        return 2;
-//    }
-
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
+
+//    @Override
+//    public int getCount() {
+//        return 1;
+//    }
 
     @Override
     public Object getItem(int position) {

@@ -63,6 +63,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     private ImageView img_vip_circle;
     @ViewIn(R.id.user_txk)
     private ImageView user_txk;
+    @ViewIn(R.id.user_gj)
+    private ImageView user_gj;
     @ViewIn(R.id.tv_nickname)
     private TextView tv_nickname;
     @ViewIn(R.id.img_sex)
@@ -267,6 +269,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_txk);
             e.printStackTrace();
         }
+        try {
+            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameGJ(),user_gj,dataBean.getPandentDetail().getImgUrlGJ());
+        } catch (Exception e) {
+            Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_gj);
+            e.printStackTrace();
+        }
+
 
         int vip=accountBean.getVip();
         if (vip==1){

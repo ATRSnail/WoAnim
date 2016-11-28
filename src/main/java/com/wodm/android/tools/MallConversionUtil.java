@@ -49,7 +49,8 @@ public class MallConversionUtil {
                if (value!=null){
                    int resId = context.getResources().getIdentifier(value, "mipmap",
                            context.getPackageName());
-                   imaegeview.setBackgroundResource(resId);
+//                   imaegeview.setBackgroundResource(resId); //会出现重叠
+                   imaegeview.setImageResource(resId);
                    return;
 //                   Bitmap bitmap = BitmapFactory.decodeResource(
 //                           context.getResources(), resId);

@@ -69,7 +69,7 @@
                        <ImageView
                            android:visibility="invisible"
                            android:id="@+id/img_guajian_kuang"
-                           android:background="@mipmap/guajian_select_kuang"
+                           android:src="@mipmap/guajian_select_kuang"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content" />
 
@@ -77,7 +77,7 @@
                            android:visibility="gone"
                            android:id="@+id/productImageUrl"
                            android:layout_centerInParent="true"
-                           android:background="@mipmap/moren_header"
+                           android:src="@mipmap/moren_header"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"  />
                        <ImageView
