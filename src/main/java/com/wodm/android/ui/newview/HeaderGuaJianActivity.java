@@ -88,7 +88,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private ImageView img_vip_circle;
     private Button btn_buy_now;
     private LinearLayout ll_guajian_of_user;
-
+    private static  final  int REQUEST_CODE=001;
+    private boolean listener=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -247,7 +248,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         if (CURRENT_USER==null){
              return;
         }
-        UserInfoBean.DataBean.AccountBean accountBean=CURRENT_USER.getData().getAccount();
+        UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
+        UserInfoBean.DataBean.AccountBean accountBean=dataBean.getAccount();
         tv_user_name.setText(accountBean.getNickName());
         new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
         int vip=accountBean.getVip();
@@ -258,13 +260,17 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         }else {
             img_vip_circle.setVisibility(View.INVISIBLE);
         }
+
+
     }
 
     @Override
     public void addImage(MallGuaJianBean mallGuaJianBean, boolean isVip, int index) {
         if (mallGuaJianBean==null){
+            listener = true;
             return;
         }
+        listener =false;
         clickBean=mallGuaJianBean;
         String name=mallGuaJianBean.getProductName();
         try {
@@ -313,7 +319,12 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
                 startActivity(intent);
                 break;case
             R.id.ll_guajian_of_user:
+//                if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
+//                if (guanJianFrag != null) guanJianFrag.setClickImage(null);
+//                guaJianAdapter.onUnselect();
+//                listener = true;
                 Intent intent1 = new Intent(HeaderGuaJianActivity.this, AllOfMineWallActivity.class);
+//                startActivityForResult(intent1,REQUEST_CODE);
                 startActivity(intent1);
                 break;
             case R.id.btn_buy_now:
@@ -336,6 +347,26 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         }
 
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        if(REQUEST_CODE==requestCode){
+//            if (RESULT_OK==resultCode){
+//                MallGuaJianBean clikbean= (MallGuaJianBean) data.getSerializableExtra("MallGuaJianBean");
+//                String name=clikbean.getProductName();
+//                if (listener){
+//                    try {
+//                        MallConversionUtil.getInstace().dealExpression(this,name,user_guajian,clikbean.getProductImageUrl());
+//                    } catch (Exception e) {
+//                        Glide.with(this).load(name).placeholder(R.mipmap.loading).into(user_guajian);
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
 
     private class TabInfo {
         private String tag;

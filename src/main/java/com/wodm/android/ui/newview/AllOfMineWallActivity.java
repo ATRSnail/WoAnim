@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -118,10 +118,12 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
 
     @Override
     public void rightClick() {
-        Log.e("AA","*******************************");
         if (clickBean==null){
             return;
         }
+//        Intent intent= new Intent();
+//        intent.putExtra("MallGuaJianBean",clickBean);
+//        setResult(RESULT_OK,intent);
         httpGet(Constants.APP_GET_MALL_OF_USER_PENADANT + Constants.CURRENT_USER.getData().getAccount().getId() + "&productType=" + type + "&productCode=" + clickBean.getProductCode(), new HttpCallback() {
 
             @Override
@@ -144,6 +146,7 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
                 }
             }
         });
+        finish();
     }
 
     private class TabInfo {

@@ -3,38 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_ffffff"
-    android:gravity="center_vertical">
+    android:gravity="center">
 
-    <!--<TextView-->
-       <!---->
-        <!--android:layout_width="@dimen/px_48"-->
-        <!--android:layout_height="@dimen/px_48"-->
-        <!--android:layout_gravity="left|center_vertical"-->
-        <!--android:layout_marginLeft="@dimen/px_45"-->
-        <!--android:background="@drawable/vip_icon_circle" />-->
-
-    <TextView
-        android:id="@+id/test"
+    <RelativeLayout
+        android:id="@+id/rl_head_imgs"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/px_15"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="@string/vip_speed_hint"
-        android:textColor="@color/color_f29b76"
-        android:textSize="@dimen/text_size_34_px" />
+        android:layout_height="wrap_content">
 
-    <!--<Button-->
-        <!--android:id="@+id/kai_tong_level"-->
-        <!--android:layout_width="@dimen/px_126"-->
-        <!--android:layout_height="@dimen/px_63"-->
-        <!--android:layout_gravity="right|center_vertical"-->
-        <!--android:layout_marginRight="@dimen/px_45"-->
-        <!--android:background="@drawable/kaitong_rectan"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/open_vip_member"-->
-        <!--android:textColor="@color/color_ff6361"-->
-        <!--android:textSize="@dimen/text_size_24_px" />-->
+        <org.eteclab.ui.widget.CircularImage
+            android:background="@mipmap/circle_novip"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <org.eteclab.ui.widget.CircularImage
+            android:id="@+id/user_head_imgs"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/moren_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/img_vip_circle"
+            android:background="@mipmap/vip_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:background="@mipmap/hamajing"
+            android:id="@+id/user_gj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+
+            android:id="@+id/user_txk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
 </LinearLayout>

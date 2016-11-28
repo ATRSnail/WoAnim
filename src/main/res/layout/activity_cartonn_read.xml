@@ -35,7 +35,6 @@
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/px_80"
             android:background="@android:color/holo_red_dark" />
-
     </FrameLayout>
 
     <ImageView
