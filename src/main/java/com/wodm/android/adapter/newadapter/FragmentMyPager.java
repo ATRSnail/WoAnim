@@ -109,6 +109,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
             v.getParent().requestDisallowInterceptTouchEvent(true);
         }
 
+
         return false;
     }
 
@@ -122,7 +123,6 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
         mContext = getActivity();
         View v = inflater.inflate(R.layout.fragment_listview, container, false);
         lv_noscroll= (NoScrollListView) v.findViewById(R.id.lv_noscroll);
-        touXiangAdapter = new TouXiangAdapter();
         lv_noscroll.setAdapter(new HeaderImageGuajianAdapter());
         lv_noscroll.setOnTouchListener(this);
         return v;
@@ -142,25 +142,25 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
             return columnBeanList.size()>0?columnBeanList.size():0;
         }
 
-        @Override
-        public Object getItem(int position) {
-            return columnBeanList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            int productType=3;
-            if (mNum==0){
-                productType=3;
-            }else {
-                productType=4;
+            @Override
+            public Object getItem(int position) {
+                return columnBeanList.get(position);
             }
-            MyHolder myHolder=null;
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                int productType=3;
+                if (mNum==0){
+                    productType=3;
+                }else {
+                    productType=4;
+                }
+                MyHolder myHolder=null;
             String name=columnBeanList.get(position).getName();
             if (convertView==null){
                 myHolder=new MyHolder();
@@ -177,9 +177,9 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
                             List<MallGuaJianBean> beanList= new Gson().fromJson(obj.getString("data"), new TypeToken<List<MallGuaJianBean>>() {
                             }.getType());
                             if (beanList.size()>0){
+                                touXiangAdapter = new TouXiangAdapter(finalMyHolder.gv_guajian);
                                 touXiangAdapter.setBeanList(beanList);
                                 touXiangAdapter.setMclickBean(clickBean);
-                                touXiangAdapter.setmGirdview(finalMyHolder.gv_guajian);
                                 setTouXiangAdapter(touXiangAdapter);
                                 finalMyHolder.gv_guajian.setAdapter(touXiangAdapter);
                             }
@@ -225,10 +225,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
         private List<MallGuaJianBean> beanList;
         MallGuaJianBean mclickBean;
 
-        public void setmGirdview(MyGridView mGirdview) {
-            this.mGirdview = mGirdview;
-            mGirdview.setOnItemClickListener(this);
-        }
+
 
         public List<MallGuaJianBean> getBeanList() {
             return beanList;
@@ -246,10 +243,9 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
             this.mclickBean = mclickBean;
         }
 
-        public TouXiangAdapter() {
-
-
-
+        public TouXiangAdapter(MyGridView gv_guajian) {
+            this.mGirdview=gv_guajian;
+            mGirdview.setOnItemClickListener(this);
         }
 
         @Override
@@ -309,6 +305,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
                 Glide.with(getActivity()).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
                 e.printStackTrace();
             }
+
             return convertView;
         }
 
@@ -317,7 +314,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
             if (addClickIconListener == null)
                 return;
             MallGuaJianBean mallGuaJianBean = beanList.get(position);
-           setMclickBean(mallGuaJianBean);
+            setMclickBean(mallGuaJianBean);
             addClickIconListener.addImage(mallGuaJianBean,false,mNum);
             notifyDataSetChanged();
         }

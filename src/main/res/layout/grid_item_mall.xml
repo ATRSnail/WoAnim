@@ -30,10 +30,10 @@
                 android:id="@+id/xianshi_mall"
                 android:layout_centerInParent="true"
                 android:background="@mipmap/moren_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/px_108"
+                android:layout_height="@dimen/px_108" />
             <ImageView
-                android:layout_marginTop="@dimen/px_12"
+                android:layout_marginTop="8dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/icon_item_mall"

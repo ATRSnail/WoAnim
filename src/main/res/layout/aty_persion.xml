@@ -95,7 +95,7 @@
                         android:layout_height="@dimen/px_108" />
                     <ImageView
                         android:id="@+id/user_gj"
-                        android:layout_marginBottom="@dimen/px_33"
+                        android:layout_marginBottom="@dimen/px_37"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
