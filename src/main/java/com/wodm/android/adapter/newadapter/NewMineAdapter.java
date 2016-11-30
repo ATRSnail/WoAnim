@@ -47,12 +47,12 @@ public class NewMineAdapter extends BaseAdapter {
 
     private Context mContext;
     private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
-    private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "关注", "", ""};
+    private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "", "", ""};
     private int[] personIconArray = {R.mipmap.medal_mine, R.mipmap.task_mine, R.mipmap.footprint_mine
             , R.mipmap.collect_mine, R.mipmap.service_mine, R.mipmap.setting_mine, R.mipmap.mall_mine, 0};
 
     private int[] messageIconArray = {R.mipmap.reply_mine, R.mipmap.like_mine, R.mipmap.inform_mine
-            , R.mipmap.my_mine, R.mipmap.topic_mine, R.mipmap.reply_mine, 0, 0};
+            , R.mipmap.my_mine, R.mipmap.topic_mine, 0, 0, 0};
 
     public NewMineAdapter(Context context) {
         this.mContext = context;
