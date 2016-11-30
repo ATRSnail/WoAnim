@@ -82,12 +82,33 @@ public class UserInfoBean {
          * empiricalValue : 10
          * gradeName : 萌新I
          * gradeImageId : null
+         *  followNum" : 4, 关注数
+         *  "fansNum" : 4,粉丝数
          */
 
+        private long followNum;
+        private long fansNum;
         private AccountBean account;
         private int needEmpirical;
         private int animationCount;
         private int currentScore;
+
+        public long getFollowNum() {
+            return followNum;
+        }
+
+        public void setFollowNum(long followNum) {
+            this.followNum = followNum;
+        }
+
+        public long getFansNum() {
+            return fansNum;
+        }
+
+        public void setFansNum(long fansNum) {
+            this.fansNum = fansNum;
+        }
+
         private int maxCheckinCount;
         public String getToken() {
             return token;
@@ -473,106 +494,7 @@ public class UserInfoBean {
             }
         }
     }
-    /**
-     * currentEmpirical : 0
-     * token : null
-     * account : {"id":143,"appkey":"","uuid":"03c661af0aa680f3fa7705259bc19399","udid":"f35fe3d2366cf53c94a7bf87e849aa7f","nickName":"Chhhhgg","registTime":1474978930000,"sex":0,"birthday":"","mobile":"18519206703","email":"","portrait":"http://172.16.2.125:8899/static//head/20160927/143/143690449.JPEG","type":0,"autograph":"wwwfttgf000tttttttthhh","osName":"Android","openId":null,"unionId":null,"plainPassword":"","vip_mine":1,"vipFlag":1,"gradeValue":1,"empiricalValue":0,"gradeName":"萌新I","gradeImageId":1}
-     * needEmpirical : 12
-     * /newuser/appVersion   请求方式:post请求                 参数 :verion 版本  platform:表示平台系统
-     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
-     * private int platform;
-     * 版本号
-     * private String verion;
-     * 是否需要升级 0:表示不需要 1:表示需要
-     * private int isUpdate;
-     * 更新描述
-     * private String updateDes;
-     * 版本状态 0 表示不可用 1:表示的是可用的
-     * private int status;
-     * 版本创建的时间
-     * private Date createTime;
-     * 更新的时间
-     * private Date updateTime;
-     * 下载地址*private String downloadUrl
-     * 渠道的id
-     * private Long channelId;
-     * 产品的名称
-     * private String productName;
-     * 1表示安卓的
-     * private int platformType;
-     * 关于版本的名称
-     * private String versionName;
-     * 平台类型（1:表示Android,2:表示IOS 3: 表示ipad）
-     * private int platform;
-     * 应用标识
-     * private String appkey = Strings.EMPTY;
-     * 唯一身份ID
-     * private String uuid = Strings.EMPTY;
-     * 唯一设备ID
-     * private String udid = Strings.EMPTY;
-     * 用户昵称
-     * private String nickName = Strings.EMPTY;
-     * 密码
-     * private String password = Strings.EMPTY;
-     * 密码加密所用的盐
-     * private String salt = Strings.EMPTY;
-     * 状态（-1：删除；0：禁用；1：生效）
-     * <p>
-     * private int status = 0;
-     * 注册时间
-     * private Date registTime = DateUtils.getCurrentDateTime();
-     * 性别  1 男   2  女   0 保密
-     * private int sex = 0;
-     * 生日
-     * private String birthday = Strings.EMPTY;
-     * 手机
-     * private String mobile = Strings.EMPTY;
-     * 邮箱
-     * private String email = Strings.EMPTY;
-     * <p>
-     * 积分
-     * private int score = 0;
-     * <p>
-     * 钱包余额
-     * <p>
-     * private float wallet = 0.0f;
-     * 用户头像
-     * private String portrait = Strings.EMPTY;
-     * 用户主页背景图
-     * private String background = Strings.EMPTY;
-     * 账号名
-     * private String accountName = Strings.EMPTY;
-     * 身份类型  1 个人   2 团体
-     * private int type = 0;
-     * 关注数
-     * private int attentionCount = 0;
-     * 收藏数
-     * private int collectCount = 0;
-     * private String autograph = Strings.EMPTY;//个性签名
-     * <p>
-     * private String osName = Strings.EMPTY;//系统名称
-     * private String openId = Strings.EMPTY;//微信的用户唯一标识
-     * private String unionId = Strings.EMPTY;//微信unionId
-     * <p>
-     * private String plainPassword = Strings.EMPTY;
-     * <p>
-     * 用户的会员类型0:普通 1:vip 2:vvip
-     * private Integer vip;
-     * <p>
-     * vip 的标识 vip标识(t_image_dictionary中id)
-     * private Long vipFlag=0l;
-     * <p>
-     * 等级（3级开启自定义头像、4级开启发送表情、6级开启新边框、8级开启新表情、10级开启新挂件）、上限30级
-     * private Integer gradeValue;
-     * <p>
-     * 经验值
-     * private Integer empiricalValue=0;
-     * 等级称号
-     * private String gradeName;
-     * 等级图片id
-     * private	Integer gradeImageId;
-     * needEmpirical 表示的是 升到下一级所需要的经验        currentEmpirical  表示今天获得经验值
-     */
+
 
   
 }

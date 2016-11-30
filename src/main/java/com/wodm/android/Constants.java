@@ -139,6 +139,9 @@ public class Constants {
     public static final String APP_GET_MALL_OF_USER=HOST + "product/getPendantListByType?userId=";
     public static final String APP_GET_MALL_OF_USER_PENADANT=HOST + "newuser/usePendant?userId=";
     public static final String APP_GET_MALL_OF_PRODUCT_LIST=HOST + "product/list?userId=";
+    public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow";//保存用户关注的内容
+    public static final String GET_USER_ATTENTION=HOST + "behavior/findFollowList?userId=";//获取用户的关注/粉丝的列表
+    public static final String REMOVE_USER_ATTENTION=HOST + "behavior/deleteUserFollow";//取消用户关注的内容
     public static String OFFTIME;
 
 

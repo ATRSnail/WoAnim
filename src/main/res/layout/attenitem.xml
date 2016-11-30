@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x30"
+        android:gravity="center_vertical">
+
+        <org.eteclab.ui.widget.CircularImage
+            android:layout_centerVertical="true"
+            android:id="@+id/pho_attention"
+            android:layout_width="@dimen/px_108"
+            android:layout_height="@dimen/px_108"
+            android:src="@mipmap/moren_header" />
+
+        <TextView
+            android:id="@+id/name_attention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/px_20"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_36_px"
+            android:layout_toRightOf="@id/pho_attention"
+            android:text="会飞的鱼" />
+
+        <TextView
+            android:id="@+id/grade_attention"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/name_attention"
+            android:layout_below="@id/name_attention"
+            android:layout_marginTop="@dimen/px_6"
+            android:textSize="@dimen/text_size_30_px"
+            android:text="LV.3" />
+
+        <TextView
+            android:textSize="@dimen/text_size_24_px"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/px_10"
+            android:id="@+id/gradeName_attention"
+            android:layout_width="@dimen/px_90"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/grade_attention"
+            android:layout_alignTop="@id/grade_attention"
+            android:layout_alignBottom="@id/grade_attention"
+            android:text="萌新" />
+
+        <ImageView
+            android:id="@+id/attention"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</LinearLayout>
