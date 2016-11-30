@@ -267,10 +267,10 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     @Override
     public void addImage(MallGuaJianBean mallGuaJianBean, boolean isVip, int index) {
         if (mallGuaJianBean==null){
-            listener = true;
+//            listener = true;
             return;
         }
-        listener =false;
+//        listener =false;
         clickBean=mallGuaJianBean;
         String name=mallGuaJianBean.getProductName();
         try {
@@ -283,9 +283,11 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
 //        user_guajian.setImageDrawable(drawable);
         if (isVip) {
 
-               if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
+//               if (touXiangFrg != null)  touXiangFrg.setClickImage(null);
+            if (touXiangFrg != null)  touXiangFrg.onUnselect();
 
-            if (guanJianFrag != null) guanJianFrag.setClickImage(null);
+//            if (guanJianFrag != null) guanJianFrag.setClickImage(null);
+            if (guanJianFrag != null) guanJianFrag.onUnselect();
 
 
         } else {

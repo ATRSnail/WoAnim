@@ -15,8 +15,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.FollowAdapter;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
 import com.wodm.android.bean.MallGuaJianBean;
@@ -30,15 +33,21 @@ import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.UpdataMedalInfo;
+import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
+import org.json.JSONObject;
 
 import java.util.List;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 
 /**
@@ -84,10 +93,18 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     TextView editTv;
     @ViewIn(R.id.tv_attention)
     TextView tv_attention;
+    @ViewIn(R.id.ll_attention)
+    LinearLayout ll_attention;
     @ViewIn(R.id.edit_persion)
     ImageButton edit_persion;
     @ViewIn(R.id.tv_likes)
     TextView tv_likes;
+    @ViewIn(R.id.likes_persion)
+    TextView likes_persion;
+    @ViewIn(R.id.attention_persion)
+    TextView attention_persion;
+    @ViewIn(R.id.another_persion)
+    ImageView another_persion;
 
     //    @ViewIn(R.id.btn_degree)
 //    private Button btn_degree;
@@ -104,10 +121,18 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     TextView show_more_persion;
     @ViewIn(R.id.img_more)
     ImageView img_more;
-
+    @ViewIn(R.id.medal_another)
+    TextView medal_another;
+    @ViewIn(R.id.save_another)
+    TextView save_another;
+    long userId;
+    UserInfoBean.DataBean dataBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        getData();
         persionAdapter = new PersionAdapter(this);
         gv_comments.setAdapter(persionAdapter);
         mineCircleAdapter = new MineCircleAdapter(this);
@@ -118,11 +143,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         btn_user_info.setOnClickListener(this);
         editTv.setOnClickListener(this);
         edit_persion.setOnClickListener(this);
+        likes_persion.setOnClickListener(this);
+        attention_persion.setOnClickListener(this);
 //        btn_degree.setOnClickListener(this);
         set_topbar.setOnTopbarClickListenter(this);
-
-
-//        getData();
 
         if (Constants.getMEDALINFOBEAN() != null) {
             dataBeanList = Constants.getMEDALINFOBEAN().getData();
@@ -242,23 +266,61 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-        setUserInfo();
+         getData();
+
+
     }
 
     private void getData() {
-        if (Constants.CURRENT_USER != null) {
-            UpdataMedalInfo.getMedalInfo(this, Constants.CURRENT_USER.getData().getAccount().getId());
+//            UpdataMedalInfo.getMedalInfo(this, userId);
+
+        if(getIntent().getBooleanExtra("anotherInfo",false)){
+            userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
+            Log.e("AA","------------"+userId);
+            ll_attention.setVisibility(View.GONE);
+            btn_user_info.setVisibility(View.GONE);
+            another_persion.setVisibility(View.VISIBLE);
+            another_persion.setOnClickListener(this);
+            if (getIntent().getBooleanExtra("guanzhu",false)){
+                another_persion.setImageResource(R.mipmap.noatten_persion);
+            }else {
+                another_persion.setImageResource(R.mipmap.atten_persion);
+            }
+            edit_persion.setImageResource(R.mipmap.jubao);
+            medal_another.setText("他的勋章");
+            save_another.setText("他的收藏");
+           httpGet(Constants.APP_GET_USERINFO + userId,new HttpCallback(){
+               @Override
+               public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                   super.doAuthSuccess(result, obj);
+                   UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
+                   dataBean=bean.getData();
+                   setUserInfo();
+               }
+           });
+        }else {
+            if (Constants.CURRENT_USER==null) {finish(); return;}
+            userId =Constants.CURRENT_USER.getData().getAccount().getId();
+            dataBean=Constants.CURRENT_USER.getData();
+            setUserInfo();
         }
     }
 
 
+//    UpdataUserInfo infos = new UpdataUserInfo() {
+//        @Override
+//        public void getUserInfo(UserInfoBean bean) {
+//            Constants.CURRENT_USER = bean;
+//        }
+//    };
+
+
     private void setUserInfo(){
-        if (Constants.CURRENT_USER == null) {
-            finish();
-            return;
-        }
-        UserInfoBean.DataBean dataBean=Constants.CURRENT_USER.getData();
+
+
         UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
+        tv_attention.setText(String.valueOf(dataBean.getFollowNum()));
+        tv_likes.setText(String.valueOf(dataBean.getFansNum()));
         if (!TextUtils.isEmpty(accountBean.getPortrait()))
             new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
 
@@ -361,6 +423,24 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 i.putExtra("position","动画");
                 i.setClass(PersionActivity.this, RecordActivity.class);
                 startActivity(i);
+                break;
+            case R.id.another_persion :
+                FollowAdapter adapter =new FollowAdapter();
+                if (getIntent().getBooleanExtra("guanzhu",false)){
+                     adapter.saveOrDeleteUserFollow(0,userId);
+                    another_persion.setImageResource(R.mipmap.noatten_persion);
+                }else {
+                    adapter.saveOrDeleteUserFollow(1,userId);
+                    another_persion.setImageResource(R.mipmap.atten_persion);
+                }
+                break;
+            case R.id.attention_persion:
+                startActivity(new Intent(this,AttentionActivity.class));
+                break;
+            case R.id.likes_persion:
+                Intent intent =new Intent(this,AttentionActivity.class);
+                intent.putExtra("fans",1);
+                startActivity(intent);
                 break;
         }
     }
