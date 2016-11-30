@@ -11,6 +11,7 @@
     <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
         android:id="@+id/pull_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+        </org.eteclab.ui.widget.pulltorefresh.PullToLoadView>
 
 </LinearLayout>

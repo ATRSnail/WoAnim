@@ -1,16 +1,12 @@
 package com.wodm.android.ui;
 
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -23,7 +19,6 @@ import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.braageview.BulletSendDialog;
-import com.wodm.android.utils.DeviceUtils;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
@@ -44,8 +39,6 @@ import java.util.IdentityHashMap;
 import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
-
-import static com.wodm.android.tools.NetHeader.getHeaders;
 
 public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener, BulletSendDialog.SendBarrage {
 
@@ -191,6 +184,8 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         bulletDialog.show(ft, "dialog");
 
     }
+    
+    
 
     @Override
     public void addBullet(final String content) {

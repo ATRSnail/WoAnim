@@ -18,6 +18,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.login.Wx;
+import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.QQUtils;
@@ -226,6 +227,10 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             obj.put("nickName", nickname);
             obj.put("sex", sex);
             obj.put("portrait", headimgurl);
+            obj.put("channelInfo","wechat");
+            obj.put("brandInfo", GetPhoneState.getBrand());
+            obj.put("modelNumber",GetPhoneState.getModel());
+            obj.put("qCellCore","北京");
             File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "json.txt");
             try {
                 //42268986033

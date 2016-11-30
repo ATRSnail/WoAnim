@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 public class PermissionInfoTools {
     public static final int MY_PERMISSIONS_REQUEST_COMERA_CONTACTS=1000000;
     public static final int MY_PERMISSIONS_REQUEST_WRITE_CONTACTS=2000000;
+    public static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE=3000000;
     private Context mContxt;
     public PermissionInfoTools(Context context){
         this.mContxt=context;
@@ -59,6 +60,22 @@ public class PermissionInfoTools {
             callBack.IPsermission(true);
         }
     }
-
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void getReadPhoneStatePermission(Activity activity, SetPermissionCallBack callBack){
+// Here, thisActivity is the current activity
+        if(Build.VERSION.SDK_INT<23){
+            callBack.IPsermission(true);
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+//			//申请WRITE_EXTERNAL_STORAGE权限
+            callBack.IPsermission(false);
+            activity.requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE},
+                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+            activity.shouldShowRequestPermissionRationale(Manifest.permission.READ_PHONE_STATE);
+        }else {
+            callBack.IPsermission(true);
+        }
+    }
 
 }

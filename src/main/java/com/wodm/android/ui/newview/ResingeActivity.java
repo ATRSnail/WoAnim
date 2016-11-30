@@ -17,6 +17,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserBean;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.Main2Activity;
@@ -101,6 +102,10 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             int msg=appInfo.metaData.getInt("UMENG_CHANNEL",0);
             obj.put("channelId",msg);
             obj.put("productName","联通动漫");
+            obj.put("channelInfo","phone");
+            obj.put("brandInfo", GetPhoneState.getBrand());
+            obj.put("modelNumber",GetPhoneState.getModel());
+            obj.put("qCellCore","北京");
             httpPost(Constants.USER_REGIST, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

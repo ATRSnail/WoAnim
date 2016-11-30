@@ -1,6 +1,7 @@
 package com.wodm.android.tools;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,6 +14,16 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.wodm.android.utils.PermissionInfoTools;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Locale;
 
 /**
@@ -107,14 +118,22 @@ public class GetPhoneState {
 	 *            上下�?
 	 * @return String 手机串号
 	 */
-	public static String readTelephoneSerialNum(Context con) {
-		TelephonyManager telephonyManager = (TelephonyManager) con
-				.getSystemService(Context.TELEPHONY_SERVICE);
-		String imei=telephonyManager.getDeviceId();
-		if(TextUtils.isEmpty(imei)){
-			imei=getLocalMacAddress(con);
-		}
-		return imei;
+	public static String readTelephoneSerialNum(final Context con) {
+		final String[] imei = {"00000000"};
+		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
+			@Override
+			public void IPsermission(boolean isPermsion) {
+				if (isPermsion){
+					TelephonyManager telephonyManager = (TelephonyManager) con
+							.getSystemService(Context.TELEPHONY_SERVICE);
+					imei[0] =telephonyManager.getDeviceId();
+					if(TextUtils.isEmpty(imei[0])){
+						imei[0] =getLocalMacAddress(con);
+					}
+				}
+			}
+		});
+		return imei[0];
 	}
 	
 	
@@ -137,6 +156,12 @@ public class GetPhoneState {
 		if (con == null) {
 			return "";
 		}
+		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
+			@Override
+			public void IPsermission(boolean isPermsion) {
+
+			}
+		});
 		if (telephonyManager == null) {
 			telephonyManager = (TelephonyManager) con
 					.getSystemService(Context.TELEPHONY_SERVICE);
@@ -148,32 +173,52 @@ public class GetPhoneState {
 	/**
 	 * 读取sim卡序列号imsi
 	 */
-	public static String readSimSerialNum(Context con) {
+	public static String readSimSerialNum(final Context con) {
+		final String[] subscriberIe = {""};
 		if (con == null) {
 			return "";
 		}
-		if (telephonyManager == null) {
-			telephonyManager = (TelephonyManager) con
-					.getSystemService(Context.TELEPHONY_SERVICE);
-		}
-		if(telephonyManager.getSubscriberId()==null)
-			return "";
-		return telephonyManager.getSubscriberId();
+		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
+			@Override
+			public void IPsermission(boolean isPermsion) {
+				if (isPermsion){
+					if (telephonyManager == null) {
+						telephonyManager = (TelephonyManager) con
+								.getSystemService(Context.TELEPHONY_SERVICE);
+					}
+					if(telephonyManager.getSubscriberId()==null)
+						return;
+					subscriberIe[0] =telephonyManager.getSubscriberId();
+				}
+			}
+		});
+
+		return subscriberIe[0];
 	}
 	/**
 	 * 读取sim卡序列号
 	 */
-	public static String readSimICCID(Context con) {
+	public static String readSimICCID(final Context con) {
+		final String[] Iccid = {""};
 		if (con == null) {
 			return "";
 		}
-		if (telephonyManager == null) {
-			telephonyManager = (TelephonyManager) con
-					.getSystemService(Context.TELEPHONY_SERVICE);
-		}
-		if(telephonyManager.getSimSerialNumber()==null)
-			return "";
-		return telephonyManager.getSimSerialNumber();
+		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
+			@Override
+			public void IPsermission(boolean isPermsion) {
+				if (isPermsion){
+					if (telephonyManager == null) {
+						telephonyManager = (TelephonyManager) con
+								.getSystemService(Context.TELEPHONY_SERVICE);
+					}
+					if(telephonyManager.getSimSerialNumber()==null)
+						return;
+					Iccid[0] =telephonyManager.getSimSerialNumber();
+				}
+			}
+		});
+
+		return Iccid[0];
 	}
 	
 	
@@ -191,37 +236,37 @@ public class GetPhoneState {
 		return NativePhoneNumber;
 	}
 	
-	public static void GetNetIp(final Context context) {
-//		URL infoUrl = null;
-//		InputStream inStream = null;
-//		try {
-//			// http://iframe.ip138.com/ic.asp
-//			// infoUrl = new URL("http://city.ip138.com/city0.asp");
-//			infoUrl = new URL("http://iframe.ip138.com/ic.asp");
-//			URLConnection connection = infoUrl.openConnection();
-//			HttpURLConnection httpConnection = (HttpURLConnection) connection;
-//			int responseCode = httpConnection.getResponseCode();
-//			if (responseCode == HttpURLConnection.HTTP_OK) {
-//				inStream = httpConnection.getInputStream();
-//				BufferedReader reader = new BufferedReader(
-//						new InputStreamReader(inStream, "utf-8"));
-//				StringBuilder strber = new StringBuilder();
-//				String line = null;
-//				while ((line = reader.readLine()) != null)
-//					strber.append(line + "\n");
-//				inStream.close();
-//				// 从反馈的结果中提取出IP地址
-//				int start = strber.indexOf("[");
-//				int end = strber.indexOf("]", start + 1);
-//				line = strber.substring(start + 1, end);
-//				return line;
-//			}
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return "0.0.0.0";
+	public static String GetNetIp(final Context context) {
+		URL infoUrl = null;
+		InputStream inStream = null;
+		try {
+			// http://iframe.ip138.com/ic.asp
+			// infoUrl = new URL("http://city.ip138.com/city0.asp");
+			infoUrl = new URL("http://city.ip138.com/city0.asp");
+			URLConnection connection = infoUrl.openConnection();
+			HttpURLConnection httpConnection = (HttpURLConnection) connection;
+			int responseCode = httpConnection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				inStream = httpConnection.getInputStream();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(inStream, "utf-8"));
+				StringBuilder strber = new StringBuilder();
+				String line = null;
+				while ((line = reader.readLine()) != null)
+					strber.append(line + "\n");
+				inStream.close();
+				// 从反馈的结果中提取出IP地址
+				int start = strber.indexOf("[");
+				int end = strber.indexOf("]", start + 1);
+				line = strber.substring(start + 1, end);
+				return line;
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "0.0.0.0";
 
 	}
 
@@ -234,20 +279,31 @@ public class GetPhoneState {
 	 *            上下�?
 	 * @return String 运营商信�?
 	 */
-	public static String getCarrier(Context con) {
-		TelephonyManager telManager = (TelephonyManager) con
-				.getSystemService(Context.TELEPHONY_SERVICE);
-		String imsi = telManager.getSubscriberId();
-		if (imsi != null && !"".equals(imsi)) {
-			if (imsi.startsWith("46000") || imsi.startsWith("46002")|| imsi.startsWith("46007")) {// 因为移动网络编号46000下的IMSI已经用完，所以虚拟了�?��46002编号�?34/159号段使用了此编号
-				return "yidong";
-			} else if (imsi.startsWith("46001")|| imsi.startsWith("46006")) {
-				return "liantong";
-			} else if (imsi.startsWith("46003")|| imsi.startsWith("46005")|| imsi.startsWith("46011")) {
-				return "dianxin";
+	public static String getCarrier(final Context con) {
+		final String[] carrier = {""};
+		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
+			@Override
+			public void IPsermission(boolean isPermsion) {
+				if (isPermsion){
+					if (telephonyManager == null) {
+						telephonyManager = (TelephonyManager) con
+								.getSystemService(Context.TELEPHONY_SERVICE);
+						String imsi = telephonyManager.getSubscriberId();
+						if (imsi != null && !"".equals(imsi)) {
+							if (imsi.startsWith("46000") || imsi.startsWith("46002")|| imsi.startsWith("46007")) {// 因为移动网络编号46000下的IMSI已经用完，所以虚拟了�?��46002编号�?34/159号段使用了此编号
+								carrier[0]="yidong" ;
+							} else if (imsi.startsWith("46001")|| imsi.startsWith("46006")) {
+								carrier[0]="liantong" ;
+							} else if (imsi.startsWith("46003")|| imsi.startsWith("46005")|| imsi.startsWith("46011")) {
+								carrier[0]="dianxin" ;
+							}
+						}
+					}
+				}
 			}
-		}
-		return "";
+		});
+
+		return carrier[0];
 	}
 
 	/**

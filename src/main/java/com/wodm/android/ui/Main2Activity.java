@@ -24,6 +24,7 @@ import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.service.DownLoadServices;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.MallConversionUtil;
+import com.wodm.android.tools.TimeTools;
 import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -68,12 +69,12 @@ public class Main2Activity extends AppActivity {
             mTab2.setBackgroundResource(R.drawable.enetic_home_title_left);
             mTab2.setTextColor(getResources().getColor(android.R.color.white));
             mTab1.setBackgroundDrawable(new BitmapDrawable());
-            mTab1.setTextColor(getResources().getColor(R.color.color_ffa031));
+            mTab1.setTextColor(getResources().getColor(R.color.color_f5c92f));
         } else if (((HomeFragment) mSurfaceParams.get(R.id.tab_home).fragment).IndexTabId == R.id.enetic_animation) {
             mTab1.setBackgroundResource(R.drawable.enetic_home_title_right);
             mTab1.setTextColor(getResources().getColor(android.R.color.white));
             mTab2.setBackgroundDrawable(new BitmapDrawable());
-            mTab2.setTextColor(getResources().getColor(R.color.color_ffa031));
+            mTab2.setTextColor(getResources().getColor(R.color.color_f5c92f));
         }
     }
 
@@ -103,6 +104,7 @@ public class Main2Activity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //增加缓存表情字段
         new Thread(new Runnable() {
             @Override
@@ -205,6 +207,25 @@ public class Main2Activity extends AppActivity {
             mExitTime = System.currentTimeMillis();
         } else {
             super.onBackPressed();
+            JSONObject jsonObject=new JSONObject();
+            try {
+                int id=Preferences.getInstance(this).getPreference("userBehavier", 0);
+                jsonObject.put("id",id);
+                jsonObject.put("times", TimeTools.getNianTime());
+                httpPost(Constants.APP_GET_MALL_OF_UPDATEUSERBEHAVIOURINFO, jsonObject, new HttpCallback() {
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthSuccess(result, obj);
+                    }
+
+                    @Override
+                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthFailure(result, obj);
+                    }
+                });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             ((TrackApplication) getApplication()).exitApp();
         }
     }
@@ -244,7 +265,20 @@ public class Main2Activity extends AppActivity {
         checkSgin();
     }
 
+
     private void checkSgin() {
+//        httpGet("http://172.16.3.49:8080/api/v1//newuser/test?userId=198", new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
         if (Constants.CURRENT_USER != null) {
             httpGet(Constants.APP_GET_TASKSTATUS + CURRENT_USER.getData().getAccount().getId() + "&taskType=1&taskValue=1", new HttpCallback() {
 

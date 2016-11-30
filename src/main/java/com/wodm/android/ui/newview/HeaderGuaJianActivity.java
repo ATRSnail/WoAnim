@@ -223,7 +223,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         ll_open_vip = (RelativeLayout) findViewById(R.id.ll_open_vip);
         guajian_free = (MyGridView) findViewById(R.id.guajian_free);
         guajian_free.setSelector(new ColorDrawable(Color.TRANSPARENT));
-//        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         mViewPager = (ViewPager) findViewById(R.id.mypage_pager);
         tabFragmentAdapter = new TabFragmentAdapter(fragments, mTitles, getSupportFragmentManager(), getApplicationContext());
         mViewPager.setAdapter(tabFragmentAdapter);

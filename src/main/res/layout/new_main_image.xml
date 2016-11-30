@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_img_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.wodm.android.view.newview.RoundAngleImageView
+            android:id="@+id/img_angle"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/ll_shadow"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/new_main_border"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_48">
+            <ImageView
+                android:layout_marginLeft="@dimen/px_16"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/img_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_look_num"
+                android:layout_marginLeft="@dimen/px_10"
+                android:textSize="@dimen/text_size_22_px"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

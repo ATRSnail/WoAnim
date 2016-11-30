@@ -9,9 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +24,6 @@ import com.wodm.android.Constants;
 import com.wodm.android.bean.ColumnBean;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.tools.MallConversionUtil;
-import com.wodm.android.view.newview.MyGridView;
 import com.wodm.android.view.newview.NoScrollListView;
 import com.wodm.android.view.newview.OfenUseView;
 
@@ -166,7 +164,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
                 myHolder=new MyHolder();
                 convertView=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_mypage,null,false);
                 myHolder.ofenuserview= (OfenUseView) convertView.findViewById(R.id.ofenuserview);
-                myHolder.gv_guajian= (MyGridView) convertView.findViewById(R.id.gv_guajian);
+                myHolder.gv_guajian= (GridView) convertView.findViewById(R.id.gv_guajian);
                 final MyHolder finalMyHolder = myHolder;
                 httpGet(Constants.APP_GET_PRODUCT_PAGEBYCLIUMN +Constants.CURRENT_USER.getData().getAccount().getId()+"&productType="+productType+"&name="+name, new HttpCallback() {
 
@@ -208,7 +206,7 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
 
     private class MyHolder{
      private OfenUseView ofenuserview;
-     private MyGridView gv_guajian;
+     private GridView gv_guajian;
     }
     public void httpGet(String url, final HttpCallback callback) {
 
@@ -221,11 +219,11 @@ public class FragmentMyPager extends Fragment implements View.OnTouchListener{
 
     }
     public class TouXiangAdapter extends BaseAdapter implements AdapterView.OnItemClickListener,View.OnTouchListener{
-        private MyGridView mGirdview;
+        private GridView mGirdview;
         private List<MallGuaJianBean> beanList;
         MallGuaJianBean mclickBean;
 
-        public void setmGirdview(MyGridView mGirdview) {
+        public void setmGirdview(GridView mGirdview) {
             this.mGirdview = mGirdview;
             mGirdview.setOnItemClickListener(this);
         }

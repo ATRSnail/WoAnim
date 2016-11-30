@@ -42,13 +42,14 @@ import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.db.WoDbUtils;
+import com.wodm.android.dbtools.DBTools;
 import com.wodm.android.dialog.ChapterDialog;
 import com.wodm.android.dialog.DownDialog;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.qq.KeyboardLayout;
 import com.wodm.android.receiver.NetworkChangeListener;
 import com.wodm.android.receiver.NetworkChangeReceive;
-import com.wodm.android.run.VideoService;
+import com.wodm.android.run.DBService;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
@@ -140,6 +141,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private EditText mInput;
     private RelativeLayout ll_car_details;
     private ScreenSwitchUtils screenSwitchUtils;
+    private DBTools dbTools;
 
     int mKeyboardHeight = 400; // 输入法默认高度为400
     private void initHeaderViews() {
@@ -161,6 +163,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         screenSwitchUtils=ScreenSwitchUtils.init(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //插入开始时间
+        DBTools.getInstance(this).inserDB(barrage_rescourceId);
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //更新结束时间
+        DBTools.getInstance(this).updateDB(barrage_rescourceId);
+    }
     private void initView(){
 
         // 起初的布局可自动调整大小
@@ -252,6 +267,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initHeaderViews();
+        dbTools=DBTools.getInstance(this);
         videoView.setTimeListener(AnimDetailActivity.this);
         initView();
         context=AnimDetailActivity.this;
@@ -466,12 +482,6 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             startPlay(mChapterList.get(0));
         }
         pullToLoadView.initLoad();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
     }
 
     @Override
@@ -886,7 +896,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             }
         });
     }
-
+    
     public void start(ChapterBean bean) {
         if (bean != null) {
             mCurrintChapter = bean;
@@ -955,7 +965,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         return time;
     }
     private void startMyService(ChapterBean bean){
-        serviceIntent=new Intent(this, VideoService.class);
+        serviceIntent=new Intent(this, DBService.class);
         serviceIntent.putExtra("type","insert");
         serviceIntent.putExtra("insert",bean);
         startService(serviceIntent);

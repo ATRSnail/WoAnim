@@ -24,4 +24,18 @@ public class TimeTools {
        }
        return strs;
    }
+    public static String getNianTime(){
+        //mill为你龙类型的时间戳
+        Date date=new Date(System.currentTimeMillis());
+        String strs="";
+        try {
+//yyyy表示年MM表示月dd表示日
+//yyyy-MM-dd是日期的格式，比如2015-12-12如果你要得到2015年12月12日就换成yyyy年MM月dd日
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            strs=sdf.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strs;
+    }
 }

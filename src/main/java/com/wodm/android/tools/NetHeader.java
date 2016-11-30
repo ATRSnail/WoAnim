@@ -32,6 +32,7 @@ public class NetHeader {
             TrackApplication.REQUEST_HEADER.put("Carrier", ""+GetPhoneState.getCarrier(con));// 运营商
             TrackApplication.REQUEST_HEADER.put("NetworkType", ""+GetPhoneState.getAccessNetworkType(con));// 联网类型
             TrackApplication.REQUEST_HEADER.put("hasIccCard", ""+GetPhoneState.hasIccCard(con));// ICC卡是否存在
+            TrackApplication.REQUEST_HEADER.put("Version", ""+GetPhoneState.getAppVersionName(con));// 版本号
 //			httpHeaders.put("PhoneNumber", ""+GetPhoneState.getNativePhoneNumber());// I手机号 可能为空
         } catch (JSONException e) {
             e.printStackTrace();

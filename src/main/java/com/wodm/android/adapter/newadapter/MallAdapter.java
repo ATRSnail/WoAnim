@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wodm.R;
 import com.wodm.android.bean.MallGuaJianBean;
-import com.wodm.android.run.VideoService;
+import com.wodm.android.run.DBService;
 import com.wodm.android.tools.BuyingTools;
 import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.ui.newview.HeaderGuaJianActivity;
@@ -114,7 +114,7 @@ public class MallAdapter extends BaseAdapter implements View.OnClickListener {
         return convertView;
     }
     private void startMyService(MallGuaJianBean mallGuaJianBean){
-        Intent serviceIntent=new Intent(context, VideoService.class);
+        Intent serviceIntent=new Intent(context, DBService.class);
         serviceIntent.putExtra("type","buying");
         serviceIntent.putExtra("bean", mallGuaJianBean);
         context.startService(serviceIntent);

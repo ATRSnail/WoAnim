@@ -12,7 +12,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.HomeAdapter;
 import com.wodm.android.bean.BannerBean;
-import com.wodm.android.bean.ObjectDataBean;
+import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
@@ -41,7 +41,6 @@ public class HomeFragment extends TrackFragment {
     private View mHeaderView;
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
-
     private BannerView mBannerView;
     public int IndexTabId = R.id.enetic_cartoon;
 
@@ -50,10 +49,11 @@ public class HomeFragment extends TrackFragment {
     protected void setDatas(Bundle bundle) {
         mBannerView = (BannerView) mHeaderView.findViewById(R.id.banner);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
+        HomeAdapter.getType(IndexTabId == R.id.enetic_cartoon ? 2 : 1);
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean follow) {
-                HttpUtil.httpGet(getActivity(), Constants.URL_HOME_TYPE + "?page=" + pager + "&resourceType=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1), new HttpCallback() {
+                HttpUtil.httpGet(getActivity(), Constants.URL_HOME_TYPE + "?page=" + pager + "&resourceType=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1)+"&size=20&location=1", new HttpCallback() {
                     @Override
                     public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthFailure(result, obj);
@@ -65,7 +65,7 @@ public class HomeFragment extends TrackFragment {
                         super.doAuthSuccess(result, obj);
                         if (obj != null) {
                             try {
-                                List<ObjectDataBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectDataBean>>() {
+                                List<NewMainBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean>>() {
                                 }.getType());
                                 handleData(pager, beanList, HomeAdapter.class, follow, mHeaderView);
                             } catch (Exception e) {

@@ -5,6 +5,6 @@
     <org.eteclab.ui.widget.viewpager.BannerView
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_300">
+        android:layout_height="@dimen/px_228">
     </org.eteclab.ui.widget.viewpager.BannerView>
 </RelativeLayout>

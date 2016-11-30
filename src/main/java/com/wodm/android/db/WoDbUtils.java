@@ -5,6 +5,7 @@ import android.content.Context;
 import com.lidroid.xutils.exception.DbException;
 import com.wodm.android.bean.AnimLookCookieBean;
 import com.wodm.android.bean.SeacherBean;
+import com.wodm.android.bean.UserBehavierInfo;
 
 
 /**
@@ -24,6 +25,7 @@ public class WoDbUtils {
                         utils.dropTable(SeacherBean.class);
                         utils.createTableIfNotExist(SeacherBean.class);
                         utils.createTableIfNotExist(AnimLookCookieBean.class);
+                        utils.createTableIfNotExist(UserBehavierInfo.class);
                     } catch (DbException var5) {
                         var5.printStackTrace();
                     }

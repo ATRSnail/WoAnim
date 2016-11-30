@@ -5,19 +5,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.GetPhoneState;
+import com.wodm.android.tools.TimeTools;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.http.HttpCallback;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 @Layout(R.layout.activity_welcome)
@@ -26,6 +27,8 @@ public class WelcomeActivity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getUserBehaviour();
+//        getUseraaaBehaviour();
         if (Preferences.getInstance(getApplicationContext()).getPreference("is_first", false)) {
             String token = Preferences.getInstance(getApplicationContext()).getPreference("token", "");
             if (!TextUtils.isEmpty(token)) {
@@ -88,6 +91,59 @@ public class WelcomeActivity extends AppActivity {
 
         }
     };
+//    private void getUseraaaBehaviour(){
+////        final ArrayList<UserBehavierInfo> allList = getAllTimeLong();
+////        JSONObject js=changeJsonObject();
+//        JSONObject js=new JSONObject();
+////            js.put("userBehaviourInfo",allList.toString());
+//        try {
+//            js.put("userBehaviourInfo","aaaaaaaa");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        httpPost(Constants.APP_GET_MALL_OF_SAVEUSERBEHAVIOURINFO,js, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
+//
+//    }
+    private void getUserBehaviour(){
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("deviceId", GetPhoneState.readTelephoneSerialNum(this));
+            jsonObject.put("devicePlatform",1);
+            jsonObject.put("deviceBrand",GetPhoneState.getBrand());
+            jsonObject.put("deviceModel",GetPhoneState.getModel());
+            jsonObject.put("systemVersion",GetPhoneState.getSysRelease());
+            jsonObject.put("appVersion",GetPhoneState.getAppVersionName(this));
+            jsonObject.put("times", TimeTools.getNianTime());
+            jsonObject.put("timeLong", 0);
+            httpPost(Constants.APP_GET_MALL_OF_SAVEUSERBEHAVIOUR,jsonObject, new HttpCallback() {
+
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    Preferences.getInstance(getApplicationContext()).setPreference("userBehavier", obj.optInt("data",0));
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     UpdataUserInfo userInfo = new UpdataUserInfo() {
         @Override

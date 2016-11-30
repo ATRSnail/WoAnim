@@ -189,8 +189,9 @@
 
         </activity>
 
-        <service android:name=".android.run.VideoService"></service>
+        <service android:name=".android.run.DBService"></service>
         <receiver android:name=".android.receiver.AlarmReceiver" />
+        <receiver android:name=".android.receiver.UpDataReceiver" />
 
         <service android:name=".android.service.DownLoadServices" />
 
@@ -350,6 +351,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".android.ui.newview.AllOfMineWallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.NewMainDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

@@ -33,10 +33,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.wodm.android.view.newview.MyGridView
+            <GridView
                 android:id="@+id/gv_guajian"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/px_60"
                 android:layout_marginRight="@dimen/px_60"
                 android:background="@color/color_ffffff"

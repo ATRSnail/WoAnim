@@ -85,7 +85,7 @@ public class Constants {
     public static final String URL_USER_DELETE_COLLECTION = HOST + "newuser/deleteCollection?userId=";
 
 
-    public static final String URL_HOME_TYPE = HOST + "column";
+    public static final String URL_HOME_TYPE = HOST + "column/list";
     //	http://wodm.eteclab.com/api/v1/column/findResourceByColumnId?columnId=1&page=1&size=20
     public static final String URL_HOME_TYPE_LIST = HOST + "column/findResourceByColumnId";
 
@@ -139,6 +139,11 @@ public class Constants {
     public static final String APP_GET_MALL_OF_USER=HOST + "product/getPendantListByType?userId=";
     public static final String APP_GET_MALL_OF_USER_PENADANT=HOST + "newuser/usePendant?userId=";
     public static final String APP_GET_MALL_OF_PRODUCT_LIST=HOST + "product/list?userId=";
+    public static final String APP_GET_MALL_OF_SAVEUSERBEHAVIOUR=HOST + "behavior/saveUserBehaviour";//启动时使用接口
+    public static final String APP_GET_MALL_OF_SAVEUSERBEHAVIOURINFO=HOST + "behavior/saveUserBehaviourInfo";//上传用户数据是是使用接口
+    public static final String APP_GET_MALL_OF_UPDATEUSERBEHAVIOURINFO=HOST + "behavior/updateUserBehaviour";//退出APP时使用
+    public static final String APP_GET_MAIN_ADVERTISEMENT=HOST + "resource/advertisement";//获取广告
+    public static final String APP_GET_MAIN_MORE_RESCOURE=HOST + "resource/listResourceByColumnId";//点击栏目获取更多的资源
     public static String OFFTIME;
 
 

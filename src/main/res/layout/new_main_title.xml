@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/px_10"
-    android:background="@android:color/white"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent">
     <RelativeLayout
+        android:layout_marginBottom="@dimen/px_30"
         android:layout_marginTop="@dimen/px_30"
-        android:layout_marginRight="@dimen/px_30"
-        android:layout_marginLeft="@dimen/px_30"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -20,16 +16,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/tv_title_name"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px_16"
             android:layout_toRightOf="@+id/img_logo"
+            android:text="强烈推荐"
             android:textSize="@dimen/text_size_30_px"
             android:textColor="@color/color_333333"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
-            android:id="@+id/img_main_more"
             android:layout_centerVertical="true"
             android:background="@mipmap/img_main_more"
             android:layout_alignParentRight="true"
@@ -37,25 +32,4 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
-
-    <org.eteclab.ui.widget.NoScrollGridView
-          android:layout_margin="@dimen/px_30"
-          android:id="@+id/grid_new"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginRight="@dimen/px_10"
-          android:numColumns="1" />
-
-    <LinearLayout
-        android:background="@color/color_efefef"
-        android:layout_marginTop="@dimen/px_30"
-        android:layout_marginBottom="@dimen/px_30"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.wodm.android.view.newview.RoundAngleImageView
-            android:id="@+id/img_angle_ads"
-            android:background="@mipmap/login_banner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 </LinearLayout>

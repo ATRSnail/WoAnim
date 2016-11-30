@@ -36,6 +36,7 @@ import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.DowmBean;
 import com.wodm.android.bean.ObjectBean;
+import com.wodm.android.dbtools.DBTools;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.ui.AppActivity;
@@ -119,6 +120,7 @@ public class CartoonReadActivity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //记录数据
         handler.sendEmptyMessageAtTime(0, 10000);
         setListView();
         setLoadAndRefresh();
@@ -139,6 +141,7 @@ public class CartoonReadActivity extends AppActivity {
 
 
         barrage_rescourceId = bean.getId();
+
         barrage_charterId = mChapterList.get(0).getId();
         setBottoms();
         findViewById(R.id.send_bullet).setOnClickListener(new View.OnClickListener() {
@@ -161,7 +164,15 @@ public class CartoonReadActivity extends AppActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //插入开始时间
+        DBTools.getInstance(this).inserDB(barrage_rescourceId);
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //更新结束时间
+        DBTools.getInstance(this).updateDB(barrage_rescourceId);
     }
 
     private void startReadPath(String path) {
@@ -209,6 +220,7 @@ public class CartoonReadActivity extends AppActivity {
 
             CurrChapter = mChapterList.get(index);
             barrage_charterId = CurrChapter.getId();
+
             httpGet(Constants.HOST + "resource/cartoon/" + CurrChapter.getId(), new HttpCallback() {
 
                 @Override
