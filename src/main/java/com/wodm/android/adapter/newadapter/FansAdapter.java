@@ -37,10 +37,11 @@ public class FansAdapter extends BaseAdapter {
     List<FansBean.DataBean> list;
     Context mContext;
     MyHolder holder = null;
-
-    public FansAdapter(AttentionActivity attentionActivity, List<FansBean.DataBean> data) {
+    int type;
+    public FansAdapter(AttentionActivity attentionActivity, List<FansBean.DataBean> data,int ty) {
         this.list = data;
         this.mContext = attentionActivity;
+        this.type =ty;
         notifyDataSetChanged();
     }
 

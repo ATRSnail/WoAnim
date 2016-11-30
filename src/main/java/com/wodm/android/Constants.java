@@ -145,6 +145,9 @@ public class Constants {
     public static final String APP_GET_MAIN_ADVERTISEMENT=HOST + "resource/advertisement";//获取广告
     public static final String APP_GET_MAIN_MORE_RESCOURE=HOST + "resource/listResourceByColumnId";//点击栏目获取更多的资源
     public static String OFFTIME;
+    public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow?userId=";//保存用户关注的内容
+    public static final String GET_USER_ATTENTION=HOST + "behavior/findFollowList?userId=";//获取用户的关注/粉丝的列表
+    public static final String REMOVE_USER_ATTENTION=HOST + "behavior/deleteUserFollow?userId=";//取消用户关注的内容
 
 
     public static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()

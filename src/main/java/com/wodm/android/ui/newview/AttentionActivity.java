@@ -94,10 +94,10 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
 
                 if(type==1){
                     FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
-                    noscroll.setAdapter(new FollowAdapter(AttentionActivity.this,bean.getData()));
+                    noscroll.setAdapter(new FollowAdapter(AttentionActivity.this,bean.getData(),type));
                 } else {
                     FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
-                    noscroll.setAdapter(new FansAdapter(AttentionActivity.this,bean.getData()));
+                    noscroll.setAdapter(new FansAdapter(AttentionActivity.this,bean.getData(),type));
                 }
 
 

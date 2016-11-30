@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -36,11 +37,12 @@ import java.util.List;
 public class FollowAdapter extends BaseAdapter {
     List<FollowBean.DataBean> list;
     Context mContext;
+    int type;
 
-
-    public FollowAdapter(AttentionActivity attentionActivity, List<FollowBean.DataBean> data) {
+    public FollowAdapter(AttentionActivity attentionActivity, List<FollowBean.DataBean> data,int ty) {
         this.list = data;
         this.mContext = attentionActivity;
+        this.type=ty;
         notifyDataSetChanged();
     }
 
@@ -118,6 +120,7 @@ public class FollowAdapter extends BaseAdapter {
             } else {
                 url = Constants.SAVE_USER_ATTENTION;
             }
+
             JSONObject post = new JSONObject();
             long userId = Constants.CURRENT_USER.getData().getAccount().getId();
             post.put("userId", userId);
@@ -140,9 +143,27 @@ public class FollowAdapter extends BaseAdapter {
                     super.doRequestFailure(exception, msg);
                 }
             });
+
+            String ur =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
+            appActivity.httpGet(ur,new HttpCallback(){
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+
+//                if(type==1){
+//                    FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
+//                    noscroll.setAdapter(new FollowAdapter(AttentionActivity.this,bean.getData()));
+//                } else {
+//                    FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
+//                    noscroll.setAdapter(new FansAdapter(AttentionActivity.this,bean.getData()));
+//                }
+
+
+                }});
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
 

@@ -188,7 +188,7 @@
         </activity>
 
         <service android:name=".android.run.DBService"></service>
-        <service android:name=".android.run.VideoService" />
+        <!--<service android:name=".android.run.VideoService" />-->
 
         <receiver android:name=".android.receiver.AlarmReceiver" />
         <receiver android:name=".android.receiver.UpDataReceiver" />
