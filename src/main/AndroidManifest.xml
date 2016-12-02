@@ -418,7 +418,10 @@
         <activity
             android:name=".android.ui.newview.DianZanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".android.ui.newview.ATWoActivity"
+        <activity
+            android:name=".android.ui.newview.ATWoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".android.ui.newview.SendMsgActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

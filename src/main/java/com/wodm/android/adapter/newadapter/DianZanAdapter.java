@@ -1,6 +1,7 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.wodm.R;
 import com.wodm.android.adapter.BaseViewHolder;
 import com.wodm.android.bean.DianZanBean;
+import com.wodm.android.ui.newview.SendMsgActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,13 @@ public class DianZanAdapter extends BaseAdapter {
         name.setText(list.get(position).getName());
 
         cBox.setOnCheckedChangeListener(new onChecked(list.get(position)));
+        replyImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("onclecid");
+                context.startActivity(new Intent(context, SendMsgActivity.class));
+            }
+        });
 
         return convertView;
     }

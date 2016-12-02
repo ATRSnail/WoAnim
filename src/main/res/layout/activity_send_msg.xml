@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_atwo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical">
+
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/set_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_alignParentTop="true"
+        app:BackGroundColor="@color/color_f5c920"
+        app:CustomtitleTextColor="@color/color_ffffff"
+        app:CustomtitleTextSize="@dimen/text_size_32_px"
+        app:Customtoptitle="发送评论"
+        app:leftBackGround="@mipmap/back_mall_white"
+        app:rightText="发送"
+        app:rightTextColor="@color/color_ffffff"
+        app:rightTextSize="@dimen/text_size_28_px"
+        app:rightType="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/more_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:src="@mipmap/at" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:src="@mipmap/photo" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:src="@mipmap/biaoqing" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
