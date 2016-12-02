@@ -26,7 +26,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
     Context mContext;
     boolean flag = false;
     AtyTopLayout set_topbar;
-
+    int num;
     public AtyTopLayout getSet_topbar() {
         return set_topbar;
     }
@@ -39,7 +39,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         this.mContext = context;
         this.flag = mflag;
         list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             list.add("通知" + i);
         }
         notifyDataSetChanged();
@@ -89,25 +89,26 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         }
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
-        final int[] num = {0};
+
         holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("AA", "---------------------" + position);
+
                 if (click[0]) {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_yes);
-                    num[0]++;
+                    num++;
                 } else {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_no);
-                    num[0]--;
+                    num--;
                 }
                 click[0] = !click[0];
+                if (num> 0) {
+                    set_topbar.setTvRight("删除");
+                }else if (num==0){
+                    set_topbar.setTvRight("完成");
+                }
             }
         });
-        if (num[0] > 0) {
-            set_topbar.setTvRight("删除");
-        }
-
         return convertView;
     }
 

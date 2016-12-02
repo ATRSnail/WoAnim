@@ -227,6 +227,10 @@ public class AtyTopLayout extends RelativeLayout {
         tv_right.setText(text);
     }
 
+    public TextView getTv_right() {
+        return tv_right;
+    }
+
     //自定义click的监听回调接口
     public interface myTopbarClicklistenter {
         void leftClick();

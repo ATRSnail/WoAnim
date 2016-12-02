@@ -113,12 +113,15 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
                     num--;
                 }
                 click[0] = !click[0];
+                if (num> 0) {
+                    set_topbar.setTvRight("删除");
+                }else if (num==0){
+                    set_topbar.setTvRight("完成");
+                }
             }
         });
-        Log.e("AA", "---------------------" + num);
-        if (num> 0) {
-            set_topbar.setTvRight("删除");
-        }
+
+
 
         return convertView;
     }
