@@ -267,8 +267,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
          getData();
-
-
     }
 
     private void getData() {
@@ -276,7 +274,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (Constants.CURRENT_USER==null) {finish(); return;}
         if(getIntent().getBooleanExtra("anotherInfo",false)){
             userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
-            Log.e("AA","------------"+userId);
             ll_attention.setVisibility(View.GONE);
             btn_user_info.setVisibility(View.GONE);
             another_persion.setVisibility(View.VISIBLE);
@@ -294,19 +291,20 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                }
            });
         }else {
+
             userId =Constants.CURRENT_USER.getData().getAccount().getId();
-            dataBean=Constants.CURRENT_USER.getData();
+
+            dataBean = Constants.CURRENT_USER.getData();
+            Log.e("AA", "更新Persion---------------------"+dataBean.getFollowNum());
             setUserInfo();
         }
+
     }
 
 
-//    UpdataUserInfo infos = new UpdataUserInfo() {
-//        @Override
-//        public void getUserInfo(UserInfoBean bean) {
-//            Constants.CURRENT_USER = bean;
-//        }
-//    };
+    void updataDataBean () {
+
+    }
 
 
     private void setUserInfo(){
@@ -451,6 +449,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
         finish();
     }
+
 
     @Override
     public void rightClick() {

@@ -1,21 +1,15 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wodm.R;
-import com.wodm.android.ui.newview.CommentActivity;
-import com.wodm.android.ui.newview.DIanZanActivity;
-import com.wodm.android.ui.newview.MessageCenterActivity;
-import com.wodm.android.ui.newview.SystemInformActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.ui.widget.CircularImage;
@@ -34,7 +28,7 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
     String[] names = new String[]{"系统通知", "物流通知"};
     boolean flag = false;
     AtyTopLayout set_topbar;
-
+    int num=0;
     public AtyTopLayout getSet_topbar() {
         return set_topbar;
     }
@@ -107,22 +101,22 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
         }
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
-        final int[] num = {0};
         holder.choice_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("AA", "---------------------" + position);
+
                 if (click[0]) {
                     finalHolder.choice_message.setImageResource(R.mipmap.up_yes);
-                    num[0]++;
+                    num++;
                 } else {
                     finalHolder.choice_message.setImageResource(R.mipmap.up_no);
-                    num[0]--;
+                    num--;
                 }
                 click[0] = !click[0];
             }
         });
-        if (num[0] > 0) {
+        Log.e("AA", "---------------------" + num);
+        if (num> 0) {
             set_topbar.setTvRight("删除");
         }
 

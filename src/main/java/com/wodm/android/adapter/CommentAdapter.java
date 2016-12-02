@@ -7,10 +7,13 @@ import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.bean.CommentBean;
+import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.newview.PersionActivity;
+import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.biaoqing.FaceConversionUtil;
 
 import org.eteclab.base.annotation.Layout;
@@ -54,6 +57,10 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!UpdataUserInfo.isLogIn( mContext,true,null)) {
+                    Toast.makeText(mContext, "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(mContext, PersionActivity.class);
                 long followUserId = bean.getSendId();
                 intent.putExtra("anotherId",followUserId);

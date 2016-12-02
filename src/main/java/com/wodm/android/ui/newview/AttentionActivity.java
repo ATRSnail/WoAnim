@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,6 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("AA","----------------"+getIntent().getIntExtra("fans",0));
          followAdapter=new FollowAdapter(AttentionActivity.this);
         fansAdapter=new FansAdapter(AttentionActivity.this);
         set_topbar.setOnTopbarClickListenter(this);
@@ -78,7 +76,6 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
                 if(type==1){
                     FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
                     followAdapter.setList(bean.getData());
-                    Log.e("AA","bean.getData()--------------------"+bean.getData().size());
                     noscroll.setAdapter(followAdapter);
                 } else {
                     FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);

@@ -1,36 +1,21 @@
 package com.wodm.android.adapter.newadapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
-import com.wodm.android.Constants;
-import com.wodm.android.bean.FansBean;
-import com.wodm.android.tools.DegreeTools;
-import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.newview.ATWoActivity;
-import com.wodm.android.ui.newview.AttentionActivity;
 import com.wodm.android.ui.newview.CommentActivity;
-import com.wodm.android.ui.newview.DIanZanActivity;
+import com.wodm.android.ui.newview.DianZanActivity;
 import com.wodm.android.ui.newview.MessageCenterActivity;
-import com.wodm.android.ui.newview.PersionActivity;
 import com.wodm.android.ui.newview.SystemInformActivity;
-import com.wodm.android.utils.TextColorUtils;
 
-import org.eteclab.base.http.HttpCallback;
-import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +103,7 @@ public class MessageCenterAdapter extends BaseAdapter {
 //
 //                        break;
                     case 4:
-                        intent.setClass(mContext, DIanZanActivity.class);
+                        intent.setClass(mContext, DianZanActivity.class);
                         break;
                 }
                 mContext.startActivity(intent);

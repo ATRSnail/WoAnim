@@ -2,7 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +65,6 @@ public class FollowAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.e("AA","getList().size()--------------------"+getList().size());
         return getList().size();
     }
 
