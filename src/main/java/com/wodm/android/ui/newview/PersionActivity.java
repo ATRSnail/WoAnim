@@ -291,19 +291,23 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                }
            });
         }else {
-
             userId =Constants.CURRENT_USER.getData().getAccount().getId();
-
-            dataBean = Constants.CURRENT_USER.getData();
-            Log.e("AA", "更新Persion---------------------"+dataBean.getFollowNum());
-            setUserInfo();
+            updataDataBean(userId);
         }
 
     }
 
 
-    void updataDataBean () {
-
+    void updataDataBean(long userId) {
+        httpGet(Constants.APP_GET_USERINFO + userId,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
+                dataBean=bean.getData();
+                setUserInfo();
+            }
+        });
     }
 
 
