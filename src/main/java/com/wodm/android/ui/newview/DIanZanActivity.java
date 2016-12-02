@@ -1,19 +1,15 @@
 package com.wodm.android.ui.newview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.wodm.R;
-import com.wodm.android.adapter.TabTypeAdapter;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
-
-import org.eteclab.base.annotation.Click;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 
@@ -21,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Layout(R.layout.activity_dian_zan)
-public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,
-        View.OnClickListener {
+public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.choice_bottom)

@@ -47,7 +47,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     public void rightClick() {
         adapter.setToDel(!adapter.isToDel());
         choice_bottom.setVisibility(adapter.isToDel()?View.VISIBLE:View.GONE);
-        set_topbar.setTvRight(adapter.isToDel()?"删除":"编辑");
+        set_topbar.setTvRight(adapter.isToDel()?"删除":"勾选");
         if (!adapter.isToDel()){
             adapter.delSome();
         }
