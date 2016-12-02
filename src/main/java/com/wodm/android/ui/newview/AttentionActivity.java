@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Layout(R.layout.activity_attention)
-public class AttentionActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
+public class AttentionActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,FollowAdapter.UpdateAttention{
 
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
@@ -42,62 +42,48 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
     String[] titles;
     List<View> views;
     MyPagerAdapter adapter;
+    FollowAdapter followAdapter;
+    FansAdapter    fansAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("AA","----------------"+getIntent().getIntExtra("fans",0));
-
+         followAdapter=new FollowAdapter(AttentionActivity.this);
+        fansAdapter=new FansAdapter(AttentionActivity.this);
         set_topbar.setOnTopbarClickListenter(this);
         titles = new String[]{"我的关注", "粉丝数"};
         views = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
             getData((i+1));
         }
-
         adapter = new MyPagerAdapter();
+        followAdapter.setUpdateAttention(this);
+        fansAdapter.setUpdateAttention(this);
         viewPager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewPager);
         if(getIntent().getIntExtra("fans",0)==1){
             viewPager.setCurrentItem(1);
         }
-//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//             if(position==0) {
-//                 new FollowAdapter(0);}
-//                else {
-//                 new FansAdapter(1);
-//             }
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
 
     }
 
     private void getData(final int type) {
-        View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
+        final View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
         final ListView noscroll = (ListView) view.findViewById(R.id.noscroll);
         String url =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
         httpGet(url,new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-
                 if(type==1){
                     FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
-                    noscroll.setAdapter(new FollowAdapter(AttentionActivity.this,bean.getData(),type));
+                    followAdapter.setList(bean.getData());
+                    Log.e("AA","bean.getData()--------------------"+bean.getData().size());
+                    noscroll.setAdapter(followAdapter);
                 } else {
                     FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
-                    noscroll.setAdapter(new FansAdapter(AttentionActivity.this,bean.getData(),type));
+                    fansAdapter.setList(bean.getData());
+                    noscroll.setAdapter(fansAdapter);
                 }
 
 
@@ -114,6 +100,26 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
             }
         });
         views.add(view);
+    }
+
+    @Override
+    public void update(boolean flag) {
+        if (flag){
+        updateData();
+        }
+    }
+
+    private void updateData() {
+        views.clear();
+        getData(1);
+        getData(2);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateData();
     }
 
     public class MyPagerAdapter extends PagerAdapter {
@@ -156,4 +162,5 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
     public void rightClick() {
 
     }
+
 }

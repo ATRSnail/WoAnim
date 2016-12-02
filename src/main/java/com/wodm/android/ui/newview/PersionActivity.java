@@ -273,7 +273,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     private void getData() {
 //            UpdataMedalInfo.getMedalInfo(this, userId);
-
+        if (Constants.CURRENT_USER==null) {finish(); return;}
         if(getIntent().getBooleanExtra("anotherInfo",false)){
             userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
             Log.e("AA","------------"+userId);
@@ -281,15 +281,10 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             btn_user_info.setVisibility(View.GONE);
             another_persion.setVisibility(View.VISIBLE);
             another_persion.setOnClickListener(this);
-            if (getIntent().getBooleanExtra("guanzhu",false)){
-                another_persion.setImageResource(R.mipmap.noatten_persion);
-            }else {
-                another_persion.setImageResource(R.mipmap.atten_persion);
-            }
             edit_persion.setImageResource(R.mipmap.jubao);
             medal_another.setText("他的勋章");
             save_another.setText("他的收藏");
-           httpGet(Constants.APP_GET_USERINFO + userId,new HttpCallback(){
+           httpGet(Constants.APP_GET_USERINFO + userId+"&id="+Constants.CURRENT_USER.getData().getAccount().getId(),new HttpCallback(){
                @Override
                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                    super.doAuthSuccess(result, obj);
@@ -299,7 +294,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                }
            });
         }else {
-            if (Constants.CURRENT_USER==null) {finish(); return;}
             userId =Constants.CURRENT_USER.getData().getAccount().getId();
             dataBean=Constants.CURRENT_USER.getData();
             setUserInfo();
@@ -324,6 +318,11 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(accountBean.getPortrait()))
             new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
 
+        if (dataBean.getIsFollow()==1){
+            another_persion.setImageResource(R.mipmap.noatten_persion);
+        }else {
+            another_persion.setImageResource(R.mipmap.atten_persion);
+        }
 
         try {
             MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameTXK(),user_txk,dataBean.getPandentDetail().getImgUrlTXK());
@@ -426,13 +425,15 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 break;
             case R.id.another_persion :
                 FollowAdapter adapter =new FollowAdapter();
-                if (getIntent().getBooleanExtra("guanzhu",false)){
+                Log.e("AA","-关注的值------------"+dataBean.getIsFollow());
+                if (dataBean.getIsFollow()==1){
                      adapter.saveOrDeleteUserFollow(0,userId);
-                    another_persion.setImageResource(R.mipmap.noatten_persion);
+                    another_persion.setImageResource(R.mipmap.atten_persion);
                 }else {
                     adapter.saveOrDeleteUserFollow(1,userId);
-                    another_persion.setImageResource(R.mipmap.atten_persion);
+                    another_persion.setImageResource(R.mipmap.noatten_persion);
                 }
+                getData();
                 break;
             case R.id.attention_persion:
                 startActivity(new Intent(this,AttentionActivity.class));
@@ -447,6 +448,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     @Override
     public void leftClick() {
+
         finish();
     }
 

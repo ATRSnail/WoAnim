@@ -84,10 +84,21 @@ public class UserInfoBean {
          * gradeImageId : null
          *  followNum" : 4, 关注数
          *  "fansNum" : 4,粉丝数
+         *  isFollow 1 关注 0 未关注 用户是否已被关注
          */
 
         private long followNum;
         private long fansNum;
+        private int isFollow;
+
+        public int getIsFollow() {
+            return isFollow;
+        }
+
+        public void setIsFollow(int isFollow) {
+            this.isFollow = isFollow;
+        }
+
         private AccountBean account;
         private int needEmpirical;
         private int animationCount;

@@ -28,6 +28,7 @@ import org.eteclab.ui.widget.CircularImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,15 +36,27 @@ import java.util.List;
  */
 
 public class FollowAdapter extends BaseAdapter {
-    List<FollowBean.DataBean> list;
-    Context mContext;
-    int type;
+    List<FollowBean.DataBean> list=new ArrayList<>();
+    UpdateAttention updateAttention;
 
-    public FollowAdapter(AttentionActivity attentionActivity, List<FollowBean.DataBean> data,int ty) {
-        this.list = data;
-        this.mContext = attentionActivity;
-        this.type=ty;
+    public void setUpdateAttention(UpdateAttention updateAttention) {
+        this.updateAttention = updateAttention;
+    }
+
+    public List<FollowBean.DataBean> getList() {
+        return list;
+    }
+
+    public void setList(List<FollowBean.DataBean> list) {
+        this.list.clear();
+        this.list=list;
         notifyDataSetChanged();
+    }
+
+    Context mContext;
+
+    public FollowAdapter(AttentionActivity attentionActivity) {
+        this.mContext = attentionActivity;
     }
 
     public FollowAdapter() {
@@ -53,12 +66,13 @@ public class FollowAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        Log.e("AA","getList().size()--------------------"+getList().size());
+        return getList().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return getList().get(position);
     }
 
     @Override
@@ -81,7 +95,7 @@ public class FollowAdapter extends BaseAdapter {
         } else {
             holder = (MyHolder) convertView.getTag();
         }
-        FollowBean.DataBean bean = list.get(position);
+        FollowBean.DataBean bean = getList().get(position);
         final long followUserId = bean.getFollowUserId();
         holder.attention.setBackgroundResource(R.mipmap.noattention);
         holder.attention.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +114,6 @@ public class FollowAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PersionActivity.class);
                 intent.putExtra("anotherId", followUserId);
-                intent.putExtra("guanzhu", true);
                 intent.putExtra("anotherInfo", true);
                 mContext.startActivity(intent);
             }
@@ -129,7 +142,7 @@ public class FollowAdapter extends BaseAdapter {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
-
+                    updateAttention.update(true);
                 }
 
                 @Override
@@ -144,27 +157,13 @@ public class FollowAdapter extends BaseAdapter {
                 }
             });
 
-            String ur =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
-            appActivity.httpGet(ur,new HttpCallback(){
-                @Override
-                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    super.doAuthSuccess(result, obj);
-
-//                if(type==1){
-//                    FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
-//                    noscroll.setAdapter(new FollowAdapter(AttentionActivity.this,bean.getData()));
-//                } else {
-//                    FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
-//                    noscroll.setAdapter(new FansAdapter(AttentionActivity.this,bean.getData()));
-//                }
-
-
-                }});
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
+
+
 
 
     static class MyHolder {
@@ -174,5 +173,9 @@ public class FollowAdapter extends BaseAdapter {
         TextView gradeName;
         ImageView attention;
 
+    }
+
+    public  interface  UpdateAttention{
+        public void update(boolean flag);
     }
 }

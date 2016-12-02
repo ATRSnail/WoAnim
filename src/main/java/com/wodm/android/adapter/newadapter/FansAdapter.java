@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -37,12 +38,18 @@ public class FansAdapter extends BaseAdapter {
     List<FansBean.DataBean> list;
     Context mContext;
     MyHolder holder = null;
-    int type;
-    public FansAdapter(AttentionActivity attentionActivity, List<FansBean.DataBean> data,int ty) {
-        this.list = data;
+    FollowAdapter.UpdateAttention updateAttention;
+    public FansAdapter(AttentionActivity attentionActivity) {
         this.mContext = attentionActivity;
-        this.type =ty;
         notifyDataSetChanged();
+    }
+
+    public void setUpdateAttention(FollowAdapter.UpdateAttention updateAttention) {
+        this.updateAttention = updateAttention;
+    }
+
+    public void setList(List<FansBean.DataBean> list) {
+        this.list = list;
     }
 
     public FansAdapter() {
@@ -99,7 +106,6 @@ public class FansAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PersionActivity.class);
                 intent.putExtra("anotherId", followUserId);
-                intent.putExtra("guanzhu", false);
                 intent.putExtra("anotherInfo", true);
                 mContext.startActivity(intent);
             }
@@ -127,7 +133,7 @@ public class FansAdapter extends BaseAdapter {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
-
+                    updateAttention.update(true);
                 }
 
                 @Override
@@ -141,6 +147,7 @@ public class FansAdapter extends BaseAdapter {
                     super.doRequestFailure(exception, msg);
                 }
             });
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

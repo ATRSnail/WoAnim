@@ -187,8 +187,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".android.run.DBService"></service>
-        <!--<service android:name=".android.run.VideoService" />-->
+        <service android:name=".android.run.DBService" />
+        <!-- <service android:name=".android.run.VideoService" /> -->
 
         <receiver android:name=".android.receiver.AlarmReceiver" />
         <receiver android:name=".android.receiver.UpDataReceiver" />
@@ -403,10 +403,23 @@
         <activity
             android:name=".android.ui.newview.BindPhoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
-        <activity android:name=".android.ui.newview.AttentionActivity"
-                  android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".android.ui.newview.AttentionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.MessageCenterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.SystemInformActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.CommentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".android.ui.newview.DIanZanActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".android.ui.newview.ATWoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

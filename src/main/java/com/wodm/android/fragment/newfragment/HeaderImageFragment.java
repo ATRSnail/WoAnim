@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ public class HeaderImageFragment extends Fragment {
 
     private String stringGuaJian[] = {"花心眼睛", "波特的眼睛", "蓝色太阳镜", "普通款式", "蛤蟆镜"};
     private String headerStrGuaJian[] = {"熊仔头像框", "悟空头像框", "绿帽头像框", "鱼缸头像框", "钻石头像框", "企鹅头像框", "白兔子头像框", "海贼头像框", "龙虾头像框", "潜水艇头像框", "小黄鸡头像框"};
-    private static MyGridView gv_guajian;
+    private static GridView gv_guajian;
 
     public static FragmentMyPager newInstance(int num) {
         FragmentMyPager f = new FragmentMyPager();
@@ -58,7 +59,7 @@ public class HeaderImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(com.wodm.R.layout.fragment_mypage, container, false);
-        gv_guajian = (MyGridView) v.findViewById(R.id.gv_guajian);
+        gv_guajian = (GridView) v.findViewById(R.id.gv_guajian);
         gv_guajian.setSelector(new ColorDrawable(Color.TRANSPARENT));
         if (mNum == 1) {
             gv_guajian.setAdapter(new GuaJianAdapter(gv_guajian, arrayGuaJian, stringGuaJian));
@@ -71,11 +72,11 @@ public class HeaderImageFragment extends Fragment {
 
     class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
         private String clickStr;
-        private MyGridView mGirdview;
+        private GridView mGirdview;
         private int imageRescoures[];
         private String strRescoures[];
 
-        public GuaJianAdapter(MyGridView girdview, int imageRescoures[], String strRescoures[]) {
+        public GuaJianAdapter(GridView girdview, int imageRescoures[], String strRescoures[]) {
             this.mGirdview = girdview;
             this.imageRescoures = imageRescoures;
             this.strRescoures = strRescoures;

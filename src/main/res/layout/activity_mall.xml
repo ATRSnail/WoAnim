@@ -12,7 +12,7 @@
         android:layout_height="@dimen/px_90"
         app:BackGroundColor="@color/color_f5c92f"
         app:CustomtitleTextColor="@color/color_ffffff"
-        app:CustomtitleTextSize="@dimen/text_size_48_px"
+        app:CustomtitleTextSize="@dimen/text_size_32_px"
         app:Customtoptitle="商城"
         app:leftBackGround="@drawable/back_drawable"
         app:rightText="交易记录"
