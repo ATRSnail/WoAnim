@@ -19,11 +19,15 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.tools.Tools;
+import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
+import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
+import com.wodm.android.ui.newview.DianZanActivity;
 import com.wodm.android.ui.newview.MallActivity;
 import com.wodm.android.ui.newview.MessageCenterActivity;
 import com.wodm.android.ui.newview.MyMedalActivity;
+import com.wodm.android.ui.newview.SystemInformActivity;
 import com.wodm.android.ui.newview.TaskActivity;
 import com.wodm.android.ui.user.RecordActivity;
 import com.wodm.android.ui.user.UsSetActivity;
@@ -135,7 +139,8 @@ public class NewMineAdapter extends BaseAdapter {
         }
         Intent i = new Intent();
         if (text.equals("@我的")) {
-            mContext.startActivity(new Intent(mContext, UserMessageActivity.class));
+//            mContext.startActivity(new Intent(mContext, UserMessageActivity.class));
+            mContext.startActivity(new Intent(mContext, ATWoActivity.class));
         } else if (text.equals("收藏")) {
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);
@@ -172,6 +177,12 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, AttentionActivity.class);
         } else if (text.equals("消息中心")) {
             startIntent(null, MessageCenterActivity.class);
+        }else if (text.equals("点赞")) {
+            startIntent(null, DianZanActivity.class);
+        }else if (text.equals("系统通知")) {
+            startIntent(null, SystemInformActivity.class);
+        }else if (text.equals("话题")) {
+            startIntent(null, CommentActivity.class);
         }else {
             Toast.makeText(mContext, "此功能暂未开通,敬请期待!", Toast.LENGTH_SHORT).show();
         }
