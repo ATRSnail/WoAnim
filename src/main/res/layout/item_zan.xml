@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:padding="@dimen/px_30">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <org.eteclab.ui.widget.CircularImage
+                android:id="@+id/atwo_new"
+                android:layout_width="@dimen/px_108"
+                android:layout_height="@dimen/px_108"
+                android:src="@mipmap/moren_header" />
+
+            <TextView
+                android:id="@+id/name_atwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_30"
+                android:layout_marginTop="@dimen/px_30"
+                android:layout_toRightOf="@id/atwo_new"
+                android:text="会飞的鱼"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_30_px" />
+
+            <ImageView
+                android:id="@+id/reply_atwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/name_atwo"
+                android:src="@mipmap/reply" />
+
+            <ImageView
+                android:id="@+id/choice_atwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/up_no"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/cb_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/time_atwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/name_atwo"
+                android:layout_below="@id/name_atwo"
+                android:layout_marginTop="@dimen/px_6"
+                android:text="2016-03-28   点赞了你的帖子"
+                android:textColor="@color/color_cccccc"
+                android:textSize="@dimen/text_size_24_px" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:paddingTop="@dimen/px_30"
+            android:text="哎呦?????????" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:background="@drawable/bg_corner"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/atwo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="卡迪那"
+                android:textColor="@color/color_f5912f"
+                android:textSize="@dimen/text_size_34_px" />
+
+            <TextView
+                android:id="@+id/info_atwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=":天窗"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/text_size_34_px" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_2"
+        android:background="@color/color_eae7e7" />
+</LinearLayout>
