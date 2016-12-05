@@ -149,19 +149,6 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     /**
-     * 编辑框获取焦点，并显示软件盘
-     */
-    private void showSoftInput() {
-        mEditText.requestFocus();
-        mEditText.post(new Runnable() {
-            @Override
-            public void run() {
-                mInputManager.showSoftInput(mEditText, 0);
-            }
-        });
-    }
-
-    /**
      * 隐藏表情布局
      *
      */
@@ -172,4 +159,12 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
 
+    @Override
+    public void onBackPressed() {
+        if (mEmojiView.isShown()){
+            hideEmotionLayout();
+            return;
+        }
+        super.onBackPressed();
+    }
 }

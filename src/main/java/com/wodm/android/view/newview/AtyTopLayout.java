@@ -138,6 +138,7 @@ public class AtyTopLayout extends RelativeLayout {
             tv_right.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (clicklistenter == null) return;
                     clicklistenter.rightClick();
                 }
             });
@@ -147,7 +148,8 @@ public class AtyTopLayout extends RelativeLayout {
         leftImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                    clicklistenter.leftClick();
+                if (clicklistenter == null) return;
+                clicklistenter.leftClick();
             }
         });
 
@@ -223,6 +225,7 @@ public class AtyTopLayout extends RelativeLayout {
     public void setTvTitle(String text) {
         tvTitle.setText(text);
     }
+
     public void setTvRight(String text) {
         tv_right.setText(text);
     }
