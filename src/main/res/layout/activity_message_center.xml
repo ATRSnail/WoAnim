@@ -27,6 +27,7 @@
         <ListView
             android:id="@+id/gridView_eMessageCenter"
             android:scrollbars="none"
+            android:listSelector="@android:color/transparent"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

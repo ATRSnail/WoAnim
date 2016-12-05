@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wodm.R;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class SystemInformAdapter extends BaseAdapter implements View.OnClickListener {
     List<String> list;
+    List<Object> data=new ArrayList<>();
     Context mContext;
     int phos[] = new int[]{R.mipmap.system_inform, R.mipmap.goods_inform};
     String[] names = new String[]{"系统通知", "物流通知"};
@@ -48,6 +50,13 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
         notifyDataSetChanged();
     }
 
+    public List<Object> getData() {
+        return data;
+    }
+
+    public void setData(List<Object> data) {
+        this.data = data;
+    }
 
     public SystemInformAdapter() {
 
@@ -132,6 +141,8 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
         switch (v.getId()) {
         }
     }
+
+
 
 
     static class MyHolder {

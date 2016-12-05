@@ -2,7 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +90,6 @@ public class MessageCenterAdapter extends BaseAdapter {
         }else {
             holder.pho.setImageResource(phos[type]);
         }
-        Log.e("AA","---------------------"+type);
         if (type == 2) {
             holder.rightname.setVisibility(View.VISIBLE);
             holder.rightname.setText("了你");
