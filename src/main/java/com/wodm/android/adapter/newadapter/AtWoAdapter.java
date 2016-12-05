@@ -2,6 +2,7 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
             holder.time = (TextView) convertView.findViewById(R.id.time_atwo);
             holder.info_atwo = (TextView) convertView.findViewById(R.id.info_atwo);
             holder.choice_atwo = (ImageView) convertView.findViewById(R.id.choice_atwo);
+            holder.cicle_new = (CircularImage) convertView.findViewById(R.id.cicle_new);
             holder.laizi_atwo = (TextView) convertView.findViewById(R.id.laizi_atwo);
             convertView.setTag(holder);
         } else {
@@ -110,7 +112,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
                 }
             }
         });
-
+        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +140,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         TextView laizi_atwo;
         TextView info_atwo;
         ImageView choice_atwo;
+        CircularImage cicle_new;
 
     }
 }

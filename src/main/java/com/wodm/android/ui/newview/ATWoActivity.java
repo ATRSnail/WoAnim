@@ -34,7 +34,7 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         super.onCreate(savedInstanceState);
         set_topbar.setTvTitle("@我的");
         set_topbar.setOnTopbarClickListenter(this);
-        adapter = new AtWoAdapter(this, false);
+        adapter = new AtWoAdapter(ATWoActivity.this, false);
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);

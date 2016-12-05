@@ -33,7 +33,9 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
         View.OnClickListener {
 
     @ViewIn(R.id.ed_comment)
-    EditText mEditText;
+    EditText  mEditText;;
+    @ViewIn(R.id.set_topbar)
+    AtyTopLayout set_topbar;
     @ViewIn(R.id.tv_num)
     TextView numTv;
     @ViewIn(R.id.faceRelativeLayout)
@@ -53,7 +55,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void initDatas() {
-
+       set_topbar.setOnTopbarClickListenter(this);
     }
 
     private void initViews() {
@@ -119,7 +121,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void leftClick() {
-
+       finish();
     }
 
     @Override

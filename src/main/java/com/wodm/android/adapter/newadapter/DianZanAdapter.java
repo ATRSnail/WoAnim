@@ -2,6 +2,7 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,7 @@ public class DianZanAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new MyHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_zan, null);
-            holder.pho = (ImageView) convertView.findViewById(R.id.atwo_new);
+            holder.pho = (CircularImage) convertView.findViewById(R.id.atwo_new);
             holder.name = (TextView) convertView.findViewById(R.id.name_atwo);
             holder.reply = (ImageView) convertView.findViewById(R.id.reply_atwo);
             holder.atwo_name = (TextView) convertView.findViewById(R.id.atwo_name);
@@ -84,6 +85,7 @@ public class DianZanAdapter extends BaseAdapter {
             holder.tv_comment = (TextView) convertView.findViewById(R.id.tv_comment);
             holder.choice_atwo = (ImageView) convertView.findViewById(R.id.choice_atwo);
             holder.info_atwo = (TextView) convertView.findViewById(R.id.info_atwo);
+            holder.cicle_new = (CircularImage) convertView.findViewById(R.id.cicle_new);
             convertView.setTag(holder);
         } else {
             holder = (MyHolder) convertView.getTag();
@@ -94,9 +96,12 @@ public class DianZanAdapter extends BaseAdapter {
             holder.reply.setVisibility(View.GONE);
             holder.choice_atwo.setVisibility(View.VISIBLE);
         }
+        holder.cicle_new.setVisibility(View.VISIBLE);
         if(mdianZan){
             holder.tv_comment.setVisibility(View.GONE);
             holder.reply.setVisibility(View.GONE);
+        }else {
+            holder.reply.setVisibility(View.VISIBLE);
         }
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
@@ -138,7 +143,7 @@ public class DianZanAdapter extends BaseAdapter {
 
 
     static class MyHolder {
-        ImageView pho;
+        CircularImage pho;
         TextView name;
         ImageView reply;
         TextView atwo_name;
@@ -146,6 +151,7 @@ public class DianZanAdapter extends BaseAdapter {
         TextView tv_comment;
         TextView info_atwo;
         ImageView choice_atwo;
+        CircularImage cicle_new;
 
     }
 }

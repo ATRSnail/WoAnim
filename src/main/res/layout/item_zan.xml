@@ -16,11 +16,20 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
-            <ImageView
+            <org.eteclab.ui.widget.CircularImage
                 android:id="@+id/atwo_new"
                 android:layout_width="@dimen/px_108"
                 android:layout_height="@dimen/px_108"
                 android:src="@mipmap/moren_header" />
+
+            <org.eteclab.ui.widget.CircularImage
+                android:visibility="gone"
+                android:id="@+id/cicle_new"
+                android:layout_alignParentTop="@id/atwo_new"
+                android:layout_alignRight="@id/atwo_new"
+                android:background="@mipmap/circle_new"
+                android:layout_width="@dimen/px_36"
+                android:layout_height="@dimen/px_36" />
 
             <TextView
                 android:id="@+id/name_atwo"

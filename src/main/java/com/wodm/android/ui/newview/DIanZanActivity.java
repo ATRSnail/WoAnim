@@ -35,7 +35,7 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
-        adapter = new DianZanAdapter(this, false);
+        adapter = new DianZanAdapter(DianZanActivity.this, false);
         adapter.setSet_topbar(set_topbar);
         adapter.setDianZan(true);
         listView_atwo.setAdapter(adapter);

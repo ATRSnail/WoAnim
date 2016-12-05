@@ -39,7 +39,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
-        adapter = new DianZanAdapter(this, false);
+        adapter = new DianZanAdapter(CommentActivity.this, false);
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);
