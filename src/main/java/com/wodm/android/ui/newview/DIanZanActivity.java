@@ -1,5 +1,6 @@
 package com.wodm.android.ui.newview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,8 +8,10 @@ import android.widget.ListView;
 
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
+import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -27,7 +30,7 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
 
     private List<DianZanBean> list = new ArrayList<>();
     private DianZanAdapter adapter;
-
+    MessageUtils messageUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,38 +40,36 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
         adapter.setDianZan(true);
         listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);
+        messageUtils = new MessageUtils(new SystemInformAdapter(),choice_bottom,listView_atwo,set_topbar,DianZanActivity.this);
+
     }
 
     @Override
     public void leftClick() {
-        finish();
+       finish();
     }
 
     @Override
     public void rightClick() {
         String text = set_topbar.getTv_right().getText().toString();
         if("完成".equals(text)){
-            updateData("勾选",false,View.GONE);
+            messageUtils.updateData("勾选",false,View.GONE);
         }else   if("勾选".equals(text)){
-            updateData("完成",true,View.VISIBLE);
+            messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            updateData("删除",true,View.VISIBLE);
+            messageUtils.deleteMessage();
+            messageUtils.updateData("删除",true,View.VISIBLE);
         }
     }
 
-    public  void updateData(String string,boolean flag,int visible){
-        choice_bottom.setVisibility(visible);
-        set_topbar.setTvRight(string);
-        adapter = new DianZanAdapter(this, flag);
-        adapter.setSet_topbar(set_topbar);
-        listView_atwo.setAdapter(adapter);
-    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                updateData("勾选",false,View.GONE);
+                messageUtils.deleteAllMessage(5);
+                messageUtils.updateData("勾选",false,View.GONE);
                 break;
         }
     }

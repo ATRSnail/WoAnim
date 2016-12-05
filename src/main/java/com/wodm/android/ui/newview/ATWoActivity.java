@@ -1,5 +1,6 @@
 package com.wodm.android.ui.newview;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.wodm.R;
 import com.wodm.android.adapter.newadapter.AtWoAdapter;
 import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
@@ -26,6 +28,7 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @ViewIn(R.id.listView_atwo)
     ListView listView_atwo;
     AtWoAdapter adapter;
+    MessageUtils messageUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,38 +38,34 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);
+        messageUtils = new MessageUtils(new AtWoAdapter(),choice_bottom,listView_atwo,set_topbar,ATWoActivity.this);
     }
 
     @Override
     public void leftClick() {
-        finish();
+     finish();
     }
 
     @Override
     public void rightClick() {
         String text = set_topbar.getTv_right().getText().toString();
         if("完成".equals(text)){
-            updateData("勾选",false,View.GONE);
+            messageUtils.updateData("勾选",false,View.GONE);
         }else   if("勾选".equals(text)){
-            updateData("完成",true,View.VISIBLE);
+            messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            updateData("删除",true,View.VISIBLE);
+            messageUtils.deleteMessage();
+            messageUtils.updateData("删除",true,View.VISIBLE);
         }
     }
 
-    public  void updateData(String string,boolean flag,int visible){
-        choice_bottom.setVisibility(visible);
-        set_topbar.setTvRight(string);
-        adapter = new AtWoAdapter(this, flag);
-        adapter.setSet_topbar(set_topbar);
-        listView_atwo.setAdapter(adapter);
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                updateData("勾选",false,View.GONE);
+                messageUtils.deleteAllMessage(3);
+                messageUtils.updateData("勾选",false,View.GONE);
                 break;
         }
     }

@@ -96,6 +96,7 @@ public class DianZanAdapter extends BaseAdapter {
         }
         if(mdianZan){
             holder.tv_comment.setVisibility(View.GONE);
+            holder.reply.setVisibility(View.GONE);
         }
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};

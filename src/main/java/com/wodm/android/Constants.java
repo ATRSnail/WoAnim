@@ -152,6 +152,8 @@ public class Constants {
     public static final String DELETEMESSAGE=HOST + "behavior/batchDelMessage?userId=";//批量删除用户的消息
     public static final String READMESSAGELIST=HOST + "behavior/readMessage?userId=";//读取一则消息
     public static final String DELETEALLMESSAGE=HOST + "behavior/delAllMessage?userId=";// 根据删除指定类别下面的所有的消息(清空的功能)
+    public static final String SAVEUSERLIKE=HOST + "behavior/saveUserLike";// 保存用户点赞的内容
+    public static final String DELETEUSERLIKE=HOST + "behavior/deleteUserLike";// 用户取消点赞的
 
 
     public static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()

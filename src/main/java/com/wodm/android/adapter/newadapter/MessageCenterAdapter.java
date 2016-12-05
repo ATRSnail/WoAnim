@@ -83,7 +83,7 @@ public class MessageCenterAdapter extends BaseAdapter {
             holder = (MyHolder) convertView.getTag();
         }
        XiaoXiBean.DataBean dataBean = getList().get(position);
-        int type=dataBean.getType()-1;
+        final int type=dataBean.getType()-1;
         holder.name.setText(names[type]);
         if(dataBean.getStatus()==1){
             holder.pho.setImageResource(phos_new[type]);
@@ -103,10 +103,10 @@ public class MessageCenterAdapter extends BaseAdapter {
         String content=dataBean.getContent().toString();
         holder.info.setText(content);
         holder.watch_message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                 Intent intent = new Intent();
-                switch (position) {
+                switch (type) {
                     case 0:
                         intent.setClass(mContext, SystemInformActivity.class);
                         break;
