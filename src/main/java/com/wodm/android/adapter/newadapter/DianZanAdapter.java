@@ -101,6 +101,7 @@ public class DianZanAdapter extends BaseAdapter {
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
 
+
         holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
