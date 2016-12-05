@@ -422,6 +422,7 @@
             android:name=".android.ui.newview.ATWoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".android.ui.newview.SendMsgActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

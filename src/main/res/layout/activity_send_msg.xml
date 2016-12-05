@@ -22,55 +22,73 @@
         app:rightTextSize="@dimen/text_size_28_px"
         app:rightType="1" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
+        <RelativeLayout
+            android:id="@+id/rl_edit"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="9" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@+id/ed_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:maxLength="150" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="剩余150字"
+                android:textColor="@color/color_fb487f"
+                android:textSize="15sp" />
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_alignBottom="@+id/rl_edit"
             android:background="@color/more_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
                 android:src="@mipmap/at" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
                 android:src="@mipmap/photo" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
                 android:src="@mipmap/biaoqing" />
         </LinearLayout>
 
-    </LinearLayout>
-
-
+    </RelativeLayout>
 </LinearLayout>
