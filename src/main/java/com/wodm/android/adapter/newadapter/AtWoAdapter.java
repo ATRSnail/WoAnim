@@ -1,6 +1,7 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.ui.newview.SendMsgActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.ui.widget.CircularImage;
@@ -106,6 +108,14 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
                 }else if (num==0){
                     set_topbar.setTvRight("完成");
                 }
+            }
+        });
+
+        holder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("onclecid");
+                mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
             }
         });
         return convertView;

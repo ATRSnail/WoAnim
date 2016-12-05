@@ -121,6 +121,14 @@ public class DianZanAdapter extends BaseAdapter {
                 }
             }
         });
+
+        holder.reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("onclecid");
+                mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
+            }
+        });
         return convertView;
     }
 
