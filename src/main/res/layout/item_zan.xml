@@ -49,14 +49,6 @@
                 android:src="@mipmap/up_no"
                 android:visibility="gone" />
 
-            <CheckBox
-                android:id="@+id/cb_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/checkbox_selector"
-                android:button="@null"
-                android:layout_alignParentRight="true" />
-
             <TextView
                 android:id="@+id/time_atwo"
                 android:layout_width="wrap_content"
@@ -73,7 +65,8 @@
             android:id="@+id/tv_comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:paddingTop="@dimen/px_30"
             android:text="哎呦?????????" />
 

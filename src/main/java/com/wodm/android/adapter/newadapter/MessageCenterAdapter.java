@@ -2,6 +2,7 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,11 +91,15 @@ public class MessageCenterAdapter extends BaseAdapter {
         }else {
             holder.pho.setImageResource(phos[type]);
         }
+        Log.e("AA","---------------------"+type);
         if (type == 2) {
             holder.rightname.setVisibility(View.VISIBLE);
             holder.rightname.setText("了你");
             holder.centername.setVisibility(View.VISIBLE);
             holder.centername.setText("@");
+        }else {
+            holder.centername.setVisibility(View.GONE);
+            holder.rightname.setVisibility(View.GONE);
         }
         holder.time.setText(dataBean.getTimes());
         String content=dataBean.getContent().toString();
@@ -113,9 +118,9 @@ public class MessageCenterAdapter extends BaseAdapter {
                     case 2:
                         intent.setClass(mContext, ATWoActivity.class);
                         break;
-//                    case 3:
-//
-//                        break;
+                    case 3:
+                          return;
+
                     case 4:
                         intent.setClass(mContext, DianZanActivity.class);
                         break;

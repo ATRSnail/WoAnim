@@ -29,12 +29,11 @@
         android:background="@color/color_ffffff"
         android:orientation="vertical">
 
-        <GridView
+        <ListView
             android:id="@+id/gridView_SystemInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:numColumns="1"
             android:scrollbars="none" />
 
         <View

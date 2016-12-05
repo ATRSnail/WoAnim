@@ -15,6 +15,9 @@ import com.wodm.R;
 import com.wodm.android.adapter.BaseViewHolder;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.newview.SendMsgActivity;
+import com.wodm.android.view.newview.AtyTopLayout;
+
+import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,24 +28,31 @@ import java.util.List;
  * @create_date 16/12/2
  */
 public class DianZanAdapter extends BaseAdapter {
-
-    private List<DianZanBean> list = new ArrayList<>();
-    private List<DianZanBean> delList = new ArrayList<>();
-    private Context context;
-    private boolean isToDel = false;
-
-    public DianZanAdapter(Context context, List<DianZanBean> list) {
-        this.context = context;
-        this.list = list;
+    boolean mdianZan;
+    List<String> list;
+    Context mContext;
+    boolean flag = false;
+    AtyTopLayout set_topbar;
+    int num;
+    public AtyTopLayout getSet_topbar() {
+        return set_topbar;
     }
 
-    public boolean isToDel() {
-        return isToDel;
+    public void setSet_topbar(AtyTopLayout set_topbar) {
+        this.set_topbar = set_topbar;
     }
 
-    public void setToDel(boolean toDel) {
-        isToDel = toDel;
+    public DianZanAdapter(Context context, boolean mflag) {
+        this.mContext = context;
+        this.flag = mflag;
+        list = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            list.add("通知" + i);
+        }
         notifyDataSetChanged();
+    }
+
+    public DianZanAdapter() {
     }
 
     @Override
@@ -52,65 +62,80 @@ public class DianZanAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
+       MyHolder holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_zan, parent, false);
+            holder = new MyHolder();
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_zan, null);
+            holder.pho = (ImageView) convertView.findViewById(R.id.atwo_new);
+            holder.name = (TextView) convertView.findViewById(R.id.name_atwo);
+            holder.reply = (ImageView) convertView.findViewById(R.id.reply_atwo);
+            holder.atwo_name = (TextView) convertView.findViewById(R.id.atwo_name);
+            holder.time = (TextView) convertView.findViewById(R.id.time_atwo);
+            holder.tv_comment = (TextView) convertView.findViewById(R.id.tv_comment);
+            holder.choice_atwo = (ImageView) convertView.findViewById(R.id.choice_atwo);
+            holder.info_atwo = (TextView) convertView.findViewById(R.id.info_atwo);
+            convertView.setTag(holder);
+        } else {
+            holder = (MyHolder) convertView.getTag();
         }
-        TextView name = BaseViewHolder.get(convertView, R.id.name_atwo);
-        TextView commentTv = BaseViewHolder.get(convertView,R.id.tv_comment);
-        CheckBox cBox = BaseViewHolder.get(convertView, R.id.cb_select);
-        ImageView replyImg = BaseViewHolder.get(convertView, R.id.reply_atwo);
-        cBox.setChecked(false);
-        cBox.setVisibility(isToDel ? View.VISIBLE : View.GONE);
-        replyImg.setVisibility(isToDel ? View.GONE : View.VISIBLE);
+//        holder.pho.setImageResource();
+        holder.name.setText("会飞的鱼");
+        if (flag) {
+            holder.reply.setVisibility(View.GONE);
+            holder.choice_atwo.setVisibility(View.VISIBLE);
+        }
+        if(mdianZan){
+            holder.tv_comment.setVisibility(View.GONE);
+        }
+        final MyHolder finalHolder = holder;
+        final boolean[] click = {true};
 
-        name.setText(list.get(position).getName());
-
-        cBox.setOnCheckedChangeListener(new onChecked(list.get(position)));
-        replyImg.setOnClickListener(new View.OnClickListener() {
+        holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("onclecid");
-                context.startActivity(new Intent(context, SendMsgActivity.class));
+
+                if (click[0]) {
+                    finalHolder.choice_atwo.setImageResource(R.mipmap.up_yes);
+                    num++;
+                } else {
+                    finalHolder.choice_atwo.setImageResource(R.mipmap.up_no);
+                    num--;
+                }
+                click[0] = !click[0];
+                if (num> 0) {
+                    set_topbar.setTvRight("删除");
+                }else if (num==0){
+                    set_topbar.setTvRight("完成");
+                }
             }
         });
-
         return convertView;
     }
 
-    public void delSome(){
-        if (delList.size() == 0)return;
-        for (DianZanBean bean:delList){
-            if (list.contains(bean))
-                list.remove(bean);
-        }
-        notifyDataSetChanged();
+    public void setDianZan(boolean dianZan) {
+        this.mdianZan = dianZan;
     }
 
-    class onChecked implements CompoundButton.OnCheckedChangeListener {
 
-        DianZanBean dianZanBean;
+    static class MyHolder {
+        ImageView pho;
+        TextView name;
+        ImageView reply;
+        TextView atwo_name;
+        TextView time;
+        TextView tv_comment;
+        TextView info_atwo;
+        ImageView choice_atwo;
 
-        public onChecked(DianZanBean dianZanBean) {
-            this.dianZanBean = dianZanBean;
-        }
-
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked) {
-                delList.add(dianZanBean);
-            }else {
-                delList.remove(dianZanBean);
-            }
-        }
     }
 }

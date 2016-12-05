@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.wodm.R;
 import com.wodm.android.adapter.newadapter.MessageCenterAdapter;
@@ -23,7 +24,7 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
     @ViewIn(R.id.choice_bottom)
     LinearLayout choice_bottom;
     @ViewIn(R.id.gridView_SystemInfo)
-    GridView gridView_SystemInfo;
+    ListView gridView_SystemInfo;
     SystemInformAdapter adapter;
 
     @Override

@@ -3,6 +3,7 @@ package com.wodm.android.ui.newview;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -24,7 +25,7 @@ public class MessageCenterActivity extends AppActivity implements AtyTopLayout.m
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.gridView_eMessageCenter)
-    GridView gridView_eMessageCenter;
+    ListView gridView_eMessageCenter;
     MessageCenterAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

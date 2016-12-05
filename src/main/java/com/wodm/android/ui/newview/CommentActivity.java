@@ -34,8 +34,11 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDatas();
-        initViews();
+        set_topbar.setOnTopbarClickListenter(this);
+        adapter = new DianZanAdapter(this, false);
+        adapter.setSet_topbar(set_topbar);
+        listView_atwo.setAdapter(adapter);
+        choice_bottom.setOnClickListener(this);
     }
 
     @Override
@@ -45,34 +48,29 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void rightClick() {
-        adapter.setToDel(!adapter.isToDel());
-        choice_bottom.setVisibility(adapter.isToDel()?View.VISIBLE:View.GONE);
-        set_topbar.setTvRight(adapter.isToDel()?"删除":"勾选");
-        if (!adapter.isToDel()){
-            adapter.delSome();
+        String text = set_topbar.getTv_right().getText().toString();
+        if("完成".equals(text)){
+            updateData("勾选",false,View.GONE);
+        }else   if("勾选".equals(text)){
+            updateData("完成",true,View.VISIBLE);
+        }else   if("删除".equals(text)){
+            updateData("删除",true,View.VISIBLE);
         }
     }
 
-    private void initViews(){
-        set_topbar.setTvTitle("@我的");
-        set_topbar.setOnTopbarClickListenter(this);
-        adapter = new DianZanAdapter(this,list);
+    public  void updateData(String string,boolean flag,int visible){
+        choice_bottom.setVisibility(visible);
+        set_topbar.setTvRight(string);
+        adapter = new DianZanAdapter(this, flag);
+        adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
-        choice_bottom.setOnClickListener(this);
-    }
-
-    private void initDatas(){
-        for (int i = 0;i<5;i++){
-            list.add(new DianZanBean("小明"));
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                list.clear();
-                adapter.notifyDataSetChanged();
+                updateData("勾选",false,View.GONE);
                 break;
         }
     }
