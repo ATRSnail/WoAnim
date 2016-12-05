@@ -75,7 +75,7 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
         if (convertView == null) {
             holder = new MyHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.messageitem, null);
-            holder.pho = (CircularImage) convertView.findViewById(R.id.message_new);
+            holder.pho = (ImageView) convertView.findViewById(R.id.message_new);
             holder.name = (TextView) convertView.findViewById(R.id.name_message);
             holder.rightname = (TextView) convertView.findViewById(R.id.right_name_message);
             holder.centername = (TextView) convertView.findViewById(R.id.center_name_message);
@@ -135,7 +135,7 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
 
 
     static class MyHolder {
-        CircularImage pho;
+        ImageView pho;
         TextView name;
         TextView centername;
         TextView rightname;

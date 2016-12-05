@@ -148,6 +148,10 @@ public class Constants {
     public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow?userId=";//保存用户关注的内容
     public static final String GET_USER_ATTENTION=HOST + "behavior/findFollowList?userId=";//获取用户的关注/粉丝的列表
     public static final String REMOVE_USER_ATTENTION=HOST + "behavior/deleteUserFollow?userId=";//取消用户关注的内容
+    public static final String GETMESSAGELIST=HOST + "behavior/messageList?userId=";//获取消息的首页内容
+    public static final String DELETEMESSAGE=HOST + "behavior/batchDelMessage?userId=";//批量删除用户的消息
+    public static final String READMESSAGELIST=HOST + "behavior/readMessage?userId=";//读取一则消息
+    public static final String DELETEALLMESSAGE=HOST + "behavior/delAllMessage?userId=";// 根据删除指定类别下面的所有的消息(清空的功能)
 
 
     public static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()

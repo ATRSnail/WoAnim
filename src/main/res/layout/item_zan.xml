@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
-            <org.eteclab.ui.widget.CircularImage
+            <ImageView
                 android:id="@+id/atwo_new"
                 android:layout_width="@dimen/px_108"
                 android:layout_height="@dimen/px_108"

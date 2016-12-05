@@ -66,6 +66,7 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
     }
 
     private void getData(final int type) {
+
         final View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
         final ListView noscroll = (ListView) view.findViewById(R.id.noscroll);
         String url =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
@@ -97,6 +98,7 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
             }
         });
         views.add(view);
+
     }
 
     @Override
@@ -110,7 +112,6 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
         views.clear();
         getData(1);
         getData(2);
-        adapter.notifyDataSetChanged();
     }
 
     @Override

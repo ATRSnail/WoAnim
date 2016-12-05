@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.bean.XiaoXiBean;
 import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.DianZanActivity;
@@ -25,19 +27,23 @@ import java.util.List;
  */
 
 public class MessageCenterAdapter extends BaseAdapter {
-    List<String> list;
+    List<XiaoXiBean.DataBean> list;
     Context mContext;
     int phos[] = new int[]{R.mipmap.system_inform, R.mipmap.comment, R.mipmap.atwo, R.mipmap.officalpush,
             R.mipmap.dianzan};
+    int phos_new[] = new int[]{R.mipmap.sysinfo_new, R.mipmap.comment_new, R.mipmap.atwo_new, R.mipmap.offical_new,
+            R.mipmap.dianzan_new};
     String[] names = new String[]{"系统通知", "新的评论", "有人", "官方推送", "有人赞了你"};
 
     public MessageCenterAdapter(MessageCenterActivity messageCenterActivity) {
         this.mContext = messageCenterActivity;
-        list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add("通知" + i);
-        }
-        notifyDataSetChanged();
+    }
+    public void setList(List<XiaoXiBean.DataBean> mlist) {
+        this.list = mlist;
+    }
+
+    public List<XiaoXiBean.DataBean> getList() {
+        return list;
     }
 
     public MessageCenterAdapter() {
@@ -46,12 +52,12 @@ public class MessageCenterAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        return getList().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return getList().get(position);
     }
 
     @Override
@@ -65,26 +71,34 @@ public class MessageCenterAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new MyHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.messageitem, null);
-            holder.pho = (CircularImage) convertView.findViewById(R.id.message_new);
+            holder.pho = (ImageView) convertView.findViewById(R.id.message_new);
             holder.name = (TextView) convertView.findViewById(R.id.name_message);
             holder.rightname = (TextView) convertView.findViewById(R.id.right_name_message);
             holder.centername = (TextView) convertView.findViewById(R.id.center_name_message);
-            holder.info = (TextView) convertView.findViewById(R.id.grade_attention);
+            holder.info = (TextView) convertView.findViewById(R.id.info_message);
             holder.time = (TextView) convertView.findViewById(R.id.time_message);
             holder.watch_message = (TextView) convertView.findViewById(R.id.watch_message);
             convertView.setTag(holder);
         } else {
             holder = (MyHolder) convertView.getTag();
         }
-        final String name = list.get(position);
-        holder.pho.setImageResource(phos[position]);
-        if (position == 2) {
+       XiaoXiBean.DataBean dataBean = getList().get(position);
+        int type=dataBean.getType()-1;
+        holder.name.setText(names[type]);
+        if(dataBean.getStatus()==1){
+            holder.pho.setImageResource(phos_new[type]);
+        }else {
+            holder.pho.setImageResource(phos[type]);
+        }
+        if (type == 2) {
             holder.rightname.setVisibility(View.VISIBLE);
             holder.rightname.setText("了你");
             holder.centername.setVisibility(View.VISIBLE);
             holder.centername.setText("@");
         }
-        holder.name.setText(names[position]);
+        holder.time.setText(dataBean.getTimes());
+        String content=dataBean.getContent().toString();
+        holder.info.setText(content);
         holder.watch_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,8 +127,10 @@ public class MessageCenterAdapter extends BaseAdapter {
     }
 
 
+
+
     static class MyHolder {
-        CircularImage pho;
+        ImageView pho;
         TextView name;
         TextView centername;
         TextView rightname;

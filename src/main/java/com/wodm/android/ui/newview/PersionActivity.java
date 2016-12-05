@@ -131,8 +131,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        getData();
         persionAdapter = new PersionAdapter(this);
         gv_comments.setAdapter(persionAdapter);
         mineCircleAdapter = new MineCircleAdapter(this);
@@ -427,7 +425,6 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 break;
             case R.id.another_persion :
                 FollowAdapter adapter =new FollowAdapter();
-                Log.e("AA","-关注的值------------"+dataBean.getIsFollow());
                 if (dataBean.getIsFollow()==1){
                      adapter.saveOrDeleteUserFollow(0,userId);
                     another_persion.setImageResource(R.mipmap.atten_persion);

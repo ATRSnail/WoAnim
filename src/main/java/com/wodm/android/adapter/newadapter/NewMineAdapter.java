@@ -52,12 +52,12 @@ public class NewMineAdapter extends BaseAdapter {
 
     private Context mContext;
     private String[] personArray = {"成就", "任务", "足迹", "收藏", "客服", "设置", "商城", ""};
-    private String[] messageArray = {"回复", "点赞", "系统通知", "@我的", "话题", "消息中心", "", ""};
+    private String[] messageArray = {"消息中心", "系统通知", "评论", "@我的", "点赞", "", "", ""};
     private int[] personIconArray = {R.mipmap.medal_mine, R.mipmap.task_mine, R.mipmap.footprint_mine
             , R.mipmap.collect_mine, R.mipmap.service_mine, R.mipmap.setting_mine, R.mipmap.mall_mine, 0};
 
-    private int[] messageIconArray = {R.mipmap.reply_mine, R.mipmap.like_mine, R.mipmap.inform_mine
-            , R.mipmap.my_mine, R.mipmap.topic_mine, R.mipmap.topic_mine, 0, 0};
+    private int[] messageIconArray = {R.mipmap.topic_mine, R.mipmap.inform_mine, R.mipmap.reply_mine
+            , R.mipmap.my_mine, R.mipmap.like_mine, 0, 0, 0};
 
     public NewMineAdapter(Context context) {
         this.mContext = context;
@@ -181,7 +181,7 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, DianZanActivity.class);
         }else if (text.equals("系统通知")) {
             startIntent(null, SystemInformActivity.class);
-        }else if (text.equals("话题")) {
+        }else if (text.equals("评论")) {
             startIntent(null, CommentActivity.class);
         }else {
             Toast.makeText(mContext, "此功能暂未开通,敬请期待!", Toast.LENGTH_SHORT).show();
