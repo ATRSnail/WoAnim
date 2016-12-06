@@ -2,6 +2,7 @@ package com.wodm.android.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -31,6 +32,7 @@ public abstract class UpdataUserInfo {
             @Override
             public void doRequestFailure(Exception exception, String msg) {
                 super.doRequestFailure(exception, msg);
+                Log.e("AA","---------------------------"+msg);
                 getUserInfo(null);
             }
 
