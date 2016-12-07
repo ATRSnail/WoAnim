@@ -106,12 +106,14 @@
     <View
         android:id="@+id/line_inform_center"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="@dimen/px_14"
         android:background="@color/color_efefef" />
 
     <View
         android:id="@+id/line_inform_bottom"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="@dimen/px_2"
         android:background="@color/color_eae7e7" />
 </LinearLayout>

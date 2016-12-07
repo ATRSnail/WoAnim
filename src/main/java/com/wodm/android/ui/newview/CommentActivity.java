@@ -1,6 +1,5 @@
 package com.wodm.android.ui.newview;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -8,9 +7,7 @@ import android.widget.ListView;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.AtWoAdapter;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
-import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.MessageUtils;
@@ -45,6 +42,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
         choice_bottom.setOnClickListener(this);
         if (Constants.CURRENT_USER==null){finish();return;}
         messageUtils = new MessageUtils(new DianZanAdapter(),choice_bottom,listView_atwo,set_topbar,CommentActivity.this);
+        messageUtils.setDianzan(false);
     }
 
     @Override
@@ -60,7 +58,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            messageUtils.deleteMessage();
+            messageUtils.deleteMessage(adapter.getIds());
             messageUtils.updateData("删除",true,View.VISIBLE);
         }
     }

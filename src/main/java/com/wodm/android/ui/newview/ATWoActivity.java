@@ -1,17 +1,13 @@
 package com.wodm.android.ui.newview;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.wodm.R;
+import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.AtWoAdapter;
-import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -34,11 +30,15 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         super.onCreate(savedInstanceState);
         set_topbar.setTvTitle("@我的");
         set_topbar.setOnTopbarClickListenter(this);
+        if (Constants.CURRENT_USER==null){finish();return;}
+        messageUtils = new MessageUtils(new AtWoAdapter(),choice_bottom,listView_atwo,set_topbar,ATWoActivity.this);
+        choice_bottom.setOnClickListener(this);
         adapter = new AtWoAdapter(ATWoActivity.this, false);
+
+        adapter.setUtils(messageUtils);
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
-        choice_bottom.setOnClickListener(this);
-        messageUtils = new MessageUtils(new AtWoAdapter(),choice_bottom,listView_atwo,set_topbar,ATWoActivity.this);
+
     }
 
     @Override
@@ -54,8 +54,14 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            messageUtils.deleteMessage();
-            messageUtils.updateData("删除",true,View.VISIBLE);
+            messageUtils.deleteMessage(adapter.getIds());
+            if (adapter.getDelete())
+            {
+                messageUtils.updateData("勾选",false,View.VISIBLE);
+            }
+            else {
+                messageUtils.updateData("删除",true,View.VISIBLE);
+            }
         }
     }
 

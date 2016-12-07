@@ -91,6 +91,7 @@
                     android:id="@+id/info_atwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxEms="8"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text=":天窗"
@@ -99,6 +100,7 @@
             </LinearLayout>
             <TextView
                 android:id="@+id/laizi_atwo"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_30"

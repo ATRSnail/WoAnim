@@ -14,10 +14,13 @@ import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.adapter.BaseViewHolder;
+import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.newview.SendMsgActivity;
+import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
@@ -29,15 +32,15 @@ import java.util.List;
  * @create_date 16/12/2
  */
 public class DianZanAdapter extends BaseAdapter {
-    boolean mdianZan;
-    List<String> list;
+    boolean mdianZan;//判断是否为点赞类的判断标志
+    List<DianZanBean.DataBean> list;
     Context mContext;
-    boolean flag = false;
+    MessageUtils utils;
+    boolean flag = false;//显示删除选择图标的判断标志
+    boolean delete=false;//判断是否全部(批量删除)的标志
     AtyTopLayout set_topbar;
-    int num;
-    public AtyTopLayout getSet_topbar() {
-        return set_topbar;
-    }
+    int num=0;
+    List<Long> ids=new ArrayList<>();//消息ID的列表
 
     public void setSet_topbar(AtyTopLayout set_topbar) {
         this.set_topbar = set_topbar;
@@ -46,19 +49,35 @@ public class DianZanAdapter extends BaseAdapter {
     public DianZanAdapter(Context context, boolean mflag) {
         this.mContext = context;
         this.flag = mflag;
-        list = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            list.add("通知" + i);
-        }
-        notifyDataSetChanged();
     }
+
+    public void setUtils(MessageUtils utils) {
+        this.utils = utils;
+        this.list =  utils.getLikeMessageList();
+    }
+
+    public List<Long> getIds() {
+        return ids;
+    }
+
+    public boolean getDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+    public void setIds(List<Long> ids) {
+        this.ids = ids;
+    }
+
 
     public DianZanAdapter() {
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return list.size()>0?list.size():0;
     }
 
     @Override
@@ -90,50 +109,68 @@ public class DianZanAdapter extends BaseAdapter {
         } else {
             holder = (MyHolder) convertView.getTag();
         }
-//        holder.pho.setImageResource();
-        holder.name.setText("会飞的鱼");
-        if (flag) {
-            holder.reply.setVisibility(View.GONE);
-            holder.choice_atwo.setVisibility(View.VISIBLE);
-        }
-        holder.cicle_new.setVisibility(View.VISIBLE);
+        final DianZanBean.DataBean dataBean =list.get(position);
         if(mdianZan){
             holder.tv_comment.setVisibility(View.GONE);
             holder.reply.setVisibility(View.GONE);
         }else {
-            holder.reply.setVisibility(View.VISIBLE);
+            if (flag) {
+                holder.reply.setVisibility(View.GONE);
+            }else {
+                holder.reply.setVisibility(View.VISIBLE);
+            }
         }
+        if (flag) {
+            holder.choice_atwo.setVisibility(View.VISIBLE);
+        }else {
+            holder.choice_atwo.setVisibility(View.GONE);
+        }
+
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
-
-
         holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                long id =dataBean.getSendId();
                 if (click[0]) {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_yes);
                     num++;
+                    ids.add(id);
                 } else {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_no);
                     num--;
+                    ids.remove((Object)id);
                 }
                 click[0] = !click[0];
                 if (num> 0) {
+                    setIds(ids);
+                    if (ids.size()==list.size()){
+                        setDelete(true);
+                    }else {
+                        setDelete(false);
+                    }
                     set_topbar.setTvRight("删除");
                 }else if (num==0){
                     set_topbar.setTvRight("完成");
                 }
             }
         });
+//点赞去掉回复
+//        holder.reply.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.out.println("onclecid");
+//                mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
+//            }
+//        });
 
-        holder.reply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("onclecid");
-                mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
-            }
-        });
+        holder.atwo_name.setVisibility(View.GONE);//点赞去掉用户的昵称
+
+        new AsyncImageLoader(mContext,R.mipmap.moren_header,R.mipmap.moren_header).display(holder.pho,dataBean.getSendPortrait());
+//        holder.cicle_new.setVisibility(View.VISIBLE);
+        holder.name.setText(dataBean.getSendNickName());
+        holder.time.setText(dataBean.getTimes());
+        holder.info_atwo.setText(dataBean.getContent());
         return convertView;
     }
 

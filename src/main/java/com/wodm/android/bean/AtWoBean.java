@@ -3,28 +3,27 @@ package com.wodm.android.bean;
 import java.util.List;
 
 /**
- * @author xch
- * @version 1.0
- * @create_date 16/12/2
+ * Created by ATRSnail on 2016/12/6.
  */
-public class DianZanBean {
 
+public class AtWoBean {
 
     /**
-     * 获取所有的点赞的详情的列表
+     * 获取所有的 有人@我的消息
      * code : 1000
      * message : 操作成功
-     * data : [{"content":"小康测试回复你的","sendId":274,"sendNickName":"赵文友","times":"2016-12-05","sendPortrait":"http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg"},{"content":"小康测试回复你的","sendId":272,"sendNickName":"M514168","times":"2016-12-05","sendPortrait":""},{"content":"小康测试回复你的","sendId":271,"sendNickName":"一脸懵逼的猪","times":"2016-12-05","sendPortrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0"}]
+     * data : [{"content":"在一起你妹的","sendId":198,"sendNickName":"小康康","times":"2016-12-06","sendPortrait":"","receiveNickName":"@VIP之小将之家乡，亲人"},{"content":"小康测试回复你的","sendId":198,"sendNickName":"小康康","times":"2016-12-06","sendPortrait":"","receiveNickName":"@VIP之小将之家乡，亲人"},{"content":"🐷[em16][em9][em9][em9][em9][em19][em18][em10][em12][em5][em13][em9][em10][em3][em9][em2][em1][em9][em10][em2][em2][em10][em3][em2][em13][em12][em19][em3][em2][em10][em10][em10]","sendId":271,"sendNickName":"一脸懵逼的猪","times":"2016-12-06","sendPortrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0","receiveNickName":"@VIP之小将之家乡，亲人"}]
      */
 
     private int code;
     private String message;
     /**
-     * content : 小康测试回复你的
-     * sendId : 274
-     * sendNickName : 赵文友
-     * times : 2016-12-05
-     * sendPortrait : http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg
+     * content : 在一起你妹的
+     * sendId : 198
+     * sendNickName : 小康康
+     * times : 2016-12-06
+     * sendPortrait :
+     * receiveNickName : @VIP之小将之家乡，亲人
      */
 
     private List<DataBean> data;
@@ -59,6 +58,7 @@ public class DianZanBean {
         private String sendNickName;
         private String times;
         private String sendPortrait;
+        private String receiveNickName;
 
         public String getContent() {
             return content;
@@ -98,6 +98,14 @@ public class DianZanBean {
 
         public void setSendPortrait(String sendPortrait) {
             this.sendPortrait = sendPortrait;
+        }
+
+        public String getReceiveNickName() {
+            return receiveNickName;
+        }
+
+        public void setReceiveNickName(String receiveNickName) {
+            this.receiveNickName = receiveNickName;
         }
     }
 }

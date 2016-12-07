@@ -154,6 +154,9 @@ public class Constants {
     public static final String DELETEALLMESSAGE=HOST + "behavior/delAllMessage?userId=";// 根据删除指定类别下面的所有的消息(清空的功能)
     public static final String SAVEUSERLIKE=HOST + "behavior/saveUserLike";// 保存用户点赞的内容
     public static final String DELETEUSERLIKE=HOST + "behavior/deleteUserLike";// 用户取消点赞的
+    public static final String SystemMessageList=HOST + "behavior/systemMessageList?userId=";// 获取所有的系统通知的消息内容
+    public static final String ReplyeMessageList=HOST + "behavior/replyMessageList?userId=";// 获取所有的 有人@我的消息
+    public static final String LikeMessageList=HOST + "behavior/likeMessageList?userId=";// 获取所有的点赞的详情的列表
 
 
     public static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()

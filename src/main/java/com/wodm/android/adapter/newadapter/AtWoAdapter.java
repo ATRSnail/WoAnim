@@ -11,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.bean.AtWoBean;
+import com.wodm.android.bean.SysMessBean;
 import com.wodm.android.ui.newview.SendMsgActivity;
+import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
@@ -24,27 +28,44 @@ import java.util.List;
  */
 
 public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
-    List<String> list;
+    List<AtWoBean.DataBean> list;
     Context mContext;
-    boolean flag = false;
+    MessageUtils utils;
+    boolean flag = false;//显示删除选择图标的判断标志
+    boolean delete=false;//判断是否全部(批量删除)的标志
     AtyTopLayout set_topbar;
-    int num;
-    public AtyTopLayout getSet_topbar() {
-        return set_topbar;
-    }
+    int num=0;
+    List<Long> ids=new ArrayList<>();//消息ID的列表
+
 
     public void setSet_topbar(AtyTopLayout set_topbar) {
         this.set_topbar = set_topbar;
     }
 
+    public void setUtils(MessageUtils utils) {
+        this.utils = utils;
+        this.list =  utils.getReplyMessageList();
+    }
+
+    public List<Long> getIds() {
+        return ids;
+    }
+
+    public boolean getDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+    public void setIds(List<Long> ids) {
+        this.ids = ids;
+    }
+
+
     public AtWoAdapter(Context context, boolean mflag) {
         this.mContext = context;
         this.flag = mflag;
-        list = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            list.add("通知" + i);
-        }
-        notifyDataSetChanged();
     }
 
     public AtWoAdapter() {
@@ -52,7 +73,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
 
     @Override
     public int getCount() {
-        return list.size();
+        return list.size()>0?list.size():0;
     }
 
     @Override
@@ -84,42 +105,53 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         } else {
             holder = (MyHolder) convertView.getTag();
         }
-//        holder.pho.setImageResource();
-        holder.name.setText("会飞的鱼");
+//        holder.laizi_atwo.setVisibility(View.GONE);//@我去掉来自哪个资讯
         if (flag) {
             holder.reply.setVisibility(View.GONE);
             holder.choice_atwo.setVisibility(View.VISIBLE);
         }
+        final AtWoBean.DataBean dataBean = list.get(position);
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
-
         holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                long id =dataBean.getSendId();
                 if (click[0]) {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_yes);
                     num++;
+                    ids.add(id);
                 } else {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_no);
                     num--;
+                    ids.remove((Object)id);
                 }
                 click[0] = !click[0];
                 if (num> 0) {
+                    setIds(ids);
+                    if (ids.size()==list.size()){
+                        setDelete(true);
+                    }else {
+                        setDelete(false);
+                    }
                     set_topbar.setTvRight("删除");
                 }else if (num==0){
                     set_topbar.setTvRight("完成");
                 }
             }
         });
-        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("onclecid");
                 mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
             }
         });
+        new AsyncImageLoader(mContext,R.mipmap.moren_header,R.mipmap.moren_header).display(holder.pho,dataBean.getSendPortrait());
+//        holder.cicle_new.setVisibility(View.VISIBLE);
+        holder.name.setText(dataBean.getSendNickName());
+        holder.time.setText(dataBean.getTimes());
+        holder.atwo_name.setText(dataBean.getReceiveNickName());
+        holder.info_atwo.setText("："+dataBean.getContent());
         return convertView;
     }
 
@@ -129,6 +161,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         switch (v.getId()) {
         }
     }
+
 
 
     static class MyHolder {
