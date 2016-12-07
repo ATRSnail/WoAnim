@@ -56,12 +56,14 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void rightClick() {
-        String text = set_topbar.getTv_right().getText().toString();
+        String  text = set_topbar.getTv_right().getText().toString();
         if("完成".equals(text)){
             messageUtils.updateData("勾选",false,View.GONE);
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
-        }else   if("删除".equals(text)){
+        }else  if("删除".equals(text)){
+            messageUtils.deleteMessage(adapter.ids);
+
             if (adapter.delete)
             {
                 messageUtils.updateData("勾选",false,View.GONE);

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.AtWoAdapter;
+import com.wodm.android.adapter.newadapter.CommentAdapter2;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
 import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.AtWoBean;
@@ -83,6 +84,14 @@ public class MessageUtils {
             mAdapter3.setUtils(messageUtils);
             messageUtils.getReplyMessageList(mAdapter3);
             gridView_SystemInfo.setAdapter(mAdapter3);
+        }else if(adapter instanceof CommentAdapter2){
+            CommentAdapter2 mAdapter4 = new CommentAdapter2(mcontext, flag);
+            choice_bottom.setVisibility(visible);
+            set_topbar.setTvRight(string);
+            mAdapter4.setSet_topbar(set_topbar);
+            mAdapter4.setUtils(messageUtils);
+//            messageUtils.getLikeMessageList(mAdapter4);
+            gridView_SystemInfo.setAdapter(mAdapter4);
         }
 
 

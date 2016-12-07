@@ -7,7 +7,9 @@ import android.widget.ListView;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.CommentAdapter2;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
+import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.MessageUtils;
@@ -29,20 +31,23 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.listView_atwo)
     ListView listView_atwo;
 
-    private List<DianZanBean> list = new ArrayList<>();
-//    private DianZanAdapter adapter;
+//    private List<CommentBean2> list = new ArrayList<>();
+    private CommentAdapter2 adapter;
     MessageUtils messageUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
-//        adapter = new DianZanAdapter(CommentActivity.this, false);
-//        adapter.setSet_topbar(set_topbar);
-//        listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);
         if (Constants.CURRENT_USER==null){finish();return;}
-        messageUtils = new MessageUtils(new DianZanAdapter(),choice_bottom,listView_atwo,set_topbar,CommentActivity.this);
-        messageUtils.setDianzan(false);
+        messageUtils = new MessageUtils(new CommentAdapter2(),choice_bottom,listView_atwo,set_topbar,CommentActivity.this);
+        adapter = new CommentAdapter2(CommentActivity.this, false);
+
+
+        adapter.setUtils(messageUtils);
+//        messageUtils.getLikeMessageList(adapter);
+        adapter.setSet_topbar(set_topbar);
+        listView_atwo.setAdapter(adapter);
     }
 
     @Override
@@ -52,14 +57,24 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void rightClick() {
-        String text = set_topbar.getTv_right().getText().toString();
+        String  text = set_topbar.getTv_right().getText().toString();
         if("完成".equals(text)){
             messageUtils.updateData("勾选",false,View.GONE);
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
-        }else   if("删除".equals(text)){
-//            messageUtils.deleteMessage(adapter.getIds());
-            messageUtils.updateData("删除",true,View.VISIBLE);
+        }else  if("删除".equals(text)){
+//            messageUtils.deleteMessage(adapter.ids);
+
+            if (adapter.delete)
+            {
+                messageUtils.updateData("勾选",false,View.GONE);
+            }
+            else {
+                messageUtils.updateData("完成",true,View.VISIBLE);
+            }
+
+            adapter.ids.clear();
+            adapter.delete=false;
         }
     }
 
