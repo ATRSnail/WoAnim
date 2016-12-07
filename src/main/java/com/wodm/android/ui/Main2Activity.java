@@ -206,6 +206,7 @@ public class Main2Activity extends AppActivity {
 
     @Override
     public void onBackPressed() {
+//        upData();
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_LONG).show();
             mExitTime = System.currentTimeMillis();
@@ -270,7 +271,6 @@ public class Main2Activity extends AppActivity {
     protected void onResume() {
         super.onResume();
         checkSgin();
-        upData();
     }
     private void upData(){
         Intent serviceIntent=new Intent(this, DBService.class);
