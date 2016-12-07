@@ -2,7 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.bean.AtWoBean;
-import com.wodm.android.bean.SysMessBean;
 import com.wodm.android.ui.newview.SendMsgActivity;
 import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -28,14 +26,14 @@ import java.util.List;
  */
 
 public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
-    List<AtWoBean.DataBean> list;
+    List<AtWoBean.DataBean> list=new ArrayList<>();
     Context mContext;
     MessageUtils utils;
     boolean flag = false;//显示删除选择图标的判断标志
-    boolean delete=false;//判断是否全部(批量删除)的标志
     AtyTopLayout set_topbar;
     int num=0;
-    List<Long> ids=new ArrayList<>();//消息ID的列表
+    public static  boolean delete = false;//判断是否全部(批量删除)的标志
+    public static  List<Long> ids=new ArrayList<>();//消息ID的列表
 
 
     public void setSet_topbar(AtyTopLayout set_topbar) {
@@ -44,24 +42,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
 
     public void setUtils(MessageUtils utils) {
         this.utils = utils;
-        this.list =  utils.getReplyMessageList();
     }
-
-    public List<Long> getIds() {
-        return ids;
-    }
-
-    public boolean getDelete() {
-        return delete;
-    }
-
-    public void setDelete(boolean delete) {
-        this.delete = delete;
-    }
-    public void setIds(List<Long> ids) {
-        this.ids = ids;
-    }
-
 
     public AtWoAdapter(Context context, boolean mflag) {
         this.mContext = context;
@@ -127,14 +108,14 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
                     ids.remove((Object)id);
                 }
                 click[0] = !click[0];
+
                 if (num> 0) {
-                    setIds(ids);
-                    if (ids.size()==list.size()){
-                        setDelete(true);
-                    }else {
-                        setDelete(false);
-                    }
                     set_topbar.setTvRight("删除");
+                    if (ids.size()==list.size()){
+                        delete=true;
+                    }else {
+                        delete=false;
+                    }
                 }else if (num==0){
                     set_topbar.setTvRight("完成");
                 }
@@ -162,6 +143,11 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         }
     }
 
+    public void setList(List<AtWoBean.DataBean> mlist) {
+        this.list.clear();
+        this.list.addAll(mlist);
+        notifyDataSetChanged();
+    }
 
 
     static class MyHolder {

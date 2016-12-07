@@ -30,15 +30,15 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     ListView listView_atwo;
 
     private List<DianZanBean> list = new ArrayList<>();
-    private DianZanAdapter adapter;
+//    private DianZanAdapter adapter;
     MessageUtils messageUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         set_topbar.setOnTopbarClickListenter(this);
-        adapter = new DianZanAdapter(CommentActivity.this, false);
-        adapter.setSet_topbar(set_topbar);
-        listView_atwo.setAdapter(adapter);
+//        adapter = new DianZanAdapter(CommentActivity.this, false);
+//        adapter.setSet_topbar(set_topbar);
+//        listView_atwo.setAdapter(adapter);
         choice_bottom.setOnClickListener(this);
         if (Constants.CURRENT_USER==null){finish();return;}
         messageUtils = new MessageUtils(new DianZanAdapter(),choice_bottom,listView_atwo,set_topbar,CommentActivity.this);
@@ -58,7 +58,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            messageUtils.deleteMessage(adapter.getIds());
+//            messageUtils.deleteMessage(adapter.getIds());
             messageUtils.updateData("删除",true,View.VISIBLE);
         }
     }
@@ -69,7 +69,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                messageUtils.deleteAllMessage(2);
+//                messageUtils.deleteAllMessage(2);
                 messageUtils.updateData("勾选",false,View.GONE);
                 break;
         }

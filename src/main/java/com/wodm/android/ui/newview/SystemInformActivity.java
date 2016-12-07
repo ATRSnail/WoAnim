@@ -2,6 +2,7 @@ package com.wodm.android.ui.newview;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -9,20 +10,16 @@ import android.widget.ListView;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.MessageCenterAdapter;
 import com.wodm.android.adapter.newadapter.SystemInformAdapter;
-import com.wodm.android.bean.SysMessBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
-import org.eteclab.base.http.HttpCallback;
-import org.json.JSONObject;
 
 @Layout(R.layout.activity_system_inform)
-public class SystemInformActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
+public class SystemInformActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener{
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.choice_bottom)
@@ -31,6 +28,9 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
     ListView gridView_SystemInfo;
     SystemInformAdapter adapter;
    MessageUtils messageUtils;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +40,12 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
         messageUtils = new MessageUtils(new SystemInformAdapter(),choice_bottom,gridView_SystemInfo,set_topbar,SystemInformActivity.this);
 
 
-        adapter = new SystemInformAdapter(this, false);
-        adapter.setUtils(messageUtils);
-        adapter.setSet_topbar(set_topbar);
-        gridView_SystemInfo.setAdapter(adapter);
+
+//        adapter = new SystemInformAdapter(this, false);
+//        adapter.setUtils(messageUtils);
+//        messageUtils.getSystemMessageList(adapter);
+//        adapter.setSet_topbar(set_topbar);
+//        gridView_SystemInfo.setAdapter(adapter);
 
     }
 
@@ -54,42 +56,43 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
 
     @Override
     public void rightClick() {
-        String text = set_topbar.getTv_right().getText().toString();
-
+        String  text = set_topbar.getTv_right().getText().toString();
         if("完成".equals(text)){
             messageUtils.updateData("勾选",false,View.GONE);
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
-        }else   if("删除".equals(text)){
-//            messageUtils.deleteMessage(adapter.getIds());
-            if (adapter.getDelete())
+        }else  if("删除".equals(text)){
+            messageUtils.deleteMessage(adapter.ids);
+
+            if (adapter.delete)
             {
-                messageUtils.updateData("勾选",false,View.VISIBLE);
+                messageUtils.updateData("勾选",false,View.GONE);
             }
             else {
-                messageUtils.updateData("删除",true,View.VISIBLE);
+                messageUtils.updateData("完成",true,View.VISIBLE);
             }
+
+            adapter.ids.clear();
+            adapter.delete=false;
         }
-
-
-
-
     }
 
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        messageUtils.updateData("勾选",false,View.GONE);
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
 //                adapter.setRemoveAll(true);
-//                messageUtils.deleteAllMessage(1);
+                messageUtils.deleteAllMessage(1);
                 messageUtils.updateData("勾选",false,View.GONE);
                 break;
         }
     }
-
 
 }

@@ -42,6 +42,7 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
         adapter.setDianZan(true);
 
         adapter.setUtils(messageUtils);
+        messageUtils.getLikeMessageList(adapter);
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
 
@@ -61,18 +62,24 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else   if("删除".equals(text)){
-            messageUtils.deleteMessage(adapter.getIds());
-            if (adapter.getDelete())
+            if (adapter.delete)
             {
-                messageUtils.updateData("勾选",false,View.VISIBLE);
+                messageUtils.updateData("勾选",false,View.GONE);
             }
             else {
-                messageUtils.updateData("删除",true,View.VISIBLE);
+                messageUtils.updateData("完成",true,View.VISIBLE);
             }
+
+            adapter.ids.clear();
+            adapter.delete=false;
         }
     }
 
-
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        messageUtils.updateData("勾选",false,View.GONE);
+//    }
 
     @Override
     public void onClick(View v) {

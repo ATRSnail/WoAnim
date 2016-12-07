@@ -15,10 +15,7 @@ import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.bean.SysMessBean;
-import com.wodm.android.bean.SysMessBean.DataBean;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.newview.DianZanActivity;
-import com.wodm.android.ui.newview.SystemInformActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.http.HttpCallback;
@@ -39,11 +36,7 @@ public class MessageUtils {
     AtyTopLayout set_topbar;
     Context mcontext;
     boolean dianzan=false;
-    List<SysMessBean.DataBean> list=new ArrayList<>();
-    List<AtWoBean.DataBean> list2=new ArrayList<>();
-    List<DianZanBean.DataBean> list3=new ArrayList<>();
     MessageUtils   messageUtils;
-    private static final ThreadLocal re = new ThreadLocal(); //自行补上泛型Object
     public MessageUtils() {
 
     }
@@ -70,6 +63,7 @@ public class MessageUtils {
             choice_bottom.setVisibility(visible);
             set_topbar.setTvRight(string);
             mAdapter1.setUtils(messageUtils);
+            messageUtils.getSystemMessageList(mAdapter1);
             mAdapter1.setSet_topbar(set_topbar);
             gridView_SystemInfo.setAdapter(mAdapter1);
         }else if(adapter instanceof DianZanAdapter){
@@ -79,6 +73,7 @@ public class MessageUtils {
             set_topbar.setTvRight(string);
             mAdapter2.setSet_topbar(set_topbar);
             mAdapter2.setUtils(messageUtils);
+            messageUtils.getLikeMessageList(mAdapter2);
             gridView_SystemInfo.setAdapter(mAdapter2);
         }else if(adapter instanceof AtWoAdapter){
             AtWoAdapter mAdapter3 = new AtWoAdapter(mcontext, flag);
@@ -86,6 +81,7 @@ public class MessageUtils {
             set_topbar.setTvRight(string);
             mAdapter3.setSet_topbar(set_topbar);
             mAdapter3.setUtils(messageUtils);
+            messageUtils.getReplyMessageList(mAdapter3);
             gridView_SystemInfo.setAdapter(mAdapter3);
         }
 
@@ -120,7 +116,12 @@ public class MessageUtils {
     }
 
     public void deleteMessage(List<Long> ids) {
-        String url = Constants.DELETEMESSAGE+Constants.CURRENT_USER.getData().getAccount().getId()+"&ids="+ids;
+        String url = Constants.DELETEMESSAGE+Constants.CURRENT_USER.getData().getAccount().getId()+"&ids=";
+        for (int i = 0; i <ids.size()-1 ; i++) {
+            url=url+ids.get(i)+",";
+        }
+        url =url+ids.get(ids.size()-1);
+
         getData(url);
     }
 
@@ -156,19 +157,16 @@ public class MessageUtils {
             }
         });
     }
-
-    public  List<SysMessBean.DataBean> getSystemMessageList() {
+    public void getSystemMessageList(final SystemInformAdapter adapter) {
         //获取所有的系统通知的消息内容;
 
-        String url = Constants.SystemMessageList+Constants.CURRENT_USER.getData().getAccount().getId();
+        final String url = Constants.SystemMessageList+Constants.CURRENT_USER.getData().getAccount().getId();
         appActivity.httpGet(url,new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                SysMessBean  bean = new Gson().fromJson(obj.toString(),SysMessBean.class);
-//                re.set(bean);
-                list.clear();
-                list.addAll(bean.getData());
+                 SysMessBean  bean = new Gson().fromJson(obj.toString(),SysMessBean.class);
+                adapter.setList(bean.getData());
             }
 
             @Override
@@ -181,16 +179,9 @@ public class MessageUtils {
                 super.doRequestFailure(exception, msg);
             }
         });
-//        if ((List<SysMessBean.DataBean>) re.get()==null){
-//            Log.e("AA","*******************(List<SysMessBean.DataBean>) re.get()为空");
-//        }else {
-//            Log.e("AA","*******************list"+((List<SysMessBean.DataBean>) re.get()).size());
-//        }
-        return list;
-//        return (List<SysMessBean.DataBean>) re.get();
     }
 
-    public  List<AtWoBean.DataBean> getReplyMessageList () {
+    public  void getReplyMessageList(final AtWoAdapter mAdapter3) {
         //获取所有的 有人@我的消息
         String url = Constants.ReplyeMessageList+Constants.CURRENT_USER.getData().getAccount().getId();
         appActivity.httpGet(url,new HttpCallback(){
@@ -198,8 +189,7 @@ public class MessageUtils {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 AtWoBean bean =  new Gson().fromJson(obj.toString(),AtWoBean.class);
-                list2.clear();
-                list2.addAll(bean.getData());
+                mAdapter3.setList(bean.getData());
             }
 
             @Override
@@ -212,9 +202,8 @@ public class MessageUtils {
                 super.doRequestFailure(exception, msg);
             }
         });
-        return list2;
     }
-    public List<DianZanBean.DataBean> getLikeMessageList () {
+    public void getLikeMessageList(final DianZanAdapter mAdapter2) {
         //获取所有的点赞的详情的列表
         String url = Constants.LikeMessageList+Constants.CURRENT_USER.getData().getAccount().getId();
         appActivity.httpGet(url,new HttpCallback(){
@@ -222,8 +211,7 @@ public class MessageUtils {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 DianZanBean bean =  new Gson().fromJson(obj.toString(),DianZanBean.class);
-                list3.clear();
-                list3.addAll(bean.getData());
+                mAdapter2.setList(bean.getData());
             }
 
             @Override
@@ -236,7 +224,6 @@ public class MessageUtils {
                 super.doRequestFailure(exception, msg);
             }
         });
-        return list3;
     }
     public void readMessage  (int messageId) {
         //读取新消息

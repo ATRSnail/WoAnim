@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wodm.R;
@@ -18,8 +17,6 @@ import com.wodm.android.ui.newview.NewVipActivity;
 import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.view.newview.AtyTopLayout;
 
-import org.eteclab.ui.widget.CircularImage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,45 +25,22 @@ import java.util.List;
  */
 
 public class SystemInformAdapter extends BaseAdapter implements View.OnClickListener {
-//    List<SysMessBean.DataBean> list=new ArrayList<>();
-    List<SysMessBean.DataBean> list;
+    List<SysMessBean.DataBean> list=new ArrayList<>();
     Context mContext;
     MessageUtils utils;
     int phos[] = new int[]{R.mipmap.system_inform, R.mipmap.goods_inform};
     int phos_new[] = new int[]{R.mipmap.sysinfo_new, R.mipmap.goods_new};
     String[] names = new String[]{"系统通知", "物流通知"};
-    boolean flag = false;//显示删除选择图标的判断标志
-    boolean delete=false;//判断是否全部(批量删除)的标志
+     boolean flag = false;//显示删除选择图标的判断标志
 //    boolean removeAll=false;//判断是否全部删除的标志
     AtyTopLayout set_topbar;
     int num=0;
-    List<Long> ids=new ArrayList<>();//消息ID的列表
+    public static  boolean delete = false;//判断是否全部(批量删除)的标志
+   public static  List<Long> ids=new ArrayList<>();//消息ID的列表
 
-    public boolean getDelete() {
-        return delete;
-    }
-
-    public void setDelete(boolean delete) {
-        this.delete = delete;
-    }
-
-
-    public List<Long> getIds() {
-        return ids;
-    }
-
-    public void setIds(List<Long> ids) {
-        this.ids = ids;
-    }
 
     public void setUtils(MessageUtils utils) {
         this.utils = utils;
-        this.list=utils.getSystemMessageList();
-        if (list==null){
-            Log.e("AA","*******************只为空");
-        }else {
-            Log.e("AA","*******************只不为空"+list.size());
-        }
     }
 
     public void setSet_topbar(AtyTopLayout set_topbar) {
@@ -84,7 +58,6 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
 
     @Override
     public int getCount() {
-        Log.e("AA","*******************list.size()"+list.size());
         return list.size()>0?list.size():0;
     }
 
@@ -139,25 +112,22 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
                 } else {
                     finalHolder.choice_message.setImageResource(R.mipmap.up_no);
                     num--;
-
                     ids.remove((Object)id);
                 }
                 click[0] = !click[0];
+
                 if (num> 0) {
                     set_topbar.setTvRight("删除");
-                    Log.e("AA","*******************ids.size()"+ids.size());
-                    setIds(ids);
                     if (ids.size()==list.size()){
-                        setDelete(true);
+                        delete=true;
                     }else {
-                        setDelete(false);
+                        delete=false;
                     }
                 }else if (num==0){
                     set_topbar.setTvRight("完成");
                 }
             }
         });
-
 
 
         if (dataBean.getStatus()==1){
@@ -211,7 +181,11 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
         }
     }
 
-
+    public void setList(List<SysMessBean.DataBean> mlist) {
+        this.list.clear();
+        this.list.addAll(mlist);
+        notifyDataSetChanged();
+    }
 
 
 //    public void setRemoveAll(boolean mremoveAll) {
