@@ -21,8 +21,8 @@ public class CommentBean implements Serializable{
         return isZan;
     }
 
-    public void setZan(boolean zan) {
-        isZan = zan;
+    public void setZan() {
+        isZan = !isZan;
     }
 
     public int getId() {
