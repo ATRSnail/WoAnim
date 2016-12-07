@@ -416,11 +416,9 @@
             android:name=".android.ui.newview.CommentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".android.ui.newview.DianZanActivity"
+            android:name=".android.ui.newview.DIanZanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".android.ui.newview.ATWoActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".android.ui.newview.ATWoActivity" android:theme="@style/AppTheme.NoActionBar" ></activity>
         <activity android:name=".android.ui.newview.SendMsgActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>

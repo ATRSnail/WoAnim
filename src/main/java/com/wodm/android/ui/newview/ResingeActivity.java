@@ -91,10 +91,10 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             obj.put("authCode", yzm);
             obj.put("password", password);
             obj.put("osName", "android");
-            obj.put("brandInfo", "华为");//手机品牌
-             obj.put("modelNumber", "华为");//品牌型号
-            obj.put("qCellCore", "北京");//归属地
-            obj.put("channelInfo","360");
+//            obj.put("brandInfo", "华为");//手机品牌
+//             obj.put("modelNumber", "华为");//品牌型号
+//            obj.put("qCellCore", "北京");//归属地
+//            obj.put("channelInfo","360");
             obj.put("platformType",1);
             ApplicationInfo appInfo = getPackageManager()
                     .getApplicationInfo(getPackageName(),

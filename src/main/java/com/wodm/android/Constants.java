@@ -35,9 +35,9 @@ public class Constants {
     //http://202.106.63.98:8990/wodm-api/
 //     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
-//    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
+    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
     public final static String SHARE_URL = "http://mk.wo.com.cn/html/donghuaxiangqingye.html?id=";
@@ -143,7 +143,7 @@ public class Constants {
     public static final String APP_GET_MALL_OF_SAVEUSERBEHAVIOURINFO=HOST + "behavior/saveUserBehaviourInfo";//上传用户数据是是使用接口
     public static final String APP_GET_MALL_OF_UPDATEUSERBEHAVIOURINFO=HOST + "behavior/updateUserBehaviour";//退出APP时使用
     public static final String APP_GET_MAIN_ADVERTISEMENT=HOST + "resource/advertisement";//获取广告
-    public static final String APP_GET_MAIN_MORE_RESCOURE=HOST + "resource/listResourceByColumnId";//点击栏目获取更多的资源
+    public static final String APP_GET_MAIN_MORE_RESCOURE=HOST + "column/listResourceByColumnId";//点击栏目获取更多的资源
     public static String OFFTIME;
     public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow?userId=";//保存用户关注的内容
     public static final String GET_USER_ATTENTION=HOST + "behavior/findFollowList?userId=";//获取用户的关注/粉丝的列表

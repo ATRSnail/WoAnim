@@ -13,6 +13,27 @@ public class BarrageBean implements Serializable {
     public int sendId;
     public long createTime;
     public String content;
+    public String color;
+    public int  location;
+
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
 
 
     public int getId() {

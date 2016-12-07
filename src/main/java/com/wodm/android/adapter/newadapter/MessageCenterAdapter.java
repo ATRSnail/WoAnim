@@ -13,13 +13,10 @@ import com.wodm.R;
 import com.wodm.android.bean.XiaoXiBean;
 import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.CommentActivity;
-import com.wodm.android.ui.newview.DianZanActivity;
+import com.wodm.android.ui.newview.DIanZanActivity;
 import com.wodm.android.ui.newview.MessageCenterActivity;
 import com.wodm.android.ui.newview.SystemInformActivity;
 
-import org.eteclab.ui.widget.CircularImage;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -120,7 +117,7 @@ public class MessageCenterAdapter extends BaseAdapter {
                           return;
 
                     case 4:
-                        intent.setClass(mContext, DianZanActivity.class);
+                        intent.setClass(mContext, DIanZanActivity.class);
                         break;
                 }
                 mContext.startActivity(intent);

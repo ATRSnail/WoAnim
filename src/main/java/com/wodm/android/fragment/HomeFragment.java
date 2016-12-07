@@ -49,7 +49,6 @@ public class HomeFragment extends TrackFragment {
     protected void setDatas(Bundle bundle) {
         mBannerView = (BannerView) mHeaderView.findViewById(R.id.banner);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
-        HomeAdapter.getType(IndexTabId == R.id.enetic_cartoon ? 2 : 1);
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean follow) {
@@ -63,6 +62,7 @@ public class HomeFragment extends TrackFragment {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
+                        HomeAdapter.getType(IndexTabId == R.id.enetic_cartoon ? 4 : 5);
                         if (obj != null) {
                             try {
                                 List<NewMainBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean>>() {

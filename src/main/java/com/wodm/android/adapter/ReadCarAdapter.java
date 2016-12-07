@@ -121,46 +121,53 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 float num=0;
                 if (type==0){
                     int width=screenWidth-10;
-                    if (width>img_width){
-                        num=(float)img_width/width;
-                    }else {
+//                    if (width<img_width){
+//                        num=(float)img_width/width;
+//                    }else {
                         num=(float)width/img_width;
-                    }
+//                    }
                     int height=(int)(num*img_height);
                     img_params.width=width;
                     img_params.height=height;
                 }else if (type==1){
                     int height =screenHigh-5;
-                    if (height>img_height){
-                        num=(float)img_height/height;
-                    }else {
+                    int width =screenWidth-10;
+//                    if (height>img_height){
+//                        if (width<img_width){
+//                            num=(float)img_width/width;
+//                        }else {
+//                            num=(float)width/img_width;
+//                        }
                         num=(float)height/img_height;
-                    }
-                    int width=(int)(num*img_width);
-                    img_params.width=width;
+//                    }else {
+//                        num=(float)img_height/height;
+//                    }
+
+                    int width1=(int)(num*img_width);
+                    img_params.width=width1;
                     img_params.height=height;
                 }else if (type==2){
-//                    int width=screenWidth-10;
-//                    if (width>img_height){
-//                        num=(float)img_height/width;
-//                    }else {
-//                        num=(float)width/img_height;
-//                    }
-//                    int width1=(int)(num*img_width);
                     img_params.width=screenHigh;
-                    if (img_height<screenHigh){
-                        img_params.height=screenHigh;
-                    }else {
-                        img_params.height=img_height;
-                    }
+//                    if (screenHigh>img_height){
+//                        num=(float)screenHigh/img_height;
+//                    }else {
+                        num=(float)img_height/screenHigh;
+//                    }
+                    img_params.height= (int) (img_height*num);
 
                 }else if (type==3){
                     int width=screenWidth;
-                    if (width>img_height){
-                        num=(float)img_height/width;
-                    }else {
+                    int height =screenHigh-5;
+//                    if (width>img_height){
+//                        if (height<img_width){
+//                            num=(float)img_width/height;
+//                        }else {
+//                            num=(float)height/img_width;
+//                        }
                         num=(float)width/img_height;
-                    }
+//                    }else {
+//                        num=(float)img_height/width;
+//                    }
                     int width1=(int)(num*img_width);
                     img_params.width=width1;
                     img_params.height=width;

@@ -21,6 +21,7 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
+import com.wodm.android.run.DBService;
 import com.wodm.android.service.DownLoadServices;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.MallConversionUtil;
@@ -40,6 +41,9 @@ import org.eteclab.track.Tracker;
 import org.eteclab.track.annotation.TrackClick;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import static com.wodm.android.Constants.CURRENT_USER;
 
@@ -64,7 +68,7 @@ public class Main2Activity extends AppActivity {
     }
 
     private void initTapView() {
-
+//        GetPhoneState.GetNetIp(this);
         if (((HomeFragment) mSurfaceParams.get(R.id.tab_home).fragment).IndexTabId == R.id.enetic_cartoon) {
             mTab2.setBackgroundResource(R.drawable.enetic_home_title_left);
             mTab2.setTextColor(getResources().getColor(android.R.color.white));
@@ -208,11 +212,14 @@ public class Main2Activity extends AppActivity {
         } else {
             super.onBackPressed();
             JSONObject jsonObject=new JSONObject();
+            int id=Preferences.getInstance(this).getPreference("userBehavier", 0);
+            long initStartTime=Preferences.getInstance(this).getPreference("initStartTime", System.currentTimeMillis());
+//                jsonObject.put("id",id);
+//                jsonObject.put("times", TimeTools.getNianTime());
+            long timelong=(System.currentTimeMillis()-initStartTime)/1000;
+//                jsonObject.put("timeLong", timelong);
             try {
-                int id=Preferences.getInstance(this).getPreference("userBehavier", 0);
-                jsonObject.put("id",id);
-                jsonObject.put("times", TimeTools.getNianTime());
-                httpPost(Constants.APP_GET_MALL_OF_UPDATEUSERBEHAVIOURINFO, jsonObject, new HttpCallback() {
+                httpGet(Constants.APP_GET_MALL_OF_UPDATEUSERBEHAVIOURINFO+"?id="+id+"&times="+ URLEncoder.encode(TimeTools.getNianTime(),"UTF-8")+"&timeLong="+timelong, new HttpCallback() {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
@@ -223,7 +230,7 @@ public class Main2Activity extends AppActivity {
                         super.doAuthFailure(result, obj);
                     }
                 });
-            } catch (JSONException e) {
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             ((TrackApplication) getApplication()).exitApp();
@@ -263,6 +270,12 @@ public class Main2Activity extends AppActivity {
     protected void onResume() {
         super.onResume();
         checkSgin();
+        upData();
+    }
+    private void upData(){
+        Intent serviceIntent=new Intent(this, DBService.class);
+        serviceIntent.putExtra("type","updataall");
+        startService(serviceIntent);
     }
 
 

@@ -49,6 +49,8 @@ public class DBService extends Service {
                 }
             }else if (type.equals("findall")){
                 findAllUserInfo();
+            }else if (type.equals("updataall")){
+                upAllData();
             }
         }
 
@@ -62,7 +64,12 @@ public class DBService extends Service {
         }
 
     }
-
+    private void upAllData(){
+        List<UserBehavierInfo> userBehavierInfoList=query();
+        if (userBehavierInfoList.size()>0){
+            startUpdataReceivce((ArrayList<UserBehavierInfo>) userBehavierInfoList);
+        }
+    }
     private void findAllUserInfo(){
         List<UserBehavierInfo> userBehavierInfoList=query();
         if (userBehavierInfoList.size()>5){

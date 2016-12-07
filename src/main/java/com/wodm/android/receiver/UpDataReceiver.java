@@ -68,7 +68,8 @@ public class UpDataReceiver extends BroadcastReceiver {
                 UserBehavierInfo userInfo=allList.get(i);
                 JSONObject object=new JSONObject();
                 object.put("behaviourId",userInfo.getBehavier_id());
-                object.put("theContentLong",userInfo.getTotalTime());
+                long timeLong=userInfo.getTotalTime()/1000;
+                object.put("theContentLong",timeLong);
                 object.put("resourceId",userInfo.getResourceId());
                 object.put("clickNum",userInfo.getClickNum());
                 jsonArray.put(object);

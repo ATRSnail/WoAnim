@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -17,8 +20,10 @@ import com.wodm.android.adapter.newadapter.NewMain3Adapter;
 import com.wodm.android.adapter.newadapter.NewMainAdapter;
 import com.wodm.android.adapter.newadapter.NewMainDetailsLVAdapter;
 import com.wodm.android.adapter.newadapter.NewMainGvAdapter;
+import com.wodm.android.bean.AdsBean;
 import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.tools.Tools;
+import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.newview.NewMainDetailsActivity;
 
 import org.eteclab.base.annotation.Layout;
@@ -29,6 +34,7 @@ import org.eteclab.ui.widget.NoScrollGridView;
 import org.eteclab.ui.widget.adapter.HolderAdapter;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,10 +44,11 @@ import java.util.List;
 
 @Layout(R.layout.adapter_home_items)
 public class HomeAdapter extends HolderAdapter<NewMainBean> {
-    private static int type=1;
+    private static int type=4;
+    private int gettype=5;
+    private List<AdsBean> adsList=new ArrayList<>();
     public HomeAdapter(Context context, List<NewMainBean> data) {
         super(context, data);
-        getAdvitisement();
     }
 
     @Override
@@ -64,7 +71,13 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                 super.doAuthSuccess(result, obj);
                 if (obj != null) {
                     try {
-
+                        if (adsList.size()>0){
+                            adsList.clear();
+                        }
+                        List<AdsBean> adsList1 = new Gson().fromJson(obj.getString("data"), new TypeToken<List<AdsBean>>() {
+                        }.getType());
+                        adsList.addAll(adsList1);
+                        notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -75,15 +88,39 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
 
     @Override
     protected void bindView(RecyclerView.ViewHolder viewHolder, final int index) {
+        if (gettype!=type){
+            gettype=type;
+            getAdvitisement();
+        }
         ViewHolders holders = (ViewHolders) viewHolder;
         NewMainBean newMainBean=mData.get(index);
         final String name=newMainBean.getName();
+        final int id=newMainBean.getId();
         holders.tv_title_name.setText(name);
         int width= Tools.getScreenWidth((Activity) mContext);
         int hight= (int) ((width-60)*((float)140/690));
         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
         params.setMargins(30,30,30,30);
         holders.img_angle_ads.setLayoutParams(params);
+        if (adsList.size()>0){
+            for (final AdsBean bean:adsList) {
+                if (bean.getSort()==index+1){
+                    holders.img_angle_ads.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(bean.getImage()).placeholder(R.mipmap.loading).into(holders.img_angle_ads);
+                    holders.img_angle_ads.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(mContext, WebViewActivity.class);
+                            intent.putExtra("adsUrl",bean.getAdsUrl());
+                            mContext.startActivity(intent);
+                        }
+                    });
+                    break;
+                }else {
+                    holders.img_angle_ads.setVisibility(View.GONE);
+                }
+            }
+        }
         final int style=newMainBean.getStyle();
         List<NewMainBean.ResourcesBean> resourcesBean=newMainBean.getResources();
         if (style==1){
@@ -103,6 +140,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                 Intent intent =new Intent(mContext, NewMainDetailsActivity.class);
                 intent.putExtra("style",style);
                 intent.putExtra("name",name);
+                intent.putExtra("id",id);
                 mContext.startActivity(intent);
             }
         });

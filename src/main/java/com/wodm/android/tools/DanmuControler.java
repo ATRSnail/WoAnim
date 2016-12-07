@@ -13,7 +13,6 @@ import master.flame.danmaku.ui.widget.DanmakuView;
  */
 
 public class DanmuControler {
-    private static DanmuControler danmuControler;
     private DanMuTools danMuTools;
     public DanmuControler(Context context,DanmakuView mDanmakuView){
         danMuTools=new DanMuTools(context,mDanmakuView);
@@ -30,11 +29,10 @@ public class DanmuControler {
     public void addData(ArrayList<BarrageBean> commentBeanList){
         danMuTools.addData(commentBeanList);
     }
-    public void addBuilt(String text){
-        danMuTools.addDanmakuContraller(text);
+    public void addBuilt(String text,int color){
+        danMuTools.addDanmakuContraller(text,color);
     }
-
-
-
-
+    public void setDanmakuView(DanmakuView danmakuView){
+        danMuTools.setDanMuView(danmakuView);
+    }
 }

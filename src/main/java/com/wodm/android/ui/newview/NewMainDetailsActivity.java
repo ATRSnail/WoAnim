@@ -23,7 +23,6 @@ import org.eteclab.base.http.HttpUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +39,7 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
     private List<NewMainBean> beanList;
     private List<NewMainBean.ResourcesBean> resourcesBeen;
     private Context mContext;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,7 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
         if (getIntent()!=null){
             columnId=getIntent().getExtras().getString("name");
             style=getIntent().getExtras().getInt("style");
+            id=getIntent().getExtras().getInt("id");
         }else {
             finish();
         }
@@ -55,7 +56,7 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
         initData();
     }
     private void initData(){
-        HttpUtil.httpGet(this, Constants.URL_HOME_TYPE + "?columnId="+columnId, new HttpCallback() {
+        HttpUtil.httpGet(this, Constants.APP_GET_MAIN_MORE_RESCOURE + "?columnId="+id, new HttpCallback() {
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
@@ -65,12 +66,12 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean>>() {
+                    resourcesBeen = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean.ResourcesBean>>() {
                     }.getType());
-                    resourcesBeen=new ArrayList<>();
-                    for (NewMainBean bean:beanList){
-                        resourcesBeen.addAll(bean.getResources());
-                    }
+//                    resourcesBeen=new ArrayList<>();
+//                    for (NewMainBean bean:beanList){
+//                        resourcesBeen.addAll(bean.getResources());
+//                    }
                     if (style==1){
                         gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen));
                     }else if (style==2){

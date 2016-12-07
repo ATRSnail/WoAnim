@@ -3,6 +3,8 @@ package com.wodm.android.ui.home;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -40,6 +42,7 @@ import com.wodm.android.dbtools.DBTools;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.braageview.BulletSetDialog;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
@@ -56,8 +59,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import master.flame.danmaku.ui.widget.DanmakuView;
 
 @Layout(R.layout.activity_cartonn_read)
 public class CartoonReadActivity extends AppActivity {
@@ -104,8 +105,14 @@ public class CartoonReadActivity extends AppActivity {
     private View mTopView;
     @ViewIn(R.id.swipeRefreshLayout)
     private SwipeRefreshLayout refreshLayout;
-    @ViewIn(R.id.danmaku_view)
-    private DanmakuView danmaku_view;
+    @ViewIn(R.id.mDanmakuView_read_top)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_read_top;
+    @ViewIn(R.id.mDanmakuView_read_middle)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_read_middle;
+    @ViewIn(R.id.mDanmakuView_read_bottom)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_read_bottom;
+    @ViewIn(R.id.ll_danmu_background)
+    private LinearLayout ll_danmu_background;
     private boolean isSlidingToLast = false;
     private boolean mIsLoading;
     @ViewIn(R.id.progressBar)
@@ -204,9 +211,18 @@ public class CartoonReadActivity extends AppActivity {
     }
 
     @Override
-    public void refrensh(String content) {
-        super.refrensh(content);
-        danmuControler.addBuilt(content);
+    public void refrensh(String content,int color,int position) {
+        super.refrensh(content,color,position);
+        if (position==1){
+            danmuControler.setDanmakuView(mDanmakuView_read_top);
+        }else if (position==2){
+            danmuControler.setDanmakuView(mDanmakuView_read_middle);
+        }else if (position==3){
+            danmuControler.setDanmakuView(mDanmakuView_read_bottom);
+        }else {
+            danmuControler.setDanmakuView(mDanmakuView_read_top);
+        }
+        danmuControler.addBuilt(content,color);
 //        getBarrageResource();
     }
 
@@ -435,8 +451,24 @@ public class CartoonReadActivity extends AppActivity {
 //        Collections.shuffle(list);
 //        mDanmakuView.addItem(list, true);
 //        mDanmakuView.show();
-        danmuControler = new DanmuControler(this, danmaku_view);
-        danmuControler.addData(barrageBeanList);
+        ArrayList<BarrageBean> arrayList_top=new ArrayList<>();
+        ArrayList<BarrageBean> arrayList_middle=new ArrayList<>();
+        ArrayList<BarrageBean> arrayList_bottom=new ArrayList<>();
+        for (BarrageBean bean:barrageBeanList){
+            if (bean.getLocation()==1){
+                arrayList_top.add(bean);
+            }else if (bean.getLocation()==2){
+                arrayList_middle.add(bean);
+            }else {
+                arrayList_bottom.add(bean);
+            }
+        }
+        danmuControler = new DanmuControler(this, mDanmakuView_read_top);
+        danmuControler.addData(arrayList_top);
+        danmuControler = new DanmuControler(this, mDanmakuView_read_middle);
+        danmuControler.addData(arrayList_middle);
+        danmuControler = new DanmuControler(this, mDanmakuView_read_bottom);
+        danmuControler.addData(arrayList_bottom);
 
     }
 
@@ -656,7 +688,7 @@ public class CartoonReadActivity extends AppActivity {
         pullToLoadView.smoothScrollToPosition(postion == manager.getItemCount() - 1 ? postion : postion + 1);
     }
 
-    @TrackClick(value = R.id.layout_top, location = TITLE, eventName = "退出界面")
+    @TrackClick(value = R.id.exit_screen, location = TITLE, eventName = "退出界面")
     private void clickfinish(View view) {
             Intent intent=new Intent();
             intent.putExtra("key",flagNum);
@@ -664,6 +696,23 @@ public class CartoonReadActivity extends AppActivity {
             setResult(RESULT_OK, intent);
             flagNum=0;
         finish();
+    }
+    @TrackClick(value = R.id.img_set, location = TITLE, eventName = "弹出设置")
+    private void clickimg_set(View view) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        BulletSetDialog bulletSetDialog= BulletSetDialog.newInstance(new BulletSetDialog.setBulletSetDialogListener() {
+            @Override
+            public void setDialogListener(int progress) {
+                ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
+                ll_danmu_background.getBackground().setAlpha(progress);
+            }
+        });
+        bulletSetDialog.show(ft,"dialog");
     }
 
 

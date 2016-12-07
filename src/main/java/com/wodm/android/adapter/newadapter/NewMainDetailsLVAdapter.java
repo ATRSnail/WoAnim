@@ -62,7 +62,7 @@ public class NewMainDetailsLVAdapter extends BaseAdapter {
             holder.btn_read_now= (Button) convertView.findViewById(R.id.btn_read_now);
             int hight= (int) ((width-60)*((float)180/690));
             LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
-            params.setMargins(30,15,30,15);
+            params.setMargins(0,0,0,30);
             holder.ll_every_free.setLayoutParams(params);
             LinearLayout.LayoutParams img_params=new LinearLayout.LayoutParams(hight*2, LinearLayout.LayoutParams.MATCH_PARENT);
             holder.img_angle.setLayoutParams(img_params);

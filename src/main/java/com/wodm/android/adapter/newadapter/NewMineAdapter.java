@@ -3,7 +3,6 @@ package com.wodm.android.adapter.newadapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wodm.R;
-import com.wodm.android.Constants;
-import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
-import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
-import com.wodm.android.ui.newview.DianZanActivity;
+import com.wodm.android.ui.newview.DIanZanActivity;
 import com.wodm.android.ui.newview.MallActivity;
 import com.wodm.android.ui.newview.MessageCenterActivity;
 import com.wodm.android.ui.newview.MyMedalActivity;
@@ -34,7 +30,6 @@ import com.wodm.android.ui.user.UsSetActivity;
 import com.wodm.android.ui.user.UserCacheActivity;
 import com.wodm.android.ui.user.UserIntegralActivity;
 import com.wodm.android.ui.user.UserMessageActivity;
-import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.track.Tracker;
@@ -174,7 +169,13 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
         }  else if (text.equals("点赞")) {
-            startIntent(null, DianZanActivity.class);
+            startIntent(null, DIanZanActivity.class);
+        } else if (text.equals("关注")) {
+            startIntent(null, AttentionActivity.class);
+        } else if (text.equals("消息中心")) {
+            startIntent(null, MessageCenterActivity.class);
+        }else if (text.equals("点赞")) {
+            startIntent(null, DIanZanActivity.class);
         }else if (text.equals("系统通知")) {
             startIntent(null, SystemInformActivity.class);
         }

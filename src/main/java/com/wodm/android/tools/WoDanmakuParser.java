@@ -74,6 +74,7 @@ public class WoDanmakuParser extends BaseDanmakuParser {
                 item.time = time;
                 item.textSize = textSize * (mDispDensity - 0.6f);
                 item.textColor = color;
+                item.duration.setFactor((float)Math.random() * bullet.getSudu()); //滚动速度系数,越小越快
                 item.textShadowColor = color <= Color.BLACK ? Color.WHITE : Color.BLACK;
                 DanmakuUtils.fillText(item, bullet.getContext());
                 item.setTimer(mTimer);
@@ -82,4 +83,5 @@ public class WoDanmakuParser extends BaseDanmakuParser {
         }
         return danmakus;
     }
+
 }

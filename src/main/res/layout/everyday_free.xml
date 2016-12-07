@@ -7,10 +7,6 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/ll_every_free"
-        android:layout_marginBottom="@dimen/px_15"
-        android:layout_marginTop="@dimen/px_15"
-        android:layout_marginRight="@dimen/px_30"
-        android:layout_marginLeft="@dimen/px_30"
         android:orientation="horizontal"
         android:background="@drawable/layout_border_circle"
         android:layout_width="match_parent"
@@ -26,7 +22,7 @@
             android:layout_marginLeft="@dimen/px_24"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
            <LinearLayout
                android:orientation="vertical"
                android:layout_width="wrap_content"

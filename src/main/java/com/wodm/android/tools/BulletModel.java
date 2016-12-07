@@ -30,6 +30,16 @@ public class BulletModel {
         private String fontSize;
         private long ctime;
 
+        public int getSudu() {
+            return sudu;
+        }
+
+        public void setSudu(int sudu) {
+            this.sudu = sudu;
+        }
+
+        private int sudu;
+
         public int getId() {
             return id;
         }

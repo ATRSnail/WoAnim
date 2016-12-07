@@ -53,8 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.wodm.android.view.newview.RoundAngleImageView
+            android:visibility="gone"
+            android:focusable="false"
             android:id="@+id/img_angle_ads"
-            android:background="@mipmap/login_banner"
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

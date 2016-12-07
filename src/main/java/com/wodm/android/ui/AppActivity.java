@@ -4,6 +4,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -188,7 +189,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     
 
     @Override
-    public void addBullet(final String content) {
+    public void addBullet(final String content,final String color,final int position) {
         if (!UpdataUserInfo.isLogIn(this, true,null)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
@@ -230,6 +231,9 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
             obj.put("content", content);
+            final int bulletColor= Color.parseColor(color);
+            obj.put("color", color);
+            obj.put("location", position);
             httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -241,7 +245,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                             if (bulletDialog != null) {
                                 bulletDialog.dismiss();
                             }
-                            refrensh(content);
+                            refrensh(content,bulletColor,position);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -258,9 +262,10 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         }
     }
 
-    public void refrensh(String content) {
+    public void refrensh(String content,int color,int position) {
 
     }
+
 
     public void showFial() {
         new DialogUtils.Builder(this).setCancelable(false).setTitle("提示")

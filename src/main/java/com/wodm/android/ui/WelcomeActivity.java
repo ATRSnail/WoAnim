@@ -132,6 +132,7 @@ public class WelcomeActivity extends AppActivity {
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     Preferences.getInstance(getApplicationContext()).setPreference("userBehavier", obj.optInt("data",0));
+                    Preferences.getInstance(getApplicationContext()).setPreference("initStartTime", System.currentTimeMillis());
                 }
 
                 @Override

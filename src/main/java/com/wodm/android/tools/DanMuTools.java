@@ -14,6 +14,7 @@ import android.text.style.ImageSpan;
 
 import com.wodm.R;
 import com.wodm.android.bean.BarrageBean;
+import com.wodm.android.utils.Preferences;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,10 +67,9 @@ public class DanMuTools {
         maxLinesPair=new HashMap<>();
         maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL,3);
 
-        // 设置是否禁止重叠
         overlappingEnablePair = new HashMap<>();
-        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_LR, true);
-        overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_BOTTOM, true);
+        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_LR, false);
+        overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_BOTTOM, false);
 
 
 
@@ -89,6 +89,7 @@ public class DanMuTools {
     }
     private void init(){
         if (mDanmakuView != null) {
+            int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 4);
             mParser=new WoDanmakuParser();
             if (mChapterList!=null&&mChapterList.size()>0){
                 BulletModel bul=new BulletModel();
@@ -98,12 +99,13 @@ public class DanMuTools {
                 for (BarrageBean bean:mChapterList) {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
-                    ba.setFontColor("#669900");
+                    ba.setFontColor(ba.getFontColor());
                     ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_24_px)+"");
                     int time=random.nextInt(timeArr.length);
                     ba.setTime(time);
                     ba.setId(bean.getId());
                     ba.setState("1");
+                    ba.setSudu(sudu);
                     listBean.add(ba);
                 }
                 bul.setBarrageList(listBean);
@@ -163,22 +165,24 @@ public class DanMuTools {
     /**
      * 添加文本弹幕
      */
-    private void addDanmaku(String text) {
+    private void addDanmaku(String text,int color) {
         BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
         if (danmaku == null || mDanmakuView == null) {
             return;
         }
-
         danmaku.text = text;
         danmaku.padding = 5;
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
         danmaku.isLive = true; //是否是直播弹幕
         danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
-        danmaku.textSize = mContext.getResources().getDimension(R.dimen.text_size_24_px);
-        danmaku.textColor = mContext.getResources().getColor(R.color.color_333333);
+        danmaku.textSize = mContext.getResources().getDimension(R.dimen.x24);
+        danmaku.textColor = color;
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
         mDanmakuView.addDanmaku(danmaku);
+    }
+    public void setDanMuView(DanmakuView mDanmakuView){
+        this.mDanmakuView=mDanmakuView;
     }
 
     /**
@@ -331,7 +335,7 @@ public class DanMuTools {
 
     }
 
-    protected void addDanmakuContraller(String text){
-        addDanmaku(text);
+    protected void addDanmakuContraller(String text,int color){
+        addDanmaku(text,color);
     }
 }

@@ -2,6 +2,8 @@ package com.wodm.android.ui.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,6 +56,7 @@ import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.braageview.BulletSetDialog;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ScreenSwitchUtils;
@@ -115,13 +118,20 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private CheckBox isCollectBox;
     private BiaoqingTools biaoqingtools;
     private ArrayList<CommentBean> commentBeanList;
-    @ViewIn(R.id.danmaku_view)
-    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView;
+    @ViewIn(R.id.danmaku_view_top)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_top;
+    @ViewIn(R.id.danmaku_view_middle)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_middle;
+    @ViewIn(R.id.danmaku_view_bottom)
+    private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_bottom;
+
     @ViewIn(R.id.ll_bottom)
     private LinearLayout ll_bottom;
     private DanmuControler danmuControler;
     @ViewIn(R.id.header)
     private CircularImage header;
+    @ViewIn(R.id.ll_danmu_background)
+    private LinearLayout ll_danmu_background;
     private ImageView danmu_kaiguan;
     private boolean isOpen = false;
     private Dialog dialog = null;
@@ -161,6 +171,25 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
         isCollectBox.setOnClickListener(onClickListener);
         screenSwitchUtils=ScreenSwitchUtils.init(this);
+        videoView.findViewById(R.id.img_set).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+                BulletSetDialog bulletSetDialog= BulletSetDialog.newInstance(new BulletSetDialog.setBulletSetDialogListener() {
+                    @Override
+                    public void setDialogListener(int progress) {
+                        ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
+                        ll_danmu_background.getBackground().setAlpha(progress);
+                    }
+                });
+                bulletSetDialog.show(ft,"dialog");
+            }
+        });
     }
 
     @Override
@@ -496,16 +525,31 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 //        Collections.shuffle(list);
 //        mDanmakuView.addItem(list, true);
 //        mDanmakuView.show();
-        danmuControler = new DanmuControler(this, mDanmakuView);
-        danmuControler.addData(barrageBeanList);
-
+        ArrayList<BarrageBean> arrayList_top=new ArrayList<>();
+        ArrayList<BarrageBean> arrayList_middle=new ArrayList<>();
+        ArrayList<BarrageBean> arrayList_bottom=new ArrayList<>();
+        for (BarrageBean bean:barrageBeanList){
+              if (bean.getLocation()==1){
+                  arrayList_top.add(bean);
+              }else if (bean.getLocation()==2){
+                  arrayList_middle.add(bean);
+              }else {
+                  arrayList_bottom.add(bean);
+              }
+        }
+        danmuControler = new DanmuControler(this, mDanmakuView_top);
+        danmuControler.addData(arrayList_top);
+        danmuControler = new DanmuControler(this, mDanmakuView_middle);
+        danmuControler.addData(arrayList_middle);
+        danmuControler = new DanmuControler(this, mDanmakuView_bottom);
+        danmuControler.addData(arrayList_bottom);
     }
 
     private List<IDanmakuItem> initItems(List<CommentBean> commentbeanList) {
         List<IDanmakuItem> list = new ArrayList<>();
         for (CommentBean iDanmakuItem : commentbeanList) {
             SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(this, iDanmakuItem.getContent());
-            IDanmakuItem item = new DanmakuItem(this, spannableString, mDanmakuView.getWidth(), R.color.colorAccent, R.color.colorAccent, 0, 1.5f);
+            IDanmakuItem item = new DanmakuItem(this, spannableString, mDanmakuView_top.getWidth(), R.color.colorAccent, R.color.colorAccent, 0, 1.5f);
             list.add(item);
         }
 
@@ -1023,9 +1067,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     @Override
-    public void refrensh(String content) {
-        super.refrensh(content);
-        danmuControler.addBuilt(content);
+    public void refrensh(String content,int color,int position) {
+        super.refrensh(content,color,position);
+        if (position==1){
+            danmuControler.setDanmakuView(mDanmakuView_top);
+        }else if (position==2){
+            danmuControler.setDanmakuView(mDanmakuView_middle);
+        }else if (position==3){
+            danmuControler.setDanmakuView(mDanmakuView_bottom);
+        }else {
+            danmuControler.setDanmakuView(mDanmakuView_top);
+        }
+        danmuControler.addBuilt(content,color);
+
 //        getBarrageResource(barrage_charterId);
 
     }
