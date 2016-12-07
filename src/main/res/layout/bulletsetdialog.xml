@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/ll_bulletsdialog"
+    android:background="@color/color_333333"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="@dimen/px_30"
+            android:layout_gravity="center"
+            android:textSize="@dimen/text_size_30_px"
+            android:textColor="@color/color_ffffff"
+            android:text="弹幕设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/ll_danmu_set"
+            android:layout_marginTop="@dimen/px_30"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/setdialog_view"
+                android:background="@color/color_ffffff"
+                android:layout_centerHorizontal="true"
+                android:layout_width="364dp"
+                android:layout_height="@dimen/px_2">
+            </View>
+            <LinearLayout
+                android:id="@+id/ll_danmu_touming"
+                android:layout_marginTop="@dimen/px_30"
+                android:layout_alignLeft="@+id/setdialog_view"
+                android:layout_below="@+id/setdialog_view"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:text="弹幕不透明度: 100%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/px_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                   <RelativeLayout
+                       android:id="@+id/ll_toumingdu"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:id="@+id/tv_toumingdu"
+                           android:layout_centerVertical="true"
+                           android:textSize="@dimen/text_size_30_px"
+                           android:textColor="@color/color_999999"
+                           android:text="0%"
+                           android:maxLength="3"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <TextView
+                           android:visibility="invisible"
+                           android:layout_centerVertical="true"
+                           android:textSize="@dimen/text_size_30_px"
+                           android:textColor="@color/color_999999"
+                           android:text="110%"
+                           android:maxLength="3"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                   </RelativeLayout>
+                    <SeekBar
+                        android:id="@+id/seekbar_toumingdu"
+                        android:layout_toRightOf="@+id/ll_toumingdu"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_horizontal"
+                        style="@style/Widget.SeekBar.Normal"
+                        android:layout_width="@dimen/px_600"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_toRightOf="@+id/seekbar_toumingdu"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/text_size_30_px"
+                        android:textColor="@color/color_999999"
+                        android:text="100%"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_danmu_sudu"
+                android:layout_marginTop="@dimen/px_30"
+                android:layout_alignLeft="@+id/setdialog_view"
+                android:layout_below="@+id/ll_danmu_touming"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="@dimen/px_30"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="@dimen/text_size_30_px"
+                    android:text="弹幕速度:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/px_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_sudu"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/text_size_30_px"
+                        android:textColor="@color/color_999999"
+                        android:text="慢  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:focusable="false"
+                        android:id="@+id/img_sudu"
+                        android:layout_toRightOf="@+id/tv_sudu"
+                        android:layout_marginLeft="@dimen/px_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <View
+                            android:visibility="gone"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/view_left"
+                            android:layout_width="@dimen/px_10"
+                            android:layout_height="@dimen/px_24"
+                            android:background="@color/color_ffffff">
+                        </View>
+                        <ImageView
+                            android:id="@+id/img_sudu_line"
+                            android:background="@mipmap/img_bullet_sudu"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_horizontal"
+                            android:layout_width="@dimen/px_570"
+                            android:layout_height="@dimen/px_10" />
+                        <View
+                            android:id="@+id/view"
+                            android:layout_alignBottom="@+id/img_sudu_line"
+                            android:layout_centerInParent="true"
+                            android:layout_width="@dimen/px_10"
+                            android:layout_height="@dimen/px_24"
+                            android:background="@color/color_ffffff">
+                        </View>
+                        <View
+                            android:visibility="gone"
+                            android:layout_alignEnd="@+id/img_sudu_line"
+                            android:id="@+id/view_right"
+                            android:layout_width="@dimen/px_10"
+                            android:layout_height="@dimen/px_24"
+                            android:background="@color/color_ffffff"
+                            android:layout_alignRight="@+id/img_sudu_line">
+                        </View>
+
+                        <ImageView
+                            android:layout_alignParentLeft="true"
+                            android:id="@+id/img_white_select"
+                            android:background="@mipmap/img_white_select"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_toRightOf="@+id/img_sudu"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/px_30"
+                        android:textSize="@dimen/text_size_30_px"
+                        android:textColor="@color/color_999999"
+                        android:text="快"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
