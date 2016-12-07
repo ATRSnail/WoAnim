@@ -44,13 +44,23 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/logo"
             android:layout_toRightOf="@id/logo"
-            android:paddingLeft="@dimen/px_15"
             android:ellipsize="end"
+            android:paddingLeft="@dimen/px_15"
             android:text="Large Text"
             android:textColor="#F34F85"
             android:textSize="@dimen/text_size_28_px" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_zan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:padding="6dp"
+        android:src="@mipmap/un_zan" />
 
 
 </RelativeLayout>

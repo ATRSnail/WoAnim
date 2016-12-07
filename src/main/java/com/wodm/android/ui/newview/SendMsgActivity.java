@@ -1,24 +1,18 @@
 package com.wodm.android.ui.newview;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lidroid.xutils.util.LogUtils;
 import com.wodm.R;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.ui.AppActivity;
@@ -33,7 +27,8 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
         View.OnClickListener {
 
     @ViewIn(R.id.ed_comment)
-    EditText  mEditText;;
+    EditText mEditText;
+    ;
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.tv_num)
@@ -55,7 +50,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     }
 
     private void initDatas() {
-       set_topbar.setOnTopbarClickListenter(this);
+        set_topbar.setOnTopbarClickListenter(this);
     }
 
     private void initViews() {
@@ -121,7 +116,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void leftClick() {
-       finish();
+        finish();
     }
 
     @Override
@@ -150,7 +145,6 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     /**
      * 隐藏表情布局
-     *
      */
     private void hideEmotionLayout() {
         if (mEmojiView.isShown()) {
@@ -161,7 +155,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void onBackPressed() {
-        if (mEmojiView.isShown()){
+        if (mEmojiView.isShown()) {
             hideEmotionLayout();
             return;
         }

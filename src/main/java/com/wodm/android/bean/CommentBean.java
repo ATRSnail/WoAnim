@@ -15,6 +15,15 @@ public class CommentBean implements Serializable{
     private String createTimeStr;
     private int goodCount;
     private int commentCount;
+    private boolean isZan = false;
+
+    public boolean isZan() {
+        return isZan;
+    }
+
+    public void setZan(boolean zan) {
+        isZan = zan;
+    }
 
     public int getId() {
         return id;

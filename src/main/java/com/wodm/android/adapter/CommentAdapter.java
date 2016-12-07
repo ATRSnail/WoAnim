@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.gestures.GestureDetector;
 import com.wodm.R;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.ui.home.AnimDetailActivity;
@@ -54,6 +56,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         new AsyncImageLoader(mContext, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
         holder.name.setText(bean.getSendAccountName());
         holder.time.setText(bean.getCreateTimeStr());
+        holder.zanBtn.setImageResource(bean.isZan()?R.mipmap.zan:R.mipmap.un_zan);
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +72,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 mContext.startActivity(intent);
             }
         });
+        holder.zanBtn.setOnClickListener(new ZanClick(bean));
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -80,10 +84,28 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         private TextView name;
         @ViewIn(R.id.content)
         private TextView content;
+        @ViewIn(R.id.img_zan)
+        ImageView zanBtn;
         private View allView;
         public ViewHolder(View view) {
             super(view);
             this.allView =view;
+        }
+    }
+
+    class ZanClick implements View.OnClickListener{
+
+        private CommentBean bean;
+
+        public ZanClick(CommentBean bean) {
+            this.bean = bean;
+        }
+
+        @Override
+        public void onClick(View v) {
+           if (bean.isZan()){
+
+           }
         }
     }
 }
