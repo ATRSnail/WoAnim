@@ -131,17 +131,18 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
 
 
         if (dataBean.getStatus()==1){
-            if(dataBean.getContentType()==6)
-            { holder.pho.setImageResource(phos_new[1]);}
-            else {
+            //现在只有系统通知
+//            if(dataBean.getContentType()==6)
+//            { holder.pho.setImageResource(phos_new[1]);}
+//            else {
                 holder.pho.setImageResource(phos_new[0]);
-            }
+//            }
         }else {
-            if(dataBean.getContentType()==6)
-            { holder.pho.setImageResource(phos[1]);}
-            else {
+//            if(dataBean.getContentType()==6)
+//            { holder.pho.setImageResource(phos[1]);}
+//            else {
                 holder.pho.setImageResource(phos[0]);
-            }
+//            }
         }
         if(dataBean.getContentType()==6)
         {   holder.name.setText(names[1]);}
