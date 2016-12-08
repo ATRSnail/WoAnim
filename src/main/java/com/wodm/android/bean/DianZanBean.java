@@ -11,10 +11,9 @@ public class DianZanBean {
 
 
     /**
-     * 获取所有的点赞的详情的列表
      * code : 1000
      * message : 操作成功
-     * data : [{"content":"小康测试回复你的","sendId":274,"sendNickName":"赵文友","times":"2016-12-05","sendPortrait":"http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg"},{"content":"小康测试回复你的","sendId":272,"sendNickName":"M514168","times":"2016-12-05","sendPortrait":""},{"content":"小康测试回复你的","sendId":271,"sendNickName":"一脸懵逼的猪","times":"2016-12-05","sendPortrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0"}]
+     * data : [{"content":"小康测试回复你的","sendId":274,"sendNickName":"赵文友","times":"2016-12-05","sendPortrait":"http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg","messageId":34},{"content":"小康测试回复你的","sendId":272,"sendNickName":"M514168","times":"2016-12-05","sendPortrait":"","messageId":33},{"content":"小康测试回复你的","sendId":271,"sendNickName":"一脸懵逼的猪","times":"2016-12-05","sendPortrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0","messageId":32}]
      */
 
     private int code;
@@ -25,6 +24,7 @@ public class DianZanBean {
      * sendNickName : 赵文友
      * times : 2016-12-05
      * sendPortrait : http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg
+     * messageId : 34
      */
 
     private List<DataBean> data;
@@ -59,6 +59,7 @@ public class DianZanBean {
         private String sendNickName;
         private String times;
         private String sendPortrait;
+        private int messageId;//当前消息的ID
 
         public String getContent() {
             return content;
@@ -98,6 +99,14 @@ public class DianZanBean {
 
         public void setSendPortrait(String sendPortrait) {
             this.sendPortrait = sendPortrait;
+        }
+
+        public int getMessageId() {
+            return messageId;
+        }
+
+        public void setMessageId(int messageId) {
+            this.messageId = messageId;
         }
     }
 }

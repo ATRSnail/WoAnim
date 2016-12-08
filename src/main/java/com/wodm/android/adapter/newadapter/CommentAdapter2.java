@@ -21,10 +21,10 @@ import java.util.List;
 
 /**
  * Created by ATRSnail on 2016/12/7.
+ * 消息中心的评论的适配
  */
 
 public class CommentAdapter2 extends BaseAdapter{
-    //消息中心的评论的适配
 
 //    List<CommentBean2.DataBean> list=new ArrayList<>();
     List<String> list=new ArrayList<>();

@@ -20,6 +20,7 @@ import com.wodm.android.bean.CommentBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.newview.PersionActivity;
+import com.wodm.android.utils.MessageUtils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.biaoqing.FaceConversionUtil;
 
@@ -113,14 +114,14 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         @Override
         public void onClick(View v) {
             ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
-                    , zanObj(bean.getSendId(), bean.getId(), 0)
+                    , zanObj(bean.getSendId(), bean.getId(), 1)
                     , new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
                             try {
                                 if (obj.getString("code").equals("1000")) {
-                                    Toast.makeText(context,"操作成功",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context,obj.get("message").toString(),Toast.LENGTH_SHORT).show();
                                     bean.setZan();
                                     notifyDataSetChanged();
                                 }
@@ -145,6 +146,9 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 
         private JSONObject zanObj(long userId, long contentId, int type) {
             //保存用户点赞的、 用户取消点赞的、内容的方法
+            /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*private int type*/
+
+
             JSONObject object = new JSONObject();
             try {
                 object.put("userId", userId);

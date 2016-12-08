@@ -24,6 +24,9 @@ import java.util.List;
 @Layout(R.layout.activity_comment2)
 public class CommentActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,
         View.OnClickListener {
+    /**
+     * 消息中心的评论
+     */
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.choice_bottom)

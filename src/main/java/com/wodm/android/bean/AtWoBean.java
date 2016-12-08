@@ -59,6 +59,15 @@ public class AtWoBean {
         private String times;
         private String sendPortrait;
         private String receiveNickName;
+        private int messageId;//当前消息的ID
+
+        public int getMessageId() {
+            return messageId;
+        }
+
+        public void setMessageId(int messageId) {
+            this.messageId = messageId;
+        }
 
         public String getContent() {
             return content;

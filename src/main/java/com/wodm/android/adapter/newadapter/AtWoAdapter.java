@@ -97,7 +97,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         holder.choice_atwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long id =dataBean.getSendId();
+                long id =dataBean.getMessageId();
                 if (click[0]) {
                     finalHolder.choice_atwo.setImageResource(R.mipmap.up_yes);
                     num++;
