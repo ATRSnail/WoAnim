@@ -34,8 +34,6 @@ import com.wodm.android.adapter.newadapter.GuaJianAdapter;
 import com.wodm.android.bean.ColumnBean;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.UserInfoBean;
-import com.wodm.android.fragment.GuaJianFragment;
-import com.wodm.android.fragment.TouXiangFragment;
 import com.wodm.android.tools.BuyingTools;
 import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -82,7 +80,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private int clckIcon;
     private BannerView mBannerView;
     private TabLayout tabLayout;
-    private List<ColumnBean> columnBeanList;
+    private ArrayList<ColumnBean> columnBeanList;
     private OfenUseView rl_ofenusertime;
     private TextView tv_user_name;
     private ImageView img_vip_circle;
@@ -90,6 +88,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private LinearLayout ll_guajian_of_user;
     private static  final  int REQUEST_CODE=001;
     private boolean listener=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,8 +199,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
             });
 
         }
-        guanJianFrag = new GuaJianFragment();
-        touXiangFrg = new TouXiangFragment();
+        guanJianFrag = FragmentMyPager.newInstance(0,columnBeanList);
+        touXiangFrg = FragmentMyPager.newInstance(1,columnBeanList);
 //        guanJianFrag = new FragmentMyPager();
 //        touXiangFrg = new FragmentMyPager();
         guanJianFrag.setAddClickIconListener(this);
@@ -211,8 +210,6 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         set_topbar.setOnTopbarClickListenter(this);
         fragments.add(touXiangFrg);
         fragments.add(guanJianFrag);
-        guanJianFrag.setNumClown(columnBeanList);
-        touXiangFrg.setNumClown(columnBeanList);
         mTitles.add("头像框");
         mTitles.add("挂件");
 
