@@ -118,7 +118,7 @@
     <string name="new_user_task">新手任务</string>
     <string name="task_days">日常任务</string>
     <string name="days_add">经验值+4</string>
-    <string name="qiandao_get">签到可获取2经验!</string>
+    <string name="qiandao_get">签到可获取4经验!</string>
     <string name="qiandao">签到</string>
     <string name="slow">慢</string>
     <string name="open_vip">开通VIP</string>

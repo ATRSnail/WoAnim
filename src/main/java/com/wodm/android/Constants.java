@@ -161,6 +161,7 @@ public class Constants {
     public static final String REPLY=HOST + "comment/reply ";//  用户回复的接口内容
     public static final String CommentList=HOST + "comment/list?resourceId=";//查询 用户评论的列表
     public static final String CURRENTComment=HOST + "comment/currentCommentList?userId=";//临时添加的获取用户的原始评论内容
+    public static final String SAVEADVERTISEMENTCLICK=HOST + "behavior/saveAdvertisementSerialClick";//广告统计接口
 
 
 

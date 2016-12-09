@@ -16,6 +16,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.utils.PermissionInfoTools;
 
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
@@ -47,6 +48,12 @@ public class HomeFragment extends TrackFragment {
 
     @Override
     protected void setDatas(Bundle bundle) {
+        PermissionInfoTools.getWritePermission(getActivity(), new PermissionInfoTools.SetPermissionCallBack() {
+            @Override
+            public void IPsermission(boolean isPermsion) {
+
+            }
+        });
         mBannerView = (BannerView) mHeaderView.findViewById(R.id.banner);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {

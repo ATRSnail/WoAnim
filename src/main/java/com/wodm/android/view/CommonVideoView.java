@@ -66,8 +66,10 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private ImageView tan_anim;
     private ImageView anim_share;
     public CheckBox more;
+    private ImageView screen_status_img;
     private ImageView anim_dowm;
     private TextView mListAnim;
+
 
     private int orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
@@ -170,6 +172,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
     }
     public void setFullScreen() {
+        screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_suoxiao));
         orientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
         this.setLayoutParams(new
@@ -179,9 +182,10 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
     public void setNormalScreen() {
-
+        screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_fangda));
         orientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
+
         this.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
         setlandLayout(GONE);
         videoTitleLayout.setBackgroundColor(Color.argb(0x0, 0x0, 0x00, 0x00));
@@ -253,7 +257,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         videoPauseBtn.setOnClickListener(this);
         videoView.setOnPreparedListener(this);
         videoView.setOnCompletionListener(this);
-        view.findViewById(R.id.screen_status_img).setOnClickListener(this);
+        screen_status_img= (ImageView) view.findViewById(R.id.screen_status_img);
+        screen_status_img.setOnClickListener(this);
         videoPlayImg.setOnClickListener(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
@@ -459,10 +464,12 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                 if (i == Configuration.ORIENTATION_PORTRAIT) {
 //                    ((AnimDetailActivity) context).setIsLandscape(false);
                     setFullScreen();
+                    screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_suoxiao));
 
                 } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
 //                    ((AnimDetailActivity) context).setIsLandscape(true);
                     setNormalScreen();
+                    screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_fangda));
                 }
 
                 ((AnimDetailActivity) context).setLandPort();
@@ -574,11 +581,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int[] time = getMinuteAndSecond(progress);
         videoCurTimeText.setText(String.format("%02d:%02d", time[0], time[1]));
-        Log.e("SCY"," - - --progress -  - --  "+progress);
-        Log.e("SCY"," - - - - progress  - - - --  "+String.format("%02d:%02d", time[0], time[1]));
         int[] times = getMinuteAndSecond(duration);
-        Log.e("SCY"," - - -- -  -duration --  "+duration);
-        Log.e("SCY"," - - -- -  duration- --  "+String.format("%02d:%02d", times[0], times[1]));
         if (videoUrl==null||videoUrl.equals("")){
             return;
         }

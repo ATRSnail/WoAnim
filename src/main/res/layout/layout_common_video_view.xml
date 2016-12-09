@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/px_30"
                 android:paddingRight="@dimen/px_30"
-                android:src="@mipmap/anim_fangda" />
+                android:src="@mipmap/img_fangda" />
 
 
         </LinearLayout>

@@ -149,9 +149,9 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }else if (type==2){
                     img_params.width=screenHigh;
 //                    if (screenHigh>img_height){
-//                        num=(float)screenHigh/img_height;
+                        num=(float)screenHigh/img_height;
 //                    }else {
-                        num=(float)img_height/screenHigh;
+//                        num=(float)img_height/screenHigh;
 //                    }
                     img_params.height= (int) (img_height*num);
 

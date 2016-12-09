@@ -912,6 +912,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             if (!network.equals("WIFI") && !isTip) {
                 isTip = true;
                 DialogUtils.Builder builder = new DialogUtils.Builder(this);
+                builder.setTitle("提示");
                 builder.setMessage("是否允许在2G/3G/4G网络下播放").setPositiveButton("允许", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1004,17 +1005,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
         String strTime=String.format("%02d:%02d", playTime[0], playTime[1]);
         new DialogUtils.Builder(context)
+                .setTitle("提示")
                 .setMessage("您上次看到了"+strTime+"是否继续观看")
                 .setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
                         videoView.start(playUrl,times);
+                        dialog.dismiss();
                     }
                 }).setNegativeButton("否", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 videoView.start(playUrl);
+                dialog.dismiss();
             }
         }).create().show();
     }

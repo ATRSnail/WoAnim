@@ -5,6 +5,7 @@ import android.content.Context;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
+import com.wodm.android.bean.AdsClickBean;
 import com.wodm.android.bean.UserBehavierInfo;
 import com.wodm.android.db.WoDbUtils;
 
@@ -29,6 +30,14 @@ public class DbContraller {
         try {
            WoDbUtils.initialize(mContext).save(userBehavierInfo);
            changeClickNumById(userBehavierInfo.getResourceId());
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public  void insertAds(AdsClickBean adsClickBean){
+        try {
+            WoDbUtils.initialize(mContext).save(adsClickBean);
         } catch (DbException e) {
             e.printStackTrace();
         }
@@ -65,6 +74,7 @@ public class DbContraller {
             e.printStackTrace();
         }
     }
+
     public void changeClickNumById(long resourceId){
         try {
             List<UserBehavierInfo> beanList= WoDbUtils.initialize(mContext).

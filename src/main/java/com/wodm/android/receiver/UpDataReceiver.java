@@ -9,6 +9,7 @@ import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.AdsClickBean;
 import com.wodm.android.bean.UserBehavierInfo;
 import com.wodm.android.db.WoDbUtils;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 
 public class UpDataReceiver extends BroadcastReceiver {
     private ArrayList<UserBehavierInfo> InfoList;
+    private ArrayList<AdsClickBean> adsInfoList;
     private Context mContext;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -36,14 +38,54 @@ public class UpDataReceiver extends BroadcastReceiver {
             InfoList= (ArrayList<UserBehavierInfo>) intent.getExtras().getSerializable("list");
 //            getJsonArray();
             getUserBehaviour();
+        }else if (action.equals("com.ads.data.up")){
+            adsInfoList= (ArrayList<AdsClickBean>) intent.getExtras().getSerializable("adsList");
+            upAdsData();
         }
     }
+    private JSONObject changeAdsJsonObject(){
+//        ArrayList<AdsClickBean> allList = getAllAds();
+        JSONObject jsonObject=new JSONObject();
+        JSONArray jsonArray=new JSONArray();
+
+        try {
+            for (int i = 0; i < adsInfoList.size(); i++) {
+                AdsClickBean adsClickBean=adsInfoList.get(i);
+                JSONObject object=new JSONObject();
+                object.put("adNum",adsClickBean.getAdNum());
+                object.put("clickCount",adsClickBean.getClickCount());
+                object.put("shareCount",0);
+                object.put("shareAppNum",0);
+                object.put("shareClickNum",0);
+                object.put("incomeDay",0);
+                object.put("times",adsClickBean.getTimes());
+                jsonArray.put(object);
+            }
+            jsonObject.put("list",jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+    private void upAdsData(){
+        JSONObject js=changeAdsJsonObject();
+        httpPost(Constants.SAVEADVERTISEMENTCLICK,js, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                deleteAdsData(adsInfoList);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
+    }
     private void getUserBehaviour(){
-//        final ArrayList<UserBehavierInfo> allList = getAllTimeLong();
         JSONObject js=changeJsonObject();
-//        JSONObject js=new JSONObject();
-//            js.put("userBehaviourInfo",allList.toString());
-        //            js.put("userBehaviourInfo","aaaaaaaa");
         httpPost(Constants.APP_GET_MALL_OF_SAVEUSERBEHAVIOURINFO,js, new HttpCallback() {
 
             @Override
@@ -81,6 +123,17 @@ public class UpDataReceiver extends BroadcastReceiver {
 
         return jsonObject;
     }
+    private void deleteAdsData(ArrayList<AdsClickBean> allList){
+        for (AdsClickBean info:allList) {
+            long id=info.getAdNum();
+
+            try {
+                WoDbUtils.initialize(mContext).delete(AdsClickBean.class, WhereBuilder.b("adNum"," = ",id));
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     private void deleteData(ArrayList<UserBehavierInfo> allList){
         for (UserBehavierInfo info:allList) {
             long id=info.getResourceId();
@@ -102,7 +155,40 @@ public class UpDataReceiver extends BroadcastReceiver {
             e.printStackTrace();
         }
     }
-
+//    private ArrayList<AdsClickBean> getAllAds(){
+//        ArrayList<AdsClickBean> allList=new ArrayList<>();
+//        //计算时长
+//        for (AdsClickBean info:adsInfoList) {
+//            int totalClick=0;
+//            long rescoureId=info.getAdNum();
+//            boolean isAdd=false;
+//
+//            for (AdsClickBean modelInfo:adsInfoList) {
+//                if (rescoureId==modelInfo.getAdNum()){
+//                    ++totalClick;
+//                    Log.e("SCY"," - - - - - --  "+totalClick);
+//                    AdsClickBean newUserInfo=new AdsClickBean();
+//                    newUserInfo.setTimes(modelInfo.getTimes());
+//                    newUserInfo.setClickCount(totalClick);
+//                    newUserInfo.setAdNum(rescoureId);
+//                    for (AdsClickBean allinfo:allList) {
+//                        if (allinfo.getAdNum()==rescoureId){
+//                            isAdd=true;
+//                        }
+//                    }
+//                    if (!isAdd){
+//                        allList.add(newUserInfo);
+//                        isAdd=false;
+//                    }
+//                    break;
+//                }
+//
+//            }
+//        }
+//
+//
+//        return allList;
+//    }
     private ArrayList<UserBehavierInfo> getAllTimeLong(){
         ArrayList<UserBehavierInfo> allList=new ArrayList<>();
         //计算时长

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +21,9 @@ import com.wodm.android.login.Wx;
 import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.utils.QQUtils;
+import com.wodm.android.utils.PermissionInfoTools;
 import com.wodm.android.utils.Preferences;
+import com.wodm.android.utils.QQUtils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 
@@ -200,8 +200,6 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             Constants.CURRENT_USER = bean;
             if (intentclass!=null){
                 startActivity(intentclass);
-                finish();
-                return;
             }
             finish();
 //            Intent intent = new Intent(LgoinActivity.this, Main2Activity.class);
@@ -217,7 +215,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         loginFlag = false;
-        JSONObject obj = new JSONObject();
+        final JSONObject obj = new JSONObject();
         // 自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
         Map<String, String> map = new HashMap<String, String>();
         map.put("WX", unionid);
@@ -232,15 +230,21 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             obj.put("brandInfo", GetPhoneState.getBrand());
             obj.put("modelNumber",GetPhoneState.getModel());
             obj.put("qCellCore","北京");
-            File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "json.txt");
-            try {
-                //42268986033
-                FileWriter fileWriter = new FileWriter(f);
-                fileWriter.write(obj.toString());
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            PermissionInfoTools.getWritePermission(this, new PermissionInfoTools.SetPermissionCallBack() {
+                @Override
+                public void IPsermission(boolean isPermsion) {
+                    File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "json.txt");
+                    try {
+                        //42268986033
+                        FileWriter fileWriter = new FileWriter(f);
+                        fileWriter.write(obj.toString());
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
             httpPost(Constants.USER_LOGIN_WX, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

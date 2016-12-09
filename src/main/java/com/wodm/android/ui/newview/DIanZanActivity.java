@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Layout(R.layout.activity_dian_zan)
-public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
+public class DIanZanActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener {
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.choice_bottom)
@@ -36,9 +36,9 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
         set_topbar.setOnTopbarClickListenter(this);
         choice_bottom.setOnClickListener(this);
         if (Constants.CURRENT_USER==null){finish();return;}
-        messageUtils = new MessageUtils(new DianZanAdapter(),choice_bottom,listView_atwo,set_topbar,DianZanActivity.this);
+        messageUtils = new MessageUtils(new DianZanAdapter(),choice_bottom,listView_atwo,set_topbar,DIanZanActivity.this);
         messageUtils.setDianzan(true);
-        adapter = new DianZanAdapter(DianZanActivity.this, false);
+        adapter = new DianZanAdapter(DIanZanActivity.this, false);
         adapter.setDianZan(true);
 
         adapter.setUtils(messageUtils);

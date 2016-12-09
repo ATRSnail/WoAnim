@@ -184,6 +184,7 @@ public class SeacherActivity extends AppActivity {
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
                             if (adapter!=null&&adapter.getItemCount() <= 0){
                                 mLayout.setVisibility(View.VISIBLE);
+                                Toast.makeText(SeacherActivity.this, "未搜索到相关内容!", Toast.LENGTH_SHORT).show();
                             }
 //                            adapter.setOnItemClickListener(new HolderAdapter.OnItemClickListener() {
 //                                @Override

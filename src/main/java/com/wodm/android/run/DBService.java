@@ -12,6 +12,7 @@ import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
+import com.wodm.android.bean.AdsClickBean;
 import com.wodm.android.bean.AnimLookCookieBean;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.UserBehavierInfo;
@@ -51,6 +52,8 @@ public class DBService extends Service {
                 findAllUserInfo();
             }else if (type.equals("updataall")){
                 upAllData();
+            }else if (type.equals("updateAds")){
+                getAllAdsData();
             }
         }
 
@@ -59,10 +62,24 @@ public class DBService extends Service {
     private void initReceiver(){
         if (upDataReceiver==null){
             upDataReceiver=new UpDataReceiver();
-            IntentFilter intentfilter=new IntentFilter("com.data.up");
+            IntentFilter intentfilter=new IntentFilter();
+            intentfilter.addAction("com.data.up");
+            intentfilter.addAction("com.ads.data.up");
             registerReceiver(upDataReceiver,intentfilter);
         }
 
+    }
+    private void getAllAdsData(){
+        List<AdsClickBean> beanList= adsquery();
+        if (beanList.size()>3){
+            startUpAdsDataReceivce((ArrayList<AdsClickBean>) beanList);
+        }
+
+    }
+    private void startUpAdsDataReceivce(ArrayList<AdsClickBean> list){
+        Intent intent=new Intent("com.ads.data.up");
+        intent.putExtra("adsList",list);
+        sendBroadcast(intent);
     }
     private void upAllData(){
         List<UserBehavierInfo> userBehavierInfoList=query();
@@ -75,6 +92,34 @@ public class DBService extends Service {
         if (userBehavierInfoList.size()>5){
             startUpdataReceivce((ArrayList<UserBehavierInfo>) userBehavierInfoList);
         }
+    }
+    /**
+     * query all persons, return list
+     * @return List<Person>
+     */
+    public List<AdsClickBean> adsquery() {
+        ArrayList<AdsClickBean> list = new ArrayList<AdsClickBean>();
+        Cursor c = queryAdsTheCursor();
+        while (c.moveToNext()) {
+            AdsClickBean userBehavierInfo = new AdsClickBean();
+            userBehavierInfo.setAdNum(c.getLong(c.getColumnIndex("adNum")));
+            userBehavierInfo.setTimes(c.getString(c.getColumnIndex("times")));
+            userBehavierInfo.setClickCount(c.getInt(c.getColumnIndex("clickCount")));
+            list.add(userBehavierInfo);
+        }
+        c.close();
+        return list;
+    }
+
+    /**
+     * query all persons, return cursor
+     * @return  Cursor
+     */
+    public Cursor queryAdsTheCursor() {
+        DbUtils dbUtils= WoDbUtils.initialize(getApplicationContext());
+        SQLiteDatabase database=dbUtils.getDatabase();
+        Cursor c = database.rawQuery("SELECT * FROM adsclickbean", null);
+        return c;
     }
     /**
      * query all persons, return list

@@ -22,9 +22,11 @@ import com.wodm.android.adapter.newadapter.NewMainDetailsLVAdapter;
 import com.wodm.android.adapter.newadapter.NewMainGvAdapter;
 import com.wodm.android.bean.AdsBean;
 import com.wodm.android.bean.NewMainBean;
+import com.wodm.android.dbtools.DBTools;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.newview.NewMainDetailsActivity;
+import com.wodm.android.view.newview.RoundAngleImageView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -110,9 +112,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                     holders.img_angle_ads.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent=new Intent(mContext, WebViewActivity.class);
-                            intent.putExtra("adsUrl",bean.getAdsUrl());
-                            mContext.startActivity(intent);
+                            startActivity(bean);
                         }
                     });
                     break;
@@ -120,19 +120,49 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                     holders.img_angle_ads.setVisibility(View.GONE);
                 }
             }
+            if (getItemCount()==(index+2)){
+                int size=adsList.size()-(getItemCount()-1);
+                if (size>0){
+                    for (int i = 0; i < size; i++) {
+                        final AdsBean bean=adsList.get(i);
+                        LinearLayout linear=new LinearLayout(mContext);
+                        linear.setOrientation(LinearLayout.VERTICAL);
+                        linear.setBackgroundColor(mContext.getResources().getColor(R.color.color_efefef));
+                        LinearLayout.LayoutParams linear_params=new LinearLayout.LayoutParams
+                                (LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                        linear.setLayoutParams(linear_params);
+                        RoundAngleImageView roundAngleImageview=new RoundAngleImageView(mContext);
+                        roundAngleImageview.setScaleType(ImageView.ScaleType.FIT_XY);
+                        Glide.with(mContext).load(bean.getImage()).placeholder(R.mipmap.loading).into(roundAngleImageview);
+                        roundAngleImageview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(bean);
+                            }
+                        });
+                        roundAngleImageview.setLayoutParams(params);
+                        linear.addView(roundAngleImageview);
+                        holders.ll_total.addView(linear);
+                    }
+                }
+            }else {
+                holders.ll_total.removeAllViews();
+            }
         }
         final int style=newMainBean.getStyle();
         List<NewMainBean.ResourcesBean> resourcesBean=newMainBean.getResources();
-        if (style==1){
-              holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
-        }else if (style==2){
-            holders.grid_new.setAdapter(new NewMain3Adapter(mContext,resourcesBean));
-        }else if (style==3){
-            holders.grid_new.setAdapter(new NewMainDetailsLVAdapter(mContext,resourcesBean));
-        } else if (style==4){
-            holders.grid_new.setAdapter(new NewMainAdapter(mContext,resourcesBean,style));
-        } else if (style==5){
-            holders.grid_new.setAdapter(new NewMainGvAdapter(mContext,resourcesBean));
+        if (resourcesBean.size()>0){
+            if (style==1){
+                holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
+            }else if (style==2){
+                holders.grid_new.setAdapter(new NewMain3Adapter(mContext,resourcesBean));
+            }else if (style==3){
+                holders.grid_new.setAdapter(new NewMainDetailsLVAdapter(mContext,resourcesBean));
+            } else if (style==4){
+                holders.grid_new.setAdapter(new NewMainAdapter(mContext,resourcesBean,style));
+            } else if (style==5){
+                holders.grid_new.setAdapter(new NewMainGvAdapter(mContext,resourcesBean));
+            }
         }
         holders.img_main_more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,111 +174,14 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                 mContext.startActivity(intent);
             }
         });
-//            View1Holders view1Holders=new View1Holders();
-//            View view= LayoutInflater.from(mContext).inflate(R.layout.new_main1,null,false);
-//            view1Holders.img_angle= (ImageView) view.findViewById(R.id.img_angle);
-//            view1Holders.ll_shadow= (LinearLayout) view.findViewById(R.id.ll_shadow);
-//            view1Holders.tv_look_num= (TextView) view.findViewById(R.id.tv_look_num);
-//            view1Holders.new_main_image_no_gv= (MyGridView) view.findViewById(R.id.new_main_image_no_gv);
-//            int hight= (int) ((width-60)*((float)220/690));
-//            RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
-//            view1Holders.img_angle.setLayoutParams(params);
-//        RelativeLayout.LayoutParams ll_shadowparams=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, ll_shadow_hight);
-//        holders.ll_shadow.setLayoutParams(ll_shadowparams);
-//            view1Holders.ll_shadow.getBackground().setAlpha(140);
-//            view1Holders.tv_look_num.setTextColor(0x50333333);
-//            view1Holders.new_main_image_no_gv.setAdapter(new NewMainAdapter(mContext));
-//            holders.ll_view_total.addView(view);
-//        }else if (index==1){
-//            holders.grid_new.setAdapter(new NewMain3Adapter(mContext));
-//            ViewAdsHolders viewAdsHolders=new ViewAdsHolders();
-//            View view= LayoutInflater.from(mContext).inflate(R.layout.new_main_ads,null,false);
-//            viewAdsHolders.img_angle_ads= (ImageView) view.findViewById(R.id.img_angle_ads);
-//            int hight= (int) ((width-60)*((float)140/690));
-//            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
-//            params.setMargins(30,30,30,30);
-//            viewAdsHolders.img_angle_ads.setLayoutParams(params);
-////            holders.ll_view_total.addView(view);
-//        }else if (index==2){
-//            holders.grid_new.setAdapter(new NewMainAdAdapter(mContext));
-//            View2Holders view2Holders=new View2Holders();
-//            View view= LayoutInflater.from(mContext).inflate(R.layout.new_main2,null,false);
-//            view2Holders.new_main2_horscroll= (HorizontalScrollView) view.findViewById(R.id.new_main2_horscroll);
-//            view2Holders.ll_add_image= (LinearLayout) view.findViewById(R.id.ll_add_image);
-//            for (int i = 0; i <5 ; i++) {
-//                RoundAngleImageView imageview=new RoundAngleImageView(mContext);
-//                imageview.setBackgroundResource(R.mipmap.login_banner);
-//                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(320, 228);
-//                params.setMargins(0,0,16,0);
-//                imageview.setLayoutParams(params);
-//                view2Holders.ll_add_image.addView(imageview);
-//            }
-//
-////            holders.ll_view_total.addView(view);
-//        }else if (index==3){
-//            holders.grid_new.setAdapter(new NewMainDetailsLVAdapter(mContext));
-//            View3Holders view3Holder=new View3Holders();
-//            View view= LayoutInflater.from(mContext).inflate(R.layout.new_main3,null,false);
-//            view3Holder.new_main3_noscroll_lv= (NoScrollListView) view.findViewById(R.id.new_main3_noscroll_lv);
-//            view3Holder.new_main3_noscroll_lv.setAdapter(new NewMain3Adapter(mContext));
-////            holders.ll_view_total.addView(view);
-//        }else if (index==4){
-//            holders.grid_new.setAdapter(new NewMain2Adapter(mContext));
-//            View1Holders view1Holders=new View1Holders();
-//            View view= LayoutInflater.from(mContext).inflate(R.layout.new_main1,null,false);
-//            view1Holders.img_angle= (ImageView) view.findViewById(R.id.img_angle);
-//            view1Holders.ll_shadow= (LinearLayout) view.findViewById(R.id.ll_shadow);
-//            view1Holders.tv_look_num= (TextView) view.findViewById(R.id.tv_look_num);
-//            view1Holders.new_main_image_no_gv= (MyGridView) view.findViewById(R.id.new_main_image_no_gv);
-//            int hight= (int) ((width-60)*((float)220/690));
-//            RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
-//            view1Holders.img_angle.setLayoutParams(params);
-////        RelativeLayout.LayoutParams ll_shadowparams=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, ll_shadow_hight);
-////        holders.ll_shadow.setLayoutParams(ll_shadowparams);
-//            view1Holders.ll_shadow.getBackground().setAlpha(140);
-//            view1Holders.tv_look_num.setTextColor(0x50333333);
-//            view1Holders.new_main_image_no_gv.setNumColumns(3);
-//            view1Holders.new_main_image_no_gv.setAdapter(new NewMainAdapter(mContext));
-////            holders.ll_view_total.addView(view);
-
-//        final ObjectDataBean bean = mData.get(index);
-//        ComicAdapter hotAdapter = new ComicAdapter(mContext, bean.getResources());
-//        new AsyncImageLoader(mContext, R.mipmap.tubiao, R.mipmap.tubiao).display(holders.icon, bean.getIcon());
-//        holders.name.setText(bean.getName());
-//        holders.gridView.setAdapter(hotAdapter);
-//        holders.more.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, CartoonsActivity.class);
-//                intent.putExtra("columnId", bean.getId());
-//                intent.putExtra("title", bean.getName());
-//                mContext.startActivity(intent);
-//            }
-//        });
     }
-//    class ViewAdsHolders{
-//        private ImageView img_angle_ads;
-//
-//    }
-//    class View2Holders{
-//        private LinearLayout ll_add_image;
-//        private HorizontalScrollView new_main2_horscroll;
-//    }
-//    class View1Holders{
-//        private ImageView img_angle;
-//        private LinearLayout ll_shadow;
-//        private TextView tv_look_num;
-//        private MyGridView new_main_image_no_gv;
-//    }
-//    class View3Holders{
-//        private NoScrollListView new_main3_noscroll_lv;
-//    }
-//    class View3Holders{
-//        private ImageView img_angle;
-//        private LinearLayout ll_shadow;
-//        private TextView tv_look_num;
-//        private MyGridView new_main_image_no_gv;
-//    }
+
+    private void startActivity(AdsBean bean){
+        DBTools.getInstance(mContext).insertAdsDB(bean.getId());
+        Intent intent=new Intent(mContext, WebViewActivity.class);
+        intent.putExtra("adsUrl",bean.getAdsUrl());
+        mContext.startActivity(intent);
+    }
 
     class ViewHolders extends BaseViewHolder {
         @ViewIn(R.id.grid_new)
@@ -259,6 +192,8 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
         private ImageView img_angle_ads;
         @ViewIn(R.id.img_main_more)
         private ImageView img_main_more;
+        @ViewIn(R.id.ll_total)
+        private LinearLayout ll_total;
         public ViewHolders(View view) {
             super(view);
         }

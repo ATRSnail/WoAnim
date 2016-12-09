@@ -10,7 +10,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.wodm.R;
 import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.tools.MallConversionUtil;
@@ -83,7 +82,7 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         try {
             MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
         } catch (Exception e) {
-            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
+//            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
             e.printStackTrace();
         }
 
