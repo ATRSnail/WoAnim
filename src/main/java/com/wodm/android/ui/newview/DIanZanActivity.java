@@ -62,18 +62,8 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else  if("删除".equals(text)){
-            messageUtils.deleteMessage(adapter.ids);
+            messageUtils.deleteMessage(messageUtils,adapter.ids,adapter.delete);
 
-            if (adapter.delete)
-            {
-                messageUtils.updateData("勾选",false,View.GONE);
-            }
-            else {
-                messageUtils.updateData("完成",true,View.VISIBLE);
-            }
-
-            adapter.ids.clear();
-            adapter.delete=false;
         }
     }
 
@@ -87,8 +77,7 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                messageUtils.deleteAllMessage(5);
-                messageUtils.updateData("勾选",false,View.GONE);
+                messageUtils.deleteAllMessage(5,messageUtils);
                 break;
         }
     }

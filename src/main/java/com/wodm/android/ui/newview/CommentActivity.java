@@ -10,6 +10,7 @@ import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.CommentAdapter2;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
 import com.wodm.android.adapter.newadapter.SystemInformAdapter;
+import com.wodm.android.bean.CommentBean2;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.utils.MessageUtils;
@@ -34,7 +35,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.listView_atwo)
     ListView listView_atwo;
 
-//    private List<CommentBean2> list = new ArrayList<>();
+    private List<CommentBean2> list = new ArrayList<>();
     private CommentAdapter2 adapter;
     MessageUtils messageUtils;
     @Override
@@ -48,7 +49,7 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
 
 
         adapter.setUtils(messageUtils);
-//        messageUtils.getLikeMessageList(adapter);
+        messageUtils.getCurrentMessageList(adapter);
         adapter.setSet_topbar(set_topbar);
         listView_atwo.setAdapter(adapter);
     }
@@ -66,18 +67,8 @@ public class CommentActivity extends AppActivity implements AtyTopLayout.myTopba
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else  if("删除".equals(text)){
-//            messageUtils.deleteMessage(adapter.ids);
+//            messageUtils.deleteMessage(messageUtils,adapter.ids,adapter.delete);
 
-            if (adapter.delete)
-            {
-                messageUtils.updateData("勾选",false,View.GONE);
-            }
-            else {
-                messageUtils.updateData("完成",true,View.VISIBLE);
-            }
-
-            adapter.ids.clear();
-            adapter.delete=false;
         }
     }
 

@@ -1,6 +1,8 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,9 @@ import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.bean.DianZanBean;
+import com.wodm.android.ui.newview.PersionActivity;
 import com.wodm.android.utils.MessageUtils;
+import com.wodm.android.view.biaoqing.FaceConversionUtil;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.utils.AsyncImageLoader;
@@ -131,6 +135,16 @@ public class DianZanAdapter extends BaseAdapter {
                 }
             }
         });
+
+        holder.pho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PersionActivity.class);
+                intent.putExtra("anotherId",(long)dataBean.getSendId());
+                intent.putExtra("anotherInfo", true);
+                mContext.startActivity(intent);
+            }
+        });
 //点赞去掉回复
 //        holder.reply.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -146,7 +160,8 @@ public class DianZanAdapter extends BaseAdapter {
 //        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
-        holder.info_atwo.setText(dataBean.getContent());
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+        holder.info_atwo.setText(spannableString);
         return convertView;
     }
 

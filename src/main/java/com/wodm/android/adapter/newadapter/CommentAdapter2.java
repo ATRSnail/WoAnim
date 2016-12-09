@@ -1,6 +1,7 @@
 package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wodm.R;
+import com.wodm.android.bean.CommentBean2;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.utils.MessageUtils;
+import com.wodm.android.view.biaoqing.FaceConversionUtil;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.utils.AsyncImageLoader;
@@ -26,8 +29,7 @@ import java.util.List;
 
 public class CommentAdapter2 extends BaseAdapter{
 
-//    List<CommentBean2.DataBean> list=new ArrayList<>();
-    List<String> list=new ArrayList<>();
+    List<CommentBean2.DataBean> list=new ArrayList<>();
     Context mContext;
     MessageUtils utils;
     boolean flag = false;//显示删除选择图标的判断标志
@@ -43,16 +45,13 @@ public class CommentAdapter2 extends BaseAdapter{
     public CommentAdapter2(Context context, boolean mflag) {
         this.mContext = context;
         this.flag = mflag;
-        for (int i = 0; i <2 ; i++) {
-            list.add("会飞的鱼"+i);
-        }
     }
 
-//    public void setList(List<CommentBean2.DataBean> mlist) {
-//        this.list.clear();
-//        this.list.addAll(mlist);
-//        notifyDataSetChanged();
-//    }
+    public void setList(List<CommentBean2.DataBean> mlist) {
+        this.list.clear();
+        this.list.addAll(mlist);
+        notifyDataSetChanged();
+    }
 
     public void setUtils(MessageUtils utils) {
         this.utils = utils;
@@ -95,15 +94,16 @@ public class CommentAdapter2 extends BaseAdapter{
         } else {
             holder = (MyHolder) convertView.getTag();
         }
-       String name =list.get(position);
+        CommentBean2.DataBean dataBean =list.get(position);
 
-        if (flag) {
-            holder.watch.setVisibility(View.GONE);
-            holder.choice_atwo.setVisibility(View.VISIBLE);
-        }else {
-            holder.watch.setVisibility(View.VISIBLE);
-            holder.choice_atwo.setVisibility(View.GONE);
-        }
+        holder.watch.setVisibility(View.GONE);//去掉查看
+//        if (flag) {
+//            holder.watch.setVisibility(View.GONE);
+//            holder.choice_atwo.setVisibility(View.VISIBLE);
+//        }else {
+//            holder.watch.setVisibility(View.VISIBLE);
+//            holder.choice_atwo.setVisibility(View.GONE);
+//        }
 
         final MyHolder finalHolder = holder;
         final boolean[] click = {true};
@@ -135,13 +135,14 @@ public class CommentAdapter2 extends BaseAdapter{
             }
         });
 
-//        new AsyncImageLoader(mContext,R.mipmap.moren_header,R.mipmap.moren_header).display(holder.pho,dataBean.getSendPortrait());
+        new AsyncImageLoader(mContext,R.mipmap.moren_header,R.mipmap.moren_header).display(holder.pho,dataBean.getPortrait());
 //        holder.cicle_new.setVisibility(View.VISIBLE);
-        holder.name.setText(name);
-        holder.time.setText("2016-11-22");
-        holder.tv_comment.setText("这个消息到底有没有？？？？");
-        holder.laizi_comment.setText("来自【"+"资讯"+"】");
-        holder.info_atwo.setText("："+"上海CP19即将开始门票预售!");
+        holder.name.setText(dataBean.getNickName());
+        holder.time.setText(dataBean.getTimes());
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+        holder.tv_comment.setText(spannableString);
+//        holder.laizi_comment.setText("来自【"+"资讯"+"】");
+        holder.info_atwo.setText(dataBean.getDetail());
         return convertView;
     }
 

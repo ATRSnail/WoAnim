@@ -81,7 +81,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 mContext.startActivity(intent);
             }
         });
-        holder.zanBtn.setOnClickListener(new ZanClick(bean));
+//        holder.zanBtn.setOnClickListener(new ZanClick(bean)); //点赞里的contentID暂时没有
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -114,7 +114,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         @Override
         public void onClick(View v) {
             ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
-                    , zanObj(bean.getSendId(), bean.getId(), 1)
+                    , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(), 820, 2)
                     , new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

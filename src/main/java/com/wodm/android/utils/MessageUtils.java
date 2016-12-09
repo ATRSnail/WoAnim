@@ -2,6 +2,7 @@ package com.wodm.android.utils;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -14,6 +15,8 @@ import com.wodm.android.adapter.newadapter.CommentAdapter2;
 import com.wodm.android.adapter.newadapter.DianZanAdapter;
 import com.wodm.android.adapter.newadapter.SystemInformAdapter;
 import com.wodm.android.bean.AtWoBean;
+import com.wodm.android.bean.CommentBean;
+import com.wodm.android.bean.CommentBean2;
 import com.wodm.android.bean.DianZanBean;
 import com.wodm.android.bean.SysMessBean;
 import com.wodm.android.ui.AppActivity;
@@ -64,8 +67,8 @@ public class MessageUtils {
             choice_bottom.setVisibility(visible);
             set_topbar.setTvRight(string);
             mAdapter1.setUtils(messageUtils);
-            messageUtils.getSystemMessageList(mAdapter1);
             mAdapter1.setSet_topbar(set_topbar);
+            messageUtils.getSystemMessageList(mAdapter1);
             gridView_SystemInfo.setAdapter(mAdapter1);
         }else if(adapter instanceof DianZanAdapter){
             DianZanAdapter mAdapter2 = new DianZanAdapter(mcontext, flag);
@@ -90,7 +93,7 @@ public class MessageUtils {
             set_topbar.setTvRight(string);
             mAdapter4.setSet_topbar(set_topbar);
             mAdapter4.setUtils(messageUtils);
-//            messageUtils.getLikeMessageList(mAdapter4);
+            messageUtils.getCurrentMessageList(mAdapter4);
             gridView_SystemInfo.setAdapter(mAdapter4);
         }
 
@@ -100,9 +103,26 @@ public class MessageUtils {
 
 
 
-    public void deleteAllMessage(int type) {
+
+    public void deleteAllMessage(int type, final MessageUtils utils) {
         String url = Constants.DELETEALLMESSAGE+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
-        getData(url);
+        appActivity.httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                utils.updateData("勾选",false,View.GONE);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+
+            @Override
+            public void doRequestFailure(Exception exception, String msg) {
+                super.doRequestFailure(exception, msg);
+            }
+        });
     }
 
     private void getData(String url) {
@@ -124,14 +144,41 @@ public class MessageUtils {
         });
     }
 
-    public void deleteMessage(List<Long> ids) {
+
+
+    public void deleteMessage(final MessageUtils utils, final List<Long> ids, final boolean delete) {
         String url = Constants.DELETEMESSAGE+Constants.CURRENT_USER.getData().getAccount().getId()+"&ids=";
         for (int i = 0; i <ids.size()-1 ; i++) {
             url=url+ids.get(i)+",";
         }
         url =url+ids.get(ids.size()-1);
 
-        getData(url);
+        appActivity.httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                //删除之后立即更新
+                ids.clear();//清楚删除列表
+                if (delete)
+                {
+                    utils.updateData("勾选",false, View.GONE);
+                }
+                else {
+                    utils.updateData("完成",true,View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+
+            @Override
+            public void doRequestFailure(Exception exception, String msg) {
+                super.doRequestFailure(exception, msg);
+            }
+        });
     }
 
     public void dianZan(String url, long userId,long contentId,int type) {
@@ -175,7 +222,7 @@ public class MessageUtils {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                  SysMessBean  bean = new Gson().fromJson(obj.toString(),SysMessBean.class);
-                adapter.setList(bean.getData());
+                 adapter.setList(bean.getData());
             }
 
             @Override
@@ -221,6 +268,28 @@ public class MessageUtils {
                 super.doAuthSuccess(result, obj);
                 DianZanBean bean =  new Gson().fromJson(obj.toString(),DianZanBean.class);
                 mAdapter2.setList(bean.getData());
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+
+            @Override
+            public void doRequestFailure(Exception exception, String msg) {
+                super.doRequestFailure(exception, msg);
+            }
+        });
+    }
+    public void getCurrentMessageList(final CommentAdapter2 mAdapter4) {
+        //获取所有的评论列表（暂时的）
+        String url = Constants.CURRENTComment+Constants.CURRENT_USER.getData().getAccount().getId();
+        appActivity.httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                CommentBean2 bean =  new Gson().fromJson(obj.toString(),CommentBean2.class);
+                mAdapter4.setList(bean.getData());
             }
 
             @Override

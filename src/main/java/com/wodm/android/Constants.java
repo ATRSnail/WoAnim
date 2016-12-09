@@ -157,6 +157,10 @@ public class Constants {
     public static final String SystemMessageList=HOST + "behavior/systemMessageList?userId=";// 获取所有的系统通知的消息内容
     public static final String ReplyeMessageList=HOST + "behavior/replyMessageList?userId=";// 获取所有的 有人@我的消息
     public static final String LikeMessageList=HOST + "behavior/likeMessageList?userId=";// 获取所有的点赞的详情的列表
+    public static final String SAVEComment=HOST + "comment/saveComment";// 保存用户评论的内容;
+    public static final String REPLY=HOST + "comment/reply ";//  用户回复的接口内容
+    public static final String CommentList=HOST + "comment/list?resourceId=";//查询 用户评论的列表
+    public static final String CURRENTComment=HOST + "comment/currentCommentList?userId=";//临时添加的获取用户的原始评论内容
 
 
     public static final String SAVE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath()

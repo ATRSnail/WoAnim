@@ -15,12 +15,12 @@
         app:BackGroundColor="@color/color_f5c920"
         app:CustomtitleTextColor="@color/color_ffffff"
         app:CustomtitleTextSize="@dimen/text_size_32_px"
-        app:Customtoptitle="我的评论"
+        app:Customtoptitle="评论"
         app:leftBackGround="@mipmap/back_mall_white"
         app:rightText="勾选"
         app:rightTextColor="@color/color_ffffff"
         app:rightTextSize="@dimen/text_size_28_px"
-        app:rightType="1" />
+        app:rightType="0" />
 
     <LinearLayout
         android:layout_width="match_parent"

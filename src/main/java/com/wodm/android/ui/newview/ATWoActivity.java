@@ -56,18 +56,8 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else  if("删除".equals(text)){
-            messageUtils.deleteMessage(adapter.ids);
+            messageUtils.deleteMessage(messageUtils,adapter.ids,adapter.delete);
 
-            if (adapter.delete)
-            {
-                messageUtils.updateData("勾选",false,View.GONE);
-            }
-            else {
-                messageUtils.updateData("完成",true,View.VISIBLE);
-            }
-
-            adapter.ids.clear();
-            adapter.delete=false;
         }
     }
 //    @Override
@@ -80,8 +70,7 @@ public class ATWoActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.choice_bottom:
-                messageUtils.deleteAllMessage(3);
-                messageUtils.updateData("勾选",false,View.GONE);
+                messageUtils.deleteAllMessage(3,messageUtils);
                 break;
         }
     }

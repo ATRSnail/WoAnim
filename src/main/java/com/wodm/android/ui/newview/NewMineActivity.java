@@ -168,7 +168,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_right:
-                startActivity(new Intent(getActivity(), NewUserInfoActivity.class));
+                startActivity(new Intent(getActivity(), PersionActivity.class));
                 break;
             case R.id.rl_login:
                 startActivity(new Intent(getActivity(), PersionActivity.class));

@@ -105,11 +105,14 @@ public class DanMuView extends RelativeLayout {
         }
         CommentBean bean=commonList.get((int) (Math.random() * textCount));
 
+//        String tx = bean.getSendCommentContent();
         String tx = bean.getContent();
+//        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext,bean.getSendCommentContent());
         SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext,bean.getContent());
         int sz = (int) (minSize + (maxSize - minSize) * Math.random());
         item.textView = new TextView(mContext);
-        if (!bean.getContent().trim().equals("")){
+//        if (!bean.getSendCommentContent().trim().equals("")){
+            if (!bean.getContent().trim().equals("")){
             item.textView.setText(spannableString);
         }
         item.textView.setTextSize(sz);
@@ -203,6 +206,7 @@ public class DanMuView extends RelativeLayout {
         if (commonList.size()==0){
             return 45;
         }
+//        String tx = commonList.get(0).getSendCommentContent();
         String tx = commonList.get(0).getContent();
         if (tx.equals("")){
             tx="哈哈哈";

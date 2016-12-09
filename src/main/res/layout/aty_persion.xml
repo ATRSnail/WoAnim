@@ -65,7 +65,7 @@
                 android:layout_marginTop="@dimen/px_82"
                 android:layout_marginLeft="@dimen/px_45"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="@dimen/px_185">
                 <RelativeLayout
                     android:layout_marginTop="@dimen/px_60"
                     android:layout_alignParentLeft="true"
@@ -95,15 +95,14 @@
                         android:layout_height="@dimen/px_108" />
                     <ImageView
                         android:id="@+id/user_gj"
-                        android:layout_marginBottom="@dimen/px_37"
+                        android:layout_centerHorizontal="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="@dimen/px_108" />
                 </RelativeLayout>
                 <ImageView
                     android:id="@+id/user_txk"
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
                     android:layout_width="@dimen/px_180"
                     android:layout_height="wrap_content" />
             </RelativeLayout>

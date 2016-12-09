@@ -2,6 +2,7 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.wodm.R;
 import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.ui.newview.SendMsgActivity;
 import com.wodm.android.utils.MessageUtils;
+import com.wodm.android.view.biaoqing.FaceConversionUtil;
 import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.utils.AsyncImageLoader;
@@ -132,7 +134,8 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
         holder.atwo_name.setText(dataBean.getReceiveNickName());
-        holder.info_atwo.setText("："+dataBean.getContent());
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+        holder.info_atwo.setText("："+spannableString);
         return convertView;
     }
 

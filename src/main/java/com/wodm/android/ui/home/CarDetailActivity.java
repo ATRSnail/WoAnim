@@ -224,7 +224,14 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
             @Override
             protected void requestData(final int pager, final boolean b) {
                 if (commentBeanList.size()%10==0||isLoadMore){
+//                    String url;
+//                    if (Constants.CURRENT_USER==null){
+//                        url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
+//                    }else {
+//                        url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+//                    }
                     httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
+//                      httpGet(url, new HttpCallback() {
 
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -588,7 +595,10 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
                         obj.put("content", mInput.getText().toString());
-                        httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
+                        /**新加的---表示的是评论的模块 1:表示动漫画的评论 2:表示的是新闻资讯的评论3:表示的是帖子的评论*/
+                        obj.put("type", 1);
+//                        httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
+                          httpPost(Constants.SAVEComment, obj, new HttpCallback() {
                             @Override
                             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                                 super.doAuthSuccess(result, obj);
@@ -624,8 +634,14 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
 
 
     private void CommentData(){
+//        String url;
+//        if (Constants.CURRENT_USER==null){
+//            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1;
+//        }else {
+//            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+//        }
         httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
-
+//          httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);

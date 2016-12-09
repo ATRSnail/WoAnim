@@ -58,6 +58,7 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
 
     @Override
     public int getCount() {
+        Log.e("AA","----------------list"+list.size());
         return list.size()>0?list.size():0;
     }
 
@@ -183,6 +184,7 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
     }
 
     public void setList(List<SysMessBean.DataBean> mlist) {
+        Log.e("AA","----------------mlist"+mlist.size());
         this.list.clear();
         this.list.addAll(mlist);
         notifyDataSetChanged();

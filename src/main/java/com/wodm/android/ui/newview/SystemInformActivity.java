@@ -62,18 +62,8 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
         }else   if("勾选".equals(text)){
             messageUtils.updateData("完成",true,View.VISIBLE);
         }else  if("删除".equals(text)){
-            messageUtils.deleteMessage(adapter.ids);
+            messageUtils.deleteMessage(messageUtils,adapter.ids,adapter.delete);
 
-            if (adapter.delete)
-            {
-                messageUtils.updateData("勾选",false,View.GONE);
-            }
-            else {
-                messageUtils.updateData("完成",true,View.VISIBLE);
-            }
-
-            adapter.ids.clear();
-            adapter.delete=false;
         }
     }
 
@@ -89,8 +79,7 @@ public class SystemInformActivity extends AppActivity implements AtyTopLayout.my
         switch (v.getId()){
             case R.id.choice_bottom:
 //                adapter.setRemoveAll(true);
-                messageUtils.deleteAllMessage(1);
-                messageUtils.updateData("勾选",false,View.GONE);
+                messageUtils.deleteAllMessage(1,messageUtils);
                 break;
         }
     }

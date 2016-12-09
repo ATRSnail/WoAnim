@@ -92,7 +92,7 @@
                 android:id="@+id/laizi_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="来自【资讯】:"
+                android:text=""
                 android:textColor="@color/color_999999"
                 android:textSize="@dimen/text_size_30_px" />
 
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="天窗"
+                android:text=""
                 android:textColor="@color/color_999999"
                 android:textSize="@dimen/text_size_30_px" />
         </LinearLayout>
