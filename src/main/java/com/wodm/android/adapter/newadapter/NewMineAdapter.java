@@ -20,7 +20,7 @@ import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
 import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
-import com.wodm.android.ui.newview.DIanZanActivity;
+import com.wodm.android.ui.newview.DianZanActivity;
 import com.wodm.android.ui.newview.MallActivity;
 import com.wodm.android.ui.newview.MessageCenterActivity;
 import com.wodm.android.ui.newview.MyMedalActivity;
@@ -170,13 +170,13 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
         }  else if (text.equals("点赞")) {
-            startIntent(null, DIanZanActivity.class);
+            startIntent(null, DianZanActivity.class);
         } else if (text.equals("关注")) {
             startIntent(null, AttentionActivity.class);
         } else if (text.equals("消息中心")) {
             startIntent(null, MessageCenterActivity.class);
         }else if (text.equals("点赞")) {
-            startIntent(null, DIanZanActivity.class);
+            startIntent(null, DianZanActivity.class);
         }else if (text.equals("系统通知")) {
             startIntent(null, SystemInformActivity.class);
         } else if (text.equals("评论")) {
