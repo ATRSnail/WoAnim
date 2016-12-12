@@ -16,15 +16,6 @@ public class CommentBean implements Serializable {
 //    private String createTimeStr;
 //    private int goodCount;
 //    private int commentCount;
-    private boolean isZan = false;
-
-    public boolean isZan() {
-        return isZan;
-    }
-
-    public void setZan() {
-        isZan = !isZan;
-    }
 
 //    public int getId() {
 //        return id;
@@ -117,6 +108,14 @@ public class CommentBean implements Serializable {
 
 
     private boolean guanzhu = false;
+
+    public boolean isZan() {
+        return isLike == 1;
+    }
+
+    public void setZan() {
+        this.isLike = isLike == 0 ? 1 : 0;
+    }
 
     public boolean isGuanzhu() {
         return guanzhu;

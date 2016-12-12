@@ -160,8 +160,11 @@ public class DianZanAdapter extends BaseAdapter {
 //        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
-        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
-        holder.info_atwo.setText(spannableString);
+        if (dataBean.getContent() !=null){
+            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+            holder.info_atwo.setText(spannableString);
+        }
+
         return convertView;
     }
 
