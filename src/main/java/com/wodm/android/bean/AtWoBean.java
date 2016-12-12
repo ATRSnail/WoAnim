@@ -4,26 +4,30 @@ import java.util.List;
 
 /**
  * Created by ATRSnail on 2016/12/6.
+ * 获取所有的 有人@我的消息
  */
 
 public class AtWoBean {
 
     /**
-     * 获取所有的 有人@我的消息
      * code : 1000
      * message : 操作成功
-     * data : [{"content":"在一起你妹的","sendId":198,"sendNickName":"小康康","times":"2016-12-06","sendPortrait":"","receiveNickName":"@VIP之小将之家乡，亲人"},{"content":"小康测试回复你的","sendId":198,"sendNickName":"小康康","times":"2016-12-06","sendPortrait":"","receiveNickName":"@VIP之小将之家乡，亲人"},{"content":"🐷[em16][em9][em9][em9][em9][em19][em18][em10][em12][em5][em13][em9][em10][em3][em9][em2][em1][em9][em10][em2][em2][em10][em3][em2][em13][em12][em19][em3][em2][em10][em10][em10]","sendId":271,"sendNickName":"一脸懵逼的猪","times":"2016-12-06","sendPortrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0","receiveNickName":"@VIP之小将之家乡，亲人"}]
+     * data : [{"content":"小康测试回复你的","sendId":198,"resourceId":554,"sendNickName":"小康康","times":"2016-12-12","sendPortrait":"","receiveNickName":"@VIP之小将之家乡，亲人","type":0,"messageId":107,"commentId":789}]
      */
 
     private int code;
     private String message;
     /**
-     * content : 在一起你妹的
+     * content : 小康测试回复你的
      * sendId : 198
+     * resourceId : 554
      * sendNickName : 小康康
-     * times : 2016-12-06
+     * times : 2016-12-12
      * sendPortrait :
      * receiveNickName : @VIP之小将之家乡，亲人
+     * type : 0
+     * messageId : 107
+     * commentId : 789
      */
 
     private List<DataBean> data;
@@ -55,19 +59,14 @@ public class AtWoBean {
     public static class DataBean {
         private String content;
         private int sendId;
+        private int resourceId;
         private String sendNickName;
         private String times;
         private String sendPortrait;
         private String receiveNickName;
-        private int messageId;//当前消息的ID
-
-        public int getMessageId() {
-            return messageId;
-        }
-
-        public void setMessageId(int messageId) {
-            this.messageId = messageId;
-        }
+        private int type;
+        private int messageId;
+        private int commentId;
 
         public String getContent() {
             return content;
@@ -83,6 +82,14 @@ public class AtWoBean {
 
         public void setSendId(int sendId) {
             this.sendId = sendId;
+        }
+
+        public int getResourceId() {
+            return resourceId;
+        }
+
+        public void setResourceId(int resourceId) {
+            this.resourceId = resourceId;
         }
 
         public String getSendNickName() {
@@ -115,6 +122,30 @@ public class AtWoBean {
 
         public void setReceiveNickName(String receiveNickName) {
             this.receiveNickName = receiveNickName;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public int getMessageId() {
+            return messageId;
+        }
+
+        public void setMessageId(int messageId) {
+            this.messageId = messageId;
+        }
+
+        public int getCommentId() {
+            return commentId;
+        }
+
+        public void setCommentId(int commentId) {
+            this.commentId = commentId;
         }
     }
 }
