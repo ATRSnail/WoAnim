@@ -62,7 +62,7 @@
                         android:layout_marginLeft="@dimen/x10"
                         android:background="@null"
                         android:hint="@string/input_phone"
-                        android:text=""
+                        android:text="18510952838"
                         android:inputType="phone"
                         android:textColor="@color/color_3d3d3d"
                         android:textColorHint="@color/color_cccccc"
@@ -90,7 +90,7 @@
                         android:background="@mipmap/login_password" />
 
                     <EditText
-                        android:text=""
+                        android:text="123456"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

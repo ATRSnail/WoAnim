@@ -136,7 +136,7 @@ public class NewMineAdapter extends BaseAdapter {
         Intent i = new Intent();
         if (text.equals("@我的")) {
 //            mContext.startActivity(new Intent(mContext, UserMessageActivity.class));
-            mContext.startActivity(new Intent(mContext, ATWoActivity.class));
+            startIntent(null, ATWoActivity.class);
         } else if (text.equals("收藏")) {
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);
@@ -173,9 +173,7 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, DianZanActivity.class);
         } else if (text.equals("关注")) {
             startIntent(null, AttentionActivity.class);
-        } else if (text.equals("消息中心")) {
-            startIntent(null, MessageCenterActivity.class);
-        }else if (text.equals("点赞")) {
+        } else if (text.equals("点赞")) {
             startIntent(null, DianZanActivity.class);
         }else if (text.equals("系统通知")) {
             startIntent(null, SystemInformActivity.class);
@@ -189,8 +187,14 @@ public class NewMineAdapter extends BaseAdapter {
     private void startActivity(String text){
         Intent i = new Intent();
         if (text.equals("@我的")) {
-            i.setClass(mContext,UserMessageActivity.class);
-        } else if (text.equals("收藏")) {
+            i.setClass(mContext,ATWoActivity.class);
+        } else  if (text.equals("系统通知")) {
+            i.setClass(mContext,SystemInformActivity.class);
+        } else  if (text.equals("评论" )) {
+            i.setClass(mContext,CommentActivity.class);
+        } else  if (text.equals( "点赞")) {
+            i.setClass(mContext,DianZanActivity.class);
+        }else if (text.equals("收藏")) {
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);
 
