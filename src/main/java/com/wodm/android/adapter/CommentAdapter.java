@@ -59,12 +59,12 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
     protected void bindView(RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
         final CommentBean bean = mData.get(i);
-        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context, bean.getContent());
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context, bean.getSendCommentContent());
         holder.content.setText(spannableString);
 //        holder.content.setText(bean.getContent());
         new AsyncImageLoader(mContext, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
-        holder.name.setText(bean.getSendAccountName());
-        holder.time.setText(bean.getCreateTimeStr());
+        holder.name.setText(bean.getSendNickName());
+        holder.time.setText(bean.getTimes());
         holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +81,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 mContext.startActivity(intent);
             }
         });
-//        holder.zanBtn.setOnClickListener(new ZanClick(bean)); //点赞里的contentID暂时没有
+        holder.zanBtn.setOnClickListener(new ZanClick(bean));
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -113,8 +113,13 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 
         @Override
         public void onClick(View v) {
+            if (!UpdataUserInfo.isLogIn(mContext, true, null)) {
+                Toast.makeText(mContext, "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*/
             ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
-                    , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(), 820, 2)
+                    , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(),bean.getSendCommentId(), 2)
                     , new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

@@ -4,100 +4,27 @@ import java.io.Serializable;
 
 /**
  * Created by json on 2016/4/29.
+ * 修后改之的动漫画详情页面的评论数据
  */
-public class CommentBean implements Serializable {
-
-    //    private int id;
-//    private int sendId;
-//    private String sendPortrait;
-//    private String sendAccountName;
-//    private String content;
-//    private long createTime;
-//    private String createTimeStr;
-//    private int goodCount;
-//    private int commentCount;
+public class NewCommentBean implements Serializable {
     private boolean isZan = false;
-
-    public boolean isZan() {
-        return isZan;
-    }
-
-    public void setZan() {
-        isZan = !isZan;
-    }
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public int getSendId() {
-//        return sendId;
-//    }
-//
-//    public void setSendId(int sendId) {
-//        this.sendId = sendId;
-//    }
-//
-//    public String getSendPortrait() {
-//        return sendPortrait;
-//    }
-//
-//    public void setSendPortrait(String sendPortrait) {
-//        this.sendPortrait = sendPortrait;
-//    }
-//
-//    public String getSendAccountName() {
-//        return sendAccountName;
-//    }
-//
-//    public void setSendAccountName(String sendAccountName) {
-//        this.sendAccountName = sendAccountName;
-//    }
-//
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content;
-//    }
-//
-//    public long getCreateTime() {
-//        return createTime;
-//    }
-//
-//    public void setCreateTime(long createTime) {
-//        this.createTime = createTime;
-//    }
-//
-//    public String getCreateTimeStr() {
-//        return createTimeStr;
-//    }
-//
-//    public void setCreateTimeStr(String createTimeStr) {
-//        this.createTimeStr = createTimeStr;
-//    }
-//
-//    public int getGoodCount() {
-//        return goodCount;
-//    }
-//
-//    public void setGoodCount(int goodCount) {
-//        this.goodCount = goodCount;
-//    }
-//
-//    public int getCommentCount() {
-//        return commentCount;
-//    }
-//
-//    public void setCommentCount(int commentCount) {
-//        this.commentCount = commentCount;
-//    }
-
+    /**
+     * sendId : 280
+     * sendPortrait : http://59.108.94.55:8899/static//head/20161208/280/280142509.jpg
+     * sendNickName : VIP之小将之家乡，亲人
+     * gradeValue : 5
+     * times : 2016-12-09 09:58:46
+     * sendCommentId : 820
+     * sendCommentContent : 5
+     * goodCount : 1
+     * isLike : 0
+     * isFollow : 0
+     * receiveId : null
+     * receiveNickName : null
+     * receiveCommentId : null
+     * receiveCommentContent : null
+     * resourceId : 144
+     */
 
     private int sendId;
     private String sendPortrait;
@@ -115,8 +42,14 @@ public class CommentBean implements Serializable {
     private Object receiveCommentContent;
     private int resourceId;
 
+    public boolean isZan() {
+        return isZan;
+    }
 
-    private boolean guanzhu = false;
+    public void setZan(boolean zan) {
+        isZan = zan;
+    }
+   private boolean  guanzhu =false;
 
     public boolean isGuanzhu() {
         return guanzhu;

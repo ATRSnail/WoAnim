@@ -15,6 +15,7 @@ import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.FansBean;
 import com.wodm.android.bean.FollowBean;
+import com.wodm.android.bean.NewCommentBean;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
@@ -133,6 +134,8 @@ public class FansAdapter extends BaseAdapter {
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     updateAttention.update(true);
+                    NewCommentBean bean = new NewCommentBean();
+                    bean.setGuanzhu(!bean.isGuanzhu());
                 }
 
                 @Override

@@ -340,16 +340,16 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             @Override
             protected void requestData(final int pager, final boolean b) {
                 //解决分页重复请求只能请求到同一个数据BUG
-//                String url;
-//                if (Constants.CURRENT_USER==null){
-//                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
-//                }else {
-//                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
-//                }
+                String url;
+                if (Constants.CURRENT_USER==null){
+                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
+                }else {
+                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+                }
 
                 if (commentBeanList.size() % 10 == 0||isLoadMore) {
-                    httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
-//                        httpGet(url, new HttpCallback() {
+//                    httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
+                        httpGet(url, new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
@@ -467,14 +467,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     private void CommentData() {
-//        String url;
-//        if (Constants.CURRENT_USER==null){
-//            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1;
-//        }else {
-//            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
-//        }
-        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
-//          httpGet(url, new HttpCallback() {
+        String url;
+        if (Constants.CURRENT_USER==null){
+            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1;
+        }else {
+            url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+        }
+//        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
+          httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -563,7 +563,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         List<IDanmakuItem> list = new ArrayList<>();
         for (CommentBean iDanmakuItem : commentbeanList) {
 //            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(this, iDanmakuItem.getSendCommentContent());
-            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(this, iDanmakuItem.getContent());
+            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(this, iDanmakuItem.getSendCommentContent());
             IDanmakuItem item = new DanmakuItem(this, spannableString, mDanmakuView_top.getWidth(), R.color.colorAccent, R.color.colorAccent, 0, 1.5f);
             list.add(item);
         }

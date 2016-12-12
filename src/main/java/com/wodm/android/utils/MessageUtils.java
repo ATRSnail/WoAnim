@@ -18,6 +18,7 @@ import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.CommentBean2;
 import com.wodm.android.bean.DianZanBean;
+import com.wodm.android.bean.NewCommentBean;
 import com.wodm.android.bean.SysMessBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -181,14 +182,31 @@ public class MessageUtils {
         });
     }
 
-    public void dianZan(String url, long userId,long contentId,int type) {
+    public void dianZan(String url, long userId, long contentId, int type) {
         //保存用户点赞的、 用户取消点赞的、内容的方法
         JSONObject object = new JSONObject();
         try {
             object.put("userId",userId);
             object.put("contentId",contentId);
             object.put("type",type);
-            postData(url, object);
+            appActivity.httpPost(url,object,new HttpCallback(){
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    NewCommentBean bean = new NewCommentBean();
+                     bean.setZan(!bean.isZan());
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                }
+
+                @Override
+                public void doRequestFailure(Exception exception, String msg) {
+                    super.doRequestFailure(exception, msg);
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -200,6 +218,7 @@ public class MessageUtils {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
+
             }
 
             @Override
