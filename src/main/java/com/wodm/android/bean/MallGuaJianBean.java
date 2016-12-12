@@ -16,7 +16,15 @@ public class MallGuaJianBean implements Serializable{
         private double price;
         private int needScore;
         private int flag;
+        private boolean isLoadImage;
 
+        public boolean isLoadImage() {
+            return isLoadImage;
+        }
+
+        public void setLoadImage(boolean loadImage) {
+            isLoadImage = loadImage;
+        }
         public int getId() {
             return id;
         }

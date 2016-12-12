@@ -100,7 +100,7 @@ public class DanMuTools {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
                     ba.setFontColor(ba.getFontColor());
-                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_24_px)+"");
+                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_36_px)+"");
                     int time=random.nextInt(timeArr.length);
                     ba.setTime(time);
                     ba.setId(bean.getId());

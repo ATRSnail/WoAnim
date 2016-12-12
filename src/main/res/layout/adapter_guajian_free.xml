@@ -16,8 +16,8 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/img_guajian_kuang"
             android:background="@mipmap/guajian_select_kuang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <RelativeLayout
             android:id="@+id/rl_image"
             android:layout_centerHorizontal="true"
@@ -34,27 +34,31 @@
                 android:id="@+id/img_icon"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_name"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_28_px"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_below="@+id/tv_name"
+                android:id="@+id/tv_score"
+                android:textColor="@color/color_f5921f"
+                android:paddingBottom="@dimen/px_10"
+                android:textSize="@dimen/text_size_22_px"
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_below="@+id/rl_image"
-            android:textColor="@color/color_333333"
-            android:textSize="@dimen/text_size_28_px"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tv_score"
-            android:textColor="@color/color_f5921f"
-            android:paddingBottom="@dimen/px_10"
-            android:textSize="@dimen/text_size_22_px"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 

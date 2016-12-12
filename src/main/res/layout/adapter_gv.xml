@@ -4,7 +4,7 @@
     android:background="@color/color_ffffff"
     android:layout_width="match_parent"
     android:layout_height="@dimen/px_240">
-    <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_2"></include>
+    <include layout="@layout/devid_line" android:layout_width="match_parent" android:layout_height="@dimen/px_1"></include>
     <LinearLayout
         android:id="@+id/ll_adapter"
         android:padding="@dimen/px_1"

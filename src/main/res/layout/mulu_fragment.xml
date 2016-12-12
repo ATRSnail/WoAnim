@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:layout_marginTop="@dimen/px_24"
+       android:layout_marginRight="@dimen/px_30"
+       android:layout_marginLeft="@dimen/px_30"
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           android:id="@+id/tv_jianjie"
+           android:textColor="@color/color_333333"
+           android:textSize="@dimen/text_size_30_px"
+           android:text="漫画简介"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <RelativeLayout
+           android:layout_marginTop="@dimen/px_16"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:lineSpacingMultiplier="1.6"
+               android:id="@+id/tv_jianjie_value"
+               android:ellipsize="end"
+               android:maxLines="2"
+               android:text="CommonTabLayoutCommonTabLayout:不同于SlidingTabLayout:不同于SlidingTabLayout对ViewPager依赖,它是一个不依赖ViewPager可以与其他控件自由搭配使用的TabLayout."
+               android:textSize="@dimen/text_size_24_px"
+               android:textColor="@color/color_999999"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:visibility="gone"
+               android:lineSpacingMultiplier="1.6"
+               android:id="@+id/tv_jianjie_value2"
+               android:text="CommonTabLayoutCommonTabLayout:不同于SlidingTabLayout:不同于SlidingTabLayout对ViewPager依赖,它是一个不依赖ViewPager可以与其他控件自由搭配使用的TabLayout."
+               android:textSize="@dimen/text_size_24_px"
+               android:textColor="@color/color_999999"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+       </RelativeLayout>
+       <RelativeLayout
+           android:id="@+id/rl_details_up"
+           android:layout_marginTop="@dimen/px_30"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/img_details_up"
+               android:visibility="gone"
+               android:background="@mipmap/img_details_down"
+               android:layout_centerInParent="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+       </RelativeLayout>
+   </LinearLayout>
+    <View
+        android:layout_marginTop="@dimen/px_16"
+        android:background="@color/color_efefef"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_2"></View>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/px_30"
+        android:layout_marginTop="@dimen/px_30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/text_size_24_px"
+            android:text="连载中"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="@dimen/px_16"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/text_size_24_px"
+            android:text="2016-8-28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="@dimen/px_16"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/text_size_24_px"
+            android:text="更新至17话"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.wodm.android.view.newview.HorizontalListView
+        android:id="@+id/hor_lv"
+        android:layout_marginLeft="@dimen/px_30"
+        android:layout_marginTop="@dimen/px_30"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_72"
+        >
+    </com.wodm.android.view.newview.HorizontalListView>
+    <com.wodm.android.view.newview.MyGridView
+        android:layout_margin="@dimen/px_30"
+        android:verticalSpacing="@dimen/px_30"
+        android:horizontalSpacing="@dimen/px_30"
+        android:numColumns="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gv_adapter_juji">
+    </com.wodm.android.view.newview.MyGridView>
+</LinearLayout>

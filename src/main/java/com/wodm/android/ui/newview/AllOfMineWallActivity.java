@@ -40,7 +40,6 @@ import java.util.List;
  */
 
 public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLayout.myTopbarClicklistenter,GuaJianOfMineFragment.addClickIconListener,TouXiangeOfMineFragment.addClickIconListener{
-    private View tabLine1, tabLine2, view1, view2;
     private TabLayout tabLayout;
     private AtyTopLayout set_topbar;
     private ViewPager mViewPager;
@@ -60,7 +59,6 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
     private List<String> mTitles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
     private TabFragmentAdapter tabFragmentAdapter;
-    private LinearLayout mall_more1, mall_more;
     private MallGuaJianBean clickBean;
     private int type;
 
@@ -89,9 +87,6 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
 
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabsFromPagerAdapter(tabFragmentAdapter);
-//        mViewPager.addOnPageChangeListener(new MyPageChangeListener());
-//        frag = FragmentMyPager.newInstance(0, clickImage);
-//        frag.setAddClickIconListener(this);
 
     }
 
@@ -150,116 +145,5 @@ public class AllOfMineWallActivity extends FragmentActivity implements  AtyTopLa
         finish();
     }
 
-    private class TabInfo {
-        private String tag;
-        private Class<?> clss;
-        private Bundle args;
 
-        TabInfo(String _tag, Class<?> _class, Bundle _args) {
-            tag = _tag;
-            clss = _class;
-            args = _args;
-        }
-    }
-
-    private class DummyTabFactory implements TabHost.TabContentFactory {
-        private Context mContext;
-
-        public DummyTabFactory(Context context) {
-            mContext = context;
-        }
-
-        @Override
-        public View createTabContent(String tag) {
-            View v = new View(mContext);
-            v.setMinimumHeight(0);
-            v.setMinimumWidth(0);
-            return v;
-        }
-    }
-
-    private class TabsAdapter extends FragmentPagerAdapter
-            implements TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
-        private Context mContext;
-        private TabHost mTabHost;
-        private ViewPager mViewPager;
-        private ArrayList<TabInfo> mTabs = new ArrayList<>();
-        private List<Fragment> fragments = new ArrayList<>();
-
-        public TabsAdapter(FragmentActivity activity, TabHost tabHost, ViewPager pager) {
-            super(activity.getSupportFragmentManager());
-            mContext = activity;
-            mTabHost = tabHost;
-            mViewPager = pager;
-            mTabHost.setOnTabChangedListener(this);
-            mViewPager.setAdapter(this);
-            mViewPager.setOnPageChangeListener(this);
-        }
-
-        public void addTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args) {
-            tabSpec.setContent(new DummyTabFactory(mContext));
-            String tag = tabSpec.getTag();
-
-            TabInfo info = new TabInfo(tag, clss, args);
-            mTabs.add(info);
-            mTabHost.addTab(tabSpec);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getCount() {
-            return mTabs.size();
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            TabInfo info = mTabs.get(position);
-            return Fragment.instantiate(mContext, info.clss.getName(), info.args);
-        }
-
-        @Override
-        public void onTabChanged(String tabId) {
-            int position = mTabHost.getCurrentTab();
-            mViewPager.setCurrentItem(position);
-            if (position == 0) {
-//                tabTv1.setText("头像框");
-//                tabTv1.setTextColor(getResources().getColor(R.color.color_333333));
-                tabLine1.setBackgroundColor(getResources().getColor(R.color.color_dd2e5c));
-
-//                tabTv2.setText("挂件");
-//                tabTv2.setTextColor(getResources().getColor(R.color.colorAccent));
-                tabLine2.setBackgroundColor(Color.TRANSPARENT);
-            } else if (position == 1) {
-//                tabTv2.setText("头像框");
-//                tabTv2.setTextColor(getResources().getColor(R.color.color_333333));
-                tabLine2.setBackgroundColor(getResources().getColor(R.color.color_dd2e5c));
-
-//                tabTv1.setText("挂件");
-//                tabTv1.setTextColor(getResources().getColor(R.color.colorAccent));
-                tabLine1.setBackgroundColor(Color.TRANSPARENT);
-            }
-//            String tmp=mTabHost.getCurrentTabTag();
-//            mTabHost.getCurrentTabView().set
-        }
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-            TabWidget widget = mTabHost.getTabWidget();
-            int oldFocusability = widget.getDescendantFocusability();
-            widget.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
-            mTabHost.setCurrentTab(position);
-//            frag.setCurrentTabNum(position);
-//            frag.setAddClickIconListener(HeaderGuaJianActivity.this);
-            widget.setDescendantFocusability(oldFocusability);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    }
 }

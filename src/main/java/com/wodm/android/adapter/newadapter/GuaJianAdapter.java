@@ -69,8 +69,9 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         MallGuaJianBean mallGuaJianBean=beanList.get(position);
         String name=mallGuaJianBean.getProductName();
         if (clickBean!=null){
-            if (clickBean.getProductName().equals(name))
-            { holder.img_guajian_kuang.setVisibility(View.VISIBLE);}else {
+            if (clickBean.getProductName().equals(name)) {
+                holder.img_guajian_kuang.setVisibility(View.VISIBLE);
+            }else {
                 holder.img_guajian_kuang.setVisibility(View.INVISIBLE);
             }
         }else {
@@ -80,7 +81,10 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         holder.tv_name.setText(name);
         holder.tv_score.setText(mallGuaJianBean.getNeedScore()+"积分");
         try {
-            MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
+            if (!mallGuaJianBean.isLoadImage()){
+                mallGuaJianBean.setLoadImage(true);
+                MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
+            }
         } catch (Exception e) {
 //            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
             e.printStackTrace();

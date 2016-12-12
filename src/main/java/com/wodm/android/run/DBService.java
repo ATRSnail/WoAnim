@@ -100,6 +100,9 @@ public class DBService extends Service {
     public List<AdsClickBean> adsquery() {
         ArrayList<AdsClickBean> list = new ArrayList<AdsClickBean>();
         Cursor c = queryAdsTheCursor();
+        if (c==null){
+            return list;
+        }
         while (c.moveToNext()) {
             AdsClickBean userBehavierInfo = new AdsClickBean();
             userBehavierInfo.setAdNum(c.getLong(c.getColumnIndex("adNum")));
@@ -118,7 +121,13 @@ public class DBService extends Service {
     public Cursor queryAdsTheCursor() {
         DbUtils dbUtils= WoDbUtils.initialize(getApplicationContext());
         SQLiteDatabase database=dbUtils.getDatabase();
-        Cursor c = database.rawQuery("SELECT * FROM adsclickbean", null);
+        Cursor c=null;
+        try{
+            c = database.rawQuery("SELECT * FROM adsclickbean ", null);
+        }catch (Exception e){
+            c=null;
+            e.printStackTrace();
+        }
         return c;
     }
     /**
@@ -128,6 +137,9 @@ public class DBService extends Service {
     public List<UserBehavierInfo> query() {
         ArrayList<UserBehavierInfo> list = new ArrayList<UserBehavierInfo>();
         Cursor c = queryTheCursor();
+        if (c==null){
+            return list;
+        }
         while (c.moveToNext()) {
             UserBehavierInfo userBehavierInfo = new UserBehavierInfo();
             userBehavierInfo.setBehavier_id(c.getInt(c.getColumnIndex("behavier_id")));
@@ -151,7 +163,13 @@ public class DBService extends Service {
     public Cursor queryTheCursor() {
         DbUtils dbUtils= WoDbUtils.initialize(getApplicationContext());
         SQLiteDatabase database=dbUtils.getDatabase();
-        Cursor c = database.rawQuery("SELECT * FROM userbehavier", null);
+        Cursor c=null;
+        try {
+            c = database.rawQuery("SELECT * FROM userbehavier", null);
+        }catch (Exception e){
+            c=null;
+            e.printStackTrace();
+        }
         return c;
     }
 

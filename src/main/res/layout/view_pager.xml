@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_100">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_ffffff"
+            app:tabIndicatorHeight="@dimen/px_4"
+            app:tabIndicatorColor="@color/color_fb487f"
+            app:tabSelectedTextColor="@color/color_fb487f"
+            app:tabTextColor="@color/color_666666" />
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_1"
+            android:background="@color/color_cccccc"></View>
+    </RelativeLayout>
+
+    <com.wodm.android.view.newview.WrapContentHeightViewPager
+        android:id="@+id/mypage_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

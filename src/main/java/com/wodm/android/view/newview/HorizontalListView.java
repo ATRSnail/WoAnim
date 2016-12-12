@@ -51,6 +51,12 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
     }
 
     @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
     public void setOnItemSelectedListener(OnItemSelectedListener listener) {
         mOnItemSelected = listener;
     }

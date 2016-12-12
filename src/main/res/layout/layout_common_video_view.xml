@@ -6,11 +6,42 @@
     android:background="@android:color/black"
     android:descendantFocusability="beforeDescendants">
 
-
-    <com.wodm.android.view.MyVideoView
-        android:id="@+id/videoView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <com.wodm.android.view.MyVideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/ll_danmu_background"
+            android:weightSum="3"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <master.flame.danmaku.ui.widget.DanmakuView
+                android:layout_weight="1"
+                android:id="@+id/danmaku_view_top"
+                android:layout_marginTop="@dimen/px_80"
+                android:background="@android:color/holo_red_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <master.flame.danmaku.ui.widget.DanmakuView
+                android:layout_weight="1"
+                android:id="@+id/danmaku_view_middle"
+                android:layout_marginTop="@dimen/px_80"
+                android:background="@android:color/holo_red_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <master.flame.danmaku.ui.widget.DanmakuView
+                android:layout_weight="1"
+                android:id="@+id/danmaku_view_bottom"
+                android:layout_marginTop="@dimen/px_80"
+                android:background="@android:color/holo_red_dark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/videoControllerLayout"
@@ -182,14 +213,6 @@
             android:layout_marginLeft="@dimen/px_20"
             android:layout_toRightOf="@id/exit_screen"
             android:textColor="@android:color/white" />
-        <ImageView
-            android:id="@+id/img_set"
-            android:layout_marginRight="@dimen/px_30"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/img_set" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -229,6 +252,13 @@
                 android:paddingLeft="@dimen/px_30"
                 android:paddingRight="@dimen/px_30"
                 android:src="@mipmap/icon_share" />
+            <ImageView
+                android:id="@+id/img_set"
+                android:paddingLeft="@dimen/px_30"
+                android:paddingRight="@dimen/px_30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/img_set" />
 
         </LinearLayout>
 

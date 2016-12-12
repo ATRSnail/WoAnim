@@ -4,13 +4,11 @@ import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.CommentAdapter;
@@ -20,15 +18,9 @@ import com.wodm.android.bean.NewCommentBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.DividerLine;
 
-import org.eteclab.base.annotation.ViewIn;
-import org.eteclab.base.http.HttpCallback;
-import org.eteclab.ui.widget.pulltorefresh.PullCallbackImpl;
 import org.eteclab.ui.widget.pulltorefresh.PullToLoadView;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ATRSnail on 2016/12/12.

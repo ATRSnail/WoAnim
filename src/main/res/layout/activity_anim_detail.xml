@@ -18,35 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/ll_danmu_background"
-            android:weightSum="3"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <master.flame.danmaku.ui.widget.DanmakuView
-                android:layout_weight="1"
-                android:id="@+id/danmaku_view_top"
-                android:layout_marginTop="@dimen/px_80"
-                android:background="@android:color/holo_red_dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <master.flame.danmaku.ui.widget.DanmakuView
-                android:layout_weight="1"
-                android:id="@+id/danmaku_view_middle"
-                android:layout_marginTop="@dimen/px_80"
-                android:background="@android:color/holo_red_dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <master.flame.danmaku.ui.widget.DanmakuView
-                android:layout_weight="1"
-                android:id="@+id/danmaku_view_bottom"
-                android:layout_marginTop="@dimen/px_80"
-                android:background="@android:color/holo_red_dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        android:layout_height="wrap_content">
         <com.wodm.android.view.CommonVideoView
             android:id="@+id/common_videoView"
             android:layout_width="match_parent"

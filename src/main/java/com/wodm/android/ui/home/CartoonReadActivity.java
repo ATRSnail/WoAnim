@@ -463,6 +463,7 @@ public class CartoonReadActivity extends AppActivity {
                 arrayList_bottom.add(bean);
             }
         }
+
         danmuControler = new DanmuControler(this, mDanmakuView_read_top);
         danmuControler.addData(arrayList_top);
         danmuControler = new DanmuControler(this, mDanmakuView_read_middle);
@@ -699,7 +700,7 @@ public class CartoonReadActivity extends AppActivity {
     }
     @TrackClick(value = R.id.img_set, location = TITLE, eventName = "弹出设置")
     private void clickimg_set(View view) {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment prev = getFragmentManager().findFragmentByTag("dialog");
         if (prev != null) {
             ft.remove(prev);
@@ -708,8 +709,12 @@ public class CartoonReadActivity extends AppActivity {
         BulletSetDialog bulletSetDialog= BulletSetDialog.newInstance(new BulletSetDialog.setBulletSetDialogListener() {
             @Override
             public void setDialogListener(int progress) {
-                ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
-                ll_danmu_background.getBackground().setAlpha(progress);
+                float progress1=1-(float)(progress/100);
+                mDanmakuView_read_top.setAlpha(progress1);
+                mDanmakuView_read_middle.setAlpha(progress1);
+                mDanmakuView_read_bottom.setAlpha(progress1);
+//                ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
+//                ll_danmu_background.getBackground().setAlpha(progress);
             }
         });
         bulletSetDialog.show(ft,"dialog");

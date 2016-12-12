@@ -270,7 +270,7 @@ public class Main2Activity extends AppActivity {
     protected void onResume() {
         super.onResume();
         checkSgin();
-//        upData();
+        upData();
     }
     private void upData(){
         Intent serviceIntent=new Intent(this, DBService.class);

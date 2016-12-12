@@ -90,6 +90,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private SendBulletListener sendBulletListener;
     private setTimeDBListener settimeListener;
     private String videoUrl;
+    private LinearLayout ll_danmu_background;
 
     public interface SendBulletListener {
         public void sendBullet();
@@ -178,6 +179,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         this.setLayoutParams(new
                 RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         setlandLayout(View.VISIBLE);
+        ll_danmu_background.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         videoTitleLayout.setBackgroundColor(Color.argb(0xcc, 0x28, 0x28, 0x28));
     }
 
@@ -187,6 +189,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         touchStatusImg.setImageResource(R.mipmap.anim_fangda);
 
         this.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
+        ll_danmu_background.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.px_450)));
         setlandLayout(GONE);
         videoTitleLayout.setBackgroundColor(Color.argb(0x0, 0x0, 0x00, 0x00));
     }
@@ -219,6 +222,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private void initView() {
         View view = inflate(context, R.layout.layout_common_video_view, this);
         view.findViewById(R.id.send_bullet).setOnClickListener(this);
+        ll_danmu_background= (LinearLayout) view.findViewById(R.id.ll_danmu_background);
         mListAnim = (TextView) view.findViewById(R.id.list_anim);
         mListAnim.setOnClickListener(this);
         viewBox = (FrameLayout) view.findViewById(R.id.viewBox);
