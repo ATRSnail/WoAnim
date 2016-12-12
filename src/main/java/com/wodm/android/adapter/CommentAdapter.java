@@ -65,7 +65,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         new AsyncImageLoader(mContext, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
         holder.name.setText(bean.getSendNickName());
         holder.time.setText(bean.getTimes());
-        holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.un_zan : R.mipmap.zan);
+        holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
