@@ -2,7 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +57,6 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
 
     @Override
     public int getCount() {
-        Log.e("AA","----------------list"+list.size());
         return list.size()>0?list.size():0;
     }
 
@@ -184,7 +182,6 @@ public class SystemInformAdapter extends BaseAdapter implements View.OnClickList
     }
 
     public void setList(List<SysMessBean.DataBean> mlist) {
-        Log.e("AA","----------------mlist"+mlist.size());
         this.list.clear();
         this.list.addAll(mlist);
         notifyDataSetChanged();
