@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/px_690"
+    android:layout_height="@dimen/px_280"
+    android:background="@drawable/bg_corner_20"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/px_30"
+    android:paddingLeft="@dimen/px_24"
+    android:paddingTop="@dimen/px_30">
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_336"
+        android:layout_height="@dimen/px_220">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/img_anim_play" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/px_30"
+        android:paddingTop="@dimen/px_38">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作者名字:"
+            android:textColor="@color/color_999999"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.wodm.android.view.StarBar
+                android:id="@+id/starBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/display"
+                ratingbar:starCount="5"
+                ratingbar:starDistance="5dp"
+                ratingbar:starEmpty="@mipmap/un_zan"
+                ratingbar:starFill="@mipmap/zan"
+                ratingbar:starSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="9.0"
+                android:textColor="@color/color_fb487f"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:src="@mipmap/img_huang" />
+
+    </LinearLayout>
+
+</LinearLayout>

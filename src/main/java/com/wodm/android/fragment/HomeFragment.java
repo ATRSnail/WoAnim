@@ -16,6 +16,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.AnimActivity;
 import com.wodm.android.utils.PermissionInfoTools;
 
 import org.eteclab.base.annotation.InflateView;
@@ -112,11 +113,11 @@ public class HomeFragment extends TrackFragment {
                                     Intent intent = new Intent();
                                     intent.putExtra("resourceId", Integer.valueOf(bean.getResourceId()).intValue());
                                     if (bean.getType().equals("1")) {
-                                        intent.setClass(getActivity(), AnimDetailActivity.class);
-                                    } else if (bean.getType().equals("2")) {
-                                        intent.setClass(getActivity(), CarDetailActivity.class);
-                                    } else if (bean.getType().equals("2")) {
-                                        intent.setClass(getActivity(), CarDetailActivity.class);
+                                        intent.setClass(getActivity(), AnimActivity.class);
+//                                        intent.setClass(getActivity(), AnimDetailActivity.class);
+                                    }else if (bean.getType().equals("2")) {
+                                        intent.setClass(getActivity(), AnimActivity.class);
+//                                        intent.setClass(getActivity(), CarDetailActivity.class);
                                     }else {
                                         intent.putExtra("adsUrl",bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);

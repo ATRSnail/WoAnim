@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_corner_20"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/px_30"
+    android:paddingLeft="@dimen/px_24"
+    android:paddingTop="@dimen/px_30">
+
+
+    <ImageView
+        android:layout_width="@dimen/px_220"
+        android:layout_height="@dimen/px_280"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/px_30"
+        android:paddingTop="@dimen/px_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作者名字:"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/text_size_24_px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.wodm.android.view.StarBar
+                android:id="@+id/starBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/display"
+                ratingbar:starCount="5"
+                ratingbar:starDistance="@dimen/px_10"
+                ratingbar:starEmpty="@mipmap/un_zan"
+                ratingbar:starFill="@mipmap/zan"
+                ratingbar:starSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_16"
+                android:text="9.0"
+                android:textColor="@color/color_fb487f"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:src="@mipmap/img_huang" />
+
+        <Button
+            android:layout_width="@dimen/px_270"
+            android:layout_height="@dimen/px_90"
+            android:layout_marginTop="@dimen/px_24"
+            android:background="@drawable/btn_bg_corner_40"
+            android:gravity="center"
+            android:text="开始g观看"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/text_size_32_px" />
+
+    </LinearLayout>
+
+</LinearLayout>

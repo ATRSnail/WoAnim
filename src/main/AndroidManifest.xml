@@ -425,7 +425,9 @@
             android:name=".android.ui.newview.SendMsgActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".android.ui.newview.AnimActivity"></activity>
+        <activity
+            android:name=".android.ui.newview.AnimActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

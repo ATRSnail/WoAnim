@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.wodm.android.ui.newview.AnimActivity">
+    android:background="@color/color_efefef">
+
+    <ImageView
+        android:id="@+id/img_blur_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_340"
+        android:scaleType="fitXY"
+        android:src="@mipmap/level_bg" />
+
+    <com.wodm.android.view.newview.AtyTopLayout
+        android:id="@+id/set_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_alignParentTop="true"
+        app:BackGroundColor="#00000000"
+        app:CustomtitleTextColor="@color/color_ffffff"
+        app:CustomtitleTextSize="@dimen/text_size_32_px"
+        app:Customtoptitle="点赞"
+        app:leftBackGround="@mipmap/back_mall_white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/set_topbar"
+        android:paddingBottom="15dp">
+
+        <include layout="@layout/include_tran_head" />
+
+        <include
+            layout="@layout/include_detail_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="@dimen/px_92" />
+    </RelativeLayout>
 
 </RelativeLayout>
