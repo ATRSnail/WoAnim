@@ -59,7 +59,7 @@ public class DianZanAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.e("AA","------------------"+list.size());
+//        Log.e("AA","------------------"+list.size());
         return list.size()>0?list.size():0;
     }
 
@@ -164,7 +164,10 @@ public class DianZanAdapter extends BaseAdapter {
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
         SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+        Log.e("AA","-----------------"+spannableString);
         holder.info_atwo.setText(spannableString);
+
+
 
 
         return convertView;
