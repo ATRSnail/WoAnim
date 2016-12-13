@@ -123,6 +123,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
             if (getItemCount()==(index+2)){
                 int size=adsList.size()-(getItemCount()-1);
                 if (size>0){
+                    holders.ll_total.removeAllViews();
                     for (int i = 0; i < size; i++) {
                         final AdsBean bean=adsList.get(i);
                         LinearLayout linear=new LinearLayout(mContext);

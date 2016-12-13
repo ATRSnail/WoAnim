@@ -113,6 +113,10 @@ public class FaceConversionUtil {
 	 * @return
 	 */
 	public SpannableString getExpressionString(Context context, String str) {
+		if (str==null||str.equals("")){
+			SpannableString spannableString1 = new SpannableString("");
+			return spannableString1;
+		}
 		SpannableString spannableString = new SpannableString(str);
 		// 正则表达式比配字符串里是否含有表情，如： 我好[开心]啊
 		if (str.contains("#")) {
