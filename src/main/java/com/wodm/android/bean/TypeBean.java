@@ -9,6 +9,15 @@ import java.util.List;
 public class TypeBean implements Serializable {
     private String name;
     private String parameter;
+    private boolean isClick;
+
+    public boolean isClick() {
+        return isClick;
+    }
+
+    public void setClick(boolean click) {
+        isClick = click;
+    }
     private List<TabItemBean> list;
 
     public String getName() {

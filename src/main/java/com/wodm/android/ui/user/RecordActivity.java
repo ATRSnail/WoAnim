@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,6 +136,8 @@ public class RecordActivity extends AppActivity {
                                             @Override
                                             public void onItemDelete(int position, ObjectBean bean) {
                                                 delete(type, adapter, position, bean,edit);
+//                                                adapter.removeItem(position);
+//                                                adapter.notifyDataSetChanged();
                                             }
                                         });
                                     } else {
@@ -166,15 +167,13 @@ public class RecordActivity extends AppActivity {
     private String deleteUrl = "";
 
     private void delete(int type, final ComicAdapter adapter, final int position, ObjectBean bean, final TextView edit) {
-        System.out.println("position---->" + position + deleteUrl);
         httpGet(deleteUrl + "&type=" + type + "&ids=" + bean.getId(), new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                System.out.println("position---->succ");
                 if (adapter != null) {
                     adapter.removeItem(position);
-//                    adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                     if (adapter.getItemCount() == 0) {
                         edit.setVisibility(View.GONE);
                     }

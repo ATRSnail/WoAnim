@@ -8,7 +8,15 @@ import java.io.Serializable;
 public class TabItemBean implements Serializable {
     private int id;
     private String name;
+    private boolean isClick;
 
+    public boolean isClick() {
+        return isClick;
+    }
+
+    public void setClick(boolean click) {
+        isClick = click;
+    }
     public int getId() {
         return id;
     }

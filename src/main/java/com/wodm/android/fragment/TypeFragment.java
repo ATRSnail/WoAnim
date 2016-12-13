@@ -3,7 +3,6 @@ package com.wodm.android.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -107,7 +106,7 @@ public class TypeFragment extends TrackFragment {
             public void onClick(View v) {
                 //收起或下拉都刷新一次
                 postData="";
-                mOpusList.initLoad();
+//                mOpusList.initLoad();
                 if (retList != null && retList.size() > 0 && "0".equals(v.getTag())) {
                     imageButton.setTag("1");
                     setColums(mTabList, retList);
@@ -141,12 +140,17 @@ public class TypeFragment extends TrackFragment {
         });
     }
 
-    private void setColums(NoScrollGridView mTabList, List retList) {
-        TabTypeAdapter adapter = new TabTypeAdapter(getActivity(), retList);
+    private void setColums(NoScrollGridView mTabList, final List retList) {
+        final TabTypeAdapter adapter = new TabTypeAdapter(getActivity(), retList);
         mTabList.setAdapter(adapter);
         adapter.setOnClickListener(new TabTypeAdapter.OnClickListener() {
             @Override
             public void onTypaAll(TypeBean bean) {
+                bean.setClick(true);
+                for (TabItemBean tabItembean:bean.getList()){
+                    tabItembean.setClick(false);
+                    adapter.notifyDataSetChanged();
+                }
                 if (postData.indexOf(bean.getParameter()) >= 0) {
                     postData = postData.replace(bean.getParameter(), "");
                     String[] datas = postData.split("&");
@@ -163,6 +167,15 @@ public class TypeFragment extends TrackFragment {
 
             @Override
             public void onTypaOne(TabItemBean tabItemBean, TypeBean bean) {
+                bean.setClick(false);
+                for (TabItemBean itembean:bean.getList()){
+                    if (tabItemBean.getId()==itembean.getId()){
+                        itembean.setClick(true);
+                    }else {
+                        itembean.setClick(false);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
                 String data = "&" + bean.getParameter() + "=";
 //                if (-1 == utrdata.indexOf(data)) {
 //                    utrdata += (data + tabItemBean.getId());

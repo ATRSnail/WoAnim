@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,15 +40,36 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         holder.mTabList.setLayoutManager(lm);
         holder.mName.setText(bean.getName());
         final HorizontalMenuAdapter adapter = new HorizontalMenuAdapter(mContext, bean.getList());
+//        holder.mName.setBackgroundResource(R.drawable.shape_text_color);
+//        holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+        if (bean.isClick()){
+            holder.mName.setBackgroundResource(R.drawable.shape_text_color);
+            holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+        }else {
+            holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
+            holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
+        }
+        adapter.setOnChildClickListener(new HorizontalMenuAdapter.AllOnClickListener() {
+            @Override
+            public boolean isChildClick(boolean isClick) {
+               if (isClick){
+                   holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
+                   holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
+               }else {
+                   holder.mName.setBackgroundResource(R.drawable.shape_text_color);
+                   holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+               }
+               return false;
+            }
+        });
 
-        holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-        holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
 
         holder.mName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onClickListener != null)
+                if (onClickListener != null){
                     onClickListener.onTypaAll(bean);
+                }
                 holder.mName.setBackgroundResource(R.drawable.shape_text_color);
                 holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
                 adapter.setIndex(-1);
@@ -61,8 +81,9 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         adapter.setOnItemClickListener(new OnItemClickListener<TabItemBean>() {
             @Override
             public void onItemClick(View view, TabItemBean tabItemBean, int i) {
-                if (onClickListener != null)
+                if (onClickListener != null){
                     onClickListener.onTypaOne(tabItemBean, bean);
+                }
                 holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
                 holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
                 adapter.setIndex(i);
