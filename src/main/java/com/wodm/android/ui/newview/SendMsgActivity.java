@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,8 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
+import com.wodm.android.Constants;
+import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.biaoqing.FaceRelativeLayout;
@@ -21,14 +26,18 @@ import com.wodm.android.view.newview.AtyTopLayout;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @Layout(R.layout.activity_send_msg)
 public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter,
         View.OnClickListener {
 
+    public static final String ATWOBEAN = "atwobean";
     @ViewIn(R.id.ed_comment)
     EditText mEditText;
-    ;
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.tv_num)
@@ -41,22 +50,25 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     View mEmojiView;
     private BiaoqingTools biaoqingtools;
     private InputMethodManager mInputManager;//软键盘管理类
+    private AtWoBean.DataBean atWoBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initViews();
         initDatas();
+        initViews();
+
     }
 
     private void initDatas() {
-        set_topbar.setOnTopbarClickListenter(this);
+        if (getIntent() != null)
+            atWoBean = (AtWoBean.DataBean) getIntent().getSerializableExtra(ATWOBEAN);
     }
 
     private void initViews() {
         biaoqingtools = BiaoqingTools.getInstance();
         mInputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-
+        set_topbar.setOnTopbarClickListenter(this);
         emojiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +133,37 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void rightClick() {
+        if (atWoBean == null) return;
+        if (TextUtils.isEmpty(mEditText.getText().toString().trim())){
+            Toast.makeText(this,"评论不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("resourceId", atWoBean.getResourceId()+"");
+            obj.put("sendId", atWoBean.getSendId()+"");
+            obj.put("receiveId", atWoBean.getResourceId()+"");
+            obj.put("commentId", atWoBean.getCommentId()+"");
+            obj.put("content", mEditText.getText().toString());
+            obj.put("type", "1");
+            httpPost(Constants.REPLY, obj, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    Toast.makeText(SendMsgActivity.this,"发表成功", Toast.LENGTH_SHORT).show();
 
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                    Toast.makeText(SendMsgActivity.this,"发表失败", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showEmotionLayout() {

@@ -1,5 +1,11 @@
 package com.wodm.android.bean;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.wodm.android.ui.newview.SendMsgActivity;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -56,7 +62,7 @@ public class AtWoBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         private String content;
         private int sendId;
         private int resourceId;
@@ -67,6 +73,12 @@ public class AtWoBean {
         private int type;
         private int messageId;
         private int commentId;
+
+        public void intentToSendMsg(Context context){
+            Intent intent = new Intent(context,SendMsgActivity.class);
+            intent.putExtra(SendMsgActivity.ATWOBEAN, this);
+            context.startActivity(intent);
+        }
 
         public String getContent() {
             return content;

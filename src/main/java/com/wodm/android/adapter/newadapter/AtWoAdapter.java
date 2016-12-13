@@ -126,7 +126,7 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
         holder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, SendMsgActivity.class));
+                dataBean.intentToSendMsg(mContext);
             }
         });
         new AsyncImageLoader(mContext,R.mipmap.moren_header,R.mipmap.moren_header).display(holder.pho,dataBean.getSendPortrait());
