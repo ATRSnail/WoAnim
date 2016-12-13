@@ -20,7 +20,7 @@ import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
 import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
-import com.wodm.android.ui.newview.DIanZanActivity;
+import com.wodm.android.ui.newview.DianZanActivity;
 import com.wodm.android.ui.newview.MallActivity;
 import com.wodm.android.ui.newview.MyMedalActivity;
 import com.wodm.android.ui.newview.SystemInformActivity;
@@ -168,11 +168,11 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
         }  else if (text.equals("点赞")) {
-            startIntent(null, DIanZanActivity.class);
+            startIntent(null, DianZanActivity.class);
         } else if (text.equals("关注")) {
             startIntent(null, AttentionActivity.class);
         } else if (text.equals("点赞")) {
-            startIntent(null, DIanZanActivity.class);
+            startIntent(null, DianZanActivity.class);
         }else if (text.equals("系统通知")) {
             startIntent(null, SystemInformActivity.class);
         } else if (text.equals("评论")) {
@@ -191,7 +191,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else  if (text.equals("评论" )) {
             i.setClass(mContext,CommentActivity.class);
         } else  if (text.equals( "点赞")) {
-            i.setClass(mContext,DIanZanActivity.class);
+            i.setClass(mContext,DianZanActivity.class);
         }else if (text.equals("收藏")) {
             i.putExtra("tid", R.id.my_collcet);
             i.putExtra("title", R.string.collect);

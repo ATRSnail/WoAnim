@@ -1,5 +1,7 @@
 package com.wodm.android.ui.newview;
 
+
+
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +29,7 @@ public class TestActivity extends AppActivity {
         super.onCreate(savedInstanceState);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.test, new CommentFragment());
+       transaction.replace(R.id.test, new CommentFragment());
         transaction.commit();
 
     }
