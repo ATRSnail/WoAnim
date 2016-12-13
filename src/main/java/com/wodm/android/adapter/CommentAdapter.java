@@ -126,7 +126,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                             super.doAuthSuccess(result, obj);
                             try {
                                 if (obj.getString("code").equals("1000")) {
-                                    Toast.makeText(context,obj.get("message").toString(),Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(context,obj.get("message").toString(),Toast.LENGTH_SHORT).show();
                                     bean.setZan();
                                     notifyDataSetChanged();
                                 }
