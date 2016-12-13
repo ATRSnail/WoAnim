@@ -3,6 +3,7 @@ package com.wodm.android.adapter.newadapter;
 import android.content.Context;
 import android.content.Intent;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import java.util.List;
 public class DianZanAdapter extends BaseAdapter {
     boolean mdianZan;//判断是否为点赞类的判断标志
     List<DianZanBean.DataBean> list=new ArrayList<>();
+//    List<DianZanBean.DataBean> list;
     Context mContext;
     MessageUtils utils;
     boolean flag = false;//显示删除选择图标的判断标志
@@ -57,6 +59,7 @@ public class DianZanAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        Log.e("AA","------------------"+list.size());
         return list.size()>0?list.size():0;
     }
 
@@ -160,10 +163,9 @@ public class DianZanAdapter extends BaseAdapter {
 //        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
-//        if (dataBean.getContent() !=null){
-//            SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
-            holder.info_atwo.setText(dataBean.getContent());
-//        }
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
+        holder.info_atwo.setText(spannableString);
+
 
         return convertView;
     }
@@ -175,6 +177,7 @@ public class DianZanAdapter extends BaseAdapter {
     public void setList(List<DianZanBean.DataBean> mlist) {
         this.list.clear();
         this.list.addAll(mlist);
+//        this.list=mlist;
         notifyDataSetChanged();
     }
 
