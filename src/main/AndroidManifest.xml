@@ -366,8 +366,8 @@
         <activity
             android:name=".android.ui.newview.VipOpenActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity android:name=".android.ui.newview.TestActivity"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <!-- <activity android:name=".android.ui.newview.TestActivity" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar" /> -->
         <activity
             android:name=".android.ui.newview.ForgetPassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -417,9 +417,6 @@
             android:name=".android.ui.newview.CommentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".android.ui.newview.DianZanActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".android.ui.newview.ATWoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -428,6 +425,8 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".android.ui.newview.AnimActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".android.ui.newview.DianZanActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
