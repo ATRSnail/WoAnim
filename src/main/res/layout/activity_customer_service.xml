@@ -31,18 +31,18 @@
         android:layout_below="@id/service_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/px_15"
-        android:text="客户热线:xxxx-xxxx"
+        android:text="客户热线:xxxx-xxxxxxx"
         android:textColor="@color/color_333333"
         android:textSize="@dimen/text_size_36_px" />
 
     <TextView
+        android:layout_centerHorizontal="true"
         android:id="@+id/service_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/service_phone"
         android:layout_below="@id/service_phone"
         android:layout_marginTop="@dimen/px_16"
-        android:text="邮箱:"
+        android:text="邮箱:xxxx-xxxxxxx"
         android:textColor="@color/color_333333"
         android:textSize="@dimen/text_size_36_px" />
 
