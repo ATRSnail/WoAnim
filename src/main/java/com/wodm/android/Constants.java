@@ -35,9 +35,9 @@ public class Constants {
     //http://202.106.63.98:8990/wodm-api/
 //     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
-    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
+//    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
     //分享详情页
     public final static String SHARE_URL = "http://mk.wo.com.cn/html/donghuaxiangqingye.html?id=";
@@ -158,7 +158,7 @@ public class Constants {
     public static final String ReplyeMessageList=HOST + "behavior/replyMessageList?userId=";// 获取所有的 有人@我的消息
     public static final String LikeMessageList=HOST + "behavior/likeMessageList?userId=";// 获取所有的点赞的详情的列表
     public static final String SAVEComment=HOST + "comment/saveComment";// 保存用户评论的内容;
-    public static final String REPLY=HOST + "comment/reply ";//  用户回复的接口内容
+    public static final String REPLY=HOST + "comment/reply";//  用户回复的接口内容
     public static final String CommentList=HOST + "comment/list?resourceId=";//查询 用户评论的列表
     public static final String CURRENTComment=HOST + "comment/currentCommentList?userId=";//临时添加的获取用户的原始评论内容
     public static final String SAVEADVERTISEMENTCLICK=HOST + "behavior/saveAdvertisementSerialClick";//广告统计接口

@@ -140,12 +140,12 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
         }
         JSONObject obj = new JSONObject();
         try {
-            obj.put("resourceId", atWoBean.getResourceId()+"");
-            obj.put("sendId", atWoBean.getSendId()+"");
-            obj.put("receiveId", atWoBean.getResourceId()+"");
-            obj.put("commentId", atWoBean.getCommentId()+"");
+            obj.put("resourceId", atWoBean.getResourceId());
+            obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
+            obj.put("receiveId", atWoBean.getSendId());
+            obj.put("commentId", atWoBean.getCommentId());
             obj.put("content", mEditText.getText().toString());
-            obj.put("type", "1");
+            obj.put("type", 1);
             httpPost(Constants.REPLY, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

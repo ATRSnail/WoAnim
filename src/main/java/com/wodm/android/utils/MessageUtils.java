@@ -193,8 +193,8 @@ public class MessageUtils {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
-                    NewCommentBean bean = new NewCommentBean();
-                     bean.setZan(!bean.isZan());
+//                    NewCommentBean bean = new NewCommentBean();
+//                     bean.setZan(!bean.isZan());
                 }
 
                 @Override
