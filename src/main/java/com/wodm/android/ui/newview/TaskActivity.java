@@ -167,9 +167,12 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
 
     private void initfinsh() {
         total_day.setText((qiandao_day+1)+ "");
-        top_line_view.setBackgroundColor(getResources().getColor(R.color.color_ef9429));
-        top_task.setBackgroundResource("#ffa031");
-        ll_top_task.setBackgroundResource(R.mipmap.qiandao_yellow_bg);
+//        top_line_view.setBackgroundColor(getResources().getColor(R.color.color_ef9429));
+        top_line_view.setBackgroundColor(getResources().getColor(R.color.color_ff6f9b));
+//        top_task.setBackgroundResource("#ffa031");
+        top_task.setBackgroundResource("#fb487f");
+//        ll_top_task.setBackgroundResource(R.mipmap.qiandaoe_yellow_bg);
+        ll_top_task.setBackgroundResource(R.mipmap.qiandao_pink_bg);
         btn_slow.setBackgroundResource(R.drawable.task_solw_finish);
         btn_slow.setText("快");
         btn_qiandao.setBackgroundResource(R.drawable.btn_task_qiandao_finish);
