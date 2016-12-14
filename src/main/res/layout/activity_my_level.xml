@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_310"
-            android:background="@mipmap/level_bg"
+            android:background="@color/color_fb487f"
             android:orientation="vertical">
 
             <com.wodm.android.view.newview.AtyTopLayout
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_90"
                 app:BackGroundColor="@android:color/transparent"
-                app:CustomtitleTextColor="@color/color_333333"
+                app:CustomtitleTextColor="@color/color_ffffff"
                 app:CustomtitleTextSize="@dimen/text_size_36_px"
                 app:Customtoptitle="@string/mine_level"
                 app:leftBackGround="@mipmap/back"
@@ -51,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/level_nickname"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_24_px" />
 
                     <ImageView

@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_282"
-            android:background="@mipmap/mine_bg"
+            android:background="@color/color_fb487f"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -70,7 +70,7 @@
                         android:maxEms="8"
                         android:singleLine="true"
                         android:text="揉散大漠人"
-                        android:textColor="@color/color_3f190c"
+                        android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_24_px" />
 
                     <ImageView
@@ -178,7 +178,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="@string/qianming"
-                    android:textColor="@color/color_3f190c"
+                    android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_22_px" />
 
                 <ImageView
