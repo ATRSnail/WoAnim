@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -161,7 +160,7 @@ public class Main2Activity extends AppActivity {
     private void setTabViews(View layout, int strRes, int imgRes, Boolean isSelect) {
         TextView tv = (TextView) layout.findViewById(R.id.tab_text);
         ImageView iv = (ImageView) layout.findViewById(R.id.tab_img);
-        tv.setTextColor(isSelect ? Color.rgb(0x8A, 0xCE, 0xE8) : Color.rgb(0x92, 0x92, 0x92));
+        tv.setTextColor(isSelect ? getResources().getColor(R.color.color_f5c92f) : getResources().getColor(R.color.color_999999));
         iv.setImageResource(imgRes);
         tv.setText(strRes);
     }

@@ -41,8 +41,13 @@ public class RerestPassDialog extends Dialog {
 //                accountName 用户账号 是
 //                oldPassword 原始密码 是
 //                newPassword 新密码 是
-
-                if (mPassView.getText().length() < 6 || mPassView.getText().length() > 18) {
+                if (mOldView.getText().length()==0){
+                    Toast.makeText(getContext(), "请输入当前使用的密码", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (mPassView.getText().length()==0){
+                    Toast.makeText(getContext(), "请输入新密码", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (mPassView.getText().length() < 6 || mPassView.getText().length() > 18) {
                     Toast.makeText(getContext(), "密码长度为6到18位", Toast.LENGTH_SHORT).show();
                     return;
                 }

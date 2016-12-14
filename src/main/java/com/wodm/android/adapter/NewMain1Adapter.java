@@ -78,7 +78,7 @@ public class NewMain1Adapter extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
-        Glide.with(mContext).load(bean.getShowImage()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
+        Glide.with(mContext).load(bean.getImageUrl()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
         view1Holders.tv_look_num.setText(bean.getPlayCount()+"");
         view1Holders.tv_name.setText(bean.getName());
         view1Holders.tv_update.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");

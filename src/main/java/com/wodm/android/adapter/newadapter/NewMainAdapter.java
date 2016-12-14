@@ -30,6 +30,7 @@ public class NewMainAdapter extends BaseAdapter {
     private Context mContext;
     private int style;
     private List<NewMainBean.ResourcesBean> resourcesBean;
+    private boolean isRemove=false;
     public NewMainAdapter(Context context,List<NewMainBean.ResourcesBean> resourcesBean,int style) {
         this.mContext = context;
         this.resourcesBean=resourcesBean;
@@ -83,13 +84,17 @@ public class NewMainAdapter extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
+        if (!isRemove&&resourcesBean.size()>4){
+            resourcesBean.remove(0);
+            isRemove=true;
+        }
 //        if (style==4){
 //            view1Holders.ll_new_main_image.setVisibility(View.GONE);
 //            view1Holders.ll_new_main_text.setVisibility(View.GONE);
 //            view1Holders.new_main_image_no_gv.setNumColumns(3);
 //        }else {
             view1Holders.new_main_image_no_gv.setNumColumns(2);
-            Glide.with(mContext).load(bean.getShowImage()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
+            Glide.with(mContext).load(bean.getImageUrl()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
             view1Holders.tv_look_num.setText(bean.getPlayCount()+"");
             view1Holders.tv_name.setText(bean.getName());
             view1Holders.tv_update.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");

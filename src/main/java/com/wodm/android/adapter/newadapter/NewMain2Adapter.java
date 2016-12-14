@@ -68,7 +68,7 @@ public class NewMain2Adapter extends BaseAdapter {
         }else {
             view2Holders= (View2Holders) convertView.getTag();
         }
-        Glide.with(mContext).load(bean.getShowImage()).asBitmap().placeholder(R.mipmap.loading).into(view2Holders.img_angle);
+        Glide.with(mContext).load(bean.getImageUrl()).asBitmap().placeholder(R.mipmap.loading).into(view2Holders.img_angle);
         view2Holders.tv_name.setText(bean.getName());
         view2Holders.tv_look_num.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");
         view2Holders.img_angle.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class NewMain2Adapter extends BaseAdapter {
                     mContext.startActivity(new Intent(mContext, dataBean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", dataBean.getId()));
                 }
             });
-                Glide.with(mContext).load(dataBean.getShowImage()).placeholder(R.mipmap.loading).into(imageview);
+                Glide.with(mContext).load(dataBean.getImageUrl()).placeholder(R.mipmap.loading).into(imageview);
                 view2Holders.ll_add_image.addView(imageview);
         }
        return convertView;

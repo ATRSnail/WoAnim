@@ -74,7 +74,7 @@ public class NewMainBean {
             private int areaId;
             private String author;
             private int yearId;
-            private String showImage;
+            private String imageUrl;
             private String desp;
             private int score;
             private int chapter;
@@ -152,14 +152,6 @@ public class NewMainBean {
 
             public void setYearId(int yearId) {
                 this.yearId = yearId;
-            }
-
-            public String getShowImage() {
-                return showImage;
-            }
-
-            public void setShowImage(String showImage) {
-                this.showImage = showImage;
             }
 
             public String getDesp() {
@@ -272,6 +264,13 @@ public class NewMainBean {
 
             public void setImage_480_126(String image_480_126) {
                 this.image_480_126 = image_480_126;
+            }
+            public String getImageUrl() {
+                return imageUrl;
+            }
+
+            public void setImageUrl(String imageUrl) {
+                this.imageUrl = imageUrl;
             }
         }
 }

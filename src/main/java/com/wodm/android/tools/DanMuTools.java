@@ -52,7 +52,7 @@ public class DanMuTools {
     private DanmakuContext mDanmakuContext;
     private HashMap<Integer, Integer> maxLinesPair;// 弹幕最大行数
     private HashMap<Integer, Boolean> overlappingEnablePair;// 设置是否重叠
-    private String timeArr[]={"11.201999664307","11.201999664307","154.43099975586","11.201999664307","140.26400756836","136.92900085449","131.8450012207","105.78199768066","23.826000213623"};
+    private String timeArr[]={"11.201999664307","154.43099975586","140.26400756836","136.92900085449","131.8450012207","105.78199768066","23.826000213623"};
     private Context mContext;
     private ArrayList<BarrageBean> mChapterList;
     public DanMuTools(Context context,DanmakuView mDanmakuView){

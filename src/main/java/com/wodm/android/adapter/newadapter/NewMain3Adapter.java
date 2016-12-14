@@ -73,7 +73,7 @@ public class NewMain3Adapter  extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
-        Glide.with(mContext).load(bean.getShowImage()).placeholder(R.mipmap.loading).into(holders.img_angle);
+        Glide.with(mContext).load(bean.getImageUrl()).placeholder(R.mipmap.loading).into(holders.img_angle);
         holders.tv_desp.setText(bean.getDesp());
         holders.tv_name.setText(bean.getName());
         holders.tv_desp.setText(bean.getName());

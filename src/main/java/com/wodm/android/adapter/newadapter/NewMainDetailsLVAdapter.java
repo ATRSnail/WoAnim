@@ -76,7 +76,7 @@ public class NewMainDetailsLVAdapter extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
-        Glide.with(mContext).load(bean.getShowImage()).asBitmap().placeholder(R.mipmap.loading).into(holder.img_angle);
+        Glide.with(mContext).load(bean.getImageUrl()).asBitmap().placeholder(R.mipmap.loading).into(holder.img_angle);
         holder.tv_name.setText(bean.getName());
         holder.tv_desp.setText(bean.getDesp());
         return convertView;
