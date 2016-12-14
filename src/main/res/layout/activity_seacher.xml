@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="center_vertical"
-            android:background="@color/color_fdd805"
-            app:navigationIcon="@mipmap/back"
+            android:background="@color/color_f5c92f"
+            app:navigationIcon="@mipmap/back_mall_white"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <LinearLayout

@@ -113,11 +113,11 @@ public class HomeFragment extends TrackFragment {
                                     Intent intent = new Intent();
                                     intent.putExtra("resourceId", Integer.valueOf(bean.getResourceId()).intValue());
                                     if (bean.getType().equals("1")) {
-                                        intent.setClass(getActivity(), AnimActivity.class);
-//                                        intent.setClass(getActivity(), AnimDetailActivity.class);
+                                      //  intent.setClass(getActivity(), AnimActivity.class);
+                                        intent.setClass(getActivity(), AnimDetailActivity.class);
                                     }else if (bean.getType().equals("2")) {
-                                        intent.setClass(getActivity(), AnimActivity.class);
-//                                        intent.setClass(getActivity(), CarDetailActivity.class);
+                              //          intent.setClass(getActivity(), AnimActivity.class);
+                                        intent.setClass(getActivity(), CarDetailActivity.class);
                                     }else {
                                         intent.putExtra("adsUrl",bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);

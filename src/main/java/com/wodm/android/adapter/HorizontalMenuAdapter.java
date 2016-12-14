@@ -47,7 +47,7 @@ public class HorizontalMenuAdapter extends HolderAdapter<TabItemBean> {
             }
             isCheck=true;
             ((Holder) holder).text.setBackgroundResource(R.drawable.shape_text_color);
-            ((Holder) holder).text.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+            ((Holder) holder).text.setTextColor(mContext.getResources().getColor(R.color.more_color));
         } else {
             if (allOnClickListener!=null){
                 if (position==getItemCount()-1){

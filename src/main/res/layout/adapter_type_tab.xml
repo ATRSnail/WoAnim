@@ -15,7 +15,7 @@
             android:paddingLeft="@dimen/px_13"
             android:paddingRight="@dimen/px_13"
             android:paddingTop="@dimen/px_10"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/more_color" />
 
 
     <android.support.v7.widget.RecyclerView

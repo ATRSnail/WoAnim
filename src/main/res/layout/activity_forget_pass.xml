@@ -11,7 +11,7 @@
         android:id="@+id/set_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_90"
-        app:CustomtitleTextColor="@android:color/black"
+        app:CustomtitleTextColor="@android:color/white"
         app:CustomtitleTextSize="@dimen/text_size_48_px"
         app:BackGroundColor="@color/color_f5c92f"
         app:Customtoptitle="@string/forget_pass"
@@ -49,7 +49,7 @@
             <View
                 android:background="@color/color_eae7e7"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_1"></View>
+                android:layout_height="@dimen/px_1"/>
 
             <RelativeLayout
                 android:layout_gravity="center_vertical"
@@ -88,7 +88,7 @@
             <View
                 android:background="@color/color_eae7e7"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_1"></View>
+                android:layout_height="@dimen/px_1"/>
             <LinearLayout
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
@@ -122,7 +122,7 @@
             android:layout_marginLeft="@dimen/px_40"
             android:layout_marginRight="@dimen/px_40"
             android:layout_marginTop="@dimen/px_40"
-            android:textColor="@color/color_3f190c"
+            android:textColor="@color/white"
             android:text="@string/finsh"
             android:textSize="@dimen/text_size_36_px"
             android:background="@drawable/btn_login_shape"

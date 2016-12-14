@@ -20,7 +20,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:padding="@dimen/px_10"
-            android:textColor="@color/color_3f190c"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_40_px" />
 
         <LinearLayout

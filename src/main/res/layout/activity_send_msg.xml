@@ -10,7 +10,7 @@
         android:id="@+id/set_topbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_90"
-        app:BackGroundColor="@color/color_f5c920"
+        app:BackGroundColor="@color/color_f5c92f"
         app:CustomtitleTextColor="@color/color_ffffff"
         app:CustomtitleTextSize="@dimen/text_size_32_px"
         app:Customtoptitle="发送评论"

@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/px_90"
                     app:BackGroundColor="@color/color_f5c92f"
-                    app:CustomtitleTextColor="@android:color/black"
+                    app:CustomtitleTextColor="@android:color/white"
                     app:CustomtitleTextSize="@dimen/text_size_36_px"
                     app:Customtoptitle=""
                     app:leftBackGround="@mipmap/back"

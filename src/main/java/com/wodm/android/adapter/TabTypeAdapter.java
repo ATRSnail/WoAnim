@@ -44,7 +44,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
 //        holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
         if (bean.isClick()){
             holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-            holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+            holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
         }else {
             holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
             holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
@@ -57,7 +57,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                    holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
                }else {
                    holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-                   holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+                   holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
                }
                return false;
             }
@@ -71,7 +71,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                     onClickListener.onTypaAll(bean);
                 }
                 holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-                holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+                holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
                 adapter.setIndex(-1);
                 adapter.notifyDataSetChanged();
 
