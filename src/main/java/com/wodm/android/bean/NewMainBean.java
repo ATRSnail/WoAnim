@@ -90,6 +90,16 @@ public class NewMainBean {
             private int sortNum;
             private String image_480_126;
 
+            public int getSort() {
+                return sort;
+            }
+
+            public void setSort(int sort) {
+                this.sort = sort;
+            }
+
+            private int sort;
+
             public int getId() {
                 return id;
             }

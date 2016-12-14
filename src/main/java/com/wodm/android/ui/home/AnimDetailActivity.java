@@ -15,7 +15,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -184,8 +183,12 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 BulletSetDialog bulletSetDialog= BulletSetDialog.newInstance(new BulletSetDialog.setBulletSetDialogListener() {
                     @Override
                     public void setDialogListener(int progress) {
-                        ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
-                        ll_danmu_background.getBackground().setAlpha(progress);
+                        float progress1=1-(float)(progress/100);
+                        mDanmakuView_top.setAlpha(progress1);
+                        mDanmakuView_middle.setAlpha(progress1);
+                        mDanmakuView_bottom.setAlpha(progress1);
+//                        ll_danmu_background.setBackgroundColor(getResources().getColor(R.color.color_333333));
+//                        ll_danmu_background.getBackground().setAlpha(progress);
                     }
                 });
                 bulletSetDialog.show(ft,"dialog");

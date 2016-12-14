@@ -37,6 +37,7 @@ import org.eteclab.ui.widget.adapter.HolderAdapter;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -151,7 +152,8 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
             }
         }
         final int style=newMainBean.getStyle();
-        List<NewMainBean.ResourcesBean> resourcesBean=newMainBean.getResources();
+        List<NewMainBean.ResourcesBean> resourcesBean=srotList(newMainBean.getResources());
+
         if (resourcesBean.size()>0){
             if (style==1){
                 holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
@@ -175,6 +177,26 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
                 mContext.startActivity(intent);
             }
         });
+    }
+    private List<NewMainBean.ResourcesBean> srotList(List<NewMainBean.ResourcesBean> resourcesBean){
+        List<NewMainBean.ResourcesBean> myList=new ArrayList<>();
+        if (resourcesBean==null||resourcesBean.size()==0){
+            return myList;
+        }
+        int[] inteds=new int[resourcesBean.size()];
+        for (int i = 0; i <resourcesBean.size() ; i++) {
+            NewMainBean.ResourcesBean beans=resourcesBean.get(i);
+            inteds[i]=beans.getSort();
+        }
+        Arrays.sort(inteds);//升序排序
+        for (int i = 0; i <inteds.length ; i++) {
+            for (NewMainBean.ResourcesBean bean:resourcesBean){
+                if (bean.getSort()==inteds[i]){
+                    myList.add(bean);
+                }
+            }
+        }
+        return myList;
     }
 
     private void startActivity(AdsBean bean){

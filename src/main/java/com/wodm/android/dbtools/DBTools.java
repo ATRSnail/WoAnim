@@ -21,7 +21,11 @@ public class DBTools {
     public static DBTools getInstance(Context context){
         mContext=context;
         if (dbTools==null){
-            dbTools=new DBTools();
+           synchronized (DBTools.class){
+               if (dbTools==null){
+                   dbTools=new DBTools();
+               }
+           }
         }
         instanceContraller(context);
         return dbTools;
