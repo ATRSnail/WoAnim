@@ -78,8 +78,8 @@ public class RecomFragment extends TrackFragment {
             pagerViews.add(pageOne);
         }
         mTabType.setTabMode(TabLayout.MODE_SCROLLABLE);
-        mTabType.setTabTextColors(Color.BLACK, getResources().getColor(R.color.colorPrimary));
-        mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+        mTabType.setTabTextColors( getResources().getColor(R.color.color_666666), getResources().getColor(R.color.color_fb487f));
+        mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.color_fb487f));
         mTypePager.setNoScroll(false);
         pagerAdapter = new TabPagerAdapter(pagerViews);
         mTypePager.setAdapter(pagerAdapter);
