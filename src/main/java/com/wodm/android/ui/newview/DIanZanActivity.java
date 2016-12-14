@@ -51,7 +51,7 @@ public class DianZanActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void leftClick() {
-       finish();
+        finish();
     }
 
     @Override
