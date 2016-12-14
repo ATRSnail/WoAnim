@@ -31,6 +31,7 @@ public class NewMainAdapter extends BaseAdapter {
     private int style;
     private List<NewMainBean.ResourcesBean> resourcesBean;
     private boolean isRemove=false;
+    NewMainBean.ResourcesBean positionbean;
     public NewMainAdapter(Context context,List<NewMainBean.ResourcesBean> resourcesBean,int style) {
         this.mContext = context;
         this.resourcesBean=resourcesBean;
@@ -56,7 +57,7 @@ public class NewMainAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View1Holders view1Holders=null;
         int width= Tools.getScreenWidth((Activity) mContext);
-        final NewMainBean.ResourcesBean bean=resourcesBean.get(0);
+//        final NewMainBean.ResourcesBean bean=resourcesBean.get(0);
         if (convertView==null){
             view1Holders=new View1Holders();
             convertView= LayoutInflater.from(mContext).inflate(R.layout.new_main1,null,false);
@@ -81,12 +82,16 @@ public class NewMainAdapter extends BaseAdapter {
         view1Holders.ll_new_main_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+                mContext.startActivity(new Intent(mContext, positionbean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", positionbean.getId()));
             }
         });
         if (!isRemove&&resourcesBean.size()>4){
+            positionbean=resourcesBean.get(0);
             resourcesBean.remove(0);
             isRemove=true;
+        }
+        if (positionbean==null){
+            positionbean=resourcesBean.get(0);
         }
 //        if (style==4){
 //            view1Holders.ll_new_main_image.setVisibility(View.GONE);
@@ -94,11 +99,12 @@ public class NewMainAdapter extends BaseAdapter {
 //            view1Holders.new_main_image_no_gv.setNumColumns(3);
 //        }else {
             view1Holders.new_main_image_no_gv.setNumColumns(2);
-            Glide.with(mContext).load(bean.getImageUrl()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
-            view1Holders.tv_look_num.setText(bean.getPlayCount()+"");
-            view1Holders.tv_name.setText(bean.getName());
-            view1Holders.tv_update.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");
+            Glide.with(mContext).load(positionbean.getImageUrl()).placeholder(R.mipmap.loading).into(view1Holders.img_angle);
+            view1Holders.tv_look_num.setText(positionbean.getPlayCount()+"");
+            view1Holders.tv_name.setText(positionbean.getName());
+            view1Holders.tv_update.setText((positionbean.getType() == 1 ? "更新至" : "全") + positionbean.getChapter() + "集");
 //        }
+
 
         view1Holders.new_main_image_no_gv.setAdapter(new NewMain1Adapter(mContext,resourcesBean));
         return convertView;

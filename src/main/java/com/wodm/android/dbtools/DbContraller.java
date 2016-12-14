@@ -22,7 +22,11 @@ public class DbContraller {
     public static DbContraller getInstance(Context context){
         mContext=context;
         if (dbContraller==null){
-            dbContraller=new DbContraller();
+            synchronized (DbContraller.class){
+                if (dbContraller==null){
+                    dbContraller=new DbContraller();
+                }
+            }
         }
         return dbContraller;
     }
