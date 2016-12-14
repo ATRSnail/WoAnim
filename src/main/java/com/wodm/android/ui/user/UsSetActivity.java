@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,6 +57,7 @@ public class UsSetActivity extends AppActivity {
         }
         upCache();
         setCustomTitle(TITLE);
+        setCustomTitleColor(Color.parseColor("#ffffff"));
     }
 
     @TrackClick(value = R.id.feek_back, location = TITLE, eventName = "进入意见反馈页面")

@@ -1,5 +1,6 @@
 package com.wodm.android.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -29,6 +30,7 @@ public class NewsDetailActivity extends AppActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle(TITLE);
+        setCustomTitleColor(Color.parseColor("#ffffff"));
         if (CURRENT_USER!=null){
             httpGet(Constants.APP_GET_WATCHNEWS + CURRENT_USER.getData().getAccount().getId() + "&taskType=2&taskValue=7", new HttpCallback() {
                 @Override

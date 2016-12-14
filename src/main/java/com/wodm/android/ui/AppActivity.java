@@ -87,6 +87,10 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     public void setCustomTitle(String title) {
         mToolbarTitle.setText(title);
     }
+    public void setCustomTitleColor(int customTitleColor) {
+        //新加的修改字体的颜色
+        mToolbarTitle.setTextColor(customTitleColor);
+    }
 
     public void setTitleRight(String title) {
         mTitleRight.setText(title);

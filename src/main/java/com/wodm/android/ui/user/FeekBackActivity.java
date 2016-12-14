@@ -1,5 +1,6 @@
 package com.wodm.android.ui.user;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class FeekBackActivity extends AppActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle(TITLE);
+        setCustomTitleColor(Color.parseColor("#ffffff"));
         setTitleRight("提交");
         if(Constants.CURRENT_USER==null){
             Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();

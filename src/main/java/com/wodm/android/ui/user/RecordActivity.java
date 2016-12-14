@@ -61,6 +61,7 @@ public class RecordActivity extends AppActivity {
         }
         setTitleRight("全部清空");
         setCustomTitle(getString(title));
+        setCustomTitleColor(getResources().getColor(R.color.color_ffffff));
 
         pagerViews = new ArrayList<>();
         initpage(pageOne, 1);
@@ -73,8 +74,8 @@ public class RecordActivity extends AppActivity {
         mTypePager.setNoScroll(false);
         mTypePager.setAdapter(pagerAdapter);
         mTabType.setupWithViewPager(mTypePager);
-        mTabType.setTabTextColors(Color.BLACK, getResources().getColor(R.color.colorPrimary));
-        mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+        mTabType.setTabTextColors(getResources().getColor(R.color.color_666666), getResources().getColor(R.color.color_fb487f));
+        mTabType.setSelectedTabIndicatorColor(getResources().getColor(R.color.color_fb487f));
         mTabType.getTabAt(0).setText("动画");
         mTabType.getTabAt(1).setText("漫画");
         if (!position.equals("")) {
@@ -239,5 +240,6 @@ public class RecordActivity extends AppActivity {
         ComicAdapter adapter = (ComicAdapter) pullToLoadView.getRecyclerView().getAdapter();
         if (adapter != null && adapter.getItemCount() >= 0) deleteAll(adapter,edit);
     }
+
 
 }

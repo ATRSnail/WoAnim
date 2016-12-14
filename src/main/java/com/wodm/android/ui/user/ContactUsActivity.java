@@ -2,6 +2,7 @@ package com.wodm.android.ui.user;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class ContactUsActivity extends AppActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomTitle(Title);
+        setCustomTitleColor(Color.parseColor("#ffffff"));
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
             mVersion.setText("版本号:"+packageInfo.versionName);

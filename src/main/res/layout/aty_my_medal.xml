@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
             app:BackGroundColor="@color/color_f5c92f"
-            app:CustomtitleTextColor="@android:color/black"
+            app:CustomtitleTextColor="@color/color_ffffff"
             app:CustomtitleTextSize="@dimen/text_size_36_px"
             app:Customtoptitle="@string/mine_achieve"
             app:leftBackGround="@mipmap/back"
