@@ -40,14 +40,14 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         lm.setOrientation(LinearLayoutManager.HORIZONTAL);
         holder.mTabList.setLayoutManager(lm);
         holder.mName.setText(bean.getName());
-        Log.e("AA","--------------"+bean.getName());
         final HorizontalMenuAdapter adapter = new HorizontalMenuAdapter(mContext, bean.getList());
 //        holder.mName.setBackgroundResource(R.drawable.shape_text_color);
 //        holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-        if (bean.isClick()){
+        if (!bean.isClick()){
             holder.mName.setBackgroundResource(R.drawable.shape_text_color);
             holder.mName.setTextColor(mContext.getResources().getColor(R.color.color_fb487f));
         }else {
+            Log.e("AA","--------------"+bean.toString());
             holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
                                             holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
                                         }

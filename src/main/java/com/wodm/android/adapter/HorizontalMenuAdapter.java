@@ -64,7 +64,7 @@ public class HorizontalMenuAdapter extends HolderAdapter<TabItemBean> {
         this.allOnClickListener = onClickListener;
     }
     public interface AllOnClickListener{
-        public boolean isChildClick(boolean isClick);
+        boolean isChildClick(boolean isClick);
     }
 
     class Holder extends HolderAdapter.BaseViewHolder {

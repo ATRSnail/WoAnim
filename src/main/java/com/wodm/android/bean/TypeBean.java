@@ -43,4 +43,13 @@ public class TypeBean implements Serializable {
     public void setList(List<TabItemBean> list) {
         this.list = list;
     }
+
+    @Override
+    public String toString() {
+        return "TypeBean{" +
+                "name='" + name + '\'' +
+                ", parameter='" + parameter + '\'' +
+                ", isClick=" + isClick +
+                '}';
+    }
 }
