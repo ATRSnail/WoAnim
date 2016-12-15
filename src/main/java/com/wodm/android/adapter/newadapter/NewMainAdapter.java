@@ -70,7 +70,7 @@ public class NewMainAdapter extends BaseAdapter {
             view1Holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             view1Holders.tv_update= (TextView) convertView.findViewById(R.id.tv_update);
             view1Holders.new_main_image_no_gv= (MyGridView) convertView.findViewById(R.id.new_main_image_no_gv);
-            int hight= (int) ((width-60)*((float)220/690));
+            int hight= (int) ((width-Tools.dp2px(mContext,60))*((float)220/690));
             RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
             view1Holders.img_angle.setLayoutParams(params);
             view1Holders.ll_shadow.getBackground().setAlpha(140);

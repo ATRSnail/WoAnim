@@ -60,7 +60,7 @@ public class NewMain2Adapter extends BaseAdapter {
             view2Holders.img_angle= (ImageView) convertView.findViewById(R.id.img_angle);
             view2Holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             view2Holders.tv_look_num= (TextView) convertView.findViewById(R.id.tv_look_num);
-            int hight= (int) ((width-60)*((float)220/690));
+            int hight= (int) ((width-Tools.dp2px(mContext,60))*((float)220/690));
             RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
             view2Holders.img_angle.setLayoutParams(params);
             view2Holders.ll_add_image= (LinearLayout) convertView.findViewById(R.id.ll_add_image);
@@ -81,8 +81,8 @@ public class NewMain2Adapter extends BaseAdapter {
                 final NewMainBean.ResourcesBean dataBean =resourcesBean.get(i);
                 RoundAngleImageView imageview=new RoundAngleImageView(mContext);
                 imageview.setScaleType(ImageView.ScaleType.FIT_XY);
-                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(320, 220);
-                params.setMargins(0,0,16,0);
+                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(Tools.dp2px(mContext,320), Tools.dp2px(mContext,220));
+                params.setMargins(0,0,Tools.dp2px(mContext,16),0);
                 imageview.setLayoutParams(params);
             imageview.setOnClickListener(new View.OnClickListener() {
                 @Override

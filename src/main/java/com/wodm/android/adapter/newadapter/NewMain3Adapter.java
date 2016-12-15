@@ -57,7 +57,7 @@ public class NewMain3Adapter  extends BaseAdapter {
             holders=new Holders();
             convertView= LayoutInflater.from(mContext).inflate(R.layout.new_main3_adapter,null,false);
             holders.img_angle= (ImageView) convertView.findViewById(R.id.img_angle);
-            int hight= (int) ((width-60)*((float)220/690));
+            int hight= (int) ((width-Tools.dp2px(mContext,60))*((float)220/690));
             LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
             holders.img_angle.setLayoutParams(params);
             holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);

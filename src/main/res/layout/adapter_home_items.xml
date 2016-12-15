@@ -7,65 +7,62 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/px_30"
-        android:layout_marginRight="@dimen/px_30"
-        android:layout_marginLeft="@dimen/px_30"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_30"
+        android:layout_marginRight="@dimen/px_30"
+        android:layout_marginTop="@dimen/px_30"
+        android:orientation="horizontal">
+
         <ImageView
-            android:layout_centerVertical="true"
             android:id="@+id/img_logo"
-            android:background="@mipmap/img_mengga_movies"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/img_mengga_movies" />
+
         <TextView
             android:id="@+id/tv_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px_16"
             android:layout_toRightOf="@+id/img_logo"
-            android:textSize="@dimen/text_size_30_px"
             android:textColor="@color/color_333333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/text_size_30_px" />
+
         <ImageView
             android:id="@+id/img_main_more"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/img_main_more"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/img_main_more" />
     </RelativeLayout>
 
 
     <org.eteclab.ui.widget.NoScrollGridView
-          android:layout_margin="@dimen/px_30"
-          android:id="@+id/grid_new"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginRight="@dimen/px_10"
-          android:numColumns="1" />
+        android:id="@+id/grid_new"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/px_30"
+        android:numColumns="1" />
+
+
+    <com.wodm.android.view.newview.RoundAngleImageView
+        android:id="@+id/img_angle_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_efefef"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:visibility="gone" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@color/color_efefef"
-        android:layout_marginTop="@dimen/px_30"
-        android:layout_marginBottom="@dimen/px_30"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.wodm.android.view.newview.RoundAngleImageView
-            android:visibility="gone"
-            android:focusable="false"
-            android:id="@+id/img_angle_ads"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/ll_total"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     </LinearLayout>
 </LinearLayout>
