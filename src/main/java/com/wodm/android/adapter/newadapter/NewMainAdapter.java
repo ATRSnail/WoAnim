@@ -106,7 +106,7 @@ public class NewMainAdapter extends BaseAdapter {
 //        }
 
 
-        view1Holders.new_main_image_no_gv.setAdapter(new NewMain1Adapter(mContext,resourcesBean));
+        view1Holders.new_main_image_no_gv.setAdapter(new NewMain1Adapter(mContext,resourcesBean,2));
         return convertView;
     }
     class View1Holders{

@@ -81,7 +81,7 @@ public class NewMain2Adapter extends BaseAdapter {
                 final NewMainBean.ResourcesBean dataBean =resourcesBean.get(i);
                 RoundAngleImageView imageview=new RoundAngleImageView(mContext);
                 imageview.setScaleType(ImageView.ScaleType.FIT_XY);
-                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(320, 228);
+                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(320, 220);
                 params.setMargins(0,0,16,0);
                 imageview.setLayoutParams(params);
             imageview.setOnClickListener(new View.OnClickListener() {

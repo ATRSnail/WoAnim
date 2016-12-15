@@ -155,6 +155,14 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
         List<NewMainBean.ResourcesBean> resourcesBean=srotList(newMainBean.getResources());
 
         if (resourcesBean.size()>0){
+            /*
+	          1:表示资源左右滚动的板式
+	          2:表示资源上下滚动的板式
+	          3:表示3个资源的板式
+	          4:表示5个资源的板式
+	          5:表示6个资源的板式
+	          6:表示2个资源的板式
+             */
             if (style==1){
                 holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
             }else if (style==2){

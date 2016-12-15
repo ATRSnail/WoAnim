@@ -29,9 +29,11 @@ import java.util.List;
 public class NewMain1Adapter extends BaseAdapter {
     private Context mContext;
     private List<NewMainBean.ResourcesBean> resourcesBean;
-    public NewMain1Adapter(Context context,List<NewMainBean.ResourcesBean> resourcesBean) {
+    private int type=2;
+    public NewMain1Adapter(Context context,List<NewMainBean.ResourcesBean> resourcesBean,int type) {
         this.mContext = context;
         this.resourcesBean=resourcesBean;
+        this.type=type;
     }
 
     @Override
@@ -63,7 +65,12 @@ public class NewMain1Adapter extends BaseAdapter {
             view1Holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             view1Holders.tv_look_num= (TextView) convertView.findViewById(R.id.tv_look_num);
             view1Holders.tv_update= (TextView) convertView.findViewById(R.id.tv_update);
-            int hight= (int) ((width-60)*((float)220/690));
+            int hight=LinearLayout.LayoutParams.MATCH_PARENT;
+            if (type==3){
+                 hight= (int) (((width-60-32)/type)*((float)280/220));
+            }else {
+                 hight= (int) (((width-60-32)/type)*((float)220/340));
+            }
             RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
             view1Holders.img_angle.setLayoutParams(params);
             view1Holders.ll_shadow.getBackground().setAlpha(140);

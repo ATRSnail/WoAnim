@@ -44,6 +44,7 @@ import org.eteclab.ui.widget.pulltorefresh.PullToLoadView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -182,6 +183,10 @@ public class SeacherActivity extends AppActivity {
                             }.getType());
                             pullToLoadView.setVisibility(View.VISIBLE);
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
+                            if (list.size()==0){
+                                adapter.setListData(new ArrayList<ObjectBean>());
+                                adapter.notifyDataSetChanged();
+                            }
                             if (adapter!=null&&adapter.getItemCount() <= 0){
                                 mLayout.setVisibility(View.VISIBLE);
                                 Toast.makeText(SeacherActivity.this, "未搜索到相关内容!", Toast.LENGTH_SHORT).show();

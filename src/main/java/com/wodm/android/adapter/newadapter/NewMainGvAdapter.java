@@ -56,7 +56,7 @@ public class NewMainGvAdapter extends BaseAdapter {
             view1Holders= (View1Holders) convertView.getTag();
         }
             view1Holders.new_main_image_no_gv.setNumColumns(3);
-            view1Holders.new_main_image_no_gv.setAdapter(new NewMain1Adapter(mContext,resourcesBean));
+            view1Holders.new_main_image_no_gv.setAdapter(new NewMain1Adapter(mContext,resourcesBean,3));
         return convertView;
     }
     class View1Holders {
