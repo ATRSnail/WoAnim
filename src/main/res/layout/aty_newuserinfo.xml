@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -247,7 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -282,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -312,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
@@ -359,7 +359,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@mipmap/img_persion_right" />
+                        android:background="@mipmap/img_userinfo" />
 
                 </RelativeLayout>
 
