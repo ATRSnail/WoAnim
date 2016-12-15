@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,12 +40,13 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
         lm.setOrientation(LinearLayoutManager.HORIZONTAL);
         holder.mTabList.setLayoutManager(lm);
         holder.mName.setText(bean.getName());
+        Log.e("AA","--------------"+bean.getName());
         final HorizontalMenuAdapter adapter = new HorizontalMenuAdapter(mContext, bean.getList());
 //        holder.mName.setBackgroundResource(R.drawable.shape_text_color);
 //        holder.mName.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
         if (bean.isClick()){
             holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-            holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
+            holder.mName.setTextColor(mContext.getResources().getColor(R.color.color_fb487f));
         }else {
             holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
             holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
@@ -57,7 +59,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                    holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
                }else {
                    holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-                   holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
+                   holder.mName.setTextColor(mContext.getResources().getColor(R.color.color_fb487f));
                }
                return false;
             }
@@ -71,7 +73,7 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
                     onClickListener.onTypaAll(bean);
                 }
                 holder.mName.setBackgroundResource(R.drawable.shape_text_color);
-                holder.mName.setTextColor(mContext.getResources().getColor(R.color.more_color));
+                holder.mName.setTextColor(mContext.getResources().getColor(R.color.color_fb487f));
                 adapter.setIndex(-1);
                 adapter.notifyDataSetChanged();
 

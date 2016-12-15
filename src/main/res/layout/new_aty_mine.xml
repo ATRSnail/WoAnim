@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/mine_up"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_282"
             android:background="@color/color_fb487f"
@@ -194,8 +195,8 @@
             <RelativeLayout
             android:id="@+id/no_login"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_282"
-            android:background="@mipmap/nolog_bg"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/nolog_bg7502"
             android:orientation="vertical"
             android:visibility="gone"/>
 

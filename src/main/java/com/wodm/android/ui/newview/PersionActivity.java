@@ -406,8 +406,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.edit_persion:
-                break;
+//            case R.id.edit_persion:
+//                break;
             case R.id.btn_user_info:
                 startActivity(new Intent(PersionActivity.this, NewUserInfoActivity.class));
                 break;

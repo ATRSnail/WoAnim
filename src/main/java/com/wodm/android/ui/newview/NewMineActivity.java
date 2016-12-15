@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +13,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.cache.disk.DiskStorageCache;
+import com.lidroid.xutils.http.RequestParams;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
@@ -42,6 +45,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private NewMineAdapter newMineAdapter;
     @ViewIn(R.id.rl_login)
     private RelativeLayout rl_login;
+    @ViewIn(R.id.mine_up)
+    private RelativeLayout mine_up;
     @ViewIn(R.id.no_login)
     private RelativeLayout no_login;
     @ViewIn(R.id.user_head_imgs)
@@ -124,6 +129,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private void init() {
         if (CURRENT_USER == null) {
             rl_login.setVisibility(View.GONE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            mine_up.setLayoutParams(params);
             no_login.setVisibility(View.VISIBLE);
         } else {
             UserInfoBean.DataBean.AccountBean accountBean = CURRENT_USER.getData().getAccount();
