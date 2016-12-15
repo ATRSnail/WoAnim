@@ -54,6 +54,7 @@ public class Main2Activity extends AppActivity {
     @ViewIn(R.id.enetic_animation)
     private TextView mTab2;
 
+
     @TrackClick(R.id.enetic_animation)
     public void clickAnimation(View v) {
         ((HomeFragment) mSurfaceParams.get(R.id.tab_home).fragment).clickType(v);
