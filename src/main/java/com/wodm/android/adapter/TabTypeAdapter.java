@@ -49,10 +49,10 @@ public class TabTypeAdapter extends HolderAdapter<TypeBean> {
             holder.mName.setTextColor(mContext.getResources().getColor(R.color.color_fb487f));
         }else {
             holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
-            holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
-        }
-        adapter.setOnChildClickListener(new HorizontalMenuAdapter.AllOnClickListener() {
-            @Override
+                                            holder.mName.setBackgroundResource(R.drawable.shape_text_bg);
+                                        }
+                adapter.setOnChildClickListener(new HorizontalMenuAdapter.AllOnClickListener() {
+                    @Override
             public boolean isChildClick(boolean isClick) {
                if (isClick){
                    holder.mName.setTextColor(Color.rgb(0x92, 0x92, 0x92));
