@@ -28,10 +28,17 @@ import java.util.List;
 
 public class NewMain2Adapter extends BaseAdapter {
     private Context mContext;
+    private int width;
+    private int hight;
+    private int gridWidth;
     private List<NewMainBean.ResourcesBean> resourcesBean;
-    public NewMain2Adapter(Context context,List<NewMainBean.ResourcesBean> resourcesBean) {
+
+    public NewMain2Adapter(Context context, List<NewMainBean.ResourcesBean> resourcesBean) {
         this.mContext = context;
-        this.resourcesBean=resourcesBean;
+        this.resourcesBean = resourcesBean;
+        width = Tools.getScreenWidth((Activity) mContext);
+        hight = (int) ((width - Tools.dp2px(mContext, 60)) * ((float) 220 / 690));
+        gridWidth = (int) (width * ((float) 2 / 5));
     }
 
     @Override
@@ -51,22 +58,20 @@ public class NewMain2Adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final NewMainBean.ResourcesBean bean=resourcesBean.get(0);
-        View2Holders view2Holders=null;
-        int width= Tools.getScreenWidth((Activity) mContext);
-        if (convertView==null){
-            view2Holders=new View2Holders();
+        final NewMainBean.ResourcesBean bean = resourcesBean.get(0);
+        View2Holders view2Holders = null;
+        if (convertView == null) {
+            view2Holders = new View2Holders();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.new_main2, null, false);
-            view2Holders.img_angle= (ImageView) convertView.findViewById(R.id.img_angle);
-            view2Holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
-            view2Holders.tv_look_num= (TextView) convertView.findViewById(R.id.tv_look_num);
-            int hight= (int) ((width-Tools.dp2px(mContext,60))*((float)220/690));
-            RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
+            view2Holders.img_angle = (ImageView) convertView.findViewById(R.id.img_angle);
+            view2Holders.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+            view2Holders.tv_look_num = (TextView) convertView.findViewById(R.id.tv_look_num);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);
             view2Holders.img_angle.setLayoutParams(params);
-            view2Holders.ll_add_image= (LinearLayout) convertView.findViewById(R.id.ll_add_image);
+            view2Holders.ll_add_image = (LinearLayout) convertView.findViewById(R.id.ll_add_image);
             convertView.setTag(view2Holders);
-        }else {
-            view2Holders= (View2Holders) convertView.getTag();
+        } else {
+            view2Holders = (View2Holders) convertView.getTag();
         }
         Glide.with(mContext).load(bean.getImageUrl()).asBitmap().placeholder(R.mipmap.loading).into(view2Holders.img_angle);
         view2Holders.tv_name.setText(bean.getName());
@@ -77,25 +82,26 @@ public class NewMain2Adapter extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
-        for (int i = 1; i <resourcesBean.size(); i++) {
-                final NewMainBean.ResourcesBean dataBean =resourcesBean.get(i);
-                RoundAngleImageView imageview=new RoundAngleImageView(mContext);
-                imageview.setScaleType(ImageView.ScaleType.FIT_XY);
-                LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(Tools.dp2px(mContext,320), Tools.dp2px(mContext,220));
-                params.setMargins(0,0,Tools.dp2px(mContext,16),0);
-                imageview.setLayoutParams(params);
+        for (int i = 1; i < resourcesBean.size(); i++) {
+            final NewMainBean.ResourcesBean dataBean = resourcesBean.get(i);
+            RoundAngleImageView imageview = new RoundAngleImageView(mContext);
+            imageview.setScaleType(ImageView.ScaleType.FIT_XY);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(gridWidth, hight);
+            params.setMargins(0, 0, Tools.dp2px(mContext, 16), 0);
+            imageview.setLayoutParams(params);
             imageview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mContext.startActivity(new Intent(mContext, dataBean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", dataBean.getId()));
                 }
             });
-                Glide.with(mContext).load(dataBean.getImageUrl()).placeholder(R.mipmap.loading).into(imageview);
-                view2Holders.ll_add_image.addView(imageview);
+            Glide.with(mContext).load(dataBean.getImageUrl()).placeholder(R.mipmap.loading).into(imageview);
+            view2Holders.ll_add_image.addView(imageview);
         }
-       return convertView;
-        }
-    class View2Holders{
+        return convertView;
+    }
+
+    class View2Holders {
         private ImageView img_angle;
         private TextView tv_name;
         private TextView tv_look_num;

@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-     <include layout="@layout/new_main_image" android:id="@+id/ll_new_main_image" android:layout_width="wrap_content" android:layout_height="wrap_content"></include>
-     <include layout="@layout/new_main_text" android:id="@+id/ll_new_main_text" android:layout_width="wrap_content" android:layout_height="wrap_content"></include>
-       <com.wodm.android.view.newview.MyGridView
-           android:layout_marginBottom="@dimen/px_30"
-           android:numColumns="2"
-           android:horizontalSpacing="@dimen/px_16"
-           android:verticalSpacing="@dimen/px_16"
-           android:id="@+id/new_main_image_no_gv"
-           android:listSelector="@android:color/transparent"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-       </com.wodm.android.view.newview.MyGridView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-   </LinearLayout>
+        <include
+            android:id="@+id/ll_new_main_image"
+            layout="@layout/new_main_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:id="@+id/ll_new_main_text"
+            layout="@layout/new_main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.wodm.android.view.newview.MyGridView
+            android:id="@+id/new_main_image_no_gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/px_30"
+            android:horizontalSpacing="@dimen/px_16"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="2"
+            android:verticalSpacing="@dimen/px_16">
+
+        </com.wodm.android.view.newview.MyGridView>
+
+    </LinearLayout>
 
 
 </LinearLayout>
