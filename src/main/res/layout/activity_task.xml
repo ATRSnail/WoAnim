@@ -222,7 +222,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/px_45"
-                android:background="@drawable/btn_open_vip"
+                android:background="@drawable/kaitong_rectan"
                 android:gravity="center"
                 android:text="@string/open_vip"
                 android:textColor="@color/color_ff6361"

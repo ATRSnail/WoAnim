@@ -73,7 +73,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @ViewIn(R.id.user_txk)
     private ImageView user_txk;
     @ViewIn(R.id.user_gj)
-    private ImageView user_gj;
+    private CircularImage user_gj;
     @ViewIn(R.id.tv_nickname)
     private TextView tv_nickname;
     @ViewIn(R.id.img_sex)

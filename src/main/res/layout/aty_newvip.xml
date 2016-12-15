@@ -131,6 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <Button
+                            android:visibility="gone"
                             android:id="@+id/open_now"
                             android:text="立即开通"
                             android:background="@drawable/open_now"
@@ -262,6 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:visibility="gone"
                 android:id="@+id/btn_open_vip"
                 android:textSize="@dimen/text_size_30_px"
                 android:textColor="@color/color_ffffff"
@@ -272,6 +274,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_96" />
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/ll_tiaokuan"
                 android:layout_marginTop="@dimen/px_16"
                 android:orientation="horizontal"

@@ -73,11 +73,11 @@
                     android:id="@+id/rl_head_imgs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <!--<ImageView-->
-                        <!--android:visibility="invisible"-->
-                        <!--android:src="@mipmap/hamajing"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
+                    <ImageView
+                        android:visibility="invisible"
+                        android:src="@mipmap/hamajing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <org.eteclab.ui.widget.CircularImage
                         android:layout_centerInParent="true"
                         android:src="@mipmap/circle_novip"
@@ -95,21 +95,23 @@
                         android:src="@mipmap/vip_circle"
                         android:layout_width="@dimen/px_108"
                         android:layout_height="@dimen/px_108" />
+                    <org.eteclab.ui.widget.CircularImage
+                        android:id="@+id/user_gj"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/px_45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/user_txk"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </RelativeLayout>
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/user_gj"
-                android:layout_marginTop="46dp"
-                android:layout_marginLeft="9dp"
-                android:layout_width="@dimen/px_180"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/user_txk"
-                android:layout_marginTop="43dp"
-                android:layout_marginLeft="9dp"
-                android:layout_width="@dimen/px_180"
-                android:layout_height="wrap_content" />
+
         </RelativeLayout>
 
 
