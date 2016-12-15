@@ -39,6 +39,7 @@
 
             <ImageButton
                 android:id="@+id/edit_persion"
+                android:visibility="gone"
                 android:background="@null"
                 android:src="@mipmap/edit"
                 android:layout_marginTop="@dimen/px_20"

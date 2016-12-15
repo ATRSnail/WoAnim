@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
             android:layout_alignParentTop="true"
-            app:BackGroundColor="@color/color_f5c920"
+            app:BackGroundColor="@color/color_fb487f"
             app:CustomtitleTextColor="@color/color_ffffff"
             app:CustomtitleTextSize="@dimen/text_size_32_px"
             app:Customtoptitle="关注"
@@ -28,8 +28,8 @@
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_72"
-            app:tabIndicatorColor="@color/color_f5912f"
-            app:tabSelectedTextColor="@color/color_f5912f"
+            app:tabIndicatorColor="@color/color_fb487f"
+            app:tabSelectedTextColor="@color/color_fb487f"
             app:tabTextAppearance="@dimen/text_size_36_px"
             app:tabTextColor="@color/color_666666" />
 

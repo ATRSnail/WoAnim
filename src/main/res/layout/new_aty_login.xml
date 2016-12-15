@@ -25,7 +25,7 @@
                 app:Customtoptitle="@string/login"
                 app:leftBackGround="@mipmap/back"
                 app:rightText="@string/resiner"
-                app:rightTextColor="@android:color/black"
+                app:rightTextColor="@android:color/white"
                 app:rightTextSize="@dimen/x28"
                 app:rightType="1" />
 
