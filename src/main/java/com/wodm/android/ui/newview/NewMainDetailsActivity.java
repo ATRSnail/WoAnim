@@ -73,17 +73,17 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
 //                        resourcesBeen.addAll(bean.getResources());
 //                    }
                     if (style==1){
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
                     }else if (style==2){
                         gv_maindetails.setAdapter(new NewMain3Adapter(mContext,resourcesBeen));
                     }else if (style==3){
                         gv_maindetails.setAdapter(new NewMainDetailsLVAdapter(mContext,resourcesBeen));
                     } else if (style==4){
                         gv_maindetails.setNumColumns(2);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
                     } else if (style==5){
                         gv_maindetails.setNumColumns(3);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,3));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
