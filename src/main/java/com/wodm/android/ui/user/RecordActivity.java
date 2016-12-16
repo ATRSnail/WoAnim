@@ -238,7 +238,7 @@ public class RecordActivity extends AppActivity {
         PullToLoadView pullToLoadView = (PullToLoadView) mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.pull_lists);
         TextView edit = (TextView) mTypePager.getChildAt(mTypePager.getCurrentItem()).findViewById(R.id.edit_query);
         ComicAdapter adapter = (ComicAdapter) pullToLoadView.getRecyclerView().getAdapter();
-        if (adapter != null && adapter.getItemCount() >= 0) deleteAll(adapter,edit);
+        if (adapter != null) deleteAll(adapter,edit);
     }
 
 

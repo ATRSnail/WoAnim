@@ -305,6 +305,7 @@ public class SeacherActivity extends AppActivity {
                 @Override
                 public void onItemClick(View view, SeacherBean seacherBean, int i) {
                     startSeacher(seacherBean.getContent());
+                    mDataText.setText(seacherBean.getContent());
                 }
             });
             mClearView.setVisibility(list != null && list.size() > 0 ? View.VISIBLE : View.GONE);

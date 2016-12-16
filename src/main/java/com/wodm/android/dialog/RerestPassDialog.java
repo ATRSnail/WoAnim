@@ -42,7 +42,7 @@ public class RerestPassDialog extends Dialog {
 //                oldPassword 原始密码 是
 //                newPassword 新密码 是
                 if (mOldView.getText().length()==0){
-                    Toast.makeText(getContext(), "请输入当前使用的密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请输入原始密码", Toast.LENGTH_SHORT).show();
                     return;
                 }else if (mPassView.getText().length()==0){
                     Toast.makeText(getContext(), "请输入新密码", Toast.LENGTH_SHORT).show();

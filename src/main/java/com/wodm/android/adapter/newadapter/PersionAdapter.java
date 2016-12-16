@@ -25,9 +25,15 @@ import static com.wodm.android.Constants.CURRENT_USER;
 
 public class PersionAdapter extends BaseAdapter {
     private Context mContext;
-    public PersionAdapter(Context context){
-        this.mContext=context;
+
+    public PersionAdapter(Context context) {
+        this.mContext = context;
     }
+
+    public void notifyDate() {
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return 2;
@@ -45,51 +51,54 @@ public class PersionAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Holder holder=null;
-        if (convertView==null){
-            holder=new Holder();
-            convertView= LayoutInflater.from(mContext).inflate(R.layout.item_comments,null,false);
-            holder.rl_comments= (RelativeLayout) convertView.findViewById(R.id.rl_comments);
-            holder.textView= (Button) convertView.findViewById(R.id.btn_num);
-            holder.gridView= (MyGridView) convertView.findViewById(R.id.gv_item_comments);
+        Holder holder = null;
+        if (convertView == null) {
+            holder = new Holder();
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_comments, null, false);
+            holder.rl_comments = (RelativeLayout) convertView.findViewById(R.id.rl_comments);
+            holder.textView = (Button) convertView.findViewById(R.id.btn_num);
+            holder.gridView = (MyGridView) convertView.findViewById(R.id.gv_item_comments);
             convertView.setTag(holder);
-        }else {
-            holder= (Holder) convertView.getTag();
+        } else {
+            holder = (Holder) convertView.getTag();
         }
-        if (position==0){
+        if (position == 0) {
             holder.rl_comments.setBackgroundResource(R.mipmap.user_comment_anim);
-        }else {
+        } else {
             holder.rl_comments.setBackgroundResource(R.mipmap.user_comment_manhua);
         }
         holder.rl_comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent();
+                Intent i = new Intent();
                 i.putExtra("tid", R.id.my_collcet);
                 i.putExtra("title", R.string.collect);
-                if (position==0){
-                    i.putExtra("position","动画");
-                }else if (position==1){
-                    i.putExtra("position","漫画");
+                if (position == 0) {
+                    i.putExtra("position", "动画");
+                } else if (position == 1) {
+                    i.putExtra("position", "漫画");
                 }
                 i.setClass(mContext, RecordActivity.class);
                 mContext.startActivity(i);
             }
         });
-        holder.textView.setText(position == 0? CURRENT_USER.getData().getAnimationCount()+""
-                :""+CURRENT_USER.getData().getCartoonCount());
+        holder.textView.setText(position == 0 ? CURRENT_USER.getData().getAnimationCount() + ""
+                : "" + CURRENT_USER.getData().getCartoonCount());
 
         return convertView;
     }
-    private class Holder{
+
+    private class Holder {
         Button textView;
         MyGridView gridView;
         RelativeLayout rl_comments;
     }
-    class Myadapter extends BaseAdapter{
+
+    class Myadapter extends BaseAdapter {
         private String mArray[];
-        private Myadapter(String array[]){
-            this.mArray=array;
+
+        private Myadapter(String array[]) {
+            this.mArray = array;
         }
 
         @Override
@@ -109,22 +118,23 @@ public class PersionAdapter extends BaseAdapter {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            GvHolder gvHolder=null;
-            if (convertView==null){
-                gvHolder=new GvHolder();
-                convertView=LayoutInflater.from(mContext).inflate(R.layout.adapter_gv,null,false);
-                gvHolder.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
-                gvHolder.img_icon= (ImageView) convertView.findViewById(R.id.gv_img);
+            GvHolder gvHolder = null;
+            if (convertView == null) {
+                gvHolder = new GvHolder();
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_gv, null, false);
+                gvHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+                gvHolder.img_icon = (ImageView) convertView.findViewById(R.id.gv_img);
                 convertView.setTag(gvHolder);
-            }else {
-                gvHolder= (GvHolder) convertView.getTag();
+            } else {
+                gvHolder = (GvHolder) convertView.getTag();
             }
             gvHolder.tv_name.setText(mArray[position]);
             return convertView;
         }
 
     }
-    class GvHolder{
+
+    class GvHolder {
         TextView tv_name;
         ImageView img_icon;
     }

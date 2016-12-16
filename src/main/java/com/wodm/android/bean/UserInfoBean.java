@@ -310,7 +310,35 @@ public class UserInfoBean {
             private String gradeName;
             private Object gradeImageId;
 
-
+            @Override
+            public String toString() {
+                return "AccountBean{" +
+                        "id=" + id +
+                        ", appkey='" + appkey + '\'' +
+                        ", uuid='" + uuid + '\'' +
+                        ", udid='" + udid + '\'' +
+                        ", nickName='" + nickName + '\'' +
+                        ", registTime=" + registTime +
+                        ", sex=" + sex +
+                        ", birthday='" + birthday + '\'' +
+                        ", mobile='" + mobile + '\'' +
+                        ", email='" + email + '\'' +
+                        ", score=" + score +
+                        ", portrait='" + portrait + '\'' +
+                        ", type=" + type +
+                        ", autograph='" + autograph + '\'' +
+                        ", osName='" + osName + '\'' +
+                        ", openId='" + openId + '\'' +
+                        ", unionId='" + unionId + '\'' +
+                        ", plainPassword='" + plainPassword + '\'' +
+                        ", vip=" + vip +
+                        ", vipFlag=" + vipFlag +
+                        ", gradeValue=" + gradeValue +
+                        ", empiricalValue=" + empiricalValue +
+                        ", gradeName='" + gradeName + '\'' +
+                        ", gradeImageId=" + gradeImageId +
+                        '}';
+            }
 
             public int getId() {
                 return id;

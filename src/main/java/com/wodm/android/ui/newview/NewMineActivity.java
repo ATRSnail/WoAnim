@@ -13,13 +13,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.cache.disk.DiskStorageCache;
+import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.NewMineAdapter;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DegreeTools;
+import com.wodm.android.tools.MallConversionUtil;
+import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.Main2Activity;
 import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -27,9 +32,11 @@ import com.wodm.android.view.newview.NoScrollListView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.track.fragment.TrackFragment;
 import org.eteclab.ui.widget.CircularImage;
+import org.json.JSONObject;
 
 import static com.wodm.android.Constants.CURRENT_USER;
 
@@ -51,6 +58,10 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     private RelativeLayout no_login;
     @ViewIn(R.id.user_head_imgs)
     private CircularImage user_head_imgs;
+    @ViewIn(R.id.user_txk)
+    private ImageView user_txk;
+    @ViewIn(R.id.user_gj)
+    private CircularImage user_gj;
     @ViewIn(R.id.tv_user_name)
     private TextView tv_user_name;
     @ViewIn(R.id.tv_sign)
@@ -141,7 +152,6 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             if (!TextUtils.isEmpty(sign_name)) {
                 tv_sign.setText(sign_name);
             }
-
             String gradename = accountBean.getGradeName();
             if (!TextUtils.isEmpty(gradename)) {
                 grade_name.setText(gradename);
@@ -160,16 +170,42 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
             } else {
                 img_sex.setBackgroundResource(R.mipmap.sex_women);
             }
-            UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
-            int next_num=dataBean.getNextGradeEmpirical();
-            int need_num=dataBean.getNeedEmpirical();
-            int num= (int) (110*(1-((float)need_num/next_num)));
-            RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
-            img_progress_params.setMargins(0,5,0,5);
-            img_progress.setLayoutParams(img_progress_params);
-            new AsyncImageLoader(getActivity(), R.mipmap.default_header, R.mipmap.default_header).display(user_head_imgs, accountBean.getPortrait());
+            updataDataBean(Constants.CURRENT_USER.getData().getAccount().getId());
         }
     }
+
+    void updataDataBean(long userId) {
+        ((AppActivity)getActivity()).httpGet(Constants.APP_GET_USERINFO + userId, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
+                Constants.CURRENT_USER = bean;
+                UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
+                System.out.println("ddii--->"+dataBean.getAccount().toString());
+                int next_num=dataBean.getNextGradeEmpirical();
+                int need_num=dataBean.getNeedEmpirical();
+                int num= (int) (110*(1-((float)need_num/next_num)));
+                RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
+                img_progress_params.setMargins(0,5,0,5);
+                img_progress.setLayoutParams(img_progress_params);
+                new AsyncImageLoader(getActivity(), R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, dataBean.getAccount().getPortrait());
+                try {
+                    MallConversionUtil.getInstace().dealExpression(getActivity(), dataBean.getPandentDetail().getNameTXK(), user_txk, dataBean.getPandentDetail().getImgUrlTXK());
+                } catch (Exception e) {
+                    Glide.with(getActivity()).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_txk);
+                    e.printStackTrace();
+                }
+                try {
+                    MallConversionUtil.getInstace().dealExpression(getActivity(), dataBean.getPandentDetail().getNameGJ(), user_gj, dataBean.getPandentDetail().getImgUrlGJ());
+                } catch (Exception e) {
+                    Glide.with(getActivity()).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_gj);
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View v) {

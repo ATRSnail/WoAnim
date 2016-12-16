@@ -60,7 +60,7 @@ public class HomeFragment extends TrackFragment {
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean follow) {
-                HttpUtil.httpGet(getActivity(), Constants.URL_HOME_TYPE + "?page=" + pager + "&resourceType=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1)+"&size=20&location=1", new HttpCallback() {
+                HttpUtil.httpGet(getActivity(), Constants.URL_HOME_TYPE + "?page=" + pager + "&resourceType=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1) + "&size=20&location=1", new HttpCallback() {
                     @Override
                     public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthFailure(result, obj);
@@ -88,7 +88,7 @@ public class HomeFragment extends TrackFragment {
     }
 
     private void initTapPageView() {
-         final String string =Constants.URL_HOME_TOP_LIST + "&type=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1);
+        final String string = Constants.URL_HOME_TOP_LIST + "&type=" + (IndexTabId == R.id.enetic_cartoon ? 2 : 1);
         HttpUtil.httpGet(getActivity(), string, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -99,7 +99,7 @@ public class HomeFragment extends TrackFragment {
 
                     List<View> bannerViews = new ArrayList<View>();
                     //(list.size() > 5 ? 5 : list.size())
-                    for (int i = 0; i < (list.size() > 5 ? 5 : list.size()) ; i++) {
+                    for (int i = 0; i < (list.size() > 5 ? 5 : list.size()); i++) {
                         ImageView v = new ImageView(getActivity());
                         v.setScaleType(ImageView.ScaleType.FIT_XY);
                         final BannerBean bean = list.get(i);
@@ -113,13 +113,13 @@ public class HomeFragment extends TrackFragment {
                                     Intent intent = new Intent();
                                     intent.putExtra("resourceId", Integer.valueOf(bean.getResourceId()).intValue());
                                     if (bean.getType().equals("1")) {
-                                      //  intent.setClass(getActivity(), AnimActivity.class);
+                                        //  intent.setClass(getActivity(), AnimActivity.class);
                                         intent.setClass(getActivity(), AnimDetailActivity.class);
-                                    }else if (bean.getType().equals("2")) {
-                              //          intent.setClass(getActivity(), AnimActivity.class);
+                                    } else if (bean.getType().equals("2")) {
+                                        //          intent.setClass(getActivity(), AnimActivity.class);
                                         intent.setClass(getActivity(), CarDetailActivity.class);
-                                    }else {
-                                        intent.putExtra("adsUrl",bean.getAdsUrl());
+                                    } else {
+                                        intent.putExtra("adsUrl", bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);
                                     }
                                     startActivity(intent);
@@ -132,6 +132,7 @@ public class HomeFragment extends TrackFragment {
                     }
                     mBannerView.setViewPagerViews(bannerViews);
                     pullToLoadView.initLoad();
+                    pullToLoadView.getRecyclerView().smoothScrollToPosition(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

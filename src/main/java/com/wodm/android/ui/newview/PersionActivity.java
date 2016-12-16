@@ -3,10 +3,8 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +20,6 @@ import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.FollowAdapter;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
-import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DegreeTools;
@@ -31,23 +28,17 @@ import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.user.RecordActivity;
-import com.wodm.android.utils.DialogUtils;
-import com.wodm.android.utils.UpdataMedalInfo;
-import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
-import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 import org.json.JSONObject;
 
 import java.util.List;
-
-import static com.wodm.android.Constants.CURRENT_USER;
 
 
 /**
@@ -127,6 +118,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     TextView save_another;
     long userId;
     UserInfoBean.DataBean dataBean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,9 +140,9 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
         if (Constants.getMEDALINFOBEAN() != null) {
             dataBeanList = Constants.getMEDALINFOBEAN().getData();
-            if(dataBeanList!=null&&dataBeanList.size()>0)
-            {initMyMedal();}
-            else {
+            if (dataBeanList != null && dataBeanList.size() > 0) {
+                initMyMedal();
+            } else {
                 initLinearLayout(my_medal_persion, 0);
             }
 
@@ -165,18 +157,17 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     }
 
 
-
     private void initMyMedal() {
-                boolean flag =false;
+        boolean flag = false;
         for (int i = 0; i < dataBeanList.size(); i++) {
             int medalType = dataBeanList.get(i).getMedal().getMedalType();
             int medalScore = dataBeanList.get(i).getMedal().getMedalSource();
-            if(medalScore==1){
+            if (medalScore == 1) {
                 initLinearLayout(my_medal_persion, medalType);
-                flag =true;
-            }else {
-                if(!flag)
-                initLinearLayout(my_medal_persion, 0);
+                flag = true;
+            } else {
+                if (!flag)
+                    initLinearLayout(my_medal_persion, 0);
             }
 
 
@@ -264,14 +255,17 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-         getData();
+        getData();
     }
 
     private void getData() {
 //            UpdataMedalInfo.getMedalInfo(this, userId);
-        if (Constants.CURRENT_USER==null) {finish(); return;}
-        if(getIntent().getBooleanExtra("anotherInfo",false)){
-            userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
+        if (Constants.CURRENT_USER == null) {
+            finish();
+            return;
+        }
+        if (getIntent().getBooleanExtra("anotherInfo", false)) {
+            userId = getIntent().getLongExtra("anotherId", Constants.CURRENT_USER.getData().getAccount().getId());
             ll_attention.setVisibility(View.GONE);
             btn_user_info.setVisibility(View.GONE);
             another_persion.setVisibility(View.VISIBLE);
@@ -279,17 +273,17 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             edit_persion.setImageResource(R.mipmap.jubao);
             medal_another.setText("他的勋章");
             save_another.setText("他的收藏");
-           httpGet(Constants.APP_GET_USERINFO + userId+"&id="+Constants.CURRENT_USER.getData().getAccount().getId(),new HttpCallback(){
-               @Override
-               public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                   super.doAuthSuccess(result, obj);
-                   UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
-                   dataBean=bean.getData();
-                   setUserInfo();
-               }
-           });
-        }else {
-            userId =Constants.CURRENT_USER.getData().getAccount().getId();
+            httpGet(Constants.APP_GET_USERINFO + userId + "&id=" + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
+                    dataBean = bean.getData();
+                    setUserInfo();
+                }
+            });
+        } else {
+            userId = Constants.CURRENT_USER.getData().getAccount().getId();
             updataDataBean(userId);
         }
 
@@ -297,19 +291,20 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
 
     void updataDataBean(long userId) {
-        httpGet(Constants.APP_GET_USERINFO + userId,new HttpCallback(){
+        httpGet(Constants.APP_GET_USERINFO + userId, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
-                dataBean=bean.getData();
+                Constants.CURRENT_USER = bean;
+                dataBean = bean.getData();
                 setUserInfo();
             }
         });
     }
 
 
-    private void setUserInfo(){
+    private void setUserInfo() {
 
 
         UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
@@ -318,32 +313,32 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(accountBean.getPortrait()))
             new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
 
-        if (dataBean.getIsFollow()==1){
+        if (dataBean.getIsFollow() == 1) {
             another_persion.setImageResource(R.mipmap.noatten_persion);
-        }else {
+        } else {
             another_persion.setImageResource(R.mipmap.atten_persion);
         }
 
         try {
-            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameTXK(),user_txk,dataBean.getPandentDetail().getImgUrlTXK());
+            MallConversionUtil.getInstace().dealExpression(this, dataBean.getPandentDetail().getNameTXK(), user_txk, dataBean.getPandentDetail().getImgUrlTXK());
         } catch (Exception e) {
             Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_txk);
             e.printStackTrace();
         }
         try {
-            MallConversionUtil.getInstace().dealExpression(this,dataBean.getPandentDetail().getNameGJ(),user_gj,dataBean.getPandentDetail().getImgUrlGJ());
+            MallConversionUtil.getInstace().dealExpression(this, dataBean.getPandentDetail().getNameGJ(), user_gj, dataBean.getPandentDetail().getImgUrlGJ());
         } catch (Exception e) {
             Glide.with(this).load(dataBean.getPandentDetail().getNameGJ()).placeholder(R.mipmap.loading).into(user_gj);
             e.printStackTrace();
         }
 
 
-        int vip=accountBean.getVip();
-        if (vip==1){
+        int vip = accountBean.getVip();
+        if (vip == 1) {
             img_vip_circle.setImageResource(R.mipmap.vip_circle);
-        }else if (vip==2){
+        } else if (vip == 2) {
             img_vip_circle.setImageResource(R.mipmap.vvip_circle);
-        }else {
+        } else {
             img_vip_circle.setVisibility(View.INVISIBLE);
         }
 
@@ -377,7 +372,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         int need_num = dataBean.getNeedEmpirical();
         int num_sc = DisplayUtil.px2dip(this, 110);
 //        int num = (int) (num_sc * (1 - ((float) need_num / next_num)));
-        int num= (int) (110*(1-((float)need_num/next_num)));
+        int num = (int) (110 * (1 - ((float) need_num / next_num)));
 //        int num_sc = DisplayUtil.px2dip(this, 30);
 //        RelativeLayout.LayoutParams img_progress_params = new RelativeLayout.LayoutParams(num, num_sc);
 //        int margin= DisplayUtil.px2dip(this,5);
@@ -391,7 +386,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         String gradename = accountBean.getGradeName();
         if (!TextUtils.isEmpty(gradename)) {
 //            grade_name_persion.setText(gradename);
-            DegreeTools.getInstance(this).getDegree(this,accountBean.getGradeValue(),grade_name_persion);
+            DegreeTools.getInstance(this).getDegree(this, accountBean.getGradeValue(), grade_name_persion);
         }
 
         String grad = String.valueOf(accountBean.getGradeValue());
@@ -400,7 +395,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         }
         empiral_degree.setText(dataBean.getAccount().getEmpiricalValue() + "/" + dataBean.getNextGradeEmpirical());
 //        initMyMedal(accountBean);
-
+        persionAdapter.notifyDate();
     }
 
     @Override
@@ -416,30 +411,30 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 startActivity(new Intent(PersionActivity.this, MyMedalActivity.class));
                 break;
             case R.id.tv_edit:
-                Intent i=new Intent();
+                Intent i = new Intent();
                 i.putExtra("tid", R.id.my_collcet);
                 i.putExtra("title", R.string.collect);
-                i.putExtra("position","动画");
+                i.putExtra("position", "动画");
                 i.setClass(PersionActivity.this, RecordActivity.class);
                 startActivity(i);
                 break;
-            case R.id.another_persion :
-                FollowAdapter adapter =new FollowAdapter();
-                if (dataBean.getIsFollow()==1){
-                     adapter.saveOrDeleteUserFollow(0,userId);
+            case R.id.another_persion:
+                FollowAdapter adapter = new FollowAdapter();
+                if (dataBean.getIsFollow() == 1) {
+                    adapter.saveOrDeleteUserFollow(0, userId);
                     another_persion.setImageResource(R.mipmap.atten_persion);
-                }else {
-                    adapter.saveOrDeleteUserFollow(1,userId);
+                } else {
+                    adapter.saveOrDeleteUserFollow(1, userId);
                     another_persion.setImageResource(R.mipmap.noatten_persion);
                 }
                 getData();
                 break;
             case R.id.attention_persion:
-                startActivity(new Intent(this,AttentionActivity.class));
+                startActivity(new Intent(this, AttentionActivity.class));
                 break;
             case R.id.likes_persion:
-                Intent intent =new Intent(this,AttentionActivity.class);
-                intent.putExtra("fans",1);
+                Intent intent = new Intent(this, AttentionActivity.class);
+                intent.putExtra("fans", 1);
                 startActivity(intent);
                 break;
         }
