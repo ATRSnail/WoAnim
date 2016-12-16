@@ -66,8 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/px_45"
-                android:layout_marginTop="@dimen/px_128">
+                android:layout_marginTop="@dimen/px_108"
+                android:layout_marginLeft="@dimen/px_45">
 
                 <RelativeLayout
                     android:id="@+id/rl_head_imgs"
@@ -112,10 +112,10 @@
 
                     <ImageView
                         android:id="@+id/user_txk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_width="@dimen/px_180"
+                        android:layout_height="@dimen/px_180"/>
                 </RelativeLayout>
             </RelativeLayout>
 

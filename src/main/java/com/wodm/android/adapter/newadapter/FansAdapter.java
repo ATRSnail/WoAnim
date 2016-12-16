@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -89,7 +90,12 @@ public class FansAdapter extends BaseAdapter {
         }
         FansBean.DataBean bean = list.get(position);
         final long followUserId = bean.getFansUserId();
-        holder.attention.setImageResource(R.mipmap.attention);
+        if (bean.getCount()==1){
+            holder.attention.setImageResource(R.mipmap.hufen);
+        }else {
+            holder.attention.setImageResource(R.mipmap.noattention);
+        }
+
         holder.attention.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,9 +139,18 @@ public class FansAdapter extends BaseAdapter {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
+//                    NewCommentBean bean = new NewCommentBean();
+//                    bean.setGuanzhu(!bean.isGuanzhu());
+                    try {
+                        String tr =obj.get("message").toString();
+                        if ("删除成功".equals(tr)){
+                            tr="取消关注";
+                        }
+                        Toast.makeText(mContext,tr,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     updateAttention.update(true);
-                    NewCommentBean bean = new NewCommentBean();
-                    bean.setGuanzhu(!bean.isGuanzhu());
                 }
 
                 @Override

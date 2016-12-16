@@ -26,6 +26,12 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:scrollbars="none"
+        android:id="@+id/headView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
         android:id="@+id/pull_list"
         android:layout_width="match_parent"

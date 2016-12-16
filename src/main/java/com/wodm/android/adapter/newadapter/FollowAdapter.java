@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -95,7 +96,11 @@ public class FollowAdapter extends BaseAdapter {
         }
         FollowBean.DataBean bean = getList().get(position);
         final long followUserId = bean.getFollowUserId();
-        holder.attention.setBackgroundResource(R.mipmap.noattention);
+        if (bean.getCount()==1){
+            holder.attention.setImageResource(R.mipmap.hufen);
+        }else {
+            holder.attention.setImageResource(R.mipmap.attention);
+        }
         holder.attention.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +145,15 @@ public class FollowAdapter extends BaseAdapter {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
+                    try {
+                        String tr =obj.get("message").toString();
+                        if ("删除成功".equals(tr)){
+                            tr="取消关注";
+                        }
+                        Toast.makeText(mContext,tr,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     updateAttention.update(true);
                 }
 

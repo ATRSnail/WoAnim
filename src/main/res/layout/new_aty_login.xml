@@ -55,6 +55,7 @@
                         android:background="@mipmap/login_user" />
 
                     <EditText
+                        android:text="18510952838"
                         android:id="@+id/et_resigter"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -89,6 +90,7 @@
                         android:background="@mipmap/login_password" />
 
                     <EditText
+                        android:text="123456"
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

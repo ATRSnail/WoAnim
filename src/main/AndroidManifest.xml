@@ -246,6 +246,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".android.ui.newview.AnotherActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".android.ui.VersionUpdataActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

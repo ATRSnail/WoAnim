@@ -8,19 +8,22 @@ import java.util.List;
 
 public class FollowBean {
 
+
     /**
      * code : 1000
      * message : 操作成功
-     * data : [{"nickName":"风","followUserId":228,"gradeValue":1,"portrait":"http://wx.qlogo.cn/mmopen/DrNKBR4QfgRkfOl8pWSR0icLY1uicMCga1BwYhO5of6J7te6pzthk3gmoquG6CqPMKFwM87ic5P0RZg0XXfkiaF0YQ/0"},{"nickName":"M520","followUserId":270,"gradeValue":1,"portrait":"http://59.108.94.55:8899/static//head/20161110/270/270436991.gif"},{"nickName":"一脸懵逼的猪","followUserId":271,"gradeValue":1,"portrait":"http://wx.qlogo.cn/mmopen/OibRNdtlJdkHm0OpxSxyK9APYFYJxAlAncm8XEOhmj1NFX2qu44uaOD3XiczB28Kjju4Qfzrcq88y49LMYRFgdB42uMI2vGNhV/0"},{"nickName":"赵文友","followUserId":274,"gradeValue":1,"portrait":"http://59.108.94.55:8899/static//head/20161116/274/274280458.jpg"}]
+     * data : [{"gradeName":"萌新V","count":1,"nickName":"谁是我的大白菜，我要拱白菜。","followUserId":229,"gradeValue":5,"portrait":"http://59.108.94.55:8899/static//head/20161215/229/229675152.jpg"},{"gradeName":"萌新II","count":1,"nickName":"M514168","followUserId":272,"gradeValue":2,"portrait":""},{"gradeName":"萌新II","count":1,"nickName":"赵文友","followUserId":274,"gradeValue":2,"portrait":"http://59.108.94.55:8899/static//head/20161214/274/274704063.jpg"},{"gradeName":"萌娃Ⅵ","count":1,"nickName":"VIP之小将之家乡，亲人","followUserId":280,"gradeValue":6,"portrait":"http://59.108.94.55:8899/static//head/20161216/280/280510973.JPEG"},{"gradeName":"萌新I","count":1,"nickName":"随feng丶孤少","followUserId":286,"gradeValue":1,"portrait":"http://wx.qlogo.cn/mmopen/ajNVdqHZLLACGDuzhcibUWJV46C8wuVZEdicDQLicGK5bfLIh3eRYOhReYpTvTfpTuTtOXXr3W9PRbn9tJ11adclw/0"},{"gradeName":"萌新III","count":1,"nickName":"M006245","followUserId":287,"gradeValue":3,"portrait":"http://59.108.94.55:8899/static//head/20161215/287/287279330.png"}]
      */
 
     private int code;
     private String message;
     /**
-     * nickName : 风
-     * followUserId : 228
-     * gradeValue : 1
-     * portrait : http://wx.qlogo.cn/mmopen/DrNKBR4QfgRkfOl8pWSR0icLY1uicMCga1BwYhO5of6J7te6pzthk3gmoquG6CqPMKFwM87ic5P0RZg0XXfkiaF0YQ/0
+     * gradeName : 萌新V
+     * count : 1
+     * nickName : 谁是我的大白菜，我要拱白菜。
+     * followUserId : 229
+     * gradeValue : 5
+     * portrait : http://59.108.94.55:8899/static//head/20161215/229/229675152.jpg
      */
 
     private List<DataBean> data;
@@ -50,10 +53,28 @@ public class FollowBean {
     }
 
     public static class DataBean {
+        private String gradeName;
+        private int count;
         private String nickName;
         private int followUserId;
         private int gradeValue;
         private String portrait;
+
+        public String getGradeName() {
+            return gradeName;
+        }
+
+        public void setGradeName(String gradeName) {
+            this.gradeName = gradeName;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
 
         public String getNickName() {
             return nickName;

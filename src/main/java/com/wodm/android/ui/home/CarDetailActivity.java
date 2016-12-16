@@ -16,7 +16,9 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +73,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
 
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
+    @ViewIn(R.id.headView)
+    private ScrollView headView;
     @InflateView(R.layout.layout_cartoon_detail)
     private View mHeaderView;
     private TextView dianji_num;
@@ -221,6 +225,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         pullToLoadView.getRecyclerView().addItemDecoration(line);
         pullToLoadView.setLoadingColor(R.color.colorPrimary);
         commentBeanList=new ArrayList<>();
+
         pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
             @Override
             protected void requestData(final int pager, final boolean b) {
@@ -238,11 +243,16 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
                             try {
-                                Log.e("AA","-------------------1");
                                 ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
                                 }.getType());
                                 commentBeanList=beanList;
                                 handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
+                                headView.removeAllViews();
+                                if (beanList!=null&&beanList.size()==0){
+                                    //若无评论，添加上方简介等信息
+                                    headView.addView(mHeaderView);
+                                }
+
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

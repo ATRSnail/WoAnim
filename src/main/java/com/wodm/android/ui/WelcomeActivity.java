@@ -13,7 +13,6 @@ import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.TimeTools;
 import com.wodm.android.utils.Preferences;
-import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
 
 import org.eteclab.base.annotation.Layout;
@@ -39,8 +38,7 @@ public class WelcomeActivity extends AppActivity {
 //                        try {
 
                         Integer userId = Preferences.getInstance(getApplicationContext()).getPreference("userId", -1);
-                        if(userId!=null)
-                        UpdataMedalInfo.getMedalInfo(getApplicationContext(), userId);
+
                         userInfo.getUserInfo(getApplicationContext(), userId);
 
 //                        } catch (JSONException e) {

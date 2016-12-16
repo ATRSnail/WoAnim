@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,7 +98,8 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
-
+    @ViewIn(R.id.headView)
+    private ScrollView headView;
     @InflateView(R.layout.layout_cartoon_detail)
     private View mHeaderView;
     private NoScrollGridView mChapterView;
@@ -364,6 +366,11 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                                 }
                                 commentBeanList = beanList;
                                 handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
+                                headView.removeAllViews();
+                                if (beanList!=null&&beanList.size()==0){
+                                    //若无评论，添加上方简介等信息
+                                    headView.addView(mHeaderView);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

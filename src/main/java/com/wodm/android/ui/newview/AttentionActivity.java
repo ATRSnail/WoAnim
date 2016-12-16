@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
                     noscroll.setAdapter(followAdapter);
                 } else {
                     FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
+                    Log.e("AA","***************动了");
                     fansAdapter.setList(bean.getData());
                     noscroll.setAdapter(fansAdapter);
                 }

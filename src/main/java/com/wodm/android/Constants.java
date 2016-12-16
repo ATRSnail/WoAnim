@@ -34,8 +34,8 @@ public class Constants {
     //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
 //     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
-//    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
@@ -145,9 +145,9 @@ public class Constants {
     public static final String APP_GET_MAIN_ADVERTISEMENT=HOST + "resource/advertisement";//获取广告
     public static final String APP_GET_MAIN_MORE_RESCOURE=HOST + "column/listResourceByColumnId";//点击栏目获取更多的资源
     public static String OFFTIME;
-    public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow?userId=";//保存用户关注的内容
+    public static final String SAVE_USER_ATTENTION=HOST + "behavior/saveUserFollow";//保存用户关注的内容
     public static final String GET_USER_ATTENTION=HOST + "behavior/findFollowList?userId=";//获取用户的关注/粉丝的列表
-    public static final String REMOVE_USER_ATTENTION=HOST + "behavior/deleteUserFollow?userId=";//取消用户关注的内容
+    public static final String REMOVE_USER_ATTENTION=HOST + "behavior/deleteUserFollow";//取消用户关注的内容
     public static final String GETMESSAGELIST=HOST + "behavior/messageList?userId=";//获取消息的首页内容
     public static final String DELETEMESSAGE=HOST + "behavior/batchDelMessage?userId=";//批量删除用户的消息
     public static final String READMESSAGELIST=HOST + "behavior/readMessage?userId=";//读取一则消息

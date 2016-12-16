@@ -167,9 +167,7 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, CustomerServiceActivity.class);
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
-        }  else if (text.equals("点赞")) {
-            startIntent(null, DianZanActivity.class);
-        } else if (text.equals("关注")) {
+        }  else if (text.equals("关注")) {
             startIntent(null, AttentionActivity.class);
         } else if (text.equals("点赞")) {
             startIntent(null, DianZanActivity.class);
