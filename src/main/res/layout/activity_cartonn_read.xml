@@ -77,7 +77,6 @@
 
 
         <RelativeLayout
-            android:background="@color/color_3d3d3d"
             android:id="@+id/ll_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
