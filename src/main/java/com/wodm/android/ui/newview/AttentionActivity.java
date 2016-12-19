@@ -44,14 +44,18 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
     MyPagerAdapter adapter;
     FollowAdapter followAdapter;
     FansAdapter    fansAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          followAdapter=new FollowAdapter(AttentionActivity.this);
         fansAdapter=new FansAdapter(AttentionActivity.this);
+
         set_topbar.setOnTopbarClickListenter(this);
         titles = new String[]{"我的关注", "粉丝数"};
         views = new ArrayList<>();
+
+
         for (int i = 0; i < 2; i++) {
             getData((i+1));
         }
@@ -62,14 +66,15 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
         tablayout.setupWithViewPager(viewPager);
         if(getIntent().getIntExtra("fans",0)==1){
             viewPager.setCurrentItem(1);
+        }else {
+            viewPager.setCurrentItem(0);
         }
 
     }
 
     private void getData(final int type) {
-
-        final View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
-        final  ListView noscroll = (ListView) view.findViewById(R.id.noscroll);
+        View  view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
+        final ListView  noscroll = (ListView) view.findViewById(R.id.noscroll);
         String url =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
         httpGet(url,new HttpCallback(){
             @Override
@@ -99,7 +104,6 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
             }
         });
         views.add(view);
-
     }
 
     @Override

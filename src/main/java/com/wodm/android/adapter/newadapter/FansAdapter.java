@@ -2,7 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,7 @@ import org.eteclab.ui.widget.CircularImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,13 +37,12 @@ import java.util.List;
  */
 
 public class FansAdapter extends BaseAdapter {
-    List<FansBean.DataBean> list;
+    List<FansBean.DataBean> list=new ArrayList<>();
     Context mContext;
     MyHolder holder = null;
    FollowAdapter.UpdateAttention updateAttention;
     public FansAdapter(AttentionActivity attentionActivity) {
         this.mContext = attentionActivity;
-        notifyDataSetChanged();
     }
 
     public void setUpdateAttention(FollowAdapter.UpdateAttention updateAttention) {
@@ -51,7 +50,9 @@ public class FansAdapter extends BaseAdapter {
     }
 
     public void setList(List<FansBean.DataBean> list) {
-        this.list = list;
+        this.list.clear();
+        this.list.addAll(list);
+        notifyDataSetChanged();
     }
 
     public FansAdapter() {
@@ -92,10 +93,8 @@ public class FansAdapter extends BaseAdapter {
         FansBean.DataBean bean = list.get(position);
         final long followUserId = bean.getFansUserId();
         if (bean.getCount()==1){
-            Log.e("AA","***************动了hufen");
             holder.attention.setImageResource(R.mipmap.hufen);
         }else {
-            Log.e("AA","***************noattention");
             holder.attention.setImageResource(R.mipmap.noattention);
         }
 
@@ -154,6 +153,7 @@ public class FansAdapter extends BaseAdapter {
                         e.printStackTrace();
                     }
                     updateAttention.update(true);
+                    notifyDataSetChanged();
                 }
 
                 @Override

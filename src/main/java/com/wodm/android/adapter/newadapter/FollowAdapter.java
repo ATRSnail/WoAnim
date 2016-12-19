@@ -49,7 +49,7 @@ public class FollowAdapter extends BaseAdapter {
 
     public void setList(List<FollowBean.DataBean> list) {
         this.list.clear();
-        this.list=list;
+        this.list.addAll(list);
         notifyDataSetChanged();
     }
 
@@ -155,6 +155,7 @@ public class FollowAdapter extends BaseAdapter {
                         e.printStackTrace();
                     }
                     updateAttention.update(true);
+                    notifyDataSetChanged();
                 }
 
                 @Override
