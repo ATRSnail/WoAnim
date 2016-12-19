@@ -3,7 +3,6 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -305,6 +304,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         @Override
         public void getUserInfo(UserInfoBean bean) {
             dataBean=Constants.CURRENT_USER.getData();
+            setUserInfo();
         }
     };
     private void upMedal(long userId) {
@@ -376,7 +376,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //        tv_attention.setText(dataBean.get);
 //        tv_likes.setText();
 
-         Log.e("AA","*********"+accountBean.getNickName());
+
         tv_nickname.setText(accountBean.getNickName());
         int sex_value = accountBean.getSex();
         if (sex_value == 0) {

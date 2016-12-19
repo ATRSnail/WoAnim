@@ -182,7 +182,7 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 UserInfoBean bean = new Gson().fromJson(obj.toString(), UserInfoBean.class);
                 Constants.CURRENT_USER = bean;
                 UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
-                System.out.println("ddii--->"+dataBean.getAccount().toString());
+//                System.out.println("ddii--->"+dataBean.getAccount().toString());
                 int next_num=dataBean.getNextGradeEmpirical();
                 int need_num=dataBean.getNeedEmpirical();
                 int num= (int) (110*(1-((float)need_num/next_num)));
