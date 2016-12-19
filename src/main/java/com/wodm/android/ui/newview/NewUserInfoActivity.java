@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -524,9 +525,11 @@ public class NewUserInfoActivity extends AppActivity implements View.OnClickList
             }
 
         } else {
+
             new DialogUtils.Builder(NewUserInfoActivity.this)
-                    .setTitle(null)
-                    .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!").create().show();
+                    .setTitle("提示")
+                    .setMessage("为了让您更换到您喜欢的头像,在我们申请拍照的同时,请您允许我们申请的权限哦!")
+                    .create().show();
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
