@@ -43,6 +43,7 @@ import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.braageview.BulletSetDialog;
+import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
@@ -120,7 +121,9 @@ public class CartoonReadActivity extends AppActivity {
     @ViewIn(R.id.send_bullet)
     private ImageView send_bullet;
     private ReadCarAdapter adapter;
-    private DanmuControler danmuControler;
+    private DanmuControler danmuControler_top;
+    private DanmuControler danmuControler_middle;
+    private DanmuControler danmuControler_bottom;
     private ImageView danmu_kaiguan;
     private boolean isOpen = false;
      private String num="";
@@ -214,15 +217,19 @@ public class CartoonReadActivity extends AppActivity {
     public void refrensh(String content,int color,int position) {
         super.refrensh(content,color,position);
         if (position==1){
-            danmuControler.setDanmakuView(mDanmakuView_read_top);
+            danmuControler_top.setDanmakuView(mDanmakuView_read_top);
+            danmuControler_top.addBuilt(content,color);
         }else if (position==2){
-            danmuControler.setDanmakuView(mDanmakuView_read_middle);
+            danmuControler_middle.setDanmakuView(mDanmakuView_read_middle);
+            danmuControler_middle.addBuilt(content,color);
         }else if (position==3){
-            danmuControler.setDanmakuView(mDanmakuView_read_bottom);
+            danmuControler_bottom.setDanmakuView(mDanmakuView_read_bottom);
+            danmuControler_bottom.addBuilt(content,color);
         }else {
-            danmuControler.setDanmakuView(mDanmakuView_read_top);
+            danmuControler_top.setDanmakuView(mDanmakuView_read_top);
+            danmuControler_top.addBuilt(content,color);
         }
-        danmuControler.addBuilt(content,color);
+
 //        getBarrageResource();
     }
 
@@ -463,13 +470,16 @@ public class CartoonReadActivity extends AppActivity {
                 arrayList_bottom.add(bean);
             }
         }
-
-        danmuControler = new DanmuControler(this, mDanmakuView_read_top);
-        danmuControler.addData(arrayList_top);
-        danmuControler = new DanmuControler(this, mDanmakuView_read_middle);
-        danmuControler.addData(arrayList_middle);
-        danmuControler = new DanmuControler(this, mDanmakuView_read_bottom);
-        danmuControler.addData(arrayList_bottom);
+        int progress= Preferences.getInstance(this).getPreference("bullet_toumingdu", 0);
+        int alpha= (int) (progress*2.5);
+//        ll_danmu_background.setAlpha(alpha);
+//        ll_danmu_background.invalidate();
+        danmuControler_top = new DanmuControler(this, mDanmakuView_read_top);
+        danmuControler_top.addData(arrayList_top);
+        danmuControler_middle = new DanmuControler(this, mDanmakuView_read_middle);
+        danmuControler_middle.addData(arrayList_middle);
+        danmuControler_bottom = new DanmuControler(this, mDanmakuView_read_bottom);
+        danmuControler_bottom.addData(arrayList_bottom);
 
     }
 
@@ -537,12 +547,16 @@ public class CartoonReadActivity extends AppActivity {
             @Override
             public void onClick(View v) {
                 if (isOpen) {
-                    danmuControler.show();
+                    danmuControler_top.show();
+                    danmuControler_middle.show();
+                    danmuControler_bottom.show();
                     tv_danmu_kaiguan.setText("开启弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
                     isOpen = false;
                 } else {
-                    danmuControler.hide();
+                    danmuControler_top.hide();
+                    danmuControler_middle.hide();
+                    danmuControler_bottom.hide();
                     tv_danmu_kaiguan.setText("关闭弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
                     isOpen = true;
@@ -854,8 +868,12 @@ public class CartoonReadActivity extends AppActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (danmuControler != null)
-            danmuControler.release();
+        if (danmuControler_top != null)
+            danmuControler_top.release();
+        if (danmuControler_middle != null)
+            danmuControler_middle.release();
+        if (danmuControler_bottom != null)
+            danmuControler_bottom.release();
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }

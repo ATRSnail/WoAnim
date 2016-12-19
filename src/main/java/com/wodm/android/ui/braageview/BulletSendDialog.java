@@ -63,7 +63,7 @@ public class BulletSendDialog extends DialogFragment implements TextAdapter.setC
     }
 
     public interface SendBarrage{
-        public void addBullet(String content, String color, int position);
+        public void addBullet(String content, String color, int position,TextView textView);
     }
 
     @Override
@@ -133,14 +133,16 @@ public class BulletSendDialog extends DialogFragment implements TextAdapter.setC
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content=et_content.getText().toString();
-                if (content.length()>50){
-                    Toast.makeText(getActivity(), "亲,最多只能输入50个字哦!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                sendBarrage.addBullet(content,color,bullet_position);
-                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(send.getApplicationWindowToken(), 0);
+                    send.setEnabled(false);
+                    String content=et_content.getText().toString();
+                    if (content.length()>50){
+                        send.setEnabled(true);
+                        Toast.makeText(getActivity(), "亲,最多只能输入50个字哦!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    sendBarrage.addBullet(content,color,bullet_position,send);
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(send.getApplicationWindowToken(), 0);
             }
         });
 

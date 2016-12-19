@@ -103,8 +103,9 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
         int width= Tools.getScreenWidth((Activity) mContext);
         int hight= (int) (width*((float)140/690));
         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
+        params.setMargins(30,16,30,16);
         holders.img_angle_ads.setLayoutParams(params);
-        holders.img_angle_ads.setPadding(Tools.dp2px(mContext,8),Tools.dp2px(mContext,8),Tools.dp2px(mContext,8),Tools.dp2px(mContext,8));
+//        holders.img_angle_ads.setPadding(Tools.dp2px(mContext,8),Tools.dp2px(mContext,8),Tools.dp2px(mContext,8),Tools.dp2px(mContext,8));
         if (adsList.size()>0){
             for (final AdsBean bean:adsList) {
                 if (bean.getSort()==index+1){

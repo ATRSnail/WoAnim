@@ -44,7 +44,7 @@
                 <TextView
                     android:textColor="@color/color_ffffff"
                     android:textSize="@dimen/text_size_30_px"
-                    android:text="弹幕透明度: 100%"
+                    android:text="弹幕透明度: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <RelativeLayout

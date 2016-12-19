@@ -52,7 +52,7 @@ public class DanMuTools {
     private DanmakuContext mDanmakuContext;
     private HashMap<Integer, Integer> maxLinesPair;// 弹幕最大行数
     private HashMap<Integer, Boolean> overlappingEnablePair;// 设置是否重叠
-    private String timeArr[]={"11.201999664307","154.43099975586","140.26400756836","136.92900085449","131.8450012207","105.78199768066","23.826000213623"};
+    private String timeArr[]={"11.201999664307","30.43099975586","40.26400756836","60.92900085449","131.8450012207","105.78199768066","233.826000213623"};
     private Context mContext;
     private ArrayList<BarrageBean> mChapterList;
     public DanMuTools(Context context,DanmakuView mDanmakuView){
@@ -65,7 +65,7 @@ public class DanMuTools {
 
         // 设置最大行数,从右向左滚动(有其它方向可选)
         maxLinesPair=new HashMap<>();
-        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL,3);
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL,1);
 
         overlappingEnablePair = new HashMap<>();
         overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_LR, false);
@@ -73,7 +73,7 @@ public class DanMuTools {
 
 
 
-        mDanmakuContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_DEFAULT, 3) //设置描边样式
+        mDanmakuContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_DEFAULT, 2) //设置描边样式
                 .setDuplicateMergingEnabled(false)
                 .setScrollSpeedFactor(1.2f) //是否启用合并重复弹幕
                 .setScaleTextSize(1.2f) //设置弹幕滚动速度系数,只对滚动弹幕有效
@@ -89,7 +89,7 @@ public class DanMuTools {
     }
     private void init(){
         if (mDanmakuView != null) {
-            int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 4);
+            int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 3);
             mParser=new WoDanmakuParser();
             if (mChapterList!=null&&mChapterList.size()>0){
                 BulletModel bul=new BulletModel();
@@ -100,7 +100,7 @@ public class DanMuTools {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
                     ba.setFontColor(ba.getFontColor());
-                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_36_px)+"");
+                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_30_px)+"");
                     int time=random.nextInt(timeArr.length);
                     ba.setTime(time);
                     ba.setId(bean.getId());
@@ -175,7 +175,7 @@ public class DanMuTools {
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
         danmaku.isLive = true; //是否是直播弹幕
         danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
-        danmaku.textSize = mContext.getResources().getDimension(R.dimen.x24);
+        danmaku.textSize = mContext.getResources().getDimension(R.dimen.text_size_30_px);
         danmaku.textColor = color;
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框

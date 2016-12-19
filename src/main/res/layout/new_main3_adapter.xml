@@ -7,7 +7,9 @@
     android:layout_height="match_parent">
   <LinearLayout
       android:id="@+id/ll_new_main3_adapter"
-      android:layout_marginTop="@dimen/px_30"
+      android:layout_marginBottom="@dimen/px_30"
+      android:layout_marginLeft="@dimen/px_30"
+      android:layout_marginRight="@dimen/px_30"
       android:background="@drawable/layout_border_circle"
       android:orientation="vertical"
       android:layout_width="match_parent"

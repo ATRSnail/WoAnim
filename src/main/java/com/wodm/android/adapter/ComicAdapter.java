@@ -55,7 +55,7 @@ public class ComicAdapter extends HolderAdapter<ObjectBean> {
     protected void bindView(RecyclerView.ViewHolder viewHolder, final int i) {
         ViewHolders holders = (ViewHolders) viewHolder;
         final ObjectBean bean = mData.get(i);
-        Uri uri = Uri.parse(bean.getShowImage());
+        Uri uri = Uri.parse(bean.getImage_296_296());
         holders.img.setImageURI(uri);
 
         ResizeOptions options = new ResizeOptions(200, 200);

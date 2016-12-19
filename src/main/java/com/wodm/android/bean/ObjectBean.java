@@ -34,6 +34,15 @@ public class ObjectBean implements Serializable {
     private String title;
     private String briefDesp;
     private int isCollect;
+    private String image_296_296;
+
+    public String getImage_296_296() {
+        return image_296_296;
+    }
+
+    public void setImage_296_296(String image_296_296) {
+        this.image_296_296 = image_296_296;
+    }
 
     public int getIsCollect() {
         return isCollect;

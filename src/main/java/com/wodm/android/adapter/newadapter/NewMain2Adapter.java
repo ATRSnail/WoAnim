@@ -82,6 +82,7 @@ public class NewMain2Adapter extends BaseAdapter {
                 mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
             }
         });
+        view2Holders.ll_add_image.removeAllViews();
         for (int i = 1; i < resourcesBean.size(); i++) {
             final NewMainBean.ResourcesBean dataBean = resourcesBean.get(i);
             RoundAngleImageView imageview = new RoundAngleImageView(mContext);

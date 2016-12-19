@@ -97,6 +97,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private ImageView danmu_kaiguan;
     private Dialog dialog=null;
     private boolean isLoadMore=false;
+    private TextView anim_send_comment;
     //---------------------
     private KeyboardLayout mKeyboardLayout;
     private View mEmojiView;
@@ -216,7 +217,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
         if (Constants.CURRENT_USER != null) {
             new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
         }
-        findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
+        anim_send_comment= (TextView) findViewById(R.id.anim_send_comment);
+        anim_send_comment.setOnClickListener(onClickListener);
 //        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
 //        img_xiaolian.setOnClickListener(onClickListener);
         //增加表情
@@ -269,6 +271,18 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     pullToLoadView.setComplete();
                 }
 
+            }
+        });
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
             }
         });
         httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
@@ -343,18 +357,6 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     @TrackClick(value = R.id.full, location = TITLE, eventName = "跳转阅读漫画界面")
     private void clickFull(View view) {
         startRead(0);
-        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
     }
 
     @Override
@@ -598,6 +600,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     });
                     break;
                 case R.id.anim_send_comment:
+                    anim_send_comment.setEnabled(false);
                     eventName = "发布评论操作";
                     if (!UpdataUserInfo.isLogIn(CarDetailActivity.this,true,null)) {
 //            未登录
@@ -626,6 +629,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                 try {
                                     if (obj.getString("code").equals("1000")) {
                                         isLoadMore=true;
+                                        anim_send_comment.setEnabled(true);
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
                                         mInput.setText("");
@@ -641,10 +645,12 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                             @Override
                             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                                 super.doAuthFailure(result, obj);
+                                anim_send_comment.setEnabled(true);
                             }
                         });
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        anim_send_comment.setEnabled(true);
                     }
                     break;
             }

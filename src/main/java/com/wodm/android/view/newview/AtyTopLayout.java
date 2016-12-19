@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -91,6 +92,9 @@ public class AtyTopLayout extends RelativeLayout {
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(TypedValue.DENSITY_DEFAULT, getResources().getDimension(R.dimen.text_size_36_px));
         tvTitle.setText(titleText);
+        tvTitle.setMaxEms(10);
+        tvTitle.setEllipsize(TextUtils.TruncateAt.valueOf("END"));
+        tvTitle.setSingleLine();
         tvTitle.setGravity(Gravity.CENTER);    // 设置文字居中
 
 //        rightImage.setImageDrawable(rightDrawable);

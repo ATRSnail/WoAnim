@@ -21,6 +21,7 @@ import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DialogUtils;
+import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
 
@@ -193,7 +194,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     
 
     @Override
-    public void addBullet(final String content,final String color,final int position) {
+    public void addBullet(final String content,final String color,final int position,final TextView send) {
         if (!UpdataUserInfo.isLogIn(this, true,null)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
@@ -237,6 +238,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             obj.put("content", content);
             final int bulletColor= Color.parseColor(color);
             obj.put("color", color);
+            Preferences.getInstance(this).setPreference("bulletbackgroundcolor",bulletColor);
             obj.put("location", position);
             httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
                 @Override
@@ -246,6 +248,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                         if (obj.getString("code").equals("1000")) {
                             Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
                             ).show();
+                            send.setEnabled(true);
                             if (bulletDialog != null) {
                                 bulletDialog.dismiss();
                             }
@@ -259,10 +262,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                 @Override
                 public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthFailure(result, obj);
+                    send.setEnabled(true);
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
+            send.setEnabled(true);
         }
     }
 
@@ -325,5 +330,19 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 //        builder.setCanceledOnTouchOutside(false);
     }
 
-
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Toast.makeText(this, " onRestart ", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onTrimMemory(int level) {
+//        super.onTrimMemory(level);
+//        switch (level) {
+//            case TRIM_MEMORY_UI_HIDDEN:
+//                Toast.makeText(this, "  ", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//    }
 }

@@ -82,12 +82,12 @@ public class BulletSetDialog extends DialogFragment {
         seekbar_toumingdu= (SeekBar) v.findViewById(R.id.seekbar_toumingdu);
         tv_toumingdu= (TextView) v.findViewById(R.id.tv_toumingdu);
         tv_sudu= (TextView) v.findViewById(R.id.tv_sudu);
-        int bullet_sudu=Preferences.getInstance(getActivity()).getPreference("bullet_sudu", 4);
-        if (bullet_sudu==2){
+        int bullet_sudu=Preferences.getInstance(getActivity()).getPreference("bullet_sudu", 2);
+        if (bullet_sudu==1){
             view.setVisibility(View.GONE);
             view_right.setVisibility(View.GONE);
             initRight();
-        }else if (bullet_sudu==4){
+        }else if (bullet_sudu==2){
             view.setVisibility(View.VISIBLE);
             view_right.setVisibility(View.GONE);
             initRight();
@@ -121,12 +121,13 @@ public class BulletSetDialog extends DialogFragment {
         });
         int progress=Preferences.getInstance(getActivity()).getPreference("bullet_toumingdu", 0);
         seekbar_toumingdu.setProgress(progress);
+        tv_toumingdu.setText(progress+"%");
         seekbar_toumingdu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_toumingdu.setText(progress+"%");
                 listener.setDialogListener(progress);
-                ll_bulletsdialog.getBackground().setAlpha(progress);
+                ll_bulletsdialog.getBackground().setAlpha((int) (2.5*progress));
                 Preferences.getInstance(getActivity()).setPreference("bullet_toumingdu", progress);
             }
 
@@ -153,11 +154,11 @@ public class BulletSetDialog extends DialogFragment {
         if (isCenter){
             view.setVisibility(View.GONE);
             params.addRule(RelativeLayout.CENTER_IN_PARENT);
-            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 4);
+            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 2);
         }else {
             view.setVisibility(View.VISIBLE);
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 6);
+            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 3);
         }
         img_white_select.setLayoutParams(params);
     }
@@ -173,9 +174,9 @@ public class BulletSetDialog extends DialogFragment {
         if (isCenter){
             view.setVisibility(View.GONE);
             params.addRule(RelativeLayout.CENTER_IN_PARENT);
-            Preferences.getInstance(getActivity()).setPreference("bullet_sudu",4);
+            Preferences.getInstance(getActivity()).setPreference("bullet_sudu",2);
         }else {
-            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 2);
+            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 1);
             view.setVisibility(View.VISIBLE);
             params.addRule(RelativeLayout.ALIGN_RIGHT,R.id.img_sudu_line);
             params.addRule(RelativeLayout.ALIGN_END,R.id.img_sudu_line);

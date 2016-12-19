@@ -126,10 +126,11 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_middle;
     @ViewIn(R.id.danmaku_view_bottom)
     private master.flame.danmaku.ui.widget.DanmakuView mDanmakuView_bottom;
-
     @ViewIn(R.id.ll_bottom)
     private LinearLayout ll_bottom;
-    private DanmuControler danmuControler;
+    private DanmuControler danmuControler_top;
+    private DanmuControler danmuControler_middle;
+    private DanmuControler danmuControler_bottom;
     @ViewIn(R.id.header)
     private CircularImage header;
     @ViewIn(R.id.ll_danmu_background)
@@ -143,7 +144,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private boolean isLoadMore=false;
     private Intent serviceIntent;
     private static Context context;
-
+    private TextView anim_send_comment;
     private NetworkChangeReceive networkChangeReceive;
     private AnimDetailActivity.MyVideoReceiver myvideoReceiver;
     //---------------------
@@ -328,14 +329,15 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         if (Constants.CURRENT_USER != null) {
             new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
         }
-        findViewById(R.id.anim_send_comment).setOnClickListener(onClickListener);
+        anim_send_comment= (TextView) findViewById(R.id.anim_send_comment);
+        anim_send_comment.setOnClickListener(onClickListener);
 //        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
 //        img_xiaolian.setOnClickListener(onClickListener);
         //增加表情
         ll_qq_biaoqing = (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing).findViewById(R.id.faceRelativeLayout);
         ll_qq_biaoqing.setOnCorpusSelectedListener(this);
         if (Constants.CURRENT_USER != null){
-            findViewById(R.id.anim_send_comment).setEnabled(Constants.CURRENT_USER != null);
+            anim_send_comment.setEnabled(Constants.CURRENT_USER != null);
         }
         registerReceiver();
         pullToLoadView.getRecyclerView().addItemDecoration(line);
@@ -561,12 +563,18 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                   arrayList_bottom.add(bean);
               }
         }
-        danmuControler = new DanmuControler(this, mDanmakuView_top);
-        danmuControler.addData(arrayList_top);
-        danmuControler = new DanmuControler(this, mDanmakuView_middle);
-        danmuControler.addData(arrayList_middle);
-        danmuControler = new DanmuControler(this, mDanmakuView_bottom);
-        danmuControler.addData(arrayList_bottom);
+        int progress=Preferences.getInstance(this).getPreference("bullet_toumingdu", 0);
+        int  bulletColor=Preferences.getInstance(this).getPreference("bulletbackgroundcolor",Color.WHITE);
+        int alpha= (int) (progress*2.5);
+//        ll_danmu_background.setBackgroundColor(bulletColor);
+//        ll_danmu_background.getBackground().setAlpha(alpha);
+//        ll_danmu_background.invalidate();
+        danmuControler_top = new DanmuControler(this, mDanmakuView_top);
+        danmuControler_top.addData(arrayList_top);
+        danmuControler_middle = new DanmuControler(this, mDanmakuView_middle);
+        danmuControler_middle.addData(arrayList_middle);
+        danmuControler_bottom = new DanmuControler(this, mDanmakuView_bottom);
+        danmuControler_bottom.addData(arrayList_bottom);
     }
 
     private List<IDanmakuItem> initItems(List<CommentBean> commentbeanList) {
@@ -584,8 +592,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (danmuControler != null)
-            danmuControler.release();
+        if (danmuControler_bottom != null){
+            danmuControler_bottom.release();
+        }else if (danmuControler_top!=null){
+            danmuControler_top.release();
+        }else if (danmuControler_middle!=null){
+            danmuControler_middle.release();
+        }
+
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
@@ -648,12 +662,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     showShare();
                     break;
                 case R.id.danmu_kaiguan:
+                    if (danmuControler_top==null||danmuControler_middle==null||danmuControler_bottom==null){
+                        return;
+                    }
                     if (isOpen) {
-                        danmuControler.show();
+                        danmuControler_middle.show();
+                        danmuControler_top.show();
+                        danmuControler_bottom.show();
                         danmu_kaiguan.setImageResource(R.mipmap.danmu_open);
                         isOpen = false;
                     } else {
-                        danmuControler.hide();
+                        danmuControler_top.hide();
+                        danmuControler_middle.hide();
+                        danmuControler_bottom.hide();
                         danmu_kaiguan.setImageResource(R.mipmap.danmu_close);
                         isOpen = true;
 
@@ -670,7 +691,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     break;
                 case R.id.anim_send_comment:
                     eventName = "发布评论操作";
-
+                    anim_send_comment.setEnabled(false);
                     if (!UpdataUserInfo.isLogIn(AnimDetailActivity.this,true,null)) {
 //           未登录
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
@@ -700,6 +721,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                                 try {
                                     if (obj.getString("code").equals("1000")) {
                                         isLoadMore=true;
+                                        anim_send_comment.setEnabled(true);
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
                                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -716,10 +738,12 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                             @Override
                             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                                 super.doAuthFailure(result, obj);
+                                anim_send_comment.setEnabled(true);
                             }
                         });
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        anim_send_comment.setEnabled(true);
                     }
                     break;
             }
@@ -916,7 +940,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
     private boolean isTip = false;//是否已经提示过
     public void startPlay(final ChapterBean bean) {
-
+        getBarrageResource(bean.getId());
         String network = HttpUtil.getNetworkType(context);
         if (!Preferences.getInstance(context).getPreference("netPlay", false)) {
             if (!network.equals("WIFI") && !isTip) {
@@ -941,7 +965,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         } else {
             start(bean);
         }
-        getBarrageResource(bean.getId());
+
     }
 
     private void getBarrageResource(String id) {
@@ -1100,15 +1124,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     public void refrensh(String content,int color,int position) {
         super.refrensh(content,color,position);
         if (position==1){
-            danmuControler.setDanmakuView(mDanmakuView_top);
+            danmuControler_top.setDanmakuView(mDanmakuView_top);
+            danmuControler_top.addBuilt(content,color);
         }else if (position==2){
-            danmuControler.setDanmakuView(mDanmakuView_middle);
+            danmuControler_middle.setDanmakuView(mDanmakuView_middle);
+            danmuControler_middle.addBuilt(content,color);
         }else if (position==3){
-            danmuControler.setDanmakuView(mDanmakuView_bottom);
+            danmuControler_bottom.setDanmakuView(mDanmakuView_bottom);
+            danmuControler_bottom.addBuilt(content,color);
         }else {
-            danmuControler.setDanmakuView(mDanmakuView_top);
+            danmuControler_top.setDanmakuView(mDanmakuView_top);
+            danmuControler_top.addBuilt(content,color);
         }
-        danmuControler.addBuilt(content,color);
+
 
 //        getBarrageResource(barrage_charterId);
 

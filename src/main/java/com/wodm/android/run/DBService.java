@@ -123,7 +123,7 @@ public class DBService extends Service {
         SQLiteDatabase database=dbUtils.getDatabase();
         Cursor c=null;
         try{
-            c = database.rawQuery("SELECT * FROM adsclickbean ", null);
+            c = database.rawQuery(" SELECT * FROM adsclickbean ", null);
         }catch (Exception e){
             c=null;
             e.printStackTrace();

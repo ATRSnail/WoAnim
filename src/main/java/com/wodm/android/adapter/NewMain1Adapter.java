@@ -22,6 +22,8 @@ import com.wodm.android.view.newview.MyGridView;
 
 import java.util.List;
 
+import static com.wodm.R.id.ll_new_main1_adapter;
+
 /**
  * Created by songchenyu on 16/11/30.
  */
@@ -61,14 +63,19 @@ public class NewMain1Adapter extends BaseAdapter {
             convertView= LayoutInflater.from(mContext).inflate(R.layout.new_main1_adapter,null,false);
             view1Holders.img_angle= (ImageView) convertView.findViewById(R.id.img_angle);
             view1Holders.ll_shadow= (LinearLayout) convertView.findViewById(R.id.ll_shadow);
-            view1Holders.ll_new_main1_adapter= (LinearLayout) convertView.findViewById(R.id.ll_new_main1_adapter);
+            view1Holders.ll_new_main1_adapter= (LinearLayout) convertView.findViewById(ll_new_main1_adapter);
             view1Holders.tv_name= (TextView) convertView.findViewById(R.id.tv_name);
             view1Holders.tv_look_num= (TextView) convertView.findViewById(R.id.tv_look_num);
             view1Holders.tv_update= (TextView) convertView.findViewById(R.id.tv_update);
-            int hight=LinearLayout.LayoutParams.MATCH_PARENT;
+//            int img_hight=LinearLayout.LayoutParams.MATCH_PARENT;
+//            int img_width=LinearLayout.LayoutParams.MATCH_PARENT;
+            int hight=ViewGroup.LayoutParams.MATCH_PARENT;
             if (type==3){
                  hight= (int) (((width-60-32)/type)*((float)280/220));
+//                img_hight= (int) (width/750*280);
+//                img_width= (int) (width/750*228);
             }else {
+                view1Holders.ll_new_main1_adapter.setPadding(0,48,0,0);
                  hight= (int) (((width-60-32)/type)*((float)220/340));
             }
             RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, hight);

@@ -74,7 +74,7 @@ public class SeacherActivity extends AppActivity {
     private NoScrollGridView hostoryList;
     private SeacherAdapter adapter;
     private List<HotWordBean> hotWordBeanList;
-
+    private List<ObjectBean> listData=new ArrayList<>();
     @TrackClick(value = R.id.search_type, location = TITLE, eventName = "选择类型")
     private void clickType(View view) {
         showLogout(view);
@@ -182,11 +182,13 @@ public class SeacherActivity extends AppActivity {
                             List<ObjectBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ObjectBean>>() {
                             }.getType());
                             pullToLoadView.setVisibility(View.VISIBLE);
+                            listData.addAll(list);
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
-                            if (list.size()==0){
+                            if (list.size()==0&&listData.size()==0){
                                 adapter.setListData(new ArrayList<ObjectBean>());
                                 adapter.notifyDataSetChanged();
                             }
+
                             if (adapter!=null&&adapter.getItemCount() <= 0){
                                 mLayout.setVisibility(View.VISIBLE);
                                 Toast.makeText(SeacherActivity.this, "未搜索到相关内容!", Toast.LENGTH_SHORT).show();

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -61,9 +60,9 @@ public class NewMainDetailsLVAdapter extends BaseAdapter {
             holder.tv_desp= (TextView) convertView.findViewById(R.id.tv_desp);
             holder.img_angle= (RoundAngleImageView) convertView.findViewById(R.id.img_angle);
             holder.btn_read_now= (Button) convertView.findViewById(R.id.btn_read_now);
-            int hight= (int) ((width-Tools.dp2px(mContext,80))*(0.26f));
+            int hight= (int) (width*((float)180/690));
             LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, hight);
-            params.setMargins(0,0,0,Tools.dp2px(mContext,12));
+            params.setMargins(30,0,30,30);
             holder.ll_every_free.setLayoutParams(params);
             LinearLayout.LayoutParams img_params=new LinearLayout.LayoutParams(hight*2, LinearLayout.LayoutParams.MATCH_PARENT);
             holder.img_angle.setLayoutParams(img_params);
