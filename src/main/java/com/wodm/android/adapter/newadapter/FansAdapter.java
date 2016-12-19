@@ -2,6 +2,7 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class FansAdapter extends BaseAdapter {
     List<FansBean.DataBean> list;
     Context mContext;
     MyHolder holder = null;
-    FollowAdapter.UpdateAttention updateAttention;
+   FollowAdapter.UpdateAttention updateAttention;
     public FansAdapter(AttentionActivity attentionActivity) {
         this.mContext = attentionActivity;
         notifyDataSetChanged();
@@ -91,8 +92,10 @@ public class FansAdapter extends BaseAdapter {
         FansBean.DataBean bean = list.get(position);
         final long followUserId = bean.getFansUserId();
         if (bean.getCount()==1){
+            Log.e("AA","***************动了hufen");
             holder.attention.setImageResource(R.mipmap.hufen);
         }else {
+            Log.e("AA","***************noattention");
             holder.attention.setImageResource(R.mipmap.noattention);
         }
 
@@ -179,4 +182,5 @@ public class FansAdapter extends BaseAdapter {
         ImageView attention;
 
     }
+
 }

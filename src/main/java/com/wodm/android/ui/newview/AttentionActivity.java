@@ -68,24 +68,25 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
 
     private void getData(final int type) {
 
-        final View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
-        final ListView noscroll = (ListView) view.findViewById(R.id.noscroll);
+
         String url =Constants.GET_USER_ATTENTION+Constants.CURRENT_USER.getData().getAccount().getId()+"&type="+type;
         httpGet(url,new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
+                 View view = LayoutInflater.from(AttentionActivity.this).inflate(R.layout.noscro, null);
+                 ListView noscroll = (ListView) view.findViewById(R.id.noscroll);
                 if(type==1){
                     FollowBean bean = new Gson().fromJson(obj.toString(),FollowBean.class);
                     followAdapter.setList(bean.getData());
                     noscroll.setAdapter(followAdapter);
                 } else {
                     FansBean bean = new Gson().fromJson(obj.toString(),FansBean.class);
-                    Log.e("AA","***************动了");
                     fansAdapter.setList(bean.getData());
                     noscroll.setAdapter(fansAdapter);
                 }
-
+                views.add(view);
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -99,7 +100,7 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
                 super.doAuthFailure(result, obj);
             }
         });
-        views.add(view);
+
 
     }
 
@@ -112,8 +113,9 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
 
     private void updateData() {
         views.clear();
-        getData(1);
-        getData(2);
+        for (int i = 0; i < 2; i++) {
+            getData((i+1));
+        }
     }
 
     @Override
@@ -121,6 +123,7 @@ public class AttentionActivity extends AppActivity implements AtyTopLayout.myTop
         super.onResume();
         updateData();
     }
+
 
     public class MyPagerAdapter extends PagerAdapter {
 

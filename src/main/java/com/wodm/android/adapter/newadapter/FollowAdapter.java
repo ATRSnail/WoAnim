@@ -98,7 +98,7 @@ public class FollowAdapter extends BaseAdapter {
         final long followUserId = bean.getFollowUserId();
         if (bean.getCount()==1){
             holder.attention.setImageResource(R.mipmap.hufen);
-        }else {
+        }else if (bean.getCount()==0){
             holder.attention.setImageResource(R.mipmap.attention);
         }
         holder.attention.setOnClickListener(new View.OnClickListener() {

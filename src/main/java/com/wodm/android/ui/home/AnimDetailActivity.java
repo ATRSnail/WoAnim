@@ -361,9 +361,10 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                             try {
                                 ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
                                 }.getType());
-                                if (beanList.size() == 0) {
-                                    beanList.add(new CommentBean());
-                                }
+                                // 为空时添加空的评论
+//                                if (beanList.size() == 0) {
+//                                    beanList.add(new CommentBean());
+//                                }
                                 commentBeanList = beanList;
                                 handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
                                 headView.removeAllViews();

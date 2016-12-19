@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -477,7 +476,6 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
      * 获取作品详情
      */
     private void getCarToon() {
-        Log.e("AA","******************");
         String url = Constants.URL_CARTTON_DETAIL + resourceId;
         if (Constants.CURRENT_USER != null) {
             url += ("?userId=" + Constants.CURRENT_USER.getData().getAccount().getId());
@@ -498,11 +496,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     }
 
     private void initHeaderViews() {
-        if (mHeaderView==null){
-            Log.e("AA","--------------空");
-        }else {
-            Log.e("AA","--------------非空");
-        }
+
 
         mCommentView = (EditText) mHeaderView.findViewById(R.id.comment_text);
         mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
@@ -521,7 +515,6 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     }
 
     private void setViews(ObjectBean bean) {
-        Log.e("AA","******************"+bean.getDesp());
         mCarDesp.setText(bean.getDesp() + "");
         mTitleDesp.setText(bean.getName());
         isCollectBox.setChecked(bean.getIsCollect() == 1);
