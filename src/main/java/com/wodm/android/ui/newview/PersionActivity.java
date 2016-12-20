@@ -82,6 +82,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     private MineCircleAdapter mineCircleAdapter;
     @ViewIn(R.id.tv_num)
     TextView tv_num;
+    @ViewIn(R.id.tv_lv)
+    TextView tv_lv;
     @ViewIn(R.id.empiral_degree)
     TextView empiral_degree;
     @ViewIn(R.id.grade_name_persion)
@@ -419,7 +421,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 //            grade_name_persion.setText(gradename);
             DegreeTools.getInstance(this).getDegree(this,accountBean.getGradeValue(),grade_name_persion);
         }
-
+        tv_lv.setText("LV.");
         String grad = String.valueOf(accountBean.getGradeValue());
         if (!TextUtils.isEmpty(grad)) {
             tv_num.setText(grad);

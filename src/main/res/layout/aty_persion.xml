@@ -334,6 +334,7 @@
                 android:id="@+id/tv_sign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/px_45"
                 android:layout_marginBottom="@dimen/px_45"
                 android:layout_marginLeft="@dimen/px_45"
                 android:layout_marginTop="@dimen/px_10"

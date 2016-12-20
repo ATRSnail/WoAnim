@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,12 +42,12 @@ import java.util.List;
 @Layout(R.layout.adapter_commnet)
 public class CommentAdapter extends HolderAdapter<CommentBean> {
     private Context context;
-
+    private boolean flag;
 
     public CommentAdapter(Context context, List<CommentBean> data) {
         super(context, data);
         this.context = context;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
@@ -65,7 +66,15 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
         new AsyncImageLoader(mContext, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
         holder.name.setText(bean.getSendNickName());
         holder.time.setText(bean.getTimes());
-        holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
+//  bug每一次点赞都需要刷新界面，就会闪一下
+// holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
+        if (bean.getIsLike()==1){
+            holder.zanBtn.setImageResource(R.mipmap.zan);
+            flag=true;
+        }else {
+            flag=false;
+            holder.zanBtn.setImageResource(R.mipmap.un_zan);
+        }
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +90,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 mContext.startActivity(intent);
             }
         });
-        holder.zanBtn.setOnClickListener(new ZanClick(bean));
+        holder.zanBtn.setOnClickListener(new ZanClick(bean,holder));
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -104,11 +113,12 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
     }
 
     class ZanClick implements View.OnClickListener {
-
         private CommentBean bean;
 
-        public ZanClick(CommentBean bean) {
+        private ViewHolder mHolder;
+        public ZanClick(CommentBean bean, ViewHolder holder) {
             this.bean = bean;
+            this.mHolder = holder;
         }
 
         @Override
@@ -118,7 +128,10 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 return;
             }
             /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*/
-            ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
+//            ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
+//                    , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(),bean.getSendCommentId(), 2)
+//                    , new HttpCallback() {
+            ((AppActivity) context).httpPost(flag ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
                     , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(),bean.getSendCommentId(), 2)
                     , new HttpCallback() {
                         @Override
@@ -127,8 +140,14 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                             try {
                                 if (obj.getString("code").equals("1000")) {
 //                                    Toast.makeText(context,obj.get("message").toString(),Toast.LENGTH_SHORT).show();
-                                    bean.setZan();
-                                    notifyDataSetChanged();
+//                                    bean.setZan();
+//                                    notifyDataSetChanged();
+                                    if (flag){
+                                        mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
+                                    }else {
+                                        mHolder.zanBtn.setImageResource(R.mipmap.zan);
+                                    }
+                                    flag =!flag;
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
