@@ -115,6 +115,7 @@
                 android:textSize="@dimen/text_size_26_px" />
 
             <TextView
+                android:id="@+id/tv_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_14"
@@ -157,6 +158,7 @@
                 android:textSize="@dimen/text_size_26_px" />
 
             <TextView
+                android:id="@+id/tv_follow_heart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_14"

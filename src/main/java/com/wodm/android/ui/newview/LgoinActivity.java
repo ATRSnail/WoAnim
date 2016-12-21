@@ -197,6 +197,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     UpdataUserInfo infos = new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {
+            startWebViewWXlogin();
             Constants.CURRENT_USER = bean;
             if (intentclass!=null){
                 startActivity(intentclass);
@@ -212,6 +213,10 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
 //            }
         }
     };
+    private void startWebViewWXlogin(){
+        Intent intnet = new Intent("com.intent.startWebViewWXlogin");
+        sendBroadcast(intnet);
+    }
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
         loginFlag = false;

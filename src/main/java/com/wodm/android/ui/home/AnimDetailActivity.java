@@ -697,11 +697,13 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     anim_send_comment.setEnabled(false);
                     if (!UpdataUserInfo.isLogIn(AnimDetailActivity.this,true,null)) {
 //           未登录
+                        anim_send_comment.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     String text = mInput.getText().toString();
                     if (text.equals("")) {
+                        anim_send_comment.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "评论内容不能为空!", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -724,6 +726,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                                 try {
                                     if (obj.getString("code").equals("1000")) {
                                         isLoadMore=true;
+                                        mEmojiBtn.setSelected(false);
                                         anim_send_comment.setEnabled(true);
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
@@ -734,6 +737,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                                         CommentData();
                                     }
                                 } catch (JSONException e) {
+                                    anim_send_comment.setEnabled(true);
                                     e.printStackTrace();
                                 }
                             }

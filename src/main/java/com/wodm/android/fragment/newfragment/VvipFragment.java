@@ -14,6 +14,7 @@ public class VvipFragment extends FragmentVipPager {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setPosition(0);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

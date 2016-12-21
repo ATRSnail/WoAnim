@@ -105,7 +105,8 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    ArrayList<BannerBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<ArrayList<BannerBean>>() {
+                    JSONObject jsonObject=new JSONObject(obj.getString("data"));
+                    ArrayList<BannerBean> list = new Gson().fromJson(jsonObject.getString("content"), new TypeToken<ArrayList<BannerBean>>() {
                     }.getType());
 
                     List<View> bannerViews = new ArrayList<View>();

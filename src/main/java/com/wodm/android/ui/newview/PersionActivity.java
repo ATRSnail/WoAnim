@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,10 +18,8 @@ import com.google.gson.Gson;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.FollowAdapter;
 import com.wodm.android.adapter.newadapter.MineCircleAdapter;
 import com.wodm.android.adapter.newadapter.PersionAdapter;
-import com.wodm.android.bean.MallGuaJianBean;
 import com.wodm.android.bean.MedalInfoBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.tools.DegreeTools;
@@ -31,8 +28,6 @@ import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.user.RecordActivity;
-import com.wodm.android.utils.DialogUtils;
-import com.wodm.android.utils.UpdataMedalInfo;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.MyGridView;
@@ -40,7 +35,6 @@ import com.wodm.android.view.newview.MyGridView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
-import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 import org.json.JSONException;
@@ -135,7 +129,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
+        userId =getIntent().getLongExtra("anotherId", CURRENT_USER.getData().getAccount().getId());
         if(getIntent().getBooleanExtra("anotherInfo",false)){
             httpGet(Constants.APP_GET_USERINFO + userId,new HttpCallback(){
                 @Override
@@ -276,9 +270,9 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     }
 
     private void getData() {
-        if (Constants.CURRENT_USER==null) {finish(); return;}
+        if (CURRENT_USER==null) {finish(); return;}
         if(getIntent().getBooleanExtra("anotherInfo",false)){
-            userId =getIntent().getLongExtra("anotherId",Constants.CURRENT_USER.getData().getAccount().getId());
+            userId =getIntent().getLongExtra("anotherId", CURRENT_USER.getData().getAccount().getId());
             ll_attention.setVisibility(View.GONE);
             btn_user_info.setVisibility(View.GONE);
             another_persion.setVisibility(View.VISIBLE);
@@ -286,7 +280,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             edit_persion.setImageResource(R.mipmap.jubao);
             medal_another.setText("他的勋章");
             save_another.setText("他的收藏");
-           httpGet(Constants.APP_GET_USERINFO + userId+"&id="+Constants.CURRENT_USER.getData().getAccount().getId(),new HttpCallback(){
+           httpGet(Constants.APP_GET_USERINFO + userId+"&id="+ CURRENT_USER.getData().getAccount().getId(),new HttpCallback(){
                @Override
                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                    super.doAuthSuccess(result, obj);
@@ -296,7 +290,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                }
            });
         }else {
-            userId =Constants.CURRENT_USER.getData().getAccount().getId();
+            userId = CURRENT_USER.getData().getAccount().getId();
             info.getUserInfo(PersionActivity.this,userId);
         }
         upMedal(userId);
@@ -305,7 +299,8 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
     UpdataUserInfo info =new UpdataUserInfo() {
         @Override
         public void getUserInfo(UserInfoBean bean) {
-            dataBean=Constants.CURRENT_USER.getData();
+            dataBean= CURRENT_USER.getData();
+            Constants.CURRENT_USER=bean;
             setUserInfo();
         }
     };
@@ -428,6 +423,9 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
         }
         empiral_degree.setText(dataBean.getAccount().getEmpiricalValue() + "/" + dataBean.getNextGradeEmpirical());
 //        initMyMedal(accountBean);
+        if (persionAdapter!=null){
+            persionAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -490,7 +488,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     private void saveOrDeleteUserFollow(int behavior, long followUserId) {
         try {
-            if (Constants.CURRENT_USER == null) return;
+            if (CURRENT_USER == null) return;
             AppActivity appActivity = new AppActivity();
             String url;
 
@@ -501,7 +499,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
             }
 
             JSONObject post = new JSONObject();
-            long id = Constants.CURRENT_USER.getData().getAccount().getId();
+            long id = CURRENT_USER.getData().getAccount().getId();
             post.put("userId", id);
             post.put("followUserId", followUserId);
             appActivity.httpPost(url, post, new HttpCallback() {

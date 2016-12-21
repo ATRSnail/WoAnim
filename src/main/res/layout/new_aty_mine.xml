@@ -71,7 +71,7 @@
 
                 <LinearLayout
                     android:id="@+id/ll_top"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="@dimen/px_15"
@@ -106,7 +106,6 @@
                         android:layout_marginLeft="@dimen/px_15"
                         android:background="@drawable/btn_mine"
                         android:gravity="center"
-                        android:padding="@dimen/px_2"
                         android:textColor="@color/color_ffffff"
                         android:textSize="@dimen/text_size_22_px" />
                 </LinearLayout>

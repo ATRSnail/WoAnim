@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -600,11 +599,13 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                     eventName = "发布评论操作";
                     if (!UpdataUserInfo.isLogIn(CarDetailActivity.this,true,null)) {
 //            未登录
+                        anim_send_comment.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     String text=mInput.getText().toString();
                     if (text.equals("")) {
+                        anim_send_comment.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "评论内容不能为空!", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -615,6 +616,8 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                         obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
 //                      obj.put("sendId", 1);
                         obj.put("content", mInput.getText().toString());
+                        obj.put("taskType", 1);
+                        obj.put("taskValue", 3);
                         /**新加的---表示的是评论的模块 1:表示动漫画的评论 2:表示的是新闻资讯的评论3:表示的是帖子的评论*/
                         obj.put("type", 1);
 //                        httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
@@ -625,11 +628,13 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                 try {
                                     if (obj.getString("code").equals("1000")) {
                                         isLoadMore=true;
+                                        mEmojiBtn.setSelected(false);
                                         anim_send_comment.setEnabled(true);
                                         Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                                         ).show();
+                                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                                        mEmojiView.setVisibility(View.GONE);
                                         mInput.setText("");
-                                        ll_qq_biaoqing.setVisibility(View.GONE);
                                         pullToLoadView.initLoad();
                                         CommentData();
                                     }

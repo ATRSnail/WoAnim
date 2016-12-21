@@ -39,11 +39,12 @@ public class NewMain2Adapter extends BaseAdapter {
         width = Tools.getScreenWidth((Activity) mContext);
         hight = (int) ((width - Tools.dp2px(mContext, 60)) * ((float) 220 / 690));
         gridWidth = (int) (width * ((float) 2 / 5));
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return resourcesBean.size()>0?1:0;
     }
 
     @Override

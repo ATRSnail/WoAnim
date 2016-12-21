@@ -158,7 +158,7 @@ public class BulletSetDialog extends DialogFragment {
         }else {
             view.setVisibility(View.VISIBLE);
             params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 3);
+            Preferences.getInstance(getActivity()).setPreference("bullet_sudu", 5);
         }
         img_white_select.setLayoutParams(params);
     }

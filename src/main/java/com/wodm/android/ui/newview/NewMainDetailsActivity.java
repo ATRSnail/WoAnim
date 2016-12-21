@@ -23,6 +23,8 @@ import org.eteclab.base.http.HttpUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -68,22 +70,20 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
                 try {
                     resourcesBeen = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean.ResourcesBean>>() {
                     }.getType());
-//                    resourcesBeen=new ArrayList<>();
-//                    for (NewMainBean bean:beanList){
-//                        resourcesBeen.addAll(bean.getResources());
-//                    }
+                    List<NewMainBean.ResourcesBean> beanList=srotList(resourcesBeen);
+//
                     if (style==1){
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,2));
                     }else if (style==2){
-                        gv_maindetails.setAdapter(new NewMain3Adapter(mContext,resourcesBeen));
+                        gv_maindetails.setAdapter(new NewMain3Adapter(mContext,beanList));
                     }else if (style==3){
-                        gv_maindetails.setAdapter(new NewMainDetailsLVAdapter(mContext,resourcesBeen));
+                        gv_maindetails.setAdapter(new NewMainDetailsLVAdapter(mContext,beanList));
                     } else if (style==4){
                         gv_maindetails.setNumColumns(2);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,2));
                     } else if (style==5){
                         gv_maindetails.setNumColumns(3);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,3));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,3));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -94,6 +94,26 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
 
 
 
+    }
+    private List<NewMainBean.ResourcesBean> srotList(List<NewMainBean.ResourcesBean> resourcesBean){
+        List<NewMainBean.ResourcesBean> myList=new ArrayList<>();
+        if (resourcesBean==null||resourcesBean.size()==0){
+            return myList;
+        }
+        int[] inteds=new int[resourcesBean.size()];
+        for (int i = 0; i <resourcesBean.size() ; i++) {
+            NewMainBean.ResourcesBean beans=resourcesBean.get(i);
+            inteds[i]=beans.getSort();
+        }
+        Arrays.sort(inteds);//升序排序
+        for (int i = inteds.length-1; i >=0 ; i--) {
+            for (NewMainBean.ResourcesBean bean:resourcesBean){
+                if (bean.getSort()==inteds[i]){
+                    myList.add(bean);
+                }
+            }
+        }
+        return myList;
     }
     private void initView(){
         set_topbar.setOnTopbarClickListenter(this);

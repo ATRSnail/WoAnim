@@ -58,7 +58,6 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     protected SlideBackUtil mSlideBackUtil;
     private int ScreenWidth, ScreenHight;
     private DialogFragment bulletDialog;
-
     public AppActivity() {
         mSlideBackUtil = new SlideBackUtil(false, false, false, false);
     }
@@ -80,8 +79,6 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         ScreenWidth = wm.getDefaultDisplay().getWidth();
         ScreenHight = wm.getDefaultDisplay().getHeight();
         setTitle("");
-
-
     }
 
 
@@ -106,6 +103,19 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     @Override
     protected void onResume() {
         super.onResume();
+
+//        final Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            Log.e("SCY"," - - - - 1 1 1 1 1 ");
+//                        }
+//                    });
+//            }
+//        }, 0, 1000);
         Tracker.getInstance(this).onResume();
         JPushInterface.onResume(this);
         MobclickAgent.onResume(this);
@@ -336,13 +346,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 //        Toast.makeText(this, " onRestart ", Toast.LENGTH_SHORT).show();
 //    }
 //
-//    @Override
-//    public void onTrimMemory(int level) {
-//        super.onTrimMemory(level);
-//        switch (level) {
-//            case TRIM_MEMORY_UI_HIDDEN:
-//                Toast.makeText(this, "  ", Toast.LENGTH_SHORT).show();
-//                break;
-//        }
-//    }
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        switch (level) {
+            case TRIM_MEMORY_UI_HIDDEN:
+                break;
+        }
+    }
 }

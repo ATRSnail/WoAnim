@@ -47,8 +47,8 @@ import java.util.List;
 
 @Layout(R.layout.adapter_home_items)
 public class HomeAdapter extends HolderAdapter<NewMainBean> {
-    private static int type=4;
-    private int gettype=5;
+    private static int type=5;
+    private int gettype=4;
     private List<AdsBean> adsList=new ArrayList<>();
     public HomeAdapter(Context context, List<NewMainBean> data) {
         super(context, data);
@@ -91,11 +91,14 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
 
     @Override
     protected void bindView(RecyclerView.ViewHolder viewHolder, final int index) {
+        ViewHolders holders = (ViewHolders) viewHolder;
         if (gettype!=type){
             gettype=type;
+            holders.img_angle_ads.setVisibility(View.GONE);
+            adsList.clear();
+            holders.ll_total.removeAllViews();
             getAdvitisement();
         }
-        ViewHolders holders = (ViewHolders) viewHolder;
         NewMainBean newMainBean=mData.get(index);
         final String name=newMainBean.getName();
         final int id=newMainBean.getId();
@@ -155,7 +158,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
         final int style=newMainBean.getStyle();
         List<NewMainBean.ResourcesBean> resourcesBean=srotList(newMainBean.getResources());
 
-        if (resourcesBean.size()>0){
+        if (resourcesBean.size()>=0){
             /*
 	          1:表示资源左右滚动的板式
 	          2:表示资源上下滚动的板式
@@ -165,7 +168,9 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
 	          6:表示2个资源的板式
              */
             if (style==1){
-                holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
+                if (resourcesBean.size()>1){
+                    holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
+                }
             }else if (style==2){
                 holders.grid_new.setAdapter(new NewMain3Adapter(mContext,resourcesBean));
             }else if (style==3){
@@ -198,7 +203,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
             inteds[i]=beans.getSort();
         }
         Arrays.sort(inteds);//升序排序
-        for (int i = 0; i <inteds.length ; i++) {
+        for (int i = inteds.length-1; i >=0 ; i--) {
             for (NewMainBean.ResourcesBean bean:resourcesBean){
                 if (bean.getSort()==inteds[i]){
                     myList.add(bean);

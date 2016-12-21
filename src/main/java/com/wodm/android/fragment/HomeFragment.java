@@ -16,7 +16,6 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
-import com.wodm.android.ui.newview.AnimActivity;
 import com.wodm.android.utils.PermissionInfoTools;
 
 import org.eteclab.base.annotation.InflateView;
@@ -70,7 +69,7 @@ public class HomeFragment extends TrackFragment {
                     @Override
                     public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                         super.doAuthSuccess(result, obj);
-                        HomeAdapter.getType(IndexTabId == R.id.enetic_cartoon ? 4 : 5);
+                        HomeAdapter.getType(IndexTabId == R.id.enetic_cartoon ? 5 : 4);
                         if (obj != null) {
                             try {
                                 List<NewMainBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean>>() {
@@ -94,7 +93,8 @@ public class HomeFragment extends TrackFragment {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    ArrayList<BannerBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<ArrayList<BannerBean>>() {
+                    JSONObject jsonObject=new JSONObject(obj.getString("data"));
+                    ArrayList<BannerBean> list = new Gson().fromJson(jsonObject.getString("content"), new TypeToken<ArrayList<BannerBean>>() {
                     }.getType());
 
                     List<View> bannerViews = new ArrayList<View>();

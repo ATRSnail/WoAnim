@@ -6,58 +6,85 @@ import java.io.Serializable;
  * android
  */
 public class BannerBean implements Serializable {
-    private String id;
-    private String resourceId;
-    private String type;
-    private String image;
-    private String adsUrl;
-    private String content;
+            private int id;
+            private String title;
+            private int resourceId;
+            private int sort;
+            private String type;
+            private String image;
+            private String adsUrl;
+            private String content;
+            private int adType;
 
-    public String getId() {
-        return id;
-    }
+            public int getId() {
+                return id;
+            }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-    public String getResourceId() {
-        return resourceId;
-    }
+            public String getTitle() {
+                return title;
+            }
 
-    public void setResourceId(String resourceId) {
-        this.resourceId = resourceId;
-    }
+            public void setTitle(String title) {
+                this.title = title;
+            }
 
-    public String getType() {
-        return type;
-    }
+            public int getResourceId() {
+                return resourceId;
+            }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+            public void setResourceId(int resourceId) {
+                this.resourceId = resourceId;
+            }
 
-    public String getImage() {
-        return image;
-    }
+            public int getSort() {
+                return sort;
+            }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+            public void setSort(int sort) {
+                this.sort = sort;
+            }
 
-    public String getAdsUrl() {
-        return adsUrl;
-    }
+            public String getType() {
+                return type;
+            }
 
-    public void setAdsUrl(String adsUrl) {
-        this.adsUrl = adsUrl;
-    }
+            public void setType(String type) {
+                this.type = type;
+            }
 
-    public String getContent() {
-        return content;
-    }
+            public String getImage() {
+                return image;
+            }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+            public void setImage(String image) {
+                this.image = image;
+            }
+
+            public String getAdsUrl() {
+                return adsUrl;
+            }
+
+            public void setAdsUrl(String adsUrl) {
+                this.adsUrl = adsUrl;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public int getAdType() {
+                return adType;
+            }
+
+            public void setAdType(int adType) {
+                this.adType = adType;
+            }
 }

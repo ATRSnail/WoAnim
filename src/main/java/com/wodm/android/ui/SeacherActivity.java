@@ -184,7 +184,7 @@ public class SeacherActivity extends AppActivity {
                             pullToLoadView.setVisibility(View.VISIBLE);
                             listData.addAll(list);
                             HolderAdapter adapter = handleData(page, list, SeacherResultAdapter.class, b);
-                            if (list.size()==0&&listData.size()==0){
+                            if (list.size()==0&&page==1){
                                 adapter.setListData(new ArrayList<ObjectBean>());
                                 adapter.notifyDataSetChanged();
                             }
