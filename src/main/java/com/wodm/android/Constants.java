@@ -33,9 +33,9 @@ public class Constants {
 
     //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
-//     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
+     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
@@ -90,7 +90,7 @@ public class Constants {
     public static final String URL_HOME_TYPE_LIST = HOST + "column/findResourceByColumnId";
 
     //首页轮播图
-    public static final String URL_HOME_TOP_LIST = HOST + "resource/topshow?location=1";
+    public static final String URL_HOME_TOP_LIST = HOST + "resource/topshow1?location=1";
 
     //广场新闻
     public static final String URL_GUANGCHANG_LIST = HOST + "news/findNewsByCategoryId?categoryId=";
