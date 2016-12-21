@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -248,8 +249,10 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                                 }.getType());
                                 commentBeanList=beanList;
                                 handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
+                                headView.setVisibility(View.GONE);
                                 headView.removeAllViews();
-                                if (beanList!=null&&beanList.size()==0){
+                                if (pager==1&&beanList!=null&&beanList.size()==0){
+                                    headView.setVisibility(View.VISIBLE);
                                     //若无评论，添加上方简介等信息
                                     headView.addView(mHeaderView);
                                 }
@@ -668,9 +671,9 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                 try {
                     List<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
                     }.getType());
-                    if (beanList.size() == 0) {
-                        beanList.add(new CommentBean());
-                    }
+//                    if (beanList.size() == 0) {
+//                        beanList.add(new CommentBean());
+//                    }
                     if (beanList.size()%10==0){
                         isLoadMore=false;
                     }
