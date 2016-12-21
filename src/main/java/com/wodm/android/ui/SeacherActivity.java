@@ -319,9 +319,9 @@ public class SeacherActivity extends AppActivity {
 
     @TrackClick(R.id.start_sou)
     private void submint(View v) {
-        if (!TextUtils.isEmpty(mDataText.getText().toString())) {
+//        if (!TextUtils.isEmpty(mDataText.getText().toString())) {
             startSeacher(mDataText.getText().toString());
-        }
+//        }
     }
 
     private void saveSeacherHos(String data) {
