@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"/>
     <org.eteclab.ui.widget.pulltorefresh.PullToLoadView
         android:id="@+id/pull_list"
+        android:background="@color/color_ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_layout" />
