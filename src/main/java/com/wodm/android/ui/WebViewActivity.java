@@ -65,12 +65,12 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
             }
             @Override
             public void onPageFinished(WebView view, String url) {
-                String isLogin="";
+                String isLogin="0";
                 if (Constants.CURRENT_USER!=null){
                     isLogin=Constants.CURRENT_USER.getData().getAccount().getId()+"";
+                    sendInfoToJs(isLogin,5);
                 }
                 webView.loadUrl("javascript:webViewWeatherLogon('" + isLogin + "')");
-                sendInfoToJs(isLogin,5);
             }
         });
         int mDensity = metrics.densityDpi;
@@ -81,9 +81,9 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }else if (mDensity == 240) {
             webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         }
-//        webView.loadUrl("file:///android_asset/index.html");
+//        webView.loadUrl("file:///android_asset/test.html");
 //        handler.sendEmptyMessageAtTime(3,200);
-        webView.loadUrl(adsUrl);
+        webView.loadUrl("http://202.106.63.98:8990/wodm-api/statics/activity/2016_12_19_cj.html");
     }
 
     @Override
@@ -97,6 +97,11 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         return super.onKeyDown(keyCode,event);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        webViewJsInterface.destoryReceiver();
+    }
     //在java中调用js代码
 
     /**

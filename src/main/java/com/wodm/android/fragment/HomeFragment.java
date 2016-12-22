@@ -2,6 +2,8 @@ package com.wodm.android.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -44,10 +46,13 @@ public class HomeFragment extends TrackFragment {
     private PullToLoadView pullToLoadView;
     private BannerView mBannerView;
     public int IndexTabId = R.id.enetic_cartoon;
-
-
+    private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void setDatas(Bundle bundle) {
+        //解决滑动问题
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        pullToLoadView.getRecyclerView().setLayoutManager(mLayoutManager);
+//        pullToLoadView.getRecyclerView().setLayoutManager(new LinearLayoutManager(getActivity()));
         PermissionInfoTools.getWritePermission(getActivity(), new PermissionInfoTools.SetPermissionCallBack() {
             @Override
             public void IPsermission(boolean isPermsion) {

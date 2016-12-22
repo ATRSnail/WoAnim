@@ -161,7 +161,6 @@ public class DanMuTools {
 //            getBullets();
         }
     }
-
     /**
      * 添加文本弹幕
      */

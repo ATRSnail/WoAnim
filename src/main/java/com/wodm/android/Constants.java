@@ -33,9 +33,9 @@ public class Constants {
 
     //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
-//     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
+     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
@@ -162,6 +162,7 @@ public class Constants {
     public static final String CommentList=HOST + "comment/list?resourceId=";//查询 用户评论的列表
     public static final String CURRENTComment=HOST + "comment/currentCommentList?userId=";//临时添加的获取用户的原始评论内容
     public static final String SAVEADVERTISEMENTCLICK=HOST + "behavior/saveAdvertisementSerialClick";//广告统计接口
+    public static final String BEHAVIORSYSTEMTIME=HOST + "behavior/getSystemTime";//获取系统时间
 
 
 

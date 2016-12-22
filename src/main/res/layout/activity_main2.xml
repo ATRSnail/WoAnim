@@ -21,6 +21,99 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+       <RelativeLayout
+           android:visibility="gone"
+           android:focusable="false"
+           android:id="@+id/ll_get_goods"
+           android:layout_marginBottom="@dimen/px_20"
+           android:layout_marginRight="@dimen/px_5"
+           android:layout_alignParentRight="true"
+           android:layout_above="@+id/enter_floating"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/img_rose"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               android:background="@mipmap/img_rose"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+           <RelativeLayout
+               android:layout_alignBottom="@+id/img_rose"
+               android:layout_alignRight="@+id/img_rose"
+               android:layout_alignLeft="@+id/img_rose"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <RelativeLayout
+                   android:visibility="gone"
+                   android:id="@+id/rl_get_goods"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <ImageView
+                       android:background="@mipmap/img_action_get"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
+               </RelativeLayout>
+               <RelativeLayout
+                   android:id="@+id/ll_gettime"
+                   android:layout_centerHorizontal="true"
+                   android:layout_alignParentBottom="true"
+                   android:background="@mipmap/img_huodong_bg"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+                   <LinearLayout
+                       android:layout_centerInParent="true"
+                       android:gravity="center"
+                       android:weightSum="5"
+                       android:orientation="horizontal"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <ImageView
+                           android:layout_gravity="center"
+                           android:layout_weight="1"
+                           android:background="@mipmap/xixuegui_0"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <ImageView
+                           android:id="@+id/img_action_1"
+                           android:layout_marginLeft="@dimen/px_10"
+                           android:layout_gravity="center"
+                           android:layout_weight="1"
+                           android:background="@mipmap/xixuegui_9"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <ImageView
+                           android:layout_marginLeft="@dimen/px_10"
+                           android:layout_gravity="center"
+                           android:layout_weight="1"
+                           android:background="@mipmap/xixuegui_maohao"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <ImageView
+                           android:id="@+id/img_action_2"
+                           android:layout_marginLeft="@dimen/px_10"
+                           android:layout_gravity="center"
+                           android:layout_weight="1"
+                           android:background="@mipmap/xixuegui_5"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+                       <ImageView
+                           android:id="@+id/img_action_3"
+                           android:layout_marginLeft="@dimen/px_10"
+                           android:layout_gravity="center"
+                           android:layout_weight="1"
+                           android:background="@mipmap/xixuegui_0"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content" />
+
+                   </LinearLayout>
+               </RelativeLayout>
+           </RelativeLayout>
+
+
+       </RelativeLayout>
         <ImageButton
             android:id="@+id/enter_floating"
             android:layout_width="wrap_content"

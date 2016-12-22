@@ -23,8 +23,11 @@ public class DialogUtils extends Dialog {
     public DialogUtils(Context context, int themeResId) {
         super(context, themeResId);
     }
-
-
+    public  void setDialogDismiss(){
+        if (DialogUtils.this!=null&&DialogUtils.this.isShowing()){
+                    dismiss();
+        }
+    }
     public static class Builder {
         private Context context;
         private String title;

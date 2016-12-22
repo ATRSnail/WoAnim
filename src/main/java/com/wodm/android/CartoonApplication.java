@@ -13,8 +13,6 @@ import org.eteclab.ShareSdks;
 import org.eteclab.track.TrackApplication;
 import org.eteclab.track.utils.EneticConstance;
 
-import cn.jpush.android.api.JPushInterface;
-
 public class CartoonApplication extends TrackApplication {
     private static final Class<?> TAG = CartoonApplication.class;
     /**
@@ -47,9 +45,9 @@ public class CartoonApplication extends TrackApplication {
         mContext = getApplicationContext();
         Fresco.initialize(mContext);
         ShareSdks.initShare(getApplicationContext());
-        // 初始化异常处理
-        JPushInterface.setDebugMode(false);
-        JPushInterface.init(this);
+        // 先屏蔽主要是没有集成激光sdk
+//        JPushInterface.setDebugMode(false);
+//        JPushInterface.init(this);
         TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         String mac = EneticConstance.getMacAddress();
         if (hasVideoPermission()){

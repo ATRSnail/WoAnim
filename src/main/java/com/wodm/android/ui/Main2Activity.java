@@ -3,17 +3,22 @@ package com.wodm.android.ui;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.CountDownTimer;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -55,6 +60,12 @@ public class Main2Activity extends AppActivity {
     private TextView mTab1;
     @ViewIn(R.id.enetic_animation)
     private TextView mTab2;
+    @ViewIn(R.id.img_action_1)
+    private ImageView img_action_1;
+    @ViewIn(R.id.img_action_2)
+    private ImageView img_action_2;
+    @ViewIn(R.id.img_action_3)
+    private ImageView img_action_3;
 
 
     @TrackClick(R.id.enetic_animation)
@@ -94,6 +105,12 @@ public class Main2Activity extends AppActivity {
     private View mUs;
     @ViewIn(R.id.enter_floating)
     private ImageButton mfloatView;
+    @ViewIn(R.id.rl_get_goods)
+    private RelativeLayout rl_get_goods;
+    @ViewIn(R.id.ll_gettime)
+    private RelativeLayout ll_gettime;
+    @ViewIn(R.id.ll_get_goods)
+    private RelativeLayout ll_get_goods;
 
     private FragmentManager mFragmentManager;
 
@@ -101,6 +118,10 @@ public class Main2Activity extends AppActivity {
     private long mExitTime;
     private boolean flag=true;//初始化漫画、动画标题。（只初始化一次）的标志
     private boolean wx=false;//微信登录的标识
+    @ViewIn(R.id.img_rose)
+    private ImageView img_rose;
+
+
     static {
         mSurfaceParams.put(R.id.tab_tuijian, new SurfaceParam(RecomFragment.class, R.string.enetic_recom));
         mSurfaceParams.put(R.id.tab_home, new SurfaceParam(HomeFragment.class, R.string.enetic_home));
@@ -111,6 +132,10 @@ public class Main2Activity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //获取系统时间
+        getSystemTime();
+        //圣诞活动倒计时
+//        setTimeTaskReceiver();
         LgoinActivity lgoinActivity = new LgoinActivity();
         wx=lgoinActivity.loginFlag;
         //增加缓存表情字段
@@ -146,7 +171,101 @@ public class Main2Activity extends AppActivity {
 
 
     }
+    //控制秒
+    int timeMiao_1=10;
+    //控制十分秒
+    int timeMiao_2=5;
+    //控制分钟
+    int timeMiao_3=1;
+    private CountDownTimer cdt;
+    public void setTimeTaskReceiver(){
+        //定时十分钟
+        cdt = new CountDownTimer(10*60*1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeMiao_1=timeMiao_1-1;
+                setActionBack(img_action_3,timeMiao_1);
+                setActionBack(img_action_2,timeMiao_2);
+                if (timeMiao_1==0){
+                    timeMiao_1=10;
+                    setActionBack(img_action_3,0);
+                    timeMiao_2=timeMiao_2-1;
+                    if (timeMiao_2<0){
+                        timeMiao_2=5;
+                        setActionBack(img_action_2,0);
+                        timeMiao_3=timeMiao_3-1;
+                        setActionBack(img_action_1,timeMiao_3);
+                        if (timeMiao_3==0){
+                            ll_get_goods.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                }
+                            });
+                            cdt.cancel();
+                            rl_get_goods.setVisibility(View.VISIBLE);
+                            ll_gettime.setVisibility(View.GONE);
+                            Glide.with(Main2Activity.this).load(R.mipmap.img_action_gif).into(new GlideDrawableImageViewTarget(img_rose, 1000));
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFinish() {
+                cdt.cancel();
+            }
+        };
+
+        cdt.start();
+//        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        // 注册广播
+//        IntentFilter filter1 = new IntentFilter();
+//        filter1.addAction("com.action.alarm");
+//        registerReceiver(alarmReceiver, filter1);
+//
+//        Intent intent = new Intent();
+//        intent.setAction("com.action.alarm");
+//        PendingIntent pi = PendingIntent.getBroadcast(this, 0, intent, 0);
+//
+//        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+//
+//                1000*1, pi);// 马上开始，每分钟触发一次
+    }
+    private void setActionBack(ImageView img,int i){
+        switch (i){
+            case 0:
+                img.setBackgroundResource(R.mipmap.xixuegui_0);
+                break;
+            case 1:
+                img.setBackgroundResource(R.mipmap.xixuegui_1);
+                break;
+            case 2:
+                img.setBackgroundResource(R.mipmap.xixuegui_2);
+                break;
+            case 3:
+                img.setBackgroundResource(R.mipmap.xixuegui_3);
+                break;
+            case 4:
+                img.setBackgroundResource(R.mipmap.xixuegui_4);
+                break;
+            case 5:
+                img.setBackgroundResource(R.mipmap.xixuegui_5);
+                break;
+            case 6:
+                img.setBackgroundResource(R.mipmap.xixuegui_6);
+                break;
+            case 7:
+                img.setBackgroundResource(R.mipmap.xixuegui_7);
+                break;
+            case 8:
+                img.setBackgroundResource(R.mipmap.xixuegui_8);
+                break;
+            case 9:
+                img.setBackgroundResource(R.mipmap.xixuegui_9);
+                break;
+
+        }
+    }
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -185,6 +304,13 @@ public class Main2Activity extends AppActivity {
         tv.setText(strRes);
     }
 
+    BroadcastReceiver alarmReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+        }
+    };
     private String setTabSelection(int index) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         int size = mSurfaceParams.size();
@@ -230,6 +356,9 @@ public class Main2Activity extends AppActivity {
             mExitTime = System.currentTimeMillis();
         } else {
             super.onBackPressed();
+            if (cdt!=null){
+                cdt.cancel();
+            }
             JSONObject jsonObject=new JSONObject();
             int id=Preferences.getInstance(this).getPreference("userBehavier", 0);
             long initStartTime=Preferences.getInstance(this).getPreference("initStartTime", System.currentTimeMillis());
@@ -295,6 +424,19 @@ public class Main2Activity extends AppActivity {
         Intent serviceIntent=new Intent(this, DBService.class);
         serviceIntent.putExtra("type","updataall");
         startService(serviceIntent);
+    }
+    private void getSystemTime(){
+        httpGet(Constants.BEHAVIORSYSTEMTIME, new HttpCallback() {
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
 

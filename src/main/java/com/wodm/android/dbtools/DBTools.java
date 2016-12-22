@@ -42,19 +42,20 @@ public class DBTools {
         userBehavierInfo.setBehavier_id(id);
         userBehavierInfo.setStart_time(System.currentTimeMillis());
         dbContraller.insert(userBehavierInfo);
-        startAllService();
-    }
-    private void startAllService(){
-        startAdService();
         startService();
     }
+//    private void startAllService(){
+//        startAdService();
+//        startService();
+//    }
     public void insertAdsDB(long rescourId){
         AdsClickBean adsClickBean=new AdsClickBean();
         adsClickBean.setAdNum(rescourId);
         adsClickBean.setClickCount(1);
         adsClickBean.setTimes(TimeTools.getNianTime());
         dbContraller.insertAds(adsClickBean);
-        startAllService();
+        startAdService();
+//        startAllService();
     }
     private void startAdService(){
         Intent serviceIntent=new Intent(mContext, DBService.class);

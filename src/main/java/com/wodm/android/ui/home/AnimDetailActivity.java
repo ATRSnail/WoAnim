@@ -992,7 +992,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 try {
                     ArrayList<BarrageBean> beanArrayList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
                     }.getType());
-                    initDanMu(beanArrayList);
+//                    initDanMu(beanArrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -102,7 +102,7 @@ public class ReadCarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             screenHigh= Tools.getScreenHeight((Activity) mContext);
         }
 //        if (org == Configuration.ORIENTATION_PORTRAIT) {
-            params.height =(int)(DeviceUtils.getScreenWH((Activity) mContext)[1]);
+            params.height =(DeviceUtils.getScreenWH((Activity) mContext)[1]);
             params.width = DeviceUtils.getScreenWH((Activity) mContext)[0];
 //        } else {
 //            params.height = DeviceUtils.getScreenWH((Activity) mContext)[1]*3;

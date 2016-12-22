@@ -1,8 +1,12 @@
 package com.wodm.android.tools;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
@@ -11,8 +15,10 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.umeng.analytics.MobclickAgent;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.login.Wx;
 import com.wodm.android.ui.AppActivity;
 
 import org.eteclab.OnkeyShare;
@@ -37,6 +43,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
     private String title="";
     private String description="";
     private int userId;
+    private adapterReceiver adapterReceiver;
 //    @JavascriptInterface
 //    public void webViewWeatherLogon(){
 //        if (Constants.CURRENT_USER==null){
@@ -123,6 +130,11 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                 break;
         }
     }
+    public void destoryReceiver(){
+        if (adapterReceiver!=null){
+            mContext.unregisterReceiver(adapterReceiver);
+        }
+    }
 
     public interface webViewCallBackListener{
         public void setJsInfo(Object info,int type);
@@ -147,7 +159,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
                         bean.setData(dataBean);
                         int id=obj.getInt("userId");
                         userId=id;
-                        listener.setJsInfo(userId,1);
+//                        listener.setJsInfo(userId,1);
                         listener.setJsInfo(userId,5);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -168,6 +180,33 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    @JavascriptInterface
+    public void webViewLoginWX(){
+        Wx.init(mContext).sendAuthRequest();
+        if (!TextUtils.isEmpty(getUserId())) {
+            MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
+        }
+        adapterReceiver=new adapterReceiver();
+        IntentFilter intentFilter = new IntentFilter("com.adapter.intent.SHARE_NOTIFICATION");
+        mContext.registerReceiver(adapterReceiver, intentFilter);
+    }
+    private String LOGIN_ACTION="com.intent.startWebViewWXlogin";
+    public class adapterReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(LOGIN_ACTION)){
+                String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+//                listener.setJsInfo(userId,1);
+                listener.setJsInfo(userId,5);
+            }
+        }
+    }
+    private String getUserId() {
+        if (Constants.CURRENT_USER == null)
+            return null;
+        String userID = String.valueOf(Constants.CURRENT_USER.getData().getAccount().getId());
+        return userID;
     }
     @JavascriptInterface
     public void webViewShareWX(String webpageUrl,String title,String description,String thumUrl){

@@ -82,6 +82,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     }
 
 
+
     public void setCustomTitle(String title) {
         mToolbarTitle.setText(title);
     }
@@ -200,8 +201,8 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         bulletDialog.show(ft, "dialog");
 
     }
-    
-    
+
+
 
     @Override
     public void addBullet(final String content,final String color,final int position,final TextView send) {
