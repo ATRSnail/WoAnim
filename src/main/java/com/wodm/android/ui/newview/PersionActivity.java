@@ -488,7 +488,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     private void saveOrDeleteUserFollow(int behavior, long followUserId) {
         try {
-            if (CURRENT_USER == null) return;
+            if (Constants.CURRENT_USER == null||followUserId==0) return;
             AppActivity appActivity = new AppActivity();
             String url;
 
@@ -507,11 +507,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     try {
-                        String tr =obj.get("message").toString();
-                        if ("删除成功".equals(tr)){
-                            tr="取消关注";
+                        if (obj.getString("code").equals("1000")) {
+                            String tr =obj.get("message").toString();
+                            if ("删除成功".equals(tr)){
+                                tr="取消关注";
+                            }
+                            Toast.makeText(PersionActivity.this,tr,Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(PersionActivity.this,tr,Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -520,12 +522,13 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
                 @Override
                 public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthFailure(result, obj);
-
+                    Toast.makeText(PersionActivity.this,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void doRequestFailure(Exception exception, String msg) {
                     super.doRequestFailure(exception, msg);
+                    Toast.makeText(PersionActivity.this,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
                 }
             });
 
