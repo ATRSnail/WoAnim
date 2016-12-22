@@ -125,7 +125,8 @@ public class CartoonReadActivity extends AppActivity {
     private DanmuControler danmuControler_middle;
     private DanmuControler danmuControler_bottom;
     private ImageView danmu_kaiguan;
-    private boolean isOpen = false;
+//    private boolean isOpen = false;
+    private boolean isOpen = true;
      private String num="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -542,24 +543,32 @@ public class CartoonReadActivity extends AppActivity {
         }
         final TextView tv_danmu_kaiguan = (TextView) mBottomView.findViewById(R.id.tv_danmu_kaiguan);
         final ImageView danmu_kaiguan = (ImageView) mBottomView.findViewById(R.id.danmu_kaiguan);
-        danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
+        if (isOpen) {
+            tv_danmu_kaiguan.setText("开启弹幕");
+            danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
+        } else {
+            tv_danmu_kaiguan.setText("关闭弹幕");
+            danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
+        }
+//        danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
         mBottomView.findViewById(R.id.ll_danmu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isOpen=!isOpen;
                 if (isOpen) {
                     danmuControler_top.show();
                     danmuControler_middle.show();
                     danmuControler_bottom.show();
                     tv_danmu_kaiguan.setText("开启弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_open_white);
-                    isOpen = false;
+//                    isOpen = false;
                 } else {
                     danmuControler_top.hide();
                     danmuControler_middle.hide();
                     danmuControler_bottom.hide();
                     tv_danmu_kaiguan.setText("关闭弹幕");
                     danmu_kaiguan.setBackgroundResource(R.mipmap.danmu_close_white);
-                    isOpen = true;
+//                    isOpen = true;
                 }
             }
         });

@@ -58,7 +58,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     private ImageView img_qq;
     @ViewIn(R.id.forget_pass_login)
     private TextView forget_pass_login;
-    boolean loginFlag = true;
+    public static   boolean  loginFlag = false;
     private Intent intentclass;
 
     @Override
@@ -111,6 +111,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
                 break;
             case R.id.img_we_chat:
                 Wx.init(LgoinActivity.this).sendAuthRequest();
+                loginFlag=true;
                 if (!TextUtils.isEmpty(getUserId())) {
                     MobclickAgent.onProfileSignIn("WX", getUserId());//统计微信登录
                 }
@@ -219,7 +220,7 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
     }
 
     public void startLogin(String openid, String unionid, String nickname, int sex, String headimgurl) {
-        loginFlag = false;
+//        loginFlag = false;
         final JSONObject obj = new JSONObject();
         // 自定义注册统计事件，需要在友盟注册事件ID,key 统计第三方注册
         Map<String, String> map = new HashMap<String, String>();

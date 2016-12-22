@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ import com.wodm.android.service.DownLoadServices;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.TimeTools;
+import com.wodm.android.ui.newview.LgoinActivity;
 import com.wodm.android.ui.newview.NewMineActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -97,7 +99,8 @@ public class Main2Activity extends AppActivity {
 
     private int indexId=R.id.tab_home ;
     private long mExitTime;
-
+    private boolean flag=true;//初始化漫画、动画标题。（只初始化一次）的标志
+    private boolean wx=false;//微信登录的标识
     static {
         mSurfaceParams.put(R.id.tab_tuijian, new SurfaceParam(RecomFragment.class, R.string.enetic_recom));
         mSurfaceParams.put(R.id.tab_home, new SurfaceParam(HomeFragment.class, R.string.enetic_home));
@@ -108,7 +111,8 @@ public class Main2Activity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        LgoinActivity lgoinActivity = new LgoinActivity();
+        wx=lgoinActivity.loginFlag;
         //增加缓存表情字段
         new Thread(new Runnable() {
             @Override
@@ -129,8 +133,14 @@ public class Main2Activity extends AppActivity {
         mToolbar.setNavigationIcon(null);
         mToolbar.setNavigationOnClickListener(null);
         mToolbar.findViewById(R.id.img_right).setVisibility(View.VISIBLE);
-            initTabViews();
+        if (wx){
+            indexId=R.id.tab_us;
+        }
+        initTabViews();
+        if (!wx){
             initTapView();
+        }
+
 
         new UpdateUtils(this).checkUpdate(false);
 
@@ -149,6 +159,7 @@ public class Main2Activity extends AppActivity {
 
 
     private void initTabViews() {
+
         setTabViews(mHome, R.string.enetic_home, indexId == R.id.tab_home ? R.mipmap.tab_home_select : R.mipmap.tab_home, indexId == R.id.tab_home);
         setTabViews(mType, R.string.enetic_type, indexId == R.id.tab_type ? R.mipmap.tab_fenlei_select : R.mipmap.tab_fenlei, indexId == R.id.tab_type);
         setTabViews(mUs, R.string.enetic_us, indexId == R.id.tab_us ? R.mipmap.tab_us_select : R.mipmap.tab_us, indexId == R.id.tab_us);
@@ -156,6 +167,14 @@ public class Main2Activity extends AppActivity {
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke("", "跳转到" + setTabSelection(indexId) + "页");
         setCustomTitle(indexId == R.id.tab_home ? "" : setTabSelection(indexId));
         showOrGoneCheckButton(indexId == R.id.tab_home ? View.VISIBLE : View.GONE);
+            if (wx){
+                if (indexId==R.id.tab_home&&flag){
+                    initTapView();
+                    flag=false;
+                }
+            }
+
+
     }
 
     private void setTabViews(View layout, int strRes, int imgRes, Boolean isSelect) {
