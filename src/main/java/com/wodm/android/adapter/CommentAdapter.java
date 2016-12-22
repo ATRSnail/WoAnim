@@ -34,6 +34,7 @@ import org.eteclab.ui.widget.adapter.HolderAdapter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,8 +43,7 @@ import java.util.List;
 @Layout(R.layout.adapter_commnet)
 public class CommentAdapter extends HolderAdapter<CommentBean> {
     private Context context;
-    private boolean flag;
-
+    private List<Boolean> list=new ArrayList<>();
     public CommentAdapter(Context context, List<CommentBean> data) {
         super(context, data);
         this.context = context;
@@ -70,9 +70,9 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 // holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
         if (bean.getIsLike()==1){
             holder.zanBtn.setImageResource(R.mipmap.zan);
-            flag=true;
+            list.add(true);
         }else {
-            flag=false;
+          list.add(false);
             holder.zanBtn.setImageResource(R.mipmap.un_zan);
         }
         holder.allView.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
                 mContext.startActivity(intent);
             }
         });
-        holder.zanBtn.setOnClickListener(new ZanClick(bean,holder));
+        holder.zanBtn.setOnClickListener(new ZanClick(bean,holder,i));
     }
 
     class ViewHolder extends BaseViewHolder {
@@ -114,11 +114,12 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 
     class ZanClick implements View.OnClickListener {
         private CommentBean bean;
-
+        private  int postion;
         private ViewHolder mHolder;
-        public ZanClick(CommentBean bean, ViewHolder holder) {
+        public ZanClick(CommentBean bean, ViewHolder holder, int i) {
             this.bean = bean;
             this.mHolder = holder;
+            this.postion=i;
         }
 
         @Override
@@ -131,7 +132,7 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 //            ((AppActivity) context).httpPost(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
 //                    , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(),bean.getSendCommentId(), 2)
 //                    , new HttpCallback() {
-            ((AppActivity) context).httpPost(flag ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
+            ((AppActivity) context).httpPost(list.get(postion) ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
                     , zanObj(Constants.CURRENT_USER.getData().getAccount().getId(),bean.getSendCommentId(), 2)
                     , new HttpCallback() {
                         @Override
@@ -142,12 +143,12 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
 //                                    Toast.makeText(context,obj.get("message").toString(),Toast.LENGTH_SHORT).show();
 //                                    bean.setZan();
 //                                    notifyDataSetChanged();
-                                    if (flag){
+                                    if (list.get(postion) ){
                                         mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
                                     }else {
                                         mHolder.zanBtn.setImageResource(R.mipmap.zan);
                                     }
-                                    flag =!flag;
+                                    list.set(postion,!list.get(postion));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

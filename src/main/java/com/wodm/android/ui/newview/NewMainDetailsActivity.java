@@ -70,20 +70,19 @@ public class NewMainDetailsActivity extends AppActivity implements AtyTopLayout.
                 try {
                     resourcesBeen = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewMainBean.ResourcesBean>>() {
                     }.getType());
-                    List<NewMainBean.ResourcesBean> beanList=srotList(resourcesBeen);
-//
+//                    List<NewMainBean.ResourcesBean> beanList=srotList(resourcesBeen);
                     if (style==1){
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,2));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
                     }else if (style==2){
-                        gv_maindetails.setAdapter(new NewMain3Adapter(mContext,beanList));
+                        gv_maindetails.setAdapter(new NewMain3Adapter(mContext,resourcesBeen));
                     }else if (style==3){
-                        gv_maindetails.setAdapter(new NewMainDetailsLVAdapter(mContext,beanList));
+                        gv_maindetails.setAdapter(new NewMainDetailsLVAdapter(mContext,resourcesBeen));
                     } else if (style==4){
                         gv_maindetails.setNumColumns(2);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,2));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,2));
                     } else if (style==5){
                         gv_maindetails.setNumColumns(3);
-                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,beanList,3));
+                        gv_maindetails.setAdapter(new NewMain1Adapter(mContext,resourcesBeen,3));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
