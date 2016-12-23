@@ -333,7 +333,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
 
     private void setUserInfo(){
-
+        if (dataBean==null) return;
 
         UserInfoBean.DataBean.AccountBean accountBean = dataBean.getAccount();
         tv_attention.setText(String.valueOf(dataBean.getFollowNum()));
@@ -431,6 +431,7 @@ public class PersionActivity extends AppActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        if (dataBean==null) return;
         switch (v.getId()) {
 //            case R.id.edit_persion:
 //                break;

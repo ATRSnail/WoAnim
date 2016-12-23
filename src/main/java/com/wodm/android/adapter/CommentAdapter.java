@@ -75,6 +75,9 @@ public class CommentAdapter extends HolderAdapter<CommentBean> {
           list.add(false);
             holder.zanBtn.setImageResource(R.mipmap.un_zan);
         }
+        if (bean.getSendId()==0){
+            return;
+        }
         holder.allView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
