@@ -56,6 +56,7 @@ import org.eteclab.ui.widget.pulltorefresh.PullToLoadView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -434,6 +435,10 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
     private void showShare() {
         dialog=new ShareDialog(this,bean.getName(),bean.getDesp(),Constants.SHARE_CARREAD_URL + resourceId,bean.getShowImage());
         dialog.show();
+
+
+
+
 //        OnkeyShare share = new OnkeyShare(this);
 //        share.setPlatform();
 //        share.setTitle(bean.getName());

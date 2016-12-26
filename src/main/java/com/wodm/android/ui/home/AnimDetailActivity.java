@@ -69,6 +69,7 @@ import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 import com.wodm.android.view.danmu.DanmakuItem;
 import com.wodm.android.view.danmu.IDanmakuItem;
 
+import org.eteclab.OnkeyShare;
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -76,6 +77,7 @@ import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
+import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.NoScrollGridView;
@@ -806,9 +808,9 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     private void showShare() {
-        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_ANIM_URL + resourceId, bean.getShowImage());
-
-        dialog.show();
+//        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_ANIM_URL + resourceId, bean.getShowImage());
+//
+//        dialog.show();
 //        OnkeyShare share = new OnkeyShare(this);
 //        share.setPlatform();
 //        share.setTitle(bean.getName());

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,73 +30,105 @@ import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.adapter.HolderAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ATRSnail on 2016/12/12.
  * 新的动漫画详情页面 评论的适配
  */
-@Layout(R.layout.new_adapter_comment)
-public class NewCommentAdapter extends HolderAdapter<NewCommentBean> implements View.OnClickListener {
+
+public class NewCommentAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
     private ViewHolder holder = null;
-    private NewCommentBean bean = null;
-    private int position;
-
-    public NewCommentAdapter(Context mContext, List<NewCommentBean> data) {
-        super(mContext, data);
+    List<NewCommentBean> data;
+    private NewCommentBean bean;
+    private int i;
+    private List<Boolean> list=new ArrayList<>();
+    private List<Boolean> list2=new ArrayList<>();
+    public NewCommentAdapter(Context mContext, List<NewCommentBean> mData) {
         this.context = mContext;
-        notifyDataSetChanged();
+        this.data=mData;
     }
 
     @Override
-    protected RecyclerView.ViewHolder generateViewHolder(View view) {
-        return new NewCommentAdapter.ViewHolder(view);
+    public int getCount() {
+        return data.size();
     }
 
     @Override
-    protected void bindView(RecyclerView.ViewHolder viewHolder, int i) {
-        holder = (ViewHolder) viewHolder;
-        bean = mData.get(i);
-        position = i;
+    public Object getItem(int position) {
+        return data.get(position);
+    }
 
-        holder.allView.setOnClickListener(this);
-        holder.zanBtn.setOnClickListener(this);
-        holder.guanzhu.setOnClickListener(this);
-        holder.content.setOnClickListener(this);
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView==null){
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.new_adapter_comment,null);
+            holder.img = (CircularImage) convertView.findViewById(R.id.pho_comment);
+            holder.name = (TextView) convertView.findViewById(R.id.name_comment);
+            holder.grade_comment = (TextView) convertView.findViewById(R.id.grade_comment);
+            holder.gradename_comment = (TextView) convertView.findViewById(R.id.gradename_comment);
+            holder.time = (TextView) convertView.findViewById(R.id.time_comment);
+            holder.dianzanNum_comment = (TextView) convertView.findViewById(R.id.dianzanNum_comment);
+            holder.zanBtn = (ImageView) convertView.findViewById(R.id.dianzan_comment);
+            holder.guanzhu = (ImageView) convertView.findViewById(R.id.guanzhu_comment);
+            holder.content = (TextView) convertView.findViewById(R.id.content_comment);
+            holder.atwo_name = (TextView) convertView.findViewById(R.id.atwo_name);
+            holder.atwo_info = (TextView) convertView.findViewById(R.id.atwo_info);
+            holder.hour_comment = (TextView) convertView.findViewById(R.id.hour_comment);
+            convertView.setTag(holder);
+        }else {
+          holder = (ViewHolder) convertView.getTag();
+        }
+        i=position;
+        bean =data.get(position);
+//        holder.allView.setOnClickListener(this);
+
 
         holder.name.setText(bean.getSendNickName());
-        TextColorUtils.getInstance().setGradeColor(mContext, holder.grade_comment, bean.getGradeValue());
-        DegreeTools.getInstance(mContext).getDegree(mContext, bean.getGradeValue(), holder.gradename_comment);
-        if (bean.getIsLike() == 1) {
-            bean.setZan(true);
-        } else {
-            bean.setZan(false);
+        TextColorUtils.getInstance().setGradeColor(context, holder.grade_comment, bean.getGradeValue());
+        DegreeTools.getInstance(context).getDegree(context, bean.getGradeValue(), holder.gradename_comment);
+        if (bean.getIsLike()==1){
+            holder.zanBtn.setImageResource(R.mipmap.zan);
+            list.add(true);
+        }else {
+            list.add(false);
+            holder.zanBtn.setImageResource(R.mipmap.un_zan);
         }
-        holder.zanBtn.setImageResource(bean.isZan() ? R.mipmap.zan : R.mipmap.un_zan);
+
         if (bean.getIsFollow() == 1) {
-            bean.setGuanzhu(true);
+            holder.guanzhu.setImageResource( R.mipmap.guanzhu);
+            list2.add(true);
         } else {
-            bean.setGuanzhu(false);
+            holder.guanzhu.setImageResource( R.mipmap.no_guanzhu);
+            list2.add(false);
         }
-        holder.guanzhu.setImageResource(bean.isGuanzhu() ? R.mipmap.guanzhu : R.mipmap.no_guanzhu);
         holder.time.setText(bean.getTimes());
         holder.hour_comment.setText("");
-        holder.dianzanNum_comment.setText(bean.getGoodCount());
+        holder.dianzanNum_comment.setText(bean.getGoodCount()+"");
         SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context, bean.getSendCommentContent());
         holder.content.setText(spannableString);
-        new AsyncImageLoader(mContext, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
+        new AsyncImageLoader(context, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
 
 
         if (!UpdataUserInfo.isLogIn(context, true, null)) {
             Toast.makeText(context, "未登录，请先登录", Toast.LENGTH_SHORT).show();
-            return;
+            return null;
         } else {
-            holder.atwo_name.setText(bean.getReceiveNickName().toString());
-            holder.atwo_info.setText(bean.getReceiveCommentContent().toString());
+            holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
+            holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
         }
-
-
+        holder.zanBtn.setOnClickListener(this);
+        holder.guanzhu.setOnClickListener(this);
+        holder.content.setOnClickListener(this);
+        return convertView;
     }
 
     @Override
@@ -110,54 +145,45 @@ public class NewCommentAdapter extends HolderAdapter<NewCommentBean> implements 
                 intent.putExtra("anotherId", followUserId);
                 intent.putExtra("guanzhu", false);
                 intent.putExtra("anotherInfo", true);
-                mContext.startActivity(intent);
+                context.startActivity(intent);
                 break;
             case R.id.dianzan_comment:
-                new MessageUtils().dianZan(bean.isZan() ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
-                        , Constants.CURRENT_USER.getData().getAccount().getId(), bean.getSendCommentId(), 2);
+                if (list.get(i) ){
+                    holder.zanBtn.setImageResource(R.mipmap.un_zan);
+                }else {
+                    holder.zanBtn.setImageResource(R.mipmap.zan);
+                }
+                list.set(i,!list.get(i));
                 break;
             case R.id.guanzhu_comment:
-                new FansAdapter().saveOrDeleteUserFollow(bean.isGuanzhu() ? 0 : 1, followUserId);
+                if (list2.get(i) ){
+                    holder.guanzhu.setImageResource(R.mipmap.guanzhu);
+                }else {
+                    holder.guanzhu.setImageResource(R.mipmap.no_guanzhu);
+                }
+                list2.set(i,!list2.get(i));
                 break;
             case R.id.content_comment:
                 intent.setClass(context, SendMsgActivity.class);
-                mContext.startActivity(intent);
+                context.startActivity(intent);
                 break;
         }
-        bean = mData.get(position);
-
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        @ViewIn(R.id.pho_comment)
+    public class ViewHolder  {
         private CircularImage img;
-        @ViewIn(R.id.time_comment)
         private TextView time;
-        @ViewIn(R.id.name_comment)
         private TextView name;
-        @ViewIn(R.id.grade_comment)
         private TextView grade_comment;
-        @ViewIn(R.id.gradename_comment)
         private TextView gradename_comment;
-        @ViewIn(R.id.content_comment)
         private TextView content;
-        @ViewIn(R.id.hour_comment)
         private TextView hour_comment;
-        @ViewIn(R.id.dianzanNum_comment)
         private TextView dianzanNum_comment;
-        @ViewIn(R.id.atwo_name)
         private TextView atwo_name;
-        @ViewIn(R.id.atwo_info)
         private TextView atwo_info;
-        @ViewIn(R.id.dianzan_comment)
         ImageView zanBtn;
-        @ViewIn(R.id.guanzhu_comment)
         ImageView guanzhu;
-        @ViewIn(R.id.ll_new_comm)
-        LinearLayout allView;
 
-        public ViewHolder(View view) {
-            super(view);
-        }
+
     }
 }

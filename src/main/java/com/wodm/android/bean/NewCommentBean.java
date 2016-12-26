@@ -7,29 +7,31 @@ import java.io.Serializable;
  * 修后改之的动漫画详情页面的评论数据
  */
 public class NewCommentBean implements Serializable {
-    private boolean isZan = false;
+
     /**
-     * sendId : 280
-     * sendPortrait : http://59.108.94.55:8899/static//head/20161208/280/280142509.jpg
-     * sendNickName : VIP之小将之家乡，亲人
-     * gradeValue : 5
-     * times : 2016-12-09 09:58:46
-     * sendCommentId : 820
-     * sendCommentContent : 5
-     * goodCount : 1
+     * sendId : 230
+     * sendPortrait : http://202.106.63.98:8990/static//head/20161220/230/230860788.png
+     * sendNickName : 这是我的手里剑大招
+     * gradeValue : 4
+     * gradeName : 萌新IV
+     * times : 2016-12-16 11:18:46
+     * sendCommentId : 986
+     * sendCommentContent : 111
+     * goodCount : 0
      * isLike : 0
      * isFollow : 0
      * receiveId : null
      * receiveNickName : null
      * receiveCommentId : null
      * receiveCommentContent : null
-     * resourceId : 144
+     * resourceId : 554
      */
 
     private int sendId;
     private String sendPortrait;
     private String sendNickName;
     private int gradeValue;
+    private String gradeName;
     private String times;
     private int sendCommentId;
     private String sendCommentContent;
@@ -41,23 +43,6 @@ public class NewCommentBean implements Serializable {
     private Object receiveCommentId;
     private Object receiveCommentContent;
     private int resourceId;
-
-    public boolean isZan() {
-        return isZan;
-    }
-
-    public void setZan(boolean zan) {
-        isZan = zan;
-    }
-   private boolean  guanzhu =false;
-
-    public boolean isGuanzhu() {
-        return guanzhu;
-    }
-
-    public void setGuanzhu(boolean guanzhu) {
-        this.guanzhu = guanzhu;
-    }
 
     public int getSendId() {
         return sendId;
@@ -89,6 +74,14 @@ public class NewCommentBean implements Serializable {
 
     public void setGradeValue(int gradeValue) {
         this.gradeValue = gradeValue;
+    }
+
+    public String getGradeName() {
+        return gradeName;
+    }
+
+    public void setGradeName(String gradeName) {
+        this.gradeName = gradeName;
     }
 
     public String getTimes() {

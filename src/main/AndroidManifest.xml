@@ -370,8 +370,8 @@
         <activity
             android:name=".android.ui.newview.VipOpenActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--<activity android:name=".android.ui.newview.TestActivity"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <activity android:name=".android.ui.newview.TestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".android.ui.newview.ForgetPassActivity"
             android:theme="@style/AppTheme.NoActionBar" />
