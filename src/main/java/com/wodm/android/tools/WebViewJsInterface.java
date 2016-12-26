@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
@@ -17,14 +16,15 @@ import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.umeng.analytics.MobclickAgent;
 import com.wodm.android.Constants;
+import com.wodm.android.WechatShareManager;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.bean.WeixinShareBean;
 import com.wodm.android.login.Wx;
 import com.wodm.android.ui.AppActivity;
 
 import org.eteclab.OnkeyShare;
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.share.call.ShareResultCall;
-import org.eteclab.share.ui.share.ShareWX;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -221,19 +221,25 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
             jsonObject.put("sname",title);
             jsonObject.put("tochannel",1);
             jsonObject.put("description",description);
-            Log.e("SCY"," - -  -- -  "+userId);
             ((AppActivity)mContext).httpPost(Constants.APP_GET_SHARE,jsonObject, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    Log.e("SCY"," - - - -"+obj.toString());
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ShareWX share = new ShareWX(mContext);
-        share.setScene(0);
-        share.shareWeb(webpageUrl,title,description,thumUrl);
+        WechatShareManager mShareManager = WechatShareManager.getInstance(mContext);
+        WeixinShareBean weixinShareBean1=new WeixinShareBean();
+        weixinShareBean1.setTargurl(webpageUrl);
+        weixinShareBean1.setDescription(description);
+        weixinShareBean1.setImageUrl(thumUrl);
+        weixinShareBean1.setTitle(title);
+        weixinShareBean1.setScene(0);
+        mShareManager.shareWebPage(weixinShareBean1);
+//        ShareWX share = new ShareWX(mContext);
+//        share.setScene(0);
+//        share.shareWeb(webpageUrl,title,description,thumUrl);
     }
     @JavascriptInterface
     public void webViewYZM(String phoneNum){

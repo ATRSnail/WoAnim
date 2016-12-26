@@ -14,12 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.wodm.R;
+import com.wodm.android.WechatShareManager;
+import com.wodm.android.bean.WeixinShareBean;
 import com.wodm.android.tools.Tools;
 
 import org.eteclab.OnkeyShare;
 import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.share.ui.share.ShareQQ;
-import org.eteclab.share.ui.share.ShareWX;
 
 /**
  * Created by songchenyu on 16/10/30.
@@ -91,15 +92,32 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.ll_weixin:
-                ShareWX shareWX=new ShareWX(mContext);
-                shareWX.setScene(1);
-                shareWX.shareWeb(targurl,title,description,imageUrl);
+                WechatShareManager mShareManager1 = WechatShareManager.getInstance(mContext);
+                WeixinShareBean weixinShareBean=new WeixinShareBean();
+                weixinShareBean.setTargurl(targurl);
+                weixinShareBean.setDescription(description);
+                weixinShareBean.setImageUrl(imageUrl);
+                weixinShareBean.setTitle(title);
+                weixinShareBean.setScene(1);
+                mShareManager1.shareWebPage(weixinShareBean);
+//                ShareWX shareWX=new ShareWX(mContext);
+//                shareWX.setScene(1);
+//                //1 代表微信好友  0代表朋友圈
+//                shareWX.shareWeb(targurl,title,description,imageUrl);
                 handler.sendEmptyMessage(1);
                 break;
             case R.id.ll_weixin_friend:
-                ShareWX shareWX1=new ShareWX(mContext);
-                shareWX1.setScene(0);
-                shareWX1.shareWeb(targurl,title,description,imageUrl);
+                WechatShareManager mShareManager = WechatShareManager.getInstance(mContext);
+                WeixinShareBean weixinShareBean1=new WeixinShareBean();
+                weixinShareBean1.setTargurl(targurl);
+                weixinShareBean1.setDescription(description);
+                weixinShareBean1.setImageUrl(imageUrl);
+                weixinShareBean1.setTitle(title);
+                weixinShareBean1.setScene(0);
+                mShareManager.shareWebPage(weixinShareBean1);
+//                ShareWX shareWX1=new ShareWX(mContext);
+//                shareWX1.setScene(0);
+//                shareWX1.shareWeb("http://chuye.cloud7.com.cn/1402148?from=singlemessage&isappinstalled=0",title,description,imageUrl);
                 handler.sendEmptyMessage(1);
                 break;
             case R.id.ll_qq:
