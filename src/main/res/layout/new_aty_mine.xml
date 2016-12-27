@@ -24,14 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_180"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/px_52">
+                android:layout_marginBottom="@dimen/px_52"
+                android:orientation="vertical">
                 <RelativeLayout
-                    android:gravity="top"
                     android:id="@+id/ll_head_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/px_168"
                     android:layout_marginLeft="@dimen/px_45">
                     <org.eteclab.ui.widget.CircularImage
+                        android:layout_marginTop="@dimen/px_30"
                         android:layout_width="@dimen/px_129"
                         android:layout_height="@dimen/px_129"
                         android:layout_centerHorizontal="true"
@@ -56,22 +57,21 @@
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/px_10"/>
+                        android:layout_height="wrap_content"/>
                     <ImageView
                         android:id="@+id/user_txk"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/px_10"/>
+                        android:layout_height="wrap_content"/>
                 </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_top"
+                    android:layout_marginTop="@dimen/px_22"
+                    android:layout_alignParentTop="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="@dimen/px_15"
                     android:layout_toRightOf="@+id/ll_head_image"
                     android:orientation="horizontal">

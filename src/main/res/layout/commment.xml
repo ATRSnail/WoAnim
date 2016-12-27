@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
    <android.support.v4.widget.SwipeRefreshLayout
        android:id="@+id/refresh"
+       android:layout_weight="1"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+       android:layout_height="0dp">
       <ListView
           android:scrollbars="none"
           android:id="@+id/list_comment"
@@ -13,5 +15,22 @@
           android:layout_height="wrap_content">
       </ListView>
    </android.support.v4.widget.SwipeRefreshLayout>
-
-</RelativeLayout>
+    <RelativeLayout
+        android:padding="@dimen/px_16"
+        android:background="@color/color_ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:clickable="true"
+            android:gravity="center"
+            android:id="@+id/comment"
+            android:layout_marginLeft="@dimen/px_60"
+            android:layout_marginRight="@dimen/px_60"
+            android:background="@color/color_fb487f"
+            android:textSize="@dimen/text_size_30_px"
+            android:textColor="@color/color_ffffff"
+            android:text="发送评论"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_72" />
+    </RelativeLayout>
+</LinearLayout>

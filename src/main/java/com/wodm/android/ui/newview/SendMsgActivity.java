@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.PingFenAdapter;
 import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.tools.BiaoqingTools;
 import com.wodm.android.ui.AppActivity;
@@ -48,24 +50,37 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     ImageView emojiBtn;
     @ViewIn(R.id.view_emoji)
     View mEmojiView;
+    @ViewIn(R.id.fenshu)
+    TextView textView;
+    @ViewIn(R.id.pingfen)
+    GridView gridView;
+    @ViewIn(R.id.ll_pingfen)
+    LinearLayout ll_pingfen;
     private BiaoqingTools biaoqingtools;
     private InputMethodManager mInputManager;//软键盘管理类
     private AtWoBean.DataBean atWoBean;
-
+     int flag=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         initDatas();
         initViews();
 
     }
 
     private void initDatas() {
+        gridView.setAdapter(new PingFenAdapter(SendMsgActivity.this,textView));
         if (getIntent() != null)
-            atWoBean = (AtWoBean.DataBean) getIntent().getSerializableExtra(ATWOBEAN);
+        {atWoBean = (AtWoBean.DataBean) getIntent().getSerializableExtra(ATWOBEAN);
+            flag=getIntent().getIntExtra("flag",1);}
     }
 
     private void initViews() {
+        if (flag==2){
+            ll_pingfen.setVisibility(View.GONE);
+        }
         biaoqingtools = BiaoqingTools.getInstance();
         mInputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         set_topbar.setOnTopbarClickListenter(this);
@@ -133,37 +148,43 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
     @Override
     public void rightClick() {
-        if (atWoBean == null) return;
+
         if (TextUtils.isEmpty(mEditText.getText().toString().trim())){
             Toast.makeText(this,"评论不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("resourceId", atWoBean.getResourceId());
-            obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
-            obj.put("receiveId", atWoBean.getSendId());
-            obj.put("commentId", atWoBean.getCommentId());
-            obj.put("content", mEditText.getText().toString());
-            obj.put("type", 1);
-            httpPost(Constants.REPLY, obj, new HttpCallback() {
-                @Override
-                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                    super.doAuthSuccess(result, obj);
-                    Toast.makeText(SendMsgActivity.this,"发表成功", Toast.LENGTH_SHORT).show();
+        if (flag==2){
+            if (atWoBean == null) return;
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("resourceId", atWoBean.getResourceId());
+                obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
+                obj.put("receiveId", atWoBean.getSendId());
+                obj.put("commentId", atWoBean.getCommentId());
+                obj.put("content", mEditText.getText().toString());
+                obj.put("type", 1);
+                httpPost(Constants.REPLY, obj, new HttpCallback() {
+                    @Override
+                    public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthSuccess(result, obj);
+                        Toast.makeText(SendMsgActivity.this,"回复成功", Toast.LENGTH_SHORT).show();
 
-                }
+                    }
 
-                @Override
-                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                    super.doAuthFailure(result, obj);
-                    Toast.makeText(SendMsgActivity.this,"发表失败", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                        super.doAuthFailure(result, obj);
+                        Toast.makeText(SendMsgActivity.this,"回复失败", Toast.LENGTH_SHORT).show();
 
-                }
-            });
-        } catch (JSONException e) {
-            e.printStackTrace();
+                    }
+                });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else {
+
         }
+
     }
 
     private void showEmotionLayout() {

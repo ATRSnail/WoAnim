@@ -2,10 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-     <TextView
-         android:id="@+id/footer"
-         android:gravity="center"
-         android:text="加载更多"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" />
+     <RelativeLayout
+         android:background="@color/color_f5f5f5"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/px_72">
+          <TextView
+              android:layout_centerInParent="true"
+              android:id="@+id/footer"
+              android:textColor="@color/color_999999"
+              android:textSize="@dimen/text_size_24_px"
+              android:gravity="center"
+              android:text="加载更多......"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+     </RelativeLayout>
 </LinearLayout>

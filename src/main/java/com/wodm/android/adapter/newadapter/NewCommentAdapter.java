@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -51,11 +53,13 @@ import static com.wodm.android.Constants.CURRENT_USER;
 public class NewCommentAdapter extends BaseAdapter {
     private Context context;
     List<NewCommentBean> data;
+    private  String url;
     private List<Boolean> list=new ArrayList<>();
     private List<Boolean> list2=new ArrayList<>();
-    public NewCommentAdapter(Context mContext, List<NewCommentBean> mData) {
+    public NewCommentAdapter(Context mContext, List<NewCommentBean> mData, String url) {
         this.context = mContext;
         this.data=mData;
+        this.url=url;
     }
 
     @Override
@@ -96,10 +100,6 @@ public class NewCommentAdapter extends BaseAdapter {
           holder = (ViewHolder) convertView.getTag();
         }
          NewCommentBean  bean =data.get(position);
-
-//        holder.allView.setOnClickListener(this);
-
-
         holder.name.setText(bean.getSendNickName());
         TextColorUtils.getInstance().setGradeColor(context, holder.grade_comment, bean.getGradeValue());
         DegreeTools.getInstance(context).getDegree(context, bean.getGradeValue(), holder.gradename_comment);
@@ -135,6 +135,7 @@ public class NewCommentAdapter extends BaseAdapter {
             holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
             holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
         }
+        holder.img.setOnClickListener(new MyClick(holder,position,bean));
         holder.zanBtn.setOnClickListener(new MyClick(holder,position,bean));
         holder.guanzhu.setOnClickListener(new MyClick(holder,position,bean));
         holder.content.setOnClickListener(new MyClick(holder,position,bean));
@@ -173,6 +174,7 @@ public class NewCommentAdapter extends BaseAdapter {
                  break;
              case R.id.content_comment:
                  Intent intent2 = new Intent(context,SendMsgActivity.class);
+                 intent2.putExtra("flag",2);
                  context.startActivity(intent2);
                  break;
          }
@@ -207,6 +209,7 @@ public class NewCommentAdapter extends BaseAdapter {
                                 mHolder.guanzhu.setImageResource(R.mipmap.guanzhu);
                             }
                             list2.set(i,!list2.get(i));
+//                            update();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -229,6 +232,25 @@ public class NewCommentAdapter extends BaseAdapter {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    void update(){
+
+        ((AppActivity) context).httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    ArrayList<NewCommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewCommentBean>>() {
+                    }.getType());
+                    data = beanList;
+                    notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
     private void dianZan(NewCommentBean bean, final ViewHolder mHolder, final int postion) {
@@ -254,6 +276,7 @@ public class NewCommentAdapter extends BaseAdapter {
                                         mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
                                     }
                                     list.set(postion,!list.get(postion));
+//                                    update();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -275,6 +298,7 @@ public class NewCommentAdapter extends BaseAdapter {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
 

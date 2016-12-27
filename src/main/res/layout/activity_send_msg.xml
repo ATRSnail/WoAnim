@@ -20,6 +20,52 @@
         app:rightTextSize="@dimen/text_size_28_px"
         app:rightType="1" />
 
+    <LinearLayout
+        android:id="@+id/ll_pingfen"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="@dimen/px_30"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/dianji"
+                android:layout_gravity="left"
+                android:layout_marginRight="@dimen/px_30"
+                android:textSize="@dimen/text_size_26_px"
+                android:text="点击评分"
+                android:textColor="@color/color_666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <GridView
+                android:layout_weight="1"
+                android:id="@+id/pingfen"
+                android:numColumns="6"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/px_24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/fenshu"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_26_px"
+                android:text="0分"
+                android:textColor="@color/color_999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:background="@color/color_eae7e7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_16"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:background="@color/color_ffffff"
         android:layout_width="match_parent"
