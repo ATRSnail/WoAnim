@@ -14,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.CommentAdapter;
 import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.NewCommentBean;
 import com.wodm.android.tools.DegreeTools;
+import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.newview.PersionActivity;
 import com.wodm.android.ui.newview.SendMsgActivity;
 import com.wodm.android.utils.MessageUtils;
@@ -29,12 +31,17 @@ import com.wodm.android.view.biaoqing.FaceConversionUtil;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
+import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.adapter.HolderAdapter;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.wodm.android.Constants.CURRENT_USER;
 
 /**
  * Created by ATRSnail on 2016/12/12.
@@ -159,22 +166,10 @@ public class NewCommentAdapter extends BaseAdapter {
                  context.startActivity(intent);
                  break;
              case R.id.dianzan_comment:
-                 if (list.get(i) ){
-                     mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
-                     mHolder.dianzanNum_comment.setVisibility(View.INVISIBLE);
-                 }else {
-                     mHolder.zanBtn.setImageResource(R.mipmap.zan);
-                     mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
-                 }
-                 list.set(i,!list.get(i));
+                 dianZan(mBean,mHolder,i);
                  break;
              case R.id.guanzhu_comment:
-                 if (list2.get(i) ){
-                     mHolder.guanzhu.setImageResource(R.mipmap.no_guanzhu);
-                 }else {
-                     mHolder.guanzhu.setImageResource(R.mipmap.guanzhu);
-                 }
-                 list2.set(i,!list2.get(i));
+                 guanzhu(mBean,mHolder,i,followUserId);
                  break;
              case R.id.content_comment:
                  Intent intent2 = new Intent(context,SendMsgActivity.class);
@@ -183,6 +178,104 @@ public class NewCommentAdapter extends BaseAdapter {
          }
      }
  }
+
+    private void guanzhu(NewCommentBean mBean, final ViewHolder mHolder, final int i, long followUserId) {
+        try {
+            if (Constants.CURRENT_USER == null||followUserId==0) return;
+            AppActivity appActivity = new AppActivity();
+            String url;
+
+            if (list2.get(i)) {
+                url = Constants.REMOVE_USER_ATTENTION;
+            } else {
+                url = Constants.SAVE_USER_ATTENTION;
+            }
+
+            JSONObject post = new JSONObject();
+            long id = CURRENT_USER.getData().getAccount().getId();
+            post.put("userId", id);
+            post.put("followUserId", followUserId);
+            appActivity.httpPost(url, post, new HttpCallback() {
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                    try {
+                        if (obj.getString("code").equals("1000")) {
+                            if (list2.get(i) ){
+                                mHolder.guanzhu.setImageResource(R.mipmap.no_guanzhu);
+                            }else {
+                                mHolder.guanzhu.setImageResource(R.mipmap.guanzhu);
+                            }
+                            list2.set(i,!list2.get(i));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                    Toast.makeText(context,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void doRequestFailure(Exception exception, String msg) {
+                    super.doRequestFailure(exception, msg);
+                    Toast.makeText(context,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void dianZan(NewCommentBean bean, final ViewHolder mHolder, final int postion) {
+        /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*private int type*/
+        try {
+            JSONObject object = new JSONObject();
+            object.put("userId", Constants.CURRENT_USER.getData().getAccount().getId());
+            object.put("contentId", bean.getSendCommentId());
+            object.put("type", 2);
+            ((AppActivity) context).httpPost(list.get(postion) ? Constants.DELETEUSERLIKE : Constants.SAVEUSERLIKE
+                    , object
+                    , new HttpCallback() {
+                        @Override
+                        public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                            super.doAuthSuccess(result, obj);
+                            try {
+                                if (obj.getString("code").equals("1000")) {
+                                    if (list.get(postion) ){
+                                        mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
+                                        mHolder.dianzanNum_comment.setVisibility(View.INVISIBLE);
+                                    }else {
+                                        mHolder.zanBtn.setImageResource(R.mipmap.zan);
+                                        mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
+                                    }
+                                    list.set(postion,!list.get(postion));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                            super.doAuthFailure(result, obj);
+                            Toast.makeText(context,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void doRequestFailure(Exception exception, String msg) {
+                            super.doRequestFailure(exception, msg);
+                            Toast.makeText(context,"网络异常,请稍后重试",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public class ViewHolder  {

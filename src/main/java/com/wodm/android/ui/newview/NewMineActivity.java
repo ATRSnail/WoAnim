@@ -86,7 +86,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     TextView tv_num;
     @ViewIn(R.id.img_progress)
     ImageView img_progress;
-
+    @ViewIn(R.id.img_vip_circle)
+    private ImageView img_vip_circle;
     @Override
     protected void setDatas(Bundle bundle) {
         newMineAdapter = new NewMineAdapter(getActivity());
@@ -189,6 +190,14 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 RelativeLayout.LayoutParams img_progress_params=new RelativeLayout.LayoutParams(num, RelativeLayout.LayoutParams.MATCH_PARENT);
                 img_progress_params.setMargins(0,5,0,5);
                 img_progress.setLayoutParams(img_progress_params);
+                int vip=dataBean.getAccount().getVip();
+                if (vip==1){
+                    img_vip_circle.setImageResource(R.mipmap.vip_circle);
+                }else if (vip==2){
+                    img_vip_circle.setImageResource(R.mipmap.vvip_circle);
+                }else {
+                    img_vip_circle.setVisibility(View.INVISIBLE);
+                }
                 new AsyncImageLoader(getActivity(), R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, dataBean.getAccount().getPortrait());
                 try {
                     MallConversionUtil.getInstace().dealExpression(getActivity(), dataBean.getPandentDetail().getNameTXK(), user_txk, dataBean.getPandentDetail().getImgUrlTXK());
@@ -204,6 +213,8 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                 }
             }
         });
+
+
     }
 
 

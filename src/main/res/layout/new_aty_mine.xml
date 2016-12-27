@@ -19,54 +19,52 @@
             android:layout_height="@dimen/px_282"
             android:background="@color/color_fb487f"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/user_txk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/px_30" />
-
             <RelativeLayout
                 android:id="@+id/rl_login"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px_180"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/px_52"
-                android:orientation="vertical">
-
+                android:layout_marginBottom="@dimen/px_52">
                 <RelativeLayout
+                    android:gravity="top"
                     android:id="@+id/ll_head_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/px_282"
-                    android:layout_marginLeft="@dimen/px_45"
-                    android:paddingBottom="9dp">
-
+                    android:layout_height="@dimen/px_168"
+                    android:layout_marginLeft="@dimen/px_45">
+                    <org.eteclab.ui.widget.CircularImage
+                        android:layout_width="@dimen/px_129"
+                        android:layout_height="@dimen/px_129"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:src="@mipmap/circle_novip" />
                     <org.eteclab.ui.widget.CircularImage
                         android:id="@+id/user_head_imgs"
-                        android:layout_width="@dimen/px_138"
-                        android:layout_height="@dimen/px_138"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/px_12"
+                        android:layout_width="@dimen/px_108"
+                        android:layout_height="@dimen/px_108"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
                         android:src="@mipmap/touxiang" />
-
-                    <org.eteclab.ui.widget.CircularImage
-                        android:id="@+id/img_circle"
-                        android:layout_width="@dimen/px_162"
-                        android:layout_height="@dimen/px_162"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/circle_novip" />
-
+                    <ImageView
+                        android:id="@+id/img_vip_circle"
+                        android:background="@mipmap/vip_circle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="@dimen/px_108"
+                        android:layout_height="@dimen/px_108"/>
                     <org.eteclab.ui.widget.CircularImage
                         android:id="@+id/user_gj"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_10"/>
+                    <ImageView
+                        android:id="@+id/user_txk"
+                        android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginBottom="@dimen/px_20"
-                        android:layout_marginRight="@dimen/px_30" />
-
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_10"/>
                 </RelativeLayout>
 
                 <LinearLayout

@@ -12,6 +12,7 @@
         android:layout_margin="@dimen/px_30">
 
         <org.eteclab.ui.widget.CircularImage
+            android:clickable="true"
             android:id="@+id/pho_comment"
             android:layout_width="@dimen/px_68"
             android:layout_height="@dimen/px_68"

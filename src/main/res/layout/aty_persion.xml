@@ -66,56 +66,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/px_108"
+                android:layout_marginTop="@dimen/px_98"
+                android:layout_marginBottom="@dimen/px_30"
                 android:layout_marginLeft="@dimen/px_45">
 
                 <RelativeLayout
                     android:id="@+id/rl_head_imgs"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/px_168"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/hamajing"
-                        android:visibility="invisible" />
 
                     <org.eteclab.ui.widget.CircularImage
                         android:layout_width="@dimen/px_129"
                         android:layout_height="@dimen/px_129"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
                         android:src="@mipmap/circle_novip" />
 
                     <org.eteclab.ui.widget.CircularImage
                         android:id="@+id/user_head_imgs"
                         android:layout_width="@dimen/px_108"
                         android:layout_height="@dimen/px_108"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
                         android:src="@mipmap/moren_header" />
 
                     <ImageView
                         android:id="@+id/img_vip_circle"
                         android:layout_width="@dimen/px_108"
                         android:layout_height="@dimen/px_108"
-                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
                         android:src="@mipmap/vip_circle" />
 
                     <org.eteclab.ui.widget.CircularImage
                         android:id="@+id/user_gj"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/px_45" />
+                        android:layout_marginTop="@dimen/px_10" />
 
                     <ImageView
                         android:id="@+id/user_txk"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentTop="true"
-                        android:layout_width="@dimen/px_180"
-                        android:layout_height="@dimen/px_180"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/px_10"/>
                 </RelativeLayout>
             </RelativeLayout>
 
