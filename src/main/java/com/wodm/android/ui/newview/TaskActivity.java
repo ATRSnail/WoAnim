@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -213,7 +214,17 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
 //                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(TaskActivity.this,QianDaoActivity.class));
+                try {
+                    JSONObject object = new JSONObject(obj.toString());
+                    int coefficient=object.getJSONObject("data").getInt("coefficient");
+                    int score =object.getJSONObject("data").getInt("score");
+                    Intent intent =new Intent(TaskActivity.this,QianDaoActivity.class);
+                    intent.putExtra("coefficient",coefficient);
+                    intent.putExtra("score",score);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 initfinsh();
             }
 

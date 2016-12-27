@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.ui.AppActivity;
@@ -18,14 +19,16 @@ public class QianDaoActivity extends Activity {
 
     RelativeLayout relativeLayout;
     ImageView sign2;
-    int flag=1;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qian_dao);
+        int coefficient=getIntent().getIntExtra("coefficient",1);
+        int score =getIntent().getIntExtra("score",4);
         relativeLayout = (RelativeLayout) findViewById(R.id.activity_qian_dao);
         sign2 = (ImageView) findViewById(R.id.sign2);
-
+        textView = (TextView) findViewById(R.id.score);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +36,8 @@ public class QianDaoActivity extends Activity {
                 finish();
             }
         });
-      if (flag==1){
+        textView.setText("积分+"+score);
+      if (coefficient==3){
           sign2.setVisibility(View.VISIBLE);
       }else {
           sign2.setVisibility(View.GONE);

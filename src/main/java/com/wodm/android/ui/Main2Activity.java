@@ -404,7 +404,17 @@ public class Main2Activity extends AppActivity {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
 //                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Main2Activity.this,QianDaoActivity.class));
+                try {
+                    JSONObject object = new JSONObject(obj.toString());
+                    int coefficient=object.getJSONObject("data").getInt("coefficient");
+                    int score =object.getJSONObject("data").getInt("score");
+                    Intent intent =new Intent(Main2Activity.this,QianDaoActivity.class);
+                    intent.putExtra("coefficient",coefficient);
+                    intent.putExtra("score",score);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 mfloatView.setVisibility(View.INVISIBLE);
             }
 
