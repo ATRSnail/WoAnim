@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.CommentAdapter;
+import com.wodm.android.bean.CommentBean;
 import com.wodm.android.bean.NewCommentBean;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.ui.newview.PersionActivity;
@@ -38,12 +41,9 @@ import java.util.List;
  * 新的动漫画详情页面 评论的适配
  */
 
-public class NewCommentAdapter extends BaseAdapter implements View.OnClickListener {
+public class NewCommentAdapter extends BaseAdapter {
     private Context context;
-    private ViewHolder holder = null;
     List<NewCommentBean> data;
-    private NewCommentBean bean;
-    private int i;
     private List<Boolean> list=new ArrayList<>();
     private List<Boolean> list2=new ArrayList<>();
     public NewCommentAdapter(Context mContext, List<NewCommentBean> mData) {
@@ -68,6 +68,7 @@ public class NewCommentAdapter extends BaseAdapter implements View.OnClickListen
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
         if (convertView==null){
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.new_adapter_comment,null);
@@ -87,8 +88,8 @@ public class NewCommentAdapter extends BaseAdapter implements View.OnClickListen
         }else {
           holder = (ViewHolder) convertView.getTag();
         }
-        i=position;
-        bean =data.get(position);
+         NewCommentBean  bean =data.get(position);
+
 //        holder.allView.setOnClickListener(this);
 
 
@@ -97,9 +98,11 @@ public class NewCommentAdapter extends BaseAdapter implements View.OnClickListen
         DegreeTools.getInstance(context).getDegree(context, bean.getGradeValue(), holder.gradename_comment);
         if (bean.getIsLike()==1){
             holder.zanBtn.setImageResource(R.mipmap.zan);
+            holder.dianzanNum_comment.setVisibility(View.VISIBLE);
             list.add(true);
         }else {
             list.add(false);
+            holder.dianzanNum_comment.setVisibility(View.INVISIBLE);
             holder.zanBtn.setImageResource(R.mipmap.un_zan);
         }
 
@@ -125,50 +128,62 @@ public class NewCommentAdapter extends BaseAdapter implements View.OnClickListen
             holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
             holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
         }
-        holder.zanBtn.setOnClickListener(this);
-        holder.guanzhu.setOnClickListener(this);
-        holder.content.setOnClickListener(this);
+        holder.zanBtn.setOnClickListener(new MyClick(holder,position,bean));
+        holder.guanzhu.setOnClickListener(new MyClick(holder,position,bean));
+        holder.content.setOnClickListener(new MyClick(holder,position,bean));
         return convertView;
     }
 
-    @Override
-    public void onClick(View v) {
-        if (!UpdataUserInfo.isLogIn(context, true, null)) {
-            Toast.makeText(context, "未登录，请先登录", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        long followUserId = bean.getSendId();
-        Intent intent = new Intent();
-        switch (v.getId()) {
-            case R.id.ll_new_comm:
-                intent.setClass(context, PersionActivity.class);
-                intent.putExtra("anotherId", followUserId);
-                intent.putExtra("guanzhu", false);
-                intent.putExtra("anotherInfo", true);
-                context.startActivity(intent);
-                break;
-            case R.id.dianzan_comment:
-                if (list.get(i) ){
-                    holder.zanBtn.setImageResource(R.mipmap.un_zan);
-                }else {
-                    holder.zanBtn.setImageResource(R.mipmap.zan);
-                }
-                list.set(i,!list.get(i));
-                break;
-            case R.id.guanzhu_comment:
-                if (list2.get(i) ){
-                    holder.guanzhu.setImageResource(R.mipmap.guanzhu);
-                }else {
-                    holder.guanzhu.setImageResource(R.mipmap.no_guanzhu);
-                }
-                list2.set(i,!list2.get(i));
-                break;
-            case R.id.content_comment:
-                intent.setClass(context, SendMsgActivity.class);
-                context.startActivity(intent);
-                break;
-        }
-    }
+ class    MyClick implements View.OnClickListener {
+     private NewCommentBean mBean;
+     private  int i;
+     private ViewHolder mHolder;
+     public MyClick(ViewHolder holder, int pos, NewCommentBean bean) {
+         this.mBean = bean;
+         this.mHolder = holder;
+         this.i=pos;
+     }
+
+     @Override
+     public void onClick(View v) {
+         if (!UpdataUserInfo.isLogIn(context, true, null)) {
+             Toast.makeText(context, "未登录，请先登录", Toast.LENGTH_SHORT).show();
+             return;
+         }
+         long followUserId = mBean.getSendId();
+         switch (v.getId()) {
+             case R.id.pho_comment:
+                 Intent intent = new Intent(context, PersionActivity.class);
+                 intent.putExtra("anotherId", followUserId);
+                 intent.putExtra("anotherInfo", true);
+                 context.startActivity(intent);
+                 break;
+             case R.id.dianzan_comment:
+                 if (list.get(i) ){
+                     mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
+                     mHolder.dianzanNum_comment.setVisibility(View.INVISIBLE);
+                 }else {
+                     mHolder.zanBtn.setImageResource(R.mipmap.zan);
+                     mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
+                 }
+                 list.set(i,!list.get(i));
+                 break;
+             case R.id.guanzhu_comment:
+                 if (list2.get(i) ){
+                     mHolder.guanzhu.setImageResource(R.mipmap.no_guanzhu);
+                 }else {
+                     mHolder.guanzhu.setImageResource(R.mipmap.guanzhu);
+                 }
+                 list2.set(i,!list2.get(i));
+                 break;
+             case R.id.content_comment:
+                 Intent intent2 = new Intent(context,SendMsgActivity.class);
+                 context.startActivity(intent2);
+                 break;
+         }
+     }
+ }
+
 
     public class ViewHolder  {
         private CircularImage img;

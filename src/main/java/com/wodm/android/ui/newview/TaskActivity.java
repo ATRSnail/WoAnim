@@ -3,6 +3,7 @@ package com.wodm.android.ui.newview;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -211,7 +212,8 @@ public class TaskActivity extends AppActivity implements AtyTopLayout.myTopbarCl
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(TaskActivity.this,QianDaoActivity.class));
                 initfinsh();
             }
 

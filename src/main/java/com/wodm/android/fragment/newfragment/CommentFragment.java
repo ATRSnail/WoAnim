@@ -56,6 +56,8 @@ public class CommentFragment extends Fragment {
          refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
         appActivity = new AppActivity();
         commentBeanList = new ArrayList<>();
+        View footerView =inflater.inflate(R.layout.footerview, null);
+        listView.addFooterView(footerView);
 //        resourceId = mContext.getIntent().getIntExtra("resourceId", -1);//引用评论碎片需要传递resourceId
         initRefresh();
         if (Constants.CURRENT_USER==null){
@@ -71,6 +73,9 @@ public class CommentFragment extends Fragment {
                    ArrayList<NewCommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewCommentBean>>() {
                    }.getType());
                    commentBeanList = beanList;
+                   if(beanList!=null&&beanList.size()>0){
+
+                   }
                    listView.setAdapter(new NewCommentAdapter(getActivity(),beanList));
                } catch (JSONException e) {
                    e.printStackTrace();
@@ -90,7 +95,6 @@ public class CommentFragment extends Fragment {
             public void onRefresh() {
                   if (refreshLayout.isRefreshing()){
                       refreshLayout.setRefreshing(false);
-                      pager++;
                   }
             }
         });

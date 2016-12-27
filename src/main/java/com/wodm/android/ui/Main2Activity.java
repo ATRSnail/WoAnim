@@ -33,6 +33,8 @@ import com.wodm.android.tools.MallConversionUtil;
 import com.wodm.android.tools.TimeTools;
 import com.wodm.android.ui.newview.LgoinActivity;
 import com.wodm.android.ui.newview.NewMineActivity;
+import com.wodm.android.ui.newview.QianDaoActivity;
+import com.wodm.android.ui.newview.TaskActivity;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.utils.UpdateUtils;
@@ -401,7 +403,8 @@ public class Main2Activity extends AppActivity {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "签到成功", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Main2Activity.this,QianDaoActivity.class));
                 mfloatView.setVisibility(View.INVISIBLE);
             }
 
