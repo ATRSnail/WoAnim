@@ -20,6 +20,21 @@
             android:id="@+id/content_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_marginBottom="@dimen/px_20"
+            android:layout_marginRight="@dimen/px_5"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/enter_floating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/img_gethot_package"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/img_getpackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
        <RelativeLayout
            android:visibility="gone"

@@ -83,7 +83,7 @@ public class WebViewActivity extends AppActivity implements WebViewJsInterface.w
         }
 //        webView.loadUrl("file:///android_asset/test.html");
 //        handler.sendEmptyMessageAtTime(3,200);
-        webView.loadUrl("http://202.106.63.98:8990/wodm-api/statics/activity/2016_12_19_cj.html");
+        webView.loadUrl(adsUrl);
     }
 
     @Override

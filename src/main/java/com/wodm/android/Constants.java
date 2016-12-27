@@ -33,9 +33,9 @@ public class Constants {
 
     //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
-//     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
+     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899/api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899//api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
@@ -163,6 +163,9 @@ public class Constants {
     public static final String CURRENTComment=HOST + "comment/currentCommentList?userId=";//临时添加的获取用户的原始评论内容
     public static final String SAVEADVERTISEMENTCLICK=HOST + "behavior/saveAdvertisementSerialClick";//广告统计接口
     public static final String BEHAVIORSYSTEMTIME=HOST + "behavior/getSystemTime";//获取系统时间
+    public static final String USERGETHOTPACKAGE=HOST + "newuser/giveGift?userId=";//用户领取元旦活动的物品
+    public static final String USERWHEATHERGETHOTPACKAGE=HOST + "newuser/giftStatus?userId=";//用户是否已经领取元旦活动的礼物
+    public static final String SAVEEXCEPTIONDETAIL=HOST + "behavior/saveExceptionDetail";//保存BUG信息
 
 
 

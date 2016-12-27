@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+      <ImageView
+          android:layout_centerInParent="true"
+          android:id="@+id/img_gethot_package"
+          android:background="@mipmap/img_hot_dialog"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_get_red_package"
+            style="?android:attr/borderlessButtonStyle"
+            android:textSize="@dimen/text_size_24_px"
+            android:textColor="@color/color_ffffff"
+            android:text="确认领取"
+            android:background="@drawable/btn_hotpackage"
+            android:layout_marginBottom="@dimen/px_80"
+            android:layout_alignBottom="@+id/img_gethot_package"
+            android:layout_width="@dimen/px_348"
+            android:layout_height="@dimen/px_62"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

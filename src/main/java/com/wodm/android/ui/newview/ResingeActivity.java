@@ -105,7 +105,8 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
             obj.put("channelInfo","phone");
             obj.put("brandInfo", GetPhoneState.getBrand());
             obj.put("modelNumber",GetPhoneState.getModel());
-            obj.put("qCellCore","北京");
+            String address=Preferences.getInstance(this).getPreference("getAddress","");
+            obj.put("qCellCore",address);
             httpPost(Constants.USER_REGIST, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {

@@ -7,10 +7,19 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
-import android.util.Log;
+import android.os.Message;
 import android.widget.Toast;
 
+import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.util.LogUtils;
+import com.wodm.android.tools.GetPhoneState;
+import com.wodm.android.tools.TimeTools;
+
+import org.eteclab.base.http.HttpCallback;
+import org.eteclab.base.http.HttpUtil;
+import org.eteclab.track.TrackApplication;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -187,6 +196,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
         String result = writer.toString();
         sb.append(result);
+        Message msg=new Message();
+        msg.obj=sb.toString();
+        sendsaveExceptionDetail(sb.toString());
         try {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
@@ -215,4 +227,47 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
         return null;
     }
+    private void sendsaveExceptionDetail(String catchException) {
+        try {
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("deviceId", "00000000000000");
+            jsonObject.put("devicePlatform", "1");
+            jsonObject.put("deviceBrand", GetPhoneState.getBrand());
+            jsonObject.put("deviceModel", GetPhoneState.getModel());
+            jsonObject.put("systemVersion", GetPhoneState.getSysRelease());
+            jsonObject.put("deviceVersion", android.os.Build.VERSION.RELEASE);
+            jsonObject.put("exceptionInfo", catchException);
+            //主要是看在那个APP版本上发现了问题
+            jsonObject.put("exceptionLocation", GetPhoneState.getAppVersionName(mContext));
+            jsonObject.put("times", TimeTools.getNianTime());
+            jsonObject.put("channelInfo", 0);
+            httpPost(Constants.SAVEEXCEPTIONDETAIL,jsonObject, new HttpCallback() {
+
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void httpPost(String url,JSONObject object, final HttpCallback callback) {
+
+        try {
+            TrackApplication.REQUEST_HEADER.put("Content-Type", "application/json");
+            HttpUtil.httpPost(mContext, url,object, TrackApplication.REQUEST_HEADER, callback);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -42,7 +42,6 @@ import com.wodm.android.view.newview.OfenUseView;
 
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
-import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.track.TrackApplication;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.viewpager.BannerView;
@@ -248,7 +247,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
         UserInfoBean.DataBean.AccountBean accountBean=dataBean.getAccount();
         tv_user_name.setText(accountBean.getNickName());
-        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
+        Glide.with(this).load(accountBean.getPortrait()).placeholder(R.mipmap.loading).into(user_head_imgs);
+//        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
         int vip=accountBean.getVip();
         if (vip==1){
             img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);

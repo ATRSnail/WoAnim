@@ -57,15 +57,25 @@ public class DBTools {
         startAdService();
 //        startAllService();
     }
+    private Intent serviceAdIntent=null;
     private void startAdService(){
-        Intent serviceIntent=new Intent(mContext, DBService.class);
-        serviceIntent.putExtra("type","updateAds");
-        mContext.startService(serviceIntent);
+        serviceAdIntent=new Intent(mContext, DBService.class);
+        serviceAdIntent.putExtra("type","updateAds");
+        mContext.startService(serviceAdIntent);
     }
+    private Intent serviceIntent=null;
     private void startService(){
-        Intent serviceIntent=new Intent(mContext, DBService.class);
+        serviceIntent=new Intent(mContext, DBService.class);
         serviceIntent.putExtra("type","findall");
         mContext.startService(serviceIntent);
+    }
+    public void stopService(){
+        if (serviceAdIntent!=null){
+            mContext.stopService(serviceAdIntent);
+        }
+        if (serviceIntent!=null){
+            mContext.stopService(serviceIntent);
+        }
     }
 
     public void updateDB(long rescourId){

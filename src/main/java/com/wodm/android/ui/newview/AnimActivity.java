@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -13,7 +14,7 @@ import com.wodm.android.view.newview.AtyTopLayout;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 
-@Layout(R.layout.activity_anim)
+@Layout(R.layout.hotpackage_dialog)
 public class AnimActivity extends AppActivity implements AtyTopLayout.myTopbarClicklistenter {
 
     @ViewIn(R.id.img_blur_bg)
@@ -22,6 +23,7 @@ public class AnimActivity extends AppActivity implements AtyTopLayout.myTopbarCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
 
     }
 

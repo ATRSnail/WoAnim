@@ -210,7 +210,7 @@ public class WebViewJsInterface implements IWXAPIEventHandler {
     }
     @JavascriptInterface
     public void webViewShareWX(String webpageUrl,String title,String description,String thumUrl){
-        listener.setJsInfo(true,3);
+//        listener.setJsInfo(true,3);
         try {
             JSONObject jsonObject=new JSONObject();
             if (CURRENT_USER!=null){

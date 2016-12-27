@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.wodm.android.utils.PermissionInfoTools;
+import com.wodm.android.utils.Preferences;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -245,23 +246,28 @@ public class GetPhoneState {
 				try {
 					// http://iframe.ip138.com/ic.asp
 					// infoUrl = new URL("http://city.ip138.com/city0.asp");
-					infoUrl = new URL("http://city.ip138.com/city0.asp");
+					infoUrl = new URL("http://1212.ip138.com/ic.asp");
 					URLConnection connection = infoUrl.openConnection();
 					HttpURLConnection httpConnection = (HttpURLConnection) connection;
 					int responseCode = httpConnection.getResponseCode();
 					if (responseCode == HttpURLConnection.HTTP_OK) {
 						inStream = httpConnection.getInputStream();
 						BufferedReader reader = new BufferedReader(
-								new InputStreamReader(inStream, "utf-8"));
+								new InputStreamReader(inStream, "gb2312"));
 						StringBuilder strber = new StringBuilder();
 						String line = null;
 						while ((line = reader.readLine()) != null)
 							strber.append(line + "\n");
 						inStream.close();
+
 //						// 从反馈的结果中提取出IP地址
-//						int start = strber.indexOf("[");
-//						int end = strber.indexOf("]", start + 1);
-//						line = strber.substring(start + 1, end);
+						int start = strber.indexOf("<center>");
+						int end = strber.indexOf("</center>", start + 1);
+						String line_address = strber.substring(start + 7, end).replace(" ","&");
+						int start1 = line_address.indexOf("来自：");
+						int end1 = line_address.lastIndexOf("&");
+						String getAddress=line_address.substring(start1+3,end1);
+						Preferences.getInstance(context).setPreference("getAddress", getAddress);
 					}
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
