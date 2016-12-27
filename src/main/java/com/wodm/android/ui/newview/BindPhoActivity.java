@@ -20,6 +20,7 @@ import com.wodm.android.view.newview.AtyTopLayout;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Timer;
@@ -163,20 +164,27 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
                 intent.putExtra("state", 1);
                 intent.putExtra("phone", phone);
                 BindPhoActivity.this.setResult(RESULT_OK, intent);
-                new DialogUtils.Builder(BindPhoActivity.this)
-                        .setMessage("恭喜你\n手机绑定成功啦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        NewVipActivity newVipActivity =new NewVipActivity();
-                        newVipActivity.setPhone(phone);
-                        finish();
+                try {
+                    if(obj.getString("code").equals("1000")){
+                        new DialogUtils.Builder(BindPhoActivity.this)
+                                .setMessage("恭喜你\n手机绑定成功啦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                NewVipActivity newVipActivity =new NewVipActivity();
+                                newVipActivity.setPhone(phone);
+                                finish();
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
                     }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -205,18 +213,28 @@ public class BindPhoActivity extends AppActivity implements AtyTopLayout.myTopba
                 intent.putExtra("state", 0);
                 intent.putExtra("phone", "");
                 BindPhoActivity.this.setResult(RESULT_CANCELED, intent);
-                new DialogUtils.Builder(BindPhoActivity.this)
-                        .setMessage("哦哟\n手机绑定失败啦").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                try {
+                    if(obj.getString("code").equals("1001")){
+                        String s=obj.getString("message");
+                        new DialogUtils.Builder(BindPhoActivity.this)
+                                .setMessage("哦哟\n"+s).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                NewVipActivity newVipActivity =new NewVipActivity();
+                                newVipActivity.setPhone(phone);
+                                finish();
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
                     }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
