@@ -52,7 +52,7 @@ import static com.wodm.android.Constants.CURRENT_USER;
 
 public class NewCommentAdapter extends BaseAdapter {
     private Context context;
-    List<NewCommentBean> data;
+    List<NewCommentBean> data=new ArrayList<>();
     private  String url;
     private List<Boolean> list=new ArrayList<>();
     private List<Boolean> list2=new ArrayList<>();
