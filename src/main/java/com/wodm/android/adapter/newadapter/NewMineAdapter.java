@@ -165,8 +165,8 @@ public class NewMineAdapter extends BaseAdapter {
             startIntent(null, TaskActivity.class);
 //           startActivity(i);
         } else if (text.equals("客服")) {
-//            startIntent(null, CustomerServiceActivity.class);
-            startIntent(null, TestActivity.class);
+            startIntent(null, CustomerServiceActivity.class);
+//            startIntent(null, TestActivity.class);
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
         }  else if (text.equals("关注")) {
@@ -213,8 +213,8 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("任务")) {
             i.setClass(mContext, TaskActivity.class);
         } else if (text.equals("客服")) {
-//            i.setClass(mContext, CustomerServiceActivity.class);
-            i.setClass(mContext, TestActivity.class);
+            i.setClass(mContext, CustomerServiceActivity.class);
+//            i.setClass(mContext, TestActivity.class);
         } else if (text.equals("商城")) {
             i.setClass(mContext, MallActivity.class);
         }
