@@ -120,7 +120,7 @@ public class GetPhoneState {
 	 * @return String 手机串号
 	 */
 	public static String readTelephoneSerialNum(final Context con) {
-		final String[] imei = {"00000000"};
+		final String[] imei = {System.currentTimeMillis()+""};
 		PermissionInfoTools.getReadPhoneStatePermission((Activity) con, new PermissionInfoTools.SetPermissionCallBack() {
 			@Override
 			public void IPsermission(boolean isPermsion) {

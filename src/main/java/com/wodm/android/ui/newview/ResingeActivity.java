@@ -54,6 +54,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     @ViewIn(R.id.btn_yzm)
     private Button btn_yzm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,7 @@ public class ResingeActivity extends AppActivity implements AtyTopLayout.myTopba
     public void rightClick() {
 
     }
+
 
     private void sendResigter() {
         final String phone = Tools.getText(et_phone);

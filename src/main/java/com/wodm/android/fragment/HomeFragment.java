@@ -15,6 +15,7 @@ import com.wodm.android.Constants;
 import com.wodm.android.adapter.HomeAdapter;
 import com.wodm.android.bean.BannerBean;
 import com.wodm.android.bean.NewMainBean;
+import com.wodm.android.dbtools.DBTools;
 import com.wodm.android.ui.WebViewActivity;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
@@ -124,6 +125,7 @@ public class HomeFragment extends TrackFragment {
                                         //          intent.setClass(getActivity(), AnimActivity.class);
                                         intent.setClass(getActivity(), CarDetailActivity.class);
                                     } else {
+                                        DBTools.getInstance(getActivity()).insertAdsDB(bean.getId());
                                         intent.putExtra("adsUrl", bean.getAdsUrl());
                                         intent.setClass(getActivity(), WebViewActivity.class);
                                     }

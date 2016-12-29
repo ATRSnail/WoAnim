@@ -31,6 +31,7 @@ import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.run.DBService;
 import com.wodm.android.service.DownLoadServices;
+import com.wodm.android.tools.ChancelInfoMap;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.MallConversionUtil;
@@ -162,6 +163,7 @@ public class Main2Activity extends AppActivity {
                 FaceConversionUtil.getInstace().getFileText(getApplication());
                 MallConversionUtil.getInstace().getFileText(getApplication());
                 DegreeTools.getInstance(getApplication());
+                ChancelInfoMap.getInstance();
             }
         }).start();
         pref = Preferences.getInstance(getApplicationContext());
@@ -314,6 +316,8 @@ public class Main2Activity extends AppActivity {
     private void getTime(String systemTime){
         String s1="2017-01-01 00:00:00";
         String s2="2017-01-01 23:59:59";
+//        String s1="2016-12-28 15:00:00";
+//        String s2="2016-12-28 17:00:00";
         java.text.DateFormat df=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         java.util.Calendar c1=java.util.Calendar.getInstance();
         java.util.Calendar c2=java.util.Calendar.getInstance();
@@ -379,7 +383,7 @@ public class Main2Activity extends AppActivity {
         intent.setAction("com.action.alarm");
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, intent, 0);
         am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                1000*1, pi);// 马上开始，每分钟触发一次
+                1000*60, pi);// 马上开始，每分钟触发一次
     }
     int num=0;
     BroadcastReceiver alarmReceiver = new BroadcastReceiver() {

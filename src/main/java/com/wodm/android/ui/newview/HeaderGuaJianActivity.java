@@ -42,6 +42,7 @@ import com.wodm.android.view.newview.OfenUseView;
 
 import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
+import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.track.TrackApplication;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.viewpager.BannerView;
@@ -87,6 +88,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private LinearLayout ll_guajian_of_user;
     private static  final  int REQUEST_CODE=001;
     private boolean listener=true;
+    private TextView tv_degress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +154,7 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
     private TabFragmentAdapter tabFragmentAdapter;
 
     private void initView() {
+        tv_degress= (TextView) findViewById(R.id.tv_degress);
         ll_guajian_of_user= (LinearLayout) findViewById(R.id.ll_guajian_of_user);
         ll_guajian_of_user.setOnClickListener(this);
         img_vip_circle= (ImageView) findViewById(R.id.img_vip_circle);
@@ -247,8 +250,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         UserInfoBean.DataBean dataBean=CURRENT_USER.getData();
         UserInfoBean.DataBean.AccountBean accountBean=dataBean.getAccount();
         tv_user_name.setText(accountBean.getNickName());
-        Glide.with(this).load(accountBean.getPortrait()).placeholder(R.mipmap.loading).into(user_head_imgs);
-//        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
+//        Glide.with(this).load(accountBean.getPortrait()).placeholder(R.mipmap.loading).into(user_head_imgs);
+        new AsyncImageLoader(this, R.mipmap.touxiang_moren, R.mipmap.moren_header).display(user_head_imgs, accountBean.getPortrait());
         int vip=accountBean.getVip();
         if (vip==1){
             img_vip_circle.setBackgroundResource(R.mipmap.vip_circle);
@@ -257,7 +260,8 @@ public class HeaderGuaJianActivity extends FragmentActivity implements FragmentM
         }else {
             img_vip_circle.setVisibility(View.INVISIBLE);
         }
-
+        String grad = String.valueOf(accountBean.getGradeValue());
+        tv_degress.setText("LV."+grad);
 
     }
 

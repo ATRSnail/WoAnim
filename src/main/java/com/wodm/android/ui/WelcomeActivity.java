@@ -1,6 +1,8 @@
 package com.wodm.android.ui;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +12,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.bean.UserInfoBean;
+import com.wodm.android.tools.ChancelInfoMap;
 import com.wodm.android.tools.GetPhoneState;
 import com.wodm.android.tools.TimeTools;
 import com.wodm.android.utils.Preferences;
@@ -26,7 +29,11 @@ public class WelcomeActivity extends AppActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getUserBehaviour();
+        boolean appDownload=Preferences.getInstance(getApplicationContext()).getPreference("appDownload", false);
+        if (!appDownload){
+            Preferences.getInstance(getApplicationContext()).setPreference("appDownload", true);
+            setInstallNum();
+        }
 //        getUseraaaBehaviour();
         if (Preferences.getInstance(getApplicationContext()).getPreference("is_first", false)) {
             String token = Preferences.getInstance(getApplicationContext()).getPreference("token", "");
@@ -113,9 +120,55 @@ public class WelcomeActivity extends AppActivity {
 //        });
 //
 //    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUserBehaviour();
+    }
+
+    private void setInstallNum() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            ApplicationInfo appInfo = getPackageManager()
+                    .getApplicationInfo(getPackageName(),
+                            PackageManager.GET_META_DATA);
+            int msg = appInfo.metaData.getInt("UMENG_CHANNEL", 0);
+            String infoId = ChancelInfoMap.getChancelInteger(msg);
+            jsonObject.put("channelInfo", infoId);
+            jsonObject.put("deviceId", GetPhoneState.readTelephoneSerialNum(this)+"");
+            /**设备平台（1:安卓 2:ios 3:ipad）*/
+            jsonObject.put("devicePlatform", 1);
+            jsonObject.put("deviceVersion", GetPhoneState.getSysRelease()+"");
+            jsonObject.put("appVersion", GetPhoneState.getAppVersionName(this)+"");
+            jsonObject.put("times", TimeTools.getNianTime());
+            httpPost(Constants.APPDOWNLOAD, jsonObject, new HttpCallback() {
+
+                @Override
+                public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthSuccess(result, obj);
+                }
+
+                @Override
+                public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                    super.doAuthFailure(result, obj);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     private void getUserBehaviour(){
         JSONObject jsonObject=new JSONObject();
         try {
+            ApplicationInfo appInfo = getPackageManager()
+                    .getApplicationInfo(getPackageName(),
+                            PackageManager.GET_META_DATA);
+            int msg=appInfo.metaData.getInt("UMENG_CHANNEL",0);
+            String infoId=ChancelInfoMap.getChancelInteger(msg);
+            jsonObject.put("channelInfo",infoId);
             jsonObject.put("deviceId", GetPhoneState.readTelephoneSerialNum(this));
             jsonObject.put("devicePlatform",1);
             jsonObject.put("deviceBrand",GetPhoneState.getBrand());
@@ -139,6 +192,8 @@ public class WelcomeActivity extends AppActivity {
                 }
             });
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 

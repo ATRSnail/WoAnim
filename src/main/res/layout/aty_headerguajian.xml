@@ -86,6 +86,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
+                            android:id="@+id/tv_degress"
                             android:text="LV3"
                             android:layout_marginLeft="@dimen/px_8"
                             android:textColor="@color/color_666666"

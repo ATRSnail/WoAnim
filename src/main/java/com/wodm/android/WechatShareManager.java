@@ -452,6 +452,7 @@ public class WechatShareManager {
             return bitmap;
         } catch (IOException e) {
             e.printStackTrace();
+            handler.sendEmptyMessage(1);
             return null;
         }
     }
