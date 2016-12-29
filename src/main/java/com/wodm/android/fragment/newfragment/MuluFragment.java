@@ -19,6 +19,7 @@ import com.wodm.android.view.newview.MyGridView;
 
 /**
  * Created by songchenyu on 16/12/12.
+ * 新的动漫画详情页面目录的碎片
  */
 
 public class MuluFragment extends Fragment implements View.OnClickListener{

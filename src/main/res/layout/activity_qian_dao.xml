@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/sign1"
         android:layout_alignRight="@id/sign1"
-        android:layout_marginRight="@dimen/px_200"
-        android:layout_marginBottom="@dimen/px_222" />
+        android:layout_marginRight="@dimen/px_220"
+        android:layout_marginBottom="@dimen/px_252" />
 </RelativeLayout>
