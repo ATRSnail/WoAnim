@@ -30,8 +30,12 @@ public class DanmuControler {
         danMuTools.addData(commentBeanList);
     }
     public void addBuilt(String text,int color){
-        danMuTools.addDanmakuContraller(text,color);
+        addBuilt(text,color,0);
     }
+    public void addBuilt(String text,int color,int playTime){
+        danMuTools.addDanmakuContraller(text,color,playTime);
+    }
+
     public void setDanmakuView(DanmakuView danmakuView){
         danMuTools.setDanMuView(danmakuView);
     }

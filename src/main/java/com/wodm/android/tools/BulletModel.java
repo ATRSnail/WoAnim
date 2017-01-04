@@ -19,9 +19,9 @@ public class BulletModel {
     }
 
     public static class BarrageListBean {
-        private int id;
+        private long id;
         private long utime;
-        private long time;
+        private String time;
         private String fontColor;
         private String vfPlayId;
         private String userId;
@@ -40,11 +40,11 @@ public class BulletModel {
 
         private int sudu;
 
-        public int getId() {
+        public long getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(long id) {
             this.id = id;
         }
 
@@ -56,11 +56,11 @@ public class BulletModel {
             this.utime = utime;
         }
 
-        public long getTime() {
+        public String getTime() {
             return time;
         }
 
-        public void setTime(long time) {
+        public void setTime(String time) {
             this.time = time;
         }
 

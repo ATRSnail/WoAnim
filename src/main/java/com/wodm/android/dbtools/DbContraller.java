@@ -50,7 +50,7 @@ public class DbContraller {
     public void insertAll(){
 
     }
-    public void update(long resourceId,UserBehavierInfo userBehavierInfo){
+    public void update(final long resourceId, final UserBehavierInfo userBehavierInfo){
         try {
             WoDbUtils.initialize(mContext).update(userBehavierInfo, WhereBuilder.b("resourceId","=",resourceId),"end_time");
         } catch (DbException e) {

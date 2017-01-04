@@ -165,6 +165,7 @@ public class HomeFragment extends TrackFragment {
     @Override
     public void onStop() {
         mBannerView.shutdown();
+        DBTools.getInstance(getActivity()).stopService();
         super.onStop();
     }
 }

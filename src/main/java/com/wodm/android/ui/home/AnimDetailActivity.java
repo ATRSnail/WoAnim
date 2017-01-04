@@ -69,7 +69,6 @@ import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 import com.wodm.android.view.danmu.DanmakuItem;
 import com.wodm.android.view.danmu.IDanmakuItem;
 
-import org.eteclab.OnkeyShare;
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -77,7 +76,6 @@ import org.eteclab.base.http.HttpCallback;
 import org.eteclab.base.http.HttpUtil;
 import org.eteclab.base.utils.AsyncImageLoader;
 import org.eteclab.base.utils.CommonUtil;
-import org.eteclab.share.call.ShareResultCall;
 import org.eteclab.track.Tracker;
 import org.eteclab.ui.widget.CircularImage;
 import org.eteclab.ui.widget.NoScrollGridView;
@@ -157,6 +155,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private RelativeLayout ll_car_details;
     private ScreenSwitchUtils screenSwitchUtils;
     private DBTools dbTools;
+    private ArrayList<BarrageBean> beanArrayList=new ArrayList<>();
 
     int mKeyboardHeight = 400; // 输入法默认高度为400
     private void initHeaderViews() {
@@ -205,14 +204,39 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     protected void onResume() {
         super.onResume();
         //插入开始时间
-        DBTools.getInstance(this).inserDB(barrage_rescourceId);
+        DBTools.getInstance(this).inserDB(resourceId);
 
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (danmuControler_bottom != null){
+            danmuControler_bottom.release();
+        }
+        if (danmuControler_top!=null){
+            danmuControler_top.release();
+        }
+        if (danmuControler_middle!=null){
+            danmuControler_middle.release();
+        }
+
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+        if (serviceIntent!=null){
+            stopService(serviceIntent);
+        }
+        unregisterReceiver();
+        screenSwitchUtils.stop();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         //更新结束时间
-        DBTools.getInstance(this).updateDB(barrage_rescourceId);
+        DBTools.getInstance(this).updateDB(resourceId);
+        DBTools.getInstance(this).stopService();
     }
     private void initView(){
 
@@ -304,6 +328,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CartoonReadPosition=-1;
         initHeaderViews();
         dbTools=DBTools.getInstance(this);
         videoView.setTimeListener(AnimDetailActivity.this);
@@ -575,11 +600,11 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 //        ll_danmu_background.getBackground().setAlpha(alpha);
 //        ll_danmu_background.invalidate();
         danmuControler_top = new DanmuControler(this, mDanmakuView_top);
-        danmuControler_top.addData(arrayList_top);
+//        danmuControler_top.addData(arrayList_top);
         danmuControler_middle = new DanmuControler(this, mDanmakuView_middle);
-        danmuControler_middle.addData(arrayList_middle);
+//        danmuControler_middle.addData(arrayList_middle);
         danmuControler_bottom = new DanmuControler(this, mDanmakuView_bottom);
-        danmuControler_bottom.addData(arrayList_bottom);
+//        danmuControler_bottom.addData(arrayList_bottom);
     }
 
     private List<IDanmakuItem> initItems(List<CommentBean> commentbeanList) {
@@ -597,22 +622,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (danmuControler_bottom != null){
-            danmuControler_bottom.release();
-        }else if (danmuControler_top!=null){
-            danmuControler_top.release();
-        }else if (danmuControler_middle!=null){
-            danmuControler_middle.release();
-        }
 
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-        if (serviceIntent!=null){
-            stopService(serviceIntent);
-        }
-        unregisterReceiver();
-        screenSwitchUtils.stop();
     }
 
     private void showDowmData() {
@@ -808,9 +818,9 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     private void showShare() {
-//        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_ANIM_URL + resourceId, bean.getShowImage());
-//
-//        dialog.show();
+        dialog = new ShareDialog(this, bean.getName(), bean.getDesp(), Constants.SHARE_ANIM_URL + resourceId, bean.getShowImage());
+
+        dialog.show();
 //        OnkeyShare share = new OnkeyShare(this);
 //        share.setPlatform();
 //        share.setTitle(bean.getName());
@@ -992,9 +1002,10 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    ArrayList<BarrageBean> beanArrayList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
+                    ArrayList<BarrageBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
                     }.getType());
-//                    initDanMu(beanArrayList);
+                    beanArrayList.addAll(list);
+                    initDanMu(beanArrayList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1064,7 +1075,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             }
         }).create().show();
     }
-    private static int[] getMinuteAndSecond(int mils) {
+    public static int[] getMinuteAndSecond(int mils) {
         mils /= 1000;
         int[] time = new int[2];
         time[0] = mils / 60;
@@ -1130,20 +1141,26 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     @Override
-    public void refrensh(String content,int color,int position) {
-        super.refrensh(content,color,position);
+    public void refrensh(String content,int color,int position,int playTime) {
+        super.refrensh(content,color,position,playTime);
+        BarrageBean barrageBean=new BarrageBean();
+        barrageBean.setContent(content);
+        barrageBean.setColor("#"+color);
+        barrageBean.setLocation(position);
+        barrageBean.setPlayTime(playTime+"");
+        beanArrayList.add(barrageBean);
         if (position==1){
             danmuControler_top.setDanmakuView(mDanmakuView_top);
-            danmuControler_top.addBuilt(content,color);
+            danmuControler_top.addBuilt(content,color,playTime);
         }else if (position==2){
             danmuControler_middle.setDanmakuView(mDanmakuView_middle);
-            danmuControler_middle.addBuilt(content,color);
+            danmuControler_middle.addBuilt(content,color,playTime);
         }else if (position==3){
             danmuControler_bottom.setDanmakuView(mDanmakuView_bottom);
-            danmuControler_bottom.addBuilt(content,color);
+            danmuControler_bottom.addBuilt(content,color,playTime);
         }else {
             danmuControler_top.setDanmakuView(mDanmakuView_top);
-            danmuControler_top.addBuilt(content,color);
+            danmuControler_top.addBuilt(content,color,playTime);
         }
 
 
@@ -1153,7 +1170,8 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
     @Override
     public void setTime(String playUrl,int time,int totalTime) {
-        try {
+    try {
+            getBullets(time/1000);
             AnimLookCookieBean animLookCookieBean1=new AnimLookCookieBean();
             int index=playUrl.indexOf("?");
             String insertUrl=playUrl.substring(0,index);
@@ -1167,6 +1185,19 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             }
             } catch (DbException e) {
             e.printStackTrace();
+        }
+    }
+    private BarrageBean showbean=null;
+    private void getBullets(int times){
+        for (BarrageBean bean:beanArrayList) {
+            int playtime=Integer.parseInt(bean.getPlayTime());
+            if (showbean==null||showbean!=bean){
+                if (playtime==times){
+                    showbean=bean;
+                    refrensh(bean.getContent(),Color.parseColor(bean.getColor()),bean.getLocation(),0);
+                    break;
+                }
+            }
         }
     }
 

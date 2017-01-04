@@ -7,73 +7,53 @@ import java.io.Serializable;
  */
 
 public class BarrageBean implements Serializable {
-    public int id;
-    public int resourceId;
-    public int chapterId;
-    public int sendId;
-    public long createTime;
-    public String content;
-    public String color;
-    public int  location;
+    /**动漫/动画的作品的id*/
+    private Long resourceId=0l;
+
+    /**动漫/漫画的章节id*/
+    private Long chapterId=0l;
+
+    /** 发表弹幕用户的id */
+    private Long sendId = 0l;
+
+    /**弹幕的内容*/
+    private String content;
+
+    /**播放时间*/
+    private String playTime;
 
 
-    public int getLocation() {
-        return location;
-    }
+    /**1表示小文字,2表示的是中文字 3:表示的是打文字*/
+    //private int size=0;
 
-    public void setLocation(int location) {
-        this.location = location;
-    }
+    /**颜色*/
+    private String color;
 
-    public String getColor() {
-        return color;
-    }
+    /**位置 1:表示上 2: 表示中 3 表示下*/
+    private int location;
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getResourceId() {
+    public Long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;
     }
 
-    public int getChapterId() {
+    public Long getChapterId() {
         return chapterId;
     }
 
-    public void setChapterId(int chapterId) {
+    public void setChapterId(Long chapterId) {
         this.chapterId = chapterId;
     }
 
-    public int getSendId() {
+    public Long getSendId() {
         return sendId;
     }
 
-    public void setSendId(int sendId) {
+    public void setSendId(Long sendId) {
         this.sendId = sendId;
-    }
-
-    public long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
     }
 
     public String getContent() {
@@ -84,15 +64,27 @@ public class BarrageBean implements Serializable {
         this.content = content;
     }
 
-    @Override
-    public String toString() {
-        return "BarrageBean{" +
-                "id=" + id +
-                ", resourceId=" + resourceId +
-                ", chapterId=" + chapterId +
-                ", sendId=" + sendId +
-                ", createTime='" + createTime + '\'' +
-                ", content='" + content + '\'' +
-                '}';
+    public String getPlayTime() {
+        return playTime;
+    }
+
+    public void setPlayTime(String playTime) {
+        this.playTime = playTime;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

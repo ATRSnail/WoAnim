@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -128,14 +129,15 @@ public class CartoonReadActivity extends AppActivity {
 //    private boolean isOpen = false;
     private boolean isOpen = true;
      private String num="";
+    private ArrayList<BarrageBean> beanArrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //记录数据
-        handler.sendEmptyMessageAtTime(0, 10000);
+        handler.sendEmptyMessage(1);
         setListView();
         setLoadAndRefresh();
-
+//        handler111.sendEmptyMessageDelayed(1,5000);
         if (!getIntent().hasExtra("beanPath")) {
             setListView();
             mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
@@ -168,7 +170,14 @@ public class CartoonReadActivity extends AppActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            getBarrageResource();
+            if (msg.what==1){
+                getBarrageResource();
+            }else if (msg.what==2){
+//                getBullets(0);
+            }else if (msg.what==3){
+                int position= (int) msg.obj;
+//                getBullets(position);
+            }
         }
     };
 
@@ -184,6 +193,7 @@ public class CartoonReadActivity extends AppActivity {
         super.onPause();
         //更新结束时间
         DBTools.getInstance(this).updateDB(barrage_rescourceId);
+        DBTools.getInstance(this).stopService();
     }
 
     private void startReadPath(String path) {
@@ -215,8 +225,14 @@ public class CartoonReadActivity extends AppActivity {
     }
 
     @Override
-    public void refrensh(String content,int color,int position) {
-        super.refrensh(content,color,position);
+    public void refrensh(String content,int color,int position,int playTime) {
+        super.refrensh(content,color,position,playTime);
+        BarrageBean barrageBean=new BarrageBean();
+        barrageBean.setContent(content);
+        barrageBean.setColor("#"+color);
+        barrageBean.setLocation(position);
+        barrageBean.setPlayTime((++danmu_num)+"");
+        beanArrayList.add(barrageBean);
         if (position==1){
             danmuControler_top.setDanmakuView(mDanmakuView_read_top);
             danmuControler_top.addBuilt(content,color);
@@ -233,6 +249,39 @@ public class CartoonReadActivity extends AppActivity {
 
 //        getBarrageResource();
     }
+    ArrayList<BarrageBean> positionList=new ArrayList<>();
+    private void getBullets(int position){
+        positionList.clear();
+        for (BarrageBean bean:beanArrayList) {
+            int platetime=Integer.parseInt(bean.getPlayTime());
+            if (platetime==position){
+                positionList.add(bean);
+            }
+        }
+//        handler111.sendEmptyMessage(1);
+//        if (beanArrayList.size()>0){
+//            runnable.run();
+//        }
+    }
+//    //主要是防止滑动太快 造成卡顿
+//    private Runnable runnable=new Runnable() {
+//        @Override
+//        public void run() {
+//            for (BarrageBean bean:positionList) {
+//                Message msg=new Message();
+//                msg.obj=bean;
+//                handler111.sendMessageAtTime(msg,100);
+//            }
+//        }
+//    };
+
+    Handler handler111=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            refrensh("zheshiygeceshishuju ", Color.parseColor("#ffffff"),1,1);
+        }
+    };
 
     private void requestHttp(final int index, final boolean b) {
         if (mTitleView != null && bean != null) {
@@ -244,7 +293,7 @@ public class CartoonReadActivity extends AppActivity {
 
             CurrChapter = mChapterList.get(index);
             barrage_charterId = CurrChapter.getId();
-
+            handler.sendEmptyMessage(1);
             httpGet(Constants.HOST + "resource/cartoon/" + CurrChapter.getId(), new HttpCallback() {
 
                 @Override
@@ -367,12 +416,20 @@ public class CartoonReadActivity extends AppActivity {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
                 int position = 0;
                 if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
                     position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 } else if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
                     position = ((GridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 }
+//                if (newState==0){
+//                    Message msg=new Message();
+//                    msg.what=3;
+//                    msg.obj=position;
+//                    handler.sendMessageAtTime(msg,100);
+//                }
+                CartoonReadPosition=position;
                 if (pullToLoadView.getAdapter() != null)
 
                     setSeekBarView(pullToLoadView.getAdapter().getItemCount(), position);
@@ -443,16 +500,19 @@ public class CartoonReadActivity extends AppActivity {
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    ArrayList<BarrageBean> beanArrayList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
+                    ArrayList<BarrageBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
                     }.getType());
+                    beanArrayList.clear();
+                    beanArrayList.addAll(list);
                     initDanMu(beanArrayList);
+//                    handler.sendEmptyMessage(2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
-
+    int danmu_num=0;
     private void initDanMu(final ArrayList<BarrageBean> barrageBeanList) {
         //弹幕
 //        List<IDanmakuItem> list = initItems(commentbeanList);
@@ -463,6 +523,8 @@ public class CartoonReadActivity extends AppActivity {
         ArrayList<BarrageBean> arrayList_middle=new ArrayList<>();
         ArrayList<BarrageBean> arrayList_bottom=new ArrayList<>();
         for (BarrageBean bean:barrageBeanList){
+            danmu_num++;
+            bean.setPlayTime(danmu_num+"");
             if (bean.getLocation()==1){
                 arrayList_top.add(bean);
             }else if (bean.getLocation()==2){

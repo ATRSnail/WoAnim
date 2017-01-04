@@ -35,25 +35,30 @@ public class DBTools {
             dbContraller=DbContraller.getInstance(context);
         }
     }
-    public void inserDB(long rescourId){
-        UserBehavierInfo userBehavierInfo=new UserBehavierInfo();
-        userBehavierInfo.setResourceId(rescourId);
-        int id=Preferences.getInstance(mContext).getPreference("userBehavier", 0);
-        userBehavierInfo.setBehavier_id(id);
-        userBehavierInfo.setStart_time(System.currentTimeMillis());
-        dbContraller.insert(userBehavierInfo);
+    public void inserDB(final long rescourId){
+              UserBehavierInfo userBehavierInfo=new UserBehavierInfo();
+              userBehavierInfo.setResourceId(rescourId);
+              int id= Preferences.getInstance(mContext).getPreference("userBehavier", 0);
+              userBehavierInfo.setBehavier_id(id);
+              userBehavierInfo.setStart_time(System.currentTimeMillis());
+              dbContraller.insert(userBehavierInfo);
         startService();
     }
 //    private void startAllService(){
 //        startAdService();
 //        startService();
 //    }
-    public void insertAdsDB(long rescourId){
-        AdsClickBean adsClickBean=new AdsClickBean();
-        adsClickBean.setAdNum(rescourId);
-        adsClickBean.setClickCount(1);
-        adsClickBean.setTimes(TimeTools.getNianTime());
-        dbContraller.insertAds(adsClickBean);
+    public void insertAdsDB(final long rescourId){
+       new Thread(new Runnable() {
+           @Override
+           public void run() {
+               AdsClickBean adsClickBean=new AdsClickBean();
+               adsClickBean.setAdNum(rescourId);
+               adsClickBean.setClickCount(1);
+               adsClickBean.setTimes(TimeTools.getNianTime());
+               dbContraller.insertAds(adsClickBean);
+           }
+       }).start();
         startAdService();
 //        startAllService();
     }
@@ -78,7 +83,7 @@ public class DBTools {
         }
     }
 
-    public void updateDB(long rescourId){
+    public void updateDB(final long rescourId){
         UserBehavierInfo userBehavierInfo=new UserBehavierInfo();
         userBehavierInfo.setEnd_time(System.currentTimeMillis());
         dbContraller.update(rescourId,userBehavierInfo);

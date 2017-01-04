@@ -24,7 +24,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import master.flame.danmaku.danmaku.loader.ILoader;
 import master.flame.danmaku.danmaku.loader.IllegalDataException;
@@ -52,13 +51,12 @@ public class DanMuTools {
     private DanmakuContext mDanmakuContext;
     private HashMap<Integer, Integer> maxLinesPair;// 弹幕最大行数
     private HashMap<Integer, Boolean> overlappingEnablePair;// 设置是否重叠
-    private String timeArr[]={"11.201999664307","30.43099975586","40.26400756836","60.92900085449","131.8450012207","105.78199768066","233.826000213623"};
     private Context mContext;
     private ArrayList<BarrageBean> mChapterList;
     public DanMuTools(Context context,DanmakuView mDanmakuView){
         this.mContext=context;
         this.mDanmakuView=mDanmakuView;
-        handler.sendEmptyMessageAtTime(1,10000);
+        handler.sendEmptyMessage(1);
     }
     private void initDanmaku() {
         mDanmakuContext = DanmakuContext.create();
@@ -95,15 +93,13 @@ public class DanMuTools {
                 BulletModel bul=new BulletModel();
                 List<BulletModel.BarrageListBean> listBean=new ArrayList<>();
                 BulletModel.BarrageListBean ba=null;
-                Random random=new Random();
                 for (BarrageBean bean:mChapterList) {
                     ba=new BulletModel.BarrageListBean();
                     ba.setContext(bean.getContent());
                     ba.setFontColor(ba.getFontColor());
-                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_30_px)+"");
-                    int time=random.nextInt(timeArr.length);
-                    ba.setTime(time);
-                    ba.setId(bean.getId());
+                    ba.setFontSize(mContext.getResources().getDimension(R.dimen.text_size_24_px)+"");
+                    ba.setTime(bean.getPlayTime());
+                    ba.setId(bean.getSendId());
                     ba.setState("1");
                     ba.setSudu(sudu);
                     listBean.add(ba);
@@ -164,7 +160,7 @@ public class DanMuTools {
     /**
      * 添加文本弹幕
      */
-    private void addDanmaku(String text,int color) {
+    private void addDanmaku(String text,int color,int playTime){
         BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
         if (danmaku == null || mDanmakuView == null) {
             return;
@@ -179,6 +175,9 @@ public class DanMuTools {
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
         mDanmakuView.addDanmaku(danmaku);
+    }
+    private void addDanmaku(String text,int color) {
+        addDanmaku(text,color,0);
     }
     public void setDanMuView(DanmakuView mDanmakuView){
         this.mDanmakuView=mDanmakuView;
@@ -334,7 +333,7 @@ public class DanMuTools {
 
     }
 
-    protected void addDanmakuContraller(String text,int color){
-        addDanmaku(text,color);
+    protected void addDanmakuContraller(String text,int color,int playTime){
+        addDanmaku(text,color,playTime);
     }
 }

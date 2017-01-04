@@ -14,14 +14,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.umeng.analytics.MobclickAgent;
 import com.wodm.R;
 import com.wodm.android.CartoonApplication;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.AnimLookCookieBean;
+import com.wodm.android.db.WoDbUtils;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Preferences;
+import com.wodm.android.utils.Untils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
 
@@ -54,7 +59,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     protected LinearLayout mCheckButton;
     protected int barrage_rescourceId;
     protected String barrage_charterId;
-
+    protected int  CartoonReadPosition=-1;
     protected SlideBackUtil mSlideBackUtil;
     private int ScreenWidth, ScreenHight;
     private DialogFragment bulletDialog;
@@ -104,19 +109,6 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
     @Override
     protected void onResume() {
         super.onResume();
-
-//        final Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//
-//            @Override
-//            public void run() {
-//                    runOnUiThread(new Runnable() {
-//                        public void run() {
-//                            Log.e("SCY"," - - - - 1 1 1 1 1 ");
-//                        }
-//                    });
-//            }
-//        }, 0, 1000);
         Tracker.getInstance(this).onResume();
         JPushInterface.onResume(this);
         MobclickAgent.onResume(this);
@@ -201,11 +193,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         bulletDialog.show(ft, "dialog");
 
     }
-
-
-
     @Override
-    public void addBullet(final String content,final String color,final int position,final TextView send) {
+    public void addBullet(final String content,final String color,final int position,final TextView send){
+        addBullet(content,color,position,send,true);
+    }
+
+    public void addBullet(final String content,final String color,final int position,final TextView send,final boolean isShow) {
         if (!UpdataUserInfo.isLogIn(this, true,null)) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
@@ -245,25 +238,34 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             obj.put("resourceId", barrage_rescourceId);
             obj.put("chapterId", barrage_charterId);
             obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
-//                      obj.put("sendId", 1);
             obj.put("content", content);
             final int bulletColor= Color.parseColor(color);
             obj.put("color", color);
             Preferences.getInstance(this).setPreference("bulletbackgroundcolor",bulletColor);
             obj.put("location", position);
+            final int playTime=getAllLookHistory();
+            if (CartoonReadPosition==-1){
+                obj.put("playTime",CartoonReadPosition);
+
+            }else {
+                obj.put("playTime",playTime);
+            }
             httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
                 @Override
                 public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                     super.doAuthSuccess(result, obj);
                     try {
                         if (obj.getString("code").equals("1000")) {
-                            Toast.makeText(getApplicationContext(), "弹幕添加成功", Toast.LENGTH_SHORT
-                            ).show();
-                            send.setEnabled(true);
+                            if (isShow){
+                                Untils.showToast(getApplicationContext(),"弹幕添加成功");
+                            }
+                            if (send!=null){
+                                send.setEnabled(true);
+                            }
                             if (bulletDialog != null) {
                                 bulletDialog.dismiss();
                             }
-                            refrensh(content,bulletColor,position);
+                            refrensh(content,bulletColor,position,playTime);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -281,8 +283,20 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             send.setEnabled(true);
         }
     }
+    private int getAllLookHistory() {
+        try {
+            List<AnimLookCookieBean> beanList= WoDbUtils.initialize(getApplicationContext()).
+                    findAll(Selector.from(AnimLookCookieBean.class).where("rescoureid","=",barrage_charterId));
+            if (beanList!=null&&beanList.size()!=0){
+                return beanList.get(0).getLookTime()/1000;
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return 0;
 
-    public void refrensh(String content,int color,int position) {
+    }
+    public void refrensh(String content,int color,int position,int playtime) {
 
     }
 

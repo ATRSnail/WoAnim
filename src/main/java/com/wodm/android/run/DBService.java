@@ -57,7 +57,7 @@ public class DBService extends Service {
             }
         }
 
-        return super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
     private void initReceiver(){
         if (upDataReceiver==null){

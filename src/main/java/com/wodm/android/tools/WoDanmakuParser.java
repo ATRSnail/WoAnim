@@ -62,7 +62,7 @@ public class WoDanmakuParser extends BaseDanmakuParser {
                 // FIXME : hard code
                 // TODO : parse advance danmaku json
                 continue;
-            long time = bullet.getTime() * 1000; // 出现时间
+            long time = Integer.parseInt(bullet.getTime())*1000; // 出现时间
             /**
              * {@link Color.BLACK} {@link Color#parseColor(String)}
              */

@@ -30,7 +30,6 @@ import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
 import com.wodm.android.fragment.TypeFragment;
 import com.wodm.android.run.DBService;
-import com.wodm.android.service.DownLoadServices;
 import com.wodm.android.tools.ChancelInfoMap;
 import com.wodm.android.tools.DegreeTools;
 import com.wodm.android.tools.GetPhoneState;
@@ -167,8 +166,8 @@ public class Main2Activity extends AppActivity {
             }
         }).start();
         pref = Preferences.getInstance(getApplicationContext());
-        Intent intent = new Intent(getApplicationContext(), DownLoadServices.class);
-        startService(intent);
+//        Intent intent = new Intent(getApplicationContext(), DownLoadServices.class);
+//        startService(intent);
         mFragmentManager = getFragmentManager();
         mHome.setOnClickListener(clickListener);
         mUs.setOnClickListener(clickListener);
