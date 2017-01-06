@@ -1,64 +1,210 @@
 package com.wodm.android.bean;
 
-import android.text.TextUtils;
-
 import java.io.Serializable;
 
 /**
  * Created by json on 2016/4/27.
  */
 public class ObjectBean implements Serializable {
+//    private String name;
+//    /** 作品分类ID */
+//    private Long categoryId = 0l;
+//    /** 作品版权ID */
+//    private Long copyrightId = 0l;
+//    /** 1 连载   2 全本*/
+//    private int type = 1;
+//    /** CP ID*/
+//    @JsonIgnore
+//    private int cpId = 0;
+//    /** 区域 ID*/
+//    private int areaId=0;
+//    /** 作者*/
+//    private String author="";
+//
+//    /** 1 有效  0 无效*/
+//    @JsonIgnore
+//    private int status=1;
+//
+//
+//    /** 修改人*/
+//    @JsonIgnore
+//    private String modifyBy="";
+//
+//
+//    /** 修改时间*/
+//    @JsonIgnore
+//    private Date modifyTime = new Date();
+//
+//
+//    /** 创建人*/
+//    @JsonIgnore
+//    private String createBy="";
+//
+//
+//    /** 创建时间*/
+//    @JsonIgnore
+//    private Date createTime = new Date();
+//
+//
+//    /** 上线年限*/
+//    private Long yearId = 0l;
+//    /** 首页图片*/
+//    private String showImage;
+//    /** 描述*/
+//    private String desp;
+//    /** 评分*/
+//    private float score = 0f;
+//    /** 章节*/
+//    private int chapter = 0;
+//    /** 播放次数*/
+//    private int playCount = 0;
+//    /** 评论次数*/
+//    private int commentCount = 0;
+//    /** 点赞次数*/
+//    private int goodCount = 0;
+//    /** 收藏次数*/
+//    private int collectionCount = 0;
+//    /** 更新到多少章*/
+//    private int nowChapter = 0;
+//    /** 更新当前章节数章*/
+//    private long nowChapterId = 0;
+//    /** 内容标题*/
+//    private String title="";
+//
+//    /** 搜索关键字*/
+//    @JsonIgnore
+//    private String keyword;
+//
+//    /** 上线状态 1 上线 0 不上线*/
+//    @JsonIgnore
+//    private int online = 1;
+//
+//    /** 资源类型   资源类型 1动画  2漫画 3壁纸*/
+////	@JsonIgnore
+//    private int resourceType = 1 ;
+//
+//    /** 是否付费*/
+//    @JsonIgnore
+//    private int isPay = 0;
+//
+//    /** 风格类型*/
+//    @JsonIgnore
+//    private int styleId =0;
+//
+//    /** 审核状态*/
+//    @JsonIgnore
+//    private Integer auditStatus=1 ;//审核状态  1 通过  0 不通过
+//
+//
+//
+//    /** 简介*/
+//    private String briefDesp ;
+//
+//
+//    /**排序字段*/
+//    private int sortNum;
+//
+//
+//    /**上线时间*/
+//    @JsonIgnore
+//    private Date onlineTime;
+//
+//    /**审核人*/
+//    @JsonIgnore
+//    private String auditBy;
+//
+//    /**审核时间*/
+//    @JsonIgnore
+//    private Date auditTime;
+//
+//    /**应用位置  观看选集*/
+//    private String image_480_160;
+//    private String image_296_296;
+//    private String image_300_400;
+//    private String image_800_450;
+//    private String image_900_300;
+//    private String image_480_126;
+//
+//    /**封面图原图*/
+//    private String orijinalImage;
+//
+//
+//
+//    /**人气*/
+//    private String popularity;
+//    /**作品评分对应的描述*/
+//    private String scoreDesp;
+//    /**临时的栏目样式的图片的展示*/
+//    private String imageUrl;
+
+
+    /**
+     * id : 560
+     * name : 天使在人间
+     * categoryId : 1
+     * categoryName : 校园
+     * copyrightId : 68
+     * type : 1
+     * areaId : 4
+     * author : 周智延
+     * yearId : 4
+     * showImage : http://202.106.63.82/static/1477638865647.jpg
+     * desp : 进阶天使沧夜坠入人间，与善良呆萌的人界女孩音舞达成三个愿望的契约交换。契约达成，沧夜便可回到天界，成为真正的天使。在相处的过程中，二人虽然摩擦不断，却也留下几多温馨和感动，成为彼此最温暖的存在。经过一系列的波折和努力，三个愿望达成，沧夜回天界的时刻终于到来。可回到天界后，音舞的影子一直萦绕在沧夜心中。米凯尔大天使长发现他的心事后，将他再次“发配”人界……
+     * score : 0
+     * chapter : 6
+     * playCount : 36339
+     * commentCount : 3
+     * goodCount : 0
+     * collectionCount : 3
+     * nowChapter : 1
+     * nowChapterId : 0
+     * title : 天使在人间
+     * resourceType : 2
+     * briefDesp : 进阶天使沧夜坠入人间，与善良呆萌的人界女孩音舞达成三个愿望的契约交换。契约达成，沧夜便可回到天界，成为真正的天使。在相处的过程中，二人虽然摩擦不断，却也留下几多温馨和感动，成为彼此最温暖的存在。经过一系列的波折和努力，三个愿望达成，沧夜回天界的时刻终于到来。可回到天界后，音舞的影子一直萦绕在沧夜心中。米凯尔大天使长发现他的心事后，将他再次“发配”人界……
+     * popularity : 3.6万
+     * isCollect : 1
+     * image_480_126 : http://202.106.63.82/static/1477638865688.jpg
+     * image_480_160 : http://202.106.63.82/static/1477638865615.jpg
+     * image_296_296 : http://202.106.63.82/static/1477638865647.jpg
+     * image_300_400 : http://202.106.63.82/static/1477563378327.jpg
+     * image_800_450 : http://202.106.63.82/static/1477563378260.jpg
+     * image_900_300 : http://202.106.63.82/static/1477563378082.jpg
+     * orijinalImage : http://202.106.63.82/static/1477563378394.jpg
+     * scoreDesp : 糟糕番
+     */
 
     private int id;
     private String name;
     private int categoryId;
+    private String categoryName;
     private int copyrightId;
     private int type;
     private int areaId;
     private String author;
-    private String years;
+    private int yearId;
     private String showImage;
     private String desp;
-    private float score;
-
+    private int score;
+    private int chapter;
     private int playCount;
     private int commentCount;
     private int goodCount;
     private int collectionCount;
-
-    private int resourceType;
-
-    private int chapter;
     private int nowChapter;
     private int nowChapterId;
     private String title;
+    private int resourceType;
     private String briefDesp;
+    private String popularity;
     private int isCollect;
+    private String image_480_126;
+    private String image_480_160;
     private String image_296_296;
-
-    public String getImage_296_296() {
-        return image_296_296;
-    }
-
-    public void setImage_296_296(String image_296_296) {
-        this.image_296_296 = image_296_296;
-    }
-
-    public int getIsCollect() {
-        return isCollect;
-    }
-
-    public void setIsCollect(int isCollect) {
-        this.isCollect = isCollect;
-    }
-
-    public int getResourceType() {
-        return resourceType;
-    }
-
-    public void setResourceType(int resourceType) {
-        this.resourceType = resourceType;
-    }
+    private String image_300_400;
+    private String image_800_450;
+    private String image_900_300;
+    private String orijinalImage;
+    private String scoreDesp;
 
     public int getId() {
         return id;
@@ -82,6 +228,14 @@ public class ObjectBean implements Serializable {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public int getCopyrightId() {
@@ -116,18 +270,15 @@ public class ObjectBean implements Serializable {
         this.author = author;
     }
 
-    public String getYears() {
-        return years;
+    public int getYearId() {
+        return yearId;
     }
 
-    public void setYears(String years) {
-        this.years = years;
+    public void setYearId(int yearId) {
+        this.yearId = yearId;
     }
 
     public String getShowImage() {
-        if (TextUtils.isEmpty(showImage)) {
-            return "";
-        }
         return showImage;
     }
 
@@ -143,11 +294,11 @@ public class ObjectBean implements Serializable {
         this.desp = desp;
     }
 
-    public float getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -215,11 +366,99 @@ public class ObjectBean implements Serializable {
         this.title = title;
     }
 
+    public int getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(int resourceType) {
+        this.resourceType = resourceType;
+    }
+
     public String getBriefDesp() {
         return briefDesp;
     }
 
     public void setBriefDesp(String briefDesp) {
         this.briefDesp = briefDesp;
+    }
+
+    public String getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
+    }
+
+    public int getIsCollect() {
+        return isCollect;
+    }
+
+    public void setIsCollect(int isCollect) {
+        this.isCollect = isCollect;
+    }
+
+    public String getImage_480_126() {
+        return image_480_126;
+    }
+
+    public void setImage_480_126(String image_480_126) {
+        this.image_480_126 = image_480_126;
+    }
+
+    public String getImage_480_160() {
+        return image_480_160;
+    }
+
+    public void setImage_480_160(String image_480_160) {
+        this.image_480_160 = image_480_160;
+    }
+
+    public String getImage_296_296() {
+        return image_296_296;
+    }
+
+    public void setImage_296_296(String image_296_296) {
+        this.image_296_296 = image_296_296;
+    }
+
+    public String getImage_300_400() {
+        return image_300_400;
+    }
+
+    public void setImage_300_400(String image_300_400) {
+        this.image_300_400 = image_300_400;
+    }
+
+    public String getImage_800_450() {
+        return image_800_450;
+    }
+
+    public void setImage_800_450(String image_800_450) {
+        this.image_800_450 = image_800_450;
+    }
+
+    public String getImage_900_300() {
+        return image_900_300;
+    }
+
+    public void setImage_900_300(String image_900_300) {
+        this.image_900_300 = image_900_300;
+    }
+
+    public String getOrijinalImage() {
+        return orijinalImage;
+    }
+
+    public void setOrijinalImage(String orijinalImage) {
+        this.orijinalImage = orijinalImage;
+    }
+
+    public String getScoreDesp() {
+        return scoreDesp;
+    }
+
+    public void setScoreDesp(String scoreDesp) {
+        this.scoreDesp = scoreDesp;
     }
 }

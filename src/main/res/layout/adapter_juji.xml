@@ -7,9 +7,9 @@
         android:id="@+id/btn_juji"
         android:layout_marginRight="@dimen/px_16"
         android:textColor="@color/color_cccccc"
-        android:textSize="@dimen/text_size_32_px"
+        android:textSize="@dimen/text_size_30_px"
+        style="?android:attr/borderlessButtonStyle"
         android:text="01-16"
-        android:gravity="center"
         android:layout_width="@dimen/px_180"
         android:layout_height="@dimen/px_72" />
 </LinearLayout>

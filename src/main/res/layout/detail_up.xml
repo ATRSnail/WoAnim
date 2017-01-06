@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scro"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.wodm.android.view.newview.AtyTopLayout
+            android:id="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            android:layout_alignParentTop="true"
+            app:BackGroundColor="#00000000"
+            app:CustomtitleTextColor="@color/color_ffffff"
+            app:CustomtitleTextSize="@dimen/text_size_32_px"
+            app:Customtoptitle="详情页面"
+            app:leftBackGround="@mipmap/back_mall_white" />
+        <RelativeLayout
+            android:layout_below="@+id/set_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
+            <include layout="@layout/include_tran_head" />
+            <include
+                layout="@layout/include_cardetail_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="@dimen/px_92" />
+            <include
+                android:visibility="gone"
+                layout="@layout/include_animdetail_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="@dimen/px_92" />
+        </RelativeLayout>
+
+
+</RelativeLayout>

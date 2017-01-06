@@ -3,18 +3,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-   <LinearLayout
-       android:orientation="vertical"
+   <RelativeLayout
+       android:gravity="center"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <Button
+           android:layout_marginTop="@dimen/px_10"
            android:id="@+id/btn_jujinum"
-           android:textColor="@color/color_333333"
+           android:textColor="@drawable/btn_juji_num_textcolor"
            android:textSize="@dimen/text_size_28_px"
            android:text="16"
-           android:background="@drawable/btn_juji_num_normal"
-           android:gravity="center"
+           style="?android:attr/borderlessButtonStyle"
+           android:background="@drawable/btn_juji_num_selector"
            android:layout_width="match_parent"
            android:layout_height="@dimen/px_64" />
-   </LinearLayout>
+       <ImageView
+           android:layout_alignRight="@id/btn_jujinum"
+           android:id="@+id/new_juji"
+           android:visibility="gone"
+           android:src="@mipmap/new_juji"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+   </RelativeLayout>
 </LinearLayout>

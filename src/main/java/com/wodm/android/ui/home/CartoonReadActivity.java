@@ -88,7 +88,7 @@ public class CartoonReadActivity extends AppActivity {
 
     private ArrayList<ChapterBean> mChapterList;
     private ArrayList<CarBean> mCarList;
-    private ArrayList<CommentBean> commentBeanList;
+//    private ArrayList<CommentBean> commentBeanList;
     private int  index= 0;
     private ChapterBean CurrChapter;
     private ObjectBean bean = null;
@@ -145,7 +145,7 @@ public class CartoonReadActivity extends AppActivity {
         if (!getIntent().hasExtra("beanPath")) {
             setListView();
             mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
-            commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
+//            commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
             index = getIntent().getIntExtra("index", index);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
 

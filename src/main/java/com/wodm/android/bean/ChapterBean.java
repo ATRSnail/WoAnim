@@ -1,41 +1,32 @@
 package com.wodm.android.bean;
 
-import com.lidroid.xutils.db.annotation.Id;
-
 import java.io.Serializable;
 
 /**
  * Created by json on 2016/4/29.
  */
 public class ChapterBean implements Serializable {
-
+    /**
+     * id : 7738
+     * resourceId : 549
+     * showImage : null
+     * desp : null
+     * title : 1
+     * contentUrl : http://202.106.63.82/static/ftproot/ltcp03/d/zhenghexiaxiyang/1.mp4?sign=URWl4F__tpPtjk6n7rWh5w&t=1483691388
+     * playCount : 0
+     * chapter : 1
+     * isWatch : 0
+     */
 
     private String id;
     private int resourceId;
-    private int type;
     private String showImage;
     private String desp;
     private String title;
     private String contentUrl;
     private int playCount;
     private int chapter;
-    private int isCheck = 0; //0正常状态 1 正在下载或者等待下载 2 下载完成 3选中状态
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int IsCheck() {
-        return isCheck;
-    }
-
-    public void setCheck(int check) {
-        isCheck = check;
-    }
+    private int isWatch;
 
     public String getId() {
         return id;
@@ -45,6 +36,34 @@ public class ChapterBean implements Serializable {
         this.id = id;
     }
 
+    public String getShowImage() {
+        return showImage;
+    }
+
+    public String getDesp() {
+        return desp;
+    }
+
+    public void setShowImage(String showImage) {
+        this.showImage = showImage;
+    }
+
+    public void setDesp(String desp) {
+        this.desp = desp;
+    }
+
+    private int isCheck = 0; //0正常状态 1 正在下载或者等待下载 2 下载完成 3选中状态
+
+    public int IsCheck() {
+        return isCheck;
+    }
+    public void setCheck(int check) {
+        isCheck = check;
+    }
+
+
+
+
     public int getResourceId() {
         return resourceId;
     }
@@ -53,21 +72,9 @@ public class ChapterBean implements Serializable {
         this.resourceId = resourceId;
     }
 
-    public String getShowImage() {
-        return showImage;
-    }
 
-    public void setShowImage(String showImage) {
-        this.showImage = showImage;
-    }
 
-    public String getDesp() {
-        return desp;
-    }
 
-    public void setDesp(String desp) {
-        this.desp = desp;
-    }
 
     public String getTitle() {
         return title;
@@ -101,14 +108,11 @@ public class ChapterBean implements Serializable {
         this.chapter = chapter;
     }
 
+    public int getIsWatch() {
+        return isWatch;
+    }
 
-    //    "id" : 1,
-//            "resourceId" : 1,
-//            "showImage" : "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=958512776,2704315940&fm=58",
-//            "desp" : "这是详情介绍",
-//            "title" : "这是标题",
-//            "contentUrl" : "static.test.mobioa.cn/star/files/20160111/6/6071969.mp4",
-//            "playCount" : 123,
-//            "chapter" : 1
-
+    public void setIsWatch(int isWatch) {
+        this.isWatch = isWatch;
+    }
 }

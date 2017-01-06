@@ -33,9 +33,9 @@ public class Constants {
 
     //             public final static String HOST = "http://wodm.9mobi.cn/api/v1/";// 正式
     //http://202.106.63.98:8990/wodm-api/
-//     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
+     public final static String HOST = "http://202.106.63.98:8990/wodm-api/api/v1/";// 正式
 //    public final static String HOST = "http://202.106.63.99:8990/wodm-api/api/v1/";// 正式
-    public final static String HOST = "http://172.16.2.125:8899//api/v1/";// 公司测试服务器
+//    public final static String HOST = "http://172.16.2.125:8899//api/v1/";// 公司测试服务器
 //    public final static String HOST = "http://59.108.94.55:8899/api/v1/";// 公司外网服务器
 //    public final static String HOST = "http://172.16.3.49:8080/api/v1/";//  小康子
 
@@ -74,6 +74,8 @@ public class Constants {
     public static final String GET_CATRESOURCE = HOST + "resource";//获取作品列表
     //作品章节列表
     public static final String URL_CHAPTER_LIST = HOST + "chapter?resourceId=";
+    //新的作品章节列表
+    public static final String NEW_CHAPTER_LIST = HOST + "chapter/page?resourceId=";
     //作品详情
     public static final String URL_CARTTON_DETAIL = HOST + "resource/";
     //获取消息列表
@@ -168,6 +170,10 @@ public class Constants {
     public static final String SAVEEXCEPTIONDETAIL=HOST + "behavior/saveExceptionDetail";//保存BUG信息
     public static final String APPDOWNLOAD=HOST + "behavior/appDownload";//保存BUG信息
     public static final String STARTACTIVE=HOST + "newuser/startActive";// 获取红包活动开启的状态
+    public static final String SaveResourceMark=HOST + "resource/saveResourceMark?userId=";//评论打分
+    public static final String ISResourceMark=HOST + "resource/isResourceMark?userId=";//是否打过分
+    public static final String tuijian=HOST + "column/zctjColumnName?columnName=";//详情页面下方推荐
+
 
 
 

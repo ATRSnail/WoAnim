@@ -8,6 +8,10 @@
         <attr name="isCircleLeftUp" format="boolean" />
         <attr name="isCircleLeftBottom" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="DragScaleImageView">
+         <attr name="scale_image" format="reference"></attr>
+    </declare-styleable>
+
 
     <declare-styleable name="RatingBar">
         <!--星星间距-->

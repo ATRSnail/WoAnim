@@ -21,6 +21,7 @@ import com.wodm.android.CartoonApplication;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -42,6 +43,7 @@ public class ComicAdapter extends HolderAdapter<ObjectBean> {
             @Override
             public void onItemClick(View view, ObjectBean o, int i) {
                 mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
+//                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", o.getId()).putExtra("resourceType", o.getResourceType()));
             }
         });
     }

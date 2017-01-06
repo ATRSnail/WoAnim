@@ -85,6 +85,8 @@
 
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_huifu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ed_comment"
@@ -97,17 +99,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/color_cccccc"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:layout_marginTop="15dp"
-                android:textColor="@color/color_666666"
-                android:textSize="15sp"
-                android:background="@drawable/bg_corner"
+            <LinearLayout
                 android:padding="15dp"
-                android:text=" @这瓜不甜:东北地对地导弹的" />
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_corner"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/huifu_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textColor="@color/color_fb487f"
+                    android:textSize="15sp"
+                    android:text=" @这瓜不甜:" />
+                <TextView
+                    android:id="@+id/huifu_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_666666"
+                    android:textSize="15sp"
+                    android:text="东北地对地导弹的" />
+            </LinearLayout>
         </LinearLayout>
 
 

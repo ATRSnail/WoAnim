@@ -48,6 +48,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
            <ImageView
+               android:clickable="true"
                android:id="@+id/img_details_up"
                android:visibility="gone"
                android:background="@mipmap/img_details_down"
@@ -69,12 +70,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/state_zp"
             android:textColor="@color/color_999999"
             android:textSize="@dimen/text_size_24_px"
             android:text="连载中"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/time"
             android:layout_marginLeft="@dimen/px_16"
             android:textColor="@color/color_cccccc"
             android:textSize="@dimen/text_size_24_px"
@@ -82,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/jishu"
             android:layout_marginLeft="@dimen/px_16"
             android:textColor="@color/color_cccccc"
             android:textSize="@dimen/text_size_24_px"
@@ -106,4 +110,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/gv_adapter_juji">
     </com.wodm.android.view.newview.MyGridView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/tuijian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></LinearLayout>
 </LinearLayout>

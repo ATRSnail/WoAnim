@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/color_ffffff"
+    android:id="@+id/ll_tuijian"
+    android:layout_height="match_parent">
+    <View
+        android:background="@color/color_eae7e7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_16"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_72"
+        android:layout_margin="@dimen/px_30"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view_color"
+            android:layout_width="@dimen/px_14"
+            android:layout_height="@dimen/px_33"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@color/color_7ecef3"/>
+
+        <TextView
+            android:id="@+id/medal_another"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_15"
+            android:layout_toRightOf="@+id/view_color"
+            android:text="精彩推荐"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_36_px" />
+    </RelativeLayout>
+    <View
+        android:background="@color/color_eae7e7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_2"/>
+    <com.wodm.android.view.newview.MyGridView
+        android:layout_margin="@dimen/px_30"
+        android:horizontalSpacing="@dimen/px_30"
+        android:numColumns="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gv_tuijian">
+    </com.wodm.android.view.newview.MyGridView>
+</LinearLayout>

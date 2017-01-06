@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_detail"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_efefef">
+        <!--<com.wodm.android.view.newview.DragScaleImageView-->
+            <!--android:id="@+id/dra"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:scale_image="@mipmap/level_bg">-->
+        <!--</com.wodm.android.view.newview.DragScaleImageView>-->
+      <!--<com.wodm.android.view.newview.FadingScrollView-->
+          <!--android:layout_width="match_parent"-->
+          <!--android:layout_height="match_parent">-->
+
+      <!--</com.wodm.android.view.newview.FadingScrollView>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/bg"
+                    android:layout_alignParentTop="true"
+                    android:src="@mipmap/level_bg"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_350" />
+                <com.wodm.android.view.newview.AtyTopLayout
+                    android:id="@+id/set_topbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_alignParentTop="true"
+                    app:BackGroundColor="#00000000"
+                    app:CustomtitleTextColor="@color/color_ffffff"
+                    app:CustomtitleTextSize="@dimen/text_size_32_px"
+                    app:Customtoptitle="详情页面"
+                    app:leftBackGround="@mipmap/back_mall_white" />
+                <RelativeLayout
+                    android:id="@+id/detail_info"
+                    android:layout_below="@+id/set_topbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp">
+                        <include android:id="@+id/include_tran_head" layout="@layout/include_tran_head" />
+                        <include
+                            android:visibility="gone"
+                            android:id="@+id/include_cardetail_head"
+                            layout="@layout/include_cardetail_head"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="@dimen/px_92" />
+                        <include
+                            android:id="@+id/include_animdetail_head"
+                            layout="@layout/include_animdetail_head"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="@dimen/px_92" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:background="@color/color_ffffff"
+                    android:layout_below="@+id/detail_info"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/tablayout"
+                            android:background="@color/color_ffffff"
+                            app:tabIndicatorColor="@color/color_fb487f"
+                            app:tabSelectedTextColor="@color/color_fb487f"
+                            app:tabTextColor="@color/color_666666"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewpager"
+                             android:layout_width="match_parent"
+                             android:layout_height="450dp"/>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+    </ScrollView>

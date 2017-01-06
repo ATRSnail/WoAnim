@@ -2,8 +2,10 @@ package com.wodm.android.bean;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.SpannableString;
 
 import com.wodm.android.ui.newview.SendMsgActivity;
+import com.wodm.android.view.biaoqing.FaceConversionUtil;
 
 import java.io.Serializable;
 import java.util.List;
@@ -77,6 +79,9 @@ public class AtWoBean {
         public void intentToSendMsg(Context context){
             Intent intent = new Intent(context,SendMsgActivity.class);
             intent.putExtra(SendMsgActivity.ATWOBEAN, this);
+            intent.putExtra("flag",2);
+            intent.putExtra("content",getContent());
+            intent.putExtra("name",getReceiveNickName());
             context.startActivity(intent);
         }
 

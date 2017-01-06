@@ -20,6 +20,7 @@ import com.wodm.android.ui.newview.ATWoActivity;
 import com.wodm.android.ui.newview.AttentionActivity;
 import com.wodm.android.ui.newview.CommentActivity;
 import com.wodm.android.ui.newview.CustomerServiceActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.ui.newview.DianZanActivity;
 import com.wodm.android.ui.newview.MallActivity;
 import com.wodm.android.ui.newview.MyMedalActivity;
@@ -167,6 +168,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("客服")) {
             startIntent(null, CustomerServiceActivity.class);
 //            startIntent(null, TestActivity.class);
+//            startIntent(null, DetailActivity.class);
         } else if (text.equals("商城")) {
             startIntent(null, MallActivity.class);
         }  else if (text.equals("关注")) {
@@ -215,6 +217,7 @@ public class NewMineAdapter extends BaseAdapter {
         } else if (text.equals("客服")) {
             i.setClass(mContext, CustomerServiceActivity.class);
 //            i.setClass(mContext, TestActivity.class);
+//            i.setClass(mContext, DetailActivity.class);
         } else if (text.equals("商城")) {
             i.setClass(mContext, MallActivity.class);
         }

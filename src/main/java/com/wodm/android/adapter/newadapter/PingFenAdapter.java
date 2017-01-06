@@ -22,8 +22,10 @@ import java.util.List;
 public class PingFenAdapter extends BaseAdapter{
     int [] pic=new int[]{R.mipmap.taoxin_no,R.mipmap.taoxin};
     List<Integer> list =new ArrayList<>();
+    List<Boolean> click= new ArrayList<>();
     TextView textView;
     Context context;
+    public static int count;
     public PingFenAdapter(SendMsgActivity sendMsgActivity, TextView textView) {
         this.context=sendMsgActivity;
         this.textView=textView;
@@ -48,17 +50,30 @@ public class PingFenAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.taoxin,null);
         final ImageView ima= (ImageView) view.findViewById(R.id.taoxin_iv);
+        click.add(false);
         ima.setImageResource(list.get(position));
         ima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ima.setImageResource(pic[1]);
-                textView.setTextColor(Color.parseColor("#fb487f"));
+                if (!click.get(position)){
+                    count++;
+                    ima.setImageResource(pic[1]);
+                }else {
+                    count--;
+                    ima.setImageResource(pic[0]);
+                    textView.setTextColor(Color.parseColor("#999999"));
+                }
+                click.set(position,!click.get(position));
+                if (count>0){
+                    textView.setTextColor(Color.parseColor("#fb487f"));
+                }
+                textView.setText(count+"分");
             }
         });
+
         return view;
     }
 }

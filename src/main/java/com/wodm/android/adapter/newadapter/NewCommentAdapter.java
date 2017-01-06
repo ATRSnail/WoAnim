@@ -64,7 +64,8 @@ public class NewCommentAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.size();
+        Log.e("AA","*****************"+data.size());
+        return data.size()>0? data.size():0;
     }
 
     @Override
@@ -175,6 +176,9 @@ public class NewCommentAdapter extends BaseAdapter {
              case R.id.content_comment:
                  Intent intent2 = new Intent(context,SendMsgActivity.class);
                  intent2.putExtra("flag",2);
+                 intent2.putExtra("content",mBean.getSendCommentContent());
+                 intent2.putExtra(SendMsgActivity.CommentBEAN, mBean);
+                 intent2.putExtra("name",mBean.getSendNickName());
                  context.startActivity(intent2);
                  break;
          }

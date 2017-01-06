@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/px_690"
+    android:layout_height="@dimen/px_280"
+    android:background="@drawable/bg_corner_20"
+    android:paddingBottom="@dimen/px_30"
+    android:paddingLeft="@dimen/px_24">
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/scoreDesp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fan_yx" />
+    <RelativeLayout
+        android:layout_marginTop="@dimen/px_30"
+        android:id="@+id/rl_pho"
+        android:background="@drawable/rectangle_none"
+        android:layout_width="@dimen/px_220"
+        android:layout_height="@dimen/px_280">
+
+        <ImageView
+            android:id="@+id/pho"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:background="@drawable/rectangle_none"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_alignTop="@id/rl_pho"
+        android:layout_alignBottom="@id/rl_pho"
+        android:layout_toRightOf="@id/rl_pho"
+        android:id="@+id/ll_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/px_30"
+        android:paddingTop="@dimen/px_38">
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作者名字:"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/text_size_24_px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/starBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/display"
+                android:src="@mipmap/taoxin" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="9.0"
+                android:textColor="@color/color_fb487f"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:src="@mipmap/img_hd" />
+        <ImageButton
+            android:adjustViewBounds="true"
+            android:background="@mipmap/watch"
+            android:id="@+id/watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_24"/>
+    </LinearLayout>
+
+</RelativeLayout>
