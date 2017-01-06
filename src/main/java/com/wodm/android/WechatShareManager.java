@@ -424,7 +424,7 @@ public class WechatShareManager {
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = buildTransaction("");
         req.message = msg;
-        req.scene = 1;
+        req.scene = shareBean.getScene();
         mWXApi.sendReq(req);
         thumb.recycle();
     }

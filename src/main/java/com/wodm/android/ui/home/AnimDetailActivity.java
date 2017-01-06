@@ -14,7 +14,9 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -156,8 +158,12 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private ScreenSwitchUtils screenSwitchUtils;
     private DBTools dbTools;
     private ArrayList<BarrageBean> beanArrayList=new ArrayList<>();
-
+    private String startPlayId="";
+    //timetask
+    private Handler bullethandler=null;
+    private Runnable bullettask;
     int mKeyboardHeight = 400; // 输入法默认高度为400
+    private int danmuplayTime=-1;
     private void initHeaderViews() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -198,6 +204,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 bulletSetDialog.show(ft,"dialog");
             }
         });
+
     }
 
     @Override
@@ -205,12 +212,25 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         super.onResume();
         //插入开始时间
         DBTools.getInstance(this).inserDB(resourceId);
-
+        initVideoReceiver();
+    }
+    private void initVideoReceiver(){
+        myvideoReceiver=new AnimDetailActivity.MyVideoReceiver();
+        IntentFilter intentfilter=new IntentFilter("com.vodeo.play.notifition");
+        getBaseContext().registerReceiver(myvideoReceiver,intentfilter);
     }
 
+
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
+        //取消定时器
+        if (bullethandler!=null&&bullettask!=null){
+            bullethandler.removeCallbacks(bullettask);
+        }
+        //更新结束时间
+        DBTools.getInstance(this).updateDB(resourceId);
+        DBTools.getInstance(this).stopService();
         if (danmuControler_bottom != null){
             danmuControler_bottom.release();
         }
@@ -229,14 +249,6 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         }
         unregisterReceiver();
         screenSwitchUtils.stop();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //更新结束时间
-        DBTools.getInstance(this).updateDB(resourceId);
-        DBTools.getInstance(this).stopService();
     }
     private void initView(){
 
@@ -329,15 +341,15 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CartoonReadPosition=-1;
+        //开启定时器
+        startDanmuTimeTask();
         initHeaderViews();
         dbTools=DBTools.getInstance(this);
         videoView.setTimeListener(AnimDetailActivity.this);
         initView();
         context=AnimDetailActivity.this;
         videoView.setTimeListener(this);
-        myvideoReceiver=new AnimDetailActivity.MyVideoReceiver();
-        IntentFilter intentfilter=new IntentFilter("com.vodeo.play.notifition");
-        getBaseContext().registerReceiver(myvideoReceiver,intentfilter);
+
         biaoqingtools = BiaoqingTools.getInstance();
         resourceId = getIntent().getIntExtra("resourceId", -1);
         DividerLine line = new DividerLine();
@@ -593,9 +605,6 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                   arrayList_bottom.add(bean);
               }
         }
-        int progress=Preferences.getInstance(this).getPreference("bullet_toumingdu", 0);
-        int  bulletColor=Preferences.getInstance(this).getPreference("bulletbackgroundcolor",Color.WHITE);
-        int alpha= (int) (progress*2.5);
 //        ll_danmu_background.setBackgroundColor(bulletColor);
 //        ll_danmu_background.getBackground().setAlpha(alpha);
 //        ll_danmu_background.invalidate();
@@ -959,7 +968,8 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
     private boolean isTip = false;//是否已经提示过
     public void startPlay(final ChapterBean bean) {
-        getBarrageResource(bean.getId());
+        startPlayId=bean.getId();
+        getBarrageResource(startPlayId);
         String network = HttpUtil.getNetworkType(context);
         if (!Preferences.getInstance(context).getPreference("netPlay", false)) {
             if (!network.equals("WIFI") && !isTip) {
@@ -1004,6 +1014,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 try {
                     ArrayList<BarrageBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<BarrageBean>>() {
                     }.getType());
+                    beanArrayList.clear();
                     beanArrayList.addAll(list);
                     initDanMu(beanArrayList);
                 } catch (JSONException e) {
@@ -1141,26 +1152,32 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     @Override
-    public void refrensh(String content,int color,int position,int playTime) {
+    public void refrensh(String content,String color,int position,int playTime) {
         super.refrensh(content,color,position,playTime);
-        BarrageBean barrageBean=new BarrageBean();
-        barrageBean.setContent(content);
-        barrageBean.setColor("#"+color);
-        barrageBean.setLocation(position);
-        barrageBean.setPlayTime(playTime+"");
-        beanArrayList.add(barrageBean);
+        if (playTime!=-1){
+            BarrageBean barrageBean=new BarrageBean();
+            barrageBean.setContent(content);
+            barrageBean.setColor(color);
+            barrageBean.setLocation(position);
+            barrageBean.setPlayTime(playTime+"");
+            beanArrayList.add(barrageBean);
+        }
+        if (playTime!=-1){
+            return;
+        }
+        int bulletColor=Color.parseColor(color);
         if (position==1){
             danmuControler_top.setDanmakuView(mDanmakuView_top);
-            danmuControler_top.addBuilt(content,color,playTime);
+            danmuControler_top.addBuilt(content,bulletColor,playTime);
         }else if (position==2){
             danmuControler_middle.setDanmakuView(mDanmakuView_middle);
-            danmuControler_middle.addBuilt(content,color,playTime);
+            danmuControler_middle.addBuilt(content,bulletColor,playTime);
         }else if (position==3){
             danmuControler_bottom.setDanmakuView(mDanmakuView_bottom);
-            danmuControler_bottom.addBuilt(content,color,playTime);
+            danmuControler_bottom.addBuilt(content,bulletColor,playTime);
         }else {
             danmuControler_top.setDanmakuView(mDanmakuView_top);
-            danmuControler_top.addBuilt(content,color,playTime);
+            danmuControler_top.addBuilt(content,bulletColor,playTime);
         }
 
 
@@ -1171,7 +1188,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @Override
     public void setTime(String playUrl,int time,int totalTime) {
     try {
-            getBullets(time/1000);
+            danmuplayTime=time/1000;
             AnimLookCookieBean animLookCookieBean1=new AnimLookCookieBean();
             int index=playUrl.indexOf("?");
             String insertUrl=playUrl.substring(0,index);
@@ -1187,18 +1204,45 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * 主要是为了符合要求,播放到哪儿弹幕在哪儿出现这个问题,不知道怎么样比较合适,就写了这个一个方法,没有写异步
+     */
     private BarrageBean showbean=null;
-    private void getBullets(int times){
-        for (BarrageBean bean:beanArrayList) {
-            int playtime=Integer.parseInt(bean.getPlayTime());
-            if (showbean==null||showbean!=bean){
-                if (playtime==times){
-                    showbean=bean;
-                    refrensh(bean.getContent(),Color.parseColor(bean.getColor()),bean.getLocation(),0);
-                    break;
+//    private void getBullets(int times){
+//        for (BarrageBean bean:beanArrayList) {
+//            int playtime=Integer.parseInt(bean.getPlayTime());
+//            if (showbean==null||showbean!=bean){
+//                if (playtime==times){
+//                    showbean=bean;
+//                    refrensh(bean.getContent(),bean.getColor(),bean.getLocation(),0);
+//                    break;
+//                }
+//            }
+//        }
+//    }
+    int showPosition=0;
+    private void startDanmuTimeTask(){
+        bullethandler = new Handler();
+        bullettask = new Runnable() {
+
+            public void run() {
+                for (BarrageBean bean:beanArrayList) {
+                    int playtime=Integer.parseInt(bean.getPlayTime());
+                    if (showbean==null||showbean!=bean){
+                        if (playtime==danmuplayTime){
+                            showbean=bean;
+                            refrensh(bean.getContent(),bean.getColor(),bean.getLocation(),-1);
+                            break;
+                        }
+                    }
                 }
+                Log.e("SCY"," - - - timetaskstart - - ");
+                bullethandler.postDelayed(this, 900);
             }
-        }
+        };
+        bullettask.run();
     }
 
     @Override

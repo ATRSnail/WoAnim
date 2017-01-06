@@ -25,7 +25,6 @@ import com.wodm.android.bean.AnimLookCookieBean;
 import com.wodm.android.db.WoDbUtils;
 import com.wodm.android.ui.braageview.BulletSendDialog;
 import com.wodm.android.utils.DialogUtils;
-import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.Untils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
@@ -200,6 +199,9 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
 
     public void addBullet(final String content,final String color,final int position,final TextView send,final boolean isShow) {
         if (!UpdataUserInfo.isLogIn(this, true,null)) {
+            if (send!=null){
+                send.setEnabled(true);
+            }
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -241,14 +243,13 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
             obj.put("content", content);
             final int bulletColor= Color.parseColor(color);
             obj.put("color", color);
-            Preferences.getInstance(this).setPreference("bulletbackgroundcolor",bulletColor);
+//            Preferences.getInstance(this).setPreference("bulletbackgroundcolor",bulletColor);
             obj.put("location", position);
             final int playTime=getAllLookHistory();
             if (CartoonReadPosition==-1){
-                obj.put("playTime",CartoonReadPosition);
-
-            }else {
                 obj.put("playTime",playTime);
+            }else {
+                obj.put("playTime",CartoonReadPosition);
             }
             httpPost(Constants.URL_GET_ADD_BARRAGE, obj, new HttpCallback() {
                 @Override
@@ -265,7 +266,12 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
                             if (bulletDialog != null) {
                                 bulletDialog.dismiss();
                             }
-                            refrensh(content,bulletColor,position,playTime);
+                            if (CartoonReadPosition==-1){
+                                refrensh(content,color,position,playTime);
+                            }else {
+                                refrensh(content,color,position,CartoonReadPosition);
+                            }
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -296,7 +302,7 @@ public class AppActivity extends MaterialActivity implements CommonVideoView.Sen
         return 0;
 
     }
-    public void refrensh(String content,int color,int position,int playtime) {
+    public void refrensh(String content,String color,int position,int playtime) {
 
     }
 

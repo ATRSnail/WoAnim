@@ -29,6 +29,7 @@ import master.flame.danmaku.danmaku.loader.ILoader;
 import master.flame.danmaku.danmaku.loader.IllegalDataException;
 import master.flame.danmaku.danmaku.loader.android.DanmakuLoaderFactory;
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
+import master.flame.danmaku.danmaku.model.DanmakuTimer;
 import master.flame.danmaku.danmaku.model.IDisplayer;
 import master.flame.danmaku.danmaku.model.android.BaseCacheStuffer;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
@@ -63,7 +64,7 @@ public class DanMuTools {
 
         // 设置最大行数,从右向左滚动(有其它方向可选)
         maxLinesPair=new HashMap<>();
-        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL,1);
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL,3);
 
         overlappingEnablePair = new HashMap<>();
         overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_LR, false);
@@ -87,7 +88,7 @@ public class DanMuTools {
     }
     private void init(){
         if (mDanmakuView != null) {
-            int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 3);
+            int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 2);
             mParser=new WoDanmakuParser();
             if (mChapterList!=null&&mChapterList.size()>0){
                 BulletModel bul=new BulletModel();
@@ -103,15 +104,36 @@ public class DanMuTools {
                     ba.setState("1");
                     ba.setSudu(sudu);
                     listBean.add(ba);
+//                    addDanmaku(bean.getContent(),Color.parseColor(bean.getColor()),0);
                 }
                 bul.setBarrageList(listBean);
                 mParser.setmDanmuListData(bul);
             }
-            mDanmakuView.start();
+            mDanmakuView.setCallback(new master.flame.danmaku.controller.DrawHandler.Callback() {
+                @Override
+                public void updateTimer(DanmakuTimer timer) {
+                }
+
+                @Override
+                public void drawingFinished() {
+
+                }
+
+                @Override
+                public void danmakuShown(BaseDanmaku danmaku) {
+
+                }
+
+                @Override
+                public void prepared() {
+                    mDanmakuView.start();
+                }
+            });
+                mDanmakuView.prepare(mParser, mDanmakuContext);
+                mDanmakuView.showFPS(false); //是否显示FPS
+                mDanmakuView.enableDanmakuDrawingCache(true);
 //            mParser = createParser(this.getResources().openRawResource(R.raw.comments)); //创建解析器对象，从raw资源目录下解析comments.xml文本
-            mDanmakuView.prepare(mParser, mDanmakuContext);
-            mDanmakuView.showFPS(false); //是否显示FPS
-            mDanmakuView.enableDanmakuDrawingCache(true);
+
         }
 
     }
@@ -126,7 +148,6 @@ public class DanMuTools {
             }
         }
     };
-
 
    //FDAFSA
     private void addDanmaku() {
@@ -161,17 +182,24 @@ public class DanMuTools {
      * 添加文本弹幕
      */
     private void addDanmaku(String text,int color,int playTime){
-        BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL);
+        BaseDanmaku danmaku = mDanmakuContext.mDanmakuFactory.createDanmaku(BaseDanmaku.TYPE_SCROLL_RL,mDanmakuContext);
         if (danmaku == null || mDanmakuView == null) {
+            handler.sendEmptyMessage(1);
             return;
         }
         danmaku.text = text;
         danmaku.padding = 5;
         danmaku.priority = 0;  //0 表示可能会被各种过滤器过滤并隐藏显示 //1 表示一定会显示, 一般用于本机发送的弹幕
         danmaku.isLive = true; //是否是直播弹幕
-        danmaku.time =mDanmakuView.getCurrentTime()+1200; //显示时间
+        danmaku.time =mDanmakuView.getCurrentTime(); //显示时间
         danmaku.textSize = mContext.getResources().getDimension(R.dimen.text_size_30_px);
         danmaku.textColor = color;
+        int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 2);
+        danmaku.duration.setFactor((float)sudu); //滚动速度系数,越小越快
+//        int sudu=Preferences.getInstance(mContext).getPreference("bullet_sudu", 2);
+//        Duration duration=new Duration(sudu);
+//        duration.setFactor(sudu);
+//        danmaku.duration= duration;
 //        danmaku.textShadowColor = Color.WHITE; //阴影/描边颜色
 //        danmaku.borderColor = Color.GREEN; //边框颜色，0表示无边框
         mDanmakuView.addDanmaku(danmaku);
@@ -317,10 +345,16 @@ public class DanMuTools {
         }
     }
     protected void show(){
+        if (mDanmakuView==null){
+            return;
+        }
         mDanmakuView.show();
     }
 
     protected void hide(){
+        if (mDanmakuView==null){
+            return;
+        }
         mDanmakuView.hide();
     }
     protected void addData(ArrayList<BarrageBean> mChapterList){

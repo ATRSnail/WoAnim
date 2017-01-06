@@ -32,6 +32,17 @@ public class BarrageBean implements Serializable {
     /**位置 1:表示上 2: 表示中 3 表示下*/
     private int location;
 
+    /* 是否已经展示弹幕,防止出现重复 */
+    private boolean isShowNm;
+
+    public boolean isShowNm() {
+        return isShowNm;
+    }
+
+    public void setShowNm(boolean showNm) {
+        isShowNm = showNm;
+    }
+
     public Long getResourceId() {
         return resourceId;
     }

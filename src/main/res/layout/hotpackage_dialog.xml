@@ -11,7 +11,6 @@
       <ImageView
           android:layout_centerInParent="true"
           android:id="@+id/img_gethot_package"
-          android:background="@mipmap/img_hot_dialog"
           android:layout_width="match_parent"
           android:layout_height="wrap_content" />
 

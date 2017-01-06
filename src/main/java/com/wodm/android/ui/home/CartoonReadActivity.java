@@ -44,7 +44,6 @@ import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.braageview.BulletSetDialog;
-import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ZipEctractAsyncTask;
 import com.wodm.android.view.ChapterWindow;
 
@@ -129,11 +128,16 @@ public class CartoonReadActivity extends AppActivity {
 //    private boolean isOpen = false;
     private boolean isOpen = true;
      private String num="";
+    int pageNum=0;
     private ArrayList<BarrageBean> beanArrayList=new ArrayList<>();
+    //timetask
+    private Handler bullethandler=null;
+    private Runnable bullettask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //记录数据
+        CartoonReadPosition=0;
         handler.sendEmptyMessage(1);
         setListView();
         setLoadAndRefresh();
@@ -155,7 +159,7 @@ public class CartoonReadActivity extends AppActivity {
 
         barrage_rescourceId = bean.getId();
 
-        barrage_charterId = mChapterList.get(0).getId();
+        barrage_charterId = mChapterList.get(index).getId();
         setBottoms();
         findViewById(R.id.send_bullet).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +168,48 @@ public class CartoonReadActivity extends AppActivity {
                 sendBullet();
             }
         });
+        startDanmuTimeTask();
+    }
+    private BarrageBean showbean=null;
+    //主要是控制位置,防止重复出现弹幕
+    int showPosition=0;
+    private void startDanmuTimeTask(){
+        bullethandler = new Handler();
+        bullettask = new Runnable() {
+
+            public void run() {
+                for (int i = showPosition; i < beanArrayList.size(); i++) {
+                    BarrageBean barrageBean=beanArrayList.get(i);
+                    if (showbean==null||showbean!=barrageBean){
+                        int position=Integer.parseInt(barrageBean.getPlayTime());
+                        if (position==CartoonReadPosition){
+                            showPosition=i+1;
+                            Message msg=new Message();
+                            msg.obj=barrageBean;
+                            bulletHandler.sendMessageDelayed(msg,200);
+                            break;
+                        }else if (position!=CartoonReadPosition){
+
+                        }
+                    }
+                }
+//                for (BarrageBean bean:beanArrayList) {
+//                        if (showbean==null||showbean!=bean){
+//                            int position=Integer.parseInt(bean.getPlayTime());
+//                            if (position==CartoonReadPosition){
+//                                Message msg=new Message();
+//                                msg.obj=bean;
+//                                bulletHandler.sendMessageDelayed(msg,200);
+//                                break;
+//                            }else if (position!=CartoonReadPosition){
+//
+//                            }
+//                        }
+//                }
+                bullethandler.postDelayed(this, 800);
+            }
+        };
+        bullettask.run();
     }
 
     Handler handler = new Handler() {
@@ -194,6 +240,10 @@ public class CartoonReadActivity extends AppActivity {
         //更新结束时间
         DBTools.getInstance(this).updateDB(barrage_rescourceId);
         DBTools.getInstance(this).stopService();
+        if (bullethandler!=null&&bullettask!=null){
+            bullethandler.removeCallbacks(bullettask);
+        }
+
     }
 
     private void startReadPath(String path) {
@@ -223,28 +273,38 @@ public class CartoonReadActivity extends AppActivity {
         });
         asyncTask.execute(path, new File(path).getParent() + "/cache");
     }
-
+    int bulletnumfds=10;
     @Override
-    public void refrensh(String content,int color,int position,int playTime) {
+    public void refrensh(String content,String color,int position,int playTime) {
         super.refrensh(content,color,position,playTime);
-        BarrageBean barrageBean=new BarrageBean();
-        barrageBean.setContent(content);
-        barrageBean.setColor("#"+color);
-        barrageBean.setLocation(position);
-        barrageBean.setPlayTime((++danmu_num)+"");
-        beanArrayList.add(barrageBean);
+        if (playTime!=-1){
+            BarrageBean barrageBean=new BarrageBean();
+            barrageBean.setContent(content);
+            barrageBean.setColor(color);
+            barrageBean.setLocation(position);
+            barrageBean.setPlayTime(playTime+"");
+            beanArrayList.add(barrageBean);
+        }
+        if (playTime!=-1){
+            return;
+        }
+        int bulletColor=Color.WHITE;
+        if (!color.equals("")){
+            bulletColor=Color.parseColor(color);
+        }
+
         if (position==1){
             danmuControler_top.setDanmakuView(mDanmakuView_read_top);
-            danmuControler_top.addBuilt(content,color);
+            danmuControler_top.addBuilt(content,bulletColor);
         }else if (position==2){
             danmuControler_middle.setDanmakuView(mDanmakuView_read_middle);
-            danmuControler_middle.addBuilt(content,color);
+            danmuControler_middle.addBuilt(content,bulletColor);
         }else if (position==3){
             danmuControler_bottom.setDanmakuView(mDanmakuView_read_bottom);
-            danmuControler_bottom.addBuilt(content,color);
+            danmuControler_bottom.addBuilt(content,bulletColor);
         }else {
             danmuControler_top.setDanmakuView(mDanmakuView_read_top);
-            danmuControler_top.addBuilt(content,color);
+            danmuControler_top.addBuilt(content,bulletColor);
         }
 
 //        getBarrageResource();
@@ -275,13 +335,13 @@ public class CartoonReadActivity extends AppActivity {
 //        }
 //    };
 
-    Handler handler111=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            refrensh("zheshiygeceshishuju ", Color.parseColor("#ffffff"),1,1);
-        }
-    };
+//    Handler handler111=new Handler(){
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            refrensh("zheshiygeceshishuju ","#ffffff",1,1);
+//        }
+//    };
 
     private void requestHttp(final int index, final boolean b) {
         if (mTitleView != null && bean != null) {
@@ -334,7 +394,7 @@ public class CartoonReadActivity extends AppActivity {
                     }
                 }
             });
-//            getBarrageResource();
+            getBarrageResource();
 
         }
     }
@@ -418,18 +478,12 @@ public class CartoonReadActivity extends AppActivity {
                 super.onScrollStateChanged(recyclerView, newState);
 
                 int position = 0;
+
                 if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
                     position = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 } else if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
                     position = ((GridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 }
-//                if (newState==0){
-//                    Message msg=new Message();
-//                    msg.what=3;
-//                    msg.obj=position;
-//                    handler.sendMessageAtTime(msg,100);
-//                }
-                CartoonReadPosition=position;
                 if (pullToLoadView.getAdapter() != null)
 
                     setSeekBarView(pullToLoadView.getAdapter().getItemCount(), position);
@@ -455,6 +509,7 @@ public class CartoonReadActivity extends AppActivity {
                     int lastVisiblePosition = position;
                     if (lastVisiblePosition + 1 == recyclerView.getAdapter().getItemCount()) {
                         if (mChapterList != null && index < mChapterList.size() - 1) {
+                            pageNum=recyclerView.getAdapter().getItemCount();
                             index += 1;
                         } else {
                             return;
@@ -512,7 +567,6 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
-    int danmu_num=0;
     private void initDanMu(final ArrayList<BarrageBean> barrageBeanList) {
         //弹幕
 //        List<IDanmakuItem> list = initItems(commentbeanList);
@@ -523,8 +577,6 @@ public class CartoonReadActivity extends AppActivity {
         ArrayList<BarrageBean> arrayList_middle=new ArrayList<>();
         ArrayList<BarrageBean> arrayList_bottom=new ArrayList<>();
         for (BarrageBean bean:barrageBeanList){
-            danmu_num++;
-            bean.setPlayTime(danmu_num+"");
             if (bean.getLocation()==1){
                 arrayList_top.add(bean);
             }else if (bean.getLocation()==2){
@@ -533,17 +585,17 @@ public class CartoonReadActivity extends AppActivity {
                 arrayList_bottom.add(bean);
             }
         }
-        int progress= Preferences.getInstance(this).getPreference("bullet_toumingdu", 0);
-        int alpha= (int) (progress*2.5);
+//        int progress= Preferences.getInstance(this).getPreference("bullet_toumingdu", 0);
+//        int alpha= (int) (progress*2.5);
 //        ll_danmu_background.setAlpha(alpha);
 //        ll_danmu_background.invalidate();
         danmuControler_top = new DanmuControler(this, mDanmakuView_read_top);
-        danmuControler_top.addData(arrayList_top);
+//        danmuControler_top.addData(arrayList_top);
         danmuControler_middle = new DanmuControler(this, mDanmakuView_read_middle);
-        danmuControler_middle.addData(arrayList_middle);
+//        danmuControler_middle.addData(arrayList_middle);
         danmuControler_bottom = new DanmuControler(this, mDanmakuView_read_bottom);
-        danmuControler_bottom.addData(arrayList_bottom);
-
+//        danmuControler_bottom.addData(arrayList_bottom);
+        //开启弹幕时钟
     }
 
     private void setBottoms() {
@@ -864,7 +916,18 @@ public class CartoonReadActivity extends AppActivity {
 
 
     private void setSeekBarView(final int max, int progress) {
-
+        if (CartoonReadPosition>progress||CartoonReadPosition<progress){
+            if (showPosition==beanArrayList.size()){
+                showPosition=0;
+            }else if (CartoonReadPosition==0||CartoonReadPosition==1){
+                showPosition=0;
+            }
+        }
+        CartoonReadPosition=progress;
+        if (pageNum!=0&&pageNum<progress){
+            CartoonReadPosition=progress-pageNum;
+            showPosition=0;
+        }
         final TextView mProView = (TextView) mBottomView.findViewById(R.id.progress);
         final SeekBar mSeek = (SeekBar) mBottomView.findViewById(R.id.carSeekBar);
         mSeek.setMax(max-1);
@@ -888,6 +951,33 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
     }
+//    private Runnable runnable=new Runnable() {
+//        @Override
+//        public void run() {
+//            bulletHandler.sendEmptyMessage(1);
+//        }
+//    };
+//    private BarrageBean showbean=null;
+    int num111=100;
+    private Handler bulletHandler =new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            BarrageBean bean= (BarrageBean) msg.obj;
+            if (bean==null){
+                return;
+            }
+            refrensh(bean.getContent(),bean.getColor(),bean.getLocation(),-1);
+//            for (BarrageBean bean:beanArrayList) {
+//               if (showbean==null||showbean!=bean){
+//                   int position=Integer.parseInt(bean.getPlayTime());
+//                   if (position==CartoonReadPosition){
+//                       refrensh(bean.getContent(),bean.getColor(),bean.getLocation(),-1);
+//                   }
+//               }
+//            }
+        }
+    };
 
 
     public void collction(final CheckBox v) {

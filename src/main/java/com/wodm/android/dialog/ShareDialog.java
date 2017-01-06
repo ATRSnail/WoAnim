@@ -98,11 +98,11 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
                 weixinShareBean.setDescription(description);
                 weixinShareBean.setImageUrl(imageUrl);
                 weixinShareBean.setTitle(title);
-                weixinShareBean.setScene(1);
+                weixinShareBean.setScene(0);
                 mShareManager1.shareWebPage(weixinShareBean);
 //                ShareWX shareWX=new ShareWX(mContext);
 //                shareWX.setScene(1);
-//                //1 代表微信好友  0代表朋友圈
+//                //0 代表微信好友  1代表朋友圈
 //                shareWX.shareWeb(targurl,title,description,imageUrl);
                 handler.sendEmptyMessage(1);
                 break;
@@ -113,7 +113,7 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
                 weixinShareBean1.setDescription(description);
                 weixinShareBean1.setImageUrl(imageUrl);
                 weixinShareBean1.setTitle(title);
-                weixinShareBean1.setScene(0);
+                weixinShareBean1.setScene(1);
                 mShareManager.shareWebPage(weixinShareBean1);
 //                ShareWX shareWX1=new ShareWX(mContext);
 //                shareWX1.setScene(0);

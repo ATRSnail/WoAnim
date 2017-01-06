@@ -22,9 +22,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.bean.StartActiveBean;
 import com.wodm.android.bean.UserInfoBean;
 import com.wodm.android.fragment.HomeFragment;
 import com.wodm.android.fragment.RecomFragment;
@@ -76,6 +79,7 @@ public class Main2Activity extends AppActivity {
     private ImageView img_action_2;
     @ViewIn(R.id.img_action_3)
     private ImageView img_action_3;
+    private StartActiveBean startActiveBean;
 
 
     @TrackClick(R.id.enetic_animation)
@@ -150,6 +154,8 @@ public class Main2Activity extends AppActivity {
 
             }
         });
+//       int img_width=width*();
+//        img_gethot_package
         //圣诞活动倒计时
 //        setTimeTaskReceiver();
         LgoinActivity lgoinActivity = new LgoinActivity();
@@ -511,6 +517,8 @@ public class Main2Activity extends AppActivity {
         }else {
             img_gethot_package.setVisibility(View.GONE);
             Intent intent=new Intent(this, GetRedPackageActivity.class);
+            intent.putExtra("image",startActiveBean.getGoodimage());
+            intent.putExtra("productCode",startActiveBean.getProductCode());
             startActivity(intent);
         }
 
@@ -533,27 +541,40 @@ public class Main2Activity extends AppActivity {
 //        Untils.showToast(getApplicationContext(),"点击获取红包按钮");
     }
     private void weatherGetGift(){
-        if (!UpdataUserInfo.isLogIn()) {
-            getSystemTime();
-            return;
+        String url=Constants.STARTACTIVE;
+        if (UpdataUserInfo.isLogIn()) {
+            url=Constants.STARTACTIVE+"?userId="+Constants.CURRENT_USER.getData().getAccount().getId();
         }
-        httpGet(Constants.USERWHEATHERGETHOTPACKAGE  + Constants.CURRENT_USER.getData().getAccount().getId(), new HttpCallback() {
+        httpGet(url , new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
-                //data" :  0:未领取  1:已经领取
-                if (obj.optInt("data")==0){
-                    getSystemTime();
-//                    img_gethot_package.setVisibility(View.VISIBLE);
-                }else {
-                    img_gethot_package.setVisibility(View.GONE);
+                try {
+                    startActiveBean = new Gson().fromJson(obj.getString("data"), new TypeToken<StartActiveBean>() {
+                    }.getType());
+                    if (startActiveBean.getFlag()==1){
+                     Glide.with(Main2Activity.this).load(startActiveBean.getHbimage()).into(img_gethot_package);
+                     img_gethot_package.setVisibility(View.VISIBLE);
+                    }else {
+                        img_gethot_package.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                /**活动的表示 0:表示不开放 1:表示开放*/
+//                if (obj.optInt("data")==0){
+//                    getSystemTime();
+////                    img_gethot_package.setVisibility(View.VISIBLE);
+//                }else {
+//                    img_gethot_package.setVisibility(View.GONE);
+//                }
             }
 
             @Override
             public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthFailure(result, obj);
-                Toast.makeText(getApplicationContext(), obj.optString("message"), Toast.LENGTH_SHORT).show();
+                img_gethot_package.setVisibility(View.GONE);
+//                Toast.makeText(getApplicationContext(), obj.optString("message"), Toast.LENGTH_SHORT).show();
             }
         });
     }

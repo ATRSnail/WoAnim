@@ -31,9 +31,8 @@
                 android:visibility="gone"
                 android:id="@+id/img_gethot_package"
                 android:layout_alignParentRight="true"
-                android:background="@mipmap/img_getpackage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/px_156"
+                android:layout_height="@dimen/px_192" />
         </RelativeLayout>
 
        <RelativeLayout

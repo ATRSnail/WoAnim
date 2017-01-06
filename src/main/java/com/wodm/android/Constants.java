@@ -167,6 +167,7 @@ public class Constants {
     public static final String USERWHEATHERGETHOTPACKAGE=HOST + "newuser/giftStatus?userId=";//用户是否已经领取元旦活动的礼物
     public static final String SAVEEXCEPTIONDETAIL=HOST + "behavior/saveExceptionDetail";//保存BUG信息
     public static final String APPDOWNLOAD=HOST + "behavior/appDownload";//保存BUG信息
+    public static final String STARTACTIVE=HOST + "newuser/startActive";// 获取红包活动开启的状态
 
 
 

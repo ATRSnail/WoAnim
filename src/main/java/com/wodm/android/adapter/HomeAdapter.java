@@ -168,7 +168,7 @@ public class HomeAdapter extends HolderAdapter<NewMainBean> {
 	          6:表示2个资源的板式
              */
             if (style==1){
-                if (resourcesBean.size()>1){
+                if (resourcesBean.size()>=1){
                     holders.grid_new.setAdapter(new NewMain2Adapter(mContext,resourcesBean));
                 }
             }else if (style==2){

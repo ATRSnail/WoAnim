@@ -235,7 +235,8 @@ public class LgoinActivity extends AppActivity implements AtyTopLayout.myTopbarC
             obj.put("channelInfo","wechat");
             obj.put("brandInfo", GetPhoneState.getBrand());
             obj.put("modelNumber",GetPhoneState.getModel());
-            obj.put("qCellCore","北京");
+            String address=Preferences.getInstance(this).getPreference("getAddress","北京");
+            obj.put("qCellCore",address);
             PermissionInfoTools.getWritePermission(this, new PermissionInfoTools.SetPermissionCallBack() {
                 @Override
                 public void IPsermission(boolean isPermsion) {
