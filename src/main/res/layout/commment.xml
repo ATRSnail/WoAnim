@@ -9,12 +9,12 @@
         <!--android:id="@+id/refresh"-->
         <!--android:layout_weight="1"-->
         <!--android:layout_height="0dp">-->
-        <ListView
+        <org.eteclab.ui.widget.pulltorefresh.listview.XListView
             android:scrollbars="none"
             android:layout_weight="1"
             android:id="@+id/list_comment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"></ListView>
+            android:layout_height="0dp"></org.eteclab.ui.widget.pulltorefresh.listview.XListView>
     <!--</android.support.v4.widget.SwipeRefreshLayout>-->
     <RelativeLayout
         android:padding="@dimen/px_16"

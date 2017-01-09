@@ -16,11 +16,13 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.SeriesAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ChapterPageBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 
 import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
@@ -45,7 +47,9 @@ public class JuJiNumAdapter extends BaseAdapter {
     private int resourceType=2;
     private int resourceId = -1;
     private ObjectBean bean = null;
-    private ArrayList<ChapterBean> mChapterList;
+    DetailActivity detailActivity = new DetailActivity();
+    Intent intent;
+    private  ArrayList<ChapterBean> mChapterList;
     public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId){
         this.mContext=context;
         this.resourceId = resourceId;
@@ -55,8 +59,13 @@ public class JuJiNumAdapter extends BaseAdapter {
         size=((num%16==0)?(num/16):(num/16+1));
         this.resourceType=resourceType;
     }
+    public JuJiNumAdapter(){
+    }
 
 
+    public  void setmChapterList(ArrayList<ChapterBean> mChapterList) {
+      this.mChapterList = mChapterList;
+    }
 
     public void setIndex(int index) {
         this.index = index;
@@ -139,10 +148,19 @@ public class JuJiNumAdapter extends BaseAdapter {
 //            holder.btn_jujinum.setTextColor(mContext.getResources().getColor(R.color.color_333333));
 //            holder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
 //        }
+        final Holder finalHolder = holder;
         holder.btn_jujinum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startRead(position);
+
+                String str=finalHolder.btn_jujinum.getText().toString();
+                int  jujinum;
+                if (lianzai==1){
+                    jujinum=  num-Integer.valueOf(str)-1;
+                }else {
+                    jujinum= Integer.valueOf(str)-1;
+                }
+                  detailActivity.startRead(jujinum);
 //                clickPosition=position;
 //                notifyDataSetChanged();
             }
@@ -150,55 +168,9 @@ public class JuJiNumAdapter extends BaseAdapter {
         return convertView;
     }
 
-    /**
-     * 获取作品章节
-     */
-   private void getNewJuji(){
-       int sortBy=0;
-       if (lianzai==1){
-           sortBy=1;
-       }else {
-           sortBy=0;//已完结的
-       }
-       String url= Constants.NEW_CHAPTER_LIST+"?resourceId="+resourceId+"&page="+1+"&sortBy="+sortBy;
-       new AppActivity().httpGet(url,new HttpCallback(){
-           @Override
-           public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-               super.doAuthSuccess(result, obj);
-               try {
-                   mChapterList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
-                   }.getType());
-                   notifyDataSetChanged();
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
-           }
-       });
-
-   }
-
-    private void startRead(int index) {
-        if (!(mChapterList != null && index < mChapterList.size())) {
-            return;
-        }
-        ArrayList<ChapterBean> list = new ArrayList<ChapterBean>();
-        ChapterBean bns = mChapterList.get(index);
-        for (ChapterBean bn : mChapterList) {
-            if (bns.getId() == bn.getId())
-                bn.setCheck(3);
-            else {
-                bn.setCheck(0);
-            }
-            list.add(bn);
-        }
-//        seriesAdapter.setData(list);
-//        mChapterView.setAdapter(seriesAdapter);
-//        mChapterList = (ArrayList<ChapterBean>) seriesAdapter.getData();
-        Intent intent = new Intent(mContext,CartoonReadActivity.class);
-        intent.putExtra("ChapterList", mChapterList);
-        intent.putExtra("bean", bean);
-        intent.putExtra("index", index);
-        mContext.startActivity(intent);
+    public void setIntent(Intent intent) {
+        this.intent = intent;
+        notifyDataSetChanged();
     }
 
 

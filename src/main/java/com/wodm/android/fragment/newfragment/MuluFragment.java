@@ -26,6 +26,7 @@ import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.HorizontalListView;
 import com.wodm.android.view.newview.MyGridView;
 
@@ -34,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -172,6 +174,8 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
+
 
     public void setViews(ObjectBean bean) {
         String str= DateFormat.format("yyyy-MM-dd", Calendar.getInstance().getTime()).toString();

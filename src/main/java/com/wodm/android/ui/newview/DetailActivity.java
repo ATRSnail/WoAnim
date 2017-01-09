@@ -1,6 +1,7 @@
 package com.wodm.android.ui.newview;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,15 +18,19 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
+import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.fragment.newfragment.CommentFragment;
 import com.wodm.android.fragment.newfragment.MuluFragment;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
 
@@ -91,7 +96,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     private List<String> mTitles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
     private MyFragmentAdapter tabFragmentAdapter;
-
+    private ArrayList<ChapterBean> mChapterList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +178,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     }
 
     private void initData() {
+
         Bundle bundle = new Bundle();
         bundle.putInt("resourceId",resourceId);
         bundle.putInt("resourceType",resourceType);
@@ -215,6 +221,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
                     bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     setViews(bean);
+                    getNewJuji(bean);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -302,6 +309,19 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     public void onClick(View v) {
         String eventName = "";
         switch (v.getId()) {
+            case R.id.watch:
+                eventName = "漫画观看首页";
+                if (bean.getType()==1){
+                    startRead(bean.getChapter()-1);
+                }else {
+                    startRead(0);
+                }
+
+                break;
+            case R.id.play:
+                eventName = "动漫观看首页";
+
+                break;
             case R.id.img_download:
                 eventName = "弹出下载界面";
                 showDowmData();
@@ -321,7 +341,55 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         }
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
     }
+    /**
+     * 获取作品章节
+     * @param bean
+     */
+    public  void getNewJuji(final ObjectBean bean){
+        int sortBy=0;
+        if (bean.getType()==1){
+            sortBy=1;
+        }else {
+            sortBy=0;//已完结的
+        }
+        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+1+"&sortBy="+sortBy;
+        new AppActivity().httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    ArrayList<ChapterBean>  list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
+                    }.getType());
+                    mChapterList.clear();
+                    mChapterList.addAll(list);
+//                    setmChapterList(mChapterList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+    }
+
+//    public ArrayList<ChapterBean> getmChapterList() {
+//        return mChapterList;
+//    }
+//
+//    public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
+//        this.mChapterList = mChapterList;
+//    }
+
+    public void startRead(int index) {
+//        ArrayList<ChapterBean> mChapterList = getmChapterList();
+        if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
+            Intent  intent = new Intent(this,CartoonReadActivity.class);
+            intent.putExtra("ChapterList",mChapterList);
+            intent.putExtra("bean", bean);
+            intent.putExtra("index", index);
+            startActivity(intent);
+        }
+
+    }
     private void showDowmData() {
     }
     private void showShare() {

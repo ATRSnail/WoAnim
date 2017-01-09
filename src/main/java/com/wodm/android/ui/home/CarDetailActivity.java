@@ -341,6 +341,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
                 if (((TextView) view.findViewById(R.id.button)).getText().equals("更多")) {
                     seriesAdapter.setShowAll();
                 } else {
+
                     startRead(position);
                 }
             }
@@ -383,6 +384,7 @@ public class CarDetailActivity extends AppActivity implements FaceRelativeLayout
             }
             list.add(bn);
         }
+        Log.e("AA","------------------mChapterList.size()"+mChapterList.size());
         seriesAdapter.setData(list);
         mChapterView.setAdapter(seriesAdapter);
         mChapterList = (ArrayList<ChapterBean>) seriesAdapter.getData();
