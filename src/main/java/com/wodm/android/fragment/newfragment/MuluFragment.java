@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.JuJiAdapter;
 import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
-import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.HorizontalListView;
 import com.wodm.android.view.newview.MyGridView;
 
@@ -34,11 +30,7 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by songchenyu on 16/12/12.
@@ -60,6 +52,15 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     private int resourceId = -1;
     private int resourceType = 1;
     RecommendFragment recommend;
+    private static MuluFragment muluFragment=null;
+    private static onJiShuNumClickListener listener;
+    public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener){
+        listener=jiShuNumClickListener;
+        if (muluFragment==null){
+            muluFragment=new MuluFragment();
+        }
+        return muluFragment;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,6 +77,12 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
 
 
         return view;
+    }
+    public void setJishuClickListener(onJiShuNumClickListener listener){
+        this.listener=listener;
+    }
+    public interface onJiShuNumClickListener{
+        public void clickNum(int num);
     }
 
     /**
@@ -111,7 +118,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         rl_details_up= (RelativeLayout) view.findViewById(R.id.rl_details_up);
         hor_lv= (HorizontalListView) view.findViewById(R.id.hor_lv);
         gv_adapter_juji= (MyGridView) view.findViewById(R.id.gv_adapter_juji);
-        juJiNumAdapter = new JuJiNumAdapter(getActivity(),bean,resourceType,resourceId);
+        juJiNumAdapter = new JuJiNumAdapter(getActivity(),bean,resourceType,resourceId,listener);
         gv_adapter_juji.setAdapter(juJiNumAdapter);
         juJiAdapter =new JuJiAdapter(getActivity(),bean);
         juJiAdapter.setUpdateTotal(new JuJiAdapter.UpdateTotal() {

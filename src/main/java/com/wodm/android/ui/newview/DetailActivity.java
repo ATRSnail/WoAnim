@@ -22,7 +22,6 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
@@ -48,7 +47,7 @@ import java.util.List;
  * 动漫画详情页面
  * */
 @Layout(R.layout.activity_detail)
-public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener{
+public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopbarClicklistenter,View.OnClickListener,MuluFragment.onJiShuNumClickListener {
 
 //    @ViewIn(R.id.dra)
 //    DragScaleImageView dragScaleImageView;
@@ -182,7 +181,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         Bundle bundle = new Bundle();
         bundle.putInt("resourceId",resourceId);
         bundle.putInt("resourceType",resourceType);
-        muLu =new MuluFragment();
+        muLu =MuluFragment.getInstance(this);
         muLu.setArguments(bundle);
         comment = new CommentFragment();
         comment.setArguments(bundle);
@@ -429,5 +428,10 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
             }
         });
+    }
+
+    @Override
+    public void clickNum(int num) {
+           startRead(num);
     }
 }

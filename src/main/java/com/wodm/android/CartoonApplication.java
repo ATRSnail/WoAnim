@@ -41,7 +41,7 @@ public class CartoonApplication extends TrackApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashHandler.getInstance().init(getApplicationContext());//默认系统处理bug,调试时注释处理才可看到bug
+//        CrashHandler.getInstance().init(getApplicationContext());//默认系统处理bug,调试时注释处理才可看到bug
         mContext = getApplicationContext();
         Fresco.initialize(mContext);
         ShareSdks.initShare(getApplicationContext());

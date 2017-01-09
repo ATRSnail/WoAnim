@@ -2,8 +2,6 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,25 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
-import com.wodm.android.Constants;
-import com.wodm.android.adapter.SeriesAdapter;
 import com.wodm.android.bean.ChapterBean;
-import com.wodm.android.bean.ChapterPageBean;
 import com.wodm.android.bean.ObjectBean;
-import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.home.CartoonReadActivity;
-import com.wodm.android.ui.newview.DetailActivity;
-
-import org.eteclab.base.http.HttpCallback;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.wodm.android.fragment.newfragment.MuluFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by songchenyu on 16/12/12.
@@ -47,15 +32,17 @@ public class JuJiNumAdapter extends BaseAdapter {
     private int resourceType=2;
     private int resourceId = -1;
     private ObjectBean bean = null;
-    DetailActivity detailActivity = new DetailActivity();
+//    DetailActivity detailActivity = new DetailActivity();
     Intent intent;
     private  ArrayList<ChapterBean> mChapterList;
-    public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId){
+    private MuluFragment.onJiShuNumClickListener listener;
+    public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId,MuluFragment.onJiShuNumClickListener listener){
         this.mContext=context;
         this.resourceId = resourceId;
         this.bean=bean;
         this.num=bean.getChapter();
         this.lianzai=bean.getType();
+        this.listener=listener;
         size=((num%16==0)?(num/16):(num/16+1));
         this.resourceType=resourceType;
     }
@@ -160,7 +147,8 @@ public class JuJiNumAdapter extends BaseAdapter {
                 }else {
                     jujinum= Integer.valueOf(str)-1;
                 }
-                  detailActivity.startRead(jujinum);
+                listener.clickNum(jujinum);
+//                  detailActivity.startRead(jujinum);
 //                clickPosition=position;
 //                notifyDataSetChanged();
             }
