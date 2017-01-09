@@ -81,10 +81,10 @@ public class GuaJianAdapter extends BaseAdapter implements AdapterView.OnItemCli
         holder.tv_name.setText(name);
         holder.tv_score.setText(mallGuaJianBean.getNeedScore()+"积分");
         try {
-            if (!mallGuaJianBean.isLoadImage()){
-                mallGuaJianBean.setLoadImage(true);
+//            if (!mallGuaJianBean.isLoadImage()){
+//                mallGuaJianBean.setLoadImage(true);
                 MallConversionUtil.getInstace().dealExpression(mContext,name,holder.img_icon,mallGuaJianBean.getProductImageUrl());
-            }
+//            }
         } catch (Exception e) {
 //            Glide.with(mContext).load(name).placeholder(R.mipmap.loading).into(holder.img_icon);
             e.printStackTrace();

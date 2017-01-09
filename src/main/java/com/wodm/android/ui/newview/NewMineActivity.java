@@ -14,9 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.facebook.cache.disk.DiskStorageCache;
 import com.google.gson.Gson;
-import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
@@ -88,10 +86,13 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
     ImageView img_progress;
     @ViewIn(R.id.img_vip_circle)
     private ImageView img_vip_circle;
+    @ViewIn(R.id.ll_head_image)
+    private RelativeLayout ll_head_image;
     @Override
     protected void setDatas(Bundle bundle) {
         newMineAdapter = new NewMineAdapter(getActivity());
         noScrollListView.setAdapter(newMineAdapter);
+        ll_head_image.setOnClickListener(this);
         img_right.setOnClickListener(this);
         no_login.setOnClickListener(this);
         rl_login.setOnClickListener(this);
@@ -261,6 +262,11 @@ public class NewMineActivity extends TrackFragment implements View.OnClickListen
                     return;
                 }
                 startActivity(i3);
+                break;     
+            case R.id.ll_head_image:
+                Intent i4=new Intent();
+                i4.setClass(getActivity(), AllOfMineWallActivity.class);
+                startActivity(i4);
                 break;
 
         }

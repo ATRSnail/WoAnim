@@ -63,6 +63,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
      */
     private CrashHandler() {
     }
+    private boolean isInsertException=false;
 
     /**
      * 获取 CrashHandler 实例 ,单例模式
@@ -198,7 +199,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         sb.append(result);
         Message msg=new Message();
         msg.obj=sb.toString();
-        sendsaveExceptionDetail(sb.toString());
+
         try {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
@@ -224,7 +225,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
         } catch (Exception e) {
             LogUtils.e("an error occured while writing file...", e);
         }
-
+        if (!isInsertException){
+            sendsaveExceptionDetail(sb.toString());
+        }else {
+            isInsertException=true;
+        }
         return null;
     }
     private void sendsaveExceptionDetail(String catchException) {
