@@ -28,6 +28,7 @@ import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Untils;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.CommonVideoView;
+import com.wodm.android.view.newview.PlayView;
 
 import org.eteclab.base.annotation.ViewIn;
 import org.eteclab.base.http.HttpCallback;
@@ -46,7 +47,7 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class AppActivity extends MaterialActivity implements CommonVideoView.SendBulletListener, BulletSendDialog.SendBarrage {
+public class AppActivity extends MaterialActivity implements PlayView.SendBulletListener, BulletSendDialog.SendBarrage {
 
     @ViewIn(R.id.toolbar)
     protected Toolbar mToolbar;

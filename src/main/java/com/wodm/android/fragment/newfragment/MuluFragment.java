@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.HorizontalListView;
 import com.wodm.android.view.newview.MyGridView;
 
@@ -58,6 +60,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     RecommendFragment recommend;
     private static MuluFragment muluFragment=null;
     private static onJiShuNumClickListener listener;
+    public   static  int page=1;//作品的第几页
     public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener){
         listener=jiShuNumClickListener;
         if (muluFragment==null){
@@ -87,6 +90,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     }
     public interface onJiShuNumClickListener{
         public void clickNum(int num);
+        public void updatePager(boolean flag,int page);//更新作品每一页的内容
     }
 
     /**
@@ -106,7 +110,6 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                     bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     initView(view,bean);
                     setViews(bean);
-                    getNewJuji(bean);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -118,15 +121,17 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     /**
      * 获取作品章节
      * @param bean
+     * @param total
+     * @param juJiNumAdapter
      */
-    public  void getNewJuji(final ObjectBean bean){
+    public  void getNewJuji(final ObjectBean bean, int total, final JuJiNumAdapter juJiNumAdapter){
         int sortBy=0;
         if (bean.getType()==1){
             sortBy=1;
         }else {
             sortBy=0;//已完结的
         }
-        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+1+"&sortBy="+sortBy;
+        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+(total+1)+"&sortBy="+sortBy;
         new AppActivity().httpGet(url,new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -134,7 +139,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                 try {
                     ArrayList<ChapterBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
-                  juJiNumAdapter.setmChapterList(list);
+                    juJiNumAdapter.setmChapterList(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -143,7 +148,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    private void initView(View view, ObjectBean bean){
+    private void initView(View view, final ObjectBean bean){
         img_details_up= (ImageView) view.findViewById(R.id.img_details_up);
         linearLayout= (LinearLayout) view.findViewById(R.id.tuijian);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -154,10 +159,14 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         gv_adapter_juji= (MyGridView) view.findViewById(R.id.gv_adapter_juji);
         juJiNumAdapter = new JuJiNumAdapter(getActivity(),bean,resourceType,resourceId,listener);
         gv_adapter_juji.setAdapter(juJiNumAdapter);
+//        getNewJuji(bean,0,juJiNumAdapter);
         juJiAdapter =new JuJiAdapter(getActivity(),bean);
         juJiAdapter.setUpdateTotal(new JuJiAdapter.UpdateTotal() {
             @Override
             public void getTotal(int total) {
+//                listener.updatePager(true,total);
+//                page=total;
+//                getNewJuji(bean,total,juJiNumAdapter);
                 juJiNumAdapter.setIndex(total);
                 juJiNumAdapter.notifyDataSetChanged();
             }

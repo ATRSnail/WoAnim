@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.utils.ScreenSwitchUtils;
-import com.wodm.android.view.CommonVideoView;
 import com.wodm.android.view.MyVideoView;
 
 import java.util.Timer;
@@ -36,9 +35,10 @@ import java.util.TimerTask;
 
 /**
  * Created by ATRSnail on 2017/1/10.
+ * 新的自定义视频类
  */
 
-public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, View.OnTouchListener, View.OnClickListener, Animator.AnimatorListener, SeekBar.OnSeekBarChangeListener {
+public class PlayView  extends FrameLayout implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, View.OnTouchListener, View.OnClickListener, Animator.AnimatorListener, SeekBar.OnSeekBarChangeListener {
 
     private final int UPDATE_VIDEO_SEEKBAR = 1000;
     private final int UPDATE_VIDEO_SEEKBAR_TIME = 1001;
@@ -86,8 +86,8 @@ public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListe
     private boolean videoControllerShow = true;//底部状态栏的显示状态
     private boolean animation = false;
     private LinearLayout ll_bottom;
-    private CommonVideoView.SendBulletListener sendBulletListener;
-    private CommonVideoView.setTimeDBListener settimeListener;
+    private PlayView.SendBulletListener sendBulletListener;
+    private PlayView.setTimeDBListener settimeListener;
     private String videoUrl;
     private LinearLayout ll_danmu_background;
 
@@ -95,7 +95,7 @@ public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListe
         public void sendBullet();
     }
 
-    public void setSendBulletListener(CommonVideoView.SendBulletListener listener) {
+    public void setSendBulletListener(SendBulletListener listener) {
         this.sendBulletListener = listener;
     }
 
@@ -167,7 +167,7 @@ public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListe
     public interface setTimeDBListener{
         public void setTime(String playUrl,int time,int totalTime);
     }
-    public void setTimeListener(CommonVideoView.setTimeDBListener listener){
+    public void setTimeListener(PlayView.setTimeDBListener listener){
         this.settimeListener=listener;
 
     }
@@ -613,9 +613,9 @@ public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListe
     }
 
 
-    CommonVideoView.VideoViewCall call;
+    PlayView.VideoViewCall call;
 
-    public void setVideoCall(CommonVideoView.VideoViewCall call) {
+    public void setVideoCall(PlayView.VideoViewCall call) {
         this.call = call;
     }
 

@@ -60,17 +60,16 @@ import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.braageview.BulletSetDialog;
-import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ScreenSwitchUtils;
 import com.wodm.android.utils.UpdataUserInfo;
-import com.wodm.android.view.CommonVideoView;
 import com.wodm.android.view.DividerLine;
 import com.wodm.android.view.biaoqing.FaceConversionUtil;
 import com.wodm.android.view.biaoqing.FaceRelativeLayout;
 import com.wodm.android.view.danmu.DanmakuItem;
 import com.wodm.android.view.danmu.IDanmakuItem;
+import com.wodm.android.view.newview.PlayView;
 
 import org.eteclab.base.annotation.InflateView;
 import org.eteclab.base.annotation.Layout;
@@ -92,11 +91,12 @@ import java.util.List;
 
 /**
  * Created by ATRSnail on 2017/1/10.
+ * 动漫播放类
  */
 @Layout(R.layout.activity_anim_play)
-public class AnimPlayActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
+public class AnimPlayActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,PlayView.setTimeDBListener {
     @ViewIn(R.id.common_videoView)
-    private static CommonVideoView videoView;
+    private static PlayView videoView;
     private final String TITLE = "动画详情";
 
     private List<ChapterBean> mChapterList;
@@ -151,7 +151,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
     private static Context context;
     private TextView anim_send_comment;
     private NetworkChangeReceive networkChangeReceive;
-    private AnimDetailActivity.MyVideoReceiver myvideoReceiver;
+    private AnimPlayActivity.MyVideoReceiver myvideoReceiver;
     //---------------------
     private KeyboardLayout mKeyboardLayout;
     private View mEmojiView;
@@ -223,7 +223,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         initVideoReceiver();
     }
     private void initVideoReceiver(){
-        myvideoReceiver=new AnimDetailActivity.MyVideoReceiver();
+        myvideoReceiver=new AnimPlayActivity.MyVideoReceiver();
         IntentFilter intentfilter=new IntentFilter("com.vodeo.play.notifition");
         getBaseContext().registerReceiver(myvideoReceiver,intentfilter);
     }
@@ -478,7 +478,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             }
         });
 
-        videoView.setVideoCall(new CommonVideoView.VideoViewCall() {
+        videoView.setVideoCall(new PlayView.VideoViewCall() {
             @Override
             public void doVideoCollection(CheckBox box) {
                 if (Constants.CURRENT_USER == null) {
@@ -970,11 +970,12 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
                 try {
                     mChapterList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
-                    setSeriesView();
-
+//                    setSeriesView();
                     if (!getIntent().hasExtra("beanPath")){
                         //新的完全横屏
+                        Log.e("AA","*********************"+watchIndex);
                         ChapterBean bn = mChapterList.get(watchIndex);
+
                         startPlay(bn);
                     }
 
@@ -1048,6 +1049,8 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             mCurrintChapter = bean;
             startMyService(mCurrintChapter);
 //            int time=saveSeacherHos(mCurrintChapter);
+
+            /**
             ArrayList<ChapterBean> list = new ArrayList<ChapterBean>();
             for (ChapterBean bn : mChapterList) {
                 bn.setCheck(bean.getId() == bn.getId() ? 3 : 0);
@@ -1056,15 +1059,16 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 
             seriesAdapter.setData(list);
             mChapterList = seriesAdapter.getData();
-            mChapterView.setAdapter(seriesAdapter);
+            mChapterView.setAdapter(seriesAdapter); */
 //            videoView.start(bean.getContentUrl());
             barrage_rescourceId = resourceId;
             barrage_charterId = bean.getId();
-            if (Preferences.getInstance(getApplicationContext()).getPreference("ScreenFullPlay", false)) {
-                if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
-                    setLandPort();
-                }
-            }
+
+//            if (Preferences.getInstance(getApplicationContext()).getPreference("ScreenFullPlay", false)) {
+//                if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
+//                    setLandPort();
+//                }
+//            }
         }
     }
     public static class MyVideoReceiver extends BroadcastReceiver {

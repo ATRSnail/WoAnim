@@ -40,7 +40,7 @@ public class JuJiNumAdapter extends BaseAdapter {
     private ObjectBean bean = null;
 //    DetailActivity detailActivity = new DetailActivity();
 
-    private  ArrayList<ChapterBean> mChapterList;
+    private  ArrayList<ChapterBean> mChapterList=new ArrayList<>();
     private MuluFragment.onJiShuNumClickListener listener;
     public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId,MuluFragment.onJiShuNumClickListener listener){
         this.mContext=context;
@@ -58,7 +58,13 @@ public class JuJiNumAdapter extends BaseAdapter {
 
 
     public  void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-        this.mChapterList=mChapterList;
+        this.mChapterList.clear();
+        this.mChapterList.addAll(mChapterList);
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<ChapterBean> getmChapterList() {
+        return mChapterList;
     }
 
     public void setIndex(int index) {
@@ -110,6 +116,7 @@ public class JuJiNumAdapter extends BaseAdapter {
             holder= (Holder) convertView.getTag();
         }
         final Holder finalHolder1 = holder;
+//        mChapterList =getmChapterList();
 //        ChapterBean chapterBean  = mChapterList.get(position);
 //
 //        if (chapterBean.getIsWatch()==0){

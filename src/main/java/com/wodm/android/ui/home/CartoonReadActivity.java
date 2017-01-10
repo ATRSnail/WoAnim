@@ -346,12 +346,12 @@ public class CartoonReadActivity extends AppActivity {
 
     private void requestHttp(final int index, final boolean b) {
         if (mTitleView != null && bean != null) {
-//            if (bean.getType()==1){
-//                num = bean.getName()+" "+(bean.getChapter()-index);
-//            }else {
-//                num = bean.getName()+" "+(index+1);
-//            }
-            num = bean.getName()+" "+(index+1);
+            if (bean.getType()==1){
+                num = bean.getName()+" "+(bean.getChapter()-index);
+            }else {
+                num = bean.getName()+" "+(index+1);
+            }
+//            num = bean.getName()+" "+(index+1);
             mTitleView.setText(num);//漫画标题+集数
             mCollectView.setChecked(1 == bean.getIsCollect());
         }

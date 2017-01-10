@@ -450,6 +450,10 @@
             android:theme="@style/MyDialogStyle" />
         <activity android:name=".android.ui.newview.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".android.ui.newview.AnimPlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

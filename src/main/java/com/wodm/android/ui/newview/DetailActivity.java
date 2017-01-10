@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -22,7 +21,6 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
@@ -30,8 +28,6 @@ import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.fragment.newfragment.CommentFragment;
 import com.wodm.android.fragment.newfragment.MuluFragment;
 import com.wodm.android.ui.AppActivity;
-import com.wodm.android.ui.home.AnimDetailActivity;
-import com.wodm.android.ui.home.CarDetailActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
@@ -224,7 +220,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
                     bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     setViews(bean);
-                    getNewJuji(bean);
+                    getNewJuji(bean,1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -362,15 +358,16 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     /**
      * 获取作品章节
      * @param bean
+     * @param i
      */
-    public  void getNewJuji(final ObjectBean bean){
+    public  void getNewJuji(final ObjectBean bean, int i){
         int sortBy=0;
         if (bean.getType()==1){
             sortBy=1;
         }else {
             sortBy=0;//已完结的
         }
-        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+1+"&sortBy="+sortBy;
+        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+i+"&sortBy="+sortBy;
         new AppActivity().httpGet(url,new HttpCallback(){
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
@@ -380,6 +377,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
                     }.getType());
                     mChapterList.clear();
                     mChapterList.addAll(list);
+                    mChapterList.notify();
                     setmChapterList(mChapterList);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -398,9 +396,9 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     }
 
     public void startRead( int index) {
-        if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
+        if ((getmChapterList() != null & getmChapterList().size()>0  & index < getmChapterList().size()  )) {
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
-            intent.putExtra("ChapterList",mChapterList);
+            intent.putExtra("ChapterList",getmChapterList());
             intent.putExtra("bean", bean);
             intent.putExtra("index", index);
             startActivity(intent);
@@ -456,6 +454,14 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             startRead(num);
         }
 
+    }
+
+    @Override
+    public void updatePager(boolean flag, int page) {
+        if (flag){
+//            Log.e("AA","点击的页数是"+page);
+//            getNewJuji(bean, page+1);
+        }
     }
 
 }
