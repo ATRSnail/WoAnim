@@ -1,5 +1,7 @@
 package com.wodm.android.bean;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -17,15 +19,22 @@ public class ChapterBean implements Serializable {
      * chapter : 1
      * isWatch : 0
      */
-
     private String id;
+    @Expose
     private int resourceId;
+    @Expose
     private String showImage;
+    @Expose
     private String desp;
+    @Expose
     private String title;
+    @Expose
     private String contentUrl;
+    @Expose
     private int playCount;
+    @Expose
     private int chapter;
+    @Expose
     private int isWatch;
 
     public String getId() {

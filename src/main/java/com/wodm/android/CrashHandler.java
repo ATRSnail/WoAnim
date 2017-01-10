@@ -199,7 +199,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
         sb.append(result);
         Message msg=new Message();
         msg.obj=sb.toString();
-
+        if (!isInsertException){
+            sendsaveExceptionDetail(sb.toString());
+        }else {
+            isInsertException=true;
+        }
         try {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
@@ -225,17 +229,13 @@ public class CrashHandler implements UncaughtExceptionHandler {
         } catch (Exception e) {
             LogUtils.e("an error occured while writing file...", e);
         }
-        if (!isInsertException){
-            sendsaveExceptionDetail(sb.toString());
-        }else {
-            isInsertException=true;
-        }
+
         return null;
     }
     private void sendsaveExceptionDetail(String catchException) {
         try {
             JSONObject jsonObject=new JSONObject();
-            jsonObject.put("deviceId", "00000000000000");
+            jsonObject.put("deviceId", "00000000000000000");
             jsonObject.put("devicePlatform", "1");
             jsonObject.put("deviceBrand", GetPhoneState.getBrand());
             jsonObject.put("deviceModel", GetPhoneState.getModel());

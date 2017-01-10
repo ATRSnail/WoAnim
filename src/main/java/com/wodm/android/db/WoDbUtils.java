@@ -5,6 +5,7 @@ import android.content.Context;
 import com.lidroid.xutils.exception.DbException;
 import com.wodm.android.bean.AdsClickBean;
 import com.wodm.android.bean.AnimLookCookieBean;
+import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.SeacherBean;
 import com.wodm.android.bean.UserBehavierInfo;
 
@@ -28,6 +29,7 @@ public class WoDbUtils {
                         utils.createTableIfNotExist(AnimLookCookieBean.class);
                         utils.createTableIfNotExist(UserBehavierInfo.class);
                         utils.createTableIfNotExist(AdsClickBean.class);
+                        utils.createTableIfNotExist(ChapterBean.class);
                     } catch (DbException var5) {
                         var5.printStackTrace();
                     }

@@ -54,11 +54,71 @@ public class DBService extends Service {
                 upAllData();
             }else if (type.equals("updateAds")){
                 getAllAdsData();
+            }else if (type.equals("insertchapter")){
+                ArrayList<ChapterBean> mChapterList= (ArrayList<ChapterBean>) intent.getSerializableExtra("insertchapter");
+                int resourceId= intent.getIntExtra("resourceId",0);
+                insertAllChapter(mChapterList,resourceId);
             }
         }
 
         return Service.START_STICKY;
     }
+    //插入章节数据,插入数据前会先获取本地数据 然后去重
+    private void insertAllChapter(ArrayList<ChapterBean> mChapterList,int resourceId){
+        ArrayList<ChapterBean> saveList=findAll(resourceId);
+        if (saveList.size()>0){
+            // 主要是判断第一个和最后一个与本地保存的是否已有 一样的话 不再进行数据库操作
+            if (saveList.size()==mChapterList.size()){
+                ChapterBean startBean=saveList.get(0);
+                ChapterBean endBean=saveList.get(saveList.size()-1);
+                ChapterBean chaperStartBean=mChapterList.get(0);
+                ChapterBean chaperEndBean=mChapterList.get(saveList.size()-1);
+                if ((startBean.getId().equals(chaperStartBean.getId()))&&(endBean.getId().equals(chaperEndBean.getId()))){
+                    return;
+                }
+            }
+            for (ChapterBean chapterBean:mChapterList) {
+                for (int i=0;i<saveList.size();i++) {
+                    ChapterBean saveBean=saveList.get(i);
+                    if (chapterBean.getResourceId()==saveBean.getResourceId()){
+                        break;
+                    }else if (i==saveList.size()){
+                        try {
+                            WoDbUtils.initialize(getBaseContext()).save(saveBean);
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        }else {
+            for (ChapterBean bean:mChapterList){
+            try {
+                WoDbUtils.initialize(getBaseContext()).save(bean);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+        }
+        }
+//
+    }
+    /**
+     * 保存某一状态下所有的剧集
+     */
+    public ArrayList<ChapterBean> findAll(int resourceId){
+        ArrayList<ChapterBean> arraylist=new ArrayList<>();
+        try {
+            List<ChapterBean> list = WoDbUtils.initialize(getBaseContext()).findAll(Selector.from(ChapterBean.class).where("resourceId","=",resourceId));
+            if (list!=null&&list.size()>0){
+                arraylist.addAll(list);
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return arraylist;
+    }
+
     private void initReceiver(){
         if (upDataReceiver==null){
             upDataReceiver=new UpDataReceiver();

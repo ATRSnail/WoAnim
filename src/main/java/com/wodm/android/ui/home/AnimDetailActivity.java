@@ -1273,7 +1273,11 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     }
 
     private  void unregisterReceiver(){
-        this.unregisterReceiver(myvideoReceiver);
-        this.unregisterReceiver(networkChangeReceive);
+       try {
+           this.unregisterReceiver(myvideoReceiver);
+           this.unregisterReceiver(networkChangeReceive);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 }
