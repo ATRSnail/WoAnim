@@ -133,6 +133,7 @@ public class CartoonReadActivity extends AppActivity {
     //timetask
     private Handler bullethandler=null;
     private Runnable bullettask;
+    private  int watchIndex=1;//作品的具体集数
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +148,7 @@ public class CartoonReadActivity extends AppActivity {
             mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
 //            commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
             index = getIntent().getIntExtra("index", index);
+            watchIndex = getIntent().getIntExtra("watchIndex", watchIndex);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
 
 
@@ -346,11 +348,8 @@ public class CartoonReadActivity extends AppActivity {
 
     private void requestHttp(final int index, final boolean b) {
         if (mTitleView != null && bean != null) {
-            if (bean.getType()==1){
-                num = bean.getName()+" "+(bean.getChapter()-index);
-            }else {
-                num = bean.getName()+" "+(index+1);
-            }
+            num = bean.getName()+" "+(watchIndex);//新的详情标题
+
 //            num = bean.getName()+" "+(index+1);
             mTitleView.setText(num);//漫画标题+集数
             mCollectView.setChecked(1 == bean.getIsCollect());

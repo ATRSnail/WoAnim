@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -183,7 +182,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         bundle.putInt("resourceType",resourceType);
         muLu =MuluFragment.getInstance(this);
         muLu.setArguments(bundle);
-        comment = new CommentFragment();
+        comment =CommentFragment.getInstance(scrollView);
         comment.setArguments(bundle);
         fragments.add(muLu);
         fragments.add(comment);
@@ -312,18 +311,18 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             case R.id.watch:
                 eventName = "漫画观看首页";
                 if (bean.getType()==1){
-                    startRead(bean.getChapter()-1);
+                    startRead(0, bean.getChapter());
                 }else {
-                    startRead(0);
+                    startRead(0, 1);
                 }
 
                 break;
             case R.id.play:
                 eventName = "动漫观看首页";
                 if (bean.getType()==1){
-                    play(bean.getChapter()-1);
+                    play(0, bean.getChapter());
                 }else {
-                    play(0);
+                    play(0, 1);
                 }
 
 
@@ -348,7 +347,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
     }
 
-    private void play(int i) {
+    private void play(int position, int i) {
         Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
         intent.putExtra("resourceId", resourceId);
         intent.putExtra("index", i);
@@ -377,8 +376,6 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
                     }.getType());
                     mChapterList.clear();
                     mChapterList.addAll(list);
-                    mChapterList.notify();
-                    setmChapterList(mChapterList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -392,15 +389,24 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     }
 
     public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-        this.mChapterList = mChapterList;
+        this.mChapterList.clear();
+        this.mChapterList.addAll(mChapterList);
     }
 
-    public void startRead( int index) {
-        if ((getmChapterList() != null & getmChapterList().size()>0  & index < getmChapterList().size()  )) {
+    public void startRead(int position, int index) {
+        if (page!=null& page.size()>0){
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
-            intent.putExtra("ChapterList",getmChapterList());
+            intent.putExtra("ChapterList",page);
             intent.putExtra("bean", bean);
-            intent.putExtra("index", index);
+            intent.putExtra("index", position);
+            intent.putExtra("watchIndex", index);
+            startActivity(intent);
+        }else if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
+            Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
+            intent.putExtra("ChapterList",mChapterList);
+            intent.putExtra("bean", bean);
+            intent.putExtra("index", position);
+            intent.putExtra("watchIndex", index);
             startActivity(intent);
         }
 
@@ -447,20 +453,20 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     }
 
     @Override
-    public void clickNum(int num) {
+    public void clickNum(int position, int num) {
         if (resourceType==1){
-            play(num);
+            play(position,num);
         }else {
-            startRead(num);
+            startRead(position,num);
         }
 
     }
-
+    ArrayList<ChapterBean> page=new ArrayList<>();
     @Override
-    public void updatePager(boolean flag, int page) {
+    public void updatePager(boolean flag, ArrayList<ChapterBean> page) {
         if (flag){
-//            Log.e("AA","点击的页数是"+page);
-//            getNewJuji(bean, page+1);
+            this.page.clear();
+            this.page.addAll(page);
         }
     }
 

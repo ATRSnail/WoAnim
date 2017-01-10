@@ -89,8 +89,8 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         this.listener=listener;
     }
     public interface onJiShuNumClickListener{
-        public void clickNum(int num);
-        public void updatePager(boolean flag,int page);//更新作品每一页的内容
+        public void clickNum(int position, int num);
+        public void updatePager(boolean flag, ArrayList<ChapterBean> page);//更新作品每一页的内容
     }
 
     /**
@@ -139,7 +139,8 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                 try {
                     ArrayList<ChapterBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
-                    juJiNumAdapter.setmChapterList(list);
+                    listener.updatePager(true,list);
+//                    juJiNumAdapter.setmChapterList(list);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -166,7 +167,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
             public void getTotal(int total) {
 //                listener.updatePager(true,total);
 //                page=total;
-//                getNewJuji(bean,total,juJiNumAdapter);
+                getNewJuji(bean,total,juJiNumAdapter);
                 juJiNumAdapter.setIndex(total);
                 juJiNumAdapter.notifyDataSetChanged();
             }
