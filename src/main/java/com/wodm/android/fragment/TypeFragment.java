@@ -105,7 +105,7 @@ public class TypeFragment extends TrackFragment {
             @Override
             public void onClick(View v) {
                 //收起或下拉都刷新一次
-                postData="";
+//                postData="";
 //                mOpusList.initLoad();
                 if (retList != null && retList.size() > 0 && "0".equals(v.getTag())) {
                     imageButton.setTag("1");

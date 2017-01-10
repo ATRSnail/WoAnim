@@ -47,7 +47,7 @@ import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class AppActivity extends MaterialActivity implements PlayView.SendBulletListener, BulletSendDialog.SendBarrage {
+public class AppActivity extends MaterialActivity implements PlayView.SendBulletListener,CommonVideoView.SendBulletListener, BulletSendDialog.SendBarrage {
 
     @ViewIn(R.id.toolbar)
     protected Toolbar mToolbar;
