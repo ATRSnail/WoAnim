@@ -19,7 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.wodm.android.view.newview.PlayView
+        <com.wodm.android.view.CommonVideoView
             android:id="@+id/common_videoView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_400" />
