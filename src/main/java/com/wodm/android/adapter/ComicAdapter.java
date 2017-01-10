@@ -42,8 +42,8 @@ public class ComicAdapter extends HolderAdapter<ObjectBean> {
         setOnItemClickListener(new OnItemClickListener<ObjectBean>() {
             @Override
             public void onItemClick(View view, ObjectBean o, int i) {
-//                mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
-                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", o.getId()).putExtra("resourceType", o.getResourceType()));
+                mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
+//                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", o.getId()).putExtra("resourceType", o.getResourceType()));
             }
         });
     }

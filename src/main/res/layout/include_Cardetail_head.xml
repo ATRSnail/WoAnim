@@ -76,15 +76,16 @@
             android:id="@+id/category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_30"
+            android:layout_marginTop="@dimen/px_16"
             android:src="@mipmap/img_hd" />
-        <ImageButton
+        <ImageView
+            android:layout_marginTop="@dimen/px_16"
+           android:clickable="true"
             android:adjustViewBounds="true"
             android:background="@mipmap/watch"
             android:id="@+id/watch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_24"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </RelativeLayout>

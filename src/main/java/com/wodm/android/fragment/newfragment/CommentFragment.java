@@ -255,17 +255,15 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 
     @Override
     public void onLoadMore() {
-//        if (pager>1){
-//            if (pager==totalPages){
-//                listView.stopRefresh();
-//                listView.stopLoadMore();
-//            }
-//        }
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                pager++;
-                initComment(pager);
+                if (!(pager==totalPages)){
+                    pager++;
+                    initComment(pager);
+                }
+
                 onLoad();
             }
         },1000);

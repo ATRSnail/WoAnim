@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
@@ -29,9 +30,12 @@ import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.fragment.newfragment.CommentFragment;
 import com.wodm.android.fragment.newfragment.MuluFragment;
 import com.wodm.android.ui.AppActivity;
+import com.wodm.android.ui.home.AnimDetailActivity;
+import com.wodm.android.ui.home.CarDetailActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
 import com.wodm.android.view.newview.AtyTopLayout;
+import com.wodm.android.view.newview.WrapContentHeightViewPager;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -54,7 +58,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     @ViewIn(R.id.tablayout)
    TabLayout tabLayout;
     @ViewIn(R.id.viewpager)
-    ViewPager viewpager;
+    WrapContentHeightViewPager viewpager;
     @ViewIn(R.id.activity_detail)
     ScrollView scrollView;
     @ViewIn(R.id.set_topbar)
@@ -80,7 +84,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     ImageView download;
     ImageView share;
     ImageView pho;
-    ImageButton watch;
+    ImageView watch;
     ImageView play;
     private  String TITLE = "动画详情";
     private Dialog dialog=null;
@@ -95,7 +99,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     private List<String> mTitles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
     private MyFragmentAdapter tabFragmentAdapter;
-    private ArrayList<ChapterBean> mChapterList=new ArrayList<>();
+    public static ArrayList<ChapterBean> mChapterList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,7 +173,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             play = (ImageView) animHeadView.findViewById(R.id.play);
             play.setOnClickListener(this);
         }else {
-            watch = (ImageButton) carHeadView.findViewById(R.id.watch);
+            watch = (ImageView) carHeadView.findViewById(R.id.watch);
             watch.setOnClickListener(this);
         }
 
@@ -294,6 +298,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     protected void onResume() {
         super.onResume();
         getCarToon();
+
     }
 
     @Override
@@ -319,6 +324,12 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
                 break;
             case R.id.play:
                 eventName = "动漫观看首页";
+                if (bean.getType()==1){
+                    play(bean.getChapter()-1);
+                }else {
+                    play(0);
+                }
+
 
                 break;
             case R.id.img_download:
@@ -340,6 +351,14 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         }
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
     }
+
+    private void play(int i) {
+        Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
+        intent.putExtra("resourceId", resourceId);
+        intent.putExtra("index", i);
+        startActivity(intent);
+    }
+
     /**
      * 获取作品章节
      * @param bean
@@ -361,7 +380,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
                     }.getType());
                     mChapterList.clear();
                     mChapterList.addAll(list);
-//                    setmChapterList(mChapterList);
+                    setmChapterList(mChapterList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -370,18 +389,17 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
     }
 
-//    public ArrayList<ChapterBean> getmChapterList() {
-//        return mChapterList;
-//    }
-//
-//    public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-//        this.mChapterList = mChapterList;
-//    }
+    public ArrayList<ChapterBean> getmChapterList() {
+        return mChapterList;
+    }
 
-    public void startRead(int index) {
-//        ArrayList<ChapterBean> mChapterList = getmChapterList();
+    public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
+        this.mChapterList = mChapterList;
+    }
+
+    public void startRead( int index) {
         if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
-            Intent  intent = new Intent(this,CartoonReadActivity.class);
+            Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",mChapterList);
             intent.putExtra("bean", bean);
             intent.putExtra("index", index);
@@ -432,6 +450,12 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
     @Override
     public void clickNum(int num) {
-           startRead(num);
+        if (resourceType==1){
+            play(num);
+        }else {
+            startRead(num);
+        }
+
     }
+
 }

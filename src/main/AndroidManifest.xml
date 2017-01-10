@@ -292,6 +292,7 @@
             android:name=".android.ui.home.AnimDetailActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".android.ui.home.CartoonReadActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

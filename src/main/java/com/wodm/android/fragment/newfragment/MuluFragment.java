@@ -16,11 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
 import com.wodm.android.adapter.newadapter.JuJiAdapter;
 import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
+import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.view.newview.HorizontalListView;
@@ -30,7 +32,9 @@ import org.eteclab.base.http.HttpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by songchenyu on 16/12/12.
@@ -102,11 +106,41 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                     bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     initView(view,bean);
                     setViews(bean);
+                    getNewJuji(bean);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+
+    /**
+     * 获取作品章节
+     * @param bean
+     */
+    public  void getNewJuji(final ObjectBean bean){
+        int sortBy=0;
+        if (bean.getType()==1){
+            sortBy=1;
+        }else {
+            sortBy=0;//已完结的
+        }
+        String url= Constants.NEW_CHAPTER_LIST+resourceId+"&page="+1+"&sortBy="+sortBy;
+        new AppActivity().httpGet(url,new HttpCallback(){
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+                try {
+                    ArrayList<ChapterBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
+                    }.getType());
+                  juJiNumAdapter.setmChapterList(list);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void initView(View view, ObjectBean bean){

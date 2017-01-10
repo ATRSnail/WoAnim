@@ -2,6 +2,9 @@ package com.wodm.android.adapter.newadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,9 @@ import android.widget.ImageView;
 import com.wodm.R;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
+import com.wodm.android.ui.home.CartoonReadActivity;
+import com.wodm.android.ui.newview.DetailActivity;
+
 import com.wodm.android.fragment.newfragment.MuluFragment;
 
 import java.util.ArrayList;
@@ -33,7 +39,7 @@ public class JuJiNumAdapter extends BaseAdapter {
     private int resourceId = -1;
     private ObjectBean bean = null;
 //    DetailActivity detailActivity = new DetailActivity();
-    Intent intent;
+
     private  ArrayList<ChapterBean> mChapterList;
     private MuluFragment.onJiShuNumClickListener listener;
     public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId,MuluFragment.onJiShuNumClickListener listener){
@@ -45,13 +51,14 @@ public class JuJiNumAdapter extends BaseAdapter {
         this.listener=listener;
         size=((num%16==0)?(num/16):(num/16+1));
         this.resourceType=resourceType;
+
     }
     public JuJiNumAdapter(){
     }
 
 
     public  void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-      this.mChapterList = mChapterList;
+        this.mChapterList=mChapterList;
     }
 
     public void setIndex(int index) {
@@ -102,6 +109,16 @@ public class JuJiNumAdapter extends BaseAdapter {
         }else {
             holder= (Holder) convertView.getTag();
         }
+        final Holder finalHolder1 = holder;
+//        ChapterBean chapterBean  = mChapterList.get(position);
+//
+//        if (chapterBean.getIsWatch()==0){
+//            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
+//            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#333333"));
+//        }else {
+//            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
+//            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#999999"));
+//        }
 
 
         holder.imageView.setVisibility(View.GONE);
@@ -139,27 +156,35 @@ public class JuJiNumAdapter extends BaseAdapter {
         holder.btn_jujinum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    int  jujinum;
+                    String str=finalHolder.btn_jujinum.getText().toString();
 
-                String str=finalHolder.btn_jujinum.getText().toString();
-                int  jujinum;
-                if (lianzai==1){
-                    jujinum=  num-Integer.valueOf(str)-1;
-                }else {
-                    jujinum= Integer.valueOf(str)-1;
-                }
-                listener.clickNum(jujinum);
-//                  detailActivity.startRead(jujinum);
+                    if (lianzai==1){
+                        jujinum=  num-Integer.valueOf(str);
+                    }else {
+                        jujinum= Integer.valueOf(str)-1;
+                    }
+                    listener.clickNum(jujinum);
+
+//                startRead(detailActivity.getmChapterList(),jujinum, bean);
 //                clickPosition=position;
 //                notifyDataSetChanged();
             }
         });
         return convertView;
     }
+    public void startRead(ArrayList<ChapterBean> mChapterList, int index, ObjectBean bean) {
+        if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
+            Intent  intent = new Intent(mContext,CartoonReadActivity.class);
+            intent.putExtra("ChapterList",mChapterList);
+            intent.putExtra("bean", bean);
+            intent.putExtra("index", index);
+            mContext.startActivity(intent);
+        }
 
-    public void setIntent(Intent intent) {
-        this.intent = intent;
-        notifyDataSetChanged();
     }
+
+
 
 
     class Holder{

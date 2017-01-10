@@ -1,4 +1,4 @@
-package com.wodm.android.ui.home;
+package com.wodm.android.ui.newview;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -60,6 +60,7 @@ import com.wodm.android.tools.DanmuControler;
 import com.wodm.android.tools.JianpanTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.braageview.BulletSetDialog;
+import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.utils.DialogUtils;
 import com.wodm.android.utils.Preferences;
 import com.wodm.android.utils.ScreenSwitchUtils;
@@ -89,9 +90,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Layout(R.layout.activity_anim_detail)
-public class AnimDetailActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
+/**
+ * Created by ATRSnail on 2017/1/10.
+ */
+@Layout(R.layout.activity_anim_play)
+public class AnimPlayActivity extends AppActivity implements NetworkChangeListener,FaceRelativeLayout.BiaoQingClickListener,CommonVideoView.setTimeDBListener {
     @ViewIn(R.id.common_videoView)
     private static CommonVideoView videoView;
     private final String TITLE = "动画详情";
@@ -164,9 +167,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     private Runnable bullettask;
     int mKeyboardHeight = 400; // 输入法默认高度为400
     private int danmuplayTime=-1;
+    private  int watchIndex=0;
     private void initHeaderViews() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            //初始化横屏
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         videoView.setSendBulletListener(this);
         dianji_num = (TextView) mHeaderView.findViewById(R.id.dianji_num);
@@ -345,9 +353,9 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         startDanmuTimeTask();
         initHeaderViews();
         dbTools=DBTools.getInstance(this);
-        videoView.setTimeListener(AnimDetailActivity.this);
+        videoView.setTimeListener(AnimPlayActivity.this);
         initView();
-        context=AnimDetailActivity.this;
+        context=AnimPlayActivity.this;
         videoView.setTimeListener(this);
 
         biaoqingtools = BiaoqingTools.getInstance();
@@ -395,7 +403,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
                 if (commentBeanList.size() % 10 == 0||isLoadMore) {
 //                    httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
-                        httpGet(url, new HttpCallback() {
+                    httpGet(url, new HttpCallback() {
                         @Override
                         public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                             super.doAuthSuccess(result, obj);
@@ -411,7 +419,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                                 headView.setVisibility(View.GONE);
                                 headView.removeAllViews();
                                 if (pager==1&&beanList!=null&&beanList.size()==0){
-                                    headView.setVisibility(View.VISIBLE);
+//                                    headView.setVisibility(View.VISIBLE);
                                     //若无评论，添加上方简介等信息
                                     headView.addView(mHeaderView);
                                 }
@@ -479,7 +487,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     return;
                 }else
                 {box.setChecked(1 != bean.getIsCollect());
-                collction(box);}
+                    collction(box);}
             }
 
             @Override
@@ -496,7 +504,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             @Override
             public void doChapterList() {
                 super.doChapterList();
-                ChapterDialog dialog = new ChapterDialog(AnimDetailActivity.this);
+                ChapterDialog dialog = new ChapterDialog(AnimPlayActivity.this);
                 dialog.setListViews(mChapterList, mCurrintChapter);
                 dialog.show(true);
             }
@@ -515,6 +523,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         });
         if (getIntent().hasExtra("beanPath")) {
             resourceId = Integer.valueOf(getIntent().getStringExtra("resourceId"));
+            watchIndex = Integer.valueOf(getIntent().getStringExtra("index"));
             videoView.start(getIntent().getStringExtra("beanPath"));
         }
         getCarToon();
@@ -528,7 +537,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             url=Constants.CommentList + resourceId + "&page=" + 1+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
         }
 //        httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + 1, new HttpCallback() {
-          httpGet(url, new HttpCallback() {
+        httpGet(url, new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -597,13 +606,13 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         ArrayList<BarrageBean> arrayList_middle=new ArrayList<>();
         ArrayList<BarrageBean> arrayList_bottom=new ArrayList<>();
         for (BarrageBean bean:barrageBeanList){
-              if (bean.getLocation()==1){
-                  arrayList_top.add(bean);
-              }else if (bean.getLocation()==2){
-                  arrayList_middle.add(bean);
-              }else {
-                  arrayList_bottom.add(bean);
-              }
+            if (bean.getLocation()==1){
+                arrayList_top.add(bean);
+            }else if (bean.getLocation()==2){
+                arrayList_middle.add(bean);
+            }else {
+                arrayList_bottom.add(bean);
+            }
         }
 //        ll_danmu_background.setBackgroundColor(bulletColor);
 //        ll_danmu_background.getBackground().setAlpha(alpha);
@@ -706,7 +715,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     break;
                 case R.id.anim_collect2:
                     eventName = "收藏/取消收藏 操作";
-                    if (!UpdataUserInfo.isLogIn(AnimDetailActivity.this,true,null)) {
+                    if (!UpdataUserInfo.isLogIn(AnimPlayActivity.this,true,null)) {
                         isCollectBox.setChecked(!isCollectBox.isChecked());
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
                         return;
@@ -716,7 +725,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 case R.id.anim_send_comment:
                     eventName = "发布评论操作";
                     anim_send_comment.setEnabled(false);
-                    if (!UpdataUserInfo.isLogIn(AnimDetailActivity.this,true,null)) {
+                    if (!UpdataUserInfo.isLogIn(AnimPlayActivity.this,true,null)) {
 //           未登录
                         anim_send_comment.setEnabled(true);
                         Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
@@ -740,7 +749,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                         /**新加的---表示的是评论的模块 1:表示动漫画的评论 2:表示的是新闻资讯的评论3:表示的是帖子的评论*/
                         obj.put("type", 1);
 //                        httpPost(Constants.URL_COMMENTS, obj, new HttpCallback() {
-                          httpPost(Constants.SAVEComment, obj, new HttpCallback() {
+                        httpPost(Constants.SAVEComment, obj, new HttpCallback() {
                             @Override
                             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                                 super.doAuthSuccess(result, obj);
@@ -861,11 +870,13 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             mEmojiView.setVisibility(View.GONE);
             return;
         }
+        /**
+         int i = getResources().getConfiguration().orientation;
+         if (i == Configuration.ORIENTATION_LANDSCAPE) {
+         setLandPort();
+         } else */
 
-        int i = getResources().getConfiguration().orientation;
-        if (i == Configuration.ORIENTATION_LANDSCAPE) {
-            setLandPort();
-        } else {
+        {
             finish();
         }
     }
@@ -882,7 +893,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        screenSwitchUtils.start(AnimDetailActivity.this);
+        screenSwitchUtils.start(AnimPlayActivity.this);
         videoView.orientation();
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
@@ -899,14 +910,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
 
 //            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-            WindowManager.LayoutParams attrs = getWindow().getAttributes();
-            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().setAttributes(attrs);
-            getWindow().clearFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-            pullToLoadView.setVisibility(View.VISIBLE);
-            ll_bottom.setVisibility(View.VISIBLE);
-            videoView.setNormalScreen();
+//            WindowManager.LayoutParams attrs = getWindow().getAttributes();
+//            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//            getWindow().setAttributes(attrs);
+//            getWindow().clearFlags(
+//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//            pullToLoadView.setVisibility(View.VISIBLE);
+//            ll_bottom.setVisibility(View.VISIBLE);
+//            videoView.setNormalScreen();
         }
 
 
@@ -951,7 +962,8 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
      * 获取作品章节
      */
     private void getChapter() {
-        httpGet(Constants.URL_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
+//        httpGet(Constants.URL_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
+        httpGet(Constants.NEW_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
             @Override
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
@@ -959,6 +971,13 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                     mChapterList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
                     setSeriesView();
+
+                    if (!getIntent().hasExtra("beanPath")){
+                        //新的完全横屏
+                        ChapterBean bn = mChapterList.get(watchIndex);
+                        startPlay(bn);
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1023,7 +1042,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             }
         });
     }
-    
+
     public void start(ChapterBean bean) {
         if (bean != null) {
             mCurrintChapter = bean;
@@ -1048,14 +1067,14 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
             }
         }
     }
-    public static class MyVideoReceiver extends BroadcastReceiver{
+    public static class MyVideoReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
             if (action.equals("com.vodeo.play.notifition")){
-                    int playtime=intent.getExtras().getInt("playtime");
-                    String url=intent.getExtras().getString("url");
+                int playtime=intent.getExtras().getInt("playtime");
+                String url=intent.getExtras().getString("url");
                 if (playtime==0||playtime==-1){
                     videoView.start(url);
                 }else {
@@ -1187,7 +1206,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
 
     @Override
     public void setTime(String playUrl,int time,int totalTime) {
-    try {
+        try {
             danmuplayTime=time/1000;
             AnimLookCookieBean animLookCookieBean1=new AnimLookCookieBean();
             int index=playUrl.indexOf("?");
@@ -1200,7 +1219,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
                 animLookCookieBean1.setPlayState(1);
                 WoDbUtils.initialize(getApplicationContext()).update(animLookCookieBean1, WhereBuilder.b("animUrl","=",insertUrl),"playState");
             }
-            } catch (DbException e) {
+        } catch (DbException e) {
             e.printStackTrace();
         }
     }
@@ -1210,7 +1229,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
      * 主要是为了符合要求,播放到哪儿弹幕在哪儿出现这个问题,不知道怎么样比较合适,就写了这个一个方法,没有写异步
      */
     private BarrageBean showbean=null;
-//    private void getBullets(int times){
+    //    private void getBullets(int times){
 //        for (BarrageBean bean:beanArrayList) {
 //            int playtime=Integer.parseInt(bean.getPlayTime());
 //            if (showbean==null||showbean!=bean){
@@ -1277,3 +1296,4 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         this.unregisterReceiver(networkChangeReceive);
     }
 }
+

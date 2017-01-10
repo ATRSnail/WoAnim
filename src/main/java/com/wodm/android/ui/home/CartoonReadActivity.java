@@ -149,6 +149,7 @@ public class CartoonReadActivity extends AppActivity {
             index = getIntent().getIntExtra("index", index);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
 
+
             requestHttp(index, true);
 
         } else {
@@ -345,8 +346,13 @@ public class CartoonReadActivity extends AppActivity {
 
     private void requestHttp(final int index, final boolean b) {
         if (mTitleView != null && bean != null) {
+//            if (bean.getType()==1){
+//                num = bean.getName()+" "+(bean.getChapter()-index);
+//            }else {
+//                num = bean.getName()+" "+(index+1);
+//            }
             num = bean.getName()+" "+(index+1);
-            mTitleView.setText(num);
+            mTitleView.setText(num);//漫画标题+集数
             mCollectView.setChecked(1 == bean.getIsCollect());
         }
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {

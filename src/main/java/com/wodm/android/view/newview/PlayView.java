@@ -1,11 +1,10 @@
-package com.wodm.android.view;
+package com.wodm.android.view.newview;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -28,18 +27,18 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.wodm.R;
-import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.utils.ScreenSwitchUtils;
+import com.wodm.android.view.CommonVideoView;
+import com.wodm.android.view.MyVideoView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
- * qiangyu on 1/26/16 15:33
- * csdn博客:http://blog.csdn.net/yissan
+ * Created by ATRSnail on 2017/1/10.
  */
-public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, View.OnTouchListener, View.OnClickListener, Animator.AnimatorListener, SeekBar.OnSeekBarChangeListener {
+
+public class PlayView extends FrameLayout implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener, View.OnTouchListener, View.OnClickListener, Animator.AnimatorListener, SeekBar.OnSeekBarChangeListener {
 
     private final int UPDATE_VIDEO_SEEKBAR = 1000;
     private final int UPDATE_VIDEO_SEEKBAR_TIME = 1001;
@@ -87,8 +86,8 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private boolean videoControllerShow = true;//底部状态栏的显示状态
     private boolean animation = false;
     private LinearLayout ll_bottom;
-    private SendBulletListener sendBulletListener;
-    private setTimeDBListener settimeListener;
+    private CommonVideoView.SendBulletListener sendBulletListener;
+    private CommonVideoView.setTimeDBListener settimeListener;
     private String videoUrl;
     private LinearLayout ll_danmu_background;
 
@@ -96,7 +95,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         public void sendBullet();
     }
 
-    public void setSendBulletListener(SendBulletListener listener) {
+    public void setSendBulletListener(CommonVideoView.SendBulletListener listener) {
         this.sendBulletListener = listener;
     }
 
@@ -133,15 +132,15 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         }
     };
 
-    public CommonVideoView(Context context) {
+    public PlayView(Context context) {
         this(context, null);
     }
 
-    public CommonVideoView(Context context, AttributeSet attrs) {
+    public PlayView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CommonVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PlayView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
     }
@@ -168,7 +167,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     public interface setTimeDBListener{
         public void setTime(String playUrl,int time,int totalTime);
     }
-    public void setTimeListener(setTimeDBListener listener){
+    public void setTimeListener(CommonVideoView.setTimeDBListener listener){
         this.settimeListener=listener;
 
     }
@@ -202,7 +201,7 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
         more.setVisibility(v);
         /**
          * 将缓存图标隐藏
-       anim_dowm.setVisibility(v);*/
+         anim_dowm.setVisibility(v);*/
 //        mListAnim.setVisibility(v);
         videoView.requestLayout();
 //        screenLock.setVisibility(v);
@@ -407,12 +406,14 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
                 break;
             case R.id.exit_screen:
                 //退出全屏
-                if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-                    ((AnimDetailActivity) context).setLandPort();
-                } else {
-                    ((Activity) context).finish();
-                }
-                break;
+                /**
+                 if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                 ((AnimDetailActivity) context).setLandPort();
+                 } else */
+            {
+                ((Activity) context).finish();
+            }
+            break;
             case R.id.anim_share:
                 // 分享
                 if (this.call != null)
@@ -462,21 +463,22 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
                 break;
             case R.id.screen_status_img:
-                screenSwitchUtils.toggleScreen();
-                screenSwitchUtils.setIsSennor();
-                int i = getResources().getConfiguration().orientation;
-                if (i == Configuration.ORIENTATION_PORTRAIT) {
-//                    ((AnimDetailActivity) context).setIsLandscape(false);
-                    setFullScreen();
-                    screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_suoxiao));
+                /**
+                 screenSwitchUtils.toggleScreen();
+                 screenSwitchUtils.setIsSennor();
+                 int i = getResources().getConfiguration().orientation;
+                 if (i == Configuration.ORIENTATION_PORTRAIT) {
+                 //                    ((AnimDetailActivity) context).setIsLandscape(false);
+                 setFullScreen();
+                 screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_suoxiao));
 
-                } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
-//                    ((AnimDetailActivity) context).setIsLandscape(true);
-                    setNormalScreen();
-                    screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_fangda));
-                }
+                 } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+                 //                    ((AnimDetailActivity) context).setIsLandscape(true);
+                 setNormalScreen();
+                 screen_status_img.setImageDrawable(getResources().getDrawable(R.mipmap.img_fangda));
+                 }
 
-                ((AnimDetailActivity) context).setLandPort();
+                 ((AnimDetailActivity) context).setLandPort();*/
 //                ((AnimDetailActivity) context).setIsSennor();
 //                ((AnimDetailActivity) context).setButtonFullScreenClicked();
 
@@ -525,19 +527,19 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     private void videoViewOnclick() {
         float curY = videoControllerLayout.getY();
         float cursY = videoTitleLayout.getY();
-                 if (!animation && videoControllerShow) {
-                    animation = true;
-                     if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-                     { startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);}
-                    startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
-                } else if (!animation) {
-                    animation = true;
-                     if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-                     {startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);}
-                    startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
-                     videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
-                     videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
-                }
+        if (!animation && videoControllerShow) {
+            animation = true;
+            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            { startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);}
+            startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
+        } else if (!animation) {
+            animation = true;
+            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            {startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);}
+            startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
+            videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
+            videoHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_SEEKBAR_TIME, 10 * 1000);
+        }
     }
 
     private void startAnimation(View vi, float fromy, float toy, Animator.AnimatorListener l) {
@@ -611,9 +613,9 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
     }
 
 
-    VideoViewCall call;
+    CommonVideoView.VideoViewCall call;
 
-    public void setVideoCall(VideoViewCall call) {
+    public void setVideoCall(CommonVideoView.VideoViewCall call) {
         this.call = call;
     }
 
@@ -642,3 +644,4 @@ public class CommonVideoView extends FrameLayout implements MediaPlayer.OnPrepar
 
 
 }
+
