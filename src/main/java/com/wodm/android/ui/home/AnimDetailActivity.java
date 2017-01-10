@@ -168,7 +168,7 @@ public class AnimDetailActivity extends AppActivity implements NetworkChangeList
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-//        videoView.setSendBulletListener(this);
+        videoView.setSendBulletListener(this);
         dianji_num = (TextView) mHeaderView.findViewById(R.id.dianji_num);
         danmu_kaiguan = (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
         danmu_kaiguan.setOnClickListener(onClickListener);

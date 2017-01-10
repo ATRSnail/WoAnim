@@ -163,15 +163,11 @@ public class JuJiNumAdapter extends BaseAdapter {
         holder.btn_jujinum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    int  jujinum;
-                    String str=finalHolder.btn_jujinum.getText().toString();
 
-                    if (lianzai==1){
-                        jujinum=  num-Integer.valueOf(str);
-                    }else {
-                        jujinum= Integer.valueOf(str)-1;
-                    }
-                    listener.clickNum(jujinum);
+                    String str=finalHolder.btn_jujinum.getText().toString();
+                    int  jujinum=  Integer.valueOf(str);
+
+                    listener.clickNum(position,jujinum);
 
 //                startRead(detailActivity.getmChapterList(),jujinum, bean);
 //                clickPosition=position;

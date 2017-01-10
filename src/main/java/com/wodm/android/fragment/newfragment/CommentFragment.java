@@ -9,10 +9,12 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +61,8 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     private  boolean update=false;
     NewCommentAdapter adapter;
     private  boolean isLoadMore=false;//是否正在加载更多数据的标记
+    private static ScrollView scrollView;
+    private static CommentFragment commentFragment=null;
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         Bundle bundle = getArguments();
@@ -72,19 +76,24 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
         initComment(pager);
 //        loadMore();
 
+//        if (scrollView!=null){
+//            Log.e("AA","*****************");
+//        }else {
+//            Log.e("AA","-------------------");
+//        }
 //        listView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent arg0) {
 //                if(arg0.getAction() == MotionEvent.ACTION_DOWN){
-//           listView.getParent().requestDisallowInterceptTouchEvent(true);
+//           scrollView.requestDisallowInterceptTouchEvent(true);
 //        }
 //
 //        if(arg0.getAction() == MotionEvent.ACTION_MOVE){
-//            listView.getParent().requestDisallowInterceptTouchEvent(true);
+//            scrollView.requestDisallowInterceptTouchEvent(true);
 //        }
 //
 //        if(arg0.getAction() == MotionEvent.ACTION_UP){
-//            listView.getParent().requestDisallowInterceptTouchEvent(false);
+//            scrollView.requestDisallowInterceptTouchEvent(false);
 //        }
 //                return false;
 //            }
@@ -92,7 +101,13 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 
         return view;
     }
-
+    public static CommentFragment getInstance(ScrollView ScrollView){
+        scrollView =ScrollView;
+        if (commentFragment==null){
+            commentFragment=new CommentFragment();
+        }
+        return commentFragment;
+    }
     private void initData(View view, LayoutInflater inflater) {
         listView = (XListView) view.findViewById(R.id.list_comment);
         listView.setPullRefreshEnable(true); //设置可以下拉刷新，默认就是true
