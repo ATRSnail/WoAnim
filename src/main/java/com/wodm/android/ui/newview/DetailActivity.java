@@ -348,10 +348,20 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     }
 
     private void play(int position, int i) {
-        Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
-        intent.putExtra("resourceId", resourceId);
-        intent.putExtra("index", i);
-        startActivity(intent);
+        if (page!=null& page.size()>0){
+            Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
+            intent.putExtra("resourceId", resourceId);
+            intent.putExtra("index", position);
+            intent.putExtra("ChapterList",page);
+            startActivity(intent);
+        }else if ((mChapterList != null & mChapterList.size()>0  & position < mChapterList.size()  )) {
+            Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
+            intent.putExtra("resourceId", resourceId);
+            intent.putExtra("index", position);
+            intent.putExtra("ChapterList",mChapterList);
+            startActivity(intent);
+        }
+
     }
 
     /**
@@ -401,7 +411,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             intent.putExtra("index", position);
             intent.putExtra("watchIndex", index);
             startActivity(intent);
-        }else if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
+        }else if ((mChapterList != null & mChapterList.size()>0  & position < mChapterList.size()  )) {
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",mChapterList);
             intent.putExtra("bean", bean);

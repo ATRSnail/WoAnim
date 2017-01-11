@@ -99,7 +99,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
     private static PlayView videoView;
     private final String TITLE = "动画详情";
 
-    private List<ChapterBean> mChapterList;
+    private ArrayList<ChapterBean> mChapterList;
 
     @ViewIn(R.id.pull_list)
     private PullToLoadView pullToLoadView;
@@ -354,15 +354,17 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         initHeaderViews();
         dbTools=DBTools.getInstance(this);
         videoView.setTimeListener(AnimPlayActivity.this);
-        initView();
+//        initView();
         context=AnimPlayActivity.this;
         videoView.setTimeListener(this);
 
-        biaoqingtools = BiaoqingTools.getInstance();
-        resourceId = getIntent().getIntExtra("resourceId", -1);
-        DividerLine line = new DividerLine();
-        line.setSize(getResources().getDimensionPixelSize(R.dimen.px_1));
-        line.setColor(Color.rgb(0xD8, 0xD8, 0xD8));
+//        biaoqingtools = BiaoqingTools.getInstance();
+        resourceId = getIntent().getIntExtra("resourceId",resourceId);
+        watchIndex = getIntent().getIntExtra("index",watchIndex);
+        mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
+//        DividerLine line = new DividerLine();
+//        line.setSize(getResources().getDimensionPixelSize(R.dimen.px_1));
+//        line.setColor(Color.rgb(0xD8, 0xD8, 0xD8));
 
 //        mCommentView = (EditText) findViewById(R.id.comment_text);
 //        mCommentView.setOnClickListener(new View.OnClickListener() {
@@ -373,9 +375,9 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //                }
 //            }
 //        });
-        if (Constants.CURRENT_USER != null) {
-            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
-        }
+//        if (Constants.CURRENT_USER != null) {
+//            new AsyncImageLoader(this, R.mipmap.default_header, R.mipmap.default_header).display(header, Constants.CURRENT_USER.getData().getAccount().getPortrait());
+//        }
         anim_send_comment= (TextView) findViewById(R.id.anim_send_comment);
         anim_send_comment.setOnClickListener(onClickListener);
 //        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
@@ -387,59 +389,59 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             anim_send_comment.setEnabled(Constants.CURRENT_USER != null);
         }
         registerReceiver();
-        pullToLoadView.getRecyclerView().addItemDecoration(line);
-        pullToLoadView.setLoadingColor(R.color.colorPrimary);
-        commentBeanList = new ArrayList<>();
-        pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
-            @Override
-            protected void requestData(final int pager, final boolean b) {
-                //解决分页重复请求只能请求到同一个数据BUG
-                String url;
-                if (Constants.CURRENT_USER==null){
-                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
-                }else {
-                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
-                }
-
-                if (commentBeanList.size() % 10 == 0||isLoadMore) {
-//                    httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
-                    httpGet(url, new HttpCallback() {
-                        @Override
-                        public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                            super.doAuthSuccess(result, obj);
-                            try {
-                                ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
-                                }.getType());
-                                // 为空时添加空的评论
-//                                if (beanList.size() == 0) {
-//                                    beanList.add(new CommentBean());
+//        pullToLoadView.getRecyclerView().addItemDecoration(line);
+//        pullToLoadView.setLoadingColor(R.color.colorPrimary);
+//        commentBeanList = new ArrayList<>();
+//        pullToLoadView.setPullCallback(new PullCallbackImpl(pullToLoadView) {
+//            @Override
+//            protected void requestData(final int pager, final boolean b) {
+//                //解决分页重复请求只能请求到同一个数据BUG
+//                String url;
+//                if (Constants.CURRENT_USER==null){
+//                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
+//                }else {
+//                    url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1+"&userId="+Constants.CURRENT_USER.getData().getAccount().getId();
+//                }
+//
+//                if (commentBeanList.size() % 10 == 0||isLoadMore) {
+////                    httpGet(Constants.URL_GET_COMMENTS + resourceId + "&page=" + pager, new HttpCallback() {
+//                    httpGet(url, new HttpCallback() {
+//                        @Override
+//                        public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                            super.doAuthSuccess(result, obj);
+//                            try {
+//                                ArrayList<CommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<CommentBean>>() {
+//                                }.getType());
+//                                // 为空时添加空的评论
+////                                if (beanList.size() == 0) {
+////                                    beanList.add(new CommentBean());
+////                                }
+//                                commentBeanList = beanList;
+//                                handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
+//                                headView.setVisibility(View.GONE);
+//                                headView.removeAllViews();
+//                                if (pager==1&&beanList!=null&&beanList.size()==0){
+////                                    headView.setVisibility(View.VISIBLE);
+//                                    //若无评论，添加上方简介等信息
+//                                    headView.addView(mHeaderView);
 //                                }
-                                commentBeanList = beanList;
-                                handleData(pager, beanList, CommentAdapter.class, b, mHeaderView);
-                                headView.setVisibility(View.GONE);
-                                headView.removeAllViews();
-                                if (pager==1&&beanList!=null&&beanList.size()==0){
-//                                    headView.setVisibility(View.VISIBLE);
-                                    //若无评论，添加上方简介等信息
-                                    headView.addView(mHeaderView);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                            super.doAuthFailure(result, obj);
-                        }
-                    });
-                } else {
-                    isLoadMore=false;
-                    pullToLoadView.setComplete();
-                }
-
-            }
-        });
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                            super.doAuthFailure(result, obj);
+//                        }
+//                    });
+//                } else {
+//                    isLoadMore=false;
+//                    pullToLoadView.setComplete();
+//                }
+//
+//            }
+//        });
 
         if (Constants.CURRENT_USER != null) {
             String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId + "&taskType=1&taskValue=2";
@@ -457,26 +459,26 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
                 super.doAuthFailure(result, obj);
             }
         });
-        httpGet(Constants.APP_GETATERESOURCECOUNT + resourceId, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                try {
-                    JSONObject jsonObject = new JSONObject(obj.optString("data"));
-                    int playcount = jsonObject.optInt("playCount");
-                    dianji_num.setText("点击量:" + playcount + "");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
+//        httpGet(Constants.APP_GETATERESOURCECOUNT + resourceId, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    JSONObject jsonObject = new JSONObject(obj.optString("data"));
+//                    int playcount = jsonObject.optInt("playCount");
+//                    dianji_num.setText("点击量:" + playcount + "");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
 
         videoView.setVideoCall(new PlayView.VideoViewCall() {
             @Override
@@ -524,6 +526,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         if (getIntent().hasExtra("beanPath")) {
             resourceId = Integer.valueOf(getIntent().getStringExtra("resourceId"));
             watchIndex = Integer.valueOf(getIntent().getStringExtra("index"));
+            mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
             videoView.start(getIntent().getStringExtra("beanPath"));
         }
         getCarToon();
@@ -963,27 +966,26 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
      */
     private void getChapter() {
 //        httpGet(Constants.URL_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
-        httpGet(Constants.NEW_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                try {
-                    mChapterList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
-                    }.getType());
+//        httpGet(Constants.NEW_CHAPTER_LIST + resourceId + "&page=1&size=10000", new HttpCallback() {
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    mChapterList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
+//                    }.getType());
 //                    setSeriesView();
                     if (!getIntent().hasExtra("beanPath")){
                         //新的完全横屏
                         Log.e("AA","*********************"+watchIndex);
                         ChapterBean bn = mChapterList.get(watchIndex);
-
                         startPlay(bn);
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     private boolean isTip = false;//是否已经提示过
