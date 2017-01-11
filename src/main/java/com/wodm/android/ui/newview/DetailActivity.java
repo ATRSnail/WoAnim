@@ -26,6 +26,7 @@ import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.dialog.ShareDialog;
 import com.wodm.android.fragment.newfragment.CommentFragment;
 import com.wodm.android.fragment.newfragment.MuluFragment;
+import com.wodm.android.tools.JujiDbTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
@@ -384,6 +385,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
                 try {
                     ArrayList<ChapterBean>  list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
+                    JujiDbTools.getInstance(DetailActivity.this).insertAll(list,resourceId);//本地保存观看的状态
                     mChapterList.clear();
                     mChapterList.addAll(list);
                 } catch (JSONException e) {
@@ -464,6 +466,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 
     @Override
     public void clickNum(int position, int num) {
+        JujiDbTools.getInstance(DetailActivity.this).update(resourceId);//更新保存观看的状态
         if (resourceType==1){
             play(position,num);
         }else {
@@ -475,6 +478,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     @Override
     public void updatePager(boolean flag, ArrayList<ChapterBean> page) {
         if (flag){
+            JujiDbTools.getInstance(DetailActivity.this).insertAll(page,resourceId);//本地保存观看的状态
             this.page.clear();
             this.page.addAll(page);
         }

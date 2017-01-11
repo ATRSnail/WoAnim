@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import com.wodm.R;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
+import com.wodm.android.tools.JujiDbTools;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.ui.newview.DetailActivity;
 
@@ -116,16 +117,16 @@ public class JuJiNumAdapter extends BaseAdapter {
             holder= (Holder) convertView.getTag();
         }
         final Holder finalHolder1 = holder;
-//        mChapterList =getmChapterList();
-//        ChapterBean chapterBean  = mChapterList.get(position);
-//
-//        if (chapterBean.getIsWatch()==0){
-//            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
-//            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#333333"));
-//        }else {
-//            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
-//            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#999999"));
-//        }
+        ArrayList<ChapterBean> chapterBeanArrayList =JujiDbTools.getInstance(mContext).findAll(resourceId);//查询观看的状态
+        ChapterBean chapterBean  =  chapterBeanArrayList.get(position);
+
+        if (chapterBean.getIsWatch()==0){
+            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
+            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#333333"));
+        }else {
+            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
+            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#999999"));
+        }
 
 
         holder.imageView.setVisibility(View.GONE);

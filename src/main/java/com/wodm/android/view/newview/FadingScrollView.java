@@ -71,37 +71,39 @@ public class FadingScrollView extends ScrollView{
     public FadingScrollView(Context context) {
         super(context);
         this.mContext = context;
-        initData();
+//        initData();
     }
 
     public FadingScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
         this.attrs = attrs;
-        initData();
+//        initData();
     }
 
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+        View childView = getChildAt(0);
+
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
-    private void initData() {
-        otherView= LayoutInflater.from(getContext()).inflate(R.layout.detail_up,null);
-        aty = (AtyTopLayout) otherView.findViewById(R.id.set_topbar);
-        this.addView(otherView);
-    }
+//    private void initData() {
+//        otherView= LayoutInflater.from(getContext()).inflate(R.layout.detail_up,null);
+//        aty = (AtyTopLayout) otherView.findViewById(R.id.set_topbar);
+//        this.addView(otherView);
+//    }
 
 
 
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
-        //        l,t  滑动后 xy位置， oldl lodt 滑动前 xy 位置
-        if (t==500){
-              aty.setAlpha(0);
-        }
-    }
+//    @Override
+//    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+//        super.onScrollChanged(l, t, oldl, oldt);
+//        //        l,t  滑动后 xy位置， oldl lodt 滑动前 xy 位置
+//        if (t==500){
+//              aty.setAlpha(0);
+//        }
+//    }
 
 }
