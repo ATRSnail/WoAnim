@@ -3,9 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/color_ffffff"
     android:layout_height="match_parent">
-     <ImageButton
+     <ImageView
+         android:scaleType="fitXY"
          android:background="@drawable/rectangle_none"
-         android:src="@mipmap/ic_launcher"
          android:id="@+id/tuijian_pho"
          android:layout_width="@dimen/px_220"
          android:layout_height="@dimen/px_280" />

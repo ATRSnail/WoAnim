@@ -1,27 +1,21 @@
 package com.wodm.android.adapter.newadapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wodm.R;
-import com.wodm.android.bean.AtWoBean;
 import com.wodm.android.bean.TuiJianBean;
+import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.newview.DetailActivity;
-import com.wodm.android.utils.MessageUtils;
-import com.wodm.android.view.biaoqing.FaceConversionUtil;
-import com.wodm.android.view.newview.AtyTopLayout;
-
-import org.eteclab.base.annotation.InflateView;
-import org.eteclab.base.utils.AsyncImageLoader;
-import org.eteclab.ui.widget.CircularImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,12 +56,27 @@ public class TuiJianAdapter extends BaseAdapter  {
             holder = new MyHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.tuijian_item, null);
             holder.name = (TextView) convertView.findViewById(R.id.tuijian_name);
-            holder.pho = (ImageButton) convertView.findViewById(R.id.tuijian_pho);
+            holder.pho = (ImageView) convertView.findViewById(R.id.tuijian_pho);
             holder.info = (TextView) convertView.findViewById(R.id.tuijian_info);
             convertView.setTag(holder);
         } else {
             holder = (MyHolder) convertView.getTag();
         }
+        int width= Tools.getScreenWidth((Activity) mContext);
+        int image_width= 0;
+        int image_higth=0;
+        if (list.size()==2){
+            image_width=(width-90)/2;
+            image_higth= (int) (image_width*((float)280/220));
+        }else if (list.size()==3){
+            image_width=(width-120)/3;
+            image_higth= (int) (image_width*((float)280/220));
+        }else {
+            image_width= (int) (width*((float)280/220));
+            image_higth= (int) (width*((float)220/280));
+        }
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(image_width,image_higth);
+        holder.pho.setLayoutParams(params);
         final TuiJianBean.DataBean.ResourceBean resourceBean = list.get(position).getResource();
         Glide.with(mContext).load(resourceBean.getShowImage()).placeholder(R.mipmap.loading).into(holder.pho);
         holder.name.setText(resourceBean.getName());
@@ -109,7 +118,7 @@ public class TuiJianAdapter extends BaseAdapter  {
     static class MyHolder {
         TextView name;
         TextView info;
-        ImageButton pho;
+        ImageView pho;
     }
 }
 
