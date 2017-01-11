@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:background="@drawable/rectangle_none"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/loading" />
     </RelativeLayout>
 
     <LinearLayout

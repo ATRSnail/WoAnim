@@ -58,8 +58,8 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
    TabLayout tabLayout;
     @ViewIn(R.id.viewpager)
     WrapContentHeightViewPager viewpager;
-    @ViewIn(R.id.activity_detail)
-    ScrollView scrollView;
+//    @ViewIn(R.id.activity_detail)
+//    ScrollView scrollView;
     @ViewIn(R.id.set_topbar)
     AtyTopLayout set_topbar;
     @ViewIn(R.id.include_animdetail_head)
@@ -120,20 +120,13 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 //                // do something here
 //            }
 //        });
-        if (scrollView != null) {
-            scrollView.scrollTo(0, 0);
-            scrollView.setFocusable(true);
-            scrollView.setFocusableInTouchMode(true);
-            scrollView.requestFocus();
-        }
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent arg0) {
+//        if (scrollView != null) {
+//            scrollView.scrollTo(0, 0);
+//            scrollView.setFocusable(true);
+//            scrollView.setFocusableInTouchMode(true);
+//            scrollView.requestFocus();
+//        }
 
-//                scrollView.getParent().requestDisallowInterceptTouchEvent(false);
-                return false;
-            }
-        });
         resourceId = getIntent().getIntExtra("resourceId", -1);
         resourceType= getIntent().getIntExtra("resourceType", 1);
 
@@ -189,7 +182,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         bundle.putInt("resourceType",resourceType);
         muLu =MuluFragment.getInstance(this);
         muLu.setArguments(bundle);
-        comment =CommentFragment.getInstance(scrollView);
+        comment =new CommentFragment();
         comment.setArguments(bundle);
         fragments.add(muLu);
         fragments.add(comment);
@@ -359,12 +352,14 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
             intent.putExtra("resourceId", resourceId);
             intent.putExtra("index", position);
+            intent.putExtra("bean", bean);
             intent.putExtra("ChapterList",page);
             startActivity(intent);
         }else if ((mChapterList != null & mChapterList.size()>0  & position < mChapterList.size()  )) {
             Intent intent = new Intent(DetailActivity.this, AnimPlayActivity.class );
             intent.putExtra("resourceId", resourceId);
             intent.putExtra("index", position);
+            intent.putExtra("bean", bean);
             intent.putExtra("ChapterList",mChapterList);
             startActivity(intent);
         }

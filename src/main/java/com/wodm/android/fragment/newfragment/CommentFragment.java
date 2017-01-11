@@ -61,7 +61,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     private  boolean update=false;
     NewCommentAdapter adapter;
     private  boolean isLoadMore=false;//是否正在加载更多数据的标记
-    private static ScrollView scrollView;
     private static CommentFragment commentFragment=null;
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -101,13 +100,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 
         return view;
     }
-    public static CommentFragment getInstance(ScrollView ScrollView){
-        scrollView =ScrollView;
-        if (commentFragment==null){
-            commentFragment=new CommentFragment();
-        }
-        return commentFragment;
-    }
+
     private void initData(View view, LayoutInflater inflater) {
         listView = (XListView) view.findViewById(R.id.list_comment);
         listView.setPullRefreshEnable(true); //设置可以下拉刷新，默认就是true

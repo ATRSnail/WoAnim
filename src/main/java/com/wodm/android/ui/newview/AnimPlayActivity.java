@@ -172,23 +172,23 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //        }
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            //初始化横屏
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            //初始化横屏
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        }
         videoView.setSendBulletListener(this);
-        dianji_num = (TextView) mHeaderView.findViewById(R.id.dianji_num);
-        danmu_kaiguan = (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
-        danmu_kaiguan.setOnClickListener(onClickListener);
-        mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
-        mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
-        mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
-        mChapterView = (NoScrollGridView) mHeaderView.findViewById(R.id.grid_new);
-        isCollectBox = (CheckBox) mHeaderView.findViewById(R.id.anim_collect2);
-        mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
-        mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
-        isCollectBox.setOnClickListener(onClickListener);
-        screenSwitchUtils=ScreenSwitchUtils.init(this);
+//        dianji_num = (TextView) mHeaderView.findViewById(R.id.dianji_num);
+//        danmu_kaiguan = (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
+//        danmu_kaiguan.setOnClickListener(onClickListener);
+//        mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
+//        mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
+//        mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
+//        mChapterView = (NoScrollGridView) mHeaderView.findViewById(R.id.grid_new);
+//        isCollectBox = (CheckBox) mHeaderView.findViewById(R.id.anim_collect2);
+//        mHeaderView.findViewById(R.id.anim_dowm1).setOnClickListener(onClickListener);
+//        mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
+//        isCollectBox.setOnClickListener(onClickListener);
+//        screenSwitchUtils=ScreenSwitchUtils.init(this);
         videoView.findViewById(R.id.img_set).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -256,7 +256,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             stopService(serviceIntent);
         }
         unregisterReceiver();
-        screenSwitchUtils.stop();
+//        screenSwitchUtils.stop();
     }
     private void initView(){
 
@@ -362,6 +362,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         resourceId = getIntent().getIntExtra("resourceId",resourceId);
         watchIndex = getIntent().getIntExtra("index",watchIndex);
         mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
+        bean = (ObjectBean) getIntent().getSerializableExtra("bean");
 //        DividerLine line = new DividerLine();
 //        line.setSize(getResources().getDimensionPixelSize(R.dimen.px_1));
 //        line.setColor(Color.rgb(0xD8, 0xD8, 0xD8));
@@ -383,8 +384,8 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //        img_xiaolian = (CircularImage) findViewById(R.id.img_xiaolian);
 //        img_xiaolian.setOnClickListener(onClickListener);
         //增加表情
-        ll_qq_biaoqing = (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing).findViewById(R.id.faceRelativeLayout);
-        ll_qq_biaoqing.setOnCorpusSelectedListener(this);
+//        ll_qq_biaoqing = (FaceRelativeLayout) findViewById(R.id.ll_qq_biaoqing).findViewById(R.id.faceRelativeLayout);
+//        ll_qq_biaoqing.setOnCorpusSelectedListener(this);
         if (Constants.CURRENT_USER != null){
             anim_send_comment.setEnabled(Constants.CURRENT_USER != null);
         }
@@ -528,6 +529,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             watchIndex = Integer.valueOf(getIntent().getStringExtra("index"));
             mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
             videoView.start(getIntent().getStringExtra("beanPath"));
+            bean = (ObjectBean) getIntent().getSerializableExtra("bean");
         }
         getCarToon();
     }
@@ -593,11 +595,11 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         pullToLoadView.initLoad();
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        JianpanTools.HideKeyboard(mInput);
-        return super.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        JianpanTools.HideKeyboard(mInput);
+//        return super.onTouchEvent(event);
+//    }
 
     private void initDanMu(final ArrayList<BarrageBean> barrageBeanList) {
         //弹幕
@@ -869,11 +871,12 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 
     @Override
     public void onBackPressed() {
+        /**
         if (mEmojiView.getVisibility()==View.VISIBLE){
             mEmojiView.setVisibility(View.GONE);
             return;
         }
-        /**
+
          int i = getResources().getConfiguration().orientation;
          if (i == Configuration.ORIENTATION_LANDSCAPE) {
          setLandPort();
@@ -888,74 +891,76 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         int i = getResources().getConfiguration().orientation;
         if (i == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else if (i == Configuration.ORIENTATION_LANDSCAPE) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
+
+//        else if (i == Configuration.ORIENTATION_LANDSCAPE) {
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        screenSwitchUtils.start(AnimPlayActivity.this);
-        videoView.orientation();
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        screenSwitchUtils.start(AnimPlayActivity.this);
+//        videoView.orientation();
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+////            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 //            videoView.orientationLanScape();
-            WindowManager.LayoutParams attrs = getWindow().getAttributes();
-            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            getWindow().setAttributes(attrs);
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            pullToLoadView.setVisibility(View.GONE);
-            videoView.setFullScreen();
-            ll_bottom.setVisibility(View.GONE);
-        }
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 //            WindowManager.LayoutParams attrs = getWindow().getAttributes();
-//            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
 //            getWindow().setAttributes(attrs);
-//            getWindow().clearFlags(
-//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-//            pullToLoadView.setVisibility(View.VISIBLE);
-//            ll_bottom.setVisibility(View.VISIBLE);
-//            videoView.setNormalScreen();
-        }
-
-
-    }
+//            getWindow().addFlags(
+//                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//            pullToLoadView.setVisibility(View.GONE);
+//            videoView.setFullScreen();
+//            ll_bottom.setVisibility(View.GONE);
+//        }
+//        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+//
+////            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+////            WindowManager.LayoutParams attrs = getWindow().getAttributes();
+////            attrs.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+////            getWindow().setAttributes(attrs);
+////            getWindow().clearFlags(
+////                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+////            pullToLoadView.setVisibility(View.VISIBLE);
+////            ll_bottom.setVisibility(View.VISIBLE);
+////            videoView.setNormalScreen();
+//        }
+//
+//
+//    }
 
 
     /**
      * 获取作品详情
      */
     private void getCarToon() {
-        String url = Constants.URL_CARTTON_DETAIL + resourceId;
-        if (Constants.CURRENT_USER != null) {
-            url += ("?userId=" + Constants.CURRENT_USER.getData().getAccount().getId());
-        }
-        httpGet(url, new HttpCallback() {
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                try {
-                    bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
+//        String url = Constants.URL_CARTTON_DETAIL + resourceId;
+//        if (Constants.CURRENT_USER != null) {
+//            url += ("?userId=" + Constants.CURRENT_USER.getData().getAccount().getId());
+//        }
+//        httpGet(url, new HttpCallback() {
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
                     setViews(bean);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     private void setViews(ObjectBean bean) {
-        mCarDesp.setText(bean.getDesp() + "");
-        isCollectBox.setChecked(bean.getIsCollect() == 1);
+//        mCarDesp.setText(bean.getDesp() + "");
+//        isCollectBox.setChecked(bean.getIsCollect() == 1);
         videoView.more.setChecked(bean.getIsCollect() == 1);
-        mTitleDesp.setText(bean.getName());
+//        mTitleDesp.setText(bean.getName());
 //        (bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集"
-        mChapterDesp.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");
+//        mChapterDesp.setText((bean.getType() == 1 ? "更新至" : "全") + bean.getChapter() + "集");
         videoView.setmVideoName(bean.getName());
 
         getChapter();
@@ -976,7 +981,6 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //                    setSeriesView();
                     if (!getIntent().hasExtra("beanPath")){
                         //新的完全横屏
-                        Log.e("AA","*********************"+watchIndex);
                         ChapterBean bn = mChapterList.get(watchIndex);
                         startPlay(bn);
                     }
@@ -1066,11 +1070,11 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             barrage_rescourceId = resourceId;
             barrage_charterId = bean.getId();
 
-//            if (Preferences.getInstance(getApplicationContext()).getPreference("ScreenFullPlay", false)) {
-//                if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
-//                    setLandPort();
-//                }
-//            }
+            if (Preferences.getInstance(getApplicationContext()).getPreference("ScreenFullPlay", false)) {
+                if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
+                    setLandPort();
+                }
+            }
         }
     }
     public static class MyVideoReceiver extends BroadcastReceiver {

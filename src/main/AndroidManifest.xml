@@ -453,7 +453,7 @@
         <activity
             android:name=".android.ui.newview.AnimPlayActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar.FullScreen"/>
     </application>
 
 </manifest>

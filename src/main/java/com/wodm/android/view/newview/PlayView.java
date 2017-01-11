@@ -529,12 +529,12 @@ public class PlayView  extends FrameLayout implements MediaPlayer.OnPreparedList
         float cursY = videoTitleLayout.getY();
         if (!animation && videoControllerShow) {
             animation = true;
-            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
             { startAnimation(videoTitleLayout, cursY, cursY - videoTitleLayout.getHeight(), null);}
             startAnimation(videoControllerLayout, curY, curY + videoControllerLayout.getHeight(), this);
         } else if (!animation) {
             animation = true;
-            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+//            if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
             {startAnimation(videoTitleLayout, cursY, cursY + videoTitleLayout.getHeight(), null);}
             startAnimation(videoControllerLayout, curY, curY - videoControllerLayout.getHeight(), this);
             videoHandler.removeMessages(UPDATE_VIDEO_SEEKBAR_TIME);
