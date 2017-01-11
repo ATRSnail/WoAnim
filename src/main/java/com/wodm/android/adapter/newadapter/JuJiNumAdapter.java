@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,9 +40,8 @@ public class JuJiNumAdapter extends BaseAdapter {
     private int resourceType=2;
     private int resourceId = -1;
     private ObjectBean bean = null;
-//    DetailActivity detailActivity = new DetailActivity();
 
-    private  ArrayList<ChapterBean> mChapterList=new ArrayList<>();
+    private     ArrayList<ChapterBean> mChapterList;
     private MuluFragment.onJiShuNumClickListener listener;
     public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId,MuluFragment.onJiShuNumClickListener listener){
         this.mContext=context;
@@ -52,24 +52,18 @@ public class JuJiNumAdapter extends BaseAdapter {
         this.listener=listener;
         size=((num%16==0)?(num/16):(num/16+1));
         this.resourceType=resourceType;
-
-    }
-    public JuJiNumAdapter(){
     }
 
-
-    public  void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-        this.mChapterList.clear();
-        this.mChapterList.addAll(mChapterList);
-        notifyDataSetChanged();
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public ArrayList<ChapterBean> getmChapterList() {
         return mChapterList;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
+        this.mChapterList = mChapterList;
     }
 
     @Override
@@ -87,6 +81,9 @@ public class JuJiNumAdapter extends BaseAdapter {
 //                return (16+num-total);
 //            }
 //        }
+           if (!(mChapterList!=null&&mChapterList.size()>0)){
+               return 0;
+           }
           total=(index+1)*16;
           if(num<total&index==(size-1)){
               return (16+num-total);
@@ -116,17 +113,20 @@ public class JuJiNumAdapter extends BaseAdapter {
         }else {
             holder= (Holder) convertView.getTag();
         }
-        final Holder finalHolder1 = holder;
-        ArrayList<ChapterBean> chapterBeanArrayList =JujiDbTools.getInstance(mContext).findAll(resourceId);//查询观看的状态
-        ChapterBean chapterBean  =  chapterBeanArrayList.get(position);
+        final Holder finalHolder = holder;
+        if (mChapterList!=null&mChapterList.size()>0){
+            ArrayList<ChapterBean> chapterBeanArrayList =mChapterList;
+            ChapterBean chapterBean  =  chapterBeanArrayList.get(position);
 
-        if (chapterBean.getIsWatch()==0){
-            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
-            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#333333"));
-        }else {
-            finalHolder1.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
-            finalHolder1.btn_jujinum.setTextColor(Color.parseColor("#999999"));
+            if (chapterBean.getIsWatch()==0){
+                finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
+                finalHolder.btn_jujinum.setTextColor(Color.parseColor("#333333"));
+            }else {
+                finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
+                finalHolder.btn_jujinum.setTextColor(Color.parseColor("#999999"));
+            }
         }
+
 
 
         holder.imageView.setVisibility(View.GONE);
@@ -152,43 +152,41 @@ public class JuJiNumAdapter extends BaseAdapter {
 //            }
         }
 
+        holder.btn_jujinum.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_click);
+                        finalHolder.btn_jujinum.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
+                        finalHolder.btn_jujinum.setTextColor(Color.parseColor("#999999"));
+                        break;
+                }
+                return false;
+            }
+        });
 
-//        if (clickPosition==position){
-//            holder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_click);
-//            holder.btn_jujinum.setTextColor(mContext.getResources().getColor(R.color.color_ffffff));
-//        }else {
-//            holder.btn_jujinum.setTextColor(mContext.getResources().getColor(R.color.color_333333));
-//            holder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);
-//        }
-        final Holder finalHolder = holder;
+
         holder.btn_jujinum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                     String str=finalHolder.btn_jujinum.getText().toString();
                     int  jujinum=  Integer.valueOf(str);
 
                     listener.clickNum(position,jujinum);
 
-//                startRead(detailActivity.getmChapterList(),jujinum, bean);
+
 //                clickPosition=position;
 //                notifyDataSetChanged();
             }
         });
         return convertView;
     }
-    public void startRead(ArrayList<ChapterBean> mChapterList, int index, ObjectBean bean) {
-        if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
-            Intent  intent = new Intent(mContext,CartoonReadActivity.class);
-            intent.putExtra("ChapterList",mChapterList);
-            intent.putExtra("bean", bean);
-            intent.putExtra("index", index);
-            mContext.startActivity(intent);
-        }
-
-    }
-
-
 
 
     class Holder{

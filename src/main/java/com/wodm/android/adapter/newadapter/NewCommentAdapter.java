@@ -129,13 +129,10 @@ public class NewCommentAdapter extends BaseAdapter {
         new AsyncImageLoader(context, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
 
 
-        if (!UpdataUserInfo.isLogIn(context, true, null)) {
-            Toast.makeText(context, "未登录，请先登录", Toast.LENGTH_SHORT).show();
-            return null;
-        } else {
-            holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
-            holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
-        }
+
+        holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
+        holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
+
         holder.img.setOnClickListener(new MyClick(holder,position,bean));
         holder.zanBtn.setOnClickListener(new MyClick(holder,position,bean));
         holder.guanzhu.setOnClickListener(new MyClick(holder,position,bean));

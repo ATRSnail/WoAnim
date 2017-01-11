@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -262,6 +263,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     private void replyComment(String text, int resourceId, int sendId, int commentId) {
         eventName = "回复评论操作";
         JSONObject obj = new JSONObject();
+        Log.e("AA","**************resourceId "+resourceId +"sendId"+sendId+"commentId"+commentId);
         try {
             obj.put("resourceId", resourceId);
             obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());

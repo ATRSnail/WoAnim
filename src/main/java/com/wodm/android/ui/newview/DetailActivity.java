@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -20,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
+import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
@@ -30,6 +32,7 @@ import com.wodm.android.tools.JujiDbTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
+import com.wodm.android.view.NoScrollViewPager;
 import com.wodm.android.view.newview.AtyTopLayout;
 import com.wodm.android.view.newview.WrapContentHeightViewPager;
 
@@ -96,6 +99,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     private List<Fragment> fragments = new ArrayList<>();
     private MyFragmentAdapter tabFragmentAdapter;
     public static ArrayList<ChapterBean> mChapterList=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +153,8 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         initData();
         set_topbar.setOnTopbarClickListenter(this);
     }
+
+
 
     private void initHeaderView(int i, RelativeLayout view) {
         renqi = (TextView) headView.findViewById(R.id.renqi);
@@ -483,5 +489,6 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             this.page.addAll(page);
         }
     }
+
 
 }

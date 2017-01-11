@@ -86,8 +86,14 @@ public class FadingScrollView extends ScrollView{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         View childView = getChildAt(0);
+        int heigh=0;
+        if (childView!=null){
+            childView.measure(widthMeasureSpec,MeasureSpec.makeMeasureSpec(0,MeasureSpec.UNSPECIFIED));
+            heigh=childView.getMeasuredHeight();
+        }
+        heightMeasureSpec= MeasureSpec.makeMeasureSpec(heigh,MeasureSpec.EXACTLY);
 
-        super.onMeasure(widthMeasureSpec, expandSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 //    private void initData() {
 //        otherView= LayoutInflater.from(getContext()).inflate(R.layout.detail_up,null);

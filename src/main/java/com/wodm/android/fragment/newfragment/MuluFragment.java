@@ -60,7 +60,6 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     RecommendFragment recommend;
     private static MuluFragment muluFragment=null;
     private static onJiShuNumClickListener listener;
-    public   static  int page=1;//作品的第几页
     public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener){
         listener=jiShuNumClickListener;
         if (muluFragment==null){
@@ -140,7 +139,8 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                     ArrayList<ChapterBean> list = new Gson().fromJson(obj.getString("data"), new TypeToken<List<ChapterBean>>() {
                     }.getType());
                     listener.updatePager(true,list);
-//                    juJiNumAdapter.setmChapterList(list);
+                    juJiNumAdapter.setmChapterList(list);
+                    juJiNumAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -159,19 +159,16 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         hor_lv= (HorizontalListView) view.findViewById(R.id.hor_lv);
         gv_adapter_juji= (MyGridView) view.findViewById(R.id.gv_adapter_juji);
         juJiNumAdapter = new JuJiNumAdapter(getActivity(),bean,resourceType,resourceId,listener);
-        gv_adapter_juji.setAdapter(juJiNumAdapter);
-//        getNewJuji(bean,0,juJiNumAdapter);
+        getNewJuji(bean,0,juJiNumAdapter);
         juJiAdapter =new JuJiAdapter(getActivity(),bean);
         juJiAdapter.setUpdateTotal(new JuJiAdapter.UpdateTotal() {
             @Override
             public void getTotal(int total) {
-//                listener.updatePager(true,total);
-//                page=total;
-                getNewJuji(bean,total,juJiNumAdapter);
                 juJiNumAdapter.setIndex(total);
-                juJiNumAdapter.notifyDataSetChanged();
+                getNewJuji(bean,total,juJiNumAdapter);
             }
         });
+        gv_adapter_juji.setAdapter(juJiNumAdapter);
         hor_lv.setAdapter(juJiAdapter);
         img_details_up.setOnClickListener(this);
         rl_details_up.setOnClickListener(this);
