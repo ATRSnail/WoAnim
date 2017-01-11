@@ -41,7 +41,7 @@ public class JuJiNumAdapter extends BaseAdapter {
     private int resourceId = -1;
     private ObjectBean bean = null;
 
-    private     ArrayList<ChapterBean> mChapterList;
+    private     ArrayList<ChapterBean> mChapterList =new ArrayList<>();
     private MuluFragment.onJiShuNumClickListener listener;
     public JuJiNumAdapter(Context context, ObjectBean bean,int resourceType,int resourceId,MuluFragment.onJiShuNumClickListener listener){
         this.mContext=context;
@@ -63,7 +63,9 @@ public class JuJiNumAdapter extends BaseAdapter {
     }
 
     public void setmChapterList(ArrayList<ChapterBean> mChapterList) {
-        this.mChapterList = mChapterList;
+        this.mChapterList.clear();
+        this.mChapterList.addAll(mChapterList);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -114,9 +116,9 @@ public class JuJiNumAdapter extends BaseAdapter {
             holder= (Holder) convertView.getTag();
         }
         final Holder finalHolder = holder;
-        if (mChapterList!=null&mChapterList.size()>0){
-            ArrayList<ChapterBean> chapterBeanArrayList =mChapterList;
-            ChapterBean chapterBean  =  chapterBeanArrayList.get(position);
+        if (getmChapterList()!=null&getmChapterList().size()>0){
+            ArrayList<ChapterBean> chapter = getmChapterList();
+            ChapterBean chapterBean  =   getmChapterList().get(position);
 
             if (chapterBean.getIsWatch()==0){
                 finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_normal);

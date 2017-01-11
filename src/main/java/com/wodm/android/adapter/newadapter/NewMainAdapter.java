@@ -19,6 +19,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.MyGridView;
 
 import java.util.List;
@@ -82,7 +83,8 @@ public class NewMainAdapter extends BaseAdapter {
         view1Holders.ll_new_main_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, positionbean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", positionbean.getId()));
+//                mContext.startActivity(new Intent(mContext, positionbean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", positionbean.getId()));
+                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", positionbean.getId()).putExtra("resourceType", positionbean.getResourceType()));
             }
         });
         if (!isRemove&&resourcesBean.size()>4){

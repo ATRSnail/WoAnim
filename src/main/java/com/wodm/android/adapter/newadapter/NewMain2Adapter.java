@@ -18,6 +18,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.RoundAngleImageView;
 
 import java.util.List;
@@ -80,7 +81,8 @@ public class NewMain2Adapter extends BaseAdapter {
         view2Holders.img_angle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+//                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", bean.getId()).putExtra("resourceType", bean.getResourceType()));
             }
         });
         view2Holders.ll_add_image.removeAllViews();

@@ -17,6 +17,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 
 import java.util.List;
 
@@ -70,7 +71,8 @@ public class NewMain3Adapter  extends BaseAdapter {
         holders.ll_new_main3_adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+//                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", bean.getId()).putExtra("resourceType", bean.getResourceType()));
             }
         });
         Glide.with(mContext).load(bean.getImageUrl()).placeholder(R.mipmap.loading).into(holders.img_angle);

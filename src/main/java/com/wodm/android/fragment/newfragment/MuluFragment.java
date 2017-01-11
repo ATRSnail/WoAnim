@@ -123,7 +123,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
      * @param total
      * @param juJiNumAdapter
      */
-    public  void getNewJuji(final ObjectBean bean, int total, final JuJiNumAdapter juJiNumAdapter){
+    public  void getNewJuji(final ObjectBean bean, final int total, final JuJiNumAdapter juJiNumAdapter){
         int sortBy=0;
         if (bean.getType()==1){
             sortBy=1;
@@ -140,6 +140,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
                     }.getType());
                     listener.updatePager(true,list);
                     juJiNumAdapter.setmChapterList(list);
+                    juJiNumAdapter.setIndex(total);
                     juJiNumAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -164,8 +165,9 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         juJiAdapter.setUpdateTotal(new JuJiAdapter.UpdateTotal() {
             @Override
             public void getTotal(int total) {
-                juJiNumAdapter.setIndex(total);
                 getNewJuji(bean,total,juJiNumAdapter);
+
+
             }
         });
         gv_adapter_juji.setAdapter(juJiNumAdapter);

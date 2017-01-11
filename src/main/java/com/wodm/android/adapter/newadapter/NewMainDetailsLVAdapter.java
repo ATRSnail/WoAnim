@@ -17,6 +17,7 @@ import com.wodm.android.bean.NewMainBean;
 import com.wodm.android.tools.Tools;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 import com.wodm.android.view.newview.RoundAngleImageView;
 
 import java.util.List;
@@ -73,7 +74,8 @@ public class NewMainDetailsLVAdapter extends BaseAdapter {
         holder.btn_read_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+//                mContext.startActivity(new Intent(mContext, bean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", bean.getId()));
+                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", bean.getId()).putExtra("resourceType", bean.getResourceType()));
             }
         });
         Glide.with(mContext).load(bean.getImageUrl()).asBitmap().placeholder(R.mipmap.loading).into(holder.img_angle);
