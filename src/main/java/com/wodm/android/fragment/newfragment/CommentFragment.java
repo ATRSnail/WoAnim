@@ -48,7 +48,7 @@ import java.util.List;
 public class CommentFragment extends Fragment implements View.OnClickListener,XListView.IXListViewListener{
     private ArrayList<NewCommentBean> commentBeanList;
     private AppActivity appActivity;
-    private XListView listView;
+    private ListView listView;
 //    SwipeRefreshLayout refreshLayout;
     private int resourceId = -1;
     TextView foot;
@@ -73,7 +73,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 //        initRefresh();//下拉刷新
 
         initComment(pager);
-//        loadMore();
+        loadMore();
 
 //        if (scrollView!=null){
 //            Log.e("AA","*****************");
@@ -102,54 +102,54 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     }
 
     private void initData(View view, LayoutInflater inflater) {
-        listView = (XListView) view.findViewById(R.id.list_comment);
-        listView.setPullRefreshEnable(true); //设置可以下拉刷新，默认就是true
-        listView.setPullLoadEnable(true); //设置可以上拉加载，默认是false
-        listView.setXListViewListener(this);
+        listView = (ListView) view.findViewById(R.id.list_comment);
+//        listView.setPullRefreshEnable(true); //设置可以下拉刷新，默认就是true
+//        listView.setPullLoadEnable(true); //设置可以上拉加载，默认是false
+//        listView.setXListViewListener(this);
 //        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
 
-
+        adapter =new NewCommentAdapter(getActivity());
         comment = (TextView) view.findViewById(R.id.comment);
         comment.setOnClickListener(this);
         appActivity = new AppActivity();
         commentBeanList = new ArrayList<>();
         commentBeanList.clear();
-//        View footerView =inflater.inflate(R.layout.footerview, null);
-//        foot = (TextView) footerView.findViewById(R.id.footer);
-//        listView.addFooterView(footerView);
+        View footerView =inflater.inflate(R.layout.footerview, null);
+        foot = (TextView) footerView.findViewById(R.id.footer);
+        listView.addFooterView(footerView);
     }
 
     private void loadMore() {
-//        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(AbsListView view, int scrollState) {
-//                if (SCROLL_STATE_IDLE==scrollState){
-//                       if(update) {
-//                       if (pager<totalPages){
-////                           try {
-//                               pager++;
-////                               Thread.sleep(1000);
-//                               initComment(pager);
-////                           } catch (InterruptedException e) {
-////                               e.printStackTrace();
-////                           }
-//
-//                       }
-//
-//                   }else {
-//                           if (view.getFirstVisiblePosition()==adapter.getItemId(1)){
-//
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (SCROLL_STATE_IDLE==scrollState){
+                       if(update) {
+                       if (pager<totalPages){
+//                           try {
+                               pager++;
+//                               Thread.sleep(1000);
+                               initComment(pager);
+//                           } catch (InterruptedException e) {
+//                               e.printStackTrace();
 //                           }
-//                       }
-//                }
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-//              update=(firstVisibleItem+visibleItemCount==totalItemCount);
-//
-//            }
-//        });
+
+                       }
+
+                   }else {
+                           if (view.getFirstVisiblePosition()==adapter.getItemId(1)){
+
+                           }
+                       }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+              update=(firstVisibleItem+visibleItemCount==totalItemCount);
+
+            }
+        });
     }
 
     private void initComment(final int pager) {
@@ -166,19 +166,20 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
                     ArrayList<NewCommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewCommentBean>>() {
                     }.getType());
                     totalPages=obj.getInt("totalPages");
-//                     if (totalPages==1){
-//                         foot.setText("到底啦");
-//                     }else  if (totalPages<1){
-//                         foot.setText("暂时没有评论");
-//                     } if (totalPages>1){
-//                        if (totalPages==pager){
-//                            foot.setText("到底啦");
-//                        }else {
-//                            foot.setText("加载更多......");
-//                        }
-//                    }
+                     if (totalPages==1){
+                         foot.setText("到底啦");
+                     }else  if (totalPages<1){
+                         foot.setText("暂时没有评论");
+                     } if (totalPages>1){
+                        if (totalPages==pager){
+                            foot.setText("到底啦");
+                        }else {
+                            foot.setText("加载更多......");
+                        }
+                    }
                     commentBeanList.addAll(beanList);
-                    adapter =new NewCommentAdapter(getActivity(),beanList,url);
+                    adapter.setData(beanList);
+                    adapter.notifyDataSetChanged();
                     listView.setAdapter(adapter);
 
                 } catch (JSONException e) {
@@ -241,7 +242,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     @Override
     public void onRefresh() {
          //上拉刷新
-        handler.postDelayed(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 if (pager>1){
@@ -250,21 +251,21 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
                 initComment(pager);
                 onLoad();
             }
-        },1000);
+        });
 
 
 
     }
 
     private void onLoad() {
-        listView.stopRefresh();
-        listView.stopLoadMore();
+//        listView.stopRefresh();
+//        listView.stopLoadMore();
     }
 
     @Override
     public void onLoadMore() {
 
-        handler.postDelayed(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 if (!(pager==totalPages)){
@@ -274,7 +275,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 
                 onLoad();
             }
-        },1000);
+        });
 
 
 

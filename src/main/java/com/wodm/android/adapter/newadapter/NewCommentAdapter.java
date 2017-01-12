@@ -53,13 +53,14 @@ import static com.wodm.android.Constants.CURRENT_USER;
 public class NewCommentAdapter extends BaseAdapter {
     private Context context;
     List<NewCommentBean> data=new ArrayList<>();
-    private  String url;
     private List<Boolean> list=new ArrayList<>();
     private List<Boolean> list2=new ArrayList<>();
-    public NewCommentAdapter(Context mContext, List<NewCommentBean> mData, String url) {
+    public NewCommentAdapter(Context mContext) {
         this.context = mContext;
-        this.data=mData;
-        this.url=url;
+    }
+
+    public void setData(List<NewCommentBean> data) {
+        this.data.addAll(data);
     }
 
     @Override
@@ -210,7 +211,6 @@ public class NewCommentAdapter extends BaseAdapter {
                                 mHolder.guanzhu.setImageResource(R.mipmap.guanzhu);
                             }
                             list2.set(i,!list2.get(i));
-//                            update();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -235,24 +235,7 @@ public class NewCommentAdapter extends BaseAdapter {
         }
     }
 
-    void update(){
 
-        ((AppActivity) context).httpGet(url,new HttpCallback(){
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-                try {
-                    ArrayList<NewCommentBean> beanList = new Gson().fromJson(obj.getString("data"), new TypeToken<List<NewCommentBean>>() {
-                    }.getType());
-                    data = beanList;
-                    notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-    }
 
     private void dianZan(NewCommentBean bean, final ViewHolder mHolder, final int postion) {
         /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*private int type*/
@@ -277,7 +260,6 @@ public class NewCommentAdapter extends BaseAdapter {
                                         mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
                                     }
                                     list.set(postion,!list.get(postion));
-//                                    update();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

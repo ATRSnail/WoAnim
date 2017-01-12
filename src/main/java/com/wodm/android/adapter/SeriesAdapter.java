@@ -2,6 +2,7 @@ package com.wodm.android.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,7 @@ public class SeriesAdapter extends BaseAdapter {
             convertView.setTag(holders);
         }
         holders = (ViewHolders) convertView.getTag();
+
         holders.button.setText((position + 1) + "");
 
         ChapterBean bean = (ChapterBean) getItem(position);

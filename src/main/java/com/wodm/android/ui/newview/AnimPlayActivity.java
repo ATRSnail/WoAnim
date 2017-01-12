@@ -178,8 +178,8 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //        }
         videoView.setSendBulletListener(this);
 //        dianji_num = (TextView) mHeaderView.findViewById(R.id.dianji_num);
-//        danmu_kaiguan = (ImageView) mHeaderView.findViewById(R.id.danmu_kaiguan);
-//        danmu_kaiguan.setOnClickListener(onClickListener);
+        danmu_kaiguan = (ImageView) videoView.findViewById(R.id.danmu_kaiguan);
+        danmu_kaiguan.setOnClickListener(onClickListener);
 //        mTitleDesp = (TextView) mHeaderView.findViewById(R.id.car_title);
 //        mCarDesp = (TextView) mHeaderView.findViewById(R.id.desc_op_tv);
 //        mChapterDesp = (TextView) mHeaderView.findViewById(R.id.chapter_desp);
@@ -189,6 +189,8 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //        mHeaderView.findViewById(R.id.anim_share3).setOnClickListener(onClickListener);
 //        isCollectBox.setOnClickListener(onClickListener);
 //        screenSwitchUtils=ScreenSwitchUtils.init(this);
+
+
         videoView.findViewById(R.id.img_set).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

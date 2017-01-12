@@ -129,6 +129,7 @@ public class CartoonReadActivity extends AppActivity {
     private boolean isOpen = true;
      private String num="";
     int pageNum=0;
+    private int resourceId = -1;
     private ArrayList<BarrageBean> beanArrayList=new ArrayList<>();
     //timetask
     private Handler bullethandler=null;
@@ -150,7 +151,7 @@ public class CartoonReadActivity extends AppActivity {
             index = getIntent().getIntExtra("index", index);
             watchIndex = getIntent().getIntExtra("watchIndex", watchIndex);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
-
+            resourceId = getIntent().getIntExtra("resourceId",resourceId);
 
             requestHttp(index, true);
 
@@ -172,6 +173,24 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
         startDanmuTimeTask();
+        //用户观看记录的(需要点击某章节的时间调用)
+        if (Constants.CURRENT_USER != null) {
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
+            httpGet(url, new HttpCallback());
+        }
+        //更新漫画点击量
+        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
+
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
     private BarrageBean showbean=null;
     //主要是控制位置,防止重复出现弹幕

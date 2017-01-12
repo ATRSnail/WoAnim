@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_detail"
     android:scrollbars="none"
-    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_efefef">
@@ -77,10 +76,10 @@
                             app:tabTextColor="@color/color_666666"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
-                        <com.wodm.android.view.newview.WrapContentHeightViewPager
+                        <android.support.v4.view.ViewPager
                             android:id="@+id/viewpager"
                              android:layout_width="match_parent"
-                             android:layout_height="match_parent"/>
+                             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     </RelativeLayout>

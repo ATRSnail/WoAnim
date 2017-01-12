@@ -57,7 +57,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     @ViewIn(R.id.tablayout)
    TabLayout tabLayout;
     @ViewIn(R.id.viewpager)
-    WrapContentHeightViewPager viewpager;
+    ViewPager viewpager;
 //    @ViewIn(R.id.activity_detail)
 //    ScrollView scrollView;
     @ViewIn(R.id.set_topbar)
@@ -411,12 +411,14 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",page);
             intent.putExtra("bean", bean);
+            intent.putExtra("resourceId", resourceId);
             intent.putExtra("index", position);
             intent.putExtra("watchIndex", index);
             startActivity(intent);
         }else if ((mChapterList != null & mChapterList.size()>0  & position < mChapterList.size()  )) {
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",mChapterList);
+            intent.putExtra("resourceId", resourceId);
             intent.putExtra("bean", bean);
             intent.putExtra("index", position);
             intent.putExtra("watchIndex", index);

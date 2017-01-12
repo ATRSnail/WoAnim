@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -57,6 +58,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     private ObjectBean bean = null;
     private int resourceId = -1;
     private int resourceType = 1;
+    private ScrollView scrollView;
     RecommendFragment recommend;
     private static MuluFragment muluFragment=null;
     private static onJiShuNumClickListener listener;
@@ -151,6 +153,13 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initView(View view, final ObjectBean bean){
+        scrollView= (ScrollView) view.findViewById(R.id.scro);
+        if (scrollView != null) {
+            scrollView.scrollTo(0, 0);
+            scrollView.setFocusable(true);
+            scrollView.setFocusableInTouchMode(true);
+            scrollView.requestFocus();
+        }
         img_details_up= (ImageView) view.findViewById(R.id.img_details_up);
         linearLayout= (LinearLayout) view.findViewById(R.id.tuijian);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
