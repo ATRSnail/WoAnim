@@ -170,7 +170,7 @@ public class Constants {
     public static final String SAVEEXCEPTIONDETAIL=HOST + "behavior/saveExceptionDetail";//保存BUG信息
     public static final String APPDOWNLOAD=HOST + "behavior/appDownload";//保存BUG信息
     public static final String STARTACTIVE=HOST + "newuser/startActive";// 获取红包活动开启的状态
-    public static final String SaveResourceMark=HOST + "resource/saveResourceMark?userId=";//评论打分
+    public static final String SaveResourceMark=HOST + "resource/saveResourceMark";//评论打分
     public static final String ISResourceMark=HOST + "resource/isResourceMark?userId=";//是否打过分
     public static final String tuijian=HOST + "column/zctjColumnName?columnName=";//详情页面下方推荐
 

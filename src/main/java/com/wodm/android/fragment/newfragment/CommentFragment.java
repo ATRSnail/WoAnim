@@ -109,6 +109,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 //        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
 
         adapter =new NewCommentAdapter(getActivity());
+        listView.setAdapter(adapter);
         comment = (TextView) view.findViewById(R.id.comment);
         comment.setOnClickListener(this);
         appActivity = new AppActivity();
@@ -180,7 +181,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
                     commentBeanList.addAll(beanList);
                     adapter.setData(beanList);
                     adapter.notifyDataSetChanged();
-                    listView.setAdapter(adapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
