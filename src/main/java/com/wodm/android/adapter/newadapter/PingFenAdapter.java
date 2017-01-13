@@ -29,9 +29,7 @@ public class PingFenAdapter extends BaseAdapter{
     public PingFenAdapter(SendMsgActivity sendMsgActivity, TextView textView) {
         this.context=sendMsgActivity;
         this.textView=textView;
-        for (int i = 0; i <6 ; i++) {
-            list.add(pic[0]);
-        }
+      setList(0);
     }
 
     @Override
@@ -58,22 +56,24 @@ public class PingFenAdapter extends BaseAdapter{
         ima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!click.get(position)){
-                    count++;
-                    ima.setImageResource(pic[1]);
-                }else {
-                    count--;
-                    ima.setImageResource(pic[0]);
-                    textView.setTextColor(Color.parseColor("#999999"));
-                }
-                click.set(position,!click.get(position));
-                if (count>0){
+                setList(position+1);
+                count = position+1;
                     textView.setTextColor(Color.parseColor("#fb487f"));
-                }
                 textView.setText(count+"分");
             }
         });
 
         return view;
+    }
+
+    private void  setList(int num){
+        list.clear();
+        for (int i = 0; i <num ; i++) {
+            list.add(pic[1]);
+        }
+        for (int i = 0; i <6-num ; i++) {
+            list.add(pic[0]);
+        }
+        notifyDataSetChanged();
     }
 }

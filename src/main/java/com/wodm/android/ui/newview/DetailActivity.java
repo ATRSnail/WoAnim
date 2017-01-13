@@ -1,17 +1,19 @@
 package com.wodm.android.ui.newview;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,6 @@ import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.wodm.R;
 import com.wodm.android.Constants;
-import com.wodm.android.adapter.newadapter.JuJiNumAdapter;
 import com.wodm.android.adapter.newadapter.MyFragmentAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.ObjectBean;
@@ -32,9 +33,7 @@ import com.wodm.android.tools.JujiDbTools;
 import com.wodm.android.ui.AppActivity;
 import com.wodm.android.ui.home.CartoonReadActivity;
 import com.wodm.android.utils.UpdataUserInfo;
-import com.wodm.android.view.NoScrollViewPager;
 import com.wodm.android.view.newview.AtyTopLayout;
-import com.wodm.android.view.newview.WrapContentHeightViewPager;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -126,10 +125,15 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 //            scrollView.setFocusableInTouchMode(true);
 //            scrollView.requestFocus();
 //        }
-
         resourceId = getIntent().getIntExtra("resourceId", -1);
         resourceType= getIntent().getIntExtra("resourceType", 1);
 
+
+        if (resourceId==-1){
+            //说明没有此ID
+            Toast.makeText(DetailActivity.this,"没有此内容",Toast.LENGTH_SHORT).show();
+            finish();
+        }
         if (resourceType==1){
             //显示动画
             TITLE = "动画详情";
@@ -145,6 +149,40 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         }
         initData();
         set_topbar.setOnTopbarClickListenter(this);
+
+//        httpGet(Constants.APP_GETATERESOURCECOUNT+resourceId, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//                try {
+//                    JSONObject jsonObject=new JSONObject(obj.optString("data"));
+//                    int playcount=jsonObject.optInt("playCount");
+//                    Log.e("AA","****************点击量:"+playcount);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
+//        //更新点击量
+//        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
     }
 
 
@@ -182,6 +220,8 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         bundle.putInt("resourceType",resourceType);
         muLu =MuluFragment.getInstance(this);
         muLu.setArguments(bundle);
+
+
         comment =new CommentFragment();
         comment.setArguments(bundle);
         fragments.add(muLu);
@@ -216,16 +256,23 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-
-                    bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
-                    setViews(bean);
-                    getNewJuji(bean,1);
+                    String message = obj.getString("message");
+                    if ("204".equals(obj.getString("code"))){
+                       Toast.makeText(DetailActivity.this,message,Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else if (obj.getString("code").equals("1000")){
+                        bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
+                        setViews(bean);
+                        getNewJuji(bean,1);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
     }
+
+
 
     private void setViews(ObjectBean bean) {
         set_topbar.setTvTitle(bean.getName());
@@ -307,42 +354,49 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     @Override
     public void onClick(View v) {
         String eventName = "";
-        switch (v.getId()) {
-            case R.id.watch:
-                eventName = "漫画观看首页";
-                if (bean.getType()==1){
-                    startRead(0, bean.getChapter());
-                }else {
-                    startRead(0, 1);
-                }
+        if (bean==null){
+            eventName = "resourceID无内容";
+            Toast.makeText(DetailActivity.this,"没有此内容",Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
 
-                break;
-            case R.id.play:
-                eventName = "动漫观看首页";
-                if (bean.getType()==1){
-                    play(0, bean.getChapter());
-                }else {
-                    play(0, 1);
-                }
+            switch (v.getId()) {
+                case R.id.watch:
+                    eventName = "漫画观看首页";
+                    if (bean.getType()==1){
+                        startRead(0, bean.getChapter(),0);
+                    }else {
+                        startRead(0, 1,0);
+                    }
+
+                    break;
+                case R.id.play:
+                    eventName = "动漫观看首页";
+                    if (bean.getType()==1){
+                        play(0, bean.getChapter());
+                    }else {
+                        play(0, 1);
+                    }
 
 
-                break;
-            case R.id.img_download:
-                eventName = "弹出下载界面";
-                showDowmData();
-                break;
-            case R.id.img_share:
-                eventName = "弹出分享界面";
-                showShare();
-                break;
-            case R.id.collect:
-                eventName = "收藏/取消收藏 操作";
-                if (!UpdataUserInfo.isLogIn(DetailActivity.this,true,null)) {
-                    Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                showCollect();
-                break;
+                    break;
+                case R.id.img_download:
+                    eventName = "弹出下载界面";
+                    showDowmData();
+                    break;
+                case R.id.img_share:
+                    eventName = "弹出分享界面";
+                    showShare();
+                    break;
+                case R.id.collect:
+                    eventName = "收藏/取消收藏 操作";
+                    if (!UpdataUserInfo.isLogIn(DetailActivity.this,true,null)) {
+                        Toast.makeText(getApplicationContext(), "未登录，请先登录", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    showCollect();
+                    break;
+            }
         }
         Tracker.getInstance(getApplicationContext()).trackMethodInvoke(TITLE, eventName);
     }
@@ -362,6 +416,8 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
             intent.putExtra("bean", bean);
             intent.putExtra("ChapterList",mChapterList);
             startActivity(intent);
+        }else {
+            Toast.makeText(DetailActivity.this,"没有此内容",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -406,23 +462,27 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         this.mChapterList.addAll(mChapterList);
     }
 
-    public void startRead(int position, int index) {
+    public void startRead(int index ,int num, int position) {
         if (page!=null& page.size()>0){
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",page);
             intent.putExtra("bean", bean);
             intent.putExtra("resourceId", resourceId);
-            intent.putExtra("index", position);
-            intent.putExtra("watchIndex", index);
+            intent.putExtra("index", index);
+            intent.putExtra("watchIndex", num);
+            intent.putExtra("position", position);
             startActivity(intent);
-        }else if ((mChapterList != null & mChapterList.size()>0  & position < mChapterList.size()  )) {
+        }else if ((mChapterList != null & mChapterList.size()>0  & index < mChapterList.size()  )) {
             Intent  intent = new Intent(DetailActivity.this,CartoonReadActivity.class);
             intent.putExtra("ChapterList",mChapterList);
             intent.putExtra("resourceId", resourceId);
             intent.putExtra("bean", bean);
-            intent.putExtra("index", position);
-            intent.putExtra("watchIndex", index);
+            intent.putExtra("index", index);
+            intent.putExtra("watchIndex", num);
+            intent.putExtra("position", position);
             startActivity(intent);
+        }else {
+            Toast.makeText(DetailActivity.this,"没有此内容",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -467,16 +527,27 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         });
     }
 
+    /**
+     *
+     * @param position  观看点击的位置 0-16
+     * @param num    观看的具体集数 例如106集
+     * @param i      观看时横向目录被点击的位置
+     */
     @Override
-    public void clickNum(int position, int num) {
+    public void clickNum(int position, int num,int i) {
+
         JujiDbTools.getInstance(DetailActivity.this).update(resourceId);//更新保存观看的状态
+
         if (resourceType==1){
             play(position,num);
         }else {
-            startRead(position,num);
+            startRead(position,num,i);
         }
 
     }
+
+
+
     ArrayList<ChapterBean> page=new ArrayList<>();
     @Override
     public void updatePager(boolean flag, ArrayList<ChapterBean> page) {

@@ -83,9 +83,9 @@ public class JuJiNumAdapter extends BaseAdapter {
 //                return (16+num-total);
 //            }
 //        }
-           if (!(mChapterList!=null&&mChapterList.size()>0)){
-               return 0;
-           }
+//           if (!(mChapterList!=null&&mChapterList.size()>0)){
+//               return 0;
+//           }
           total=(index+1)*16;
           if(num<total&index==(size-1)){
               return (16+num-total);
@@ -116,7 +116,7 @@ public class JuJiNumAdapter extends BaseAdapter {
             holder= (Holder) convertView.getTag();
         }
         final Holder finalHolder = holder;
-        if (getmChapterList()!=null&getmChapterList().size()>0){
+        if (getmChapterList()!=null&getmChapterList().size()>position ){
             ArrayList<ChapterBean> chapter = getmChapterList();
             ChapterBean chapterBean  =   getmChapterList().get(position);
 
@@ -158,14 +158,19 @@ public class JuJiNumAdapter extends BaseAdapter {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_DOWN :
+                    case MotionEvent.ACTION_MOVE:
+                    case MotionEvent.ACTION_BUTTON_PRESS:
                         finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_click);
                         finalHolder.btn_jujinum.setTextColor(Color.parseColor("#ffffff"));
                         break;
+                    case MotionEvent.ACTION_BUTTON_RELEASE:
+                    case MotionEvent.ACTION_CANCEL:
                     case MotionEvent.ACTION_UP:
                         finalHolder.btn_jujinum.setBackgroundResource(R.drawable.btn_juji_num_watch);
                         finalHolder.btn_jujinum.setTextColor(Color.parseColor("#999999"));
                         break;
+
                 }
                 return false;
             }
@@ -180,7 +185,7 @@ public class JuJiNumAdapter extends BaseAdapter {
                     String str=finalHolder.btn_jujinum.getText().toString();
                     int  jujinum=  Integer.valueOf(str);
 
-                    listener.clickNum(position,jujinum);
+                    listener.clickNum(position,jujinum,index);
 
 
 //                clickPosition=position;

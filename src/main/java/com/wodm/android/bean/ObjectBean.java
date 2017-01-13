@@ -6,171 +6,40 @@ import java.io.Serializable;
  * Created by json on 2016/4/27.
  */
 public class ObjectBean implements Serializable {
-//    private String name;
-//    /** 作品分类ID */
-//    private Long categoryId = 0l;
-//    /** 作品版权ID */
-//    private Long copyrightId = 0l;
-//    /** 1 连载   2 全本*/
-//    private int type = 1;
-//    /** CP ID*/
-//    @JsonIgnore
-//    private int cpId = 0;
-//    /** 区域 ID*/
-//    private int areaId=0;
-//    /** 作者*/
-//    private String author="";
-//
-//    /** 1 有效  0 无效*/
-//    @JsonIgnore
-//    private int status=1;
-//
-//
-//    /** 修改人*/
-//    @JsonIgnore
-//    private String modifyBy="";
-//
-//
-//    /** 修改时间*/
-//    @JsonIgnore
-//    private Date modifyTime = new Date();
-//
-//
-//    /** 创建人*/
-//    @JsonIgnore
-//    private String createBy="";
-//
-//
-//    /** 创建时间*/
-//    @JsonIgnore
-//    private Date createTime = new Date();
-//
-//
-//    /** 上线年限*/
-//    private Long yearId = 0l;
-//    /** 首页图片*/
-//    private String showImage;
-//    /** 描述*/
-//    private String desp;
-//    /** 评分*/
-//    private float score = 0f;
-//    /** 章节*/
-//    private int chapter = 0;
-//    /** 播放次数*/
-//    private int playCount = 0;
-//    /** 评论次数*/
-//    private int commentCount = 0;
-//    /** 点赞次数*/
-//    private int goodCount = 0;
-//    /** 收藏次数*/
-//    private int collectionCount = 0;
-//    /** 更新到多少章*/
-//    private int nowChapter = 0;
-//    /** 更新当前章节数章*/
-//    private long nowChapterId = 0;
-//    /** 内容标题*/
-//    private String title="";
-//
-//    /** 搜索关键字*/
-//    @JsonIgnore
-//    private String keyword;
-//
-//    /** 上线状态 1 上线 0 不上线*/
-//    @JsonIgnore
-//    private int online = 1;
-//
-//    /** 资源类型   资源类型 1动画  2漫画 3壁纸*/
-////	@JsonIgnore
-//    private int resourceType = 1 ;
-//
-//    /** 是否付费*/
-//    @JsonIgnore
-//    private int isPay = 0;
-//
-//    /** 风格类型*/
-//    @JsonIgnore
-//    private int styleId =0;
-//
-//    /** 审核状态*/
-//    @JsonIgnore
-//    private Integer auditStatus=1 ;//审核状态  1 通过  0 不通过
-//
-//
-//
-//    /** 简介*/
-//    private String briefDesp ;
-//
-//
-//    /**排序字段*/
-//    private int sortNum;
-//
-//
-//    /**上线时间*/
-//    @JsonIgnore
-//    private Date onlineTime;
-//
-//    /**审核人*/
-//    @JsonIgnore
-//    private String auditBy;
-//
-//    /**审核时间*/
-//    @JsonIgnore
-//    private Date auditTime;
-//
-//    /**应用位置  观看选集*/
-//    private String image_480_160;
-//    private String image_296_296;
-//    private String image_300_400;
-//    private String image_800_450;
-//    private String image_900_300;
-//    private String image_480_126;
-//
-//    /**封面图原图*/
-//    private String orijinalImage;
-//
-//
-//
-//    /**人气*/
-//    private String popularity;
-//    /**作品评分对应的描述*/
-//    private String scoreDesp;
-//    /**临时的栏目样式的图片的展示*/
-//    private String imageUrl;
-
-
     /**
-     * id : 560
-     * name : 天使在人间
+     * id : 555
+     * name : 猫的诱惑
      * categoryId : 1
      * categoryName : 校园
      * copyrightId : 68
      * type : 1
      * areaId : 4
-     * author : 周智延
+     * author : 橘文泠
      * yearId : 4
-     * showImage : http://202.106.63.82/static/1477638865647.jpg
-     * desp : 进阶天使沧夜坠入人间，与善良呆萌的人界女孩音舞达成三个愿望的契约交换。契约达成，沧夜便可回到天界，成为真正的天使。在相处的过程中，二人虽然摩擦不断，却也留下几多温馨和感动，成为彼此最温暖的存在。经过一系列的波折和努力，三个愿望达成，沧夜回天界的时刻终于到来。可回到天界后，音舞的影子一直萦绕在沧夜心中。米凯尔大天使长发现他的心事后，将他再次“发配”人界……
-     * score : 0
+     * showImage : http://202.106.63.82/static/1477638833938.jpg
+     * desp : 独自生活在白石的男孩赵尔儒在某个雨天捡回了四只流浪猫，没想到其中最调皮的黑猫希希竟在夜里变成了美丽的女孩。赵尔儒与希希度过了很多美好的时光，成为了彼此不可或缺的存在。希希的姐姐千湖月带来一个叫晓伊的女孩，拜托尔儒和希希帮忙照顾一段时间，没想到晓伊的出现竟然给尔儒带来无数的谜团。东郊神秘的古宅、会浮现出暗语的古书、“镜华之间”的钥匙……
+     * score : 1
      * chapter : 6
-     * playCount : 36339
-     * commentCount : 3
+     * playCount : 36199
+     * commentCount : 17
      * goodCount : 0
-     * collectionCount : 3
+     * collectionCount : 1
      * nowChapter : 1
      * nowChapterId : 0
-     * title : 天使在人间
+     * title : 猫的诱惑
      * resourceType : 2
-     * briefDesp : 进阶天使沧夜坠入人间，与善良呆萌的人界女孩音舞达成三个愿望的契约交换。契约达成，沧夜便可回到天界，成为真正的天使。在相处的过程中，二人虽然摩擦不断，却也留下几多温馨和感动，成为彼此最温暖的存在。经过一系列的波折和努力，三个愿望达成，沧夜回天界的时刻终于到来。可回到天界后，音舞的影子一直萦绕在沧夜心中。米凯尔大天使长发现他的心事后，将他再次“发配”人界……
+     * briefDesp : 独自生活在白石的男孩赵尔儒在某个雨天捡回了四只流浪猫，没想到其中最调皮的黑猫希希竟在夜里变成了美丽的女孩。赵尔儒与希希度过了很多美好的时光，成为了彼此不可或缺的存在。希希的姐姐千湖月带来一个叫晓伊的女孩，拜托尔儒和希希帮忙照顾一段时间，没想到晓伊的出现竟然给尔儒带来无数的谜团。东郊神秘的古宅、会浮现出暗语的古书、“镜华之间”的钥匙……
      * popularity : 3.6万
      * isCollect : 1
-     * image_480_126 : http://202.106.63.82/static/1477638865688.jpg
-     * image_480_160 : http://202.106.63.82/static/1477638865615.jpg
-     * image_296_296 : http://202.106.63.82/static/1477638865647.jpg
-     * image_300_400 : http://202.106.63.82/static/1477563378327.jpg
-     * image_800_450 : http://202.106.63.82/static/1477563378260.jpg
-     * image_900_300 : http://202.106.63.82/static/1477563378082.jpg
-     * orijinalImage : http://202.106.63.82/static/1477563378394.jpg
+     * image_480_126 : http://202.106.63.82/static/1477638833957.jpg
+     * image_480_160 : http://202.106.63.82/static/1477638833907.jpg
+     * image_296_296 : http://202.106.63.82/static/1477638833938.jpg
+     * image_300_400 : http://202.106.63.82/static/1477561384954.jpg
+     * image_800_450 : http://202.106.63.82/static/1477561384879.jpg
+     * image_900_300 : http://202.106.63.82/static/1477561384705.jpg
+     * orijinalImage : http://202.106.63.82/static/1477561385029.jpg
      * scoreDesp : 糟糕番
+     * lastTime : 2016-10-27 17:47:42
      */
 
     private int id;
@@ -205,6 +74,7 @@ public class ObjectBean implements Serializable {
     private String image_900_300;
     private String orijinalImage;
     private String scoreDesp;
+    private String lastTime;
 
     public int getId() {
         return id;
@@ -461,4 +331,146 @@ public class ObjectBean implements Serializable {
     public void setScoreDesp(String scoreDesp) {
         this.scoreDesp = scoreDesp;
     }
+
+    public String getLastTime() {
+        return lastTime;
+    }
+
+    public void setLastTime(String lastTime) {
+        this.lastTime = lastTime;
+    }
+//    private String name;
+//    /** 作品分类ID */
+//    private Long categoryId = 0l;
+//    /** 作品版权ID */
+//    private Long copyrightId = 0l;
+//    /** 1 连载   2 全本*/
+//    private int type = 1;
+//    /** CP ID*/
+//    @JsonIgnore
+//    private int cpId = 0;
+//    /** 区域 ID*/
+//    private int areaId=0;
+//    /** 作者*/
+//    private String author="";
+//
+//    /** 1 有效  0 无效*/
+//    @JsonIgnore
+//    private int status=1;
+//
+//
+//    /** 修改人*/
+//    @JsonIgnore
+//    private String modifyBy="";
+//
+//
+//    /** 修改时间*/
+//    @JsonIgnore
+//    private Date modifyTime = new Date();
+//
+//
+//    /** 创建人*/
+//    @JsonIgnore
+//    private String createBy="";
+//
+//
+//    /** 创建时间*/
+//    @JsonIgnore
+//    private Date createTime = new Date();
+//
+//
+//    /** 上线年限*/
+//    private Long yearId = 0l;
+//    /** 首页图片*/
+//    private String showImage;
+//    /** 描述*/
+//    private String desp;
+//    /** 评分*/
+//    private float score = 0f;
+//    /** 章节*/
+//    private int chapter = 0;
+//    /** 播放次数*/
+//    private int playCount = 0;
+//    /** 评论次数*/
+//    private int commentCount = 0;
+//    /** 点赞次数*/
+//    private int goodCount = 0;
+//    /** 收藏次数*/
+//    private int collectionCount = 0;
+//    /** 更新到多少章*/
+//    private int nowChapter = 0;
+//    /** 更新当前章节数章*/
+//    private long nowChapterId = 0;
+//    /** 内容标题*/
+//    private String title="";
+//
+//    /** 搜索关键字*/
+//    @JsonIgnore
+//    private String keyword;
+//
+//    /** 上线状态 1 上线 0 不上线*/
+//    @JsonIgnore
+//    private int online = 1;
+//
+//    /** 资源类型   资源类型 1动画  2漫画 3壁纸*/
+////	@JsonIgnore
+//    private int resourceType = 1 ;
+//
+//    /** 是否付费*/
+//    @JsonIgnore
+//    private int isPay = 0;
+//
+//    /** 风格类型*/
+//    @JsonIgnore
+//    private int styleId =0;
+//
+//    /** 审核状态*/
+//    @JsonIgnore
+//    private Integer auditStatus=1 ;//审核状态  1 通过  0 不通过
+//
+//
+//
+//    /** 简介*/
+//    private String briefDesp ;
+//
+//
+//    /**排序字段*/
+//    private int sortNum;
+//
+//
+//    /**上线时间*/
+//    @JsonIgnore
+//    private Date onlineTime;
+//
+//    /**审核人*/
+//    @JsonIgnore
+//    private String auditBy;
+//
+//    /**审核时间*/
+//    @JsonIgnore
+//    private Date auditTime;
+//
+//    /**应用位置  观看选集*/
+//    private String image_480_160;
+//    private String image_296_296;
+//    private String image_300_400;
+//    private String image_800_450;
+//    private String image_900_300;
+//    private String image_480_126;
+//
+//    /**封面图原图*/
+//    private String orijinalImage;
+//
+//
+//
+//    /**人气*/
+//    private String popularity;
+//    /**作品评分对应的描述*/
+//    private String scoreDesp;
+//    /**临时的栏目样式的图片的展示*/
+//    private String imageUrl;
+    //String lastTime   新加的 最新的动漫画更新时间
+
+
+
 }

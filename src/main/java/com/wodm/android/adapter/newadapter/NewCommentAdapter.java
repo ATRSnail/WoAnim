@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +60,10 @@ public class NewCommentAdapter extends BaseAdapter {
         this.context = mContext;
     }
 
-    public void setData(List<NewCommentBean> data) {
+    public void setData(List<NewCommentBean> data, boolean b) {
+        if (b){
+            this.data.clear();
+        }
         this.data.addAll(data);
     }
 
@@ -97,11 +101,14 @@ public class NewCommentAdapter extends BaseAdapter {
             holder.atwo_name = (TextView) convertView.findViewById(R.id.atwo_name);
             holder.atwo_info = (TextView) convertView.findViewById(R.id.atwo_info);
             holder.hour_comment = (TextView) convertView.findViewById(R.id.hour_comment);
+            holder.line = (View) convertView.findViewById(R.id.line_pl);
+            holder.other_pl = (LinearLayout) convertView.findViewById(R.id.other_pl);
             convertView.setTag(holder);
         }else {
           holder = (ViewHolder) convertView.getTag();
         }
          NewCommentBean  bean =data.get(position);
+
         holder.name.setText(bean.getSendNickName());
         TextColorUtils.getInstance().setGradeColor(context, holder.grade_comment, bean.getGradeValue());
         DegreeTools.getInstance(context).getDegree(context, bean.getGradeValue(), holder.gradename_comment);
@@ -124,15 +131,31 @@ public class NewCommentAdapter extends BaseAdapter {
         }
         holder.time.setText(bean.getTimes());
         holder.hour_comment.setText("");
+        if (bean.getGoodCount()>0){
+            holder.dianzanNum_comment.setVisibility(View.VISIBLE);
+        }else {
+            holder.dianzanNum_comment.setVisibility(View.INVISIBLE);
+        }
         holder.dianzanNum_comment.setText(bean.getGoodCount()+"");
         SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(context, bean.getSendCommentContent());
         holder.content.setText(spannableString);
         new AsyncImageLoader(context, R.mipmap.default_header, R.mipmap.default_header).display(holder.img, bean.getSendPortrait());
 
+         String content=String.valueOf(bean.getReceiveCommentContent());
+         String name=String.valueOf(bean.getReceiveNickName());
+        if (!TextUtils.isEmpty(name) & !TextUtils.isEmpty(content)){
+            if (!name.equals("null")&!content.equals("null")){
+                holder.other_pl.setVisibility(View.VISIBLE);
+                holder.line.setVisibility(View.VISIBLE);
+                holder.atwo_name.setText("@"+name+" ：");
+                SpannableString spannableString2 = FaceConversionUtil.getInstace().getExpressionString(context, content);
+                holder.atwo_info.setText(spannableString2);
+            }else {
+                holder.other_pl.setVisibility(View.GONE);
+                holder.line.setVisibility(View.GONE);
+            }
+        }
 
-
-        holder.atwo_name.setText("@"+bean.getReceiveNickName()+" ：");
-        holder.atwo_info.setText(String.valueOf(bean.getReceiveCommentContent()));
 
         holder.img.setOnClickListener(new MyClick(holder,position,bean));
         holder.zanBtn.setOnClickListener(new MyClick(holder,position,bean));
@@ -141,7 +164,8 @@ public class NewCommentAdapter extends BaseAdapter {
         return convertView;
     }
 
- class    MyClick implements View.OnClickListener {
+
+    class    MyClick implements View.OnClickListener {
      private NewCommentBean mBean;
      private  int i;
      private ViewHolder mHolder;
@@ -237,7 +261,7 @@ public class NewCommentAdapter extends BaseAdapter {
 
 
 
-    private void dianZan(NewCommentBean bean, final ViewHolder mHolder, final int postion) {
+    private void dianZan(final NewCommentBean bean, final ViewHolder mHolder, final int postion) {
         /**1:表示点赞的是个人信息  2:表示的是动漫画评论的信息 3:表示的是新闻资讯的评论信息*private int type*/
         try {
             JSONObject object = new JSONObject();
@@ -253,13 +277,20 @@ public class NewCommentAdapter extends BaseAdapter {
                             try {
                                 if (obj.getString("code").equals("1000")) {
                                     if (list.get(postion) ){
+                                        bean.setGoodCount(bean.getGoodCount()-1);//取消点赞成功-人数-1（不用重复请求数据）
                                         mHolder.zanBtn.setImageResource(R.mipmap.un_zan);
-                                        mHolder.dianzanNum_comment.setVisibility(View.INVISIBLE);
                                     }else {
+                                        bean.setGoodCount(bean.getGoodCount()+1);//点赞成功人数手动加1（不用重复请求数据）
                                         mHolder.zanBtn.setImageResource(R.mipmap.zan);
-                                        mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
                                     }
                                     list.set(postion,!list.get(postion));
+                                    mHolder.dianzanNum_comment.setText(bean.getGoodCount()+"");
+                                    if (bean.getGoodCount()>0){
+                                        mHolder.dianzanNum_comment.setVisibility(View.VISIBLE);
+                                    }else {
+                                        mHolder.dianzanNum_comment.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -296,9 +327,10 @@ public class NewCommentAdapter extends BaseAdapter {
         private TextView dianzanNum_comment;
         private TextView atwo_name;
         private TextView atwo_info;
-        ImageView zanBtn;
-        ImageView guanzhu;
-
+        private ImageView zanBtn;
+        private ImageView guanzhu;
+        private View line;
+        private LinearLayout other_pl;
 
     }
 }
