@@ -38,9 +38,11 @@ public class RecommendFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        resourceId=  bundle.getInt("resourceId");
-        resourceType=  bundle.getInt("resourceType");
+//        Bundle bundle = getArguments();
+//        resourceId=  bundle.getInt("resourceId");
+//        resourceType=  bundle.getInt("resourceType");
+        resourceId=  getResourceId();
+        resourceType=  getResourceType();
         View view=inflater.from(getActivity()).inflate(R.layout.tuijian_fragment,null,false);
         gridView = (MyGridView) view.findViewById(R.id.gv_tuijian);
         linearLayout = (LinearLayout) view.findViewById(R.id.ll_tuijian);
@@ -70,6 +72,20 @@ public class RecommendFragment extends Fragment {
 
         return view;
     }
+    public int getResourceId() {
+        return resourceId;
+    }
 
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public int getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(int resourceType) {
+        this.resourceType = resourceType;
+    }
 
 }

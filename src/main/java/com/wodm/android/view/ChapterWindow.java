@@ -15,6 +15,7 @@ import com.wodm.android.adapter.SeriesAdapter;
 import com.wodm.android.adapter.SeriesDowmAdapter;
 import com.wodm.android.bean.ChapterBean;
 import com.wodm.android.bean.DowmBean;
+import com.wodm.android.bean.ObjectBean;
 
 import org.eteclab.ui.widget.NoScrollGridView;
 
@@ -27,7 +28,7 @@ public class ChapterWindow extends PopupWindow {
     public ChapterWindow() {
     }
 
-    public PopupWindow showPopWindow(Context context, View parent, final ArrayList<ChapterBean> lists, int indexCheck) {
+    public PopupWindow showPopWindow(Context context, View parent, final ArrayList<ChapterBean> lists, int indexCheck, ObjectBean bean, int position) {
         LinearLayout layout = new LinearLayout(context);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(-1, -1);
         layout.setLayoutParams(lp);
@@ -53,6 +54,8 @@ public class ChapterWindow extends PopupWindow {
             list.add(bn);
         }
         final SeriesAdapter adapter = new SeriesAdapter(context, lists, 8);
+        adapter.setObjectBean(bean);
+        adapter.setIndex(position);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,7 +85,7 @@ public class ChapterWindow extends PopupWindow {
         return popupWindow;
     }
 
-    public PopupWindow showPopWindows(Context context, View parent, final ArrayList<DowmBean> lists, String path) {
+    public PopupWindow showPopWindows(Context context, View parent, final ArrayList<DowmBean> lists, String path, ObjectBean bean, int position) {
         LinearLayout layout = new LinearLayout(context);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(-1, -1);
         layout.setLayoutParams(lp);

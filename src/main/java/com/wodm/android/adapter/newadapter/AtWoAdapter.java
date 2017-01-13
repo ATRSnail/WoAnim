@@ -133,9 +133,9 @@ public class AtWoAdapter extends BaseAdapter implements View.OnClickListener {
 //        holder.cicle_new.setVisibility(View.VISIBLE);
         holder.name.setText(dataBean.getSendNickName());
         holder.time.setText(dataBean.getTimes());
-        holder.atwo_name.setText(dataBean.getReceiveNickName());
-        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext, dataBean.getContent());
-        holder.info_atwo.setText(" ："+spannableString);
+        holder.atwo_name.setText(dataBean.getReceiveNickName()+" ：");
+        SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(mContext,dataBean.getContent());
+        holder.info_atwo.setText(spannableString);
         return convertView;
     }
 

@@ -450,18 +450,18 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
             String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId + "&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
-        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {
-
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
+//        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {
+//
+//            @Override
+//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthSuccess(result, obj);
+//            }
+//
+//            @Override
+//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+//                super.doAuthFailure(result, obj);
+//            }
+//        });
 //        httpGet(Constants.APP_GETATERESOURCECOUNT + resourceId, new HttpCallback() {
 //
 //            @Override
@@ -983,8 +983,14 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //                    setSeriesView();
                     if (!getIntent().hasExtra("beanPath")){
                         //新的完全横屏
-                        ChapterBean bn = mChapterList.get(watchIndex);
-                        startPlay(bn);
+                        if (watchIndex<=mChapterList.size()-1){
+                            ChapterBean bn = mChapterList.get(watchIndex);
+                            startPlay(bn);
+                        }else {
+                            Toast.makeText(AnimPlayActivity.this,"没有此内容",Toast.LENGTH_SHORT).show();
+                           finish();
+                        }
+
                     }
 //
 //                } catch (JSONException e) {

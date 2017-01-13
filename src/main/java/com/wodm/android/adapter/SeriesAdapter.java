@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.wodm.R;
 import com.wodm.android.bean.ChapterBean;
+import com.wodm.android.bean.ObjectBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,16 @@ public class SeriesAdapter extends BaseAdapter {
     private List<ChapterBean> data = new ArrayList();
     private Boolean isShowAll = true;
     private int num = 16;
+    private ObjectBean objectBean;
+    private int index;
 
+    public void setObjectBean(ObjectBean objectBean) {
+        this.objectBean = objectBean;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public void setShowAll() {
         isShowAll = false;
@@ -85,7 +95,22 @@ public class SeriesAdapter extends BaseAdapter {
         }
         holders = (ViewHolders) convertView.getTag();
 
-        holders.button.setText((position + 1) + "");
+         //根据是否连载显示选集
+        int total=0;
+        if (objectBean.getType()==1){
+            //连载-倒序展示
+            total=objectBean.getChapter()-index*16;
+            if (index==0){
+                total=objectBean.getChapter();
+            }
+            holders.button.setText(String.valueOf(total-position));
+        }else {
+            //完结-顺序展示
+            total=(index+1)*16;
+            holders.button.setText(String.valueOf(total-15+position));
+        }
+
+//        holders.button.setText((position + 1) + "");
 
         ChapterBean bean = (ChapterBean) getItem(position);
         if (position + 1 == getCount() && isShowAll) {

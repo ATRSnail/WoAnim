@@ -7,14 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,7 +69,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 
 //        initRefresh();//下拉刷新
 
-        initComment(pager);
+        initComment(pager, false);
         loadMore();
 
 //        if (scrollView!=null){
@@ -130,7 +127,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
 //                           try {
                                pager++;
 //                               Thread.sleep(1000);
-                               initComment(pager);
+                               initComment(pager, false);
 //                           } catch (InterruptedException e) {
 //                               e.printStackTrace();
 //                           }
@@ -153,7 +150,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
         });
     }
 
-    private void initComment(final int pager) {
+    private void initComment(final int pager, final boolean b) {
         if (Constants.CURRENT_USER==null){
             url=Constants.CommentList + resourceId + "&page=" + pager+"&type="+1;
         }else {
@@ -179,7 +176,8 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
                         }
                     }
                     commentBeanList.addAll(beanList);
-                    adapter.setData(beanList);
+                    adapter.setData(beanList,b);
+
                     adapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
@@ -195,8 +193,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
         super.onResume();
         if (sendMsgActivity.update){
             pager=1;
-            commentBeanList.clear();
-            initComment(pager);
+            initComment(pager,true);
         }
     }
 
@@ -248,7 +245,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
                 if (pager>1){
                     pager--;
                 }
-                initComment(pager);
+                initComment(pager, true);
                 onLoad();
             }
         });
@@ -270,7 +267,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
             public void run() {
                 if (!(pager==totalPages)){
                     pager++;
-                    initComment(pager);
+                    initComment(pager, true);
                 }
 
                 onLoad();

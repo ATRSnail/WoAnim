@@ -135,6 +135,7 @@ public class CartoonReadActivity extends AppActivity {
     private Handler bullethandler=null;
     private Runnable bullettask;
     private  int watchIndex=1;//作品的具体集数
+    private  int position=0;//观看时横向目录被点击的位置
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +151,7 @@ public class CartoonReadActivity extends AppActivity {
 //            commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
             index = getIntent().getIntExtra("index", index);
             watchIndex = getIntent().getIntExtra("watchIndex", watchIndex);
+            position = getIntent().getIntExtra("position", position);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
             resourceId = getIntent().getIntExtra("resourceId",resourceId);
 
@@ -178,19 +180,7 @@ public class CartoonReadActivity extends AppActivity {
             String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
-        //更新漫画点击量
-        httpGet(Constants.APP_UPDATERESOURCECOUNT+resourceId, new HttpCallback() {
 
-            @Override
-            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthSuccess(result, obj);
-            }
-
-            @Override
-            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-                super.doAuthFailure(result, obj);
-            }
-        });
     }
     private BarrageBean showbean=null;
     //主要是控制位置,防止重复出现弹幕
@@ -735,9 +725,9 @@ public class CartoonReadActivity extends AppActivity {
                 };
                 ArrayList<DowmBean> dowmBeanArrayList = (ArrayList<DowmBean>) getIntent().getSerializableExtra("pathList");
                 if (dowmBeanArrayList == null) {
-                    chapterWindow.showPopWindow(CartoonReadActivity.this, mBottomView, mChapterList, index);
+                    chapterWindow.showPopWindow(CartoonReadActivity.this, mBottomView, mChapterList, index,bean,position);
                 } else {
-                    chapterWindow.showPopWindows(CartoonReadActivity.this, mBottomView, dowmBeanArrayList, getIntent().getStringExtra("beanPath"));
+                    chapterWindow.showPopWindows(CartoonReadActivity.this, mBottomView, dowmBeanArrayList, getIntent().getStringExtra("beanPath"),bean,position);
                 }
             }
         });

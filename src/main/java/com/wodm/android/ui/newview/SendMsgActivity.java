@@ -114,16 +114,22 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
             name=getIntent().getStringExtra("name");
             resourceId=getIntent().getIntExtra("resourceId",-1);
         }
+        isResourceMark(ll_pingfen);
     }
 
     private void initViews() {
-        isResourceMark(ll_pingfen);
+
         if (flag==2){
             SpannableString spannableString = FaceConversionUtil.getInstace().getExpressionString(SendMsgActivity.this,content_huifu);
             ll_pingfen.setVisibility(View.GONE);
             ll_huifu.setVisibility(View.VISIBLE);
             set_topbar.setTvTitle("回复评论");
-            huifu_name.setText(name+" ：");
+            if (name.contains("@")){
+                huifu_name.setText(name+" ：");
+            }else {
+                huifu_name.setText("@"+name+" ：");
+            }
+
             huifu_content.setText(spannableString);
         }else {
             ll_pingfen.setVisibility(View.VISIBLE);
@@ -210,7 +216,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
 
         }
         else {
-            if (PingFenAdapter.count>0){
+            if (PingFenAdapter.count>0&PingFenAdapter.count<7){
                 saveResourceMark(PingFenAdapter.count);
             }
             publishComment(text);
@@ -222,10 +228,11 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     private void publishComment(String text) {
         eventName = "发布评论操作";
         CommonUtil.hideKeyboard(getApplicationContext(), mEditText);
+        Log.e("Aa","**********resourceId"+resourceId+"sendId"+id);
         JSONObject obj = new JSONObject();
         try {
             obj.put("resourceId", resourceId);
-            obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
+            obj.put("sendId",id);
             obj.put("content", text);
             obj.put("taskType", 1);
             obj.put("taskValue", 3);
@@ -255,6 +262,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     Toast.makeText(SendMsgActivity.this,"评论失败", Toast.LENGTH_SHORT).show();
                 }
             });
+            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -282,6 +290,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                             mEmojiView.setVisibility(View.GONE);
                             mEditText.setText("");
+                            update=true;
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -294,6 +303,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     Toast.makeText(SendMsgActivity.this,"评论失败", Toast.LENGTH_SHORT).show();
                 }
             });
+            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
