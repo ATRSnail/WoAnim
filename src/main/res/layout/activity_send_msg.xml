@@ -110,7 +110,9 @@
                     android:id="@+id/huifu_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="16"
                     android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/color_fb487f"
                     android:textSize="15sp"
                     android:text=" @这瓜不甜:" />

@@ -83,6 +83,9 @@
                     android:id="@+id/atwo_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxEms="8"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="卡迪那"
                     android:textColor="@color/color_f5912f"
                     android:textSize="@dimen/text_size_34_px" />
@@ -91,9 +94,8 @@
                     android:id="@+id/info_atwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxEms="8"
                     android:ellipsize="end"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:text=":天窗"
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_34_px" />

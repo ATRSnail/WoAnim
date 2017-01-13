@@ -123,13 +123,13 @@ public class HomeFragment extends TrackFragment {
                                         //  intent.setClass(getActivity(), AnimActivity.class);
 //                                        intent.setClass(getActivity(), AnimDetailActivity.class);
                                         intent.setClass(getActivity(), DetailActivity.class);
-                                        intent.putExtra("resourceType",bean.getType());
+                                        intent.putExtra("resourceType",1);
                                         intent.putExtra("resourceId",bean.getResourceId());
                                     } else if (bean.getType().equals("2")) {
                                         //          intent.setClass(getActivity(), AnimActivity.class);
 //                                        intent.setClass(getActivity(), CarDetailActivity.class);
                                         intent.setClass(getActivity(), DetailActivity.class);
-                                        intent.putExtra("resourceType",bean.getType());
+                                        intent.putExtra("resourceType",2);
                                         intent.putExtra("resourceId",bean.getResourceId());
                                     } else {
                                         DBTools.getInstance(getActivity()).insertAdsDB(bean.getId());
