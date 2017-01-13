@@ -1,11 +1,13 @@
 package com.wodm.android.fragment.newfragment;
 
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +49,7 @@ import java.util.List;
 
 public class MuluFragment extends Fragment implements View.OnClickListener{
     private ImageView img_details_up;
-    private TextView tv_jianjie_value,tv_jianjie_value2,state_zp,time,jishu;
+    private TextView tv_jianjie_value,tv_jianjie_value2,state_zp,time,jishu,tv_jianjie;
     private boolean isShow=false;
     private RelativeLayout rl_details_up;
     private boolean isOverFlowed;
@@ -69,6 +72,25 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         }
         return muluFragment;
     }
+
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public int getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(int resourceType) {
+        this.resourceType = resourceType;
+    }
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,10 +98,11 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         resourceId=  bundle.getInt("resourceId");
         resourceType=  bundle.getInt("resourceType");
         recommend=new RecommendFragment();
-        Bundle bundle1 = new Bundle();
-        bundle1.putInt("resourceId",resourceId);
-        bundle1.putInt("resourceType",resourceType);
-        recommend.setArguments(bundle1);
+//        Bundle bundle1 = new Bundle();
+//        bundle1.putInt("resourceId",resourceId);
+//        bundle1.putInt("resourceType",resourceType);
+        recommend.setResourceId(resourceId);
+        recommend.setResourceType(resourceType);
         View view=inflater.from(getActivity()).inflate(R.layout.mulu_fragment,null,false);
         getCarToon(view);
 
@@ -90,7 +113,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         this.listener=listener;
     }
     public interface onJiShuNumClickListener{
-        public void clickNum(int position, int num);
+        public void clickNum(int i, int position, int num);
         public void updatePager(boolean flag, ArrayList<ChapterBean> page);//更新作品每一页的内容
     }
 
@@ -108,9 +131,14 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
             public void doAuthSuccess(ResponseInfo<String> result, final JSONObject obj) {
                 super.doAuthSuccess(result, obj);
                 try {
-                    bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
-                    initView(view,bean);
-                    setViews(bean);
+                    if ("204".equals(obj.getString("code"))){
+
+                    }else if (obj.getString("code").equals("1000")){
+                        bean = new Gson().fromJson(obj.getString("data"), ObjectBean.class);
+                        initView(view,bean);
+                        setViews(bean);
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -162,9 +190,12 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         }
         img_details_up= (ImageView) view.findViewById(R.id.img_details_up);
         linearLayout= (LinearLayout) view.findViewById(R.id.tuijian);
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.tuijian,recommend);
-        transaction.commit();
+
+//            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.tuijian,recommend);
+//            transaction.commit();
+
+
         rl_details_up= (RelativeLayout) view.findViewById(R.id.rl_details_up);
         hor_lv= (HorizontalListView) view.findViewById(R.id.hor_lv);
         gv_adapter_juji= (MyGridView) view.findViewById(R.id.gv_adapter_juji);
@@ -185,6 +216,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         rl_details_up.setOnClickListener(this);
         tv_jianjie_value= (TextView) view.findViewById(R.id.tv_jianjie_value);
         tv_jianjie_value2= (TextView) view.findViewById(R.id.tv_jianjie_value2);
+        tv_jianjie= (TextView) view.findViewById(R.id.tv_jianjie);
         state_zp= (TextView) view.findViewById(R.id.state_zp);
         time= (TextView) view.findViewById(R.id.time);
         jishu= (TextView) view.findViewById(R.id.jishu);
@@ -237,8 +269,16 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
 
 
     public void setViews(ObjectBean bean) {
-        String str= DateFormat.format("yyyy-MM-dd", Calendar.getInstance().getTime()).toString();
-        time.setText(str);
+        if (!TextUtils.isEmpty(bean.getLastTime())){
+            String str= bean.getLastTime().substring(0,10);
+            time.setText(str);
+        }
+
+        if (resourceType==1){
+            tv_jianjie.setText("动画简介");
+        }else {
+            tv_jianjie.setText("漫画简介");
+        }
         if (bean!=null){
             tv_jianjie_value.setText(bean.getBriefDesp());
             tv_jianjie_value2.setText(bean.getBriefDesp());
