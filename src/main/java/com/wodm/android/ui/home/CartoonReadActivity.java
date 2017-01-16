@@ -135,8 +135,9 @@ public class CartoonReadActivity extends AppActivity {
     private Handler bullethandler=null;
     private Runnable bullettask;
     private  int watchIndex=1;//作品的具体集数
-    private  int position=0;//观看时横向目录被点击的位置
+    private  int horiPosition=0;//观看时横向目录被点击的位置
     private ChapterBean chapterBean=null;
+    private int total=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,7 +153,7 @@ public class CartoonReadActivity extends AppActivity {
 //            commentBeanList = (ArrayList<CommentBean>) getIntent().getSerializableExtra("commentList");
             index = getIntent().getIntExtra("index", index);
             watchIndex = getIntent().getIntExtra("watchIndex", watchIndex);
-            position = getIntent().getIntExtra("position", position);
+            horiPosition = getIntent().getIntExtra("position", horiPosition);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
             resourceId = getIntent().getIntExtra("resourceId",resourceId);
             chapterBean = mChapterList.get(index);
@@ -358,11 +359,25 @@ public class CartoonReadActivity extends AppActivity {
 //    };
 
     private void requestHttp(final int index, final boolean b) {
+        //新的详情标题
         if (mTitleView != null && bean != null) {
-            num = bean.getName()+" "+(watchIndex);//新的详情标题
+            if (bean.getType()==1){
+                //连载-倒序展示
+                total=bean.getChapter()-horiPosition*16;
+                if (index==0){
+                    total=bean.getChapter();
+                }
+                mTitleView.setText(String.valueOf(total-index));
+            }else {
+                //完结-顺序展示
+                total=(horiPosition+1)*16;
+                mTitleView.setText(String.valueOf(total-15+index));
+            }
+
+//            num = bean.getName()+" "+(watchIndex);
 
 //            num = bean.getName()+" "+(index+1);
-            mTitleView.setText(num);//漫画标题+集数
+//            mTitleView.setText(num);//漫画标题+集数
             mCollectView.setChecked(1 == bean.getIsCollect());
         }
         if (mChapterList != null && mChapterList.size() > 0 && index < mChapterList.size()) {
@@ -727,9 +742,9 @@ public class CartoonReadActivity extends AppActivity {
                 };
                 ArrayList<DowmBean> dowmBeanArrayList = (ArrayList<DowmBean>) getIntent().getSerializableExtra("pathList");
                 if (dowmBeanArrayList == null) {
-                    chapterWindow.showPopWindow(CartoonReadActivity.this, mBottomView, mChapterList, index,bean,position);
+                    chapterWindow.showPopWindow(CartoonReadActivity.this, mBottomView, mChapterList, index,bean,horiPosition);
                 } else {
-                    chapterWindow.showPopWindows(CartoonReadActivity.this, mBottomView, dowmBeanArrayList, getIntent().getStringExtra("beanPath"),bean,position);
+                    chapterWindow.showPopWindows(CartoonReadActivity.this, mBottomView, dowmBeanArrayList, getIntent().getStringExtra("beanPath"),bean,horiPosition);
                 }
             }
         });
