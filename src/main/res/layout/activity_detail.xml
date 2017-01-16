@@ -35,7 +35,7 @@
                     app:BackGroundColor="#00000000"
                     app:CustomtitleTextColor="@color/color_ffffff"
                     app:CustomtitleTextSize="@dimen/text_size_32_px"
-                    app:Customtoptitle="详情页面"
+                    app:Customtoptitle=""
                     app:leftBackGround="@mipmap/back_mall_white" />
                 <RelativeLayout
                     android:id="@+id/detail_info"

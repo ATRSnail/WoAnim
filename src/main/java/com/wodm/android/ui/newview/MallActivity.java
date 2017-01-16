@@ -125,9 +125,15 @@ public class MallActivity extends AppActivity implements AtyTopLayout.myTopbarCl
                                     Intent intent = new Intent();
                                     intent.putExtra("resourceId", Integer.valueOf(bean.getResourceId()).intValue());
                                     if (bean.getType().equals("1")) {
-                                        intent.setClass(MallActivity.this, AnimDetailActivity.class);
+//                                        intent.setClass(MallActivity.this, AnimDetailActivity.class);
+                                        intent.setClass(MallActivity.this, DetailActivity.class);
+                                        intent.putExtra("resourceType",1);
+                                        intent.putExtra("resourceId",bean.getResourceId());
                                     } else if (bean.getType().equals("2")) {
-                                        intent.setClass(MallActivity.this, CarDetailActivity.class);
+//                                        intent.setClass(MallActivity.this, CarDetailActivity.class);
+                                        intent.setClass(MallActivity.this, DetailActivity.class);
+                                        intent.putExtra("resourceType",2);
+                                        intent.putExtra("resourceId",bean.getResourceId());
                                     } else if (bean.getType().equals("2")) {
                                         intent.setClass(MallActivity.this, CarDetailActivity.class);
                                     } else {

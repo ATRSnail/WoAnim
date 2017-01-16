@@ -96,7 +96,8 @@ public class NewMain2Adapter extends BaseAdapter {
             imageview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mContext.startActivity(new Intent(mContext, dataBean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", dataBean.getId()));
+//                    mContext.startActivity(new Intent(mContext, dataBean.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", dataBean.getId()));
+                    mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", bean.getId()).putExtra("resourceType", bean.getResourceType()));
                 }
             });
             Glide.with(mContext).load(dataBean.getImageUrl()).placeholder(R.mipmap.loading).into(imageview);

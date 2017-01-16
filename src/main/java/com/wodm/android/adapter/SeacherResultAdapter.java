@@ -16,6 +16,7 @@ import com.wodm.android.CartoonApplication;
 import com.wodm.android.bean.ObjectBean;
 import com.wodm.android.ui.home.AnimDetailActivity;
 import com.wodm.android.ui.home.CarDetailActivity;
+import com.wodm.android.ui.newview.DetailActivity;
 
 import org.eteclab.base.annotation.Layout;
 import org.eteclab.base.annotation.ViewIn;
@@ -35,7 +36,8 @@ public class SeacherResultAdapter extends HolderAdapter<ObjectBean> {
             public void onItemClick(View view, ObjectBean o, int i) {
 
 //                Toast.makeText(context, o.getResourceType() +"",0).show();
-                mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
+//                mContext.startActivity(new Intent(mContext, o.getResourceType() == 1 ? AnimDetailActivity.class : CarDetailActivity.class).putExtra("resourceId", o.getId()));
+                mContext.startActivity(new Intent(mContext, DetailActivity.class).putExtra("resourceId", o.getId()).putExtra("resourceType", o.getResourceType()));
             }
         });
     }
