@@ -99,7 +99,6 @@ public class TuiJianAdapter extends BaseAdapter  {
                 Intent intent =new Intent(mContext, DetailActivity.class);
                 intent.putExtra("resourceId", resourceBean.getId());
                 intent.putExtra("resourceType", resourceBean.getResourceType());
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(intent);
             }
         });

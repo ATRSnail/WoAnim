@@ -168,6 +168,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
     int mKeyboardHeight = 400; // 输入法默认高度为400
     private int danmuplayTime=-1;
     private  int watchIndex=0;
+    private ChapterBean chapterBean=null;
     private void initHeaderViews() {
 //        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -365,6 +366,7 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
         watchIndex = getIntent().getIntExtra("index",watchIndex);
         mChapterList = (ArrayList<ChapterBean>) getIntent().getSerializableExtra("ChapterList");
         bean = (ObjectBean) getIntent().getSerializableExtra("bean");
+        chapterBean = mChapterList.get(watchIndex);
 //        DividerLine line = new DividerLine();
 //        line.setSize(getResources().getDimensionPixelSize(R.dimen.px_1));
 //        line.setColor(Color.rgb(0xD8, 0xD8, 0xD8));
@@ -445,9 +447,9 @@ public class AnimPlayActivity extends AppActivity implements NetworkChangeListen
 //
 //            }
 //        });
-
+        int id = Integer.valueOf(chapterBean.getId());
         if (Constants.CURRENT_USER != null) {
-            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId + "&taskType=1&taskValue=2";
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId +"&id="+id+ "&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
 //        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {

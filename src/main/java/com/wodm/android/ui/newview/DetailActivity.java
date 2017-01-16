@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -170,19 +171,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
 //                super.doAuthFailure(result, obj);
 //            }
 //        });
-//        //更新点击量
-//        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {
-//
-//            @Override
-//            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
-//                super.doAuthSuccess(result, obj);
-//            }
-//
-//            @Override
-//            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
-//                super.doAuthFailure(result, obj);
-//            }
-//        });
+
     }
 
 
@@ -343,7 +332,19 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
     protected void onResume() {
         super.onResume();
         getCarToon();
+        //更新点击量
+        httpGet(Constants.APP_UPDATERESOURCECOUNT + resourceId, new HttpCallback() {
 
+            @Override
+            public void doAuthSuccess(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthSuccess(result, obj);
+            }
+
+            @Override
+            public void doAuthFailure(ResponseInfo<String> result, JSONObject obj) {
+                super.doAuthFailure(result, obj);
+            }
+        });
     }
 
     @Override

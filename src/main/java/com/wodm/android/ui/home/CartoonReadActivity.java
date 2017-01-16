@@ -136,6 +136,7 @@ public class CartoonReadActivity extends AppActivity {
     private Runnable bullettask;
     private  int watchIndex=1;//作品的具体集数
     private  int position=0;//观看时横向目录被点击的位置
+    private ChapterBean chapterBean=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +155,7 @@ public class CartoonReadActivity extends AppActivity {
             position = getIntent().getIntExtra("position", position);
             bean = (ObjectBean) getIntent().getSerializableExtra("bean");
             resourceId = getIntent().getIntExtra("resourceId",resourceId);
-
+            chapterBean = mChapterList.get(index);
             requestHttp(index, true);
 
         } else {
@@ -175,9 +176,10 @@ public class CartoonReadActivity extends AppActivity {
             }
         });
         startDanmuTimeTask();
+        int id = Integer.valueOf(chapterBean.getId());
         //用户观看记录的(需要点击某章节的时间调用)
         if (Constants.CURRENT_USER != null) {
-            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&taskType=1&taskValue=2";
+            String url = Constants.USER_ADD_WATCH_RECORD + "?userId=" + Constants.CURRENT_USER.getData().getAccount().getId() + "&resourceId=" + resourceId+"&id="+id+"&taskType=1&taskValue=2";
             httpGet(url, new HttpCallback());
         }
 

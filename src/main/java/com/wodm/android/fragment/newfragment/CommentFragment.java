@@ -51,7 +51,6 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     TextView foot;
     Handler handler=new Handler();
     TextView comment;
-    SendMsgActivity sendMsgActivity =new SendMsgActivity();
     int pager=1;
     String url;
     int totalPages;
@@ -191,9 +190,10 @@ public class CommentFragment extends Fragment implements View.OnClickListener,XL
     @Override
     public void onResume() {
         super.onResume();
-        if (sendMsgActivity.update){
+        if (SendMsgActivity.update){
             pager=1;
             initComment(pager,true);
+            SendMsgActivity.update=false;
         }
     }
 

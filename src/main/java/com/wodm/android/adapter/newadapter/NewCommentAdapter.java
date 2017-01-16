@@ -69,7 +69,6 @@ public class NewCommentAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-//        Log.e("AA","*****************"+data.size());
         return data.size()>0? data.size():0;
     }
 

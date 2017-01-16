@@ -228,7 +228,6 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     private void publishComment(String text) {
         eventName = "发布评论操作";
         CommonUtil.hideKeyboard(getApplicationContext(), mEditText);
-        Log.e("Aa","**********resourceId"+resourceId+"sendId"+id);
         JSONObject obj = new JSONObject();
         try {
             obj.put("resourceId", resourceId);
@@ -244,12 +243,13 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     super.doAuthSuccess(result, obj);
                     try {
                         if (obj.getString("code").equals("1000")) {
+                            update=true;
                             Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                             ).show();
                             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                             mEmojiView.setVisibility(View.GONE);
                             mEditText.setText("");
-                            update=true;
+                            finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -262,7 +262,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     Toast.makeText(SendMsgActivity.this,"评论失败", Toast.LENGTH_SHORT).show();
                 }
             });
-            finish();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -271,7 +271,6 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
     private void replyComment(String text, int resourceId, int sendId, int commentId) {
         eventName = "回复评论操作";
         JSONObject obj = new JSONObject();
-        Log.e("AA","**************resourceId "+resourceId +"sendId"+sendId+"commentId"+commentId);
         try {
             obj.put("resourceId", resourceId);
             obj.put("sendId", Constants.CURRENT_USER.getData().getAccount().getId());
@@ -285,12 +284,13 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     super.doAuthSuccess(result, obj);
                     try {
                         if (obj.getString("code").equals("1000")) {
+                            update=true;
                             Toast.makeText(getApplicationContext(), "评论成功", Toast.LENGTH_SHORT
                             ).show();
                             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                             mEmojiView.setVisibility(View.GONE);
                             mEditText.setText("");
-                            update=true;
+                            finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -303,7 +303,7 @@ public class SendMsgActivity extends AppActivity implements AtyTopLayout.myTopba
                     Toast.makeText(SendMsgActivity.this,"评论失败", Toast.LENGTH_SHORT).show();
                 }
             });
-            finish();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

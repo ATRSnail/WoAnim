@@ -65,13 +65,13 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     RecommendFragment recommend;
     private static MuluFragment muluFragment=null;
     private static onJiShuNumClickListener listener;
-    private static Bundle bundle;
+    private static Bundle bundle=null;
     public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener, Bundle bundle2){
         listener=jiShuNumClickListener;
        bundle = bundle2;
-        if (muluFragment==null){
+//        if (muluFragment==null){
             muluFragment=new MuluFragment();
-        }
+//        }
         return muluFragment;
     }
 
