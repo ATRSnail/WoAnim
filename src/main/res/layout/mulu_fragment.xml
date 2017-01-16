@@ -116,12 +116,12 @@
             android:id="@+id/gv_adapter_juji">
         </com.wodm.android.view.newview.MyGridView>
 
-        <fragment
+        <LinearLayout
             android:name="com.wodm.android.fragment.newfragment.RecommendFragment"
             android:orientation="vertical"
             android:id="@+id/tuijian"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></fragment>
+            android:layout_height="wrap_content"></LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -218,8 +218,11 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         Bundle bundle = new Bundle();
         bundle.putInt("resourceId",resourceId);
         bundle.putInt("resourceType",resourceType);
-        muLu =MuluFragment.getInstance(this);
-        muLu.setArguments(bundle);
+        muLu =MuluFragment.getInstance(this,bundle);
+//        if (!muLu.isAdded()){
+//            muLu.setArguments(bundle);
+//        }
+
 
 
         comment =new CommentFragment();
@@ -280,7 +283,7 @@ public class DetailActivity extends AppActivity  implements AtyTopLayout.myTopba
         renqi.setText(bean.getPopularity());
 
         author.setText("作者 ："+bean.getAuthor());
-        score.setText(bean.getScore()+"");
+        score.setText("评分 ："+bean.getScore()+"");
         switch (bean.getCategoryName()){
            case "校园" :
                category.setImageResource(R.mipmap.img_xy);

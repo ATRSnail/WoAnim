@@ -65,8 +65,10 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     RecommendFragment recommend;
     private static MuluFragment muluFragment=null;
     private static onJiShuNumClickListener listener;
-    public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener){
+    private static Bundle bundle;
+    public static MuluFragment getInstance(onJiShuNumClickListener jiShuNumClickListener, Bundle bundle2){
         listener=jiShuNumClickListener;
+       bundle = bundle2;
         if (muluFragment==null){
             muluFragment=new MuluFragment();
         }
@@ -94,7 +96,7 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
+//        Bundle bundle = getArguments();
         resourceId=  bundle.getInt("resourceId");
         resourceType=  bundle.getInt("resourceType");
         recommend=new RecommendFragment();
@@ -191,9 +193,9 @@ public class MuluFragment extends Fragment implements View.OnClickListener{
         img_details_up= (ImageView) view.findViewById(R.id.img_details_up);
         linearLayout= (LinearLayout) view.findViewById(R.id.tuijian);
 
-//            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//            transaction.replace(R.id.tuijian,recommend);
-//            transaction.commit();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.tuijian,recommend);
+            transaction.commit();
 
 
         rl_details_up= (RelativeLayout) view.findViewById(R.id.rl_details_up);
